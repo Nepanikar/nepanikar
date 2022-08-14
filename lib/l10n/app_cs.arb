@@ -1,0 +1,11 @@
+{
+  "@@locale": "cs",
+  "appName": "Nepanikař",
+  "@appName": {
+    "description": "general app name"
+  },
+  "hi": "Ahoj",
+  "@hi": {},
+  "switchLanguage": "Změnit jazyk",
+  "@switchLanguage": {}
+}
