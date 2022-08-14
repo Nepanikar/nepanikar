@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.dontpanic.nepanikar">
+    package="org.dontpanic">
    <application
         android:label="nepanikar"
         android:name="${applicationName}"
