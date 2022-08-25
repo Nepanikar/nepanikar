@@ -47,4 +47,4 @@ jobs:
         uses: gradle/gradle-build-action@v2
 
       - name: Build ios
-        run: flutter build ios --debug --no-codesign --simulator --obfuscate
+        run: flutter build ios --debug --no-codesign --simulator
