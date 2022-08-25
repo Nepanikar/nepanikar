@@ -1,5 +1,8 @@
 name: Continuous Integration / build
-on: [push, pull_request]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
 
 env:
   flutter_version: '3.0.5'
