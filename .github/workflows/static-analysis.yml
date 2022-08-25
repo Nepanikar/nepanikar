@@ -1,0 +1,49 @@
+name: Continuous Integration
+on: [push, pull_request]
+
+env:
+ flutter_version: '3.0.5'
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Flutter SDK cache
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.flutter_version }}
+          cache: true
+          cache-key: ${{ runner.OS }}-flutter-${{ env.flutter_version }}
+          cache-path: ${{ runner.tool_cache }}/flutter
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Verify formatting dart
+        run: sh ./bin/ci_workflow_scripts/verify_formatting.sh
+
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Flutter SDK cache
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.flutter_version }}
+          cache: true
+          cache-key: ${{ runner.OS }}-flutter-${{ env.flutter_version }}
+          cache-path: ${{ runner.tool_cache }}/flutter
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - uses: invertase/github-action-dart-analyzer@v1
+        with:
+          fatal-infos: true
+          fatal-warnings: true
+          annotate: true
+          annotate-only: false
+          working-directory: ./
