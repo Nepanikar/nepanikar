@@ -7,7 +7,8 @@ String platformLocale = Platform.localeName.split("_").first;
 
 class LocalizationProvider extends ChangeNotifier {
   Locale locale = Locale(
-      AppLocalizations.supportedLocales.contains(Locale(platformLocale)) ? platformLocale : "en");
+    AppLocalizations.supportedLocales.contains(Locale(platformLocale)) ? platformLocale : "en",
+  );
 
   void setLocale(String code) {
     locale = Locale(code);
