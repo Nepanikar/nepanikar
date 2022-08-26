@@ -4,7 +4,7 @@ import 'package:nepanikar/providers/localization_provider.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +29,13 @@ class HomePage extends StatelessWidget {
             ),
             Center(
               child: OutlinedButton(
-                  onPressed: () {
-                    context.read<LocalizationProvider>().setLocale(
-                          Localizations.localeOf(context).languageCode == 'en' ? 'cs' : 'en',
-                        );
-                  },
-                  child: Text(context.l10n.switchLanguage)),
+                onPressed: () {
+                  context.read<LocalizationProvider>().setLocale(
+                        Localizations.localeOf(context).languageCode == 'en' ? 'cs' : 'en',
+                      );
+                },
+                child: Text(context.l10n.switchLanguage),
+              ),
             )
           ],
         ),
