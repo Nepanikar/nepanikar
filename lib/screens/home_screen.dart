@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.l10n.appName),
+        title: Text('context.l10n.appName'),
       ),
       body: SafeArea(
         child: Column(
@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              "${context.l10n.hi} 👋",
+              'd',
               textAlign: TextAlign.center,
               style: const TextStyle(
                 fontSize: 40,
@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
                         Localizations.localeOf(context).languageCode == 'en' ? 'cs' : 'en',
                       );
                 },
-                child: Text(context.l10n.switchLanguage),
+                child: Text('context.l10n.switchLanguage'),
               ),
             )
           ],

@@ -1,0 +1,11 @@
+{
+  "readKey": "a8728969770870154796-3c5e1b491752c9fb8a33d87af230e5dfa75b608b7d5cfe2b03a36414e61ad9dc",
+  "conversion": {
+    "actions": [
+      {
+        "type": "arb",
+        "output": "./lib/l10n/app_${lang}.arb"
+      }
+    ]
+  }
+}

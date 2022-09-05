@@ -13,4 +13,4 @@ state management: [Provider](https://pub.dev/packages/provider)
 ## Commands
 
 #### Regenerate language files - localization
-`flutter gen-l10n `
+`flutter gen-l10n`
