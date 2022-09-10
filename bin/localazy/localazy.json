@@ -5,7 +5,8 @@
       "name": "cleaned_lang_code",
       "source": "${lang}",
       "operations": [
-        "replace: -, _"
+        "replace: -, _",
+        "remove: _PT2"
       ]
     }
   ],
@@ -13,7 +14,10 @@
     "actions": [
       {
         "type": "arb",
-        "output": "./lib/l10n/arb/app_${cleaned_lang_code}.arb"
+        "output": "../../lib/l10n/arb/app_${cleaned_lang_code}.arb",
+        "langExpansions": {
+          "pt-PT": ["pt-PT2"]
+        }
       }
     ]
   }
