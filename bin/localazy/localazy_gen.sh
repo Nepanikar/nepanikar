@@ -1,2 +1,2 @@
 localazy download
-py arb_keys_transformer.py
+python arb_keys_transformer.py

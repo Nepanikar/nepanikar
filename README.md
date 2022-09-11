@@ -17,6 +17,7 @@ Original Qt version: https://github.com/ichlubna/mind
 We are using [Localazy](https://localazy.com/) for managing app localizations.
 The prerequisites for running the localization update script are:
    - Python SDK
+   - Python dependency `stringcase`: `pip install stringcase`
    - Localazy CLI (run `npm install -g @localazy/cli` or see [Installation](https://localazy.com/docs/cli/installation) page for other options)
 
 After that you can simply run the script located in `./bin/localazy/localazy_gen.sh`.
