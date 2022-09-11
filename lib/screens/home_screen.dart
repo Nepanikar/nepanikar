@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nepanikar/l10n/ext.dart';
 import 'package:nepanikar/providers/localization_provider.dart';
 import 'package:provider/provider.dart';
@@ -10,33 +11,39 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.l10n.appName),
+        title: Text(context.l10n.app_name),
       ),
       body: SafeArea(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Text(
-              "${context.l10n.hi} 👋",
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 40,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(context.l10n.about_app),
+                ButtonTheme(
+                  alignedDropdown: true,
+                  child: DropdownButton<Locale>(
+                    value: context.watch<LocalizationProvider>().locale,
+                    items: AppLocalizations.supportedLocales.map<DropdownMenuItem<Locale>>(
+                      (Locale locale) {
+                        return DropdownMenuItem<Locale>(
+                          value: locale,
+                          child: Text(locale.toLanguageTag()),
+                        );
+                      },
+                    ).toList(),
+                    onChanged: (Locale? locale) {
+                      if (locale != null) {
+                        context.read<LocalizationProvider>().setLocale(locale);
+                      }
+                    },
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(
-              height: 60,
-            ),
-            Center(
-              child: OutlinedButton(
-                onPressed: () {
-                  context.read<LocalizationProvider>().setLocale(
-                        Localizations.localeOf(context).languageCode == 'en' ? 'cs' : 'en',
-                      );
-                },
-                child: Text(context.l10n.switchLanguage),
-              ),
-            )
+            const SizedBox(height: 20),
+            Text(context.l10n.depression_tips),
           ],
         ),
       ),

@@ -23,7 +23,10 @@ class Nepanikar extends StatelessWidget {
     return MaterialApp(
       title: 'Nepanikař',
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
+        primaryColor: const Color.fromRGBO(40, 4, 70, 1.0),
+        colorScheme: const ColorScheme.light().copyWith(
+          primary: const Color.fromRGBO(40, 4, 70, 1.0),
+        ),
       ),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
