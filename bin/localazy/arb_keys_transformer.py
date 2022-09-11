@@ -26,24 +26,19 @@ def parse_and_transform_arb_file(file: str):
     def key_transformer(data):
         dict_copy = dict(data)
         for key in data:
+            curr_value = data[key]
             if not ignored_keys.__contains__(key):
                 transformed_key = to_snake_case(key)
                 if transformed_key != key and dict_copy.keys().__contains__(transformed_key):
                     # Transformed key with this name already exists, append some value to differentiate from it.
                     transformed_key = transformed_key + '_' + str(len(key))
                 del dict_copy[key]
-                dict_copy[transformed_key] = data[key]
-            if key == ignored_keys[0] and transformed_files.__contains__(data[key]) and file != data[key]:
-                # Replacing value of '@@locale' key due to this error:
-                #
-                # Exception: The locale specified in @@locale and the arb filename do not match.
-                # Please make sure that they match, since this prevents any confusion
-                # with which locale to use. Otherwise, specify the locale in either the
-                # filename of the @@locale key only.
-                # Current @@locale value: pt_PT
-                # Current filename extension: pt
+                dict_copy[transformed_key] = curr_value
+            if key == ignored_keys[0] and transformed_files.__contains__(curr_value):
+                # Replacing value of '@@locale' key to the filename (e.g.: value: pt-PT; filename: app_pt.arb). This
+                # key needs to match the filename.
                 lang_code = re.sub(f'({arb_file_prefix})|({arb_file_suffix})', '', file)
-                if lang_code != data[key]:
+                if lang_code != curr_value:
                     dict_copy[key] = lang_code
         return dict_copy
 
