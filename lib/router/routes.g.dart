@@ -17,7 +17,7 @@ GoRoute get $homeRoute => GoRouteData.$route(
     );
 
 extension $HomeRouteExtension on HomeRoute {
-  static HomeRoute _fromState(GoRouterState state) => HomeRoute();
+  static HomeRoute _fromState(GoRouterState state) => const HomeRoute();
 
   String get location => GoRouteData.$location(
         '/',
@@ -34,7 +34,7 @@ GoRoute get $aboutAppRoute => GoRouteData.$route(
     );
 
 extension $AboutAppRouteExtension on AboutAppRoute {
-  static AboutAppRoute _fromState(GoRouterState state) => AboutAppRoute();
+  static AboutAppRoute _fromState(GoRouterState state) => const AboutAppRoute();
 
   String get location => GoRouteData.$location(
         '/about-app',

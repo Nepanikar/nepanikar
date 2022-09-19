@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
             children: [
               OutlinedButton(
                 onPressed: () {
-                  context.push(AboutAppRoute().location);
+                  context.push(const AboutAppRoute().location);
                 },
                 child: Text(context.l10n.about_app),
               ),

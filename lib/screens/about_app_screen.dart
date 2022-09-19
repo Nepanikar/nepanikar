@@ -4,9 +4,9 @@ import 'package:nepanikar/utils/app_config.dart';
 import 'package:nepanikar/utils/registry.dart';
 
 class AboutAppScreen extends StatelessWidget {
-  AboutAppScreen({super.key});
+  const AboutAppScreen({super.key});
 
-  final _appConfig = registry.get<AppConfig>();
+  AppConfig get _appConfig => registry.get<AppConfig>();
 
   @override
   Widget build(BuildContext context) {
