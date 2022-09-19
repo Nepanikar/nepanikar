@@ -4,12 +4,15 @@ First aid for psychological issues - Official mobile app for [nepanikar.eu](http
 
 Original Qt version: https://github.com/ichlubna/mind
 
-## Project specs
+## Project specs & conventions
 
 - targeted platforms: iOS, Android
 - Flutter version: 3.0.5
 - code style: 100 characters per line
 - state management: [Provider](https://pub.dev/packages/provider)
+- routing: [GoRouter](https://pub.dev/packages/go_router)
+
+We are committing generated files (.g.dart, .freezed.dart) to VCS to save time in Continuous Integration.
 
 ## Project documentation
 
@@ -22,5 +25,7 @@ The prerequisites for running the localization update script are:
 
 After that you can simply run the script located in `./bin/localazy/localazy_gen.sh`.
 
-### Recompile .arb language files
-`flutter gen-l10n`
+### Commands
+- `flutter packages pub run build_runner build --delete-conflicting-outputs` - regenerate go_route/freezed files
+- `flutter gen-l10n` - recompile .arb language files
+
