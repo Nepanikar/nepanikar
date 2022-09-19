@@ -17,6 +17,7 @@ class AboutAppScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
+            // TODO: Localization
             Text('Verze: ${_appConfig.appVersion}\n'),
             Text(context.l10n.about_app_text),
           ],

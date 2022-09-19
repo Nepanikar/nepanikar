@@ -18,43 +18,45 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              OutlinedButton(
-                onPressed: () {
-                  context.push(const AboutAppRoute().location);
-                },
-                child: Text(context.l10n.about_app),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(context.l10n.language),
-                  ButtonTheme(
-                    alignedDropdown: true,
-                    child: DropdownButton<Locale>(
-                      value: context.watch<LocalizationProvider>().locale,
-                      items: AppLocalizations.supportedLocales.map<DropdownMenuItem<Locale>>(
-                        (Locale locale) {
-                          return DropdownMenuItem<Locale>(
-                            value: locale,
-                            child: Text(locale.toLanguageTag()),
-                          );
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                OutlinedButton(
+                  onPressed: () {
+                    context.push(const AboutAppRoute().location);
+                  },
+                  child: Text(context.l10n.about_app),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(context.l10n.language),
+                    ButtonTheme(
+                      alignedDropdown: true,
+                      child: DropdownButton<Locale>(
+                        value: context.watch<LocalizationProvider>().locale,
+                        items: AppLocalizations.supportedLocales.map<DropdownMenuItem<Locale>>(
+                          (Locale locale) {
+                            return DropdownMenuItem<Locale>(
+                              value: locale,
+                              child: Text(locale.toLanguageTag()),
+                            );
+                          },
+                        ).toList(),
+                        onChanged: (Locale? locale) {
+                          if (locale != null) {
+                            context.read<LocalizationProvider>().setLocale(locale);
+                          }
                         },
-                      ).toList(),
-                      onChanged: (Locale? locale) {
-                        if (locale != null) {
-                          context.read<LocalizationProvider>().setLocale(locale);
-                        }
-                      },
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              Text(context.l10n.depression_tips),
-            ],
+                  ],
+                ),
+                const SizedBox(height: 20),
+                Text(context.l10n.depression_tips),
+              ],
+            ),
           ),
         ),
       ),
