@@ -27,11 +27,11 @@ jobs:
       - name: Gradle cache
         uses: gradle/gradle-build-action@v2
 
-      - name: Build apk
-        run: flutter build apk --release
-
       - name: Run prebuild script
         run: sh ./bin/ci_workflow_scripts/prebuild.sh ${{github.run_number}}
+
+      - name: Build apk
+        run: flutter build apk --release
 
       - name: GitHub release
         uses: ncipollo/release-action@v1
