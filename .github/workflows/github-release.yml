@@ -31,7 +31,7 @@ jobs:
         run: flutter build apk --release
 
       - name: Run prebuild script
-        run: sh ./bin/ci_workflow_scripts/prebuild.sh
+        run: sh ./bin/ci_workflow_scripts/prebuild.sh ${{github.run_number}}
 
       - name: GitHub release
         uses: ncipollo/release-action@v1
