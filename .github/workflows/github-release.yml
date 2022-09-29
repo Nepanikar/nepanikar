@@ -30,6 +30,9 @@ jobs:
       - name: Build apk
         run: flutter build apk --release
 
+      - name: Run prebuild script
+        run: sh ./bin/ci_workflow_scripts/prebuild.sh
+
       - name: GitHub release
         uses: ncipollo/release-action@v1
         if: github.event_name != 'pull_request'
