@@ -28,7 +28,7 @@ jobs:
         uses: gradle/gradle-build-action@v2
 
       - name: Build apk
-        run: flutter build apk
+        run: flutter build apk --debug
 
   ios:
     runs-on: macos-latest
@@ -45,9 +45,6 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
-
-      - name: Gradle cache
-        uses: gradle/gradle-build-action@v2
 
       - name: Build ios
         run: flutter build ios --debug --no-codesign --simulator
