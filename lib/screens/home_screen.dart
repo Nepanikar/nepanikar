@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:nepanikar/l10n/ext.dart';
 import 'package:nepanikar/providers/localization_provider.dart';
 import 'package:nepanikar/router/routes.dart';
+import 'package:nepanikar/utils/theme.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -26,7 +27,9 @@ class HomeScreen extends StatelessWidget {
                   onPressed: () {
                     context.push(const AboutAppRoute().location);
                   },
-                  child: Text(context.l10n.about_app),
+                  child: Text(
+                    context.l10n.about_app,
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -36,7 +39,8 @@ class HomeScreen extends StatelessWidget {
                       alignedDropdown: true,
                       child: DropdownButton<Locale>(
                         value: context.watch<LocalizationProvider>().locale,
-                        items: AppLocalizations.supportedLocales.map<DropdownMenuItem<Locale>>(
+                        items: AppLocalizations.supportedLocales
+                            .map<DropdownMenuItem<Locale>>(
                           (Locale locale) {
                             return DropdownMenuItem<Locale>(
                               value: locale,
@@ -46,7 +50,9 @@ class HomeScreen extends StatelessWidget {
                         ).toList(),
                         onChanged: (Locale? locale) {
                           if (locale != null) {
-                            context.read<LocalizationProvider>().setLocale(locale);
+                            context
+                                .read<LocalizationProvider>()
+                                .setLocale(locale);
                           }
                         },
                       ),
