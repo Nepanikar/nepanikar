@@ -13,7 +13,8 @@ Future<void> main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider<LocalizationProvider>(
-            create: (_) => LocalizationProvider()),
+          create: (_) => LocalizationProvider(),
+        ),
       ],
       child: const Nepanikar(),
     ),
