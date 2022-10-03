@@ -32,6 +32,34 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 Row(
+                  children: [
+                    Flexible(
+                      child: Container(
+                        color: NepanikarTheme.primary,
+                        height: 30,
+                      ),
+                    ),
+                    Flexible(
+                      child: Container(
+                        color: NepanikarTheme.secondary,
+                        height: 30,
+                      ),
+                    ),
+                    Flexible(
+                      child: Container(
+                        color: NepanikarTheme.success,
+                        height: 30,
+                      ),
+                    ),
+                    Flexible(
+                      child: Container(
+                        color: NepanikarTheme.error,
+                        height: 30,
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(context.l10n.language),
