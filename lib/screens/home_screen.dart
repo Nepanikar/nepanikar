@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:nepanikar/l10n/ext.dart';
 import 'package:nepanikar/providers/localization_provider.dart';
 import 'package:nepanikar/router/routes.dart';
+import 'package:nepanikar/utils/theme.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -26,7 +27,37 @@ class HomeScreen extends StatelessWidget {
                   onPressed: () {
                     context.push(const AboutAppRoute().location);
                   },
-                  child: Text(context.l10n.about_app),
+                  child: Text(
+                    context.l10n.about_app,
+                  ),
+                ),
+                Row(
+                  children: [
+                    Flexible(
+                      child: Container(
+                        color: NepanikarTheme.primary,
+                        height: 30,
+                      ),
+                    ),
+                    Flexible(
+                      child: Container(
+                        color: NepanikarTheme.secondary,
+                        height: 30,
+                      ),
+                    ),
+                    Flexible(
+                      child: Container(
+                        color: NepanikarTheme.success,
+                        height: 30,
+                      ),
+                    ),
+                    Flexible(
+                      child: Container(
+                        color: NepanikarTheme.error,
+                        height: 30,
+                      ),
+                    ),
+                  ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
