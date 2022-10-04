@@ -67,8 +67,7 @@ class HomeScreen extends StatelessWidget {
                       alignedDropdown: true,
                       child: DropdownButton<Locale>(
                         value: context.watch<LocalizationProvider>().locale,
-                        items: AppLocalizations.supportedLocales
-                            .map<DropdownMenuItem<Locale>>(
+                        items: AppLocalizations.supportedLocales.map<DropdownMenuItem<Locale>>(
                           (Locale locale) {
                             return DropdownMenuItem<Locale>(
                               value: locale,
@@ -78,9 +77,7 @@ class HomeScreen extends StatelessWidget {
                         ).toList(),
                         onChanged: (Locale? locale) {
                           if (locale != null) {
-                            context
-                                .read<LocalizationProvider>()
-                                .setLocale(locale);
+                            context.read<LocalizationProvider>().setLocale(locale);
                           }
                         },
                       ),

@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 class NepanikarTheme {
   static ThemeData themeData = ThemeData(
-    primaryColor: const Color(0xff280446),
+    primaryColor: primary,
     colorScheme: const ColorScheme.light().copyWith(
-      primary: const Color(0xff280446),
-      secondary: const Color(0xff4EA3AD),
+      primary: primary,
+      secondary: secondary,
       onSecondary: Colors.white,
-      error: const Color(0xffD86C66),
+      error: error,
     ),
-    errorColor: const Color(0xffD86C66),
+    errorColor: error,
     primarySwatch: const MaterialColor(
       0xff491475,
       <int, Color>{
