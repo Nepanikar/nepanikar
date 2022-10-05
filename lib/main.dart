@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/theme/theme.dart';
 import 'package:nepanikar/providers/localization_provider.dart';
 import 'package:nepanikar/utils/app_setup.dart';
 import 'package:nepanikar/utils/registry.dart';
-import 'package:nepanikar/utils/theme.dart';
 import 'package:provider/provider.dart';
 
 Future<void> main() async {
