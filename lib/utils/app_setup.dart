@@ -6,6 +6,7 @@ import 'package:nepanikar/router/go_router_config.dart';
 import 'package:nepanikar/services/save_directories.dart';
 import 'package:nepanikar/utils/app_config.dart';
 import 'package:nepanikar/utils/registry.dart';
+import 'package:nepanikar/utils/svg_utils.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 Future<void> setup() async {
@@ -31,4 +32,6 @@ Future<void> setup() async {
   final appInfo = await PackageInfo.fromPlatform();
   final config = AppConfig(packageInfo: appInfo);
   registry.registerLazySingleton<AppConfig>(() => config);
+
+  await precacheSvgs();
 }

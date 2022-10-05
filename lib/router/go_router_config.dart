@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:nepanikar/router/routes.dart';
 
 final goRouterConfig = GoRouter(
-  initialLocation: const HomeRoute().location,
+  initialLocation: const MainRoute().location,
   debugLogDiagnostics: kDebugMode,
   routes: $appRoutes,
 );

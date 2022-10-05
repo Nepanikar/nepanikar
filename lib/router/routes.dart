@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/screens/about_app_screen.dart';
-import 'package:nepanikar/screens/home_screen.dart';
+import 'package:nepanikar/screens/main/main_screen.dart';
 
 part 'routes.g.dart';
 
@@ -11,19 +11,19 @@ part 'routes.g.dart';
 /// the routes.
 ///
 /// Alternative ways of pushing a route:
-/// * context.push(HomeRoute().location);
-/// * GoRouter.of(context).push(const AboutAppRoute().location);
-/// * HomeRoute().push(context);
-/// * registry.get<GoRouter>().push(HomeRoute().location); - if you need to push a route from where
+/// * context.push(MainRoute().location);
+/// * GoRouter.of(context).push(MainRoute().location);
+/// * MainRoute().push(context);
+/// * registry.get<GoRouter>().push(MainRoute().location); - if you need to push a route from where
 /// `context` is not available
 ///
 /// More info in the package docs: https://pub.dev/packages/go_router.
-@TypedGoRoute<HomeRoute>(path: '/')
-class HomeRoute extends GoRouteData {
-  const HomeRoute();
+@TypedGoRoute<MainRoute>(path: '/')
+class MainRoute extends GoRouteData {
+  const MainRoute();
 
   @override
-  Widget build(BuildContext context) => const HomeScreen();
+  Widget build(BuildContext context) => const MainScreen();
 }
 
 @TypedGoRoute<AboutAppRoute>(path: '/about-app')
