@@ -15,6 +15,17 @@ class PlaygroundScreen extends StatelessWidget {
     NepanikarTheme.secondary,
     NepanikarTheme.success,
     NepanikarTheme.error,
+    NepanikarTheme.dark,
+  ];
+  final _fonts = <TextStyle>[
+    NepanikarTheme.title1,
+    NepanikarTheme.title2,
+    NepanikarTheme.title3,
+    NepanikarTheme.bodyBlack,
+    NepanikarTheme.bodyHeavy,
+    NepanikarTheme.bodyRoman,
+    NepanikarTheme.bodySmallHeavy,
+    NepanikarTheme.bodySmallMedium,
   ];
 
   @override
@@ -37,6 +48,56 @@ class PlaygroundScreen extends StatelessWidget {
               Row(
                 children:
                     _colors.map((e) => Flexible(child: Container(color: e, height: 30))).toList(),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: _fonts
+                    .map(
+                      (e) => Text(
+                        'Lorem Ipsum',
+                        style: e,
+                      ),
+                    )
+                    .toList(),
+              ),
+              const TextField(
+                decoration: InputDecoration(
+                  hintText: 'placeholder',
+                ),
+              ),
+              const SizedBox(
+                height: 4,
+              ),
+              const TextField(
+                decoration: InputDecoration(
+                  hintText: 'placeholder',
+                  errorText: 'error',
+                ),
+                style: TextStyle(color: NepanikarTheme.error),
+              ),
+              Row(
+                children: [
+                  Checkbox(
+                    value: true,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(4.0),
+                      ),
+                    ),
+                    onChanged: (bool? value) {},
+                  ),
+                  Checkbox(
+                    value: false,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(4.0),
+                      ),
+                    ),
+                    onChanged: (bool? value) {},
+                  ),
+                  Radio(value: true, groupValue: true, onChanged: (val) {}),
+                  Radio(value: false, groupValue: true, onChanged: (val) {})
+                ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
