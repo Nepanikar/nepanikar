@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
-import 'package:nepanikar/app/theme/theme.dart';
+import 'package:nepanikar/app/theme/colors.dart';
 
 enum ButtonType {
   primary,
@@ -130,8 +130,8 @@ class _NepanikarButtonState extends State<NepanikarButton> with SingleTickerProv
     final iconColor = widget.buttonType.isPrimary
         ? Colors.white
         : _isButtonInteractive
-            ? NepanikarTheme.background
-            : NepanikarTheme.primarySwatch[500];
+            ? NepanikarColors.background
+            : NepanikarColors.primarySwatch.shade500;
 
     return _isLoading
         ? SizedBox(

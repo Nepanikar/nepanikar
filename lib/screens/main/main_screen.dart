@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
-import 'package:nepanikar/app/theme/theme.dart';
+import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/l10n/ext.dart';
 import 'package:nepanikar/screens/main/contacts_screen.dart';
 import 'package:nepanikar/screens/main/home_screen.dart';
@@ -44,13 +44,14 @@ class _MainScreenState extends State<MainScreen> {
               padding: const EdgeInsets.only(bottom: 6),
               child: SvgPicture.asset(
                 Assets.icons.marker.path,
-                color: NepanikarTheme.primarySwatch[800],
+                color: NepanikarColors.primarySwatch.shade800,
               ),
             ),
           SvgPicture.asset(
             svgIconPath,
-            color:
-                isSelected ? NepanikarTheme.primarySwatch[800] : NepanikarTheme.primarySwatch[700],
+            color: isSelected
+                ? NepanikarColors.primarySwatch.shade800
+                : NepanikarColors.primarySwatch.shade700,
           ),
         ],
       ),
@@ -92,8 +93,8 @@ class _MainScreenState extends State<MainScreen> {
         type: BottomNavigationBarType.fixed,
         backgroundColor: const Color(0xAAFAF4FF),
         elevation: 0,
-        selectedItemColor: NepanikarTheme.primarySwatch[800],
-        unselectedItemColor: NepanikarTheme.primarySwatch[700],
+        selectedItemColor: NepanikarColors.primarySwatch.shade800,
+        unselectedItemColor: NepanikarColors.primarySwatch.shade700,
         onTap: _onItemTapped,
       ),
     );
