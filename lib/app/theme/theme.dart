@@ -20,7 +20,9 @@ class NepanikarTheme {
       style: _buttonStyle.copyWith(
         backgroundColor: MaterialStateProperty.resolveWith<Color?>(
           (states) {
-            if (states.contains(MaterialState.disabled)) return NepanikarColors.primarySwatch[500]!;
+            if (states.contains(MaterialState.disabled)) {
+              return NepanikarColors.primarySwatch.shade500;
+            }
             return NepanikarColors.background;
           },
         ),
@@ -35,7 +37,9 @@ class NepanikarTheme {
         backgroundColor: MaterialStateProperty.all<Color?>(Colors.white),
         foregroundColor: MaterialStateProperty.resolveWith<Color?>(
           (states) {
-            if (states.contains(MaterialState.disabled)) return NepanikarColors.primarySwatch[500]!;
+            if (states.contains(MaterialState.disabled)) {
+              return NepanikarColors.primarySwatch.shade500;
+            }
             return NepanikarColors.primary;
           },
         ),
@@ -45,7 +49,7 @@ class NepanikarTheme {
         side: MaterialStateProperty.resolveWith<BorderSide?>(
           (states) {
             if (states.contains(MaterialState.disabled)) {
-              return BorderSide(color: NepanikarColors.primarySwatch[500]!, width: 2.0);
+              return BorderSide(color: NepanikarColors.primarySwatch.shade500, width: 2.0);
             }
             return const BorderSide(color: NepanikarColors.background, width: 2.0);
           },

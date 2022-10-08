@@ -93,8 +93,8 @@ class _MainScreenState extends State<MainScreen> {
         type: BottomNavigationBarType.fixed,
         backgroundColor: const Color(0xAAFAF4FF),
         elevation: 0,
-        selectedItemColor: NepanikarColors.primarySwatch[800],
-        unselectedItemColor: NepanikarColors.primarySwatch[700],
+        selectedItemColor: NepanikarColors.primarySwatch.shade800,
+        unselectedItemColor: NepanikarColors.primarySwatch.shade700,
         onTap: _onItemTapped,
       ),
     );
