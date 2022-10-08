@@ -33,11 +33,15 @@ class $AssetsIconsGen {
   /// File path: assets/icons/settings.svg
   SvgGenImage get settings => const SvgGenImage('assets/icons/settings.svg');
 
+  /// File path: assets/icons/spinner.svg
+  SvgGenImage get spinner => const SvgGenImage('assets/icons/spinner.svg');
+
   /// File path: assets/icons/warning_wavy.svg
   SvgGenImage get warningWavy => const SvgGenImage('assets/icons/warning_wavy.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [calendarEvent, home, marker, phone, settings, warningWavy];
+  List<SvgGenImage> get values =>
+      [calendarEvent, home, marker, phone, settings, spinner, warningWavy];
 }
 
 class $AssetsIllustrationsGen {
