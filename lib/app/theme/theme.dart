@@ -1,19 +1,60 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/theme/colors.dart';
+import 'package:nepanikar/app/theme/sizes.dart';
 
 class NepanikarTheme {
-  static ThemeData themeData = ThemeData(
-    primaryColor: primary,
-    scaffoldBackgroundColor: const Color(0xFFFBF6FF),
+  NepanikarTheme._();
+
+  static final ThemeData themeData = ThemeData(
+    primaryColor: NepanikarColors.primary,
+    scaffoldBackgroundColor: const Color(0xffFBF6FF),
     colorScheme: const ColorScheme.light().copyWith(
-      primary: primary,
-      secondary: secondary,
+      primary: NepanikarColors.primary,
+      secondary: NepanikarColors.secondary,
       onSecondary: Colors.white,
-      error: error,
+      error: NepanikarColors.error,
     ),
-    errorColor: error,
-    primarySwatch: const MaterialColor(
-      0xff491475,
-      primarySwatch,
+    errorColor: NepanikarColors.error,
+    primarySwatch: NepanikarColors.primarySwatch,
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: _buttonStyle.copyWith(
+        backgroundColor: MaterialStateProperty.resolveWith<Color?>(
+          (states) {
+            if (states.contains(MaterialState.disabled)) {
+              return NepanikarColors.primarySwatch.shade500;
+            }
+            return NepanikarColors.background;
+          },
+        ),
+        foregroundColor: MaterialStateProperty.all<Color?>(Colors.white),
+        textStyle: MaterialStateProperty.all<TextStyle>(
+          const TextStyle(color: Colors.white, fontWeight: FontWeight.w900),
+        ),
+      ),
+    ),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: _buttonStyle.copyWith(
+        backgroundColor: MaterialStateProperty.all<Color?>(Colors.white),
+        foregroundColor: MaterialStateProperty.resolveWith<Color?>(
+          (states) {
+            if (states.contains(MaterialState.disabled)) {
+              return NepanikarColors.primarySwatch.shade500;
+            }
+            return NepanikarColors.primary;
+          },
+        ),
+        textStyle: MaterialStateProperty.all<TextStyle>(
+          const TextStyle(color: NepanikarColors.primary, fontWeight: FontWeight.w900),
+        ),
+        side: MaterialStateProperty.resolveWith<BorderSide?>(
+          (states) {
+            if (states.contains(MaterialState.disabled)) {
+              return BorderSide(color: NepanikarColors.primarySwatch.shade500, width: 2.0);
+            }
+            return const BorderSide(color: NepanikarColors.background, width: 2.0);
+          },
+        ),
+      ),
     ),
     toggleableActiveColor: primary,
     unselectedWidgetColor: const Color(0xffA083B8),
@@ -140,3 +181,11 @@ class NepanikarTheme {
     color: dark,
   );
 }
+
+final _buttonStyle = ButtonStyle(
+  minimumSize: MaterialStateProperty.all<Size>(NepanikarSizes.buttonSize),
+  elevation: MaterialStateProperty.all<double>(0),
+  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+    RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+  ),
+);
