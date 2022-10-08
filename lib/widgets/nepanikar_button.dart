@@ -149,14 +149,14 @@ class _NepanikarButtonState extends State<NepanikarButton> with SingleTickerProv
             children: [
               if (widget.leadingIcon != null)
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: widget.leadingIcon!.svg(width: iconSize / 2, color: iconColor),
+                  padding: const EdgeInsets.all(12.0),
+                  child: widget.leadingIcon!.svg(width: iconSize / 3, color: iconColor),
                 ),
               Flexible(child: Text(widget.text)),
               if (widget.trailingIcon != null)
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: widget.trailingIcon!.svg(width: iconSize / 2, color: iconColor),
+                  padding: const EdgeInsets.all(12.0),
+                  child: widget.trailingIcon!.svg(width: iconSize / 3, color: iconColor),
                 ),
             ],
           );

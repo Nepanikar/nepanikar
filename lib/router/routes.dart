@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/games/math/math_game_screen.dart';
 import 'package:nepanikar/screens/about_app_screen.dart';
 import 'package:nepanikar/screens/main/main_screen.dart';
 
@@ -32,4 +33,12 @@ class AboutAppRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context) => const AboutAppScreen();
+}
+
+@TypedGoRoute<MathGameRoute>(path: '/games/math')
+class MathGameRoute extends GoRouteData {
+  const MathGameRoute();
+
+  @override
+  Widget build(BuildContext context) => const MathGameScreen();
 }
