@@ -157,7 +157,7 @@ class PlaygroundScreen extends StatelessWidget {
             child: NepanikarButton.async(
               onTapAsync: () async => Future.delayed(const Duration(seconds: 2)),
               expandToContentWidth: true,
-              trailingIcon: Assets.icons.navigation.right,
+              trailingIcon: Assets.icons.navigation.chevronRight,
               text: 'Spinner test',
             ),
           ),

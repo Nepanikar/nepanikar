@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/l10n/ext.dart';
+import 'package:nepanikar/widgets/home_tile.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -25,19 +26,36 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(context.l10n.home),
       ),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: _moods.map((e) => Flexible(child: e.svg())).toList(),
-            ),
-            Expanded(
-              child: Column(
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: _moods.map((e) => Flexible(child: e.svg())).toList(),
+              ),
+              Row(
                 children: _illustrations.map((e) => Flexible(child: e.svg())).toList(),
               ),
-            ),
-          ],
+              HomeTile(),
+              GridView.count(
+                primary: false,
+                padding: const EdgeInsets.all(24),
+                crossAxisSpacing: 12,
+                mainAxisSpacing: 12,
+                crossAxisCount: 2,
+                shrinkWrap: true,
+                childAspectRatio: 1.331,
+                children: [
+                  HomeTile(),
+                  HomeTile(),
+                  HomeTile(),
+                  HomeTile(),
+                  HomeTile(),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
