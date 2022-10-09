@@ -8,6 +8,7 @@ class NepanikarTheme {
   static final ThemeData themeData = ThemeData(
     primaryColor: NepanikarColors.primary,
     scaffoldBackgroundColor: const Color(0xffFBF6FF),
+    fontFamily: 'Satoshi',
     colorScheme: const ColorScheme.light().copyWith(
       primary: NepanikarColors.primary,
       secondary: NepanikarColors.secondary,
