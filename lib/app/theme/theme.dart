@@ -17,7 +17,7 @@ class NepanikarTheme {
     errorColor: NepanikarColors.error,
     primarySwatch: NepanikarColors.primarySwatch,
     appBarTheme: const AppBarTheme().copyWith(
-      backgroundColor: NepanikarColors.background,
+      backgroundColor: NepanikarColors.primary,
       elevation: 0,
       centerTitle: true,
     ),

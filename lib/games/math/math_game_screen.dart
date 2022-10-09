@@ -65,15 +65,11 @@ class _MathGameScreenState extends State<MathGameScreen> {
     const textStyle = TextStyle(
       fontSize: 56,
       fontWeight: FontWeight.w900,
-      color: NepanikarColors.background,
-    );
-    final inputBorder = OutlineInputBorder(
-      borderRadius: BorderRadius.circular(8),
-      borderSide: const BorderSide(color: NepanikarColors.background),
+      color: NepanikarColors.primary,
     );
 
     return Scaffold(
-      backgroundColor: NepanikarColors.background,
+      backgroundColor: NepanikarColors.primary,
       appBar: AppBar(title: Text(context.l10n.math)),
       body: SafeArea(
         child: Stack(
@@ -92,11 +88,7 @@ class _MathGameScreenState extends State<MathGameScreen> {
                         Align(
                           child: Text(
                             _equation.getDisplayText(),
-                            style: const TextStyle(
-                              fontSize: 56,
-                              fontWeight: FontWeight.w900,
-                              color: NepanikarColors.background,
-                            ),
+                            style: textStyle,
                           ),
                         ),
                         const SizedBox(height: 30),
@@ -113,19 +105,11 @@ class _MathGameScreenState extends State<MathGameScreen> {
                                 keyboardType: TextInputType.number,
                                 controller: _textEditingController,
                                 onSubmitted: _evaluateEquation,
-                                decoration: InputDecoration(
-                                  contentPadding: const EdgeInsets.symmetric(
+                                decoration: const InputDecoration(
+                                  contentPadding: EdgeInsets.symmetric(
                                     horizontal: 12,
                                     vertical: 16,
                                   ),
-                                  border: inputBorder,
-                                  focusedBorder: inputBorder,
-                                  disabledBorder: inputBorder.copyWith(
-                                    borderSide: const BorderSide(color: Colors.grey),
-                                  ),
-                                  enabledBorder: inputBorder,
-                                  errorBorder: inputBorder,
-                                  focusedErrorBorder: inputBorder,
                                 ),
                               ),
                             ),
