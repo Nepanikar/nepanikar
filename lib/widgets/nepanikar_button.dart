@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
@@ -86,7 +88,9 @@ class _NepanikarButtonState extends State<NepanikarButton> with SingleTickerProv
   Future<void> _onTap() async {
     if (widget.buttonType.isAsync) {
       if (mounted) setState(() => _isLoading = true);
+      unawaited(_animController.repeat());
       await widget.onTapAsync?.call();
+      _animController.reset();
       if (mounted) setState(() => _isLoading = false);
     } else {
       widget.onTap?.call();
@@ -100,9 +104,6 @@ class _NepanikarButtonState extends State<NepanikarButton> with SingleTickerProv
       duration: const Duration(seconds: 1),
       vsync: this,
     );
-    if (widget.buttonType.isAsync) {
-      _animController.repeat();
-    }
   }
 
   @override
