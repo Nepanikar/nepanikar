@@ -74,12 +74,7 @@ class _MathGameScreenState extends State<MathGameScreen> {
 
     return Scaffold(
       backgroundColor: NepanikarColors.background,
-      appBar: AppBar(
-        title: Text(context.l10n.math),
-        backgroundColor: NepanikarColors.background,
-        elevation: 0,
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: Text(context.l10n.math)),
       body: SafeArea(
         child: Stack(
           alignment: Alignment.topCenter,
@@ -88,11 +83,6 @@ class _MathGameScreenState extends State<MathGameScreen> {
               children: [
                 const SizedBox(height: 90),
                 Card(
-                  margin: const EdgeInsets.symmetric(horizontal: 24),
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
                   child: Padding(
                     padding: const EdgeInsets.all(24),
                     child: Column(
