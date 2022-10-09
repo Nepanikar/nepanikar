@@ -17,6 +17,18 @@ class NepanikarTheme {
     ),
     errorColor: NepanikarColors.error,
     primarySwatch: NepanikarColors.primarySwatch,
+    appBarTheme: const AppBarTheme().copyWith(
+      backgroundColor: NepanikarColors.primary,
+      elevation: 0,
+      centerTitle: true,
+    ),
+    cardTheme: const CardTheme().copyWith(
+      margin: const EdgeInsets.symmetric(horizontal: 24),
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: _buttonStyle.copyWith(
         backgroundColor: MaterialStateProperty.resolveWith<Color?>(

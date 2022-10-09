@@ -137,8 +137,8 @@ class PlaygroundScreen extends StatelessWidget {
         children: [
           Flexible(
             child: NepanikarButton(
-              onTap: () => debugPrint('helloo'),
-              text: 'helloo',
+              onTap: () => context.push(const MathGameRoute().location),
+              text: '${context.l10n.game} ${context.l10n.math}',
             ),
           ),
           const SizedBox(width: 10),

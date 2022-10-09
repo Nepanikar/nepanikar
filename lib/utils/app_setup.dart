@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:nepanikar/router/go_router_config.dart';
 import 'package:nepanikar/services/save_directories.dart';
 import 'package:nepanikar/utils/app_config.dart';
+import 'package:nepanikar/utils/lottie_cache_manager.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/utils/svg_utils.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -34,4 +35,6 @@ Future<void> setup() async {
   registry.registerLazySingleton<AppConfig>(() => config);
 
   await precacheSvgs();
+  registry.registerSingleton<LottieCacheManager>(LottieCacheManager());
+  await registry.get<LottieCacheManager>().init();
 }
