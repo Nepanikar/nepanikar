@@ -1,32 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
-import 'package:nepanikar/games/math/equation_model.dart';
+import 'package:nepanikar/games/math/math_answer_result_state.dart';
+import 'package:nepanikar/games/math/math_equation_model.dart';
 import 'package:nepanikar/l10n/ext.dart';
+import 'package:nepanikar/utils/lottie_cache_manager.dart';
+import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_button.dart';
-
-enum MathAnswerResultState {
-  correct,
-  wrong,
-  notAnswered;
-
-  bool get isCorrect => this == MathAnswerResultState.correct;
-
-  bool get isIncorrect => this == MathAnswerResultState.wrong;
-
-  bool get isNotAnswered => this == MathAnswerResultState.notAnswered;
-
-  Widget get icon {
-    switch (this) {
-      case MathAnswerResultState.correct:
-        return Assets.illustrations.games.math.correct.svg();
-      case MathAnswerResultState.wrong:
-        return Assets.illustrations.games.math.wrong.svg();
-      case MathAnswerResultState.notAnswered:
-        return const SizedBox.shrink();
-    }
-  }
-}
 
 class MathGameScreen extends StatefulWidget {
   const MathGameScreen({super.key});
@@ -36,11 +16,13 @@ class MathGameScreen extends StatefulWidget {
 }
 
 class _MathGameScreenState extends State<MathGameScreen> {
-  MathAnswerResultState _answerResultState = MathAnswerResultState.notAnswered;
+  MathAnswerResultState _answerResultState = MathAnswerResultState.notAnsweredYet;
 
-  late Equation _equation;
+  late MathEquation _equation;
 
   final TextEditingController _textEditingController = TextEditingController();
+
+  final _lottieCacheManager = registry.get<LottieCacheManager>();
 
   void _setAnswerResultState(MathAnswerResultState state) {
     if (state != _answerResultState) {
@@ -48,17 +30,33 @@ class _MathGameScreenState extends State<MathGameScreen> {
     }
   }
 
+  Future<void> _evaluateEquation(String textInput) async {
+    if (textInput.isEmpty) return;
+    await Future.delayed(const Duration(milliseconds: 200));
+    if (_equation.isValid(textInput)) {
+      _setAnswerResultState(MathAnswerResultState.correct);
+    } else {
+      _setAnswerResultState(MathAnswerResultState.wrong);
+    }
+  }
+
   @override
   void initState() {
     super.initState();
-    _equation = Equation.generate();
+    _equation = MathEquation.generate();
+  }
+
+  @override
+  void dispose() {
+    _textEditingController.dispose();
+    super.dispose();
   }
 
   void _generateNewEquation() {
     _textEditingController.clear();
     setState(() {
-      _answerResultState = MathAnswerResultState.notAnswered;
-      _equation = Equation.generate();
+      _answerResultState = MathAnswerResultState.notAnsweredYet;
+      _equation = MathEquation.generate();
     });
   }
 
@@ -124,6 +122,7 @@ class _MathGameScreenState extends State<MathGameScreen> {
                                 enabled: !_answerResultState.isCorrect,
                                 keyboardType: TextInputType.number,
                                 controller: _textEditingController,
+                                onSubmitted: _evaluateEquation,
                                 decoration: InputDecoration(
                                   contentPadding: const EdgeInsets.symmetric(
                                     horizontal: 12,
@@ -154,14 +153,7 @@ class _MathGameScreenState extends State<MathGameScreen> {
                                     text: 'Další',
                                   )
                                 : NepanikarButton.async(
-                                    onTapAsync: () async {
-                                      await Future.delayed(const Duration(milliseconds: 200));
-                                      if (_equation.isValid(textInput)) {
-                                        _setAnswerResultState(MathAnswerResultState.correct);
-                                      } else {
-                                        _setAnswerResultState(MathAnswerResultState.wrong);
-                                      }
-                                    },
+                                    onTapAsync: () async => _evaluateEquation(textInput),
                                     trailingIcon: Assets.icons.navigation.right,
                                     enabled: textInput.isNotEmpty,
                                     text: context.l10n.submit,
@@ -174,18 +166,16 @@ class _MathGameScreenState extends State<MathGameScreen> {
                 ),
               ],
             ),
-            if (!_answerResultState.isNotAnswered) ...[
+            if (_answerResultState.isAnswered) ...[
               if (_answerResultState.isCorrect)
                 Positioned(
-                  top: -10,
-                  right: 0,
-                  left: 60,
-                  child: Assets.animatedIllustrations.confetti.lottie(repeat: false),
+                  bottom: 10,
+                  child: _lottieCacheManager.loadFromCache(
+                    Assets.animatedIllustrations.confetti,
+                    repeat: false,
+                  ),
                 ),
               Positioned(
-                top: -20,
-                right: 0,
-                left: 60,
                 child: _answerResultState.icon,
               ),
             ],

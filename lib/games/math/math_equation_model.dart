@@ -1,19 +1,19 @@
 import 'dart:math';
 
-import 'package:nepanikar/games/math/math_operation_model.dart';
+import 'package:nepanikar/games/math/math_operation.dart';
 
 const int _cppMaxInt = 32767;
 
 /// [a] [operation] [b] = [_correctResult]
-class Equation {
-  const Equation._({
+class MathEquation {
+  const MathEquation._({
     required this.a,
     required this.b,
     required this.operation,
     required int correctResult,
   }) : _correctResult = correctResult;
 
-  factory Equation.generate() {
+  factory MathEquation.generate() {
     final r = Random();
     var a = r.nextInt(_cppMaxInt) % 10;
     var b = r.nextInt(_cppMaxInt) % 10;
@@ -25,7 +25,7 @@ class Equation {
       b = temp;
     }
     final correctResult = operation.calculate(a, b);
-    return Equation._(
+    return MathEquation._(
       a: a,
       b: b,
       operation: operation,
