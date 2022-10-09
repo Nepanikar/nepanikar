@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
+import 'package:nepanikar/app/theme/theme.dart';
 import 'package:nepanikar/l10n/ext.dart';
 import 'package:nepanikar/providers/localization_provider.dart';
 import 'package:nepanikar/router/routes.dart';
@@ -17,6 +18,17 @@ class PlaygroundScreen extends StatelessWidget {
     NepanikarColors.secondary,
     NepanikarColors.success,
     NepanikarColors.error,
+    NepanikarColors.dark,
+  ];
+  final _fonts = <TextStyle>[
+    NepanikarTheme.title1,
+    NepanikarTheme.title2,
+    NepanikarTheme.title3,
+    NepanikarTheme.bodyBlack,
+    NepanikarTheme.bodyHeavy,
+    NepanikarTheme.bodyRoman,
+    NepanikarTheme.bodySmallHeavy,
+    NepanikarTheme.bodySmallMedium,
   ];
 
   @override
@@ -51,6 +63,59 @@ class PlaygroundScreen extends StatelessWidget {
                       },
                     ),
                   ),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: _fonts
+                    .map(
+                      (e) => Text(
+                        context.l10n.app_name,
+                        style: e,
+                      ),
+                    )
+                    .toList(),
+              ),
+              const SizedBox(
+                height: 4,
+              ),
+              const TextField(
+                decoration: InputDecoration(
+                  hintText: 'placeholder',
+                ),
+              ),
+              const SizedBox(
+                height: 4,
+              ),
+              const TextField(
+                decoration: InputDecoration(
+                  hintText: 'placeholder',
+                  errorText: 'error',
+                ),
+                style: TextStyle(color: NepanikarColors.error),
+              ),
+              Row(
+                children: [
+                  Checkbox(
+                    value: true,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(4.0),
+                      ),
+                    ),
+                    onChanged: (bool? value) {},
+                  ),
+                  Checkbox(
+                    value: false,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(4.0),
+                      ),
+                    ),
+                    onChanged: (bool? value) {},
+                  ),
+                  Radio(value: true, groupValue: true, onChanged: (val) {}),
+                  Radio(value: false, groupValue: true, onChanged: (val) {})
                 ],
               ),
               const SizedBox(height: 20),
