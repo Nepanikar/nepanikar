@@ -9,6 +9,7 @@ part of 'routes.dart';
 List<GoRoute> get $appRoutes => [
       $mainRoute,
       $aboutAppRoute,
+      $mathGameRoute,
     ];
 
 GoRoute get $mainRoute => GoRouteData.$route(
@@ -38,6 +39,23 @@ extension $AboutAppRouteExtension on AboutAppRoute {
 
   String get location => GoRouteData.$location(
         '/about-app',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+GoRoute get $mathGameRoute => GoRouteData.$route(
+      path: '/games/math',
+      factory: $MathGameRouteExtension._fromState,
+    );
+
+extension $MathGameRouteExtension on MathGameRoute {
+  static MathGameRoute _fromState(GoRouterState state) => const MathGameRoute();
+
+  String get location => GoRouteData.$location(
+        '/games/math',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);

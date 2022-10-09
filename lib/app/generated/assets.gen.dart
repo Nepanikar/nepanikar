@@ -10,6 +10,18 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
+import 'package:lottie/lottie.dart';
+
+class $AssetsAnimatedIllustrationsGen {
+  const $AssetsAnimatedIllustrationsGen();
+
+  /// File path: assets/animated_illustrations/confetti.json
+  LottieGenImage get confetti =>
+      const LottieGenImage('assets/animated_illustrations/confetti.json');
+
+  /// List of all assets
+  List<LottieGenImage> get values => [confetti];
+}
 
 class $AssetsIconsGen {
   const $AssetsIconsGen();
@@ -47,6 +59,7 @@ class $AssetsIconsGen {
 class $AssetsIllustrationsGen {
   const $AssetsIllustrationsGen();
 
+  $AssetsIllustrationsGamesGen get games => const $AssetsIllustrationsGamesGen();
   $AssetsIllustrationsModulesGen get modules => const $AssetsIllustrationsModulesGen();
   $AssetsIllustrationsMoodsGen get moods => const $AssetsIllustrationsMoodsGen();
 }
@@ -81,6 +94,12 @@ class $AssetsIconsNavigationGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [arrowRight, chevronLeft, chevronRight];
+}
+
+class $AssetsIllustrationsGamesGen {
+  const $AssetsIllustrationsGamesGen();
+
+  $AssetsIllustrationsGamesMathGen get math => const $AssetsIllustrationsGamesMathGen();
 }
 
 class $AssetsIllustrationsModulesGen {
@@ -134,9 +153,24 @@ class $AssetsIllustrationsMoodsGen {
   List<SvgGenImage> get values => [bad4, good2, happy1, okay3, sad5];
 }
 
+class $AssetsIllustrationsGamesMathGen {
+  const $AssetsIllustrationsGamesMathGen();
+
+  /// File path: assets/illustrations/games/math/correct.svg
+  SvgGenImage get correct => const SvgGenImage('assets/illustrations/games/math/correct.svg');
+
+  /// File path: assets/illustrations/games/math/wrong.svg
+  SvgGenImage get wrong => const SvgGenImage('assets/illustrations/games/math/wrong.svg');
+
+  /// List of all assets
+  List<SvgGenImage> get values => [correct, wrong];
+}
+
 class Assets {
   Assets._();
 
+  static const $AssetsAnimatedIllustrationsGen animatedIllustrations =
+      $AssetsAnimatedIllustrationsGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsIllustrationsGen illustrations = $AssetsIllustrationsGen();
 }
@@ -249,6 +283,62 @@ class SvgGenImage {
       clipBehavior: clipBehavior,
       cacheColorFilter: cacheColorFilter,
       theme: theme,
+    );
+  }
+
+  String get path => _assetName;
+}
+
+class LottieGenImage {
+  const LottieGenImage(this._assetName);
+
+  final String _assetName;
+
+  LottieBuilder lottie({
+    Animation<double>? controller,
+    bool? animate,
+    FrameRate? frameRate,
+    bool? repeat,
+    bool? reverse,
+    LottieDelegates? delegates,
+    LottieOptions? options,
+    void Function(LottieComposition)? onLoaded,
+    LottieImageProviderFactory? imageProviderFactory,
+    Key? key,
+    AssetBundle? bundle,
+    Widget Function(BuildContext, Widget, LottieComposition?)? frameBuilder,
+    ImageErrorWidgetBuilder? errorBuilder,
+    double? width,
+    double? height,
+    BoxFit? fit,
+    AlignmentGeometry? alignment,
+    String? package,
+    bool? addRepaintBoundary,
+    FilterQuality? filterQuality,
+    void Function(String)? onWarning,
+  }) {
+    return Lottie.asset(
+      _assetName,
+      animate: animate,
+      frameRate: frameRate,
+      repeat: repeat,
+      reverse: reverse,
+      delegates: delegates,
+      options: options,
+      onLoaded: onLoaded,
+      imageProviderFactory: imageProviderFactory,
+      key: key,
+      bundle: bundle,
+      frameBuilder: frameBuilder,
+      errorBuilder: errorBuilder,
+      width: width,
+      height: height,
+      fit: fit,
+      alignment: alignment,
+      package: package,
+      addRepaintBoundary: addRepaintBoundary,
+      filterQuality: filterQuality,
+      onWarning: onWarning,
     );
   }
 

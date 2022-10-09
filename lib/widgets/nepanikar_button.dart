@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
@@ -86,7 +88,9 @@ class _NepanikarButtonState extends State<NepanikarButton> with SingleTickerProv
   Future<void> _onTap() async {
     if (widget.buttonType.isAsync) {
       if (mounted) setState(() => _isLoading = true);
+      unawaited(_animController.repeat());
       await widget.onTapAsync?.call();
+      _animController.reset();
       if (mounted) setState(() => _isLoading = false);
     } else {
       widget.onTap?.call();
@@ -100,9 +104,6 @@ class _NepanikarButtonState extends State<NepanikarButton> with SingleTickerProv
       duration: const Duration(seconds: 1),
       vsync: this,
     );
-    if (widget.buttonType.isAsync) {
-      _animController.repeat();
-    }
   }
 
   @override
@@ -149,14 +150,14 @@ class _NepanikarButtonState extends State<NepanikarButton> with SingleTickerProv
             children: [
               if (widget.leadingIcon != null)
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: widget.leadingIcon!.svg(width: iconSize / 2, color: iconColor),
+                  padding: const EdgeInsets.all(12.0),
+                  child: widget.leadingIcon!.svg(width: iconSize / 3, color: iconColor),
                 ),
               Flexible(child: Text(widget.text)),
               if (widget.trailingIcon != null)
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: widget.trailingIcon!.svg(width: iconSize / 2, color: iconColor),
+                  padding: const EdgeInsets.all(12.0),
+                  child: widget.trailingIcon!.svg(width: iconSize / 3, color: iconColor),
                 ),
             ],
           );
