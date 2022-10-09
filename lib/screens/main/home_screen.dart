@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/l10n/ext.dart';
+import 'package:nepanikar/router/routes.dart';
 import 'package:nepanikar/widgets/home_tile.dart';
+import 'package:nepanikar/widgets/long_tile.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -37,7 +40,6 @@ class HomeScreen extends StatelessWidget {
               Row(
                 children: _illustrations.map((e) => Flexible(child: e.svg())).toList(),
               ),
-              HomeTile(),
               GridView.count(
                 primary: false,
                 padding: const EdgeInsets.all(24),
@@ -47,13 +49,26 @@ class HomeScreen extends StatelessWidget {
                 shrinkWrap: true,
                 childAspectRatio: 1.331,
                 children: [
-                  HomeTile(),
-                  HomeTile(),
-                  HomeTile(),
-                  HomeTile(),
-                  HomeTile(),
+                  HomeTile(
+                    text: 'Chci si ublížit',
+                    image: Assets.illustrations.modules.selfHarm.svg(),
+                    onTap: () => context.push(const MathGameRoute().location),
+                  ),
+                  HomeTile(
+                    text: 'Deprese',
+                    image: Assets.illustrations.modules.depression.svg(),
+                    onTap: () => context.push(const MathGameRoute().location),
+                  ),
                 ],
-              )
+              ),
+              Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: LongTile(
+                  text: 'Dechová cvičení',
+                  image: Assets.illustrations.modules.eatingDisorder.svg(),
+                  onTap: () => context.push(const MathGameRoute().location),
+                ),
+              ),
             ],
           ),
         ),

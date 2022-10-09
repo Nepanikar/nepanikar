@@ -124,21 +124,21 @@ class NepanikarTheme {
   static const title1 = TextStyle(
     fontSize: 32,
     height: 1.125,
-    fontWeight: FontWeight.w800,
+    fontWeight: FontWeight.w900,
     color: NepanikarColors.dark,
   );
 
   static const title2 = TextStyle(
     fontSize: 24,
     height: 1.333,
-    fontWeight: FontWeight.w800,
+    fontWeight: FontWeight.w900,
     color: NepanikarColors.dark,
   );
 
   static const title3 = TextStyle(
     fontSize: 20,
     height: 1.35,
-    fontWeight: FontWeight.w800,
+    fontWeight: FontWeight.w900,
     color: NepanikarColors.dark,
   );
 
@@ -152,7 +152,7 @@ class NepanikarTheme {
   static const bodyHeavy = TextStyle(
     fontSize: 15,
     height: 1.333,
-    fontWeight: FontWeight.w800,
+    fontWeight: FontWeight.w700,
     color: NepanikarColors.dark,
   );
 

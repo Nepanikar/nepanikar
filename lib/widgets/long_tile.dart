@@ -2,10 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/theme.dart';
 
-class HomeTile extends StatelessWidget {
-  const HomeTile({super.key, required this.text, required this.image, required this.onTap});
+class LongTile extends StatelessWidget {
+  const LongTile({
+    super.key,
+    required this.text,
+    this.description,
+    required this.image,
+    required this.onTap,
+  });
 
   final String text;
+  final String? description;
   final Widget image;
   final void Function() onTap;
 
@@ -33,28 +40,32 @@ class HomeTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           onTap: onTap,
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
+            child: Row(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      height: 40,
-                      child: image,
-                    ),
-                    Assets.icons.navigation.arrowRight.svg(width: 16, height: 16)
-                  ],
+                SizedBox(
+                  height: 40,
+                  child: image,
                 ),
-                Row(
+                const SizedBox(
+                  width: 16,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       text,
                       style: NepanikarTheme.bodyHeavy,
                     ),
+                    if (description != null)
+                      Text(
+                        description!,
+                        style: NepanikarTheme.bodySmallMedium,
+                      ),
                   ],
                 ),
+                const Spacer(),
+                Assets.icons.navigation.arrowRight.svg(width: 16, height: 16)
               ],
             ),
           ),

@@ -123,12 +123,13 @@ class _MathGameScreenState extends State<MathGameScreen> {
                             return _answerResultState.isCorrect
                                 ? NepanikarButton(
                                     onTap: () => _generateNewEquation(),
-                                    trailingIcon: Assets.icons.navigation.right,
+                                    trailingIcon: Assets.icons.navigation.chevronRight,
+                                    // TODO: l10n
                                     text: 'Další',
                                   )
                                 : NepanikarButton.async(
                                     onTapAsync: () async => _evaluateEquation(textInput),
-                                    trailingIcon: Assets.icons.navigation.right,
+                                    trailingIcon: Assets.icons.navigation.chevronRight,
                                     enabled: textInput.isNotEmpty,
                                     text: context.l10n.submit,
                                   );
