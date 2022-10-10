@@ -7,8 +7,8 @@ import 'package:nepanikar/app/theme/theme.dart';
 import 'package:nepanikar/l10n/ext.dart';
 import 'package:nepanikar/providers/localization_provider.dart';
 import 'package:nepanikar/router/routes.dart';
+import 'package:nepanikar/utils/extensions.dart';
 import 'package:nepanikar/widgets/nepanikar_button.dart';
-import 'package:nepanikar/widgets/snackbars.dart';
 import 'package:provider/provider.dart';
 
 class PlaygroundScreen extends StatelessWidget {
@@ -207,15 +207,12 @@ class PlaygroundScreen extends StatelessWidget {
       children: [
         const Text('Snackbars: '),
         TextButton(
-          onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
-            nepanikarSnackbar(
-              text: 'succcess',
-              color: SnackbarColor.success,
-              leading: const Icon(Icons.info_outline),
-              trailing: Text(
-                'Zpět'.toUpperCase(),
-                style: NepanikarTheme.bodyHeavy,
-              ),
+          onPressed: () => context.showSuccessSnackbar(
+            text: 'Succcess',
+            leading: const Icon(Icons.info_outline),
+            trailing: Text(
+              'Zpět'.toUpperCase(),
+              style: NepanikarTheme.bodyHeavy,
             ),
           ),
           child: const Text(
@@ -224,15 +221,8 @@ class PlaygroundScreen extends StatelessWidget {
           ),
         ),
         TextButton(
-          onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
-            nepanikarSnackbar(
-              text: 'info snackbar',
-              color: SnackbarColor.info,
-              trailing: Text(
-                'Zpět'.toUpperCase(),
-                style: NepanikarTheme.bodyHeavy,
-              ),
-            ),
+          onPressed: () => context.showInfoSnackbar(
+            text: 'info snackbar',
           ),
           child: const Text(
             'info',
@@ -240,14 +230,11 @@ class PlaygroundScreen extends StatelessWidget {
           ),
         ),
         TextButton(
-          onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
-            nepanikarSnackbar(
-              text: 'error',
-              color: SnackbarColor.error,
-              leading: const Icon(
-                Icons.warning_amber,
-                color: Colors.white,
-              ),
+          onPressed: () => context.showErrorSnackbar(
+            text: 'error',
+            leading: const Icon(
+              Icons.warning_amber,
+              color: Colors.white,
             ),
           ),
           child: const Text(
@@ -256,19 +243,12 @@ class PlaygroundScreen extends StatelessWidget {
           ),
         ),
         TextButton(
-          onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
-            nepanikarSnackbar(
-              text:
-                  'The value of the variable_expression is tested against all cases in the switch. If the variable matches one of the cases, the corresponding code block is executed. If no case expression matches the value of the variable_expression, the code within the default block is associated.',
-              color: SnackbarColor.purple,
-              leading: const Icon(
-                Icons.info_outline,
-                color: Colors.white,
-              ),
-              trailing: Text(
-                'Zpět'.toUpperCase(),
-                style: NepanikarTheme.bodyHeavy.copyWith(color: Colors.white),
-              ),
+          onPressed: () => context.showPurpleSnackbar(
+            text:
+                'The value of the variable_expression is tested against all cases in the switch. If the variable matches one of the cases, the corresponding code block is executed. If no case expression matches the value of the variable_expression, the code within the default block is associated.',
+            trailing: Text(
+              'Zpět'.toUpperCase(),
+              style: NepanikarTheme.bodyHeavy.copyWith(color: Colors.white),
             ),
           ),
           child: const Text(

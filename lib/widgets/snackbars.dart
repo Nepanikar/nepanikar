@@ -2,16 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/theme.dart';
 
-enum SnackbarColor { success, error, info, purple }
+enum SnackbarType {
+  success(NepanikarColors.success),
+  error(NepanikarColors.error),
+  info(NepanikarColors.info),
+  purple(NepanikarColors.primary);
+
+  const SnackbarType(this.color);
+  final Color color;
+}
 
 SnackBar nepanikarSnackbar({
   required String text,
-  required SnackbarColor color,
+  required SnackbarType snackbarType,
   Widget? leading,
   Widget? trailing,
 }) {
   return SnackBar(
-    elevation: 0,
     content: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -24,7 +31,7 @@ SnackBar nepanikarSnackbar({
           child: Text(
             text,
             style: NepanikarTheme.bodyHeavy.copyWith(
-              color: [SnackbarColor.success, SnackbarColor.info].contains(color)
+              color: [NepanikarColors.success, NepanikarColors.info].contains(snackbarType.color)
                   ? NepanikarColors.dark
                   : Colors.white,
             ),
@@ -38,31 +45,6 @@ SnackBar nepanikarSnackbar({
       ],
     ),
     margin: const EdgeInsets.all(20),
-    behavior: SnackBarBehavior.floating,
-    backgroundColor: _colorFromEnum(color),
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(
-        Radius.circular(8),
-      ),
-    ),
+    backgroundColor: snackbarType.color,
   );
-}
-
-Color _colorFromEnum(SnackbarColor color) {
-  var res = NepanikarColors.primary;
-  switch (color) {
-    case SnackbarColor.success:
-      res = NepanikarColors.success;
-      break;
-    case SnackbarColor.error:
-      res = NepanikarColors.error;
-      break;
-    case SnackbarColor.info:
-      res = NepanikarColors.info;
-      break;
-    case SnackbarColor.purple:
-      res = NepanikarColors.primary;
-      break;
-  }
-  return res;
 }

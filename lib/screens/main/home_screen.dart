@@ -66,7 +66,9 @@ class HomeScreen extends StatelessWidget {
                 child: LongTile(
                   text: 'Dechová cvičení',
                   image: Assets.illustrations.modules.eatingDisorder.svg(),
-                  onTap: () => context.push(const MathGameRoute().location),
+                  onTap: () => context.push(
+                    const MathGameRoute().location,
+                  ),
                 ),
               ),
             ],

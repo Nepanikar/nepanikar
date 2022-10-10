@@ -119,6 +119,15 @@ class NepanikarTheme {
         ),
       ),
     ),
+    snackBarTheme: const SnackBarThemeData(
+      behavior: SnackBarBehavior.floating,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(8),
+        ),
+      ),
+      elevation: 0,
+    ),
   );
 
   static const title1 = TextStyle(

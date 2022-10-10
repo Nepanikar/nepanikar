@@ -50,22 +50,30 @@ class LongTile extends StatelessWidget {
                 const SizedBox(
                   width: 16,
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      text,
-                      style: NepanikarTheme.bodyHeavy,
-                    ),
-                    if (description != null)
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                       Text(
-                        description!,
-                        style: NepanikarTheme.bodySmallMedium,
+                        text,
+                        style: NepanikarTheme.bodyHeavy,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                  ],
+                      if (description != null)
+                        Text(
+                          description!,
+                          style: NepanikarTheme.bodySmallMedium,
+                          maxLines: 5,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                    ],
+                  ),
                 ),
-                const Spacer(),
-                Assets.icons.navigation.arrowRight.svg(width: 16, height: 16)
+                Padding(
+                  padding: const EdgeInsets.only(left: 12.0),
+                  child: Assets.icons.navigation.arrowRight.svg(width: 16, height: 16),
+                )
               ],
             ),
           ),

@@ -49,9 +49,13 @@ class HomeTile extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Text(
-                      text,
-                      style: NepanikarTheme.bodyHeavy,
+                    Flexible(
+                      child: Text(
+                        text,
+                        style: NepanikarTheme.bodyHeavy,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ],
                 ),
