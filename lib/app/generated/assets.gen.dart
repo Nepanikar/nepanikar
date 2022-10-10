@@ -83,14 +83,17 @@ class $AssetsIconsCheckmarksGen {
 class $AssetsIconsNavigationGen {
   const $AssetsIconsNavigationGen();
 
-  /// File path: assets/icons/navigation/left.svg
-  SvgGenImage get left => const SvgGenImage('assets/icons/navigation/left.svg');
+  /// File path: assets/icons/navigation/arrow_right.svg
+  SvgGenImage get arrowRight => const SvgGenImage('assets/icons/navigation/arrow_right.svg');
 
-  /// File path: assets/icons/navigation/right.svg
-  SvgGenImage get right => const SvgGenImage('assets/icons/navigation/right.svg');
+  /// File path: assets/icons/navigation/chevron_left.svg
+  SvgGenImage get chevronLeft => const SvgGenImage('assets/icons/navigation/chevron_left.svg');
+
+  /// File path: assets/icons/navigation/chevron_right.svg
+  SvgGenImage get chevronRight => const SvgGenImage('assets/icons/navigation/chevron_right.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [left, right];
+  List<SvgGenImage> get values => [arrowRight, chevronLeft, chevronRight];
 }
 
 class $AssetsIllustrationsGamesGen {

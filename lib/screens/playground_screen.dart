@@ -7,6 +7,7 @@ import 'package:nepanikar/app/theme/theme.dart';
 import 'package:nepanikar/l10n/ext.dart';
 import 'package:nepanikar/providers/localization_provider.dart';
 import 'package:nepanikar/router/routes.dart';
+import 'package:nepanikar/utils/extensions.dart';
 import 'package:nepanikar/widgets/nepanikar_button.dart';
 import 'package:provider/provider.dart';
 
@@ -123,6 +124,7 @@ class PlaygroundScreen extends StatelessWidget {
               const SizedBox(height: 25),
               _buildColorsSection(),
               const SizedBox(height: 20),
+              _buildSnackbarSection(context),
               Text(context.l10n.depression_tips),
             ],
           ),
@@ -157,7 +159,7 @@ class PlaygroundScreen extends StatelessWidget {
             child: NepanikarButton.async(
               onTapAsync: () async => Future.delayed(const Duration(seconds: 2)),
               expandToContentWidth: true,
-              trailingIcon: Assets.icons.navigation.right,
+              trailingIcon: Assets.icons.navigation.chevronRight,
               text: 'Spinner test',
             ),
           ),
@@ -197,6 +199,64 @@ class PlaygroundScreen extends StatelessWidget {
   Widget _buildColorsSection() {
     return Row(
       children: _colors.map((e) => Flexible(child: Container(color: e, height: 30))).toList(),
+    );
+  }
+
+  Widget _buildSnackbarSection(BuildContext context) {
+    return Row(
+      children: [
+        const Text('Snackbars: '),
+        TextButton(
+          onPressed: () => context.showSuccessSnackbar(
+            text: 'Succcess',
+            leading: const Icon(Icons.info_outline),
+            trailing: Text(
+              'Zpět'.toUpperCase(),
+              style: NepanikarTheme.bodyHeavy,
+            ),
+          ),
+          child: const Text(
+            'success',
+            style: TextStyle(color: NepanikarColors.success),
+          ),
+        ),
+        TextButton(
+          onPressed: () => context.showInfoSnackbar(
+            text: 'info snackbar',
+          ),
+          child: const Text(
+            'info',
+            style: TextStyle(color: NepanikarColors.info),
+          ),
+        ),
+        TextButton(
+          onPressed: () => context.showErrorSnackbar(
+            text: 'error',
+            leading: const Icon(
+              Icons.warning_amber,
+              color: Colors.white,
+            ),
+          ),
+          child: const Text(
+            'error',
+            style: TextStyle(color: NepanikarColors.error),
+          ),
+        ),
+        TextButton(
+          onPressed: () => context.showPurpleSnackbar(
+            text:
+                'The value of the variable_expression is tested against all cases in the switch. If the variable matches one of the cases, the corresponding code block is executed. If no case expression matches the value of the variable_expression, the code within the default block is associated.',
+            trailing: Text(
+              'Zpět'.toUpperCase(),
+              style: NepanikarTheme.bodyHeavy.copyWith(color: Colors.white),
+            ),
+          ),
+          child: const Text(
+            'purple',
+            style: TextStyle(color: NepanikarColors.primary),
+          ),
+        ),
+      ],
     );
   }
 }
