@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
+import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/app/theme/theme.dart';
 import 'package:nepanikar/l10n/ext.dart';
 import 'package:nepanikar/router/routes.dart';
@@ -72,12 +73,12 @@ class HomeScreen extends StatelessWidget {
                         ),
                         Text(
                           context.l10n.app_name,
-                          style: NepanikarTheme.title3.copyWith(fontSize: 18.6),
+                          style: NepanikarFonts.title3.copyWith(fontSize: 18.6),
                         ),
                       ],
                     ),
                     SizedBox(
-                      width: 160,
+                      width: 163,
                       child: Material(
                         borderRadius: BorderRadius.circular(12),
                         color: NepanikarColors.secondary,
@@ -97,7 +98,7 @@ class HomeScreen extends StatelessWidget {
                                     //TODO: l10n
                                     'Rychlá pomoc',
 
-                                    style: NepanikarTheme.bodyHeavy.copyWith(color: Colors.white),
+                                    style: NepanikarFonts.bodyHeavy.copyWith(color: Colors.white),
                                   ),
                                 ),
                               ],
@@ -120,7 +121,7 @@ class HomeScreen extends StatelessWidget {
                 child: Text(
                   //TODO: l10n
                   'S čím můžeme pomoci?',
-                  style: NepanikarTheme.title2,
+                  style: NepanikarFonts.title2,
                 ),
               ),
             ),

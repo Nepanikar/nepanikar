@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
-import 'package:nepanikar/app/theme/theme.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 
 class HomeTile extends StatelessWidget {

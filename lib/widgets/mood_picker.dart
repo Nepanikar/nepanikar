@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
-import 'package:nepanikar/app/theme/theme.dart';
+import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/utils/extensions.dart';
 
 class MoodPicker extends StatefulWidget {
@@ -32,7 +32,7 @@ class _MoodPickerState extends State<MoodPicker> {
         const Text(
           'Ahoj, jak se dnes cítíš?',
           // TODO: l10n
-          style: NepanikarTheme.title2,
+          style: NepanikarFonts.title2,
         ),
         const SizedBox(
           height: 14,
@@ -69,7 +69,7 @@ class _MoodPickerState extends State<MoodPicker> {
                             ),
                             Text(
                               _names.elementAt(e.key),
-                              style: NepanikarTheme.bodySmallHeavy,
+                              style: NepanikarFonts.bodySmallHeavy,
                             )
                           ],
                         ),
