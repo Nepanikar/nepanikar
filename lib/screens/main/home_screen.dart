@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/theme.dart';
@@ -11,10 +10,38 @@ import 'package:nepanikar/widgets/mood_picker.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
-  final _illustrations = <SvgGenImage>[
-    Assets.illustrations.modules.anxietyPanic,
-    Assets.illustrations.modules.depression,
-    Assets.illustrations.modules.selfHarm,
+  // TODO: l10n
+  final _modules = <HomeTile>[
+    HomeTile(
+      text: 'Deprese',
+      image: Assets.illustrations.modules.depression.svg(),
+      location: const MathGameRoute().location,
+    ),
+    HomeTile(
+      text: 'Úzkost a panika',
+      image: Assets.illustrations.modules.anxietyPanic.svg(),
+      location: const MathGameRoute().location,
+    ),
+    HomeTile(
+      text: 'Chci si ublížit',
+      image: Assets.illustrations.modules.selfHarm.svg(),
+      location: const MathGameRoute().location,
+    ),
+    HomeTile(
+      text: 'Myšlenky na sebevraždu',
+      image: Assets.illustrations.modules.suicidalThoughts.svg(),
+      location: const MathGameRoute().location,
+    ),
+    HomeTile(
+      text: 'Poruchy příjmu potravy',
+      image: Assets.illustrations.modules.eatingDisorder.svg(),
+      location: const MathGameRoute().location,
+    ),
+    HomeTile(
+      text: 'Moje záznamy',
+      image: Assets.illustrations.modules.myRecords.svg(),
+      location: const MathGameRoute().location,
+    ),
   ];
 
   @override
@@ -36,6 +63,9 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     Row(
                       children: [
+                        const SizedBox(
+                          width: 6,
+                        ),
                         Assets.icons.logo.svg(),
                         const SizedBox(
                           width: 10,
@@ -46,28 +76,33 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Container(
+                    SizedBox(
                       width: 160,
-                      decoration: BoxDecoration(
+                      child: Material(
                         borderRadius: BorderRadius.circular(12),
                         color: NepanikarColors.secondary,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
-                        child: Row(
-                          children: [
-                            Assets.icons.phone.svg(width: 20, height: 20, color: Colors.white),
-                            const SizedBox(
-                              width: 8,
+                        child: InkWell(
+                          onTap: () {},
+                          borderRadius: BorderRadius.circular(12),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+                            child: Row(
+                              children: [
+                                Assets.icons.phone.svg(width: 20, height: 20, color: Colors.white),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                Flexible(
+                                  child: Text(
+                                    //TODO: l10n
+                                    'Rychlá pomoc',
+
+                                    style: NepanikarTheme.bodyHeavy.copyWith(color: Colors.white),
+                                  ),
+                                ),
+                              ],
                             ),
-                            Flexible(
-                              child: Text(
-                                'Rychlá pomoc',
-                                //TODO: l10n
-                                style: NepanikarTheme.bodyHeavy.copyWith(color: Colors.white),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
                       ),
                     )
@@ -83,8 +118,8 @@ class HomeScreen extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(left: 24.0, right: 24.0, bottom: 16.0, top: 30),
                 child: Text(
-                  'S čím můžeme pomoci?',
                   //TODO: l10n
+                  'S čím můžeme pomoci?',
                   style: NepanikarTheme.title2,
                 ),
               ),
@@ -100,13 +135,9 @@ class HomeScreen extends StatelessWidget {
                 ),
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
-                    return HomeTile(
-                      text: 'Chci si ublížit',
-                      image: Assets.illustrations.modules.selfHarm.svg(),
-                      onTap: () => context.push(const MathGameRoute().location),
-                    );
+                    return _modules.elementAt(index);
                   },
-                  childCount: 6,
+                  childCount: _modules.length,
                 ),
               ),
             ),
