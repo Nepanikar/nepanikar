@@ -34,9 +34,7 @@ class Nepanikar extends StatelessWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       locale: context.watch<LocalizationProvider>().locale,
-      routeInformationParser: _goRouter.routeInformationParser,
-      routerDelegate: _goRouter.routerDelegate,
-      routeInformationProvider: _goRouter.routeInformationProvider,
+      routerConfig: _goRouter,
     );
   }
 }

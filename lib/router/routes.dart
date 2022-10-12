@@ -19,7 +19,13 @@ part 'routes.g.dart';
 /// `context` is not available
 ///
 /// More info in the package docs: https://pub.dev/packages/go_router.
-@TypedGoRoute<MainRoute>(path: '/')
+@TypedGoRoute<MainRoute>(
+  path: '/',
+  routes: [
+    TypedGoRoute<AboutAppRoute>(path: 'about-app'),
+    ..._gameRoutes,
+  ],
+)
 class MainRoute extends GoRouteData {
   const MainRoute();
 
@@ -27,7 +33,12 @@ class MainRoute extends GoRouteData {
   Widget build(BuildContext context) => const MainScreen();
 }
 
-@TypedGoRoute<AboutAppRoute>(path: '/about-app')
+const _gameRoutes = <TypedGoRoute<GoRouteData>>[
+  TypedGoRoute<MathGameRoute>(path: 'games/math'),
+];
+
+///////////////////////////////////
+
 class AboutAppRoute extends GoRouteData {
   const AboutAppRoute();
 
@@ -35,7 +46,6 @@ class AboutAppRoute extends GoRouteData {
   Widget build(BuildContext context) => const AboutAppScreen();
 }
 
-@TypedGoRoute<MathGameRoute>(path: '/games/math')
 class MathGameRoute extends GoRouteData {
   const MathGameRoute();
 

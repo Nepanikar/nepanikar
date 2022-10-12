@@ -8,13 +8,21 @@ part of 'routes.dart';
 
 List<GoRoute> get $appRoutes => [
       $mainRoute,
-      $aboutAppRoute,
-      $mathGameRoute,
     ];
 
 GoRoute get $mainRoute => GoRouteData.$route(
       path: '/',
       factory: $MainRouteExtension._fromState,
+      routes: [
+        GoRouteData.$route(
+          path: 'about-app',
+          factory: $AboutAppRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'games/math',
+          factory: $MathGameRouteExtension._fromState,
+        ),
+      ],
     );
 
 extension $MainRouteExtension on MainRoute {
@@ -29,11 +37,6 @@ extension $MainRouteExtension on MainRoute {
   void push(BuildContext context) => context.push(location, extra: this);
 }
 
-GoRoute get $aboutAppRoute => GoRouteData.$route(
-      path: '/about-app',
-      factory: $AboutAppRouteExtension._fromState,
-    );
-
 extension $AboutAppRouteExtension on AboutAppRoute {
   static AboutAppRoute _fromState(GoRouterState state) => const AboutAppRoute();
 
@@ -45,11 +48,6 @@ extension $AboutAppRouteExtension on AboutAppRoute {
 
   void push(BuildContext context) => context.push(location, extra: this);
 }
-
-GoRoute get $mathGameRoute => GoRouteData.$route(
-      path: '/games/math',
-      factory: $MathGameRouteExtension._fromState,
-    );
 
 extension $MathGameRouteExtension on MathGameRoute {
   static MathGameRoute _fromState(GoRouterState state) => const MathGameRoute();
