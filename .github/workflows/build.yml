@@ -43,6 +43,12 @@ jobs:
           cache-key: ${{ runner.OS }}-flutter-${{ env.flutter_version }}
           cache-path: ${{ runner.tool_cache }}/flutter
 
+      - name: Cache CocoaPods
+        uses: actions/cache@v3
+        with:
+          path: /Users/runner/Library/Caches/CocoaPods/Pods
+          key: '${{ runner.os }}-cache-cocoapods-${{ hashFiles(''pubspec.lock'') }}'
+
       - name: Install dependencies
         run: flutter pub get
 

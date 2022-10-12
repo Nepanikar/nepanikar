@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
-import 'package:nepanikar/app/theme/theme.dart';
+import 'package:nepanikar/app/theme/fonts.dart';
 
 class HomeTile extends StatelessWidget {
   const HomeTile({super.key, required this.text, required this.image, required this.onTap});
@@ -52,7 +52,7 @@ class HomeTile extends StatelessWidget {
                     Flexible(
                       child: Text(
                         text,
-                        style: NepanikarTheme.bodyHeavy,
+                        style: NepanikarFonts.bodyHeavy,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),

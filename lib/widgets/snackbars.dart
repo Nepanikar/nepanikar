@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/theme/colors.dart';
-import 'package:nepanikar/app/theme/theme.dart';
+import 'package:nepanikar/app/theme/fonts.dart';
 
 enum SnackbarType {
   success(NepanikarColors.success),
@@ -9,6 +9,7 @@ enum SnackbarType {
   purple(NepanikarColors.primary);
 
   const SnackbarType(this.color);
+
   final Color color;
 }
 
@@ -30,7 +31,7 @@ SnackBar nepanikarSnackbar({
         Expanded(
           child: Text(
             text,
-            style: NepanikarTheme.bodyHeavy.copyWith(
+            style: NepanikarFonts.bodyHeavy.copyWith(
               color: [NepanikarColors.success, NepanikarColors.info].contains(snackbarType.color)
                   ? NepanikarColors.dark
                   : Colors.white,

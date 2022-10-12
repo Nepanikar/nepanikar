@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
-import 'package:nepanikar/app/theme/theme.dart';
+import 'package:nepanikar/app/theme/fonts.dart';
 
 class LongTile extends StatelessWidget {
   const LongTile({
@@ -56,14 +56,14 @@ class LongTile extends StatelessWidget {
                     children: [
                       Text(
                         text,
-                        style: NepanikarTheme.bodyHeavy,
+                        style: NepanikarFonts.bodyHeavy,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
                       if (description != null)
                         Text(
                           description!,
-                          style: NepanikarTheme.bodySmallMedium,
+                          style: NepanikarFonts.bodySmallMedium,
                           maxLines: 5,
                           overflow: TextOverflow.ellipsis,
                         ),
