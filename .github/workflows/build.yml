@@ -46,7 +46,10 @@ jobs:
       - name: Cache CocoaPods
         uses: actions/cache@v3
         with:
-          path: /Users/runner/Library/Caches/CocoaPods/Pods
+          path: |
+            ios/Pods
+            ~/Library/Caches/CocoaPods
+            ~/.cocoapods
           key: '${{ runner.os }}-cache-cocoapods-${{ hashFiles(''pubspec.lock'') }}'
 
       - name: Install dependencies
