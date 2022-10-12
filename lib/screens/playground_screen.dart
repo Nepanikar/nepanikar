@@ -3,7 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
-import 'package:nepanikar/app/theme/theme.dart';
+import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/l10n/ext.dart';
 import 'package:nepanikar/providers/localization_provider.dart';
 import 'package:nepanikar/router/routes.dart';
@@ -22,14 +22,14 @@ class PlaygroundScreen extends StatelessWidget {
     NepanikarColors.dark,
   ];
   final _fonts = <TextStyle>[
-    NepanikarTheme.title1,
-    NepanikarTheme.title2,
-    NepanikarTheme.title3,
-    NepanikarTheme.bodyBlack,
-    NepanikarTheme.bodyHeavy,
-    NepanikarTheme.bodyRoman,
-    NepanikarTheme.bodySmallHeavy,
-    NepanikarTheme.bodySmallMedium,
+    NepanikarFonts.title1,
+    NepanikarFonts.title2,
+    NepanikarFonts.title3,
+    NepanikarFonts.bodyBlack,
+    NepanikarFonts.bodyHeavy,
+    NepanikarFonts.bodyRoman,
+    NepanikarFonts.bodySmallHeavy,
+    NepanikarFonts.bodySmallMedium,
   ];
 
   @override
@@ -212,7 +212,7 @@ class PlaygroundScreen extends StatelessWidget {
             leading: const Icon(Icons.info_outline),
             trailing: Text(
               'Zpět'.toUpperCase(),
-              style: NepanikarTheme.bodyHeavy,
+              style: NepanikarFonts.bodyHeavy,
             ),
           ),
           child: const Text(
@@ -248,7 +248,7 @@ class PlaygroundScreen extends StatelessWidget {
                 'The value of the variable_expression is tested against all cases in the switch. If the variable matches one of the cases, the corresponding code block is executed. If no case expression matches the value of the variable_expression, the code within the default block is associated.',
             trailing: Text(
               'Zpět'.toUpperCase(),
-              style: NepanikarTheme.bodyHeavy.copyWith(color: Colors.white),
+              style: NepanikarFonts.bodyHeavy.copyWith(color: Colors.white),
             ),
           ),
           child: const Text(

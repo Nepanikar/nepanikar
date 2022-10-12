@@ -98,7 +98,6 @@ class _MathGameScreenState extends State<MathGameScreen> {
                             const Text('=', style: textStyle),
                             const SizedBox(width: 19),
                             Expanded(
-                              // Outline TextField
                               child: TextField(
                                 textInputAction: TextInputAction.done,
                                 enabled: !_answerResultState.isCorrect,
@@ -106,6 +105,8 @@ class _MathGameScreenState extends State<MathGameScreen> {
                                 controller: _textEditingController,
                                 onSubmitted: _evaluateEquation,
                                 decoration: const InputDecoration(
+                                  // TODO: l10n
+                                  hintText: 'Jaký je výsledek?',
                                   contentPadding: EdgeInsets.symmetric(
                                     horizontal: 12,
                                     vertical: 16,
