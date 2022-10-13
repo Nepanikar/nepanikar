@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
+import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 
 class HomeTile extends StatelessWidget {
-  const HomeTile({super.key, required this.text, required this.image, required this.onTap});
+  const HomeTile({
+    super.key,
+    required this.text,
+    required this.image,
+    required this.location,
+  });
 
   final String text;
   final Widget image;
-  final void Function() onTap;
+  final String location;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +28,7 @@ class HomeTile extends StatelessWidget {
             offset: const Offset(0, 2), // changes position of shadow
           ),
           BoxShadow(
-            color: const Color(0xff280446).withOpacity(0.12),
+            color: NepanikarColors.dark.withOpacity(0.12),
             blurRadius: 48,
             offset: const Offset(0, 16), // changes position of shadow
           ),
@@ -31,7 +38,7 @@ class HomeTile extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         child: InkWell(
           borderRadius: BorderRadius.circular(16),
-          onTap: onTap,
+          onTap: () => context.push(location),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(

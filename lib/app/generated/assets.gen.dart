@@ -34,6 +34,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/home.svg
   SvgGenImage get home => const SvgGenImage('assets/icons/home.svg');
 
+  /// File path: assets/icons/logo.svg
+  SvgGenImage get logo => const SvgGenImage('assets/icons/logo.svg');
+
   /// File path: assets/icons/marker.svg
   SvgGenImage get marker => const SvgGenImage('assets/icons/marker.svg');
 
@@ -53,7 +56,7 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<SvgGenImage> get values =>
-      [calendarEvent, home, marker, phone, settings, spinner, warningWavy];
+      [calendarEvent, home, logo, marker, phone, settings, spinner, warningWavy];
 }
 
 class $AssetsIllustrationsGen {
@@ -67,6 +70,9 @@ class $AssetsIllustrationsGen {
 class $AssetsIconsCheckmarksGen {
   const $AssetsIconsCheckmarksGen();
 
+  /// File path: assets/icons/checkmarks/check_circular.svg
+  SvgGenImage get checkCircular => const SvgGenImage('assets/icons/checkmarks/check_circular.svg');
+
   /// File path: assets/icons/checkmarks/error.svg
   SvgGenImage get error => const SvgGenImage('assets/icons/checkmarks/error.svg');
 
@@ -77,7 +83,7 @@ class $AssetsIconsCheckmarksGen {
   SvgGenImage get success => const SvgGenImage('assets/icons/checkmarks/success.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [error, info, success];
+  List<SvgGenImage> get values => [checkCircular, error, info, success];
 }
 
 class $AssetsIconsNavigationGen {
