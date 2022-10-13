@@ -58,21 +58,19 @@ class _MoodPickerState extends State<MoodPicker> {
                   borderRadius: BorderRadius.circular(12),
                   child: Opacity(
                     opacity: activeMood != null && activeMood != e.key ? 0.4 : 1,
-                    child: Flexible(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 4),
-                        child: Column(
-                          children: [
-                            e.value.svg(),
-                            const SizedBox(
-                              height: 4,
-                            ),
-                            Text(
-                              _names.elementAt(e.key),
-                              style: NepanikarFonts.bodySmallHeavy,
-                            )
-                          ],
-                        ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 4),
+                      child: Column(
+                        children: [
+                          e.value.svg(),
+                          const SizedBox(
+                            height: 4,
+                          ),
+                          Text(
+                            _names.elementAt(e.key),
+                            style: NepanikarFonts.bodySmallHeavy,
+                          )
+                        ],
                       ),
                     ),
                   ),
