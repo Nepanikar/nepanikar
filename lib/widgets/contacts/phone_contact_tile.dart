@@ -27,11 +27,19 @@ class PhoneContactTile extends StatelessWidget {
   }
 
   Widget _buildSingleContact(BuildContext context, PhoneContactSingle contact) {
+    final isPinned = contact.pinned;
+    final textColor = isPinned ? Colors.white : null;
     return LongTile(
       text: contact.title,
+      textColor: textColor,
       description: contact.subtitle,
-      image: Assets.illustrations.contacts.phones.svg(),
-      trailing: Text(contact.formattedPhoneNumber, style: _phoneNumTextStyle),
+      descriptionColor: textColor,
+      image: Assets.illustrations.contacts.phones.svg(color: textColor),
+      trailing: Text(
+        contact.formattedPhoneNumber,
+        style: _phoneNumTextStyle.copyWith(color: textColor),
+      ),
+      backgroundColor: isPinned ? NepanikarColors.secondary : null,
       onTap: () async => launchPhoneNum(contact.number),
       onLongPress: () async => copyPhoneNum(context, contact.number),
     );
