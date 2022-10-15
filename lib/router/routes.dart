@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/games/math/math_game_screen.dart';
 import 'package:nepanikar/screens/about_app_screen.dart';
+import 'package:nepanikar/screens/contacts/phone_contacts_screen.dart';
 import 'package:nepanikar/screens/main/main_screen.dart';
 
 part 'routes.g.dart';
@@ -22,8 +23,9 @@ part 'routes.g.dart';
 @TypedGoRoute<MainRoute>(
   path: '/',
   routes: [
-    TypedGoRoute<AboutAppRoute>(path: 'about-app'),
+    ..._settingsRoutes,
     ..._gameRoutes,
+    ..._contactRoutes,
   ],
 )
 class MainRoute extends GoRouteData {
@@ -33,22 +35,14 @@ class MainRoute extends GoRouteData {
   Widget build(BuildContext context) => const MainScreen();
 }
 
+const _settingsRoutes = <TypedGoRoute<GoRouteData>>[
+  TypedGoRoute<AboutAppRoute>(path: 'settings/about-app'),
+];
+
 const _gameRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<MathGameRoute>(path: 'games/math'),
 ];
 
-///////////////////////////////////
-
-class AboutAppRoute extends GoRouteData {
-  const AboutAppRoute();
-
-  @override
-  Widget build(BuildContext context) => const AboutAppScreen();
-}
-
-class MathGameRoute extends GoRouteData {
-  const MathGameRoute();
-
-  @override
-  Widget build(BuildContext context) => const MathGameScreen();
-}
+const _contactRoutes = <TypedGoRoute<GoRouteData>>[
+  TypedGoRoute<PhoneContactsRoute>(path: 'contacts/phones'),
+];

@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
-import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
-import 'package:nepanikar/app/theme/theme.dart';
+import 'package:nepanikar/games/math/math_game_screen.dart';
 import 'package:nepanikar/l10n/ext.dart';
 import 'package:nepanikar/router/routes.dart';
+import 'package:nepanikar/widgets/contacts/quick_help_button.dart';
 import 'package:nepanikar/widgets/home_tile.dart';
 import 'package:nepanikar/widgets/mood_picker.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+  HomeScreen({
+    super.key,
+    required this.showQuickHelpButton,
+  });
+
+  final bool showQuickHelpButton;
 
   // TODO: l10n
   final _modules = <HomeTile>[
@@ -57,58 +62,27 @@ class HomeScreen extends StatelessWidget {
               expandedHeight: 92.0,
               collapsedHeight: 60,
               elevation: 2,
-              backgroundColor: NepanikarTheme.themeData.scaffoldBackgroundColor,
-              title: Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        const SizedBox(
-                          width: 6,
-                        ),
-                        Assets.icons.logo.svg(),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          context.l10n.app_name,
-                          style: NepanikarFonts.title3.copyWith(fontSize: 18.6),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      width: 163,
-                      child: Material(
-                        borderRadius: BorderRadius.circular(12),
-                        color: NepanikarColors.secondary,
-                        child: InkWell(
-                          onTap: () {},
-                          borderRadius: BorderRadius.circular(12),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
-                            child: Row(
-                              children: [
-                                Assets.icons.phone.svg(width: 20, height: 20, color: Colors.white),
-                                const SizedBox(
-                                  width: 8,
-                                ),
-                                Flexible(
-                                  child: Text(
-                                    //TODO: l10n
-                                    'Rychlá pomoc',
-
-                                    style: NepanikarFonts.bodyHeavy.copyWith(color: Colors.white),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      const SizedBox(
+                        width: 6,
                       ),
-                    )
-                  ],
-                ),
+                      Assets.icons.logo.svg(),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        context.l10n.app_name,
+                        style: NepanikarFonts.title3.copyWith(fontSize: 18.6),
+                      ),
+                    ],
+                  ),
+                  QuickHelpButton(show: showQuickHelpButton),
+                ],
               ),
             ),
             const SliverPadding(

@@ -15,12 +15,16 @@ GoRoute get $mainRoute => GoRouteData.$route(
       factory: $MainRouteExtension._fromState,
       routes: [
         GoRouteData.$route(
-          path: 'about-app',
+          path: 'settings/about-app',
           factory: $AboutAppRouteExtension._fromState,
         ),
         GoRouteData.$route(
           path: 'games/math',
           factory: $MathGameRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'contacts/phones',
+          factory: $PhoneContactsRouteExtension._fromState,
         ),
       ],
     );
@@ -41,7 +45,7 @@ extension $AboutAppRouteExtension on AboutAppRoute {
   static AboutAppRoute _fromState(GoRouterState state) => const AboutAppRoute();
 
   String get location => GoRouteData.$location(
-        '/about-app',
+        '/settings/about-app',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
@@ -54,6 +58,19 @@ extension $MathGameRouteExtension on MathGameRoute {
 
   String get location => GoRouteData.$location(
         '/games/math',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $PhoneContactsRouteExtension on PhoneContactsRoute {
+  static PhoneContactsRoute _fromState(GoRouterState state) =>
+      const PhoneContactsRoute();
+
+  String get location => GoRouteData.$location(
+        '/contacts/phones',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);

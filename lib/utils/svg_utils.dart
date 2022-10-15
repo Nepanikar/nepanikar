@@ -6,8 +6,10 @@ final _svgPathsToCache = <String>[
     ...Assets.icons.values,
     ...Assets.icons.navigation.values,
     ...Assets.icons.checkmarks.values,
+    ...Assets.illustrations.contacts.values,
     ...Assets.illustrations.modules.values,
     ...Assets.illustrations.moods.values,
+    ...Assets.illustrations.games.math.values,
   ].map((e) => e.path),
 ];
 

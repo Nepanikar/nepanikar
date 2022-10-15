@@ -134,6 +134,9 @@ class NepanikarTheme {
       ),
       elevation: 20,
     ),
+    listTileTheme: const ListTileThemeData(
+      horizontalTitleGap: 16,
+    ),
   );
 }
 

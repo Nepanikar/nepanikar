@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
+import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 
 class LongTile extends StatelessWidget {
@@ -9,12 +10,21 @@ class LongTile extends StatelessWidget {
     this.description,
     required this.image,
     required this.onTap,
+    this.onLongPress,
+    this.trailing,
+    this.subContent,
   });
 
   final String text;
   final String? description;
   final Widget image;
-  final void Function() onTap;
+  final VoidCallback? onTap;
+  final VoidCallback? onLongPress;
+
+  /// Defaults to arrow right icon.
+  final Widget? trailing;
+
+  final Widget? subContent;
 
   @override
   Widget build(BuildContext context) {
@@ -36,47 +46,67 @@ class LongTile extends StatelessWidget {
       ),
       child: Material(
         borderRadius: BorderRadius.circular(16),
-        child: InkWell(
-          borderRadius: BorderRadius.circular(16),
-          onTap: onTap,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
-            child: Row(
-              children: [
-                SizedBox(
-                  height: 40,
-                  child: image,
-                ),
-                const SizedBox(
-                  width: 16,
-                ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        text,
-                        style: NepanikarFonts.bodyHeavy,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            InkWell(
+              borderRadius: BorderRadius.circular(16),
+              onTap: onTap,
+              onLongPress: onLongPress,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      height: 40,
+                      child: image,
+                    ),
+                    const SizedBox(
+                      width: 16,
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            text,
+                            style: NepanikarFonts.bodyHeavy,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          if (description != null)
+                            Text(
+                              description!,
+                              style: NepanikarFonts.bodySmallMedium,
+                              maxLines: 5,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                        ],
                       ),
-                      if (description != null)
-                        Text(
-                          description!,
-                          style: NepanikarFonts.bodySmallMedium,
-                          maxLines: 5,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                    ],
-                  ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 12.0),
+                      child:
+                          trailing ?? Assets.icons.navigation.arrowRight.svg(width: 16, height: 16),
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 12.0),
-                  child: Assets.icons.navigation.arrowRight.svg(width: 16, height: 16),
-                )
-              ],
+              ),
             ),
-          ),
+            if (subContent != null) ...[
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: Theme.of(context).listTileTheme.horizontalTitleGap ?? 0,
+                ),
+                child: Divider(
+                  height: 1,
+                  thickness: 1,
+                  color: NepanikarColors.primarySwatch.shade200,
+                ),
+              ),
+              subContent!,
+            ],
+          ],
         ),
       ),
     );
