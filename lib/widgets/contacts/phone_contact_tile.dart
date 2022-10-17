@@ -14,6 +14,10 @@ class PhoneContactTile extends StatelessWidget {
 
   final PhoneContact phoneContact;
 
+  TextStyle get _textTextStyle => NepanikarFonts.bodyBlack;
+
+  TextStyle get _descriptionNumTextStyle => NepanikarFonts.bodyRoman;
+
   TextStyle get _phoneNumTextStyle => NepanikarFonts.bodyBlack.copyWith(
         color: NepanikarColors.primary,
       );
@@ -31,9 +35,9 @@ class PhoneContactTile extends StatelessWidget {
     final textColor = isPinned ? Colors.white : null;
     return LongTile(
       text: contact.title,
-      textColor: textColor,
+      textTextStyle: _textTextStyle.copyWith(color: textColor),
       description: contact.subtitle,
-      descriptionColor: textColor,
+      descriptionTextStyle: _descriptionNumTextStyle.copyWith(color: textColor),
       image: Assets.illustrations.contacts.phones.svg(color: textColor),
       trailing: Text(
         contact.formattedPhoneNumber,
@@ -48,7 +52,9 @@ class PhoneContactTile extends StatelessWidget {
   Widget _buildSubListContact(BuildContext context, PhoneContactSubList contact) {
     return LongTile(
       text: contact.title,
+      textTextStyle: _textTextStyle,
       description: contact.subtitle,
+      descriptionTextStyle: _descriptionNumTextStyle,
       image: Assets.illustrations.contacts.phones.svg(),
       trailing: const SizedBox.shrink(),
       onTap: null,

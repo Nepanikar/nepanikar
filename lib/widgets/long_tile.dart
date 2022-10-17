@@ -7,9 +7,9 @@ class LongTile extends StatelessWidget {
   const LongTile({
     super.key,
     required this.text,
-    this.textColor,
+    this.textTextStyle = NepanikarFonts.bodyHeavy,
     this.description,
-    this.descriptionColor,
+    this.descriptionTextStyle = NepanikarFonts.bodySmallMedium,
     required this.image,
     required this.onTap,
     this.onLongPress,
@@ -20,9 +20,9 @@ class LongTile extends StatelessWidget {
 
   final Color? backgroundColor;
   final String text;
-  final Color? textColor;
+  final TextStyle textTextStyle;
   final String? description;
-  final Color? descriptionColor;
+  final TextStyle descriptionTextStyle;
   final Widget image;
   final VoidCallback? onTap;
   final VoidCallback? onLongPress;
@@ -77,15 +77,14 @@ class LongTile extends StatelessWidget {
                         children: [
                           Text(
                             text,
-                            style: NepanikarFonts.bodyHeavy.copyWith(color: textColor),
+                            style: textTextStyle,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),
                           if (description != null)
                             Text(
                               description!,
-                              style:
-                                  NepanikarFonts.bodySmallMedium.copyWith(color: descriptionColor),
+                              style: descriptionTextStyle,
                               maxLines: 5,
                               overflow: TextOverflow.ellipsis,
                             ),
