@@ -23,6 +23,16 @@ class $AssetsAnimatedIllustrationsGen {
   List<LottieGenImage> get values => [confetti];
 }
 
+class $AssetsContactsGen {
+  const $AssetsContactsGen();
+
+  /// File path: assets/contacts/all_contacts.json
+  String get allContacts => 'assets/contacts/all_contacts.json';
+
+  /// List of all assets
+  List<String> get values => [allContacts];
+}
+
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
@@ -62,6 +72,7 @@ class $AssetsIconsGen {
 class $AssetsIllustrationsGen {
   const $AssetsIllustrationsGen();
 
+  $AssetsIllustrationsContactsGen get contacts => const $AssetsIllustrationsContactsGen();
   $AssetsIllustrationsGamesGen get games => const $AssetsIllustrationsGamesGen();
   $AssetsIllustrationsModulesGen get modules => const $AssetsIllustrationsModulesGen();
   $AssetsIllustrationsMoodsGen get moods => const $AssetsIllustrationsMoodsGen();
@@ -100,6 +111,30 @@ class $AssetsIconsNavigationGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [arrowRight, chevronLeft, chevronRight];
+}
+
+class $AssetsIllustrationsContactsGen {
+  const $AssetsIllustrationsContactsGen();
+
+  /// File path: assets/illustrations/contacts/chat.svg
+  SvgGenImage get chat => const SvgGenImage('assets/illustrations/contacts/chat.svg');
+
+  /// File path: assets/illustrations/contacts/crisis_centers.svg
+  SvgGenImage get crisisCenters =>
+      const SvgGenImage('assets/illustrations/contacts/crisis_centers.svg');
+
+  /// File path: assets/illustrations/contacts/my_contacts.svg
+  SvgGenImage get myContacts => const SvgGenImage('assets/illustrations/contacts/my_contacts.svg');
+
+  /// File path: assets/illustrations/contacts/phones.svg
+  SvgGenImage get phones => const SvgGenImage('assets/illustrations/contacts/phones.svg');
+
+  /// File path: assets/illustrations/contacts/universities.svg
+  SvgGenImage get universities =>
+      const SvgGenImage('assets/illustrations/contacts/universities.svg');
+
+  /// List of all assets
+  List<SvgGenImage> get values => [chat, crisisCenters, myContacts, phones, universities];
 }
 
 class $AssetsIllustrationsGamesGen {
@@ -177,6 +212,7 @@ class Assets {
 
   static const $AssetsAnimatedIllustrationsGen animatedIllustrations =
       $AssetsAnimatedIllustrationsGen();
+  static const $AssetsContactsGen contacts = $AssetsContactsGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsIllustrationsGen illustrations = $AssetsIllustrationsGen();
 }
