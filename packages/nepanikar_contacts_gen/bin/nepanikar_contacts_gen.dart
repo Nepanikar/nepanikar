@@ -5,6 +5,7 @@ import 'package:nepanikar_contacts_gen/nepanikar_contacts_gen.dart';
 
 import 'translation_extra_files/cs.dart';
 import 'translation_extra_files/en.dart';
+import 'translation_extra_files/sk.dart';
 
 const _appContactsAssetDirPath = '../../assets/contacts';
 
@@ -12,6 +13,7 @@ const allContacts = AllContacts(
   countryContacts: <CountryContacts>[
     cs_Contacts,
     en_Contacts,
+    sk_Contacts,
   ],
 );
 

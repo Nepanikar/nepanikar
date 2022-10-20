@@ -12,19 +12,54 @@ const _phoneContacts = <PhoneContact>[
   PhoneContact(
     pinned: true,
     title: 'Linka bezpečí',
-    number: 116111,
-    subtitle: 'Nonstop provoz',
+    tel: '116 111',
+    subtitle: 'Nonstop zdarma',
   ),
-  PhoneContact(title: 'Linka psychické pomoci', number: 116123),
-  PhoneContact(title: 'KC Brno\nFN Bohunice', number: 532232078),
-  PhoneContact(title: 'PN Bohnice', number: 284016666),
+  PhoneContact(
+    pinned: true,
+    title: 'Linka psychické pomoci',
+    subtitle: 'Nonstop zdarma',
+    tel: '116 123',
+  ),
   PhoneContact.subList(
     title: 'Modrá linka',
-    subtitle: 'Denně od 9:00 - 21:00',
+    subtitle: 'Nonstop',
     subPhoneContacts: [
-      SubPhoneContact(title: 'Telefon', number: 284016666),
-      SubPhoneContact(title: 'Mobil', number: 608902410),
+      SubPhoneContact(title: 'Mobil', tel: '731 197 477'),
+      SubPhoneContact(title: 'Mobil', tel: '608 902 410'),
     ],
+  ),
+  PhoneContact(
+    title: 'Linka pro rodinu a školu',
+    subtitle: 'Nonstop zdarma',
+    tel: '116 000',
+  ),
+  PhoneContact(
+    title: 'Pražská linka důvěry',
+    subtitle: 'Nonstop',
+    tel: '222 580 697',
+  ),
+  PhoneContact(
+    title: 'Linka důvěry CKI Bohnice',
+    subtitle: 'Nonstop',
+    tel: '284 016 666',
+  ),
+  PhoneContact.subList(
+    title: 'Linka důvěry Dětského krizového centra',
+    subtitle: 'Nonstop',
+    subPhoneContacts: [
+      SubPhoneContact(title: 'Telefon', tel: '241 484 149'),
+      SubPhoneContact(title: 'Mobil', tel: '777 715 215'),
+    ],
+  ),
+  PhoneContact(
+    title: 'Linka Anabell (poruchy přijmu potravy)',
+    subtitle: '''
+Pondělí\t8–16 hodin
+Úterý\t10–18 hodin
+Středa–pátek\t8–16 hodin
+''',
+    tel: '774 467 293',
   ),
 ];
 
