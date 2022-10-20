@@ -53,6 +53,7 @@ class LongTile extends StatelessWidget {
       child: Material(
         borderRadius: BorderRadius.circular(16),
         color: backgroundColor,
+        clipBehavior: Clip.antiAlias,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -78,8 +79,6 @@ class LongTile extends StatelessWidget {
                           Text(
                             text,
                             style: textTextStyle,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
                           ),
                           if (description != null)
                             Text(

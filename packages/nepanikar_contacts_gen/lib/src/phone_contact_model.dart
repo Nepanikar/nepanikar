@@ -8,7 +8,7 @@ class PhoneContact with _$PhoneContact {
   const factory PhoneContact({
     @Default(false) bool pinned,
     required String title,
-    required int number,
+    required String tel,
     String? subtitle,
   }) = PhoneContactSingle;
 
@@ -27,7 +27,7 @@ class PhoneContact with _$PhoneContact {
 class SubPhoneContact with _$SubPhoneContact {
   const factory SubPhoneContact({
     required String title,
-    required int number,
+    required String tel,
     @Default(SubPhoneContactAction.phone) SubPhoneContactAction action,
   }) = _SubPhoneContact;
 
@@ -35,7 +35,7 @@ class SubPhoneContact with _$SubPhoneContact {
 
   factory SubPhoneContact.fromJson(Map<String, Object?> json) => _$SubPhoneContactFromJson(json);
 
-  String get formattedPhoneNumber => number.formattedPhoneNumber;
+  String get unformattedTel => tel.unformatPhoneNum();
 }
 
 enum SubPhoneContactAction {
@@ -44,17 +44,9 @@ enum SubPhoneContactAction {
 }
 
 extension PhoneContactSingleExt on PhoneContactSingle {
-  String get formattedPhoneNumber => number.formattedPhoneNumber;
+  String get unformattedTel => tel.unformatPhoneNum();
 }
 
-extension PhoneContactNumExt on int {
-  String get formattedPhoneNumber {
-    return toString().replaceAllMapped(
-      RegExp(r'(\d{3})'),
-      (match) {
-        final group = match.group(1);
-        return group != null ? '$group ' : '';
-      },
-    );
-  }
+extension PhoneContactNumExt on String {
+  String unformatPhoneNum() => replaceAll(' ', '');
 }
