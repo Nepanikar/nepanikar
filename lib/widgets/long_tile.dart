@@ -84,8 +84,6 @@ class LongTile extends StatelessWidget {
                             Text(
                               description!,
                               style: descriptionTextStyle,
-                              maxLines: 5,
-                              overflow: TextOverflow.ellipsis,
                             ),
                         ],
                       ),

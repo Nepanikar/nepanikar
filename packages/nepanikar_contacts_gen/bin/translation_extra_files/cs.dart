@@ -54,7 +54,11 @@ const _phoneContacts = <PhoneContact>[
   ),
   PhoneContact(
     title: 'Linka Anabell (poruchy přijmu potravy)',
-    subtitle: 'Nonstop',
+    subtitle: '''
+Pondělí\t8–16 hodin
+Úterý\t10–18 hodin
+Středa–pátek\t8–16 hodin
+''',
     tel: '774 467 293',
   ),
 ];
