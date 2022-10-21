@@ -39,14 +39,14 @@ class LongTile extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
+            color: const Color(0xff280446).withOpacity(0.08),
+            blurRadius: 32,
+            offset: const Offset(0, 8), // changes position of shadow
+          ),
+          BoxShadow(
             color: const Color(0xff2C0B4A).withOpacity(0.04),
             blurRadius: 4,
             offset: const Offset(0, 2), // changes position of shadow
-          ),
-          BoxShadow(
-            color: const Color(0xff280446).withOpacity(0.12),
-            blurRadius: 48,
-            offset: const Offset(0, 16), // changes position of shadow
           ),
         ],
       ),
