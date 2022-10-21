@@ -32,6 +32,9 @@ class _MathGameScreenState extends State<MathGameScreen> {
 
   final _lottieCacheManager = registry.get<LottieCacheManager>();
 
+  static const _winAnimDuration = Duration(milliseconds: 800);
+  static const _answerEvaluationDuration = Duration(milliseconds: 200);
+
   void _setAnswerResultState(MathAnswerResultState state) {
     if (state != _answerResultState) {
       setState(() => _answerResultState = state);
@@ -40,10 +43,13 @@ class _MathGameScreenState extends State<MathGameScreen> {
 
   Future<void> _evaluateEquation(String textInput) async {
     if (textInput.isEmpty) return;
-    await Future.delayed(const Duration(milliseconds: 200));
+    await Future.delayed(_answerEvaluationDuration);
     if (_equation.isValid(textInput)) {
       _setAnswerResultState(MathAnswerResultState.correct);
+      await Future.delayed(_winAnimDuration);
+      _generateNewEquation();
     } else {
+      _textEditingController.clear();
       _setAnswerResultState(MathAnswerResultState.wrong);
     }
   }
@@ -130,11 +136,9 @@ class _MathGameScreenState extends State<MathGameScreen> {
                           builder: (_, textEditingValue, __) {
                             final textInput = textEditingValue.text;
                             return _answerResultState.isCorrect
-                                ? NepanikarButton(
-                                    onTap: () => _generateNewEquation(),
-                                    trailingIcon: Assets.icons.navigation.chevronRight,
-                                    // TODO: l10n
-                                    text: 'Další',
+                                ? Opacity(
+                                    opacity: 0,
+                                    child: NepanikarButton(onTap: () => {}, text: ''),
                                   )
                                 : NepanikarButton.async(
                                     onTapAsync: () async => _evaluateEquation(textInput),
