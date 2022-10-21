@@ -35,6 +35,15 @@ class Nepanikar extends StatelessWidget {
       supportedLocales: AppLocalizations.supportedLocales,
       locale: context.watch<LocalizationProvider>().locale,
       routerConfig: _goRouter,
+      builder: (context, child) {
+        return child != null
+            ? MediaQuery(
+                // To not influence app's font size by the system font size.
+                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                child: child,
+              )
+            : const SizedBox.shrink();
+      },
     );
   }
 }
