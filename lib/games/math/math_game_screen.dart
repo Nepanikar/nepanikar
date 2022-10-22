@@ -135,17 +135,18 @@ class _MathGameScreenState extends State<MathGameScreen> {
                           valueListenable: _textEditingController,
                           builder: (_, textEditingValue, __) {
                             final textInput = textEditingValue.text;
-                            return _answerResultState.isCorrect
-                                ? Opacity(
-                                    opacity: 0,
-                                    child: NepanikarButton(onTap: () => {}, text: ''),
-                                  )
-                                : NepanikarButton.async(
-                                    onTapAsync: () async => _evaluateEquation(textInput),
-                                    trailingIcon: Assets.icons.navigation.chevronRight,
-                                    enabled: textInput.isNotEmpty,
-                                    text: context.l10n.submit,
-                                  );
+                            return Visibility(
+                              maintainState: true,
+                              maintainAnimation: true,
+                              maintainSize: true,
+                              visible: !_answerResultState.isCorrect,
+                              child: NepanikarButton.async(
+                                onTapAsync: () async => _evaluateEquation(textInput),
+                                trailingIcon: Assets.icons.navigation.chevronRight,
+                                enabled: textInput.isNotEmpty,
+                                text: context.l10n.submit,
+                              ),
+                            );
                           },
                         ),
                       ],
