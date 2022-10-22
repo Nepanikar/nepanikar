@@ -48,7 +48,7 @@ class _MathGameScreenState extends State<MathGameScreen> {
     if (_equation.isValid(textInput)) {
       _setAnswerResultState(MathAnswerResultState.correct);
       await Future.delayed(_winAnimDuration);
-      _generateNewEquation();
+      if (mounted) _generateNewEquation();
     } else {
       _textEditingController.clear();
       _setAnswerResultState(MathAnswerResultState.wrong);
