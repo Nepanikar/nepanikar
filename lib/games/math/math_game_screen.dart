@@ -29,6 +29,7 @@ class _MathGameScreenState extends State<MathGameScreen> {
   late MathEquation _equation;
 
   final TextEditingController _textEditingController = TextEditingController();
+  final FocusNode _focusNode = FocusNode();
 
   final _lottieCacheManager = registry.get<LottieCacheManager>();
 
@@ -72,6 +73,9 @@ class _MathGameScreenState extends State<MathGameScreen> {
       _answerResultState = MathAnswerResultState.notAnsweredYet;
       _equation = MathEquation.generate();
     });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) _focusNode.requestFocus();
+    });
   }
 
   @override
@@ -114,6 +118,7 @@ class _MathGameScreenState extends State<MathGameScreen> {
                             Expanded(
                               child: TextField(
                                 textInputAction: TextInputAction.done,
+                                focusNode: _focusNode,
                                 enabled: !_answerResultState.isCorrect,
                                 keyboardType: TextInputType.number,
                                 controller: _textEditingController,
