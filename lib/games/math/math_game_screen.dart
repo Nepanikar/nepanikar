@@ -42,9 +42,9 @@ class _MathGameScreenState extends State<MathGameScreen> {
     }
   }
 
-  Future<void> _evaluateEquation(String textInput) async {
+  Future<void> _evaluateEquation(String textInput, {bool isInputActionFromButton = false}) async {
     if (textInput.isEmpty) return;
-    await Future.delayed(_answerEvaluationDuration);
+    if (isInputActionFromButton) await Future.delayed(_answerEvaluationDuration);
     if (_equation.isValid(textInput)) {
       _setAnswerResultState(MathAnswerResultState.correct);
       await Future.delayed(_winAnimDuration);
@@ -146,7 +146,8 @@ class _MathGameScreenState extends State<MathGameScreen> {
                               maintainSize: true,
                               visible: !_answerResultState.isCorrect,
                               child: NepanikarButton.async(
-                                onTapAsync: () async => _evaluateEquation(textInput),
+                                onTapAsync: () async =>
+                                    _evaluateEquation(textInput, isInputActionFromButton: true),
                                 trailingIcon: Assets.icons.navigation.chevronRight,
                                 enabled: textInput.isNotEmpty,
                                 text: context.l10n.submit,
