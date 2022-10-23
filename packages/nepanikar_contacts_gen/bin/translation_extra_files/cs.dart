@@ -57,8 +57,7 @@ const _phoneContacts = <PhoneContact>[
     subtitle: '''
 Pondělí\t8–16 hodin
 Úterý\t10–18 hodin
-Středa–pátek\t8–16 hodin
-''',
+Středa–pátek\t8–16 hodin''',
     tel: '774 467 293',
   ),
 ];
