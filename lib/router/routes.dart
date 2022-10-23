@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:nepanikar/games/math/math_game_screen.dart';
 import 'package:nepanikar/screens/about_app_screen.dart';
 import 'package:nepanikar/screens/contacts/phone_contacts_screen.dart';
-import 'package:nepanikar/screens/home/anxiety_route.dart';
+import 'package:nepanikar/screens/home/anxiety_screen.dart';
 import 'package:nepanikar/screens/home/anxiety_tips_route.dart';
 import 'package:nepanikar/screens/main/main_screen.dart';
 

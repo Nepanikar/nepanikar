@@ -5,7 +5,6 @@ import 'package:nepanikar/games/math/math_game_screen.dart';
 import 'package:nepanikar/l10n/ext.dart';
 import 'package:nepanikar/router/routes.dart';
 import 'package:nepanikar/screens/home/anxiety_screen.dart';
-import 'package:nepanikar/screens/home/anxiety_route.dart';
 import 'package:nepanikar/widgets/contacts/quick_help_button.dart';
 import 'package:nepanikar/widgets/home_tile.dart';
 import 'package:nepanikar/widgets/mood_picker.dart';
