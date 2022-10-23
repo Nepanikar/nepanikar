@@ -11,6 +11,7 @@ Original Qt version: https://github.com/ichlubna/mind
 - code style: 100 characters per line
 - state management: [Provider](https://pub.dev/packages/provider)
 - routing: [GoRouter](https://pub.dev/packages/go_router)
+- data persistence: [sembast](https://pub.dev/packages/sembast) (NoSQL)
 
 We are committing generated files (.g.dart, .freezed.dart) to VCS to save time in Continuous Integration.
 

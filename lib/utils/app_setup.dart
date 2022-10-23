@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/router/go_router_config.dart';
+import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/services/save_directories.dart';
 import 'package:nepanikar/utils/app_config.dart';
 import 'package:nepanikar/utils/contacts_data_manager.dart';
@@ -29,6 +30,13 @@ Future<void> setup() async {
   // services
   registry.registerSingleton<SaveDirectories>(SaveDirectories());
   await registry.get<SaveDirectories>().init();
+
+  registry.registerSingleton<DatabaseService>(
+    DatabaseService(
+      saveDirectories: registry.get<SaveDirectories>(),
+    ),
+  );
+  await registry.get<DatabaseService>().init();
 
   // utils
   final appInfo = await PackageInfo.fromPlatform();
