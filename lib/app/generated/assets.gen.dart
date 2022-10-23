@@ -140,7 +140,9 @@ class $AssetsIllustrationsContactsGen {
 class $AssetsIllustrationsGamesGen {
   const $AssetsIllustrationsGamesGen();
 
+  $AssetsIllustrationsGamesBaloonsGen get baloons => const $AssetsIllustrationsGamesBaloonsGen();
   $AssetsIllustrationsGamesMathGen get math => const $AssetsIllustrationsGamesMathGen();
+  $AssetsIllustrationsGamesSwingGen get swing => const $AssetsIllustrationsGamesSwingGen();
 }
 
 class $AssetsIllustrationsModulesGen {
@@ -160,6 +162,9 @@ class $AssetsIllustrationsModulesGen {
   /// File path: assets/illustrations/modules/my_records.svg
   SvgGenImage get myRecords => const SvgGenImage('assets/illustrations/modules/my_records.svg');
 
+  /// File path: assets/illustrations/modules/relaxation.svg
+  SvgGenImage get relaxation => const SvgGenImage('assets/illustrations/modules/relaxation.svg');
+
   /// File path: assets/illustrations/modules/self_harm.svg
   SvgGenImage get selfHarm => const SvgGenImage('assets/illustrations/modules/self_harm.svg');
 
@@ -169,7 +174,7 @@ class $AssetsIllustrationsModulesGen {
 
   /// List of all assets
   List<SvgGenImage> get values =>
-      [anxietyPanic, depression, eatingDisorder, myRecords, selfHarm, suicidalThoughts];
+      [anxietyPanic, depression, eatingDisorder, myRecords, relaxation, selfHarm, suicidalThoughts];
 }
 
 class $AssetsIllustrationsMoodsGen {
@@ -194,17 +199,40 @@ class $AssetsIllustrationsMoodsGen {
   List<SvgGenImage> get values => [bad4, good2, happy1, okay3, sad5];
 }
 
+class $AssetsIllustrationsGamesBaloonsGen {
+  const $AssetsIllustrationsGamesBaloonsGen();
+
+  /// File path: assets/illustrations/games/baloons/baloons.svg
+  SvgGenImage get baloons => const SvgGenImage('assets/illustrations/games/baloons/baloons.svg');
+
+  /// List of all assets
+  List<SvgGenImage> get values => [baloons];
+}
+
 class $AssetsIllustrationsGamesMathGen {
   const $AssetsIllustrationsGamesMathGen();
 
   /// File path: assets/illustrations/games/math/correct.svg
   SvgGenImage get correct => const SvgGenImage('assets/illustrations/games/math/correct.svg');
 
+  /// File path: assets/illustrations/games/math/math.svg
+  SvgGenImage get math => const SvgGenImage('assets/illustrations/games/math/math.svg');
+
   /// File path: assets/illustrations/games/math/wrong.svg
   SvgGenImage get wrong => const SvgGenImage('assets/illustrations/games/math/wrong.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [correct, wrong];
+  List<SvgGenImage> get values => [correct, math, wrong];
+}
+
+class $AssetsIllustrationsGamesSwingGen {
+  const $AssetsIllustrationsGamesSwingGen();
+
+  /// File path: assets/illustrations/games/swing/swing.svg
+  SvgGenImage get swing => const SvgGenImage('assets/illustrations/games/swing/swing.svg');
+
+  /// List of all assets
+  List<SvgGenImage> get values => [swing];
 }
 
 class Assets {

@@ -4,6 +4,7 @@ import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/games/math/math_game_screen.dart';
 import 'package:nepanikar/l10n/ext.dart';
 import 'package:nepanikar/router/routes.dart';
+import 'package:nepanikar/screens/home/anxiety_screen.dart';
 import 'package:nepanikar/widgets/contacts/quick_help_button.dart';
 import 'package:nepanikar/widgets/home_tile.dart';
 import 'package:nepanikar/widgets/mood_picker.dart';
@@ -26,7 +27,7 @@ class HomeScreen extends StatelessWidget {
     HomeTile(
       text: 'Úzkost a panika',
       image: Assets.illustrations.modules.anxietyPanic.svg(),
-      location: const MathGameRoute().location,
+      location: const AnxietyAppRoute().location,
     ),
     HomeTile(
       text: 'Chci si ublížit',
@@ -109,7 +110,7 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.only(left: 24, right: 24, bottom: 48),
               sliver: SliverGrid(
                 gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 300.0,
+                  maxCrossAxisExtent: 185.0,
                   mainAxisSpacing: 12.0,
                   crossAxisSpacing: 12.0,
                   childAspectRatio: 1.331,
