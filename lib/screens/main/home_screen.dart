@@ -56,33 +56,39 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
-            SliverAppBar(
-              pinned: true,
-              floating: true,
-              expandedHeight: 92.0,
-              collapsedHeight: 60,
-              elevation: 2,
-              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      const SizedBox(
-                        width: 6,
+            SliverPadding(
+              padding: const EdgeInsets.all(8),
+              sliver: SliverAppBar(
+                pinned: true,
+                floating: true,
+                expandedHeight: 92.0,
+                collapsedHeight: 60,
+                elevation: 2,
+                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flexible(
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const SizedBox(
+                            width: 6,
+                          ),
+                          Assets.icons.logo.svg(),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            context.l10n.app_name,
+                            style: NepanikarFonts.title3.copyWith(fontSize: 18.6),
+                          ),
+                        ],
                       ),
-                      Assets.icons.logo.svg(),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        context.l10n.app_name,
-                        style: NepanikarFonts.title3.copyWith(fontSize: 18.6),
-                      ),
-                    ],
-                  ),
-                  QuickHelpButton(show: showQuickHelpButton),
-                ],
+                    ),
+                    if (showQuickHelpButton) const Expanded(child: QuickHelpButton()),
+                  ],
+                ),
               ),
             ),
             const SliverPadding(
