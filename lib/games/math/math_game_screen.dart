@@ -46,12 +46,15 @@ class _MathGameScreenState extends State<MathGameScreen> {
     if (textInput.isEmpty) return;
     if (isInputActionFromButton) await Future.delayed(_answerEvaluationDuration);
     if (_equation.isValid(textInput)) {
-      _setAnswerResultState(MathAnswerResultState.correct);
+      if (mounted) _setAnswerResultState(MathAnswerResultState.correct);
       await Future.delayed(_winAnimDuration);
       if (mounted) _generateNewEquation();
     } else {
-      _textEditingController.clear();
-      _setAnswerResultState(MathAnswerResultState.wrong);
+      if (mounted) {
+        _textEditingController.clear();
+        _setAnswerResultState(MathAnswerResultState.wrong);
+        if (!isInputActionFromButton) _focusNode.requestFocus();
+      }
     }
   }
 
