@@ -6,6 +6,7 @@ import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/games/math/math_game_screen.dart';
 import 'package:nepanikar/l10n/ext.dart';
 import 'package:nepanikar/router/routes.dart';
+import 'package:nepanikar/screens/home/anxiety_tips_route.dart';
 
 import 'package:nepanikar/widgets/long_tile.dart';
 
@@ -26,7 +27,7 @@ class AnxietyAppScreen extends StatelessWidget {
         // TODO: l10n
         text: 'Co dělat při úzkosti',
         image: Assets.illustrations.modules.depression.svg(),
-        onTap: () {},
+        onTap: () => context.push(const AnxietyTipsAppRoute().location),
       ),
       LongTile(
         text: context.l10n.breath,
