@@ -56,14 +56,13 @@ class _MainScreenState extends State<MainScreen> {
     return BottomNavigationBarItem(
       icon: Column(
         children: [
-          if (isSelected)
-            Padding(
-              padding: const EdgeInsets.only(bottom: 6),
-              child: SvgPicture.asset(
-                Assets.icons.marker.path,
-                color: NepanikarColors.primarySwatch.shade800,
-              ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 6),
+            child: SvgPicture.asset(
+              Assets.icons.marker.path,
+              color: isSelected ? NepanikarColors.primarySwatch.shade800 : Colors.transparent,
             ),
+          ),
           SvgPicture.asset(
             svgIconPath,
             color: isSelected

@@ -29,8 +29,12 @@ class _MathGameScreenState extends State<MathGameScreen> {
   late MathEquation _equation;
 
   final TextEditingController _textEditingController = TextEditingController();
+  final FocusNode _focusNode = FocusNode();
 
   final _lottieCacheManager = registry.get<LottieCacheManager>();
+
+  static const _winAnimDuration = Duration(milliseconds: 800);
+  static const _answerEvaluationDuration = Duration(milliseconds: 200);
 
   void _setAnswerResultState(MathAnswerResultState state) {
     if (state != _answerResultState) {
@@ -38,13 +42,19 @@ class _MathGameScreenState extends State<MathGameScreen> {
     }
   }
 
-  Future<void> _evaluateEquation(String textInput) async {
+  Future<void> _evaluateEquation(String textInput, {bool isInputActionFromButton = false}) async {
     if (textInput.isEmpty) return;
-    await Future.delayed(const Duration(milliseconds: 200));
+    if (isInputActionFromButton) await Future.delayed(_answerEvaluationDuration);
     if (_equation.isValid(textInput)) {
-      _setAnswerResultState(MathAnswerResultState.correct);
+      if (mounted) _setAnswerResultState(MathAnswerResultState.correct);
+      await Future.delayed(_winAnimDuration);
+      if (mounted) _generateNewEquation();
     } else {
-      _setAnswerResultState(MathAnswerResultState.wrong);
+      if (mounted) {
+        _textEditingController.clear();
+        _setAnswerResultState(MathAnswerResultState.wrong);
+        if (!isInputActionFromButton) _focusNode.requestFocus();
+      }
     }
   }
 
@@ -65,6 +75,9 @@ class _MathGameScreenState extends State<MathGameScreen> {
     setState(() {
       _answerResultState = MathAnswerResultState.notAnsweredYet;
       _equation = MathEquation.generate();
+    });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) _focusNode.requestFocus();
     });
   }
 
@@ -108,6 +121,7 @@ class _MathGameScreenState extends State<MathGameScreen> {
                             Expanded(
                               child: TextField(
                                 textInputAction: TextInputAction.done,
+                                focusNode: _focusNode,
                                 enabled: !_answerResultState.isCorrect,
                                 keyboardType: TextInputType.number,
                                 controller: _textEditingController,
@@ -129,19 +143,19 @@ class _MathGameScreenState extends State<MathGameScreen> {
                           valueListenable: _textEditingController,
                           builder: (_, textEditingValue, __) {
                             final textInput = textEditingValue.text;
-                            return _answerResultState.isCorrect
-                                ? NepanikarButton(
-                                    onTap: () => _generateNewEquation(),
-                                    trailingIcon: Assets.icons.navigation.chevronRight,
-                                    // TODO: l10n
-                                    text: 'Další',
-                                  )
-                                : NepanikarButton.async(
-                                    onTapAsync: () async => _evaluateEquation(textInput),
-                                    trailingIcon: Assets.icons.navigation.chevronRight,
-                                    enabled: textInput.isNotEmpty,
-                                    text: context.l10n.submit,
-                                  );
+                            return Visibility(
+                              maintainState: true,
+                              maintainAnimation: true,
+                              maintainSize: true,
+                              visible: !_answerResultState.isCorrect,
+                              child: NepanikarButton.async(
+                                onTapAsync: () async =>
+                                    _evaluateEquation(textInput, isInputActionFromButton: true),
+                                trailingIcon: Assets.icons.navigation.chevronRight,
+                                enabled: textInput.isNotEmpty,
+                                text: context.l10n.submit,
+                              ),
+                            );
                           },
                         ),
                       ],

@@ -33,7 +33,7 @@ mixin _$PhoneContact {
   String? get subtitle => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(bool pinned, String title, int number, String? subtitle)
+    TResult Function(bool pinned, String title, String tel, String? subtitle)
         $default, {
     required TResult Function(String title, String? subtitle,
             List<SubPhoneContact> subPhoneContacts)
@@ -42,7 +42,7 @@ mixin _$PhoneContact {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(bool pinned, String title, int number, String? subtitle)?
+    TResult? Function(bool pinned, String title, String tel, String? subtitle)?
         $default, {
     TResult? Function(String title, String? subtitle,
             List<SubPhoneContact> subPhoneContacts)?
@@ -51,7 +51,7 @@ mixin _$PhoneContact {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(bool pinned, String title, int number, String? subtitle)?
+    TResult Function(bool pinned, String title, String tel, String? subtitle)?
         $default, {
     TResult Function(String title, String? subtitle,
             List<SubPhoneContact> subPhoneContacts)?
@@ -130,7 +130,7 @@ abstract class _$$PhoneContactSingleCopyWith<$Res>
       __$$PhoneContactSingleCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool pinned, String title, int number, String? subtitle});
+  $Res call({bool pinned, String title, String tel, String? subtitle});
 }
 
 /// @nodoc
@@ -146,7 +146,7 @@ class __$$PhoneContactSingleCopyWithImpl<$Res>
   $Res call({
     Object? pinned = null,
     Object? title = null,
-    Object? number = null,
+    Object? tel = null,
     Object? subtitle = freezed,
   }) {
     return _then(_$PhoneContactSingle(
@@ -158,10 +158,10 @@ class __$$PhoneContactSingleCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      number: null == number
-          ? _value.number
-          : number // ignore: cast_nullable_to_non_nullable
-              as int,
+      tel: null == tel
+          ? _value.tel
+          : tel // ignore: cast_nullable_to_non_nullable
+              as String,
       subtitle: freezed == subtitle
           ? _value.subtitle
           : subtitle // ignore: cast_nullable_to_non_nullable
@@ -176,7 +176,7 @@ class _$PhoneContactSingle extends PhoneContactSingle {
   const _$PhoneContactSingle(
       {this.pinned = false,
       required this.title,
-      required this.number,
+      required this.tel,
       this.subtitle,
       final String? $type})
       : $type = $type ?? 'default',
@@ -191,7 +191,7 @@ class _$PhoneContactSingle extends PhoneContactSingle {
   @override
   final String title;
   @override
-  final int number;
+  final String tel;
   @override
   final String? subtitle;
 
@@ -200,7 +200,7 @@ class _$PhoneContactSingle extends PhoneContactSingle {
 
   @override
   String toString() {
-    return 'PhoneContact(pinned: $pinned, title: $title, number: $number, subtitle: $subtitle)';
+    return 'PhoneContact(pinned: $pinned, title: $title, tel: $tel, subtitle: $subtitle)';
   }
 
   @override
@@ -210,14 +210,14 @@ class _$PhoneContactSingle extends PhoneContactSingle {
             other is _$PhoneContactSingle &&
             (identical(other.pinned, pinned) || other.pinned == pinned) &&
             (identical(other.title, title) || other.title == title) &&
-            (identical(other.number, number) || other.number == number) &&
+            (identical(other.tel, tel) || other.tel == tel) &&
             (identical(other.subtitle, subtitle) ||
                 other.subtitle == subtitle));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, pinned, title, number, subtitle);
+  int get hashCode => Object.hash(runtimeType, pinned, title, tel, subtitle);
 
   @JsonKey(ignore: true)
   @override
@@ -229,31 +229,31 @@ class _$PhoneContactSingle extends PhoneContactSingle {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(bool pinned, String title, int number, String? subtitle)
+    TResult Function(bool pinned, String title, String tel, String? subtitle)
         $default, {
     required TResult Function(String title, String? subtitle,
             List<SubPhoneContact> subPhoneContacts)
         subList,
   }) {
-    return $default(pinned, title, number, subtitle);
+    return $default(pinned, title, tel, subtitle);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(bool pinned, String title, int number, String? subtitle)?
+    TResult? Function(bool pinned, String title, String tel, String? subtitle)?
         $default, {
     TResult? Function(String title, String? subtitle,
             List<SubPhoneContact> subPhoneContacts)?
         subList,
   }) {
-    return $default?.call(pinned, title, number, subtitle);
+    return $default?.call(pinned, title, tel, subtitle);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(bool pinned, String title, int number, String? subtitle)?
+    TResult Function(bool pinned, String title, String tel, String? subtitle)?
         $default, {
     TResult Function(String title, String? subtitle,
             List<SubPhoneContact> subPhoneContacts)?
@@ -261,7 +261,7 @@ class _$PhoneContactSingle extends PhoneContactSingle {
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(pinned, title, number, subtitle);
+      return $default(pinned, title, tel, subtitle);
     }
     return orElse();
   }
@@ -309,7 +309,7 @@ abstract class PhoneContactSingle extends PhoneContact {
   const factory PhoneContactSingle(
       {final bool pinned,
       required final String title,
-      required final int number,
+      required final String tel,
       final String? subtitle}) = _$PhoneContactSingle;
   const PhoneContactSingle._() : super._();
 
@@ -319,7 +319,7 @@ abstract class PhoneContactSingle extends PhoneContact {
   bool get pinned;
   @override
   String get title;
-  int get number;
+  String get tel;
   @override
   String? get subtitle;
   @override
@@ -433,7 +433,7 @@ class _$PhoneContactSubList extends PhoneContactSubList {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(bool pinned, String title, int number, String? subtitle)
+    TResult Function(bool pinned, String title, String tel, String? subtitle)
         $default, {
     required TResult Function(String title, String? subtitle,
             List<SubPhoneContact> subPhoneContacts)
@@ -445,7 +445,7 @@ class _$PhoneContactSubList extends PhoneContactSubList {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(bool pinned, String title, int number, String? subtitle)?
+    TResult? Function(bool pinned, String title, String tel, String? subtitle)?
         $default, {
     TResult? Function(String title, String? subtitle,
             List<SubPhoneContact> subPhoneContacts)?
@@ -457,7 +457,7 @@ class _$PhoneContactSubList extends PhoneContactSubList {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(bool pinned, String title, int number, String? subtitle)?
+    TResult Function(bool pinned, String title, String tel, String? subtitle)?
         $default, {
     TResult Function(String title, String? subtitle,
             List<SubPhoneContact> subPhoneContacts)?
@@ -538,7 +538,7 @@ SubPhoneContact _$SubPhoneContactFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$SubPhoneContact {
   String get title => throw _privateConstructorUsedError;
-  int get number => throw _privateConstructorUsedError;
+  String get tel => throw _privateConstructorUsedError;
   SubPhoneContactAction get action => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -553,7 +553,7 @@ abstract class $SubPhoneContactCopyWith<$Res> {
           SubPhoneContact value, $Res Function(SubPhoneContact) then) =
       _$SubPhoneContactCopyWithImpl<$Res, SubPhoneContact>;
   @useResult
-  $Res call({String title, int number, SubPhoneContactAction action});
+  $Res call({String title, String tel, SubPhoneContactAction action});
 }
 
 /// @nodoc
@@ -570,7 +570,7 @@ class _$SubPhoneContactCopyWithImpl<$Res, $Val extends SubPhoneContact>
   @override
   $Res call({
     Object? title = null,
-    Object? number = null,
+    Object? tel = null,
     Object? action = null,
   }) {
     return _then(_value.copyWith(
@@ -578,10 +578,10 @@ class _$SubPhoneContactCopyWithImpl<$Res, $Val extends SubPhoneContact>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      number: null == number
-          ? _value.number
-          : number // ignore: cast_nullable_to_non_nullable
-              as int,
+      tel: null == tel
+          ? _value.tel
+          : tel // ignore: cast_nullable_to_non_nullable
+              as String,
       action: null == action
           ? _value.action
           : action // ignore: cast_nullable_to_non_nullable
@@ -598,7 +598,7 @@ abstract class _$$_SubPhoneContactCopyWith<$Res>
       __$$_SubPhoneContactCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String title, int number, SubPhoneContactAction action});
+  $Res call({String title, String tel, SubPhoneContactAction action});
 }
 
 /// @nodoc
@@ -613,7 +613,7 @@ class __$$_SubPhoneContactCopyWithImpl<$Res>
   @override
   $Res call({
     Object? title = null,
-    Object? number = null,
+    Object? tel = null,
     Object? action = null,
   }) {
     return _then(_$_SubPhoneContact(
@@ -621,10 +621,10 @@ class __$$_SubPhoneContactCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      number: null == number
-          ? _value.number
-          : number // ignore: cast_nullable_to_non_nullable
-              as int,
+      tel: null == tel
+          ? _value.tel
+          : tel // ignore: cast_nullable_to_non_nullable
+              as String,
       action: null == action
           ? _value.action
           : action // ignore: cast_nullable_to_non_nullable
@@ -638,7 +638,7 @@ class __$$_SubPhoneContactCopyWithImpl<$Res>
 class _$_SubPhoneContact extends _SubPhoneContact {
   const _$_SubPhoneContact(
       {required this.title,
-      required this.number,
+      required this.tel,
       this.action = SubPhoneContactAction.phone})
       : super._();
 
@@ -648,14 +648,14 @@ class _$_SubPhoneContact extends _SubPhoneContact {
   @override
   final String title;
   @override
-  final int number;
+  final String tel;
   @override
   @JsonKey()
   final SubPhoneContactAction action;
 
   @override
   String toString() {
-    return 'SubPhoneContact(title: $title, number: $number, action: $action)';
+    return 'SubPhoneContact(title: $title, tel: $tel, action: $action)';
   }
 
   @override
@@ -664,13 +664,13 @@ class _$_SubPhoneContact extends _SubPhoneContact {
         (other.runtimeType == runtimeType &&
             other is _$_SubPhoneContact &&
             (identical(other.title, title) || other.title == title) &&
-            (identical(other.number, number) || other.number == number) &&
+            (identical(other.tel, tel) || other.tel == tel) &&
             (identical(other.action, action) || other.action == action));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, title, number, action);
+  int get hashCode => Object.hash(runtimeType, title, tel, action);
 
   @JsonKey(ignore: true)
   @override
@@ -689,7 +689,7 @@ class _$_SubPhoneContact extends _SubPhoneContact {
 abstract class _SubPhoneContact extends SubPhoneContact {
   const factory _SubPhoneContact(
       {required final String title,
-      required final int number,
+      required final String tel,
       final SubPhoneContactAction action}) = _$_SubPhoneContact;
   const _SubPhoneContact._() : super._();
 
@@ -699,7 +699,7 @@ abstract class _SubPhoneContact extends SubPhoneContact {
   @override
   String get title;
   @override
-  int get number;
+  String get tel;
   @override
   SubPhoneContactAction get action;
   @override

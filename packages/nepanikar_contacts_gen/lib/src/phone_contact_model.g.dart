@@ -10,7 +10,7 @@ _$PhoneContactSingle _$$PhoneContactSingleFromJson(Map<String, dynamic> json) =>
     _$PhoneContactSingle(
       pinned: json['pinned'] as bool? ?? false,
       title: json['title'] as String,
-      number: json['number'] as int,
+      tel: json['tel'] as String,
       subtitle: json['subtitle'] as String?,
       $type: json['runtimeType'] as String?,
     );
@@ -20,7 +20,7 @@ Map<String, dynamic> _$$PhoneContactSingleToJson(
     <String, dynamic>{
       'pinned': instance.pinned,
       'title': instance.title,
-      'number': instance.number,
+      'tel': instance.tel,
       'subtitle': instance.subtitle,
       'runtimeType': instance.$type,
     };
@@ -48,7 +48,7 @@ Map<String, dynamic> _$$PhoneContactSubListToJson(
 _$_SubPhoneContact _$$_SubPhoneContactFromJson(Map<String, dynamic> json) =>
     _$_SubPhoneContact(
       title: json['title'] as String,
-      number: json['number'] as int,
+      tel: json['tel'] as String,
       action:
           $enumDecodeNullable(_$SubPhoneContactActionEnumMap, json['action']) ??
               SubPhoneContactAction.phone,
@@ -57,7 +57,7 @@ _$_SubPhoneContact _$$_SubPhoneContactFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_SubPhoneContactToJson(_$_SubPhoneContact instance) =>
     <String, dynamic>{
       'title': instance.title,
-      'number': instance.number,
+      'tel': instance.tel,
       'action': _$SubPhoneContactActionEnumMap[instance.action]!,
     };
 

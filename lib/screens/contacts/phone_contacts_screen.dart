@@ -42,6 +42,7 @@ class PhoneContactsScreen extends StatelessWidget {
         child: Padding(
           padding: NepanikarSizes.screenContentPadding,
           child: SingleChildScrollView(
+            clipBehavior: Clip.none,
             child: SeparatedColumn(
               separatorBuilder: NepanikarSizes.separatorBuilder(),
               children: [
