@@ -25,6 +25,7 @@ class QuickHelpButton extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Assets.icons.phone.svg(width: 20, height: 20, color: Colors.white),
                     const SizedBox(width: 8),

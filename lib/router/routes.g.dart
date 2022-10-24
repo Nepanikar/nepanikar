@@ -30,6 +30,10 @@ GoRoute get $mainRoute => GoRouteData.$route(
           path: 'home/anxiety',
           factory: $AnxietyAppRouteExtension._fromState,
         ),
+        GoRouteData.$route(
+          path: 'home/anxiety/tips',
+          factory: $AnxietyTipsAppRouteExtension._fromState,
+        ),
       ],
     );
 
@@ -88,6 +92,19 @@ extension $AnxietyAppRouteExtension on AnxietyAppRoute {
 
   String get location => GoRouteData.$location(
         '/home/anxiety',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $AnxietyTipsAppRouteExtension on AnxietyTipsAppRoute {
+  static AnxietyTipsAppRoute _fromState(GoRouterState state) =>
+      const AnxietyTipsAppRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/anxiety/tips',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
