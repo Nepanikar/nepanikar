@@ -6,12 +6,12 @@ import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/games/math/math_game_screen.dart';
 import 'package:nepanikar/l10n/ext.dart';
-import 'package:nepanikar/providers/localization_provider.dart';
 import 'package:nepanikar/router/routes.dart';
 import 'package:nepanikar/screens/about_app_screen.dart';
+import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/utils/extensions.dart';
+import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_button.dart';
-import 'package:provider/provider.dart';
 
 class PlaygroundScreen extends StatelessWidget {
   PlaygroundScreen({super.key});
@@ -34,6 +34,8 @@ class PlaygroundScreen extends StatelessWidget {
     NepanikarFonts.bodySmallMedium,
   ];
 
+  UserSettingsDao get _userSettingsDao => registry.get<UserSettingsDao>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,20 +51,26 @@ class PlaygroundScreen extends StatelessWidget {
                   Text(context.l10n.language),
                   ButtonTheme(
                     alignedDropdown: true,
-                    child: DropdownButton<Locale>(
-                      value: context.watch<LocalizationProvider>().locale,
-                      items: AppLocalizations.supportedLocales.map<DropdownMenuItem<Locale>>(
-                        (Locale locale) {
-                          return DropdownMenuItem<Locale>(
-                            value: locale,
-                            child: Text(locale.toLanguageTag()),
-                          );
-                        },
-                      ).toList(),
-                      onChanged: (Locale? locale) {
-                        if (locale != null) {
-                          context.read<LocalizationProvider>().setLocale(locale);
-                        }
+                    child: StreamBuilder<Locale>(
+                      stream: _userSettingsDao.localeStream,
+                      builder: (_, snapshot) {
+                        final locale = snapshot.data;
+                        return DropdownButton<Locale>(
+                          value: locale,
+                          items: AppLocalizations.supportedLocales.map<DropdownMenuItem<Locale>>(
+                            (Locale item) {
+                              return DropdownMenuItem<Locale>(
+                                value: item,
+                                child: Text(item.toLanguageTag()),
+                              );
+                            },
+                          ).toList(),
+                          onChanged: (Locale? locale) async {
+                            if (locale != null) {
+                              await _userSettingsDao.saveLocale(locale);
+                            }
+                          },
+                        );
                       },
                     ),
                   ),

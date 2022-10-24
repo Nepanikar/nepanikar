@@ -3,14 +3,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/l10n/ext.dart';
-import 'package:nepanikar/providers/localization_provider.dart';
 import 'package:nepanikar/screens/main/contacts_screen.dart';
 import 'package:nepanikar/screens/main/home_screen.dart';
 import 'package:nepanikar/screens/main/my_records_screen.dart';
 import 'package:nepanikar/screens/main/settings_screen.dart';
+import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/utils/contacts_data_manager.dart';
 import 'package:nepanikar/utils/registry.dart';
-import 'package:provider/provider.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -22,18 +21,13 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
-  ContactsDataManager get _contactsManager => registry.get<ContactsDataManager>();
+  ContactsDataManager get _contactsDataManager => registry.get<ContactsDataManager>();
 
-  late final LocalizationProvider _localizationProvider;
-
-  @override
-  void initState() {
-    super.initState();
-    _localizationProvider = context.read<LocalizationProvider>();
-  }
+  UserSettingsDao get _userSettingsDao => registry.get<UserSettingsDao>();
 
   List<Widget> get _routes {
-    final countryContacts = _contactsManager.getContactsFromLocale(_localizationProvider.locale);
+    final locale = _userSettingsDao.locale;
+    final countryContacts = _contactsDataManager.getContactsFromLocale(locale);
     return <Widget>[
       HomeScreen(showQuickHelpButton: countryContacts.phoneContacts != null),
       const MyRecordsScreen(),

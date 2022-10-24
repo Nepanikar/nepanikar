@@ -1,16 +1,22 @@
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
+import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
 class SaveDirectories {
   SaveDirectories();
 
-  late final Directory supportDir;
-
   Future<void> init() async {
     supportDir = await getApplicationSupportDirectory();
+
+    // Creates a directory for db, if it doesn't exist.
+    await Directory(dbDirPath).create(recursive: true);
   }
+
+  late final Directory supportDir;
+
+  String get dbDirPath => join(supportDir.path, 'db');
 
   Future<void> clearSaveDirectories() async {
     try {
