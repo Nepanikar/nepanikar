@@ -5,54 +5,54 @@ import 'package:nepanikar/games/math/math_game_screen.dart';
 import 'package:nepanikar/l10n/ext.dart';
 import 'package:nepanikar/router/routes.dart';
 import 'package:nepanikar/screens/home/anxiety_screen.dart';
+import 'package:nepanikar/screens/home/self_harm/self_harm_screen.dart';
 import 'package:nepanikar/widgets/contacts/quick_help_button.dart';
 import 'package:nepanikar/widgets/home_tile.dart';
 import 'package:nepanikar/widgets/mood_picker.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({
+  const HomeScreen({
     super.key,
     required this.showQuickHelpButton,
   });
 
   final bool showQuickHelpButton;
 
-  // TODO: l10n
-  final _modules = <HomeTile>[
-    HomeTile(
-      text: 'Deprese',
-      image: Assets.illustrations.modules.depression.svg(),
-      location: const MathGameRoute().location,
-    ),
-    HomeTile(
-      text: 'Úzkost a panika',
-      image: Assets.illustrations.modules.anxietyPanic.svg(),
-      location: const AnxietyAppRoute().location,
-    ),
-    HomeTile(
-      text: 'Chci si ublížit',
-      image: Assets.illustrations.modules.selfHarm.svg(),
-      location: const MathGameRoute().location,
-    ),
-    HomeTile(
-      text: 'Myšlenky na sebevraždu',
-      image: Assets.illustrations.modules.suicidalThoughts.svg(),
-      location: const MathGameRoute().location,
-    ),
-    HomeTile(
-      text: 'Poruchy příjmu potravy',
-      image: Assets.illustrations.modules.eatingDisorder.svg(),
-      location: const MathGameRoute().location,
-    ),
-    HomeTile(
-      text: 'Moje záznamy',
-      image: Assets.illustrations.modules.myRecords.svg(),
-      location: const MathGameRoute().location,
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final modules = <HomeTile>[
+      HomeTile(
+        text: context.l10n.depression,
+        image: Assets.illustrations.modules.depression.svg(),
+        location: const MathGameRoute().location,
+      ),
+      HomeTile(
+        text: 'Úzkost a panika',
+        image: Assets.illustrations.modules.anxietyPanic.svg(),
+        location: const AnxietyAppRoute().location,
+      ),
+      HomeTile(
+        text: context.l10n.self_harm,
+        image: Assets.illustrations.modules.selfHarm.svg(),
+        location: const SelfHarmRoute().location,
+      ),
+      HomeTile(
+        text: context.l10n.suicidal_thoughts,
+        image: Assets.illustrations.modules.suicidalThoughts.svg(),
+        location: const MathGameRoute().location,
+      ),
+      HomeTile(
+        text: context.l10n.food,
+        image: Assets.illustrations.modules.eatingDisorder.svg(),
+        location: const MathGameRoute().location,
+      ),
+      HomeTile(
+        text: context.l10n.relaxation,
+        image: Assets.illustrations.modules.myRecords.svg(),
+        location: const MathGameRoute().location,
+      ),
+    ];
+
     return Scaffold(
       body: SafeArea(
         child: CustomScrollView(
@@ -117,9 +117,9 @@ class HomeScreen extends StatelessWidget {
                 ),
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
-                    return _modules.elementAt(index);
+                    return modules.elementAt(index);
                   },
-                  childCount: _modules.length,
+                  childCount: modules.length,
                 ),
               ),
             ),

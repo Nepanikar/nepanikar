@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
-import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/widgets/nepanikar_horizontal_divider.dart';
 
 class LongTile extends StatelessWidget {
   const LongTile({
@@ -102,11 +102,7 @@ class LongTile extends StatelessWidget {
                 padding: EdgeInsets.symmetric(
                   horizontal: Theme.of(context).listTileTheme.horizontalTitleGap ?? 0,
                 ),
-                child: Divider(
-                  height: 1,
-                  thickness: 1,
-                  color: NepanikarColors.primarySwatch.shade200,
-                ),
+                child: const NepanikarHorizontalDivider(),
               ),
               subContent!,
             ],
