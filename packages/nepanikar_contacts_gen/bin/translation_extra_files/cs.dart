@@ -52,13 +52,17 @@ const _phoneContacts = <PhoneContact>[
       SubPhoneContact(title: 'Mobil', tel: '777 715 215'),
     ],
   ),
-  PhoneContact(
-    title: 'Linka Anabell (poruchy přijmu potravy)',
-    subtitle: '''
-Pondělí\t8–16 hodin
-Úterý\t10–18 hodin
-Středa–pátek\t8–16 hodin''',
-    tel: '774 467 293',
+  PhoneContact.subList(
+    title: 'Linka Anabell (poruchy příjmu potravy)',
+    subPhoneContacts: [
+      SubPhoneContact(
+        title: '''
+Po‎ ‎ ‎ ‎ ‎ ‎ ‎ 8–16 hod.
+Út    ‎ ‎ ‎ ‎ ‎ ‎ ‎ 10–18 hod.
+St–pá‎ 8–16 hod.''',
+        tel: '774 467 293',
+      ),
+    ],
   ),
 ];
 
