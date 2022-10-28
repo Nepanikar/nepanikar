@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
-import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/app/theme/sizes.dart';
 import 'package:nepanikar/games/math/math_game_screen.dart';
 import 'package:nepanikar/l10n/ext.dart';
 import 'package:nepanikar/router/routes.dart';
 import 'package:nepanikar/screens/home/anxiety_tips_route.dart';
-
 import 'package:nepanikar/widgets/long_tile.dart';
 
 class AnxietyAppRoute extends GoRouteData {
@@ -27,7 +25,7 @@ class AnxietyAppScreen extends StatelessWidget {
     final modules = <Widget>[
       LongTile(
         // TODO: l10n
-        text: 'Co dělat při úzkosti',
+        text: context.l10n.panic_tips_9,
         image: Assets.illustrations.modules.depression.svg(),
         onTap: () => context.push(const AnxietyTipsAppRoute().location),
       ),
@@ -42,14 +40,12 @@ class AnxietyAppScreen extends StatelessWidget {
         onTap: () => context.push(const MathGameRoute().location),
       ),
       LongTile(
-        // TODO: l10n
-        text: 'Hra balóky',
+        text: context.l10n.game_balls,
         image: Assets.illustrations.games.baloons.baloons.svg(),
         onTap: () {},
       ),
       LongTile(
-        // TODO: l10n
-        text: 'Hra houpačka',
+        text: context.l10n.game_balance,
         image: Assets.illustrations.games.swing.swing.svg(),
         onTap: () {},
       ),
@@ -61,12 +57,7 @@ class AnxietyAppScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          context.l10n.anxiety_panic,
-          style: NepanikarFonts.title3.copyWith(color: Colors.white),
-        ),
-      ),
+      appBar: AppBar(title: Text(context.l10n.anxiety_panic)),
       body: SafeArea(
         child: Stack(
           children: [

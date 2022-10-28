@@ -34,6 +34,14 @@ GoRoute get $mainRoute => GoRouteData.$route(
           path: 'home/anxiety/tips',
           factory: $AnxietyTipsAppRouteExtension._fromState,
         ),
+        GoRouteData.$route(
+          path: 'home/self-harm',
+          factory: $SelfHarmRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'home/self-harm/timer',
+          factory: $SelfHarmTimerRouteExtension._fromState,
+        ),
       ],
     );
 
@@ -105,6 +113,31 @@ extension $AnxietyTipsAppRouteExtension on AnxietyTipsAppRoute {
 
   String get location => GoRouteData.$location(
         '/home/anxiety/tips',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $SelfHarmRouteExtension on SelfHarmRoute {
+  static SelfHarmRoute _fromState(GoRouterState state) => const SelfHarmRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/self-harm',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $SelfHarmTimerRouteExtension on SelfHarmTimerRoute {
+  static SelfHarmTimerRoute _fromState(GoRouterState state) =>
+      const SelfHarmTimerRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/self-harm/timer',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
