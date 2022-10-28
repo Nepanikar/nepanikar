@@ -7,9 +7,7 @@ class MyRecordsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(context.l10n.my_records),
-      ),
+      appBar: AppBar(title: Text(context.l10n.my_records)),
       body: SafeArea(
         child: Column(
           children: [

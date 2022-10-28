@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
-import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/app/theme/sizes.dart';
 import 'package:nepanikar/l10n/ext.dart';
 import 'package:nepanikar/router/routes.dart';
@@ -31,12 +30,7 @@ class SelfHarmScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          context.l10n.self_harm,
-          style: NepanikarFonts.title3.copyWith(color: Colors.white),
-        ),
-      ),
+      appBar: AppBar(title: Text(context.l10n.self_harm)),
       body: SafeArea(
         child: Stack(
           children: [

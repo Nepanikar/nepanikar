@@ -11,6 +11,7 @@ final initialLocale = Locale(
   AppLocalizations.supportedLocales.contains(Locale(_platformLocale)) ? _platformLocale : 'en',
 );
 
+// TODO: l10n
 String pluralYears(
   BuildContext context, {
   required int value,
@@ -20,7 +21,7 @@ String pluralYears(
     one: 'Rok',
     few: 'Roky',
     other: 'Roků',
-    locale: Localizations.localeOf(context).toLanguageTag(),
+    locale: Localizations.localeOf(context).countryCode,
   );
 }
 
@@ -33,7 +34,7 @@ String pluralMonths(
     one: 'Měsíc',
     few: 'Měsíce',
     other: 'Měsíců',
-    locale: Localizations.localeOf(context).toLanguageTag(),
+    locale: Localizations.localeOf(context).countryCode,
   );
 }
 
@@ -46,7 +47,7 @@ String pluralDays(
     one: 'Den',
     few: 'Dny',
     other: 'Dní',
-    locale: Localizations.localeOf(context).toLanguageTag(),
+    locale: Localizations.localeOf(context).countryCode,
   );
 }
 
@@ -59,7 +60,7 @@ String pluralHours(
     one: 'Hodina',
     few: 'Hodiny',
     other: 'Hodin',
-    locale: Localizations.localeOf(context).toLanguageTag(),
+    locale: Localizations.localeOf(context).countryCode,
   );
 }
 
@@ -72,6 +73,6 @@ String pluralMinutes(
     one: 'Minuta',
     few: 'Minuty',
     other: 'Minut',
-    locale: Localizations.localeOf(context).toLanguageTag(),
+    locale: Localizations.localeOf(context).countryCode,
   );
 }

@@ -89,8 +89,7 @@ class SelfHarmTimerScreen extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      // TODO: l10n
-                      _buildCardTitle('Můj rekord'),
+                      _buildCardTitle(context.l10n.self_harm_record),
                       const Padding(
                         padding: EdgeInsets.symmetric(vertical: 16),
                         child: NepanikarHorizontalDivider(),

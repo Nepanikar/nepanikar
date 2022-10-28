@@ -35,9 +35,7 @@ class PhoneContactsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(context.l10n.phone),
-      ),
+      appBar: AppBar(title: Text(context.l10n.phone)),
       body: SafeArea(
         child: Padding(
           padding: NepanikarSizes.screenContentPadding,

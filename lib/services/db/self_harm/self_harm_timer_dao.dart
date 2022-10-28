@@ -27,14 +27,6 @@ class SelfHarmTimerDao {
   static const _selfHarmTimerRecordStartTimestampKey = 'self_harm_timer_record_start_timestamp';
   static const _selfHarmTimerRecordEndTimestampKey = 'self_harm_timer_record_end_timestamp';
 
-  DateTime? _selfHarmTimerStartDateTime;
-
-  DateTime? get selfHarmTimerStartDateTime => _selfHarmTimerStartDateTime;
-
-  DateTimeRange? _selfHarmTimerRecord;
-
-  DateTimeRange? get selfHarmTimerRecord => _selfHarmTimerRecord;
-
   Future<void> startSelfHarmTimer() async {
     final timestampNow = Timestamp.now();
     await _store.record(_selfHarmTimerCurrentTimestampKey).put(_db, timestampNow);
@@ -87,9 +79,7 @@ class SelfHarmTimerDao {
   Stream<DateTime?> get selfHarmTimerStartDateTimeStream => _store
       .record(_selfHarmTimerCurrentTimestampKey)
       .onSnapshot(_db)
-      .map((snapshot) => snapshot?.value?.toDateTime(isUtc: true).toLocal())
-      .asBroadcastStream()
-    ..listen((event) => _selfHarmTimerStartDateTime = event);
+      .map((snapshot) => snapshot?.value?.toDateTime(isUtc: true).toLocal());
 
   Stream<DateTimeRange?> get selfHarmTimerRecordStream => Rx.combineLatest2(
         _store.record(_selfHarmTimerRecordStartTimestampKey).onSnapshot(_db),
@@ -106,8 +96,7 @@ class SelfHarmTimerDao {
           }
           return null;
         },
-      ).asBroadcastStream()
-        ..listen((event) => _selfHarmTimerRecord = event);
+      );
 
   Future<void> clear() async {
     await _store.drop(_db);
