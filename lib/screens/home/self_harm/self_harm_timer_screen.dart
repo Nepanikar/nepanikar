@@ -46,23 +46,26 @@ class SelfHarmTimerScreen extends StatelessWidget {
                         stream: _selfHarmTimerDao.selfHarmTimerStartDateTimeStream,
                         builder: (_, snapshot) {
                           final startDateTime = snapshot.data;
+                          final isTimerRunning = startDateTime != null;
                           return Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               // TODO: l10n
-                              _buildCardTitle('Vedeš si skvěle.\nJen tak dál!'),
-                              const Padding(
-                                padding: EdgeInsets.symmetric(vertical: 16),
-                                child: NepanikarHorizontalDivider(),
-                              ),
+                              if (isTimerRunning) ...[
+                                _buildCardTitle('Vedeš si skvěle.\nJen tak dál!'),
+                                const Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 16),
+                                  child: NepanikarHorizontalDivider(),
+                                ),
+                              ],
                               _buildTimeTextSection(
                                 context,
-                                dateTimeRange: startDateTime != null
+                                dateTimeRange: isTimerRunning
                                     ? DateTimeRange(start: startDateTime.toLocal(), end: _now)
                                     : null,
                               ),
                               const SizedBox(height: 16),
-                              if (startDateTime == null)
+                              if (!isTimerRunning)
                                 NepanikarButton(
                                   onTap: () async => _selfHarmTimerDao.startSelfHarmTimer(),
                                   expandToContentWidth: true,
