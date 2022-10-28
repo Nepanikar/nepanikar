@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/fonts.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
+import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/app/theme/sizes.dart';
 
 class NepanikarTheme {
@@ -24,10 +25,11 @@ class NepanikarTheme {
     ),
     errorColor: NepanikarColors.error,
     primarySwatch: NepanikarColors.primarySwatch,
-    appBarTheme: const AppBarTheme().copyWith(
+    appBarTheme: AppBarTheme(
       backgroundColor: NepanikarColors.primary,
       elevation: 0,
       centerTitle: true,
+      titleTextStyle: NepanikarFonts.title3.copyWith(color: Colors.white),
     ),
     cardTheme: const CardTheme().copyWith(
       margin: const EdgeInsets.symmetric(horizontal: 24),

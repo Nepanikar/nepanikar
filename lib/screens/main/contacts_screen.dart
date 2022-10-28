@@ -20,9 +20,7 @@ class ContactsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(context.l10n.contacts),
-      ),
+      appBar: AppBar(title: Text(context.l10n.contacts)),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24.0),

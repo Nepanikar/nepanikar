@@ -31,6 +31,7 @@ class UserSettingsDao {
 
   Future<void> saveLocale(Locale locale) async {
     final json = UserLanguage.fromLocale(locale).toJson();
+    debugPrint('UserSettingsDao: Changing language to: $json');
     await _store.record(_languageKey).put(_db, json);
   }
 
@@ -48,7 +49,6 @@ class UserSettingsDao {
         final json = snapshot?.value;
         if (json == null) return null;
         final userLanguage = UserLanguage.fromJson(json);
-        debugPrint('Changing language to: $userLanguage');
         return userLanguage.toLocale();
       })
       .startWith(initialLocale)
