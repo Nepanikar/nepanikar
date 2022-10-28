@@ -65,8 +65,8 @@ class LongTile extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
                 child: Row(
                   children: [
-                    SizedBox(
-                      height: 40,
+                    ConstrainedBox(
+                      constraints: BoxConstraints.tight(const Size.square(40)),
                       child: image,
                     ),
                     const SizedBox(
