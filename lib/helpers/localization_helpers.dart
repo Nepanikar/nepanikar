@@ -21,7 +21,7 @@ String pluralYears(
     one: 'Rok',
     few: 'Roky',
     other: 'Roků',
-    locale: Localizations.localeOf(context).countryCode,
+    locale: Localizations.localeOf(context).languageCode,
   );
 }
 
@@ -34,7 +34,7 @@ String pluralMonths(
     one: 'Měsíc',
     few: 'Měsíce',
     other: 'Měsíců',
-    locale: Localizations.localeOf(context).countryCode,
+    locale: Localizations.localeOf(context).languageCode,
   );
 }
 
@@ -47,7 +47,7 @@ String pluralDays(
     one: 'Den',
     few: 'Dny',
     other: 'Dní',
-    locale: Localizations.localeOf(context).countryCode,
+    locale: Localizations.localeOf(context).languageCode,
   );
 }
 
@@ -60,7 +60,7 @@ String pluralHours(
     one: 'Hodina',
     few: 'Hodiny',
     other: 'Hodin',
-    locale: Localizations.localeOf(context).countryCode,
+    locale: Localizations.localeOf(context).languageCode,
   );
 }
 
@@ -73,6 +73,6 @@ String pluralMinutes(
     one: 'Minuta',
     few: 'Minuty',
     other: 'Minut',
-    locale: Localizations.localeOf(context).countryCode,
+    locale: Localizations.localeOf(context).languageCode,
   );
 }

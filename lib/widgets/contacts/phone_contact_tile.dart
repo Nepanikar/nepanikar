@@ -47,25 +47,55 @@ class PhoneContactTile extends StatelessWidget {
   }
 
   Widget _buildSubListContact(BuildContext context, PhoneContactSubList contact) {
-    return LongTile(
-      text: contact.title,
-      textTextStyle: _textTextStyle,
-      description: contact.subtitle,
-      descriptionTextStyle: _descriptionNumTextStyle,
-      image: Assets.illustrations.contacts.phones.svg(),
-      trailing: const SizedBox.shrink(),
-      onTap: null,
-      subContent: Column(
-        children: contact.subPhoneContacts
-            .map(
-              (subContact) => ListTile(
-                leading: Text(subContact.title),
-                trailing: Text(subContact.tel, style: _phoneNumTextStyle),
-                onTap: () async => launchPhoneNum(subContact.unformattedTel),
-                onLongPress: () async => copyPhoneNum(context, subContact.unformattedTel),
-              ),
-            )
-            .toList(),
+    final subContactsLength = contact.subPhoneContacts.length;
+    final isSingleSubList = subContactsLength == 1;
+    return GestureDetector(
+      onTap: isSingleSubList
+          ? () async => launchPhoneNum(contact.subPhoneContacts.first.unformattedTel)
+          : null,
+      onLongPress: isSingleSubList
+          ? () async => copyPhoneNum(context, contact.subPhoneContacts.first.unformattedTel)
+          : null,
+      child: LongTile(
+        text: contact.title,
+        textTextStyle: _textTextStyle,
+        description: contact.subtitle,
+        descriptionTextStyle: _descriptionNumTextStyle,
+        image: Assets.illustrations.contacts.phones.svg(),
+        trailing: const SizedBox.shrink(),
+        onTap: null,
+        subContent: Column(
+          children: contact.subPhoneContacts
+              .map(
+                (subContact) => ListTile(
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Flexible(
+                        child: Padding(
+                          padding: isSingleSubList
+                              ? const EdgeInsets.symmetric(vertical: 12)
+                              : EdgeInsets.zero,
+                          child: Text(
+                            subContact.title,
+                            style: Theme.of(context).textTheme.bodyText2,
+                          ),
+                        ),
+                      ),
+                      Flexible(
+                        child: Text(
+                          subContact.tel,
+                          style: _phoneNumTextStyle,
+                        ),
+                      ),
+                    ],
+                  ),
+                  onTap: () async => launchPhoneNum(subContact.unformattedTel),
+                  onLongPress: () async => copyPhoneNum(context, subContact.unformattedTel),
+                ),
+              )
+              .toList(),
+        ),
       ),
     );
   }
