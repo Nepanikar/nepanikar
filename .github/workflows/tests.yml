@@ -46,4 +46,6 @@ jobs:
           dart pub get
 
       - name: Run tests
-        run: dart test
+        run: |
+          cd packages/nepanikar_contacts_gen
+          dart test
