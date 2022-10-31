@@ -1,14 +1,14 @@
-name: Continuous Integration / build
+name: Continuous Integration / tests
 on:
   push:
-    branches: [ main ]
+    branches: [ main, feat/test-ci ]
   pull_request:
 
 env:
   flutter_version: '3.3.x'
 
 jobs:
-  android:
+  app:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -24,14 +24,11 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Gradle cache
-        uses: gradle/gradle-build-action@v2
+      - name: Run tests
+        run: flutter test
 
-      - name: Build apk
-        run: flutter build apk --debug
-
-  ios:
-    runs-on: macos-latest
+  packages:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
@@ -43,17 +40,10 @@ jobs:
           cache-key: ${{ runner.OS }}-flutter-${{ env.flutter_version }}
           cache-path: ${{ runner.tool_cache }}/flutter
 
-      - name: Cache CocoaPods
-        uses: actions/cache@v3
-        with:
-          path: |
-            ios/Pods
-            ~/Library/Caches/CocoaPods
-            ~/.cocoapods
-          key: '${{ runner.os }}-cache-cocoapods-${{ hashFiles(''pubspec.lock'') }}'
-
       - name: Install dependencies
-        run: flutter pub get
+        run: |
+          cd packages/nepanikar_contacts_gen
+          dart pub get
 
-      - name: Build ios
-        run: flutter build ios --debug --no-codesign --simulator
+      - name: Run tests
+        run: dart test
