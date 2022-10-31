@@ -30,6 +30,9 @@ jobs:
 
   packages:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/nepanikar_contacts_gen
     steps:
       - uses: actions/checkout@v3
 
@@ -39,11 +42,7 @@ jobs:
           sdk: ${{ env.dart_version }}
 
       - name: Install dependencies
-        run: |
-          cd packages/nepanikar_contacts_gen
-          dart pub get
+        run: dart pub get
 
       - name: Run tests
-        run: |
-          cd packages/nepanikar_contacts_gen
-          dart test
+        run: dart test
