@@ -1,7 +1,7 @@
 name: Continuous Integration / tests
 on:
   push:
-    branches: [ main, feat/test-ci ]
+    branches: [ main ]
   pull_request:
 
 env:
