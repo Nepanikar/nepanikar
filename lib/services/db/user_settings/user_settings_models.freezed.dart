@@ -33,33 +33,37 @@ mixin _$UserLanguage {
 abstract class $UserLanguageCopyWith<$Res> {
   factory $UserLanguageCopyWith(
           UserLanguage value, $Res Function(UserLanguage) then) =
-      _$UserLanguageCopyWithImpl<$Res>;
+      _$UserLanguageCopyWithImpl<$Res, UserLanguage>;
+  @useResult
   $Res call({String languageCode, String? countryCode});
 }
 
 /// @nodoc
-class _$UserLanguageCopyWithImpl<$Res> implements $UserLanguageCopyWith<$Res> {
+class _$UserLanguageCopyWithImpl<$Res, $Val extends UserLanguage>
+    implements $UserLanguageCopyWith<$Res> {
   _$UserLanguageCopyWithImpl(this._value, this._then);
 
-  final UserLanguage _value;
   // ignore: unused_field
-  final $Res Function(UserLanguage) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? languageCode = freezed,
+    Object? languageCode = null,
     Object? countryCode = freezed,
   }) {
     return _then(_value.copyWith(
-      languageCode: languageCode == freezed
+      languageCode: null == languageCode
           ? _value.languageCode
           : languageCode // ignore: cast_nullable_to_non_nullable
               as String,
-      countryCode: countryCode == freezed
+      countryCode: freezed == countryCode
           ? _value.countryCode
           : countryCode // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -70,31 +74,30 @@ abstract class _$$_UserLanguageCopyWith<$Res>
           _$_UserLanguage value, $Res Function(_$_UserLanguage) then) =
       __$$_UserLanguageCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String languageCode, String? countryCode});
 }
 
 /// @nodoc
 class __$$_UserLanguageCopyWithImpl<$Res>
-    extends _$UserLanguageCopyWithImpl<$Res>
+    extends _$UserLanguageCopyWithImpl<$Res, _$_UserLanguage>
     implements _$$_UserLanguageCopyWith<$Res> {
   __$$_UserLanguageCopyWithImpl(
       _$_UserLanguage _value, $Res Function(_$_UserLanguage) _then)
-      : super(_value, (v) => _then(v as _$_UserLanguage));
+      : super(_value, _then);
 
-  @override
-  _$_UserLanguage get _value => super._value as _$_UserLanguage;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? languageCode = freezed,
+    Object? languageCode = null,
     Object? countryCode = freezed,
   }) {
     return _then(_$_UserLanguage(
-      languageCode: languageCode == freezed
+      languageCode: null == languageCode
           ? _value.languageCode
           : languageCode // ignore: cast_nullable_to_non_nullable
               as String,
-      countryCode: countryCode == freezed
+      countryCode: freezed == countryCode
           ? _value.countryCode
           : countryCode // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -126,21 +129,19 @@ class _$_UserLanguage extends _UserLanguage {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UserLanguage &&
-            const DeepCollectionEquality()
-                .equals(other.languageCode, languageCode) &&
-            const DeepCollectionEquality()
-                .equals(other.countryCode, countryCode));
+            (identical(other.languageCode, languageCode) ||
+                other.languageCode == languageCode) &&
+            (identical(other.countryCode, countryCode) ||
+                other.countryCode == countryCode));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(languageCode),
-      const DeepCollectionEquality().hash(countryCode));
+  int get hashCode => Object.hash(runtimeType, languageCode, countryCode);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_UserLanguageCopyWith<_$_UserLanguage> get copyWith =>
       __$$_UserLanguageCopyWithImpl<_$_UserLanguage>(this, _$identity);
 

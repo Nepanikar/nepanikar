@@ -1,0 +1,48 @@
+name: Continuous Integration / tests
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+env:
+  flutter_version: '3.3.x'
+  dart_version: stable
+
+jobs:
+  app:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Flutter SDK cache
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.flutter_version }}
+          cache: true
+          cache-key: ${{ runner.OS }}-flutter-${{ env.flutter_version }}
+          cache-path: ${{ runner.tool_cache }}/flutter
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run tests
+        run: flutter test
+
+  packages:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/nepanikar_contacts_gen
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Dart
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: ${{ env.dart_version }}
+
+      - name: Install dependencies
+        run: dart pub get
+
+      - name: Run tests
+        run: dart test

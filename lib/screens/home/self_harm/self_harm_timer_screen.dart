@@ -73,7 +73,10 @@ class SelfHarmTimerScreen extends StatelessWidget {
                                 )
                               else
                                 NepanikarButton(
-                                  onTap: () async => _selfHarmTimerDao.stopSelfHarmTimer(),
+                                  onTap: () async {
+                                    await _selfHarmTimerDao.stopSelfHarmTimer();
+                                    await _selfHarmTimerDao.startSelfHarmTimer();
+                                  },
                                   expandToContentWidth: true,
                                   text: context.l10n.stop,
                                 ),

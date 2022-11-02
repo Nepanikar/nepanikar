@@ -7,7 +7,7 @@ Original Qt version: https://github.com/ichlubna/mind
 ## Project specs & conventions
 
 - targeted platforms: iOS, Android
-- Flutter version: 3.3.3
+- Flutter version: 3.3.x
 - code style: 100 characters per line
 - state management: [Provider](https://pub.dev/packages/provider)
 - routing: [GoRouter](https://pub.dev/packages/go_router)
