@@ -32,33 +32,37 @@ mixin _$MoodTrack {
 /// @nodoc
 abstract class $MoodTrackCopyWith<$Res> {
   factory $MoodTrackCopyWith(MoodTrack value, $Res Function(MoodTrack) then) =
-      _$MoodTrackCopyWithImpl<$Res>;
+      _$MoodTrackCopyWithImpl<$Res, MoodTrack>;
+  @useResult
   $Res call({Mood mood, DateTime date});
 }
 
 /// @nodoc
-class _$MoodTrackCopyWithImpl<$Res> implements $MoodTrackCopyWith<$Res> {
+class _$MoodTrackCopyWithImpl<$Res, $Val extends MoodTrack>
+    implements $MoodTrackCopyWith<$Res> {
   _$MoodTrackCopyWithImpl(this._value, this._then);
 
-  final MoodTrack _value;
   // ignore: unused_field
-  final $Res Function(MoodTrack) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? mood = freezed,
-    Object? date = freezed,
+    Object? mood = null,
+    Object? date = null,
   }) {
     return _then(_value.copyWith(
-      mood: mood == freezed
+      mood: null == mood
           ? _value.mood
           : mood // ignore: cast_nullable_to_non_nullable
               as Mood,
-      date: date == freezed
+      date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime,
-    ));
+    ) as $Val);
   }
 }
 
@@ -68,30 +72,30 @@ abstract class _$$_MoodTrackCopyWith<$Res> implements $MoodTrackCopyWith<$Res> {
           _$_MoodTrack value, $Res Function(_$_MoodTrack) then) =
       __$$_MoodTrackCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({Mood mood, DateTime date});
 }
 
 /// @nodoc
-class __$$_MoodTrackCopyWithImpl<$Res> extends _$MoodTrackCopyWithImpl<$Res>
+class __$$_MoodTrackCopyWithImpl<$Res>
+    extends _$MoodTrackCopyWithImpl<$Res, _$_MoodTrack>
     implements _$$_MoodTrackCopyWith<$Res> {
   __$$_MoodTrackCopyWithImpl(
       _$_MoodTrack _value, $Res Function(_$_MoodTrack) _then)
-      : super(_value, (v) => _then(v as _$_MoodTrack));
+      : super(_value, _then);
 
-  @override
-  _$_MoodTrack get _value => super._value as _$_MoodTrack;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? mood = freezed,
-    Object? date = freezed,
+    Object? mood = null,
+    Object? date = null,
   }) {
     return _then(_$_MoodTrack(
-      mood: mood == freezed
+      mood: null == mood
           ? _value.mood
           : mood // ignore: cast_nullable_to_non_nullable
               as Mood,
-      date: date == freezed
+      date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime,
@@ -122,19 +126,17 @@ class _$_MoodTrack extends _MoodTrack {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MoodTrack &&
-            const DeepCollectionEquality().equals(other.mood, mood) &&
-            const DeepCollectionEquality().equals(other.date, date));
+            (identical(other.mood, mood) || other.mood == mood) &&
+            (identical(other.date, date) || other.date == date));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(mood),
-      const DeepCollectionEquality().hash(date));
+  int get hashCode => Object.hash(runtimeType, mood, date);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_MoodTrackCopyWith<_$_MoodTrack> get copyWith =>
       __$$_MoodTrackCopyWithImpl<_$_MoodTrack>(this, _$identity);
 
