@@ -1,28 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/services/db/relaxation/mood_track_model.dart';
 import 'package:nepanikar/utils/extensions.dart';
 
 class MoodPicker extends StatefulWidget {
-  const MoodPicker({super.key});
+  const MoodPicker({
+    super.key,
+    required this.onPick,
+    this.activeMood,
+  });
+
+  final Mood? activeMood;
+  final ValueChanged<Mood> onPick;
 
   @override
   State<MoodPicker> createState() => _MoodPickerState();
 }
 
 class _MoodPickerState extends State<MoodPicker> {
-  int? activeMood;
+  Mood? activeMood;
 
-  final _moods = <SvgGenImage>[
-    Assets.illustrations.moods.happy1,
-    Assets.illustrations.moods.good2,
-    Assets.illustrations.moods.okay3,
-    Assets.illustrations.moods.bad4,
-    Assets.illustrations.moods.sad5,
-  ];
+  @override
+  void initState() {
+    super.initState();
+    activeMood = widget.activeMood;
+  }
 
-  // TODO: l10n
-  final _names = ['Super', 'Dobře', 'Nic moc', 'Smutně', 'Mizerně'];
+  @override
+  void didUpdateWidget(MoodPicker oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (activeMood != widget.activeMood) {
+      setState(() {
+        activeMood = widget.activeMood;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,21 +47,17 @@ class _MoodPickerState extends State<MoodPicker> {
           // TODO: l10n
           style: NepanikarFonts.title2,
         ),
-        const SizedBox(
-          height: 14,
-        ),
+        const SizedBox(height: 14),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: _moods
-              .asMap()
-              .entries
+          children: Mood.knownMoods.reversed
               .map(
-                (e) => InkWell(
+                (mood) => InkWell(
                   onTap: () {
-                    if (activeMood == e.key) return;
-                    setState(() {
-                      activeMood = e.key;
-                    });
+                    final pickedMood = mood;
+                    if (activeMood == pickedMood) return;
+                    setState(() => activeMood = pickedMood);
+                    widget.onPick.call(pickedMood);
                     context.showSuccessSnackbar(
                       text: 'Náladu jsme úspěšně zaznamenali',
                       // TODO: l10n
@@ -57,17 +66,15 @@ class _MoodPickerState extends State<MoodPicker> {
                   },
                   borderRadius: BorderRadius.circular(12),
                   child: Opacity(
-                    opacity: activeMood != null && activeMood != e.key ? 0.4 : 1,
+                    opacity: activeMood != null && activeMood != mood ? 0.4 : 1,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 4),
                       child: Column(
                         children: [
-                          e.value.svg(),
-                          const SizedBox(
-                            height: 4,
-                          ),
+                          mood.icon,
+                          const SizedBox(height: 4),
                           Text(
-                            _names.elementAt(e.key),
+                            mood.getLabel(context),
                             style: NepanikarFonts.bodySmallHeavy,
                           )
                         ],
