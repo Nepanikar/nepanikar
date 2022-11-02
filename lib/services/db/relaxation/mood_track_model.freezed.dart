@@ -20,7 +20,9 @@ MoodTrack _$MoodTrackFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MoodTrack {
-  Mood get mood => throw _privateConstructorUsedError;
+  Mood get mood =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  @JsonKey(name: FilterKeys.date)
   DateTime get date => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,7 +36,7 @@ abstract class $MoodTrackCopyWith<$Res> {
   factory $MoodTrackCopyWith(MoodTrack value, $Res Function(MoodTrack) then) =
       _$MoodTrackCopyWithImpl<$Res, MoodTrack>;
   @useResult
-  $Res call({Mood mood, DateTime date});
+  $Res call({Mood mood, @JsonKey(name: FilterKeys.date) DateTime date});
 }
 
 /// @nodoc
@@ -73,7 +75,7 @@ abstract class _$$_MoodTrackCopyWith<$Res> implements $MoodTrackCopyWith<$Res> {
       __$$_MoodTrackCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Mood mood, DateTime date});
+  $Res call({Mood mood, @JsonKey(name: FilterKeys.date) DateTime date});
 }
 
 /// @nodoc
@@ -106,14 +108,18 @@ class __$$_MoodTrackCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_MoodTrack extends _MoodTrack {
-  const _$_MoodTrack({required this.mood, required this.date}) : super._();
+  const _$_MoodTrack(
+      {required this.mood, @JsonKey(name: FilterKeys.date) required this.date})
+      : super._();
 
   factory _$_MoodTrack.fromJson(Map<String, dynamic> json) =>
       _$$_MoodTrackFromJson(json);
 
   @override
   final Mood mood;
+// ignore: invalid_annotation_target
   @override
+  @JsonKey(name: FilterKeys.date)
   final DateTime date;
 
   @override
@@ -150,7 +156,9 @@ class _$_MoodTrack extends _MoodTrack {
 
 abstract class _MoodTrack extends MoodTrack {
   const factory _MoodTrack(
-      {required final Mood mood, required final DateTime date}) = _$_MoodTrack;
+          {required final Mood mood,
+          @JsonKey(name: FilterKeys.date) required final DateTime date}) =
+      _$_MoodTrack;
   const _MoodTrack._() : super._();
 
   factory _MoodTrack.fromJson(Map<String, dynamic> json) =
@@ -158,7 +166,8 @@ abstract class _MoodTrack extends MoodTrack {
 
   @override
   Mood get mood;
-  @override
+  @override // ignore: invalid_annotation_target
+  @JsonKey(name: FilterKeys.date)
   DateTime get date;
   @override
   @JsonKey(ignore: true)

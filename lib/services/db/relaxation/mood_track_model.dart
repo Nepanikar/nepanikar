@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
+import 'package:nepanikar/services/db/filters.dart';
 
 part 'mood_track_model.freezed.dart';
 part 'mood_track_model.g.dart';
@@ -61,7 +62,8 @@ enum Mood {
 class MoodTrack with _$MoodTrack {
   const factory MoodTrack({
     required Mood mood,
-    required DateTime date,
+    // ignore: invalid_annotation_target
+    @JsonKey(name: FilterKeys.date) required DateTime date,
   }) = _MoodTrack;
 
   const MoodTrack._();
