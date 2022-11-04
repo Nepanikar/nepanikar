@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:nepanikar/helpers/date_helpers.dart';
 import 'package:nepanikar/services/db/database_service.dart';
@@ -52,6 +53,7 @@ class MoodTrackDao with CustomFilters {
               }
             })
             .whereType<MoodTrack>()
+            .sorted((a, b) => a.date.compareTo(b.date))
             .toList();
         return results;
       });
