@@ -30,7 +30,9 @@ class MoodTrackDao with CustomFilters {
     final date = DateTime.utc(dateTimeToSave.year, dateTimeToSave.month, dateTimeToSave.day);
     final moodTrack = MoodTrack(mood: mood, date: date);
     final json = moodTrack.toJson();
-    await _store.findFirst(_db, finder: Finder(filter: getDateFilter(date))).then((record) async {
+    await _store
+        .findFirst(_db, finder: Finder(filter: getDateEqualsFilter(date)))
+        .then((record) async {
       if (record == null) {
         debugPrint('MoodTrackDao: Not found mood for today - adding new: $json');
         await _store.add(_db, json);
@@ -58,8 +60,8 @@ class MoodTrackDao with CustomFilters {
         return results;
       });
 
-  Stream<MoodTrack?> get lastMoodTrack => _store
-          .query(finder: Finder(filter: getDateFilter(getNowDateUtc())))
+  Stream<MoodTrack?> get lastMoodTrackStream => _store
+          .query(finder: Finder(filter: getDateEqualsFilter(getNowDateUtc())))
           .onSnapshot(_db)
           .map((snapshot) {
         final json = snapshot?.value;

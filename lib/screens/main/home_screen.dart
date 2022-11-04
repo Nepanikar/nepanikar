@@ -102,11 +102,11 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 24),
               sliver: SliverToBoxAdapter(
                 child: StreamBuilder<MoodTrack?>(
-                  stream: _moodTrackDao.lastMoodTrack,
-                  builder: (context, snapshot) {
-                    final lastMood = snapshot.data;
+                  stream: _moodTrackDao.lastMoodTrackStream,
+                  builder: (_, snapshot) {
+                    final latestMoodTrack = snapshot.data;
                     return MoodPicker(
-                      activeMood: lastMood?.mood,
+                      activeMood: latestMoodTrack?.mood,
                       onPick: (mood) async => _moodTrackDao.saveMood(mood),
                     );
                   },

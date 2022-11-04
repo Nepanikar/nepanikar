@@ -12,23 +12,20 @@ enum Mood {
   bad,
   okay,
   good,
-  happy,
-  unknown;
+  happy;
 
-  Widget get icon {
+  SvgGenImage get icon {
     switch (this) {
       case Mood.sad:
-        return Assets.illustrations.moods.sad5.svg();
+        return Assets.illustrations.moods.sad5;
       case Mood.bad:
-        return Assets.illustrations.moods.bad4.svg();
+        return Assets.illustrations.moods.bad4;
       case Mood.okay:
-        return Assets.illustrations.moods.okay3.svg();
+        return Assets.illustrations.moods.okay3;
       case Mood.good:
-        return Assets.illustrations.moods.good2.svg();
+        return Assets.illustrations.moods.good2;
       case Mood.happy:
-        return Assets.illustrations.moods.happy1.svg();
-      case Mood.unknown:
-        return const SizedBox.shrink();
+        return Assets.illustrations.moods.happy1;
     }
   }
 
@@ -45,17 +42,13 @@ enum Mood {
         return 'Dobře';
       case Mood.happy:
         return 'Super';
-      case Mood.unknown:
-        return '';
     }
   }
 
-  static Mood fromInteger(int value) {
+  static Mood? fromInteger(int value) {
     final mood = Mood.values.firstWhereOrNull((mood) => mood.index == value);
-    return mood ?? Mood.unknown;
+    return mood;
   }
-
-  static List<Mood> get knownMoods => Mood.values.where((e) => e != Mood.unknown).toList();
 }
 
 @freezed

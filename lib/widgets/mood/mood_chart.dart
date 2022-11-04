@@ -2,7 +2,6 @@ import 'package:collection/collection.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/services/db/relaxation/mood_track_model.dart';
 
@@ -33,27 +32,10 @@ class MoodChart extends StatelessWidget {
   }
 
   Widget _leftTitleIcons(double value, TitleMeta meta) {
-    SvgGenImage? svgImage;
-    switch (value.toInt()) {
-      case 0:
-        svgImage = Assets.illustrations.moods.sad5;
-        break;
-      case 1:
-        svgImage = Assets.illustrations.moods.bad4;
-        break;
-      case 2:
-        svgImage = Assets.illustrations.moods.okay3;
-        break;
-      case 3:
-        svgImage = Assets.illustrations.moods.good2;
-        break;
-      case 4:
-        svgImage = Assets.illustrations.moods.happy1;
-        break;
-    }
+    final mood = Mood.fromInteger(value.toInt());
     return SideTitleWidget(
       axisSide: meta.axisSide,
-      child: svgImage?.svg(width: 32, height: 32) ?? const SizedBox.shrink(),
+      child: mood?.icon.svg(width: 32, height: 32) ?? const SizedBox.shrink(),
     );
   }
 
@@ -63,7 +45,7 @@ class MoodChart extends StatelessWidget {
       borderData: FlBorderData(show: false),
       minX: 0,
       minY: 0,
-      maxY: Mood.knownMoods.length - 1,
+      maxY: Mood.values.length - 1,
       lineBarsData: [
         LineChartBarData(
           spots: moodTrackList
@@ -85,7 +67,7 @@ class MoodChart extends StatelessWidget {
       ],
       extraLinesData: ExtraLinesData(
         extraLinesOnTop: false,
-        horizontalLines: Mood.knownMoods
+        horizontalLines: Mood.values
             .mapIndexed(
               (i, _) => HorizontalLine(
                 y: i.toDouble(),

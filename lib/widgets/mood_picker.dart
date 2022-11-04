@@ -50,7 +50,7 @@ class _MoodPickerState extends State<MoodPicker> {
         const SizedBox(height: 14),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: Mood.knownMoods.reversed
+          children: Mood.values.reversed
               .map(
                 (mood) => InkWell(
                   onTap: () {
@@ -71,7 +71,7 @@ class _MoodPickerState extends State<MoodPicker> {
                       padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 4),
                       child: Column(
                         children: [
-                          mood.icon,
+                          mood.icon.svg(),
                           const SizedBox(height: 4),
                           Text(
                             mood.getLabel(context),

@@ -23,5 +23,4 @@ const _$MoodEnumMap = {
   Mood.okay: 'okay',
   Mood.good: 'good',
   Mood.happy: 'happy',
-  Mood.unknown: 'unknown',
 };
