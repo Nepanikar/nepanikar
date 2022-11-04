@@ -9,6 +9,7 @@ environment:
 dependencies:
   collection: ^1.16.0
   cupertino_icons: ^1.0.5
+  fl_chart: ^0.55.2
   flextras: ^0.0.2
   flutter:
     sdk: flutter

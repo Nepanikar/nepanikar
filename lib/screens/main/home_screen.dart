@@ -5,7 +5,11 @@ import 'package:nepanikar/games/math/math_game_screen.dart';
 import 'package:nepanikar/l10n/ext.dart';
 import 'package:nepanikar/router/routes.dart';
 import 'package:nepanikar/screens/home/anxiety_screen.dart';
+import 'package:nepanikar/screens/home/relaxation/relaxation_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_screen.dart';
+import 'package:nepanikar/services/db/relaxation/mood_track_dao.dart';
+import 'package:nepanikar/services/db/relaxation/mood_track_model.dart';
+import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/contacts/quick_help_button.dart';
 import 'package:nepanikar/widgets/home_tile.dart';
 import 'package:nepanikar/widgets/mood_picker.dart';
@@ -17,6 +21,8 @@ class HomeScreen extends StatelessWidget {
   });
 
   final bool showQuickHelpButton;
+
+  MoodTrackDao get _moodTrackDao => registry.get<MoodTrackDao>();
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +55,7 @@ class HomeScreen extends StatelessWidget {
       HomeTile(
         text: context.l10n.relaxation,
         image: Assets.illustrations.modules.myRecords.svg(),
-        location: const MathGameRoute().location,
+        location: const RelaxationRoute().location,
       ),
     ];
 
@@ -92,9 +98,20 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-            const SliverPadding(
-              padding: EdgeInsets.symmetric(horizontal: 24),
-              sliver: SliverToBoxAdapter(child: MoodPicker()),
+            SliverPadding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              sliver: SliverToBoxAdapter(
+                child: StreamBuilder<MoodTrack?>(
+                  stream: _moodTrackDao.lastMoodTrackStream,
+                  builder: (_, snapshot) {
+                    final latestMoodTrack = snapshot.data;
+                    return MoodPicker(
+                      activeMood: latestMoodTrack?.mood,
+                      onPick: (mood) async => _moodTrackDao.saveMood(mood),
+                    );
+                  },
+                ),
+              ),
             ),
             const SliverToBoxAdapter(
               child: Padding(

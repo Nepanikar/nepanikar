@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/services/db/relaxation/mood_track_dao.dart';
 import 'package:nepanikar/services/db/self_harm/self_harm_timer_dao.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/services/save_directories.dart';
@@ -21,6 +22,7 @@ class DatabaseService {
     database = db;
     _userSettingsDao = await UserSettingsDao(dbService: this).init();
     _selfHarmTimerDao = await SelfHarmTimerDao(dbService: this).init();
+    _moodTrackDao = await MoodTrackDao(dbService: this).init();
   }
 
   /// https://github.com/tekartik/sembast.dart/blob/master/sembast/doc/open.md#preloading-data
@@ -50,8 +52,12 @@ class DatabaseService {
   late final Database database;
   late final StoreRef<String, Map<String, dynamic>> mainStore;
   late final UserSettingsDao _userSettingsDao;
+
   // ignore: unused_field
   late final SelfHarmTimerDao _selfHarmTimerDao;
+
+  // ignore: unused_field
+  late final MoodTrackDao _moodTrackDao;
 
   bool _isDataMigrationFromOldAppVersionNeeded = false;
 
