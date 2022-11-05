@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/sizes.dart';
+import 'package:nepanikar/games/breathing/breathing_exercises_screen.dart';
 import 'package:nepanikar/games/math/math_game_screen.dart';
 import 'package:nepanikar/l10n/ext.dart';
 import 'package:nepanikar/router/routes.dart';
@@ -32,7 +33,7 @@ class AnxietyAppScreen extends StatelessWidget {
       LongTile(
         text: context.l10n.breath,
         image: Assets.illustrations.modules.anxietyPanic.svg(),
-        onTap: () {},
+        onTap: () => context.push(const BreathingExercisesRoute().location),
       ),
       LongTile(
         text: context.l10n.math,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/games/breathing/breathing_exercises_screen.dart';
+import 'package:nepanikar/games/breathing/breathing_game_screen.dart';
 import 'package:nepanikar/games/math/math_game_screen.dart';
 import 'package:nepanikar/screens/about_app_screen.dart';
 import 'package:nepanikar/screens/contacts/phone_contacts_screen.dart';
@@ -48,6 +50,8 @@ const _settingsRoutes = <TypedGoRoute<GoRouteData>>[
 
 const _gameRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<MathGameRoute>(path: 'games/math'),
+  TypedGoRoute<BreathingExercisesRoute>(path: 'games/breathing-list'),
+  TypedGoRoute<BreathingGameRoute>(path: 'games/breathing/:shape'),
 ];
 
 const _contactRoutes = <TypedGoRoute<GoRouteData>>[
