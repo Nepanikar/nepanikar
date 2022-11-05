@@ -17,15 +17,30 @@ enum Mood {
   SvgGenImage get icon {
     switch (this) {
       case Mood.sad:
-        return Assets.illustrations.moods.sad5;
+        return Assets.illustrations.moods.mood0Sad;
       case Mood.bad:
-        return Assets.illustrations.moods.bad4;
+        return Assets.illustrations.moods.mood1Bad;
       case Mood.okay:
-        return Assets.illustrations.moods.okay3;
+        return Assets.illustrations.moods.mood2Okay;
       case Mood.good:
-        return Assets.illustrations.moods.good2;
+        return Assets.illustrations.moods.mood3Good;
       case Mood.happy:
-        return Assets.illustrations.moods.happy1;
+        return Assets.illustrations.moods.mood4Happy;
+    }
+  }
+
+  LottieGenImage get animatedIcon {
+    switch (this) {
+      case Mood.sad:
+        return Assets.animatedIllustrations.moods.mood0Sad;
+      case Mood.bad:
+        return Assets.animatedIllustrations.moods.mood1Bad;
+      case Mood.okay:
+        return Assets.animatedIllustrations.moods.mood2Okay;
+      case Mood.good:
+        return Assets.animatedIllustrations.moods.mood3Good;
+      case Mood.happy:
+        return Assets.animatedIllustrations.moods.mood4Happy;
     }
   }
 

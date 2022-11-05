@@ -19,6 +19,8 @@ class $AssetsAnimatedIllustrationsGen {
   LottieGenImage get confetti =>
       const LottieGenImage('assets/animated_illustrations/confetti.json');
 
+  $AssetsAnimatedIllustrationsMoodsGen get moods => const $AssetsAnimatedIllustrationsMoodsGen();
+
   /// List of all assets
   List<LottieGenImage> get values => [confetti];
 }
@@ -76,6 +78,33 @@ class $AssetsIllustrationsGen {
   $AssetsIllustrationsGamesGen get games => const $AssetsIllustrationsGamesGen();
   $AssetsIllustrationsModulesGen get modules => const $AssetsIllustrationsModulesGen();
   $AssetsIllustrationsMoodsGen get moods => const $AssetsIllustrationsMoodsGen();
+}
+
+class $AssetsAnimatedIllustrationsMoodsGen {
+  const $AssetsAnimatedIllustrationsMoodsGen();
+
+  /// File path: assets/animated_illustrations/moods/mood_0_sad.json
+  LottieGenImage get mood0Sad =>
+      const LottieGenImage('assets/animated_illustrations/moods/mood_0_sad.json');
+
+  /// File path: assets/animated_illustrations/moods/mood_1_bad.json
+  LottieGenImage get mood1Bad =>
+      const LottieGenImage('assets/animated_illustrations/moods/mood_1_bad.json');
+
+  /// File path: assets/animated_illustrations/moods/mood_2_okay.json
+  LottieGenImage get mood2Okay =>
+      const LottieGenImage('assets/animated_illustrations/moods/mood_2_okay.json');
+
+  /// File path: assets/animated_illustrations/moods/mood_3_good.json
+  LottieGenImage get mood3Good =>
+      const LottieGenImage('assets/animated_illustrations/moods/mood_3_good.json');
+
+  /// File path: assets/animated_illustrations/moods/mood_4_happy.json
+  LottieGenImage get mood4Happy =>
+      const LottieGenImage('assets/animated_illustrations/moods/mood_4_happy.json');
+
+  /// List of all assets
+  List<LottieGenImage> get values => [mood0Sad, mood1Bad, mood2Okay, mood3Good, mood4Happy];
 }
 
 class $AssetsIconsCheckmarksGen {
@@ -180,23 +209,23 @@ class $AssetsIllustrationsModulesGen {
 class $AssetsIllustrationsMoodsGen {
   const $AssetsIllustrationsMoodsGen();
 
-  /// File path: assets/illustrations/moods/bad_4.svg
-  SvgGenImage get bad4 => const SvgGenImage('assets/illustrations/moods/bad_4.svg');
+  /// File path: assets/illustrations/moods/mood_0_sad.svg
+  SvgGenImage get mood0Sad => const SvgGenImage('assets/illustrations/moods/mood_0_sad.svg');
 
-  /// File path: assets/illustrations/moods/good_2.svg
-  SvgGenImage get good2 => const SvgGenImage('assets/illustrations/moods/good_2.svg');
+  /// File path: assets/illustrations/moods/mood_1_bad.svg
+  SvgGenImage get mood1Bad => const SvgGenImage('assets/illustrations/moods/mood_1_bad.svg');
 
-  /// File path: assets/illustrations/moods/happy_1.svg
-  SvgGenImage get happy1 => const SvgGenImage('assets/illustrations/moods/happy_1.svg');
+  /// File path: assets/illustrations/moods/mood_2_okay.svg
+  SvgGenImage get mood2Okay => const SvgGenImage('assets/illustrations/moods/mood_2_okay.svg');
 
-  /// File path: assets/illustrations/moods/okay_3.svg
-  SvgGenImage get okay3 => const SvgGenImage('assets/illustrations/moods/okay_3.svg');
+  /// File path: assets/illustrations/moods/mood_3_good.svg
+  SvgGenImage get mood3Good => const SvgGenImage('assets/illustrations/moods/mood_3_good.svg');
 
-  /// File path: assets/illustrations/moods/sad_5.svg
-  SvgGenImage get sad5 => const SvgGenImage('assets/illustrations/moods/sad_5.svg');
+  /// File path: assets/illustrations/moods/mood_4_happy.svg
+  SvgGenImage get mood4Happy => const SvgGenImage('assets/illustrations/moods/mood_4_happy.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [bad4, good2, happy1, okay3, sad5];
+  List<SvgGenImage> get values => [mood0Sad, mood1Bad, mood2Okay, mood3Good, mood4Happy];
 }
 
 class $AssetsIllustrationsGamesBaloonsGen {
@@ -357,6 +386,8 @@ class SvgGenImage {
   }
 
   String get path => _assetName;
+
+  String get keyName => _assetName;
 }
 
 class LottieGenImage {
@@ -389,6 +420,7 @@ class LottieGenImage {
   }) {
     return Lottie.asset(
       _assetName,
+      controller: controller,
       animate: animate,
       frameRate: frameRate,
       repeat: repeat,
@@ -413,4 +445,6 @@ class LottieGenImage {
   }
 
   String get path => _assetName;
+
+  String get keyName => _assetName;
 }
