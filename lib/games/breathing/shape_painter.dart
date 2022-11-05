@@ -10,23 +10,14 @@ class BorderPainter extends CustomPainter {
     required this.shape,
   }) : super(repaint: animation);
 
-  /// Animation of the AnimationController
   final Animation animation;
-
   final BreathingGameShape shape;
-
-  /// Corner radius of the border
   final double cornerRadius = 12;
-
-  /// Width of the border
   final double borderWidth = 5;
-
-  /// Color of the border
   final Color borderColor = Colors.white;
 
   @override
   void paint(Canvas canvas, Size size) {
-    /// Painting the border
     final rect = Offset.zero & size;
     final paint = Paint()..color = Colors.transparent;
     final progress = animation.value as double;

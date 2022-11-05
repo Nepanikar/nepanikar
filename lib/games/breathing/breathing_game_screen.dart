@@ -105,6 +105,7 @@ class _BreathingGameScreenState extends State<BreathingGameScreen>
 
   @override
   Widget build(BuildContext context) {
+    final painterWidth = MediaQuery.of(context).size.width - 96;
     return Scaffold(
       appBar: AppBar(title: Text(context.l10n.breath)),
       backgroundColor: NepanikarColors.primary,
@@ -122,8 +123,8 @@ class _BreathingGameScreenState extends State<BreathingGameScreen>
                     shape: widget.shape,
                   ),
                   child: SizedBox(
-                    width: MediaQuery.of(context).size.width - 96,
-                    height: MediaQuery.of(context).size.width - 96,
+                    width: painterWidth,
+                    height: painterWidth,
                   ),
                 ),
               ),
@@ -132,7 +133,6 @@ class _BreathingGameScreenState extends State<BreathingGameScreen>
               Center(
                 child: Text(
                   steps.elementAt(breathingIndex),
-                  //_controller.value.toString(),
                   style: NepanikarFonts.bodyHeavy.copyWith(
                     color: Colors.white,
                     fontSize: 26,

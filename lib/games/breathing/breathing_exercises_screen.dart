@@ -22,8 +22,8 @@ class BreathingExercisesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final modules = <Widget>[
-      //TODO: l10n
       LongTile(
+        //TODO: l10n
         text: 'Dechové cvičení I',
         image: Assets.illustrations.modules.anxietyPanic.svg(),
         onTap: () => context.push(
@@ -31,6 +31,7 @@ class BreathingExercisesScreen extends StatelessWidget {
         ),
       ),
       LongTile(
+        //TODO: l10n
         text: 'Dechové cvičení II',
         image: Assets.illustrations.modules.anxietyPanic.svg(),
         onTap: () => context.push(
@@ -38,6 +39,7 @@ class BreathingExercisesScreen extends StatelessWidget {
         ),
       ),
       LongTile(
+        //TODO: l10n
         text: 'Dechové cvičení III',
         image: Assets.illustrations.modules.anxietyPanic.svg(),
         onTap: () => context.push(
