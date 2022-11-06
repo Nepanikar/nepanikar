@@ -52,16 +52,16 @@ class DatabaseService {
   late final Database database;
   late final StoreRef<String, Map<String, dynamic>> mainStore;
   late final UserSettingsDao _userSettingsDao;
-
-  // ignore: unused_field
   late final SelfHarmTimerDao _selfHarmTimerDao;
-
-  // ignore: unused_field
   late final MoodTrackDao _moodTrackDao;
 
   bool _isDataMigrationFromOldAppVersionNeeded = false;
 
   static const _dbFileName = 'app.db';
+
+  Future<bool> _oldAppVersionDataExists() async {
+    return true;
+  }
 
   Future<void> _doDataMigrationFromOldAppVersion() async {
     // Example migration code.
@@ -71,5 +71,7 @@ class DatabaseService {
   Future<void> clearAll() async {
     await mainStore.drop(database);
     await _userSettingsDao.clear();
+    await _selfHarmTimerDao.clear();
+    await _moodTrackDao.clear();
   }
 }
