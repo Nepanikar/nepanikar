@@ -27,6 +27,7 @@ dependencies:
   package_info_plus: ^3.0.1
   path: ^1.8.2
   path_provider: ^2.0.11
+  polygon: ^0.1.0
   provider: ^6.0.4
   rxdart: ^0.27.5
   sembast: ^3.3.1

@@ -23,6 +23,14 @@ GoRoute get $mainRoute => GoRouteData.$route(
           factory: $MathGameRouteExtension._fromState,
         ),
         GoRouteData.$route(
+          path: 'games/breathing-list',
+          factory: $BreathingExercisesRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'games/breathing/:shape',
+          factory: $BreathingGameRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: 'contacts/phones',
           factory: $PhoneContactsRouteExtension._fromState,
         ),
@@ -82,6 +90,34 @@ extension $MathGameRouteExtension on MathGameRoute {
 
   String get location => GoRouteData.$location(
         '/games/math',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $BreathingExercisesRouteExtension on BreathingExercisesRoute {
+  static BreathingExercisesRoute _fromState(GoRouterState state) =>
+      const BreathingExercisesRoute();
+
+  String get location => GoRouteData.$location(
+        '/games/breathing-list',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $BreathingGameRouteExtension on BreathingGameRoute {
+  static BreathingGameRoute _fromState(GoRouterState state) =>
+      BreathingGameRoute(
+        shape: _$BreathingGameShapeEnumMap._$fromName(state.params['shape']!),
+      );
+
+  String get location => GoRouteData.$location(
+        '/games/breathing/${Uri.encodeComponent(_$BreathingGameShapeEnumMap[shape]!)}',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
@@ -177,4 +213,15 @@ extension $MoodTrackRouteExtension on MoodTrackRoute {
   void go(BuildContext context) => context.go(location, extra: this);
 
   void push(BuildContext context) => context.push(location, extra: this);
+}
+
+const _$BreathingGameShapeEnumMap = {
+  BreathingGameShape.circle: 'circle',
+  BreathingGameShape.square: 'square',
+  BreathingGameShape.triangle: 'triangle',
+};
+
+extension<T extends Enum> on Map<T, String> {
+  T _$fromName(String value) =>
+      entries.singleWhere((element) => element.value == value).key;
 }
