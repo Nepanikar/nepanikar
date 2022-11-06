@@ -190,13 +190,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
-  enough_convert:
-    dependency: transitive
-    description:
-      name: enough_convert
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.6.0"
   equatable:
     dependency: transitive
     description:
