@@ -168,9 +168,11 @@ class _MathGameScreenState extends State<MathGameScreen> {
               if (_answerResultState.isCorrect)
                 Positioned(
                   bottom: 10,
-                  child: _lottieCacheManager.loadFromCache(
-                    Assets.animatedIllustrations.confetti,
-                    repeat: false,
+                  child: IgnorePointer(
+                    child: _lottieCacheManager.loadFromCache(
+                      Assets.animatedIllustrations.confetti,
+                      repeat: false,
+                    ),
                   ),
                 ),
               Positioned(
