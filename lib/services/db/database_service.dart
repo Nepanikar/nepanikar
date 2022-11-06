@@ -45,7 +45,7 @@ class DatabaseService {
             debugPrint('DATABASE_SERVICE: Old app version data FOUND.');
             _isDataMigrationFromOldAppVersionNeeded = true;
             await _initDaos(db);
-            unawaited(_doDataMigrationFromOldAppVersion());
+            await _doDataMigrationFromOldAppVersion();
           } else {
             debugPrint('DATABASE_SERVICE: Old app version data NOT FOUND.');
           }
@@ -86,7 +86,7 @@ class DatabaseService {
   Future<void> _doDataMigrationFromOldAppVersion() async {
     final configFile = await getOldAppConfigFile();
     if (configFile == null) return;
-    await Future.delayed(const Duration(seconds: 5));
+    // await Future.delayed(const Duration(seconds: 5));
     final nepanikarConfig = NepanikarConfigParser.parseConfigFile(configFile);
 
     final relaxationModuleConfig = nepanikarConfig.relaxationModuleConfig;
