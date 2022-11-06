@@ -1,12 +1,9 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/l10n/ext.dart';
-import 'package:nepanikar/services/save_directories.dart';
+import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/utils/app_config.dart';
 import 'package:nepanikar/utils/registry.dart';
-import 'package:path/path.dart';
 
 class AboutAppRoute extends GoRouteData {
   const AboutAppRoute();
@@ -21,10 +18,10 @@ class AboutAppScreen extends StatelessWidget {
   AppConfig get _appConfig => registry.get<AppConfig>();
 
   Future<String> readOldAppContents() async {
-    final supportDir = registry.get<SaveDirectories>().supportDir;
-    final configPath = join(supportDir.path, '.config', 'DontPanicDevs', 'DontPanic.conf');
-    final configContent = await File(configPath).readAsString();
-    return configContent;
+    final db = registry.get<DatabaseService>();
+    final configContents = await db.getOldAppConfigFile();
+    if (configContents == null) return 'Konfig soubor stare verze appky nebyl nenalezen';
+    return configContents.readAsString();
   }
 
   @override
@@ -41,9 +38,9 @@ class AboutAppScreen extends StatelessWidget {
                 future: readOldAppContents(),
                 builder: (_, snapshot) {
                   if (snapshot.hasData) {
-                    return Text(snapshot.data!);
+                    return Center(child: Text(snapshot.data!));
                   } else {
-                    return Center(child: const CircularProgressIndicator());
+                    return const Center(child: CircularProgressIndicator());
                   }
                 },
               ),

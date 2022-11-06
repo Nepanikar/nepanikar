@@ -1,8 +1,13 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:nepanikar/services/db/relaxation/mood_track_dao.dart';
+import 'package:nepanikar/services/db/relaxation/mood_track_model.dart';
 import 'package:nepanikar/services/db/self_harm/self_harm_timer_dao.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/services/save_directories.dart';
+import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 import 'package:path/path.dart';
 import 'package:sembast/sembast.dart';
 import 'package:sembast/sembast_io.dart';
@@ -33,13 +38,16 @@ class DatabaseService {
       onVersionChanged: (db, oldVersion, newVersion) async {
         // If oldVersion is 0, we are creating the database for the first time.
         if (oldVersion == 0) {
-          // TODO: Check if if the app's data contains some data from the old app version, if yes - do migration.
-          const oldVersionAppDataExists = false;
+          debugPrint('DATABASE_SERVICE: Creating database for the first time - first app install.');
+          final oldVersionAppDataExists = await _oldAppVersionDataExists();
           // ignore: dead_code
           if (oldVersionAppDataExists) {
+            debugPrint('DATABASE_SERVICE: Old app version data FOUND.');
             _isDataMigrationFromOldAppVersionNeeded = true;
             await _initDaos(db);
-            await _doDataMigrationFromOldAppVersion();
+            unawaited(_doDataMigrationFromOldAppVersion());
+          } else {
+            debugPrint('DATABASE_SERVICE: Old app version data NOT FOUND.');
           }
         }
       },
@@ -60,12 +68,61 @@ class DatabaseService {
   static const _dbFileName = 'app.db';
 
   Future<bool> _oldAppVersionDataExists() async {
-    return true;
+    final configPath = _saveDirectories.oldAppDataConfigFilePath;
+    if (await File(configPath).exists()) {
+      return true;
+    }
+    return false;
+  }
+
+  Future<File?> getOldAppConfigFile() async {
+    final configPath = _saveDirectories.oldAppDataConfigFilePath;
+    if (await File(configPath).exists()) {
+      return File(configPath);
+    }
+    return null;
   }
 
   Future<void> _doDataMigrationFromOldAppVersion() async {
-    // Example migration code.
-    await _userSettingsDao.saveLocale(const Locale('pl'));
+    final configFile = await getOldAppConfigFile();
+    if (configFile == null) return;
+    await Future.delayed(const Duration(seconds: 5));
+    final nepanikarConfig = NepanikarConfigParser.parseConfigFile(configFile);
+
+    final relaxationModuleConfig = nepanikarConfig.relaxationModuleConfig;
+    if (relaxationModuleConfig != null) {
+      final moodTrackMap = relaxationModuleConfig.moodTrackConfig?.values;
+      if (moodTrackMap != null) {
+        for (final moodTrackEntry in moodTrackMap.entries) {
+          final mood = Mood.fromInteger(moodTrackEntry.value);
+          if (mood != null) {
+            final dateTime = moodTrackEntry.key;
+            await _moodTrackDao.saveMood(mood, dateTime);
+          }
+        }
+      }
+    }
+
+    final selfHarmModuleConfig = nepanikarConfig.selfHarmModuleConfig;
+    if (selfHarmModuleConfig != null) {
+      final selfHarmTimerConfig = selfHarmModuleConfig.selfHarmTimerConfig;
+      if (selfHarmTimerConfig != null) {
+        if (selfHarmTimerConfig.curSelfHarmTimerStartDateTime != null) {
+          await _selfHarmTimerDao
+              .startSelfHarmTimer(selfHarmTimerConfig.curSelfHarmTimerStartDateTime);
+        }
+
+        if (selfHarmTimerConfig.selfHarmTimerRecord != null) {
+          final nowUtc = DateTime.now().toUtc();
+          await _selfHarmTimerDao.saveNewBestRecord(
+            DateTimeRange(
+              start: nowUtc.subtract(Duration(seconds: selfHarmTimerConfig.selfHarmTimerRecord!)),
+              end: nowUtc,
+            ),
+          );
+        }
+      }
+    }
   }
 
   Future<void> clearAll() async {

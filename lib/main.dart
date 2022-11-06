@@ -1,3 +1,5 @@
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
@@ -11,12 +13,25 @@ Future<void> main() async {
   runApp(const Nepanikar());
 }
 
-class Nepanikar extends StatelessWidget {
+class Nepanikar extends StatefulWidget {
   const Nepanikar({super.key});
 
+  @override
+  State<Nepanikar> createState() => _NepanikarState();
+}
+
+class _NepanikarState extends State<Nepanikar> {
   GoRouter get _goRouter => registry.get<GoRouter>();
 
   UserSettingsDao get _userSettingsDao => registry.get<UserSettingsDao>();
+
+  @override
+  void initState() {
+    super.initState();
+    for (final delegate in AppLocalizations.localizationsDelegates) {
+      delegate.load(ui.Locale(ui.window.locale.languageCode));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

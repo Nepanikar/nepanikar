@@ -8,6 +8,8 @@ import 'package:intl/intl.dart';
 import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 
 class NepanikarConfigParser {
+  const NepanikarConfigParser._();
+
   static const NEPANIKAR_CONF_CODEC = Utf8Codec(allowMalformed: true);
 
   static const QT_UNICODE_PATTERN = '\\x([0-9a-f]{2,3})';

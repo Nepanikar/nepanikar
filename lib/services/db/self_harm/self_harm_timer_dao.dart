@@ -27,8 +27,9 @@ class SelfHarmTimerDao {
   static const _selfHarmTimerRecordStartTimestampKey = 'self_harm_timer_record_start_timestamp';
   static const _selfHarmTimerRecordEndTimestampKey = 'self_harm_timer_record_end_timestamp';
 
-  Future<void> startSelfHarmTimer() async {
-    final timestampNow = Timestamp.now();
+  Future<void> startSelfHarmTimer([DateTime? startDateTime]) async {
+    final timestampNow =
+        startDateTime != null ? Timestamp.fromDateTime(startDateTime.toUtc()) : Timestamp.now();
     await _store.record(_selfHarmTimerCurrentTimestampKey).put(_db, timestampNow);
   }
 
