@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:nepanikar/widgets/snackbars.dart';
 
+extension SnackbarControllersExt on BuildContext {
+  void hideCurrentSnackBar() {
+    ScaffoldMessenger.of(this).hideCurrentSnackBar();
+  }
+}
+
 extension CustomSnackBar on BuildContext {
   void showSuccessSnackbar({required String text, Widget? leading, Widget? trailing}) {
     ScaffoldMessenger.of(this).showSnackBar(
