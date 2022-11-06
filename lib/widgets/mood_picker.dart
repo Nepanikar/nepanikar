@@ -31,6 +31,8 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
 
   AnimationController? _getLottieAnimController(Mood m) => _lottieAnimControllersMap[m];
 
+  void _playLottieAnim(Mood m) => _getLottieAnimController(m)?.forward(from: 0);
+
   @override
   void initState() {
     super.initState();
@@ -81,11 +83,12 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
                   onTap: () {
                     final pickedMood = mood;
                     if (activeMood == pickedMood) {
-                      _getLottieAnimController(pickedMood)?.forward(from: 0);
+                      _playLottieAnim(pickedMood);
                       return;
                     }
                     setState(() => activeMood = pickedMood);
-                    _getLottieAnimController(pickedMood)?.forward(from: 0);
+                    _playLottieAnim(pickedMood);
+                    context.hideCurrentSnackBar();
                     context.showSuccessSnackbar(
                       text: 'Náladu jsme úspěšně zaznamenali',
                       // TODO: l10n
