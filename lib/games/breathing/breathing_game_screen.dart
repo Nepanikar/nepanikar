@@ -36,7 +36,7 @@ class _BreathingGameScreenState extends State<BreathingGameScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   double _currentSliderValue = 10;
-  int breathingIndex = 0;
+  final _indexNotifier = ValueNotifier<int>(0);
   List<String> steps = [];
 
   void initSteps() {
@@ -82,10 +82,8 @@ class _BreathingGameScreenState extends State<BreathingGameScreen>
 
     _controller.addListener(() {
       final newIndex = (_controller.value * steps.length).floor();
-      if (newIndex != breathingIndex) {
-        setState(() {
-          breathingIndex = newIndex;
-        });
+      if (newIndex != _indexNotifier.value) {
+        _indexNotifier.value = newIndex;
       }
     });
     _controller.repeat();
@@ -131,12 +129,17 @@ class _BreathingGameScreenState extends State<BreathingGameScreen>
             ),
             if (steps.isNotEmpty)
               Center(
-                child: Text(
-                  steps.elementAt(breathingIndex),
-                  style: NepanikarFonts.bodyHeavy.copyWith(
-                    color: Colors.white,
-                    fontSize: 26,
-                  ),
+                child: ValueListenableBuilder(
+                  valueListenable: _indexNotifier,
+                  builder: (context, value, _) {
+                    return Text(
+                      steps.elementAt(value),
+                      style: NepanikarFonts.bodyHeavy.copyWith(
+                        color: Colors.white,
+                        fontSize: 26,
+                      ),
+                    );
+                  },
                 ),
               ),
             Column(
