@@ -107,9 +107,9 @@ class DatabaseService {
     if (selfHarmModuleConfig != null) {
       final selfHarmTimerConfig = selfHarmModuleConfig.selfHarmTimerConfig;
       if (selfHarmTimerConfig != null) {
-        if (selfHarmTimerConfig.curSelfHarmTimerStartDateTime != null) {
+        if (selfHarmTimerConfig.currSelfHarmTimerStartDateTime != null) {
           await _selfHarmTimerDao
-              .startSelfHarmTimer(selfHarmTimerConfig.curSelfHarmTimerStartDateTime);
+              .startSelfHarmTimer(selfHarmTimerConfig.currSelfHarmTimerStartDateTime);
         }
 
         if (selfHarmTimerConfig.selfHarmTimerRecord != null) {

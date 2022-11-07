@@ -24,7 +24,7 @@ class MoodTrackDTO extends Equatable {
               final value = split[1].getIniIntValue();
               if (dateTime != null && value != null) {
                 final date = DateTime.utc(dateTime.year, dateTime.month, dateTime.day);
-                convertedValues[date] = value;
+                convertedValues[date] = value - 1;
               }
             }
           }

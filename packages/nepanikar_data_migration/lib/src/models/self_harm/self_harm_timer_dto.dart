@@ -4,7 +4,7 @@ import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 
 class SelfHarmTimerDTO extends Equatable {
   const SelfHarmTimerDTO._({
-    required this.curSelfHarmTimerStartDateTime,
+    required this.currSelfHarmTimerStartDateTime,
     required this.selfHarmTimerRecord,
   });
 
@@ -25,17 +25,17 @@ class SelfHarmTimerDTO extends Equatable {
     final selfHarmTimerRecord = config.get(sectionName, 'selfHarmTimerRecord')?.getIniIntValue();
 
     return SelfHarmTimerDTO._(
-      curSelfHarmTimerStartDateTime: currSelfHarmTimerStartDateTime,
+      currSelfHarmTimerStartDateTime: currSelfHarmTimerStartDateTime,
       selfHarmTimerRecord: selfHarmTimerRecord,
     );
   }
 
   /// The date when the self harm timer was started.
-  final DateTime? curSelfHarmTimerStartDateTime;
+  final DateTime? currSelfHarmTimerStartDateTime;
 
   /// The record of the self harm timer, duration in seconds.
   final int? selfHarmTimerRecord;
 
   @override
-  List<Object?> get props => [curSelfHarmTimerStartDateTime, selfHarmTimerRecord];
+  List<Object?> get props => [currSelfHarmTimerStartDateTime, selfHarmTimerRecord];
 }
