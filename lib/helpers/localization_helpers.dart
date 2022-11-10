@@ -76,3 +76,16 @@ String pluralMinutes(
     locale: Localizations.localeOf(context).languageCode,
   );
 }
+
+String pluralSeconds(
+  BuildContext context, {
+  required int value,
+}) {
+  return Intl.plural(
+    value,
+    one: 'Sekunda',
+    few: 'Sekundy',
+    other: 'Sekund',
+    locale: Localizations.localeOf(context).languageCode,
+  );
+}
