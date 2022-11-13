@@ -10,6 +10,7 @@ class NepanikarColors {
   static const error = Color(0xffD86C66);
   static const success = Color(0xff6FD866);
   static const info = Color(0xffFEC786);
+  static const filledContainer = Color(0xffEDE8F3);
 
   static const _primarySwatch = <int, Color>{
     50: Color(0xffFAF4FF), //10%

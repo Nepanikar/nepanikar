@@ -12,6 +12,7 @@ import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/utils/extensions.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_button.dart';
+import 'package:nepanikar/widgets/nepanikar_dropdown.dart';
 
 class PlaygroundScreen extends StatelessWidget {
   PlaygroundScreen({super.key});
@@ -49,30 +50,11 @@ class PlaygroundScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(context.l10n.language),
-                  ButtonTheme(
-                    alignedDropdown: true,
-                    child: StreamBuilder<Locale>(
-                      stream: _userSettingsDao.localeStream,
-                      builder: (_, snapshot) {
-                        final locale = snapshot.data;
-                        return DropdownButton<Locale>(
-                          value: locale,
-                          items: AppLocalizations.supportedLocales.map<DropdownMenuItem<Locale>>(
-                            (Locale item) {
-                              return DropdownMenuItem<Locale>(
-                                value: item,
-                                child: Text(item.toLanguageTag()),
-                              );
-                            },
-                          ).toList(),
-                          onChanged: (Locale? locale) async {
-                            if (locale != null) {
-                              await _userSettingsDao.saveLocale(locale);
-                            }
-                          },
-                        );
-                      },
-                    ),
+                  NepanikarDropdown<Locale>(
+                    activeItem: _userSettingsDao.locale,
+                    items: AppLocalizations.supportedLocales,
+                    labelBuilder: (locale) => locale.toLanguageTag(),
+                    onPick: _userSettingsDao.saveLocale,
                   ),
                 ],
               ),

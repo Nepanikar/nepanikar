@@ -8,25 +8,17 @@ import 'package:nepanikar/services/db/relaxation/mood_track_model.dart';
 class MoodChart extends StatelessWidget {
   const MoodChart({
     super.key,
-    required this.moodTrackList,
+    required this.moodTrackData,
   });
 
-  final List<MoodTrack> moodTrackList;
+  final Map<DateTime, MoodTrack?> moodTrackData;
 
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
       aspectRatio: 1.70,
-      child: Padding(
-        padding: const EdgeInsets.only(
-          right: 18,
-          left: 12,
-          top: 24,
-          bottom: 12,
-        ),
-        child: LineChart(
-          _buildLineChartData(context),
-        ),
+      child: LineChart(
+        _buildLineChartData(context),
       ),
     );
   }
@@ -46,10 +38,17 @@ class MoodChart extends StatelessWidget {
       minX: 0,
       minY: 0,
       maxY: Mood.values.length - 1,
+      maxX: moodTrackData.length - 1,
       lineBarsData: [
         LineChartBarData(
-          spots: moodTrackList
-              .mapIndexed((i, e) => FlSpot(i.toDouble(), e.mood.index.toDouble()))
+          spots: moodTrackData.entries
+              .mapIndexed((i, e) {
+                final moodTrack = e.value;
+                return moodTrack == null
+                    ? null
+                    : FlSpot(i.toDouble(), moodTrack.mood.index.toDouble());
+              })
+              .whereType<FlSpot>()
               .toList(),
           isCurved: false,
           barWidth: 2,
@@ -125,7 +124,8 @@ class MoodChart extends StatelessWidget {
           getTooltipItems: (touchedSpots) {
             return touchedSpots.map((barSpot) {
               final flSpot = barSpot;
-              final moodTrack = moodTrackList[flSpot.x.toInt()];
+              final moodTrack = moodTrackData.entries.elementAt(flSpot.x.toInt()).value;
+              if (moodTrack == null) return null;
               final formattedDate =
                   DateFormat(DateFormat.ABBR_MONTH_DAY, locale).format(moodTrack.date);
               return LineTooltipItem(
