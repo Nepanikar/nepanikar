@@ -38,6 +38,9 @@ class $AssetsContactsGen {
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/calendar.svg
+  SvgGenImage get calendar => const SvgGenImage('assets/icons/calendar.svg');
+
   /// File path: assets/icons/calendar_event.svg
   SvgGenImage get calendarEvent => const SvgGenImage('assets/icons/calendar_event.svg');
 
@@ -68,7 +71,7 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<SvgGenImage> get values =>
-      [calendarEvent, home, logo, marker, phone, settings, spinner, warningWavy];
+      [calendar, calendarEvent, home, logo, marker, phone, settings, spinner, warningWavy];
 }
 
 class $AssetsIllustrationsGen {
@@ -129,8 +132,14 @@ class $AssetsIconsCheckmarksGen {
 class $AssetsIconsNavigationGen {
   const $AssetsIconsNavigationGen();
 
+  /// File path: assets/icons/navigation/arrow_left.svg
+  SvgGenImage get arrowLeft => const SvgGenImage('assets/icons/navigation/arrow_left.svg');
+
   /// File path: assets/icons/navigation/arrow_right.svg
   SvgGenImage get arrowRight => const SvgGenImage('assets/icons/navigation/arrow_right.svg');
+
+  /// File path: assets/icons/navigation/chevron_down.svg
+  SvgGenImage get chevronDown => const SvgGenImage('assets/icons/navigation/chevron_down.svg');
 
   /// File path: assets/icons/navigation/chevron_left.svg
   SvgGenImage get chevronLeft => const SvgGenImage('assets/icons/navigation/chevron_left.svg');
@@ -139,7 +148,7 @@ class $AssetsIconsNavigationGen {
   SvgGenImage get chevronRight => const SvgGenImage('assets/icons/navigation/chevron_right.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [arrowRight, chevronLeft, chevronRight];
+  List<SvgGenImage> get values => [arrowLeft, arrowRight, chevronDown, chevronLeft, chevronRight];
 }
 
 class $AssetsIllustrationsContactsGen {

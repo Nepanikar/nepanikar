@@ -92,7 +92,7 @@ class HomeScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: StreamBuilder<MoodTrack?>(
-                  stream: _moodTrackDao.lastMoodTrackStream,
+                  stream: _moodTrackDao.latestMoodTrackStream,
                   builder: (_, snapshot) {
                     final latestMoodTrack = snapshot.data;
                     return MoodPicker(

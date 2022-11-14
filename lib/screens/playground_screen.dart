@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
@@ -5,13 +7,17 @@ import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/games/math/math_game_screen.dart';
+import 'package:nepanikar/helpers/date_helpers.dart';
 import 'package:nepanikar/l10n/ext.dart';
 import 'package:nepanikar/router/routes.dart';
 import 'package:nepanikar/screens/about_app_screen.dart';
+import 'package:nepanikar/services/db/relaxation/mood_track_dao.dart';
+import 'package:nepanikar/services/db/relaxation/mood_track_model.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/utils/extensions.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_button.dart';
+import 'package:nepanikar/widgets/nepanikar_dropdown.dart';
 
 class PlaygroundScreen extends StatelessWidget {
   PlaygroundScreen({super.key});
@@ -36,6 +42,8 @@ class PlaygroundScreen extends StatelessWidget {
 
   UserSettingsDao get _userSettingsDao => registry.get<UserSettingsDao>();
 
+  MoodTrackDao get _moodTrackDao => registry.get<MoodTrackDao>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,32 +57,31 @@ class PlaygroundScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(context.l10n.language),
-                  ButtonTheme(
-                    alignedDropdown: true,
-                    child: StreamBuilder<Locale>(
-                      stream: _userSettingsDao.localeStream,
-                      builder: (_, snapshot) {
-                        final locale = snapshot.data;
-                        return DropdownButton<Locale>(
-                          value: locale,
-                          items: AppLocalizations.supportedLocales.map<DropdownMenuItem<Locale>>(
-                            (Locale item) {
-                              return DropdownMenuItem<Locale>(
-                                value: item,
-                                child: Text(item.toLanguageTag()),
-                              );
-                            },
-                          ).toList(),
-                          onChanged: (Locale? locale) async {
-                            if (locale != null) {
-                              await _userSettingsDao.saveLocale(locale);
-                            }
-                          },
-                        );
-                      },
-                    ),
+                  NepanikarDropdown<Locale>(
+                    activeItem: _userSettingsDao.locale,
+                    items: AppLocalizations.supportedLocales,
+                    labelBuilder: (locale) => locale.toLanguageTag(),
+                    onPick: _userSettingsDao.saveLocale,
                   ),
                 ],
+              ),
+              NepanikarButton.secondaryAsync(
+                text: 'DEV: Vygenerovat náhodná data sledování nálady (posledních 400 dní)',
+                onTapAsync: () async {
+                  final end = getNowDateTimeLocal();
+                  final start = end.subtract(const Duration(days: 400));
+                  final dateRangeValues = List.generate(
+                    end.difference(start).inDays + 1,
+                    (i) => start.add(Duration(days: i)),
+                  );
+                  for (final date in dateRangeValues) {
+                    final randomMood = Mood.values[Random().nextInt(Mood.values.length)];
+                    final randomNum = Random().nextInt(4);
+                    if (randomNum <= 1) {
+                      await _moodTrackDao.saveMood(randomMood, date);
+                    }
+                  }
+                },
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
