@@ -26,6 +26,7 @@ class BreathingGameRoute extends GoRouteData {
 
 class BreathingGameScreen extends StatefulWidget {
   const BreathingGameScreen({super.key, required this.shape});
+
   final BreathingGameShape shape;
 
   @override
@@ -37,6 +38,7 @@ class _BreathingGameScreenState extends State<BreathingGameScreen>
   late AnimationController _controller;
   double _currentSliderValue = 10;
   final _indexNotifier = ValueNotifier<int>(0);
+  final _countDownNotifier = ValueNotifier<int>(0);
   List<String> steps = [];
 
   void initSteps() {
@@ -85,6 +87,21 @@ class _BreathingGameScreenState extends State<BreathingGameScreen>
       if (newIndex != _indexNotifier.value) {
         _indexNotifier.value = newIndex;
       }
+
+      final newCountDownNumber =
+          (((_controller.value * steps.length) / (1 / steps.length)) / steps.length).floor();
+      final reversedCountDownNumber = steps.length - newCountDownNumber;
+      if (reversedCountDownNumber != _countDownNotifier.value) {
+        //print(reversedCountDownNumber);
+        //_countDownNotifier.value = reversedCountDownNumber;
+      }
+
+      final totalSteps = 3 * steps.length;
+      final stepSize = 1 / totalSteps;
+      final currStep = ((_controller.value) / (stepSize * totalSteps)).floor();
+      if (currStep != _countDownNotifier.value) {
+        _countDownNotifier.value = currStep;
+      }
     });
     _controller.repeat();
   }
@@ -110,6 +127,21 @@ class _BreathingGameScreenState extends State<BreathingGameScreen>
       body: SafeArea(
         child: Stack(
           children: [
+            Center(
+              child: ValueListenableBuilder(
+                valueListenable: _indexNotifier,
+                builder: (context, value, _) {
+                  return Text(
+                    _countDownNotifier.value.toString(),
+                    style: const TextStyle(
+                      color: Colors.white12,
+                      fontSize: 300,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  );
+                },
+              ),
+            ),
             Center(
               child: Padding(
                 padding: EdgeInsets.only(
