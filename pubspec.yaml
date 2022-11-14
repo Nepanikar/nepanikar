@@ -26,7 +26,7 @@ dependencies:
     path: ./packages/nepanikar_contacts_gen
   nepanikar_data_migration:
     path: ./packages/nepanikar_data_migration
-  package_info_plus: ^3.0.1
+  package_info_plus: ^3.0.2
   path: ^1.8.2
   path_provider: ^2.0.11
   polygon: ^0.1.0
