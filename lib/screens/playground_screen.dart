@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
@@ -5,9 +7,12 @@ import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/games/math/math_game_screen.dart';
+import 'package:nepanikar/helpers/date_helpers.dart';
 import 'package:nepanikar/l10n/ext.dart';
 import 'package:nepanikar/router/routes.dart';
 import 'package:nepanikar/screens/about_app_screen.dart';
+import 'package:nepanikar/services/db/relaxation/mood_track_dao.dart';
+import 'package:nepanikar/services/db/relaxation/mood_track_model.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/utils/extensions.dart';
 import 'package:nepanikar/utils/registry.dart';
@@ -37,6 +42,8 @@ class PlaygroundScreen extends StatelessWidget {
 
   UserSettingsDao get _userSettingsDao => registry.get<UserSettingsDao>();
 
+  MoodTrackDao get _moodTrackDao => registry.get<MoodTrackDao>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,6 +64,24 @@ class PlaygroundScreen extends StatelessWidget {
                     onPick: _userSettingsDao.saveLocale,
                   ),
                 ],
+              ),
+              NepanikarButton.secondaryAsync(
+                text: 'DEV: Vygenerovat náhodná data sledování nálady (posledních 400 dní)',
+                onTapAsync: () async {
+                  final end = getNowDateTimeLocal();
+                  final start = end.subtract(const Duration(days: 400));
+                  final dateRangeValues = List.generate(
+                    end.difference(start).inDays + 1,
+                    (i) => start.add(Duration(days: i)),
+                  );
+                  for (final date in dateRangeValues) {
+                    final randomMood = Mood.values[Random().nextInt(Mood.values.length)];
+                    final randomNum = Random().nextInt(4);
+                    if (randomNum <= 1) {
+                      await _moodTrackDao.saveMood(randomMood, date);
+                    }
+                  }
+                },
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

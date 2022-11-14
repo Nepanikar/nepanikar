@@ -165,7 +165,7 @@ class MoodTrackScreen extends StatelessWidget {
                 Expanded(
                   child: NepanikarDatePicker(
                     firstDate: firstMoodTrackDate == null
-                        ? DateTime(_now.year, _now.month - 1)
+                        ? currDateRangeStart ?? DateTime(_now.year, _now.month - 1)
                         : currDateRangeStart != null &&
                                 firstMoodTrackDate.isBefore(currDateRangeStart)
                             ? firstMoodTrackDate
