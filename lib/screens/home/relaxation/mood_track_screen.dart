@@ -15,6 +15,7 @@ import 'package:nepanikar/widgets/mood/mood_chart.dart';
 import 'package:nepanikar/widgets/mood_picker.dart';
 import 'package:nepanikar/widgets/nepanikar_date_picker.dart';
 import 'package:nepanikar/widgets/nepanikar_dropdown.dart';
+import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:provider/provider.dart';
 
 class MoodTrackRoute extends GoRouteData {
@@ -36,91 +37,68 @@ class MoodTrackScreen extends StatelessWidget {
     const pageSidePadding = 24.0;
     const pageHorizontalPadding = EdgeInsets.symmetric(horizontal: pageSidePadding);
 
-    return Scaffold(
-      appBar: AppBar(title: Text(context.l10n.depression_mood)),
-      body: SafeArea(
-        child: Stack(
-          children: [
-            SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    color: NepanikarColors.primary,
-                    width: double.infinity,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(pageSidePadding, 6, pageSidePadding, 24),
-                      child: Text(
-                        AppConstants.loremIpsumShort,
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.bodyText1?.copyWith(
-                              color: Colors.white,
-                            ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  Padding(
-                    padding: pageHorizontalPadding,
-                    child: StreamBuilder<MoodTrack?>(
-                      stream: _moodTrackDao.latestMoodTrackStream,
-                      builder: (_, snapshot) {
-                        final latestMoodTrack = snapshot.data;
-                        return MoodPicker(
-                          activeMood: latestMoodTrack?.mood,
-                          onPick: (mood) async => _moodTrackDao.saveMood(mood),
-                        );
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  const Padding(
-                    padding: pageHorizontalPadding,
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      // TODO: l10n
-                      child: Text(
-                        'Statistika',
-                        style: NepanikarFonts.title2,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Padding(
-                    padding: pageHorizontalPadding,
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      // TODO: l10n
-                      child: Text(
-                        'Nastavte si rozmezí data a sledujte vývoj nálady',
-                        style: NepanikarFonts.bodyRoman.copyWith(color: NepanikarColors.primary),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Card(
-                    child: StreamBuilder<List<MoodTrack>>(
-                      stream: _moodTrackDao.allMoodTracksStream,
-                      builder: (_, snapshot) {
-                        final allMoodTrackData = snapshot.data ?? [];
-                        final firstMoodTrackDate = allMoodTrackData.firstOrNull?.date;
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
-                          child: _buildChartWithFilters(
-                            context,
-                            allMoodTrackData: allMoodTrackData,
-                            firstMoodTrackDate: firstMoodTrackDate,
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
+    return NepanikarScreenWrapper(
+      appBarTitle: context.l10n.depression_mood,
+      appBarDescription: AppConstants.loremIpsumShort,
+      isModuleList: false,
+      children: [
+        const SizedBox(height: 16),
+        Padding(
+          padding: pageHorizontalPadding,
+          child: StreamBuilder<MoodTrack?>(
+            stream: _moodTrackDao.latestMoodTrackStream,
+            builder: (_, snapshot) {
+              final latestMoodTrack = snapshot.data;
+              return MoodPicker(
+                activeMood: latestMoodTrack?.mood,
+                onPick: (mood) async => _moodTrackDao.saveMood(mood),
+              );
+            },
+          ),
         ),
-      ),
+        const SizedBox(height: 10),
+        const Padding(
+          padding: pageHorizontalPadding,
+          child: Align(
+            alignment: Alignment.centerLeft,
+            // TODO: l10n
+            child: Text(
+              'Statistika',
+              style: NepanikarFonts.title2,
+            ),
+          ),
+        ),
+        const SizedBox(height: 4),
+        Padding(
+          padding: pageHorizontalPadding,
+          child: Align(
+            alignment: Alignment.centerLeft,
+            // TODO: l10n
+            child: Text(
+              'Nastavte si rozmezí data a sledujte vývoj nálady',
+              style: NepanikarFonts.bodyRoman.copyWith(color: NepanikarColors.primary),
+            ),
+          ),
+        ),
+        const SizedBox(height: 20),
+        Card(
+          child: StreamBuilder<List<MoodTrack>>(
+            stream: _moodTrackDao.allMoodTracksStream,
+            builder: (_, snapshot) {
+              final allMoodTrackData = snapshot.data ?? [];
+              final firstMoodTrackDate = allMoodTrackData.firstOrNull?.date;
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
+                child: _buildChartWithFilters(
+                  context,
+                  allMoodTrackData: allMoodTrackData,
+                  firstMoodTrackDate: firstMoodTrackDate,
+                ),
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 

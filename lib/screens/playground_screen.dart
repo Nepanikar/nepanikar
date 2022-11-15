@@ -68,6 +68,7 @@ class PlaygroundScreen extends StatelessWidget {
               NepanikarButton.secondaryAsync(
                 text: 'DEV: Vygenerovat náhodná data sledování nálady (posledních 400 dní)',
                 onTapAsync: () async {
+                  await _moodTrackDao.clear();
                   final end = getNowDateTimeLocal();
                   final start = end.subtract(const Duration(days: 400));
                   final dateRangeValues = List.generate(

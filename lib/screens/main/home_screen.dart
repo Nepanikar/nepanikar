@@ -61,31 +61,22 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            SliverPadding(
-              padding: const EdgeInsets.all(8),
-              sliver: SliverAppBar(
-                pinned: true,
-                floating: true,
-                expandedHeight: 92.0,
-                collapsedHeight: 60,
-                elevation: 2,
-                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                title: Row(
+        child: SingleChildScrollView(
+          primary: true,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8),
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Flexible(
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const SizedBox(
-                            width: 6,
-                          ),
+                          const SizedBox(width: 6),
                           Assets.icons.logo.svg(),
-                          const SizedBox(
-                            width: 10,
-                          ),
+                          const SizedBox(width: 10),
                           Text(
                             context.l10n.app_name,
                             style: NepanikarFonts.title3.copyWith(fontSize: 18.6),
@@ -97,10 +88,9 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
-            SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              sliver: SliverToBoxAdapter(
+              const SizedBox(height: 32),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: StreamBuilder<MoodTrack?>(
                   stream: _moodTrackDao.latestMoodTrackStream,
                   builder: (_, snapshot) {
@@ -112,35 +102,31 @@ class HomeScreen extends StatelessWidget {
                   },
                 ),
               ),
-            ),
-            const SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.only(left: 24.0, right: 24.0, bottom: 16.0, top: 30),
-                child: Text(
-                  //TODO: l10n
-                  'S čím můžeme pomoci?',
-                  style: NepanikarFonts.title2,
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: EdgeInsets.only(left: 24.0, right: 24.0, bottom: 16.0, top: 30),
+                  child: Text(
+                    //TODO: l10n
+                    'S čím můžeme pomoci?',
+                    style: NepanikarFonts.title2,
+                  ),
                 ),
               ),
-            ),
-            SliverPadding(
-              padding: const EdgeInsets.only(left: 24, right: 24, bottom: 48),
-              sliver: SliverGrid(
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 185.0,
-                  mainAxisSpacing: 12.0,
-                  crossAxisSpacing: 12.0,
-                  childAspectRatio: 1.331,
-                ),
-                delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) {
-                    return modules.elementAt(index);
-                  },
-                  childCount: modules.length,
+              Padding(
+                padding: const EdgeInsets.only(left: 24, right: 24, bottom: 20),
+                child: GridView.count(
+                  shrinkWrap: true,
+                  primary: false,
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 16,
+                  mainAxisSpacing: 16,
+                  childAspectRatio: 1.2,
+                  children: modules,
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
