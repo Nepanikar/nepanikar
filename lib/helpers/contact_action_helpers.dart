@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:linkify/linkify.dart';
 import 'package:nepanikar/utils/extensions.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -12,11 +13,20 @@ Future<void> launchPhoneNum(String phoneNum) async {
   }
 }
 
-Future<void> copyPhoneNum(BuildContext context, String phoneNum) async {
+Future<void> launchLinkableContact(LinkableElement linkableElement) async {
+  final linkableContact = Uri.tryParse(linkableElement.url);
+  if (linkableContact != null && await canLaunchUrl(linkableContact)) {
+    await launchUrl(linkableContact, mode: LaunchMode.externalApplication);
+  } else {
+    debugPrint('Could not linkable contact: $linkableContact');
+  }
+}
+
+Future<void> copyContact(BuildContext context, String contactStr) async {
   context.showInfoSnackbar(
     leading: const Icon(Icons.info_outline),
     // TODO: l10n
-    text: 'Číslo bylo zkopírováno do schránky',
+    text: 'Kontakt byl zkopírován do schránky',
   );
-  await Clipboard.setData(ClipboardData(text: phoneNum));
+  await Clipboard.setData(ClipboardData(text: contactStr));
 }

@@ -22,7 +22,7 @@ class MyRecordsScreen extends StatelessWidget {
     final modules = <Widget>[
       LongTile(
         text: context.l10n.depression_mood,
-        image: Assets.illustrations.modules.relaxation.svg(),
+        image: Assets.illustrations.modules.myRecords.svg(),
         onTap: () => context.push(const MoodTrackRoute().location),
       ),
       LongTile(

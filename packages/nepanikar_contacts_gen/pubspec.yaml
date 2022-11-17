@@ -1,5 +1,5 @@
 name: nepanikar_contacts_gen
-description: Command line gen for contacts & help section for Don't Panic app.
+description: A simple package & command line gen for contacts & help section for Don't Panic app.
 version: 1.0.0
 publish_to: 'none'
 

@@ -14,7 +14,7 @@ class CountryContacts with _$CountryContacts {
     List<PhoneContact>? phoneContacts,
     List<CrisisCenterContact>? crisisCenterContacts,
     List<ChatContact>? chatContacts,
-    List<UniversityContact>? universityContacts,
+    List<UniversityRegionContact>? universityRegionContacts,
   }) = _CountryContacts;
 
   const CountryContacts._();

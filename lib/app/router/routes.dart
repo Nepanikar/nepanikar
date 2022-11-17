@@ -5,6 +5,7 @@ import 'package:nepanikar/games/breathing/breathing_game_screen.dart';
 import 'package:nepanikar/games/math/math_game_screen.dart';
 import 'package:nepanikar/screens/about_app_screen.dart';
 import 'package:nepanikar/screens/contacts/phone_contacts_screen.dart';
+import 'package:nepanikar/screens/contacts/university_contacts_screen.dart';
 import 'package:nepanikar/screens/home/anxiety/anxiety_screen.dart';
 import 'package:nepanikar/screens/home/anxiety/anxiety_tips_route.dart';
 import 'package:nepanikar/screens/home/depression/depression_screen.dart';
@@ -63,6 +64,7 @@ const _gameRoutes = <TypedGoRoute<GoRouteData>>[
 
 const _contactRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<PhoneContactsRoute>(path: 'contacts/phones'),
+  TypedGoRoute<UniversityContactsRoute>(path: 'contacts/universities'),
 ];
 
 const _homeRoutes = <TypedGoRoute<GoRouteData>>[
