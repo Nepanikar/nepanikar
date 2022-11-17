@@ -129,6 +129,7 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
     _controller.dispose();
     _countDownNotifier.dispose();
     _indexNotifier.dispose();
+    _scaleAnimation.value.dispose();
     _scaleAnimation.dispose();
     super.dispose();
   }
