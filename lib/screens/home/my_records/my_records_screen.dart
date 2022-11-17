@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
-import 'package:nepanikar/l10n/ext.dart';
-import 'package:nepanikar/router/routes.dart';
-import 'package:nepanikar/screens/home/relaxation/mood_track_screen.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
+import 'package:nepanikar/app/router/routes.dart';
+import 'package:nepanikar/screens/home/my_records/mood_track_screen.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
-class RelaxationRoute extends GoRouteData {
-  const RelaxationRoute();
+class MyRecordsRoute extends GoRouteData {
+  const MyRecordsRoute();
 
   @override
-  Widget build(BuildContext context) => const RelaxationScreen();
+  Widget build(BuildContext context) => const MyRecordsScreen();
 }
 
-class RelaxationScreen extends StatelessWidget {
-  const RelaxationScreen({super.key});
+class MyRecordsScreen extends StatelessWidget {
+  const MyRecordsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class RelaxationScreen extends StatelessWidget {
     ];
 
     return NepanikarScreenWrapper(
-      appBarTitle: context.l10n.relaxation,
+      appBarTitle: context.l10n.my_records,
       children: modules,
     );
   }

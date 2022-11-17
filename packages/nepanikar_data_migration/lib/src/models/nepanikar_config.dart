@@ -5,7 +5,7 @@ import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 class NepanikarConfig extends Equatable {
   const NepanikarConfig._({
     required this.selfHarmModuleConfig,
-    required this.relaxationModuleConfig,
+    required this.myRecordsModuleConfig,
   });
 
   factory NepanikarConfig.getData(Config config) {
@@ -13,19 +13,21 @@ class NepanikarConfig extends Equatable {
     try {
       selfHarmModuleConfig = SelfHarmModuleDTO.getData(config);
     } catch (_) {}
-    RelaxationModuleDTO? relaxationModuleConfig;
+
+    MyRecordsModuleDTO? myRecordsModuleConfig;
     try {
-      relaxationModuleConfig = RelaxationModuleDTO.getData(config);
+      myRecordsModuleConfig = MyRecordsModuleDTO.getData(config);
     } catch (_) {}
+
     return NepanikarConfig._(
       selfHarmModuleConfig: selfHarmModuleConfig,
-      relaxationModuleConfig: relaxationModuleConfig,
+      myRecordsModuleConfig: myRecordsModuleConfig,
     );
   }
 
   final SelfHarmModuleDTO? selfHarmModuleConfig;
-  final RelaxationModuleDTO? relaxationModuleConfig;
+  final MyRecordsModuleDTO? myRecordsModuleConfig;
 
   @override
-  List<Object?> get props => [selfHarmModuleConfig, relaxationModuleConfig];
+  List<Object?> get props => [selfHarmModuleConfig, myRecordsModuleConfig];
 }
