@@ -38,12 +38,13 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
   double _currentSliderValue = 10;
   final _indexNotifier = ValueNotifier<int>(0);
   final _countDownNotifier = ValueNotifier<int>(0);
-  List<String> steps = [];
-
-  late final _scaleAnimation = AnimationController(
-    duration: const Duration(seconds: 1),
-    vsync: this,
+  late final _scaleAnimation = ValueNotifier(
+    AnimationController(
+      duration: const Duration(seconds: 1),
+      vsync: this,
+    ),
   );
+  List<String> steps = [];
 
   void initSteps() {
     switch (widget.shape) {
@@ -92,7 +93,8 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
       setState(() {
         _countDownNotifier.value = (totalSteps - currStep) - discount;
       });
-      _scaleAnimation
+
+      _scaleAnimation.value
         ..reset()
         ..value = 1
         ..duration = Duration(
@@ -125,6 +127,8 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
   @override
   void dispose() {
     _controller.dispose();
+    _countDownNotifier.dispose();
+    _indexNotifier.dispose();
     _scaleAnimation.dispose();
     super.dispose();
   }
@@ -140,10 +144,10 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
           children: [
             Center(
               child: ValueListenableBuilder(
-                valueListenable: _indexNotifier,
-                builder: (context, value, _) {
+                valueListenable: _scaleAnimation,
+                builder: (context, index, _) {
                   return ScaleTransition(
-                    scale: _scaleAnimation,
+                    scale: _scaleAnimation.value,
                     child: Text(
                       _countDownNotifier.value.toString(),
                       style: const TextStyle(
