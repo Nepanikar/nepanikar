@@ -56,3 +56,8 @@ to regenerate the JSON file.
 
 - `flutter packages pub run build_runner build -d` - regenerate go_route/freezed/assets files
 - `flutter gen-l10n` - recompile .arb language files
+
+### Credits
+We thank these tools and services for making better developer experience:
+- [Codemagic](https://codemagic.io/) - CI/CD for mobile apps (automatic builds, tests & publishing to stores)
+- [Localazy](https://localazy.com/) - localization management
