@@ -18,6 +18,18 @@ enum NepanikarDropdownType {
   bool get isOutlined => this == NepanikarDropdownType.outlined;
 
   bool get isFilled => this == NepanikarDropdownType.filled;
+
+  Decoration? get decoration {
+    switch (this) {
+      case NepanikarDropdownType.filled:
+        return null;
+      case NepanikarDropdownType.outlined:
+        return BoxDecoration(
+          border: Border.all(color: NepanikarColors.dark),
+          borderRadius: defaultMaterialBorderRadius,
+        );
+    }
+  }
 }
 
 class NepanikarDropdown<T> extends StatelessWidget {
@@ -61,7 +73,7 @@ class NepanikarDropdown<T> extends StatelessWidget {
     required this.items,
     required this.labelBuilder,
     required this.onPick,
-    this.expand = false,
+    required this.expand,
     required NepanikarDropdownType type,
   }) : _type = type;
 
@@ -82,12 +94,7 @@ class NepanikarDropdown<T> extends StatelessWidget {
       color: dropDownColor,
       onTap: () {},
       child: Container(
-        decoration: _type.isOutlined
-            ? BoxDecoration(
-                border: Border.all(color: NepanikarColors.dark),
-                borderRadius: defaultMaterialBorderRadius,
-              )
-            : null,
+        decoration: _type.decoration,
         child: ButtonTheme(
           alignedDropdown: true,
           child: DropdownButton<T>(

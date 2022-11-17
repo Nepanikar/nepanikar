@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
+import 'package:nepanikar/app/theme/colors.dart';
+import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/screens/contacts/phone_contacts_screen.dart';
 import 'package:nepanikar/screens/contacts/university_contacts_screen.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
@@ -20,6 +22,13 @@ class ContactsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final modules = <Widget>[
+      LongTile(
+        text: '${context.l10n.contacts_message} TODO',
+        image: Assets.illustrations.contacts.phones.svg(color: Colors.white),
+        textTextStyle: NepanikarFonts.bodyHeavy.copyWith(color: Colors.white),
+        backgroundColor: NepanikarColors.secondary,
+        onTap: () => {},
+      ),
       if (countryContacts.phoneContacts != null)
         LongTile(
           text: context.l10n.phone,
@@ -28,13 +37,13 @@ class ContactsScreen extends StatelessWidget {
         ),
       if (countryContacts.crisisCenterContacts != null)
         LongTile(
-          text: context.l10n.center,
+          text: '${context.l10n.center} TODO',
           image: Assets.illustrations.contacts.crisisCenters.svg(),
           onTap: () => {},
         ),
       if (countryContacts.chatContacts != null)
         LongTile(
-          text: context.l10n.chat,
+          text: '${context.l10n.chat} TODO',
           image: Assets.illustrations.contacts.chat.svg(),
           onTap: () => {},
         ),
@@ -45,7 +54,7 @@ class ContactsScreen extends StatelessWidget {
           onTap: () => context.push(const UniversityContactsRoute().location),
         ),
       LongTile(
-        text: context.l10n.my_contacts,
+        text: '${context.l10n.my_contacts} TODO',
         image: Assets.illustrations.contacts.myContacts.svg(),
         onTap: () => {},
       ),

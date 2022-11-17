@@ -125,7 +125,7 @@ const _universityRegionContacts = <UniversityRegionContact>[
       UniversityContact(
         name: 'Vysoká škola ekonomická v Praze',
         contacts: [
-          'http://rpc.vse.cz',
+          'https://ac.vse.cz/nase-sluzby/psychologicka-poradna/',
           'jiri.knap@vse.cz',
         ],
       ),

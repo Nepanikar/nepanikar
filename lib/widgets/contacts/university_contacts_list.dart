@@ -50,14 +50,14 @@ class UniversityContactsList extends StatelessWidget {
                     if (e is LinkableElement) {
                       final displayText = e.text;
                       final fullLink = e.url;
-                      final displayUrlLink = Uri.tryParse(fullLink)?.host ?? e.text;
+                      final displayUrlLink = Uri.tryParse(fullLink)?.host ?? displayText;
                       final isEmail = EmailValidator.validate(displayText);
                       return WidgetSpan(
                         child: GestureDetector(
                           onTap: () async => launchLinkableContact(e),
                           onLongPress: () async => copyContact(context, displayText),
                           child: Text(
-                            isEmail ? e.text : displayUrlLink,
+                            isEmail ? displayText : displayUrlLink,
                             style: linkifiedTextStyle,
                           ),
                         ),
