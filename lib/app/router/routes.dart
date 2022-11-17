@@ -6,12 +6,19 @@ import 'package:nepanikar/games/math/math_game_screen.dart';
 import 'package:nepanikar/screens/about_app_screen.dart';
 import 'package:nepanikar/screens/contacts/phone_contacts_screen.dart';
 import 'package:nepanikar/screens/contacts/university_contacts_screen.dart';
-import 'package:nepanikar/screens/home/anxiety_screen.dart';
-import 'package:nepanikar/screens/home/anxiety_tips_route.dart';
+import 'package:nepanikar/screens/home/anxiety/anxiety_screen.dart';
+import 'package:nepanikar/screens/home/anxiety/anxiety_tips_route.dart';
+import 'package:nepanikar/screens/home/depression/depression_screen.dart';
+import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_distractions_screen.dart';
+import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_samples_screen.dart';
+import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_screen.dart';
+import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_tasks_screen.dart';
+import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_tips_screen.dart';
 import 'package:nepanikar/screens/home/my_records/mood_track_screen.dart';
 import 'package:nepanikar/screens/home/my_records/my_records_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_timer_screen.dart';
+import 'package:nepanikar/screens/home/suicidal_thoughts/suicidal_thoughts_screen.dart';
 import 'package:nepanikar/screens/main/main_screen.dart';
 
 part 'routes.g.dart';
@@ -67,4 +74,11 @@ const _homeRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<SelfHarmTimerRoute>(path: 'home/self-harm/timer'),
   TypedGoRoute<MyRecordsRoute>(path: 'home/my-records'),
   TypedGoRoute<MoodTrackRoute>(path: 'home/my-records/mood-track'),
+  TypedGoRoute<DepressionRoute>(path: 'home/depression'),
+  TypedGoRoute<SuicidalThoughtsRoute>(path: 'home/suicidal-thoughts'),
+  TypedGoRoute<EatingDisorderRoute>(path: 'home/eating-disorder'),
+  TypedGoRoute<EatingDisorderTipsRoute>(path: 'home/eating-disorder/tips'),
+  TypedGoRoute<EatingDisorderTasksRoute>(path: 'home/eating-disorder/tasks'),
+  TypedGoRoute<EatingDisorderSamplesRoute>(path: 'home/eating-disorder/samples'),
+  TypedGoRoute<EatingDisorderDistractionsRoute>(path: 'home/eating-disorder/distraction'),
 ];
