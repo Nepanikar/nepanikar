@@ -25,6 +25,26 @@ class MyRecordsScreen extends StatelessWidget {
         image: Assets.illustrations.modules.relaxation.svg(),
         onTap: () => context.push(const MoodTrackRoute().location),
       ),
+      LongTile(
+        text: context.l10n.sleep_title,
+        image: Assets.illustrations.modules.myRecords.svg(),
+        onTap: () => context.push(const MoodTrackRoute().location),
+      ),
+      LongTile(
+        text: context.l10n.diary,
+        image: Assets.illustrations.modules.myRecords.svg(),
+        onTap: () => context.push(const MoodTrackRoute().location),
+      ),
+      LongTile(
+        text: context.l10n.journal,
+        image: Assets.illustrations.modules.myRecords.svg(),
+        onTap: () => context.push(const MoodTrackRoute().location),
+      ),
+      LongTile(
+        text: context.l10n.food_records,
+        image: Assets.illustrations.modules.myRecords.svg(),
+        onTap: () => context.push(const MoodTrackRoute().location),
+      ),
     ];
 
     return NepanikarScreenWrapper(
