@@ -38,17 +38,17 @@ class AnxietyAppScreen extends StatelessWidget {
         onTap: () => context.push(const MathGameRoute().location),
       ),
       LongTile(
-        text: context.l10n.game_balls,
+        text: '${context.l10n.game_balls} TODO',
         image: Assets.illustrations.games.baloons.baloons.svg(),
         onTap: () {},
       ),
       LongTile(
-        text: context.l10n.game_balance,
+        text: '${context.l10n.game_balance} TODO',
         image: Assets.illustrations.games.swing.swing.svg(),
         onTap: () {},
       ),
       LongTile(
-        text: context.l10n.relaxation,
+        text: '${context.l10n.relaxation} TODO',
         image: Assets.illustrations.modules.relaxation.svg(),
         onTap: () {},
       ),

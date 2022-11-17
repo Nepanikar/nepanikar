@@ -26,24 +26,24 @@ class MyRecordsScreen extends StatelessWidget {
         onTap: () => context.push(const MoodTrackRoute().location),
       ),
       LongTile(
-        text: context.l10n.sleep_title,
+        text: '${context.l10n.sleep_title} TODO',
         image: Assets.illustrations.modules.myRecords.svg(),
-        onTap: () => context.push(const MoodTrackRoute().location),
+        onTap: () => {},
       ),
       LongTile(
-        text: context.l10n.diary,
+        text: '${context.l10n.diary} TODO',
         image: Assets.illustrations.modules.myRecords.svg(),
-        onTap: () => context.push(const MoodTrackRoute().location),
+        onTap: () => {},
       ),
       LongTile(
-        text: context.l10n.journal,
+        text: '${context.l10n.journal} TODO',
         image: Assets.illustrations.modules.myRecords.svg(),
-        onTap: () => context.push(const MoodTrackRoute().location),
+        onTap: () => {},
       ),
       LongTile(
-        text: context.l10n.food_records,
+        text: '${context.l10n.food_records} TODO',
         image: Assets.illustrations.modules.myRecords.svg(),
-        onTap: () => context.push(const MoodTrackRoute().location),
+        onTap: () => {},
       ),
     ];
 

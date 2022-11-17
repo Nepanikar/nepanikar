@@ -21,12 +21,12 @@ class SuicidalThoughtsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final modules = <Widget>[
       LongTile(
-        text: context.l10n.plan,
+        text: '${context.l10n.plan} TODO',
         image: Assets.illustrations.modules.suicidalThoughts.svg(),
         onTap: () => {},
       ),
       LongTile(
-        text: context.l10n.reasons,
+        text: '${context.l10n.reasons} TODO',
         image: Assets.illustrations.modules.suicidalThoughts.svg(),
         onTap: () => {},
       ),

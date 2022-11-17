@@ -19,22 +19,22 @@ class DepressionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final modules = <Widget>[
       LongTile(
-        text: context.l10n.depression_help,
+        text: '${context.l10n.depression_help} TODO',
         image: Assets.illustrations.modules.relaxation.svg(),
         onTap: () => {},
       ),
       LongTile(
-        text: context.l10n.depression_plan,
+        text: '${context.l10n.depression_plan} TODO',
         image: Assets.illustrations.modules.relaxation.svg(),
         onTap: () => {},
       ),
       LongTile(
-        text: context.l10n.depression_nice,
+        text: '${context.l10n.depression_nice} TODO',
         image: Assets.illustrations.modules.relaxation.svg(),
         onTap: () => {},
       ),
       LongTile(
-        text: context.l10n.depression_praise,
+        text: '${context.l10n.depression_praise} TODO',
         image: Assets.illustrations.modules.relaxation.svg(),
         onTap: () => {},
       ),

@@ -22,17 +22,17 @@ class SelfHarmScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final modules = <Widget>[
       LongTile(
-        text: context.l10n.self_harm_tips,
+        text: '${context.l10n.self_harm_tips} TODO',
         image: Assets.illustrations.modules.selfHarm.svg(),
         onTap: () => {},
       ),
       LongTile(
-        text: context.l10n.self_harm_helped,
+        text: '${context.l10n.self_harm_helped} TODO',
         image: Assets.illustrations.modules.selfHarm.svg(),
         onTap: () => {},
       ),
       LongTile(
-        text: context.l10n.plan,
+        text: '${context.l10n.plan} TODO',
         image: Assets.illustrations.modules.selfHarm.svg(),
         onTap: () => {},
       ),

@@ -19,27 +19,27 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final modules = <Widget>[
       LongTile(
-        text: context.l10n.food_breakfast,
+        text: '${context.l10n.food_breakfast} TODO',
         image: Assets.illustrations.modules.eatingDisorder.svg(),
         onTap: () => {},
       ),
       LongTile(
-        text: context.l10n.food_am_snack,
+        text: '${context.l10n.food_am_snack} TODO',
         image: Assets.illustrations.modules.eatingDisorder.svg(),
         onTap: () => {},
       ),
       LongTile(
-        text: context.l10n.food_lunch,
+        text: '${context.l10n.food_lunch} TODO',
         image: Assets.illustrations.modules.eatingDisorder.svg(),
         onTap: () => {},
       ),
       LongTile(
-        text: context.l10n.food_pm_snack,
+        text: '${context.l10n.food_pm_snack} TODO',
         image: Assets.illustrations.modules.eatingDisorder.svg(),
         onTap: () => {},
       ),
       LongTile(
-        text: context.l10n.food_dinner,
+        text: '${context.l10n.food_dinner} TODO',
         image: Assets.illustrations.modules.eatingDisorder.svg(),
         onTap: () => {},
       ),

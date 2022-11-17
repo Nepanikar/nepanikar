@@ -44,7 +44,7 @@ class EatingDisorderScreen extends StatelessWidget {
         onTap: () => context.push(const EatingDisorderDistractionsRoute().location),
       ),
       LongTile(
-        text: context.l10n.food_contact,
+        text: '${context.l10n.food_contact} TODO',
         image: Assets.illustrations.contacts.phones.svg(),
         onTap: () => {},
       ),

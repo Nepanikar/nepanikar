@@ -19,32 +19,32 @@ class EatingDisorderTipsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final modules = <Widget>[
       LongTile(
-        text: context.l10n.food_figure,
+        text: '${context.l10n.food_figure} TODO',
         image: Assets.illustrations.modules.eatingDisorder.svg(),
         onTap: () => {},
       ),
       LongTile(
-        text: context.l10n.food_remorse,
+        text: '${context.l10n.food_remorse} TODO',
         image: Assets.illustrations.modules.eatingDisorder.svg(),
         onTap: () => {},
       ),
       LongTile(
-        text: context.l10n.food_overeat,
+        text: '${context.l10n.food_overeat} TODO',
         image: Assets.illustrations.modules.eatingDisorder.svg(),
         onTap: () => {},
       ),
       LongTile(
-        text: context.l10n.food_vomit,
+        text: '${context.l10n.food_vomit} TODO',
         image: Assets.illustrations.modules.eatingDisorder.svg(),
         onTap: () => {},
       ),
       LongTile(
-        text: context.l10n.food_fail,
+        text: '${context.l10n.food_fail} TODO',
         image: Assets.illustrations.modules.eatingDisorder.svg(),
         onTap: () => {},
       ),
       LongTile(
-        text: context.l10n.food_misc,
+        text: '${context.l10n.food_misc} TODO',
         image: Assets.illustrations.modules.eatingDisorder.svg(),
         onTap: () => {},
       ),
