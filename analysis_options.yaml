@@ -27,3 +27,6 @@ linter:
     prefer_single_quotes: true
     unawaited_futures: true
     constant_identifier_names: false
+
+    # not correct lint: https://github.com/dart-lang/linter/issues/3286
+    use_decorated_box: false

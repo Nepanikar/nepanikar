@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
+const defaultMaterialBorderRadius = BorderRadius.all(Radius.circular(12));
+
 class MaterialWrapper extends StatelessWidget {
   const MaterialWrapper({
     super.key,
     required this.color,
     required this.onTap,
-    this.borderRadius = const BorderRadius.all(Radius.circular(12)),
+    this.borderRadius = defaultMaterialBorderRadius,
     required this.child,
   });
 

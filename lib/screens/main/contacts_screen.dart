@@ -4,6 +4,7 @@ import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/screens/contacts/phone_contacts_screen.dart';
+import 'package:nepanikar/screens/contacts/university_contacts_screen.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:nepanikar_contacts_gen/nepanikar_contacts_gen.dart';
@@ -37,11 +38,11 @@ class ContactsScreen extends StatelessWidget {
           image: Assets.illustrations.contacts.chat.svg(),
           onTap: () => {},
         ),
-      if (countryContacts.universityContacts != null)
+      if (countryContacts.universityRegionContacts != null)
         LongTile(
           text: context.l10n.universities,
           image: Assets.illustrations.contacts.universities.svg(),
-          onTap: () => {},
+          onTap: () => context.push(const UniversityContactsRoute().location),
         ),
       LongTile(
         text: context.l10n.my_contacts,

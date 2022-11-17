@@ -39,6 +39,7 @@ class MoodTrackScreen extends StatelessWidget {
 
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.depression_mood,
+      // TODO: description
       appBarDescription: AppConstants.loremIpsumShort,
       isModuleList: false,
       children: [

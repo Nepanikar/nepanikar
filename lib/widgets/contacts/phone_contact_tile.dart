@@ -42,7 +42,7 @@ class PhoneContactTile extends StatelessWidget {
       trailing: Text(contact.tel, style: _phoneNumTextStyle.copyWith(color: textColor)),
       backgroundColor: isPinned ? NepanikarColors.secondary : null,
       onTap: () async => launchPhoneNum(contact.unformattedTel),
-      onLongPress: () async => copyPhoneNum(context, contact.unformattedTel),
+      onLongPress: () async => copyContact(context, contact.unformattedTel),
     );
   }
 
@@ -54,7 +54,7 @@ class PhoneContactTile extends StatelessWidget {
           ? () async => launchPhoneNum(contact.subPhoneContacts.first.unformattedTel)
           : null,
       onLongPress: isSingleSubList
-          ? () async => copyPhoneNum(context, contact.subPhoneContacts.first.unformattedTel)
+          ? () async => copyContact(context, contact.subPhoneContacts.first.unformattedTel)
           : null,
       child: LongTile(
         text: contact.title,
@@ -91,7 +91,7 @@ class PhoneContactTile extends StatelessWidget {
                     ],
                   ),
                   onTap: () async => launchPhoneNum(subContact.unformattedTel),
-                  onLongPress: () async => copyPhoneNum(context, subContact.unformattedTel),
+                  onLongPress: () async => copyContact(context, subContact.unformattedTel),
                 ),
               )
               .toList(),

@@ -2,6 +2,7 @@ import 'package:flextras/flextras.dart';
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/sizes.dart';
+import 'package:nepanikar/helpers/screen_resolution_helpers.dart';
 
 class NepanikarScreenWrapper extends StatelessWidget {
   const NepanikarScreenWrapper({
@@ -10,6 +11,7 @@ class NepanikarScreenWrapper extends StatelessWidget {
     required this.appBarTitle,
     this.appBarDescription,
     this.isModuleList = true,
+    this.isCardStackLayout = false,
   });
 
   final String appBarTitle;
@@ -20,6 +22,9 @@ class NepanikarScreenWrapper extends StatelessWidget {
   final bool isModuleList;
 
   final List<Widget> children;
+
+  /// A layout which has a card which slightly overlaps the app bar.
+  final bool isCardStackLayout;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +41,8 @@ class NepanikarScreenWrapper extends StatelessWidget {
       } else {
         return Column(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment:
+              isCardStackLayout ? CrossAxisAlignment.start : CrossAxisAlignment.center,
           children: children,
         );
       }
@@ -44,21 +51,48 @@ class NepanikarScreenWrapper extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(appBarTitle)),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: appBarDescription == null
-              ? Stack(
-                  children: [
-                    _buildAppBarContent(context),
-                    getPageContent(),
-                  ],
-                )
-              : Column(
-                  children: [
-                    _buildAppBarContent(context),
-                    getPageContent(),
-                  ],
-                ),
-        ),
+        child: isCardStackLayout
+            ? Stack(
+                children: [
+                  _buildAppBarContent(context),
+                  LayoutBuilder(
+                    builder: (layoutContext, constraints) {
+                      return Container(
+                        margin: EdgeInsets.only(
+                          top: context.screenHeight - constraints.maxHeight - 16,
+                        ),
+                        child: SizedBox(
+                          width: layoutContext.screenWidth,
+                          child: Card(
+                            margin: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                            child: Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: SingleChildScrollView(
+                                child: getPageContent(),
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              )
+            : SingleChildScrollView(
+                child: appBarDescription == null
+                    ? Stack(
+                        children: [
+                          _buildAppBarContent(context),
+                          getPageContent(),
+                        ],
+                      )
+                    : Column(
+                        children: [
+                          _buildAppBarContent(context),
+                          getPageContent(),
+                        ],
+                      ),
+              ),
       ),
     );
   }

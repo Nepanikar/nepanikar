@@ -18,9 +18,11 @@ _$_CountryContacts _$$_CountryContactsFromJson(Map<String, dynamic> json) =>
       chatContacts: (json['chatContacts'] as List<dynamic>?)
           ?.map((e) => ChatContact.fromJson(e as Map<String, dynamic>))
           .toList(),
-      universityContacts: (json['universityContacts'] as List<dynamic>?)
-          ?.map((e) => UniversityContact.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      universityRegionContacts:
+          (json['universityRegionContacts'] as List<dynamic>?)
+              ?.map((e) =>
+                  UniversityRegionContact.fromJson(e as Map<String, dynamic>))
+              .toList(),
     );
 
 Map<String, dynamic> _$$_CountryContactsToJson(_$_CountryContacts instance) =>
@@ -29,5 +31,5 @@ Map<String, dynamic> _$$_CountryContactsToJson(_$_CountryContacts instance) =>
       'phoneContacts': instance.phoneContacts,
       'crisisCenterContacts': instance.crisisCenterContacts,
       'chatContacts': instance.chatContacts,
-      'universityContacts': instance.universityContacts,
+      'universityRegionContacts': instance.universityRegionContacts,
     };
