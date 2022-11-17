@@ -22,9 +22,9 @@ class BorderPainter extends CustomPainter {
     final paint = Paint()..color = Colors.transparent;
     final progress = animation.value;
 
-    var startingPositionDeg = -90;
-    if (shape == BreathingGameShape.square) startingPositionDeg = -45;
-    if (shape == BreathingGameShape.triangle) startingPositionDeg = -33;
+    var startingPositionDeg = 90;
+    if (shape == BreathingGameShape.square) startingPositionDeg = 135;
+    if (shape == BreathingGameShape.triangle) startingPositionDeg = 90;
 
     if (progress > 0) {
       paint.color = borderColor;

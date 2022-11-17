@@ -26,17 +26,24 @@ class BreathingGameRoute extends GoRouteData {
 
 class BreathingGameScreen extends StatefulWidget {
   const BreathingGameScreen({super.key, required this.shape});
+
   final BreathingGameShape shape;
 
   @override
   State<BreathingGameScreen> createState() => _BreathingGameScreenState();
 }
 
-class _BreathingGameScreenState extends State<BreathingGameScreen>
-    with SingleTickerProviderStateMixin {
+class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerProviderStateMixin {
   late AnimationController _controller;
   double _currentSliderValue = 10;
   final _indexNotifier = ValueNotifier<int>(0);
+  final _countDownNotifier = ValueNotifier<int>(0);
+  late final _scaleAnimation = ValueNotifier(
+    AnimationController(
+      duration: const Duration(seconds: 1),
+      vsync: this,
+    ),
+  );
   List<String> steps = [];
 
   void initSteps() {
@@ -71,6 +78,32 @@ class _BreathingGameScreenState extends State<BreathingGameScreen>
     }
   }
 
+  void progressListener() {
+    final newIndex = (_controller.value * steps.length).floor();
+    if (newIndex != _indexNotifier.value) {
+      _indexNotifier.value = newIndex;
+      setState(() {});
+    }
+
+    final totalSteps = 3 * steps.length;
+    final currStep = (totalSteps * _controller.value).floor();
+
+    final discount = ((totalSteps - 1 - currStep) / 3).floor() * 3;
+    if ((totalSteps - currStep) - discount != _countDownNotifier.value) {
+      setState(() {
+        _countDownNotifier.value = (totalSteps - currStep) - discount;
+      });
+
+      _scaleAnimation.value
+        ..reset()
+        ..value = 1
+        ..duration = Duration(
+          milliseconds: ((_controller.duration?.inMilliseconds ?? 0) / totalSteps).round(),
+        )
+        ..reverse();
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -80,24 +113,24 @@ class _BreathingGameScreenState extends State<BreathingGameScreen>
       duration: const Duration(seconds: 10),
     );
 
-    _controller.addListener(() {
-      final newIndex = (_controller.value * steps.length).floor();
-      if (newIndex != _indexNotifier.value) {
-        _indexNotifier.value = newIndex;
-      }
-    });
+    _controller.addListener(progressListener);
     _controller.repeat();
   }
 
   @override
   void didChangeDependencies() {
     initSteps();
+
     super.didChangeDependencies();
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    _countDownNotifier.dispose();
+    _indexNotifier.dispose();
+    _scaleAnimation.value.dispose();
+    _scaleAnimation.dispose();
     super.dispose();
   }
 
@@ -110,6 +143,24 @@ class _BreathingGameScreenState extends State<BreathingGameScreen>
       body: SafeArea(
         child: Stack(
           children: [
+            Center(
+              child: ValueListenableBuilder(
+                valueListenable: _scaleAnimation,
+                builder: (context, index, _) {
+                  return ScaleTransition(
+                    scale: _scaleAnimation.value,
+                    child: Text(
+                      _countDownNotifier.value.toString(),
+                      style: const TextStyle(
+                        color: Colors.white12,
+                        fontSize: 300,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
             Center(
               child: Padding(
                 padding: EdgeInsets.only(
@@ -128,18 +179,22 @@ class _BreathingGameScreenState extends State<BreathingGameScreen>
               ),
             ),
             if (steps.isNotEmpty)
-              Center(
-                child: ValueListenableBuilder(
-                  valueListenable: _indexNotifier,
-                  builder: (context, value, _) {
-                    return Text(
-                      steps.elementAt(value),
-                      style: NepanikarFonts.bodyHeavy.copyWith(
-                        color: Colors.white,
-                        fontSize: 26,
-                      ),
-                    );
-                  },
+              Padding(
+                padding:
+                    EdgeInsets.only(bottom: widget.shape == BreathingGameShape.triangle ? 64.0 : 0),
+                child: Center(
+                  child: ValueListenableBuilder(
+                    valueListenable: _indexNotifier,
+                    builder: (context, value, _) {
+                      return Text(
+                        steps.elementAt(value),
+                        style: NepanikarFonts.bodyHeavy.copyWith(
+                          color: Colors.white,
+                          fontSize: 26,
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ),
             Column(
@@ -178,6 +233,7 @@ class _BreathingGameScreenState extends State<BreathingGameScreen>
                   min: 5,
                   max: 15,
                   divisions: 10,
+                  label: (_currentSliderValue.round() - 5).toString(),
                   thumbColor: Colors.white,
                   activeColor: Colors.white,
                   inactiveColor: NepanikarColors.primarySwatch.shade500,
