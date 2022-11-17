@@ -60,7 +60,7 @@ class MoodTrackDao with CustomFilters {
         return results;
       });
 
-  Stream<MoodTrack?> get lastMoodTrackStream => _store
+  Stream<MoodTrack?> get latestMoodTrackStream => _store
           .query(finder: Finder(filter: getDateEqualsFilter(getNowDateUtc())))
           .onSnapshot(_db)
           .map((snapshot) {

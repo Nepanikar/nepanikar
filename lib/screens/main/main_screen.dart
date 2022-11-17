@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
-import 'package:nepanikar/l10n/ext.dart';
 import 'package:nepanikar/screens/main/contacts_screen.dart';
 import 'package:nepanikar/screens/main/home_screen.dart';
 import 'package:nepanikar/screens/main/my_records_screen.dart';
@@ -82,7 +82,8 @@ class _MainScreenState extends State<MainScreen> {
           ),
           _buildBottomNavigationBarItem(
             svgIconPath: Assets.icons.calendarEvent.path,
-            label: context.l10n.my_records,
+            // TODO: l10n
+            label: 'Záznamy',
             isSelected: _selectedIndex == 1,
           ),
           _buildBottomNavigationBarItem(

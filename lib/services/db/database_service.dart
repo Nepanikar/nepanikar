@@ -86,12 +86,11 @@ class DatabaseService {
   Future<void> _doDataMigrationFromOldAppVersion() async {
     final configFile = await getOldAppConfigFile();
     if (configFile == null) return;
-    // await Future.delayed(const Duration(seconds: 5));
     final nepanikarConfig = NepanikarConfigParser.parseConfigFile(configFile);
 
-    final relaxationModuleConfig = nepanikarConfig.relaxationModuleConfig;
-    if (relaxationModuleConfig != null) {
-      final moodTrackMap = relaxationModuleConfig.moodTrackConfig?.values;
+    final myRecordsModuleConfig = nepanikarConfig.myRecordsModuleConfig;
+    if (myRecordsModuleConfig != null) {
+      final moodTrackMap = myRecordsModuleConfig.moodTrackConfig?.values;
       if (moodTrackMap != null) {
         for (final moodTrackEntry in moodTrackMap.entries) {
           final mood = Mood.fromInteger(moodTrackEntry.value);

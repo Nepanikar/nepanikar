@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
+import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/games/math/math_game_screen.dart';
-import 'package:nepanikar/l10n/ext.dart';
-import 'package:nepanikar/router/routes.dart';
 import 'package:nepanikar/screens/home/anxiety_screen.dart';
-import 'package:nepanikar/screens/home/relaxation/relaxation_screen.dart';
+import 'package:nepanikar/screens/home/my_records/my_records_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_screen.dart';
 import 'package:nepanikar/services/db/relaxation/mood_track_dao.dart';
 import 'package:nepanikar/services/db/relaxation/mood_track_model.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/contacts/quick_help_button.dart';
 import 'package:nepanikar/widgets/home_tile.dart';
-import 'package:nepanikar/widgets/mood_picker.dart';
+import 'package:nepanikar/widgets/mood/mood_picker.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
@@ -53,39 +53,30 @@ class HomeScreen extends StatelessWidget {
         location: const MathGameRoute().location,
       ),
       HomeTile(
-        text: context.l10n.relaxation,
+        text: context.l10n.my_records,
         image: Assets.illustrations.modules.myRecords.svg(),
-        location: const RelaxationRoute().location,
+        location: const MyRecordsRoute().location,
       ),
     ];
 
     return Scaffold(
       body: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            SliverPadding(
-              padding: const EdgeInsets.all(8),
-              sliver: SliverAppBar(
-                pinned: true,
-                floating: true,
-                expandedHeight: 92.0,
-                collapsedHeight: 60,
-                elevation: 2,
-                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                title: Row(
+        child: SingleChildScrollView(
+          primary: true,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8),
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Flexible(
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const SizedBox(
-                            width: 6,
-                          ),
+                          const SizedBox(width: 6),
                           Assets.icons.logo.svg(),
-                          const SizedBox(
-                            width: 10,
-                          ),
+                          const SizedBox(width: 10),
                           Text(
                             context.l10n.app_name,
                             style: NepanikarFonts.title3.copyWith(fontSize: 18.6),
@@ -97,12 +88,11 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
-            SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              sliver: SliverToBoxAdapter(
+              const SizedBox(height: 32),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: StreamBuilder<MoodTrack?>(
-                  stream: _moodTrackDao.lastMoodTrackStream,
+                  stream: _moodTrackDao.latestMoodTrackStream,
                   builder: (_, snapshot) {
                     final latestMoodTrack = snapshot.data;
                     return MoodPicker(
@@ -112,35 +102,31 @@ class HomeScreen extends StatelessWidget {
                   },
                 ),
               ),
-            ),
-            const SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.only(left: 24.0, right: 24.0, bottom: 16.0, top: 30),
-                child: Text(
-                  //TODO: l10n
-                  'S čím můžeme pomoci?',
-                  style: NepanikarFonts.title2,
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: EdgeInsets.only(left: 24.0, right: 24.0, bottom: 16.0, top: 30),
+                  child: Text(
+                    //TODO: l10n
+                    'S čím můžeme pomoci?',
+                    style: NepanikarFonts.title2,
+                  ),
                 ),
               ),
-            ),
-            SliverPadding(
-              padding: const EdgeInsets.only(left: 24, right: 24, bottom: 48),
-              sliver: SliverGrid(
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 185.0,
-                  mainAxisSpacing: 12.0,
-                  crossAxisSpacing: 12.0,
-                  childAspectRatio: 1.331,
-                ),
-                delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) {
-                    return modules.elementAt(index);
-                  },
-                  childCount: modules.length,
+              Padding(
+                padding: const EdgeInsets.only(left: 24, right: 24, bottom: 20),
+                child: GridView.count(
+                  shrinkWrap: true,
+                  primary: false,
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 16,
+                  mainAxisSpacing: 16,
+                  childAspectRatio: 1.2,
+                  children: modules,
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

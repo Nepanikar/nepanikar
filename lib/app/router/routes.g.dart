@@ -51,11 +51,11 @@ GoRoute get $mainRoute => GoRouteData.$route(
           factory: $SelfHarmTimerRouteExtension._fromState,
         ),
         GoRouteData.$route(
-          path: 'home/relaxation',
-          factory: $RelaxationRouteExtension._fromState,
+          path: 'home/my-records',
+          factory: $MyRecordsRouteExtension._fromState,
         ),
         GoRouteData.$route(
-          path: 'home/relaxation/mood-track',
+          path: 'home/my-records/mood-track',
           factory: $MoodTrackRouteExtension._fromState,
         ),
       ],
@@ -189,12 +189,12 @@ extension $SelfHarmTimerRouteExtension on SelfHarmTimerRoute {
   void push(BuildContext context) => context.push(location, extra: this);
 }
 
-extension $RelaxationRouteExtension on RelaxationRoute {
-  static RelaxationRoute _fromState(GoRouterState state) =>
-      const RelaxationRoute();
+extension $MyRecordsRouteExtension on MyRecordsRoute {
+  static MyRecordsRoute _fromState(GoRouterState state) =>
+      const MyRecordsRoute();
 
   String get location => GoRouteData.$location(
-        '/home/relaxation',
+        '/home/my-records',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
@@ -207,7 +207,7 @@ extension $MoodTrackRouteExtension on MoodTrackRoute {
       const MoodTrackRoute();
 
   String get location => GoRouteData.$location(
-        '/home/relaxation/mood-track',
+        '/home/my-records/mood-track',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/localization_helpers.dart';
-import 'package:nepanikar/l10n/ext.dart';
 import 'package:nepanikar/services/db/self_harm/self_harm_timer_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_button.dart';
@@ -47,6 +47,12 @@ class SelfHarmTimerScreen extends StatelessWidget {
                         builder: (_, snapshot) {
                           final startDateTime = snapshot.data;
                           final isTimerRunning = startDateTime != null;
+                          bool showSecsTimer() {
+                            final durationInSec =
+                                isTimerRunning ? _now.difference(startDateTime).inSeconds : null;
+                            return durationInSec != null && durationInSec < 60;
+                          }
+
                           return Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -58,11 +64,17 @@ class SelfHarmTimerScreen extends StatelessWidget {
                                   child: NepanikarHorizontalDivider(),
                                 ),
                               ],
-                              _buildTimeTextSection(
-                                context,
-                                dateTimeRange: isTimerRunning
-                                    ? DateTimeRange(start: startDateTime.toLocal(), end: _now)
-                                    : null,
+                              TimerBuilder.periodic(
+                                Duration(seconds: showSecsTimer() ? 1 : 60),
+                                builder: (_) {
+                                  return _buildTimeTextSection(
+                                    context,
+                                    dateTimeRange: isTimerRunning
+                                        ? DateTimeRange(start: startDateTime.toLocal(), end: _now)
+                                        : null,
+                                    showSeconds: showSecsTimer(),
+                                  );
+                                },
                               ),
                               const SizedBox(height: 16),
                               if (!isTimerRunning)
@@ -133,6 +145,7 @@ class SelfHarmTimerScreen extends StatelessWidget {
   Widget _buildTimeTextSection(
     BuildContext context, {
     DateTimeRange? dateTimeRange,
+    bool showSeconds = false,
   }) {
     final valueTextStyle = NepanikarFonts.title2.copyWith(color: NepanikarColors.primary);
     final labelTextStyle = NepanikarFonts.bodyRoman.copyWith(color: NepanikarColors.primary);
@@ -196,6 +209,7 @@ class SelfHarmTimerScreen extends StatelessWidget {
     final daysDiff = period.days;
     final hoursDiff = period.hours;
     final minutesDiff = period.minutes;
+    final secondsDiff = period.seconds;
 
     // TODO: l10n
     return Column(
@@ -235,6 +249,11 @@ class SelfHarmTimerScreen extends StatelessWidget {
               value: minutesDiff.toString(),
               label: pluralMinutes(context, value: minutesDiff),
             ),
+            if (showSeconds && secondsDiff < 60)
+              buildTextSpan(
+                value: secondsDiff.toString(),
+                label: pluralSeconds(context, value: secondsDiff),
+              ),
           ],
         ),
       ],
