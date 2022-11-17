@@ -5,7 +5,7 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/games/breathing/breathing_exercises_screen.dart';
 import 'package:nepanikar/games/math/math_game_screen.dart';
-import 'package:nepanikar/screens/home/anxiety_tips_route.dart';
+import 'package:nepanikar/screens/home/anxiety/anxiety_tips_route.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
@@ -38,17 +38,17 @@ class AnxietyAppScreen extends StatelessWidget {
         onTap: () => context.push(const MathGameRoute().location),
       ),
       LongTile(
-        text: context.l10n.game_balls,
+        text: '${context.l10n.game_balls} TODO',
         image: Assets.illustrations.games.baloons.baloons.svg(),
         onTap: () {},
       ),
       LongTile(
-        text: context.l10n.game_balance,
+        text: '${context.l10n.game_balance} TODO',
         image: Assets.illustrations.games.swing.swing.svg(),
         onTap: () {},
       ),
       LongTile(
-        text: context.l10n.relaxation,
+        text: '${context.l10n.relaxation} TODO',
         image: Assets.illustrations.modules.relaxation.svg(),
         onTap: () {},
       ),

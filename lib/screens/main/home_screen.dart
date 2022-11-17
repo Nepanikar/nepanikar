@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
-import 'package:nepanikar/games/math/math_game_screen.dart';
-import 'package:nepanikar/screens/home/anxiety_screen.dart';
+import 'package:nepanikar/screens/home/anxiety/anxiety_screen.dart';
+import 'package:nepanikar/screens/home/depression/depression_screen.dart';
+import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_screen.dart';
 import 'package:nepanikar/screens/home/my_records/my_records_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_screen.dart';
+import 'package:nepanikar/screens/home/suicidal_thoughts/suicidal_thoughts_screen.dart';
 import 'package:nepanikar/services/db/relaxation/mood_track_dao.dart';
 import 'package:nepanikar/services/db/relaxation/mood_track_model.dart';
 import 'package:nepanikar/utils/registry.dart';
@@ -26,11 +29,14 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
+    );
     final modules = <HomeTile>[
       HomeTile(
         text: context.l10n.depression,
         image: Assets.illustrations.modules.depression.svg(),
-        location: const MathGameRoute().location,
+        location: const DepressionRoute().location,
       ),
       HomeTile(
         text: 'Úzkost a panika',
@@ -45,12 +51,12 @@ class HomeScreen extends StatelessWidget {
       HomeTile(
         text: context.l10n.suicidal_thoughts,
         image: Assets.illustrations.modules.suicidalThoughts.svg(),
-        location: const MathGameRoute().location,
+        location: const SuicidalThoughtsRoute().location,
       ),
       HomeTile(
         text: context.l10n.food,
         image: Assets.illustrations.modules.eatingDisorder.svg(),
-        location: const MathGameRoute().location,
+        location: const EatingDisorderRoute().location,
       ),
       HomeTile(
         text: context.l10n.my_records,
