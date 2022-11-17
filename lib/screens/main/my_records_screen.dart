@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nepanikar/screens/home/relaxation/mood_track_screen.dart';
+import 'package:nepanikar/screens/home/my_records/mood_track_screen.dart';
 
 // TODO: List of Relaxation modules
 class MyRecordsScreen extends StatelessWidget {

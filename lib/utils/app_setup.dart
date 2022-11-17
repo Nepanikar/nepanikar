@@ -4,7 +4,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
-import 'package:nepanikar/router/go_router_config.dart';
+import 'package:nepanikar/app/router/go_router_config.dart';
 import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/services/save_directories.dart';
 import 'package:nepanikar/utils/app_config.dart';

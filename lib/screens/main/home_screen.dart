@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
+import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/games/math/math_game_screen.dart';
-import 'package:nepanikar/l10n/ext.dart';
-import 'package:nepanikar/router/routes.dart';
 import 'package:nepanikar/screens/home/anxiety_screen.dart';
-import 'package:nepanikar/screens/home/relaxation/relaxation_screen.dart';
+import 'package:nepanikar/screens/home/my_records/my_records_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_screen.dart';
 import 'package:nepanikar/services/db/relaxation/mood_track_dao.dart';
 import 'package:nepanikar/services/db/relaxation/mood_track_model.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/contacts/quick_help_button.dart';
 import 'package:nepanikar/widgets/home_tile.dart';
-import 'package:nepanikar/widgets/mood_picker.dart';
+import 'package:nepanikar/widgets/mood/mood_picker.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
@@ -53,9 +53,9 @@ class HomeScreen extends StatelessWidget {
         location: const MathGameRoute().location,
       ),
       HomeTile(
-        text: context.l10n.relaxation,
+        text: context.l10n.my_records,
         image: Assets.illustrations.modules.myRecords.svg(),
-        location: const RelaxationRoute().location,
+        location: const MyRecordsRoute().location,
       ),
     ];
 

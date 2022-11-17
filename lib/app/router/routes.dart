@@ -7,8 +7,8 @@ import 'package:nepanikar/screens/about_app_screen.dart';
 import 'package:nepanikar/screens/contacts/phone_contacts_screen.dart';
 import 'package:nepanikar/screens/home/anxiety_screen.dart';
 import 'package:nepanikar/screens/home/anxiety_tips_route.dart';
-import 'package:nepanikar/screens/home/relaxation/mood_track_screen.dart';
-import 'package:nepanikar/screens/home/relaxation/relaxation_screen.dart';
+import 'package:nepanikar/screens/home/my_records/mood_track_screen.dart';
+import 'package:nepanikar/screens/home/my_records/my_records_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_timer_screen.dart';
 import 'package:nepanikar/screens/main/main_screen.dart';
@@ -63,6 +63,6 @@ const _homeRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<AnxietyTipsAppRoute>(path: 'home/anxiety/tips'),
   TypedGoRoute<SelfHarmRoute>(path: 'home/self-harm'),
   TypedGoRoute<SelfHarmTimerRoute>(path: 'home/self-harm/timer'),
-  TypedGoRoute<RelaxationRoute>(path: 'home/relaxation'),
-  TypedGoRoute<MoodTrackRoute>(path: 'home/relaxation/mood-track'),
+  TypedGoRoute<MyRecordsRoute>(path: 'home/my-records'),
+  TypedGoRoute<MoodTrackRoute>(path: 'home/my-records/mood-track'),
 ];

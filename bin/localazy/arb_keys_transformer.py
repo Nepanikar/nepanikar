@@ -6,7 +6,7 @@ import stringcase
 
 arb_file_prefix = 'app_'
 arb_file_suffix = '.arb'
-app_10n_arb_dir_path = '../../lib/l10n/arb/'
+app_10n_arb_dir_path = '../../lib/app/l10n/arb/'
 
 # Keys which should not be changed.
 ignored_keys = ['@@locale']

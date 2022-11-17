@@ -14,7 +14,7 @@
     "actions": [
       {
         "type": "arb",
-        "output": "../../lib/l10n/arb/app_${cleaned_lang_code}.arb",
+        "output": "../../lib/app/l10n/arb/app_${cleaned_lang_code}.arb",
         "langExpansions": {
           "pt-PT": ["pt-PT2"]
         }
