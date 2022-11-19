@@ -55,6 +55,10 @@ GoRoute get $mainRoute => GoRouteData.$route(
           factory: $SelfHarmTimerRouteExtension._fromState,
         ),
         GoRouteData.$route(
+          path: 'home/self-harm/plan',
+          factory: $SelfHarmPlanRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: 'home/my-records',
           factory: $MyRecordsRouteExtension._fromState,
         ),
@@ -69,6 +73,10 @@ GoRoute get $mainRoute => GoRouteData.$route(
         GoRouteData.$route(
           path: 'home/suicidal-thoughts',
           factory: $SuicidalThoughtsRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'home/suicidal-thoughts/plan',
+          factory: $SuicidalThoughtsPlanRouteExtension._fromState,
         ),
         GoRouteData.$route(
           path: 'home/eating-disorder',
@@ -234,6 +242,19 @@ extension $SelfHarmTimerRouteExtension on SelfHarmTimerRoute {
   void push(BuildContext context) => context.push(location, extra: this);
 }
 
+extension $SelfHarmPlanRouteExtension on SelfHarmPlanRoute {
+  static SelfHarmPlanRoute _fromState(GoRouterState state) =>
+      const SelfHarmPlanRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/self-harm/plan',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
 extension $MyRecordsRouteExtension on MyRecordsRoute {
   static MyRecordsRoute _fromState(GoRouterState state) =>
       const MyRecordsRoute();
@@ -279,6 +300,19 @@ extension $SuicidalThoughtsRouteExtension on SuicidalThoughtsRoute {
 
   String get location => GoRouteData.$location(
         '/home/suicidal-thoughts',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $SuicidalThoughtsPlanRouteExtension on SuicidalThoughtsPlanRoute {
+  static SuicidalThoughtsPlanRoute _fromState(GoRouterState state) =>
+      const SuicidalThoughtsPlanRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/suicidal-thoughts/plan',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);

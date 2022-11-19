@@ -10,8 +10,8 @@ import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_screen.da
 import 'package:nepanikar/screens/home/my_records/my_records_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_screen.dart';
 import 'package:nepanikar/screens/home/suicidal_thoughts/suicidal_thoughts_screen.dart';
-import 'package:nepanikar/services/db/relaxation/mood_track_dao.dart';
-import 'package:nepanikar/services/db/relaxation/mood_track_model.dart';
+import 'package:nepanikar/services/db/my_records/mood_track_dao.dart';
+import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/contacts/quick_help_button.dart';
 import 'package:nepanikar/widgets/home_tile.dart';

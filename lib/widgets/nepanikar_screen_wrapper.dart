@@ -1,14 +1,15 @@
 import 'package:flextras/flextras.dart';
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/theme/colors.dart';
+import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/app/theme/sizes.dart';
 import 'package:nepanikar/helpers/screen_resolution_helpers.dart';
 
 class NepanikarScreenWrapper extends StatelessWidget {
   const NepanikarScreenWrapper({
     super.key,
-    required this.children,
     required this.appBarTitle,
+    required this.children,
     this.appBarDescription,
     this.isModuleList = true,
     this.isCardStackLayout = false,
@@ -50,6 +51,7 @@ class NepanikarScreenWrapper extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text(appBarTitle)),
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: isCardStackLayout
             ? Stack(
@@ -59,7 +61,9 @@ class NepanikarScreenWrapper extends StatelessWidget {
                     builder: (layoutContext, constraints) {
                       return Container(
                         margin: EdgeInsets.only(
-                          top: context.screenHeight - constraints.maxHeight - 16,
+                          top: context.screenHeight - constraints.maxHeight - 32,
+                          // Padding from the keyboard, if opened.
+                          bottom: MediaQuery.of(context).viewInsets.bottom,
                         ),
                         child: SizedBox(
                           width: layoutContext.screenWidth,
@@ -108,11 +112,12 @@ class NepanikarScreenWrapper extends StatelessWidget {
           : Padding(
               padding: EdgeInsets.fromLTRB(pageSidePadding, 6, pageSidePadding, pageSidePadding),
               child: Text(
-                appBarDescription!,
+                isCardStackLayout ? '${appBarDescription!}\n\n' : appBarDescription!,
+                maxLines: 3,
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodyText1?.copyWith(
-                      color: Colors.white,
-                    ),
+                style: NepanikarFonts.bodyRoman.copyWith(
+                  color: NepanikarColors.primarySwatch.shade400,
+                ),
               ),
             ),
     );

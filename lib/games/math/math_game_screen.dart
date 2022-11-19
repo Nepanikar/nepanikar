@@ -67,6 +67,7 @@ class _MathGameScreenState extends State<MathGameScreen> {
   @override
   void dispose() {
     _textEditingController.dispose();
+    _focusNode.dispose();
     super.dispose();
   }
 

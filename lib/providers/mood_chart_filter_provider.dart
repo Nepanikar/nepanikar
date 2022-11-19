@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nepanikar/helpers/date_helpers.dart';
-import 'package:nepanikar/services/db/relaxation/mood_track_model.dart';
+import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
 
 enum DateRangeSwitch {
   previous,

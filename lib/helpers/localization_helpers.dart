@@ -89,3 +89,9 @@ String pluralSeconds(
     locale: Localizations.localeOf(context).languageCode,
   );
 }
+
+extension LocalizationTextExtractor on String {
+  List<String> extractToItems() {
+    return split('\n').map((line) => line.trim()).where((line) => line.isNotEmpty).toList();
+  }
+}

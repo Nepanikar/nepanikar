@@ -15,10 +15,6 @@ enum NepanikarDropdownType {
   final Color textColor;
   final Color bgColor;
 
-  bool get isOutlined => this == NepanikarDropdownType.outlined;
-
-  bool get isFilled => this == NepanikarDropdownType.filled;
-
   Decoration? get decoration {
     switch (this) {
       case NepanikarDropdownType.filled:

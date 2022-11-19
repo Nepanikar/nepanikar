@@ -16,8 +16,10 @@ import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_tasks_scr
 import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_tips_screen.dart';
 import 'package:nepanikar/screens/home/my_records/mood_track_screen.dart';
 import 'package:nepanikar/screens/home/my_records/my_records_screen.dart';
+import 'package:nepanikar/screens/home/self_harm/self_harm_plan_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_timer_screen.dart';
+import 'package:nepanikar/screens/home/suicidal_thoughts/suicidal_thoughts_plan_screen.dart';
 import 'package:nepanikar/screens/home/suicidal_thoughts/suicidal_thoughts_screen.dart';
 import 'package:nepanikar/screens/main/main_screen.dart';
 
@@ -70,15 +72,25 @@ const _contactRoutes = <TypedGoRoute<GoRouteData>>[
 const _homeRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<AnxietyAppRoute>(path: 'home/anxiety'),
   TypedGoRoute<AnxietyTipsAppRoute>(path: 'home/anxiety/tips'),
-  TypedGoRoute<SelfHarmRoute>(path: 'home/self-harm'),
-  TypedGoRoute<SelfHarmTimerRoute>(path: 'home/self-harm/timer'),
+  ..._selfHarmRoutes,
   TypedGoRoute<MyRecordsRoute>(path: 'home/my-records'),
   TypedGoRoute<MoodTrackRoute>(path: 'home/my-records/mood-track'),
   TypedGoRoute<DepressionRoute>(path: 'home/depression'),
-  TypedGoRoute<SuicidalThoughtsRoute>(path: 'home/suicidal-thoughts'),
+  ..._suicidalThoughtsRoutes,
   TypedGoRoute<EatingDisorderRoute>(path: 'home/eating-disorder'),
   TypedGoRoute<EatingDisorderTipsRoute>(path: 'home/eating-disorder/tips'),
   TypedGoRoute<EatingDisorderTasksRoute>(path: 'home/eating-disorder/tasks'),
   TypedGoRoute<EatingDisorderSamplesRoute>(path: 'home/eating-disorder/samples'),
   TypedGoRoute<EatingDisorderDistractionsRoute>(path: 'home/eating-disorder/distraction'),
+];
+
+const _selfHarmRoutes = <TypedGoRoute<GoRouteData>>[
+  TypedGoRoute<SelfHarmRoute>(path: 'home/self-harm'),
+  TypedGoRoute<SelfHarmTimerRoute>(path: 'home/self-harm/timer'),
+  TypedGoRoute<SelfHarmPlanRoute>(path: 'home/self-harm/plan'),
+];
+
+const _suicidalThoughtsRoutes = <TypedGoRoute<GoRouteData>>[
+  TypedGoRoute<SuicidalThoughtsRoute>(path: 'home/suicidal-thoughts'),
+  TypedGoRoute<SuicidalThoughtsPlanRoute>(path: 'home/suicidal-thoughts/plan'),
 ];
