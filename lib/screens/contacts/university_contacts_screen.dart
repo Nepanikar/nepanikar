@@ -72,7 +72,7 @@ class _UniversityContactsScreenState extends State<UniversityContactsScreen> {
       appBarTitle: context.l10n.universities,
       isModuleList: false,
       // TODO: description
-      appBarDescription: '${AppConstants.loremIpsumShort}\n\n',
+      appBarDescription: AppConstants.loremIpsumShort,
       isCardStackLayout: true,
       children: [
         // TODO: l10n

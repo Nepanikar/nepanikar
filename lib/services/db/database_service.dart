@@ -2,9 +2,11 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:nepanikar/services/db/relaxation/mood_track_dao.dart';
-import 'package:nepanikar/services/db/relaxation/mood_track_model.dart';
+import 'package:nepanikar/services/db/my_records/mood_track_dao.dart';
+import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
+import 'package:nepanikar/services/db/self_harm/self_harm_plan_dao.dart';
 import 'package:nepanikar/services/db/self_harm/self_harm_timer_dao.dart';
+import 'package:nepanikar/services/db/suicidal_thoughts/suicidal_thoughts_plan_dao.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/services/save_directories.dart';
 import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
@@ -26,7 +28,9 @@ class DatabaseService {
   Future<void> _initDaos(Database db) async {
     database = db;
     _userSettingsDao = await UserSettingsDao(dbService: this).init();
+    _selfHarmPlanDao = await SelfHarmPlanDao(dbService: this).init();
     _selfHarmTimerDao = await SelfHarmTimerDao(dbService: this).init();
+    _suicidalThoughtsPlanDao = await SuicidalThoughtsPlanDao(dbService: this).init();
     _moodTrackDao = await MoodTrackDao(dbService: this).init();
   }
 
@@ -58,9 +62,15 @@ class DatabaseService {
   final SaveDirectories _saveDirectories;
 
   late final Database database;
+
   late final StoreRef<String, Map<String, dynamic>> mainStore;
   late final UserSettingsDao _userSettingsDao;
+
+  late final SelfHarmPlanDao _selfHarmPlanDao;
   late final SelfHarmTimerDao _selfHarmTimerDao;
+
+  late final SuicidalThoughtsPlanDao _suicidalThoughtsPlanDao;
+
   late final MoodTrackDao _moodTrackDao;
 
   bool _isDataMigrationFromOldAppVersionNeeded = false;
@@ -86,6 +96,7 @@ class DatabaseService {
   Future<void> _doDataMigrationFromOldAppVersion() async {
     final configFile = await getOldAppConfigFile();
     if (configFile == null) return;
+
     final nepanikarConfig = NepanikarConfigParser.parseConfigFile(configFile);
 
     final myRecordsModuleConfig = nepanikarConfig.myRecordsModuleConfig;
@@ -127,7 +138,9 @@ class DatabaseService {
   Future<void> clearAll() async {
     await mainStore.drop(database);
     await _userSettingsDao.clear();
+    await _selfHarmPlanDao.clear();
     await _selfHarmTimerDao.clear();
+    await _suicidalThoughtsPlanDao.clear();
     await _moodTrackDao.clear();
   }
 }

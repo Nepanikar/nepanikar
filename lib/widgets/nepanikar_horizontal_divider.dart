@@ -20,9 +20,11 @@ class NepanikarHorizontalDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Divider(
-      height: 1,
-      thickness: 1,
+      height: height,
+      thickness: thickness,
       color: color ?? NepanikarColors.primarySwatch.shade200,
+      indent: indent,
+      endIndent: endIndent,
     );
   }
 }
