@@ -15,11 +15,11 @@ import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_samples_s
 import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_screen.dart';
 import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_tasks_screen.dart';
 import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_tips_screen.dart';
-import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_remorse.dart';
-import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_overeat.dart';
-import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_figure.dart';
 import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_fail.dart';
+import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_figure.dart';
 import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_general.dart';
+import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_overeat.dart';
+import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_remorse.dart';
 import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_vomit.dart';
 import 'package:nepanikar/screens/home/my_records/mood_track_screen.dart';
 import 'package:nepanikar/screens/home/my_records/my_records_screen.dart';
