@@ -11,14 +11,9 @@ class AnxietyTipsAppRoute extends GoRouteData {
   Widget build(BuildContext context) => const AnxietyTipsAppScreen();
 }
 
-class AnxietyTipsAppScreen extends StatefulWidget {
+class AnxietyTipsAppScreen extends StatelessWidget {
   const AnxietyTipsAppScreen({super.key});
 
-  @override
-  State<AnxietyTipsAppScreen> createState() => _AnxietyTipsAppScreenState();
-}
-
-class _AnxietyTipsAppScreenState extends State<AnxietyTipsAppScreen> {
   @override
   Widget build(BuildContext context) {
     final strings = context.l10n.depression_tips.split('\n');

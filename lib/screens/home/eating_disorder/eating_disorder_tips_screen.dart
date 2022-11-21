@@ -3,12 +3,12 @@ import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
-import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_tips_accusations.dart';
-import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_tips_attack.dart';
-import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_tips_body.dart';
-import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_tips_fail.dart';
-import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_tips_general.dart';
-import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_tips_urge.dart';
+import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_fail.dart';
+import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_figure.dart';
+import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_general.dart';
+import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_overeat.dart';
+import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_remorse.dart';
+import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_vomit.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
@@ -28,22 +28,22 @@ class EatingDisorderTipsScreen extends StatelessWidget {
       LongTile(
         text: context.l10n.food_figure,
         image: Assets.illustrations.modules.eatingDisorder.svg(),
-        onTap: () => context.push(const EatingDisorderTipsBodyAppRoute().location),
+        onTap: () => context.push(const EatingDisorderTipsFigureAppRoute().location),
       ),
       LongTile(
         text: context.l10n.food_remorse,
         image: Assets.illustrations.modules.eatingDisorder.svg(),
-        onTap: () => context.push(const EatingDisorderTipsAccusationsAppRoute().location),
+        onTap: () => context.push(const EatingDisorderTipsRemorseAppRoute().location),
       ),
       LongTile(
         text: context.l10n.food_overeat,
         image: Assets.illustrations.modules.eatingDisorder.svg(),
-        onTap: () => context.push(const EatingDisorderTipsAttackAppRoute().location),
+        onTap: () => context.push(const EatingDisorderTipsOvereatAppRoute().location),
       ),
       LongTile(
         text: context.l10n.food_vomit,
         image: Assets.illustrations.modules.eatingDisorder.svg(),
-        onTap: () => context.push(const EatingDisorderTipsUrgeAppRoute().location),
+        onTap: () => context.push(const EatingDisorderTipsVomitAppRoute().location),
       ),
       LongTile(
         text: context.l10n.food_fail,

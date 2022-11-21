@@ -4,21 +4,21 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/widgets/tips_carousel_body.dart';
 
-class EatingDisorderTipsUrgeAppRoute extends GoRouteData {
-  const EatingDisorderTipsUrgeAppRoute();
+class EatingDisorderTipsOvereatAppRoute extends GoRouteData {
+  const EatingDisorderTipsOvereatAppRoute();
 
   @override
-  Widget build(BuildContext context) => const EatingDisorderTipsUrgeScreen();
+  Widget build(BuildContext context) => const EatingDisorderTipsOvereatScreen();
 }
 
-class EatingDisorderTipsUrgeScreen extends StatelessWidget {
-  const EatingDisorderTipsUrgeScreen({super.key});
+class EatingDisorderTipsOvereatScreen extends StatelessWidget {
+  const EatingDisorderTipsOvereatScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    final strings = context.l10n.food_vomit_text.split('\n');
+    final strings = context.l10n.food_overeat_text.split('\n');
 
     return Scaffold(
-      appBar: AppBar(title: Text(context.l10n.food_vomit)),
+      appBar: AppBar(title: Text(context.l10n.food_overeat)),
       body: SafeArea(
         child: TipsCarouselBody(
           pages: strings

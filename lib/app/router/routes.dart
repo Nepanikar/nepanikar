@@ -14,13 +14,13 @@ import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_distracti
 import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_samples_screen.dart';
 import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_screen.dart';
 import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_tasks_screen.dart';
-import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_tips_accusations.dart';
-import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_tips_attack.dart';
-import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_tips_body.dart';
-import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_tips_fail.dart';
-import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_tips_general.dart';
 import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_tips_screen.dart';
-import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_tips_urge.dart';
+import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_remorse.dart';
+import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_overeat.dart';
+import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_figure.dart';
+import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_fail.dart';
+import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_general.dart';
+import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_vomit.dart';
 import 'package:nepanikar/screens/home/my_records/mood_track_screen.dart';
 import 'package:nepanikar/screens/home/my_records/my_records_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_plan_screen.dart';
@@ -107,12 +107,16 @@ const _eatingDisorderRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<EatingDisorderTasksRoute>(path: 'home/eating-disorder/tasks'),
   TypedGoRoute<EatingDisorderSamplesRoute>(path: 'home/eating-disorder/samples'),
   TypedGoRoute<EatingDisorderDistractionsRoute>(path: 'home/eating-disorder/distraction'),
-  TypedGoRoute<EatingDisorderTipsBodyAppRoute>(path: 'home/eating-disorder/tips/body'),
-  TypedGoRoute<EatingDisorderTipsAccusationsAppRoute>(
-    path: 'home/eating-disorder/tips/accusations',
+  ..._eatingDisorderTipsRoutes,
+];
+
+const _eatingDisorderTipsRoutes = <TypedGoRoute<GoRouteData>>[
+  TypedGoRoute<EatingDisorderTipsFigureAppRoute>(path: 'home/eating-disorder/tips/figure'),
+  TypedGoRoute<EatingDisorderTipsRemorseAppRoute>(
+    path: 'home/eating-disorder/tips/remorse',
   ),
-  TypedGoRoute<EatingDisorderTipsAttackAppRoute>(path: 'home/eating-disorder/tips/attack'),
-  TypedGoRoute<EatingDisorderTipsUrgeAppRoute>(path: 'home/eating-disorder/tips/urge'),
+  TypedGoRoute<EatingDisorderTipsOvereatAppRoute>(path: 'home/eating-disorder/tips/overeat'),
+  TypedGoRoute<EatingDisorderTipsVomitAppRoute>(path: 'home/eating-disorder/tips/vomit'),
   TypedGoRoute<EatingDisorderTipsFailAppRoute>(path: 'home/eating-disorder/tips/fail'),
   TypedGoRoute<EatingDisorderTipsGeneralAppRoute>(path: 'home/eating-disorder/tips/general'),
 ];

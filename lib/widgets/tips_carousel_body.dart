@@ -53,7 +53,7 @@ class _TipsCarouselBodyState extends State<TipsCarouselBody> {
                         itemBuilder: (context, index) {
                           return FractionallySizedBox(
                             widthFactor: 1.01,
-                            child: AnxietyTipItem(
+                            child: TipItem(
                               scale: 1.0 - (0.15 * (index - activeIndex).abs()),
                               content: widget.pages.elementAt(index),
                             ),
