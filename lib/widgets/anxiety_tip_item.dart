@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AnxietyTipItem extends StatelessWidget {
-  const AnxietyTipItem({required this.scale, required this.content});
+class TipItem extends StatelessWidget {
+  const TipItem({required this.scale, required this.content});
 
   final double scale;
   final Widget content;

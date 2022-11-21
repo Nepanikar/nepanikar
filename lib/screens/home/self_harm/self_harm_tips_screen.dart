@@ -4,22 +4,21 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/widgets/tips_carousel_body.dart';
 
-class AnxietyTipsAppRoute extends GoRouteData {
-  const AnxietyTipsAppRoute();
+class SelfHarmTipsRoute extends GoRouteData {
+  const SelfHarmTipsRoute();
 
   @override
-  Widget build(BuildContext context) => const AnxietyTipsAppScreen();
+  Widget build(BuildContext context) => const SelfHarmTipsScreen();
 }
 
-class AnxietyTipsAppScreen extends StatelessWidget {
-  const AnxietyTipsAppScreen({super.key});
-
+class SelfHarmTipsScreen extends StatelessWidget {
+  const SelfHarmTipsScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    final strings = context.l10n.depression_tips.split('\n');
+    final strings = context.l10n.self_harm_tips_13.split('\n');
 
     return Scaffold(
-      appBar: AppBar(title: Text(context.l10n.panic_tips_9)),
+      appBar: AppBar(title: Text(context.l10n.depression_help)),
       body: SafeArea(
         child: TipsCarouselBody(
           pages: List.generate(
