@@ -5,6 +5,7 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/games/math/math_answer_result_state.dart';
 import 'package:nepanikar/games/math/math_equation_model.dart';
+import 'package:nepanikar/helpers/screen_resolution_helpers.dart';
 import 'package:nepanikar/utils/lottie_cache_manager.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_button.dart';
@@ -167,11 +168,13 @@ class _MathGameScreenState extends State<MathGameScreen> {
             if (_answerResultState.isAnswered) ...[
               if (_answerResultState.isCorrect)
                 Positioned(
-                  bottom: 10,
+                  top: -(context.screenHeight * 0.15),
                   child: IgnorePointer(
                     child: _lottieCacheManager.loadFromCache(
                       Assets.animatedIllustrations.confetti,
                       repeat: false,
+                      width: context.screenWidth + 100,
+                      fit: BoxFit.contain,
                     ),
                   ),
                 ),
