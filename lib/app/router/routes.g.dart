@@ -39,6 +39,18 @@ GoRoute get $mainRoute => GoRouteData.$route(
           factory: $UniversityContactsRouteExtension._fromState,
         ),
         GoRouteData.$route(
+          path: 'home/depression',
+          factory: $DepressionRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'home/depression/tips',
+          factory: $DepressionTipsAppRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'home/depression/activity-plan',
+          factory: $DepressionActivityPlanRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: 'home/anxiety',
           factory: $AnxietyAppRouteExtension._fromState,
         ),
@@ -73,14 +85,6 @@ GoRoute get $mainRoute => GoRouteData.$route(
         GoRouteData.$route(
           path: 'home/my-records/mood-track',
           factory: $MoodTrackRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: 'home/depression',
-          factory: $DepressionRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: 'home/depression/tips',
-          factory: $DepressionTipsAppRouteExtension._fromState,
         ),
         GoRouteData.$route(
           path: 'home/suicidal-thoughts',
@@ -227,6 +231,45 @@ extension $UniversityContactsRouteExtension on UniversityContactsRoute {
   void push(BuildContext context) => context.push(location, extra: this);
 }
 
+extension $DepressionRouteExtension on DepressionRoute {
+  static DepressionRoute _fromState(GoRouterState state) =>
+      const DepressionRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/depression',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $DepressionTipsAppRouteExtension on DepressionTipsAppRoute {
+  static DepressionTipsAppRoute _fromState(GoRouterState state) =>
+      const DepressionTipsAppRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/depression/tips',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $DepressionActivityPlanRouteExtension on DepressionActivityPlanRoute {
+  static DepressionActivityPlanRoute _fromState(GoRouterState state) =>
+      const DepressionActivityPlanRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/depression/activity-plan',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
 extension $AnxietyAppRouteExtension on AnxietyAppRoute {
   static AnxietyAppRoute _fromState(GoRouterState state) =>
       const AnxietyAppRoute();
@@ -336,32 +379,6 @@ extension $MoodTrackRouteExtension on MoodTrackRoute {
 
   String get location => GoRouteData.$location(
         '/home/my-records/mood-track',
-      );
-
-  void go(BuildContext context) => context.go(location, extra: this);
-
-  void push(BuildContext context) => context.push(location, extra: this);
-}
-
-extension $DepressionRouteExtension on DepressionRoute {
-  static DepressionRoute _fromState(GoRouterState state) =>
-      const DepressionRoute();
-
-  String get location => GoRouteData.$location(
-        '/home/depression',
-      );
-
-  void go(BuildContext context) => context.go(location, extra: this);
-
-  void push(BuildContext context) => context.push(location, extra: this);
-}
-
-extension $DepressionTipsAppRouteExtension on DepressionTipsAppRoute {
-  static DepressionTipsAppRoute _fromState(GoRouterState state) =>
-      const DepressionTipsAppRoute();
-
-  String get location => GoRouteData.$location(
-        '/home/depression/tips',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);

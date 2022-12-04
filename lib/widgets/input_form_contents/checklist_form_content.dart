@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/theme/colors.dart';
-import 'package:nepanikar/services/db/common/nepanikar_list_form_dao.dart';
+import 'package:nepanikar/services/db/common/checklist_item_model.dart';
+import 'package:nepanikar/services/db/common/nepanikar_checklist_form_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_horizontal_divider.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
-import 'package:sembast/sembast.dart';
 
-class ListFormContent<T extends NepanikarListFormDao> extends StatefulWidget {
-  const ListFormContent({
+class ChecklistFormContent<T extends NepanikarCheckListFormDao> extends StatefulWidget {
+  const ChecklistFormContent({
     super.key,
     required this.appBarTitle,
     required this.appBarDescription,
@@ -17,11 +17,12 @@ class ListFormContent<T extends NepanikarListFormDao> extends StatefulWidget {
   final String appBarDescription;
 
   @override
-  State<ListFormContent> createState() => _ListFormContentState<T>();
+  State<ChecklistFormContent> createState() => _ChecklistFormContentState<T>();
 }
 
-class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFormContent> {
-  late final Stream<List<RecordSnapshot<String, ListFormItem>>> _allFormItemsStream;
+class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
+    extends State<ChecklistFormContent> {
+  late final Stream<Map<String, ChecklistItem>> _allFormItemsStream;
 
   T get _listFormDao => registry.get<T>();
 
@@ -54,10 +55,10 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
           child: const Icon(Icons.add),
         ),
         children: [
-          StreamBuilder<List<RecordSnapshot<String, ListFormItem>>>(
+          StreamBuilder<Map<String, ChecklistItem>>(
             stream: _allFormItemsStream,
             builder: (_, snapshot) {
-              final savedListItems = snapshot.data ?? [];
+              final savedListItems = snapshot.data ?? {};
 
               return ListView.separated(
                 itemCount: savedListItems.length,
@@ -67,28 +68,55 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
                   color: NepanikarColors.primarySwatch.shade100,
                 ),
                 itemBuilder: (_, i) {
-                  final record = savedListItems[i];
-                  final formKey = record.key;
-                  final formText = record.value;
+                  final record = savedListItems.entries.elementAt(i);
+                  final checkFormKey = record.key;
+                  final checkForm = record.value;
+                  final checkFormState = checkForm.isChecked;
+                  final checkFormText = checkForm.text;
                   return ListTile(
-                    key: Key(formKey),
+                    key: Key(checkFormKey),
                     minLeadingWidth: 0,
                     contentPadding: EdgeInsets.zero,
+                    leading: Checkbox(
+                      value: checkFormState,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(4.0),
+                        ),
+                      ),
+                      onChanged: (value) async {
+                        if (value != null) {
+                          await _listFormDao.updateFormState(
+                            checkFormKey,
+                            item: checkForm,
+                          );
+                        }
+                      },
+                    ),
                     title: Focus(
                       onFocusChange: (hasFocus) async {
                         if (!hasFocus) {
-                          final value = _idTextMap[formKey];
+                          final value = _idTextMap[checkFormKey];
                           if (value != null) {
-                            await _listFormDao.updateFormText(formKey, text: value);
+                            await _listFormDao.updateFormText(
+                              checkFormKey,
+                              item: checkForm,
+                              newText: value,
+                            );
                           }
                         }
                       },
                       child: TextFormField(
-                        initialValue: formText,
-                        onChanged: (value) => _idTextMap[formKey] = value,
+                        initialValue: checkFormText,
+                        onChanged: (value) => _idTextMap[checkFormKey] = value,
                         minLines: 1,
                         maxLines: null,
                         textInputAction: TextInputAction.newline,
+                        style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                              color: checkFormState == true
+                                  ? NepanikarColors.dark
+                                  : NepanikarColors.primarySwatch.shade400,
+                            ),
                         decoration: InputDecoration(
                           hintText: '...',
                           border: InputBorder.none,
@@ -97,11 +125,11 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
                           disabledBorder: InputBorder.none,
                           errorBorder: InputBorder.none,
                           focusedErrorBorder: InputBorder.none,
-                          contentPadding: const EdgeInsets.only(top: 12, left: 14),
+                          contentPadding: const EdgeInsets.only(top: 14),
                           suffixIcon: IconButton(
                             onPressed: () async {
-                              _idTextMap.remove(formKey);
-                              await _listFormDao.deleteFormItem(formKey);
+                              _idTextMap.remove(checkFormKey);
+                              await _listFormDao.deleteFormItem(checkFormKey);
                             },
                             icon: const Icon(Icons.clear, size: 16),
                           ),

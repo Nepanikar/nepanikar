@@ -8,6 +8,7 @@ import 'package:nepanikar/screens/contacts/phone_contacts_screen.dart';
 import 'package:nepanikar/screens/contacts/university_contacts_screen.dart';
 import 'package:nepanikar/screens/home/anxiety/anxiety_screen.dart';
 import 'package:nepanikar/screens/home/anxiety/anxiety_tips_route.dart';
+import 'package:nepanikar/screens/home/depression/depression_activity_plan_screen.dart';
 import 'package:nepanikar/screens/home/depression/depression_screen.dart';
 import 'package:nepanikar/screens/home/depression/depression_tips_screen.dart';
 import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_distractions_screen.dart';
@@ -79,15 +80,20 @@ const _contactRoutes = <TypedGoRoute<GoRouteData>>[
 ];
 
 const _homeRoutes = <TypedGoRoute<GoRouteData>>[
+  ..._depressionRoutes,
   TypedGoRoute<AnxietyAppRoute>(path: 'home/anxiety'),
   TypedGoRoute<AnxietyTipsAppRoute>(path: 'home/anxiety/tips'),
   ..._selfHarmRoutes,
   TypedGoRoute<MyRecordsRoute>(path: 'home/my-records'),
   TypedGoRoute<MoodTrackRoute>(path: 'home/my-records/mood-track'),
-  TypedGoRoute<DepressionRoute>(path: 'home/depression'),
-  TypedGoRoute<DepressionTipsAppRoute>(path: 'home/depression/tips'),
   ..._suicidalThoughtsRoutes,
   ..._eatingDisorderRoutes,
+];
+
+const _depressionRoutes = <TypedGoRoute<GoRouteData>>[
+  TypedGoRoute<DepressionRoute>(path: 'home/depression'),
+  TypedGoRoute<DepressionTipsAppRoute>(path: 'home/depression/tips'),
+  TypedGoRoute<DepressionActivityPlanRoute>(path: 'home/depression/activity-plan'),
 ];
 
 const _selfHarmRoutes = <TypedGoRoute<GoRouteData>>[
