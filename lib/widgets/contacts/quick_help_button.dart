@@ -5,6 +5,7 @@ import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/screens/contacts/phone_contacts_screen.dart';
+import 'package:nepanikar/screens/main/contacts_screen.dart';
 
 class QuickHelpButton extends StatelessWidget {
   const QuickHelpButton({super.key});
@@ -20,7 +21,7 @@ class QuickHelpButton extends StatelessWidget {
             clipBehavior: Clip.antiAlias,
             borderRadius: BorderRadius.circular(12),
             child: InkWell(
-              onTap: () => context.push(const PhoneContactsRoute().location),
+              onTap: () => context.push(const ContactsRoute().location),
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
                 child: Row(
