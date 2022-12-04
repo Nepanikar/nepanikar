@@ -51,16 +51,20 @@ GoRoute get $mainRoute => GoRouteData.$route(
           factory: $SelfHarmRouteExtension._fromState,
         ),
         GoRouteData.$route(
-          path: 'home/self-harm/timer',
-          factory: $SelfHarmTimerRouteExtension._fromState,
+          path: 'home/self-harm/tips',
+          factory: $SelfHarmTipsRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'home/self-harm/helped',
+          factory: $SelfHarmHelpedRouteExtension._fromState,
         ),
         GoRouteData.$route(
           path: 'home/self-harm/plan',
           factory: $SelfHarmPlanRouteExtension._fromState,
         ),
         GoRouteData.$route(
-          path: 'home/self-harm/tips',
-          factory: $SelfHarmTipsRouteExtension._fromState,
+          path: 'home/self-harm/timer',
+          factory: $SelfHarmTimerRouteExtension._fromState,
         ),
         GoRouteData.$route(
           path: 'home/my-records',
@@ -261,12 +265,25 @@ extension $SelfHarmRouteExtension on SelfHarmRoute {
   void push(BuildContext context) => context.push(location, extra: this);
 }
 
-extension $SelfHarmTimerRouteExtension on SelfHarmTimerRoute {
-  static SelfHarmTimerRoute _fromState(GoRouterState state) =>
-      const SelfHarmTimerRoute();
+extension $SelfHarmTipsRouteExtension on SelfHarmTipsRoute {
+  static SelfHarmTipsRoute _fromState(GoRouterState state) =>
+      const SelfHarmTipsRoute();
 
   String get location => GoRouteData.$location(
-        '/home/self-harm/timer',
+        '/home/self-harm/tips',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $SelfHarmHelpedRouteExtension on SelfHarmHelpedRoute {
+  static SelfHarmHelpedRoute _fromState(GoRouterState state) =>
+      const SelfHarmHelpedRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/self-harm/helped',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
@@ -287,12 +304,12 @@ extension $SelfHarmPlanRouteExtension on SelfHarmPlanRoute {
   void push(BuildContext context) => context.push(location, extra: this);
 }
 
-extension $SelfHarmTipsRouteExtension on SelfHarmTipsRoute {
-  static SelfHarmTipsRoute _fromState(GoRouterState state) =>
-      const SelfHarmTipsRoute();
+extension $SelfHarmTimerRouteExtension on SelfHarmTimerRoute {
+  static SelfHarmTimerRoute _fromState(GoRouterState state) =>
+      const SelfHarmTimerRoute();
 
   String get location => GoRouteData.$location(
-        '/home/self-harm/tips',
+        '/home/self-harm/timer',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);

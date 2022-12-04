@@ -37,12 +37,11 @@ class _PlanFormContentState<T extends NepanikarPlanFormDao> extends State<PlanFo
 
   T get _planFormDao => registry.get<T>();
 
-  void _setFormTextsFromSavedList(Iterable<RecordSnapshot<String, PlanFormItem?>> savedRecords) {
+  void _setFormTextsFromSavedList(List<RecordSnapshot<String, PlanFormItem?>> savedRecords) {
     for (var formIndex = 0; formIndex < planItemsTitles.length; formIndex++) {
       final textController = _textControllersMap[formIndex];
-      final savedFormRecord = savedRecords.firstWhereOrNull(
-        (r) => r.key == _planFormDao.getFormItemKeyFromFormIndex(formIndex),
-      );
+      final formKey = _planFormDao.getFormItemKeyFromFormIndex(formIndex);
+      final savedFormRecord = savedRecords.firstWhereOrNull((r) => r.key == formKey);
       final savedFormValue = savedFormRecord?.value ?? '';
       textController
         ?..text = savedFormValue
