@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'country_contacts_model.dart';
 
@@ -175,6 +175,7 @@ class _$_CountryContacts extends _CountryContacts {
   List<PhoneContact>? get phoneContacts {
     final value = _phoneContacts;
     if (value == null) return null;
+    if (_phoneContacts is EqualUnmodifiableListView) return _phoneContacts;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -184,6 +185,8 @@ class _$_CountryContacts extends _CountryContacts {
   List<CrisisCenterContact>? get crisisCenterContacts {
     final value = _crisisCenterContacts;
     if (value == null) return null;
+    if (_crisisCenterContacts is EqualUnmodifiableListView)
+      return _crisisCenterContacts;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -193,6 +196,7 @@ class _$_CountryContacts extends _CountryContacts {
   List<ChatContact>? get chatContacts {
     final value = _chatContacts;
     if (value == null) return null;
+    if (_chatContacts is EqualUnmodifiableListView) return _chatContacts;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -202,6 +206,8 @@ class _$_CountryContacts extends _CountryContacts {
   List<UniversityRegionContact>? get universityRegionContacts {
     final value = _universityRegionContacts;
     if (value == null) return null;
+    if (_universityRegionContacts is EqualUnmodifiableListView)
+      return _universityRegionContacts;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
