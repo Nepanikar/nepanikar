@@ -29,6 +29,7 @@ import 'package:nepanikar/screens/home/self_harm/self_harm_timer_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_tips_screen.dart';
 import 'package:nepanikar/screens/home/suicidal_thoughts/suicidal_thoughts_plan_screen.dart';
 import 'package:nepanikar/screens/home/suicidal_thoughts/suicidal_thoughts_screen.dart';
+import 'package:nepanikar/screens/main/contacts_screen.dart';
 import 'package:nepanikar/screens/main/main_screen.dart';
 
 part 'routes.g.dart';
@@ -73,6 +74,7 @@ const _gameRoutes = <TypedGoRoute<GoRouteData>>[
 ];
 
 const _contactRoutes = <TypedGoRoute<GoRouteData>>[
+  TypedGoRoute<ContactsRoute>(path: 'contacts'),
   TypedGoRoute<PhoneContactsRoute>(path: 'contacts/phones'),
   TypedGoRoute<UniversityContactsRoute>(path: 'contacts/universities'),
 ];

@@ -31,6 +31,10 @@ GoRoute get $mainRoute => GoRouteData.$route(
           factory: $BreathingGameRouteExtension._fromState,
         ),
         GoRouteData.$route(
+          path: 'contacts',
+          factory: $ContactsRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: 'contacts/phones',
           factory: $PhoneContactsRouteExtension._fromState,
         ),
@@ -190,6 +194,18 @@ extension $BreathingGameRouteExtension on BreathingGameRoute {
 
   String get location => GoRouteData.$location(
         '/games/breathing/${Uri.encodeComponent(_$BreathingGameShapeEnumMap[shape]!)}',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $ContactsRouteExtension on ContactsRoute {
+  static ContactsRoute _fromState(GoRouterState state) => const ContactsRoute();
+
+  String get location => GoRouteData.$location(
+        '/contacts',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
