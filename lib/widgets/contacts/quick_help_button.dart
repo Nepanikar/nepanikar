@@ -4,7 +4,6 @@ import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
-import 'package:nepanikar/screens/contacts/phone_contacts_screen.dart';
 import 'package:nepanikar/screens/main/contacts_screen.dart';
 
 class QuickHelpButton extends StatelessWidget {
