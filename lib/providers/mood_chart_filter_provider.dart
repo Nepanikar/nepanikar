@@ -152,20 +152,10 @@ extension MoodChartFilterExt on Iterable<MoodTrack> {
       (i) => start.add(Duration(days: i)),
     );
 
-    // We use value found variable to remove empty values from the start of the mood track list.
-    // So if user has mood track for 7.1.2021 and chooses last 7 days, we don't want to
-    // show empty values for 1.1.2021 - 6.1.2021 cause the empty values in the
-    // chart would align the value to the right.
-    bool valueFound = false;
     final filteredMap = <DateTime, MoodTrack?>{};
     for (final date in dateRangeValues) {
       final dayMoodTrack = allValuesMap[date];
-      if (dayMoodTrack != null) {
-        valueFound = true;
-      }
-      if (valueFound) {
-        filteredMap[date] = dayMoodTrack;
-      }
+      filteredMap[date] = dayMoodTrack;
     }
 
     return filteredMap;

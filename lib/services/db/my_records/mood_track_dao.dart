@@ -38,7 +38,7 @@ class MoodTrackDao with CustomFilters {
         await _store.add(_db, json);
       } else {
         debugPrint('MoodTrackDao: Found for today, updating to: $json');
-        await _store.record(record.key).update(_db, json);
+        await _store.record(record.key).put(_db, json);
       }
     });
   }

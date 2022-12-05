@@ -90,7 +90,8 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
                         maxLines: null,
                         textInputAction: TextInputAction.newline,
                         decoration: InputDecoration(
-                          hintText: '...',
+                          // TODO: l10n
+                          hintText: 'Odpověď',
                           border: InputBorder.none,
                           enabledBorder: InputBorder.none,
                           focusedBorder: InputBorder.none,

@@ -7,9 +7,28 @@ import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/screens/contacts/phone_contacts_screen.dart';
 import 'package:nepanikar/screens/contacts/university_contacts_screen.dart';
+import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
+import 'package:nepanikar/utils/contacts_data_manager.dart';
+import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:nepanikar_contacts_gen/nepanikar_contacts_gen.dart';
+
+class ContactsRoute extends GoRouteData {
+  const ContactsRoute();
+
+  ContactsDataManager get _contactsDataManager => registry.get<ContactsDataManager>();
+
+  UserSettingsDao get _userSettingsDao => registry.get<UserSettingsDao>();
+
+  @override
+  Widget build(BuildContext context) {
+    final locale = _userSettingsDao.locale;
+    return ContactsScreen(
+      countryContacts: _contactsDataManager.getContactsFromLocale(locale),
+    );
+  }
+}
 
 class ContactsScreen extends StatelessWidget {
   const ContactsScreen({
