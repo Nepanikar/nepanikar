@@ -73,71 +73,75 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
                   final checkForm = record.value;
                   final checkFormState = checkForm.isChecked;
                   final checkFormText = checkForm.text;
-                  return ListTile(
-                    key: Key(checkFormKey),
-                    minLeadingWidth: 0,
-                    contentPadding: EdgeInsets.zero,
-                    leading: Checkbox(
-                      value: checkFormState,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(4.0),
+                  final isLastItem = i == savedListItems.length - 1;
+                  return Padding(
+                    padding: EdgeInsets.only(bottom: isLastItem ? 56 : 0),
+                    child: ListTile(
+                      key: Key(checkFormKey),
+                      minLeadingWidth: 0,
+                      contentPadding: EdgeInsets.zero,
+                      leading: Checkbox(
+                        value: checkFormState,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(4.0),
+                          ),
                         ),
-                      ),
-                      onChanged: (value) async {
-                        if (value != null) {
-                          await _listFormDao.updateFormState(
-                            checkFormKey,
-                            item: checkForm,
-                          );
-                        }
-                      },
-                    ),
-                    title: Focus(
-                      onFocusChange: (hasFocus) async {
-                        if (!hasFocus) {
-                          final value = _idTextMap[checkFormKey];
+                        onChanged: (value) async {
                           if (value != null) {
-                            await _listFormDao.updateFormText(
+                            await _listFormDao.updateFormState(
                               checkFormKey,
                               item: checkForm,
-                              newText: value,
                             );
                           }
-                        }
-                      },
-                      child: TextFormField(
-                        initialValue: checkFormText,
-                        onChanged: (value) => _idTextMap[checkFormKey] = value,
-                        minLines: 1,
-                        maxLines: null,
-                        textInputAction: TextInputAction.newline,
-                        style: Theme.of(context).textTheme.subtitle1?.copyWith(
-                              color: checkFormState == true
-                                  ? NepanikarColors.dark
-                                  : NepanikarColors.primarySwatch.shade400,
+                        },
+                      ),
+                      title: Focus(
+                        onFocusChange: (hasFocus) async {
+                          if (!hasFocus) {
+                            final value = _idTextMap[checkFormKey];
+                            if (value != null) {
+                              await _listFormDao.updateFormText(
+                                checkFormKey,
+                                item: checkForm,
+                                newText: value,
+                              );
+                            }
+                          }
+                        },
+                        child: TextFormField(
+                          initialValue: checkFormText,
+                          onChanged: (value) => _idTextMap[checkFormKey] = value,
+                          minLines: 1,
+                          maxLines: null,
+                          textInputAction: TextInputAction.newline,
+                          style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                                color: checkFormState == true
+                                    ? NepanikarColors.dark
+                                    : NepanikarColors.primarySwatch.shade400,
+                              ),
+                          decoration: InputDecoration(
+                            // TODO: l10n
+                            hintText: 'Aktivita',
+                            border: InputBorder.none,
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            disabledBorder: InputBorder.none,
+                            errorBorder: InputBorder.none,
+                            focusedErrorBorder: InputBorder.none,
+                            contentPadding: const EdgeInsets.only(top: 14),
+                            suffixIcon: IconButton(
+                              onPressed: () async {
+                                if (FocusScope.of(context).hasFocus) {
+                                  FocusScope.of(context).unfocus();
+                                }
+                                WidgetsBinding.instance.addPostFrameCallback((_) async {
+                                  _idTextMap.remove(checkFormKey);
+                                  await _listFormDao.deleteFormItem(checkFormKey);
+                                });
+                              },
+                              icon: const Icon(Icons.clear, size: 16),
                             ),
-                        decoration: InputDecoration(
-                          // TODO: l10n
-                          hintText: 'Aktivita',
-                          border: InputBorder.none,
-                          enabledBorder: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                          disabledBorder: InputBorder.none,
-                          errorBorder: InputBorder.none,
-                          focusedErrorBorder: InputBorder.none,
-                          contentPadding: const EdgeInsets.only(top: 14),
-                          suffixIcon: IconButton(
-                            onPressed: () async {
-                              if (FocusScope.of(context).hasFocus) {
-                                FocusScope.of(context).unfocus();
-                              }
-                              WidgetsBinding.instance.addPostFrameCallback((_) async {
-                                _idTextMap.remove(checkFormKey);
-                                await _listFormDao.deleteFormItem(checkFormKey);
-                              });
-                            },
-                            icon: const Icon(Icons.clear, size: 16),
                           ),
                         ),
                       ),

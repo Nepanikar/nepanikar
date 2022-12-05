@@ -70,46 +70,50 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
                   final record = savedListItems[i];
                   final formKey = record.key;
                   final formText = record.value;
-                  return ListTile(
-                    key: Key(formKey),
-                    minLeadingWidth: 0,
-                    contentPadding: EdgeInsets.zero,
-                    title: Focus(
-                      onFocusChange: (hasFocus) async {
-                        if (!hasFocus) {
-                          final value = _idTextMap[formKey];
-                          if (value != null) {
-                            await _listFormDao.updateFormText(formKey, text: value);
+                  final isLastItem = i == savedListItems.length - 1;
+                  return Padding(
+                    padding: EdgeInsets.only(bottom: isLastItem ? 56 : 0),
+                    child: ListTile(
+                      key: Key(formKey),
+                      minLeadingWidth: 0,
+                      contentPadding: EdgeInsets.zero,
+                      title: Focus(
+                        onFocusChange: (hasFocus) async {
+                          if (!hasFocus) {
+                            final value = _idTextMap[formKey];
+                            if (value != null) {
+                              await _listFormDao.updateFormText(formKey, text: value);
+                            }
                           }
-                        }
-                      },
-                      child: TextFormField(
-                        initialValue: formText,
-                        onChanged: (value) => _idTextMap[formKey] = value,
-                        minLines: 1,
-                        maxLines: null,
-                        textInputAction: TextInputAction.newline,
-                        decoration: InputDecoration(
-                          // TODO: l10n
-                          hintText: 'Odpověď',
-                          border: InputBorder.none,
-                          enabledBorder: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                          disabledBorder: InputBorder.none,
-                          errorBorder: InputBorder.none,
-                          focusedErrorBorder: InputBorder.none,
-                          contentPadding: const EdgeInsets.only(top: 12, left: 14),
-                          suffixIcon: IconButton(
-                            onPressed: () async {
-                              if (FocusScope.of(context).hasFocus) {
-                                FocusScope.of(context).unfocus();
-                              }
-                              WidgetsBinding.instance.addPostFrameCallback((_) async {
-                                _idTextMap.remove(formKey);
-                                await _listFormDao.deleteFormItem(formKey);
-                              });
-                            },
-                            icon: const Icon(Icons.clear, size: 16),
+                        },
+                        child: TextFormField(
+                          initialValue: formText,
+                          onChanged: (value) => _idTextMap[formKey] = value,
+                          minLines: 1,
+                          maxLines: null,
+                          textInputAction: TextInputAction.newline,
+                          decoration: InputDecoration(
+                            // TODO: l10n
+                            hintText: 'Odpověď',
+                            border: InputBorder.none,
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            disabledBorder: InputBorder.none,
+                            errorBorder: InputBorder.none,
+                            focusedErrorBorder: InputBorder.none,
+                            contentPadding: const EdgeInsets.only(top: 12, left: 14),
+                            suffixIcon: IconButton(
+                              onPressed: () async {
+                                if (FocusScope.of(context).hasFocus) {
+                                  FocusScope.of(context).unfocus();
+                                }
+                                WidgetsBinding.instance.addPostFrameCallback((_) async {
+                                  _idTextMap.remove(formKey);
+                                  await _listFormDao.deleteFormItem(formKey);
+                                });
+                              },
+                              icon: const Icon(Icons.clear, size: 16),
+                            ),
                           ),
                         ),
                       ),
