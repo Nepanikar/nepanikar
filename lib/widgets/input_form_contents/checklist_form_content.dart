@@ -118,7 +118,8 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
                                   : NepanikarColors.primarySwatch.shade400,
                             ),
                         decoration: InputDecoration(
-                          hintText: '...',
+                          // TODO: l10n
+                          hintText: 'Aktivita',
                           border: InputBorder.none,
                           enabledBorder: InputBorder.none,
                           focusedBorder: InputBorder.none,
@@ -128,8 +129,13 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
                           contentPadding: const EdgeInsets.only(top: 14),
                           suffixIcon: IconButton(
                             onPressed: () async {
-                              _idTextMap.remove(checkFormKey);
-                              await _listFormDao.deleteFormItem(checkFormKey);
+                              if (FocusScope.of(context).hasFocus) {
+                                FocusScope.of(context).unfocus();
+                              }
+                              WidgetsBinding.instance.addPostFrameCallback((_) async {
+                                _idTextMap.remove(checkFormKey);
+                                await _listFormDao.deleteFormItem(checkFormKey);
+                              });
                             },
                             icon: const Icon(Icons.clear, size: 16),
                           ),

@@ -100,8 +100,13 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
                           contentPadding: const EdgeInsets.only(top: 12, left: 14),
                           suffixIcon: IconButton(
                             onPressed: () async {
-                              _idTextMap.remove(formKey);
-                              await _listFormDao.deleteFormItem(formKey);
+                              if (FocusScope.of(context).hasFocus) {
+                                FocusScope.of(context).unfocus();
+                              }
+                              WidgetsBinding.instance.addPostFrameCallback((_) async {
+                                _idTextMap.remove(formKey);
+                                await _listFormDao.deleteFormItem(formKey);
+                              });
                             },
                             icon: const Icon(Icons.clear, size: 16),
                           ),
