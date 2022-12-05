@@ -90,7 +90,8 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
                         maxLines: null,
                         textInputAction: TextInputAction.newline,
                         decoration: InputDecoration(
-                          hintText: '...',
+                          // TODO: l10n
+                          hintText: 'Odpověď',
                           border: InputBorder.none,
                           enabledBorder: InputBorder.none,
                           focusedBorder: InputBorder.none,
@@ -99,8 +100,8 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
                           focusedErrorBorder: InputBorder.none,
                           suffixIcon: IconButton(
                             onPressed: () async {
-                              _idTextMap.remove(formKey);
-                              await _listFormDao.deleteFormItem(formKey);
+                                _idTextMap.remove(formKey);
+                                await _listFormDao.deleteFormItem(formKey);
                             },
                             icon: const Icon(Icons.clear, size: 16),
                           ),
