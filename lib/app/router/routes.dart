@@ -23,6 +23,7 @@ import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips
 import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_vomit.dart';
 import 'package:nepanikar/screens/home/my_records/mood_track_screen.dart';
 import 'package:nepanikar/screens/home/my_records/my_records_screen.dart';
+import 'package:nepanikar/screens/home/self_harm/self_harm_helped_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_plan_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_timer_screen.dart';
@@ -93,9 +94,10 @@ const _homeRoutes = <TypedGoRoute<GoRouteData>>[
 
 const _selfHarmRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<SelfHarmRoute>(path: 'home/self-harm'),
-  TypedGoRoute<SelfHarmTimerRoute>(path: 'home/self-harm/timer'),
-  TypedGoRoute<SelfHarmPlanRoute>(path: 'home/self-harm/plan'),
   TypedGoRoute<SelfHarmTipsRoute>(path: 'home/self-harm/tips'),
+  TypedGoRoute<SelfHarmHelpedRoute>(path: 'home/self-harm/helped'),
+  TypedGoRoute<SelfHarmPlanRoute>(path: 'home/self-harm/plan'),
+  TypedGoRoute<SelfHarmTimerRoute>(path: 'home/self-harm/timer'),
 ];
 
 const _suicidalThoughtsRoutes = <TypedGoRoute<GoRouteData>>[

@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_dao.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
+import 'package:nepanikar/services/db/self_harm/self_harm_helped_dao.dart';
 import 'package:nepanikar/services/db/self_harm/self_harm_plan_dao.dart';
 import 'package:nepanikar/services/db/self_harm/self_harm_timer_dao.dart';
 import 'package:nepanikar/services/db/suicidal_thoughts/suicidal_thoughts_plan_dao.dart';
@@ -32,6 +33,7 @@ class DatabaseService {
     _selfHarmTimerDao = await SelfHarmTimerDao(dbService: this).init();
     _suicidalThoughtsPlanDao = await SuicidalThoughtsPlanDao(dbService: this).init();
     _moodTrackDao = await MoodTrackDao(dbService: this).init();
+    _selfHarmHelpedDao = await SelfHarmHelpedDao(dbService: this).init();
   }
 
   /// https://github.com/tekartik/sembast.dart/blob/master/sembast/doc/open.md#preloading-data
@@ -68,6 +70,8 @@ class DatabaseService {
 
   late final SelfHarmPlanDao _selfHarmPlanDao;
   late final SelfHarmTimerDao _selfHarmTimerDao;
+  // ignore: unused_field
+  late final SelfHarmHelpedDao _selfHarmHelpedDao;
 
   late final SuicidalThoughtsPlanDao _suicidalThoughtsPlanDao;
 

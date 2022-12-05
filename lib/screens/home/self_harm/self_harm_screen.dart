@@ -4,6 +4,7 @@ import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/games/breathing/breathing_exercises_screen.dart';
+import 'package:nepanikar/screens/home/self_harm/self_harm_helped_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_plan_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_timer_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_tips_screen.dart';
@@ -29,9 +30,9 @@ class SelfHarmScreen extends StatelessWidget {
         onTap: () => context.push(const SelfHarmTipsRoute().location),
       ),
       LongTile(
-        text: '${context.l10n.self_harm_helped} TODO',
+        text: context.l10n.self_harm_helped,
         image: Assets.illustrations.modules.selfHarm.svg(),
-        onTap: () => {},
+        onTap: () => context.push(const SelfHarmHelpedRoute().location),
       ),
       LongTile(
         text: context.l10n.plan,

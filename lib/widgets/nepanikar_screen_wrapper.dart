@@ -13,6 +13,8 @@ class NepanikarScreenWrapper extends StatelessWidget {
     this.appBarDescription,
     this.isModuleList = true,
     this.isCardStackLayout = false,
+    this.floatingActionButton,
+    this.expandToMaxScreenHeight = false,
   });
 
   final String appBarTitle;
@@ -26,6 +28,11 @@ class NepanikarScreenWrapper extends StatelessWidget {
 
   /// A layout which has a card which slightly overlaps the app bar.
   final bool isCardStackLayout;
+
+  final Widget? floatingActionButton;
+
+  /// Used only in card stack layout.
+  final bool expandToMaxScreenHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +59,7 @@ class NepanikarScreenWrapper extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(appBarTitle)),
       resizeToAvoidBottomInset: false,
+      floatingActionButton: floatingActionButton,
       body: SafeArea(
         child: isCardStackLayout
             ? Stack(
@@ -67,6 +75,7 @@ class NepanikarScreenWrapper extends StatelessWidget {
                         ),
                         child: SizedBox(
                           width: layoutContext.screenWidth,
+                          height: expandToMaxScreenHeight ? context.screenHeight : null,
                           child: Card(
                             margin: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                             child: Padding(
