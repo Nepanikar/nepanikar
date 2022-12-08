@@ -142,6 +142,10 @@ GoRoute get $mainRoute => GoRouteData.$route(
           path: 'home/eating-disorder/tips/general',
           factory: $EatingDisorderTipsGeneralAppRouteExtension._fromState,
         ),
+        GoRouteData.$route(
+          path: 'home/eating-disorder/meal-plan',
+          factory: $MealPlanRouteExtension._fromState,
+        ),
       ],
     );
 
@@ -571,6 +575,18 @@ extension $EatingDisorderTipsGeneralAppRouteExtension
 
   String get location => GoRouteData.$location(
         '/home/eating-disorder/tips/general',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $MealPlanRouteExtension on MealPlanRoute {
+  static MealPlanRoute _fromState(GoRouterState state) => const MealPlanRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/eating-disorder/meal-plan',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);

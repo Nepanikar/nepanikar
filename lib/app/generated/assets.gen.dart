@@ -83,6 +83,106 @@ class $AssetsIllustrationsGen {
   $AssetsIllustrationsMoodsGen get moods => const $AssetsIllustrationsMoodsGen();
 }
 
+class $AssetsMealsGen {
+  const $AssetsMealsGen();
+
+  /// File path: assets/meals/amSnack0.jpg
+  AssetGenImage get amSnack0 => const AssetGenImage('assets/meals/amSnack0.jpg');
+
+  /// File path: assets/meals/amSnack1.jpg
+  AssetGenImage get amSnack1 => const AssetGenImage('assets/meals/amSnack1.jpg');
+
+  /// File path: assets/meals/breakfast0.jpg
+  AssetGenImage get breakfast0 => const AssetGenImage('assets/meals/breakfast0.jpg');
+
+  /// File path: assets/meals/breakfast1.jpg
+  AssetGenImage get breakfast1 => const AssetGenImage('assets/meals/breakfast1.jpg');
+
+  /// File path: assets/meals/breakfast2.jpg
+  AssetGenImage get breakfast2 => const AssetGenImage('assets/meals/breakfast2.jpg');
+
+  /// File path: assets/meals/dinner0.jpg
+  AssetGenImage get dinner0 => const AssetGenImage('assets/meals/dinner0.jpg');
+
+  /// File path: assets/meals/dinner1.jpg
+  AssetGenImage get dinner1 => const AssetGenImage('assets/meals/dinner1.jpg');
+
+  /// File path: assets/meals/dinner2.jpg
+  AssetGenImage get dinner2 => const AssetGenImage('assets/meals/dinner2.jpg');
+
+  /// File path: assets/meals/dinner3.jpg
+  AssetGenImage get dinner3 => const AssetGenImage('assets/meals/dinner3.jpg');
+
+  /// File path: assets/meals/dinner4.jpg
+  AssetGenImage get dinner4 => const AssetGenImage('assets/meals/dinner4.jpg');
+
+  /// File path: assets/meals/dinner5.jpg
+  AssetGenImage get dinner5 => const AssetGenImage('assets/meals/dinner5.jpg');
+
+  /// File path: assets/meals/dinner6.jpg
+  AssetGenImage get dinner6 => const AssetGenImage('assets/meals/dinner6.jpg');
+
+  /// File path: assets/meals/dinner7.jpg
+  AssetGenImage get dinner7 => const AssetGenImage('assets/meals/dinner7.jpg');
+
+  /// File path: assets/meals/lunch0.jpg
+  AssetGenImage get lunch0 => const AssetGenImage('assets/meals/lunch0.jpg');
+
+  /// File path: assets/meals/lunch1.jpg
+  AssetGenImage get lunch1 => const AssetGenImage('assets/meals/lunch1.jpg');
+
+  /// File path: assets/meals/lunch2.jpg
+  AssetGenImage get lunch2 => const AssetGenImage('assets/meals/lunch2.jpg');
+
+  /// File path: assets/meals/lunch3.jpg
+  AssetGenImage get lunch3 => const AssetGenImage('assets/meals/lunch3.jpg');
+
+  /// File path: assets/meals/lunch4.jpg
+  AssetGenImage get lunch4 => const AssetGenImage('assets/meals/lunch4.jpg');
+
+  /// File path: assets/meals/lunch5.jpg
+  AssetGenImage get lunch5 => const AssetGenImage('assets/meals/lunch5.jpg');
+
+  /// File path: assets/meals/pmSnack0.jpg
+  AssetGenImage get pmSnack0 => const AssetGenImage('assets/meals/pmSnack0.jpg');
+
+  /// File path: assets/meals/pmSnack1.jpg
+  AssetGenImage get pmSnack1 => const AssetGenImage('assets/meals/pmSnack1.jpg');
+
+  /// File path: assets/meals/pmSnack2.jpg
+  AssetGenImage get pmSnack2 => const AssetGenImage('assets/meals/pmSnack2.jpg');
+
+  /// File path: assets/meals/pmSnack3.jpg
+  AssetGenImage get pmSnack3 => const AssetGenImage('assets/meals/pmSnack3.jpg');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [
+        amSnack0,
+        amSnack1,
+        breakfast0,
+        breakfast1,
+        breakfast2,
+        dinner0,
+        dinner1,
+        dinner2,
+        dinner3,
+        dinner4,
+        dinner5,
+        dinner6,
+        dinner7,
+        lunch0,
+        lunch1,
+        lunch2,
+        lunch3,
+        lunch4,
+        lunch5,
+        pmSnack0,
+        pmSnack1,
+        pmSnack2,
+        pmSnack3
+      ];
+}
+
 class $AssetsAnimatedIllustrationsMoodsGen {
   const $AssetsAnimatedIllustrationsMoodsGen();
 
@@ -281,6 +381,7 @@ class Assets {
   static const $AssetsContactsGen contacts = $AssetsContactsGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsIllustrationsGen illustrations = $AssetsIllustrationsGen();
+  static const $AssetsMealsGen meals = $AssetsMealsGen();
 }
 
 class AssetGenImage {
