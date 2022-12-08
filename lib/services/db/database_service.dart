@@ -2,13 +2,10 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:nepanikar/services/db/depression/depression_activity_plan_dao.dart';
-import 'package:nepanikar/services/db/my_records/mood_track_dao.dart';
-import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
-import 'package:nepanikar/services/db/self_harm/self_harm_helped_dao.dart';
-import 'package:nepanikar/services/db/self_harm/self_harm_plan_dao.dart';
-import 'package:nepanikar/services/db/self_harm/self_harm_timer_dao.dart';
-import 'package:nepanikar/services/db/suicidal_thoughts/suicidal_thoughts_plan_dao.dart';
+import 'package:nepanikar/services/db/depression/depression_module_db.dart';
+import 'package:nepanikar/services/db/my_records/my_records_module_db.dart';
+import 'package:nepanikar/services/db/self_harm/self_harm_module_db.dart';
+import 'package:nepanikar/services/db/suicidal_thoughts/suicidal_thoughts_module_db.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/services/save_directories.dart';
 import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
@@ -24,19 +21,33 @@ class DatabaseService {
   Future<void> init() async {
     mainStore = StoreRef.main();
     final db = await _checkPreloadDataFromOldAppVersion();
-    if (!_isDataMigrationFromOldAppVersionNeeded) await _initDaos(db);
+    if (!_isDataMigrationFromOldAppVersionNeeded) await _initModuleDaos(db);
   }
 
-  Future<void> _initDaos(Database db) async {
+  Future<void> _initModuleDaos(Database db) async {
     database = db;
     _userSettingsDao = await UserSettingsDao(dbService: this).init();
-    _selfHarmPlanDao = await SelfHarmPlanDao(dbService: this).init();
-    _selfHarmTimerDao = await SelfHarmTimerDao(dbService: this).init();
-    _suicidalThoughtsPlanDao = await SuicidalThoughtsPlanDao(dbService: this).init();
-    _moodTrackDao = await MoodTrackDao(dbService: this).init();
-    _selfHarmHelpedDao = await SelfHarmHelpedDao(dbService: this).init();
-    _depressionActivityPlanDao = await DepressionActivityPlanDao(dbService: this).init();
+    _depressionModuleDb = await DepressionModuleDb(this).initModuleDaos();
+    _selfHarmModuleDb = await SelfHarmModuleDb(this).initModuleDaos();
+    _suicidalThoughtsModuleDb = await SuicidalThoughtsModuleDb(this).initModuleDaos();
+    _myRecordsModuleDb = await MyRecordsModuleDb(this).initModuleDaos();
   }
+
+  final SaveDirectories _saveDirectories;
+
+  late final Database database;
+
+  late final StoreRef<String, Map<String, dynamic>> mainStore;
+
+  late final UserSettingsDao _userSettingsDao;
+  late final DepressionModuleDb _depressionModuleDb;
+  late final SelfHarmModuleDb _selfHarmModuleDb;
+  late final SuicidalThoughtsModuleDb _suicidalThoughtsModuleDb;
+  late final MyRecordsModuleDb _myRecordsModuleDb;
+
+  bool _isDataMigrationFromOldAppVersionNeeded = false;
+
+  static const _dbFileName = 'app.db';
 
   /// https://github.com/tekartik/sembast.dart/blob/master/sembast/doc/open.md#preloading-data
   Future<Database> _checkPreloadDataFromOldAppVersion() async {
@@ -52,7 +63,7 @@ class DatabaseService {
           if (oldVersionAppDataExists) {
             debugPrint('DATABASE_SERVICE: Old app version data FOUND.');
             _isDataMigrationFromOldAppVersionNeeded = true;
-            await _initDaos(db);
+            await _initModuleDaos(db);
             await _doDataMigrationFromOldAppVersion();
           } else {
             debugPrint('DATABASE_SERVICE: Old app version data NOT FOUND.');
@@ -62,29 +73,6 @@ class DatabaseService {
     );
     return db;
   }
-
-  final SaveDirectories _saveDirectories;
-
-  late final Database database;
-
-  late final StoreRef<String, Map<String, dynamic>> mainStore;
-  late final UserSettingsDao _userSettingsDao;
-
-  // ignore: unused_field
-  late final DepressionActivityPlanDao _depressionActivityPlanDao;
-
-  late final SelfHarmPlanDao _selfHarmPlanDao;
-  late final SelfHarmTimerDao _selfHarmTimerDao;
-  // ignore: unused_field
-  late final SelfHarmHelpedDao _selfHarmHelpedDao;
-
-  late final SuicidalThoughtsPlanDao _suicidalThoughtsPlanDao;
-
-  late final MoodTrackDao _moodTrackDao;
-
-  bool _isDataMigrationFromOldAppVersionNeeded = false;
-
-  static const _dbFileName = 'app.db';
 
   Future<bool> _oldAppVersionDataExists() async {
     final configPath = _saveDirectories.oldAppDataConfigFilePath;
@@ -110,46 +98,21 @@ class DatabaseService {
 
     final myRecordsModuleConfig = nepanikarConfig.myRecordsModuleConfig;
     if (myRecordsModuleConfig != null) {
-      final moodTrackMap = myRecordsModuleConfig.moodTrackConfig?.values;
-      if (moodTrackMap != null) {
-        for (final moodTrackEntry in moodTrackMap.entries) {
-          final mood = Mood.fromInteger(moodTrackEntry.value);
-          if (mood != null) {
-            final dateTime = moodTrackEntry.key;
-            await _moodTrackDao.saveMood(mood, dateTime);
-          }
-        }
-      }
+      await _myRecordsModuleDb.doModuleOldVersionMigration(myRecordsModuleConfig);
     }
 
     final selfHarmModuleConfig = nepanikarConfig.selfHarmModuleConfig;
     if (selfHarmModuleConfig != null) {
-      final selfHarmTimerConfig = selfHarmModuleConfig.selfHarmTimerConfig;
-      if (selfHarmTimerConfig != null) {
-        if (selfHarmTimerConfig.currSelfHarmTimerStartDateTime != null) {
-          await _selfHarmTimerDao
-              .startSelfHarmTimer(selfHarmTimerConfig.currSelfHarmTimerStartDateTime);
-        }
-
-        if (selfHarmTimerConfig.selfHarmTimerRecord != null) {
-          final nowUtc = DateTime.now().toUtc();
-          await _selfHarmTimerDao.saveNewBestRecord(
-            DateTimeRange(
-              start: nowUtc.subtract(Duration(seconds: selfHarmTimerConfig.selfHarmTimerRecord!)),
-              end: nowUtc,
-            ),
-          );
-        }
-      }
+      await _selfHarmModuleDb.doModuleOldVersionMigration(selfHarmModuleConfig);
     }
   }
 
   Future<void> clearAll() async {
     await mainStore.drop(database);
     await _userSettingsDao.clear();
-    await _selfHarmPlanDao.clear();
-    await _selfHarmTimerDao.clear();
-    await _suicidalThoughtsPlanDao.clear();
-    await _moodTrackDao.clear();
+    await _depressionModuleDb.clearModule();
+    await _selfHarmModuleDb.clearModule();
+    await _suicidalThoughtsModuleDb.clearModule();
+    await _myRecordsModuleDb.clearModule();
   }
 }

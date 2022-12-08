@@ -5,6 +5,7 @@ import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/services/db/filters.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
 import 'package:nepanikar/utils/registry.dart';
+import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 import 'package:sembast/sembast.dart';
 
 class MoodTrackDao with CustomFilters {
@@ -73,6 +74,17 @@ class MoodTrackDao with CustomFilters {
           return null;
         }
       });
+
+  Future<void> doOldVersionMigration(MoodTrackDTO moodTrackConfig) async {
+    final valuesMap = moodTrackConfig.values;
+    for (final moodTrackEntry in valuesMap.entries) {
+      final mood = Mood.fromInteger(moodTrackEntry.value);
+      if (mood != null) {
+        final dateTime = moodTrackEntry.key;
+        await saveMood(mood, dateTime);
+      }
+    }
+  }
 
   Future<void> clear() async {
     await _store.drop(_db);
