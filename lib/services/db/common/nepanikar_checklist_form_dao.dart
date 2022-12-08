@@ -54,6 +54,10 @@ abstract class NepanikarCheckListFormDao {
         return Map.fromEntries(entries);
       });
 
+  Future<void> doOldVersionMigration() async {
+    // TODO: implement doOldVersionMigration
+  }
+
   Future<void> clear() async {
     await _store.drop(_db);
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/utils/registry.dart';
+import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sembast/sembast.dart';
 import 'package:sembast/timestamp.dart';
@@ -98,6 +99,22 @@ class SelfHarmTimerDao {
           return null;
         },
       );
+
+  Future<void> doOldVersionMigration(SelfHarmTimerDTO timerConfig) async {
+    if (timerConfig.currSelfHarmTimerStartDateTime != null) {
+      await startSelfHarmTimer(timerConfig.currSelfHarmTimerStartDateTime);
+    }
+
+    if (timerConfig.selfHarmTimerRecord != null) {
+      final nowUtc = DateTime.now().toUtc();
+      await saveNewBestRecord(
+        DateTimeRange(
+          start: nowUtc.subtract(Duration(seconds: timerConfig.selfHarmTimerRecord!)),
+          end: nowUtc,
+        ),
+      );
+    }
+  }
 
   Future<void> clear() async {
     await _store.drop(_db);

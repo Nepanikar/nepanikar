@@ -33,6 +33,10 @@ abstract class NepanikarListFormDao {
   Stream<List<RecordSnapshot<String, ListFormItem>>> get allFormItemsRecordsStream =>
       _store.query().onSnapshots(_db);
 
+  Future<void> doOldVersionMigration() async {
+    // TODO: implement doOldVersionMigration
+  }
+
   Future<void> clear() async {
     await _store.drop(_db);
   }
