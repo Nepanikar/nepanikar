@@ -16,6 +16,7 @@ import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_samples_s
 import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_screen.dart';
 import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_tasks_screen.dart';
 import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_tips_screen.dart';
+import 'package:nepanikar/screens/home/eating_disorder/meal_plan_screen.dart';
 import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_fail.dart';
 import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_figure.dart';
 import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_general.dart';
@@ -118,6 +119,7 @@ const _eatingDisorderRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<EatingDisorderSamplesRoute>(path: 'home/eating-disorder/samples'),
   TypedGoRoute<EatingDisorderDistractionsRoute>(path: 'home/eating-disorder/distraction'),
   ..._eatingDisorderTipsRoutes,
+  TypedGoRoute<MealPlanRoute>(path: 'home/eating-disorder/meal-plan'),
 ];
 
 const _eatingDisorderTipsRoutes = <TypedGoRoute<GoRouteData>>[
