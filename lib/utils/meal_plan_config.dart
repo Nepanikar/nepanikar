@@ -1,118 +1,53 @@
 import 'package:flutter/cupertino.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 
-class Meal {
-  Meal({this.title, this.description, this.image});
+enum MealType { breakfast, amSnack, lunch, pmSnack, dinner }
 
-  String? title;
-  String? description;
-  String? image;
+class Meal {
+  const Meal({this.title, this.description, this.image});
+
+  final String? title;
+  final String? description;
+  final String? image;
 }
 
 List<Meal> getMealsById(BuildContext context, String id) {
   final meals = {
-    'breakfast': [
-      Meal(
-        title: context.l10n.food_dishes_breakfast.split('\n').elementAt(0),
-        image: 'assets/meals/breakfast0.jpg',
+    MealType.breakfast.name: List.generate(
+      context.l10n.food_dishes_breakfast.split('\n').length,
+      (index) => Meal(
+        title: context.l10n.food_dishes_breakfast.split('\n').elementAt(index),
+        image: 'assets/meals/breakfast$index.jpg',
       ),
-      Meal(
-        title: context.l10n.food_dishes_breakfast.split('\n').elementAt(1),
-        image: 'assets/meals/breakfast1.jpg',
+    ).toList(),
+    MealType.amSnack.name: List.generate(
+      context.l10n.food_dishes_am_snack.split('\n').length,
+      (index) => Meal(
+        title: context.l10n.food_dishes_am_snack.split('\n').elementAt(index),
+        image: 'assets/meals/amSnack$index.jpg',
       ),
-      Meal(
-        title: context.l10n.food_dishes_breakfast.split('\n').elementAt(2),
-        image: 'assets/meals/breakfast2.jpg',
+    ).toList(),
+    MealType.lunch.name: List.generate(
+      context.l10n.food_dishes_lunch.split('\n').length,
+      (index) => Meal(
+        title: context.l10n.food_dishes_lunch.split('\n').elementAt(index),
+        image: 'assets/meals/lunch$index.jpg',
       ),
-    ],
-    'am_snack': [
-      Meal(
-        title: context.l10n.food_dishes_am_snack.split('\n').elementAt(0),
-        image: 'assets/meals/amSnack0.jpg',
+    ).toList(),
+    MealType.pmSnack.name: List.generate(
+      context.l10n.food_dishes_pm_snack.split('\n').length,
+      (index) => Meal(
+        title: context.l10n.food_dishes_pm_snack.split('\n').elementAt(index),
+        image: 'assets/meals/pmSnack$index.jpg',
       ),
-      Meal(
-        title: context.l10n.food_dishes_am_snack.split('\n').elementAt(1),
-        image: 'assets/meals/amSnack1.jpg',
+    ).toList(),
+    MealType.dinner.name: List.generate(
+      context.l10n.food_dishes_dinner.split('\n').length,
+      (index) => Meal(
+        title: context.l10n.food_dishes_dinner.split('\n').elementAt(index),
+        image: 'assets/meals/dinner$index.jpg',
       ),
-    ],
-    'lunch': [
-      Meal(
-        title: context.l10n.food_dishes_lunch.split('\n').elementAt(0),
-        image: 'assets/meals/lunch0.jpg',
-      ),
-      Meal(
-        title: context.l10n.food_dishes_lunch.split('\n').elementAt(1),
-        image: 'assets/meals/lunch1.jpg',
-      ),
-      Meal(
-        title: context.l10n.food_dishes_lunch.split('\n').elementAt(2),
-        image: 'assets/meals/lunch2.jpg',
-      ),
-      Meal(
-        title: context.l10n.food_dishes_lunch.split('\n').elementAt(3),
-        image: 'assets/meals/lunch3.jpg',
-      ),
-      Meal(
-        title: context.l10n.food_dishes_lunch.split('\n').elementAt(4),
-        image: 'assets/meals/lunch4.jpg',
-      ),
-      Meal(
-        title: context.l10n.food_dishes_lunch.split('\n').elementAt(5),
-        image: 'assets/meals/lunch5.jpg',
-      ),
-    ],
-    'pm_snack': [
-      Meal(
-        title: context.l10n.food_dishes_pm_snack.split('\n').elementAt(0),
-        image: 'assets/meals/pmSnack0.jpg',
-      ),
-      Meal(
-        title: context.l10n.food_dishes_pm_snack.split('\n').elementAt(1),
-        image: 'assets/meals/pmSnack1.jpg',
-      ),
-      Meal(
-        title: context.l10n.food_dishes_pm_snack.split('\n').elementAt(2),
-        image: 'assets/meals/pmSnack2.jpg',
-      ),
-      Meal(
-        title: context.l10n.food_dishes_pm_snack.split('\n').elementAt(3),
-        image: 'assets/meals/pmSnack3.jpg',
-      ),
-    ],
-    'dinner': [
-      Meal(
-        title: context.l10n.food_dishes_dinner.split('\n').elementAt(0),
-        image: 'assets/meals/dinner0.jpg',
-      ),
-      Meal(
-        title: context.l10n.food_dishes_dinner.split('\n').elementAt(1),
-        image: 'assets/meals/dinner1.jpg',
-      ),
-      Meal(
-        title: context.l10n.food_dishes_dinner.split('\n').elementAt(2),
-        image: 'assets/meals/dinner2.jpg',
-      ),
-      Meal(
-        title: context.l10n.food_dishes_dinner.split('\n').elementAt(3),
-        image: 'assets/meals/dinner3.jpg',
-      ),
-      Meal(
-        title: context.l10n.food_dishes_dinner.split('\n').elementAt(4),
-        image: 'assets/meals/dinner4.jpg',
-      ),
-      Meal(
-        title: context.l10n.food_dishes_dinner.split('\n').elementAt(5),
-        image: 'assets/meals/dinner5.jpg',
-      ),
-      Meal(
-        title: context.l10n.food_dishes_dinner.split('\n').elementAt(6),
-        image: 'assets/meals/dinner6.jpg',
-      ),
-      Meal(
-        title: context.l10n.food_dishes_dinner.split('\n').elementAt(7),
-        image: 'assets/meals/dinner7.jpg',
-      ),
-    ]
+    ).toList()
   };
   return meals[id] ?? [];
 }

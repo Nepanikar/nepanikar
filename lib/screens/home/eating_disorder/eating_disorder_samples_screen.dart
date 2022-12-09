@@ -4,6 +4,7 @@ import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/screens/home/eating_disorder/meal_plan_screen.dart';
+import 'package:nepanikar/utils/meal_plan_config.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
@@ -27,7 +28,7 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
           Uri(
             path: const MealPlanRoute().location,
             queryParameters: {
-              'id': 'breakfast',
+              'id': MealType.breakfast.name,
               'title': context.l10n.food_breakfast,
             },
           ).toString(),
@@ -40,7 +41,7 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
           Uri(
             path: const MealPlanRoute().location,
             queryParameters: {
-              'id': 'am_snack',
+              'id': MealType.amSnack.name,
               'title': context.l10n.food_am_snack,
             },
           ).toString(),
@@ -53,7 +54,7 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
           Uri(
             path: const MealPlanRoute().location,
             queryParameters: {
-              'id': 'lunch',
+              'id': MealType.lunch.name,
               'title': context.l10n.food_lunch,
             },
           ).toString(),
@@ -66,7 +67,7 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
           Uri(
             path: const MealPlanRoute().location,
             queryParameters: {
-              'id': 'pm_snack',
+              'id': MealType.pmSnack.name,
               'title': context.l10n.food_pm_snack,
             },
           ).toString(),
@@ -79,7 +80,7 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
           Uri(
             path: const MealPlanRoute().location,
             queryParameters: {
-              'id': 'dinner',
+              'id': MealType.dinner.name,
               'title': context.l10n.food_dinner,
             },
           ).toString(),

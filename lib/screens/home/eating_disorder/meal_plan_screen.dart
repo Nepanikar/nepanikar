@@ -33,7 +33,6 @@ class MealPlanScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final meals = getMealsById(context, id ?? '');
-    //print(meals.first.title?.split("\n").first);
     return NepanikarScreenWrapper(
       appBarTitle: title.toString(),
       children: [
