@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:nepanikar/services/db/depression/depression_module_db.dart';
+import 'package:nepanikar/services/db/eating_disorder/eating_disorder_module_db.dart';
 import 'package:nepanikar/services/db/my_records/my_records_module_db.dart';
 import 'package:nepanikar/services/db/self_harm/self_harm_module_db.dart';
 import 'package:nepanikar/services/db/suicidal_thoughts/suicidal_thoughts_module_db.dart';
@@ -30,6 +31,7 @@ class DatabaseService {
     _depressionModuleDb = await DepressionModuleDb(this).initModuleDaos();
     _selfHarmModuleDb = await SelfHarmModuleDb(this).initModuleDaos();
     _suicidalThoughtsModuleDb = await SuicidalThoughtsModuleDb(this).initModuleDaos();
+    _eatingDisorderModuleDb = await EatingDisorderModuleDb(this).initModuleDaos();
     _myRecordsModuleDb = await MyRecordsModuleDb(this).initModuleDaos();
   }
 
@@ -43,6 +45,7 @@ class DatabaseService {
   late final DepressionModuleDb _depressionModuleDb;
   late final SelfHarmModuleDb _selfHarmModuleDb;
   late final SuicidalThoughtsModuleDb _suicidalThoughtsModuleDb;
+  late final EatingDisorderModuleDb _eatingDisorderModuleDb;
   late final MyRecordsModuleDb _myRecordsModuleDb;
 
   bool _isDataMigrationFromOldAppVersionNeeded = false;
@@ -113,6 +116,7 @@ class DatabaseService {
     await _depressionModuleDb.clearModule();
     await _selfHarmModuleDb.clearModule();
     await _suicidalThoughtsModuleDb.clearModule();
+    await _eatingDisorderModuleDb.clearModule();
     await _myRecordsModuleDb.clearModule();
   }
 }
