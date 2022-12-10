@@ -1,0 +1,86 @@
+definitions:
+  instance: &instance
+    max_build_duration: 60
+  env_versions: &env_versions
+    flutter: 3.3.9
+    xcode: 14.1
+    cocoapods: default
+  artifacts: &artifacts
+    - build/**/outputs/bundle/**/*.apk
+    - build/**/outputs/bundle/**/*.aab
+    - build/**/outputs/**/mapping.txt
+    - build/ios/ipa/*.ipa
+    - /tmp/xcodebuild_logs/*.log
+    - "*.snap"
+    - build/windows/**/*.msix
+    - flutter_drive.log
+    - test_results.zip
+    - server_test_results.zip
+  generic_publishing: &generic_publishing
+    slack:
+      channel: "#run-nepanikar-cicd"
+      notify_on_build_start: false
+  scripts:
+    - &local_properties
+      name: Set up local.properties for Android
+      script: |
+        echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/android/local.properties"
+    - &get_packages
+      name: Get Flutter packages
+      script: |
+        flutter pub get
+    - &build_android
+      name: Build Android
+      script: |
+        flutter build appbundle --release \
+          --build-name=$MAJOR_VERSION.$MINOR_VERSION.$BUILD_NUMBER \
+          --build-number=$((($MAJOR_VERSION*100000)+($MINOR_VERSION*10000)+$BUILD_NUMBER)) \
+          --verbose --no-tree-shake-icons
+        android-app-bundle build-universal-apk \
+          --bundle 'build/**/outputs/**/*.aab' \
+          --ks "$CM_KEYSTORE_PATH" \
+          --ks-pass "$CM_KEYSTORE_PASSWORD" \
+          --ks-key-alias "$CM_KEY_ALIAS" \
+          --key-pass "$CM_KEY_PASSWORD"
+    - &setup_ios
+      name: Set up iOS
+      script: |
+        xcode-project use-profiles
+        find . -name "Podfile" -execdir pod install \;
+        cat /Users/builder/export_options.plist
+    - &build_ios
+      name: Build iOS
+      script: |
+        flutter build ipa --export-options-plist=/Users/builder/export_options.plist \
+          --build-name=$MAJOR_VERSION.$MINOR_VERSION.$BUILD_NUMBER \
+          --build-number=$((($MAJOR_VERSION*100000)+($MINOR_VERSION*10000)+$BUILD_NUMBER)) \
+          --verbose --no-tree-shake-icons
+
+workflows:
+  release:
+    name: Release
+    <<: *instance
+    integrations:
+      app_store_connect: Codemagic
+    environment:
+      <<: *env_versions
+      # android_signing:
+      #   - add keystore
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: org.dontpanicapp
+      vars:
+        MAJOR_VERSION: "1"
+        MINOR_VERSION: "0"
+    scripts:
+      - *local_properties
+      - *get_packages
+      # - *build_android
+      - *setup_ios
+      - *build_ios
+    artifacts: *artifacts
+    publishing:
+      <<: *generic_publishing
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
