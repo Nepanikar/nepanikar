@@ -73,7 +73,7 @@ workflows:
         MAJOR_VERSION: "1"
         MINOR_VERSION: "0"
     scripts:
-      - *local_properties
+      # - *local_properties
       - *get_packages
       # - *build_android
       - *setup_ios
