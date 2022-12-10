@@ -70,7 +70,7 @@ workflows:
         distribution_type: app_store
         bundle_identifier: org.dontpanicapp
       vars:
-        MAJOR_VERSION: "1"
+        MAJOR_VERSION: "2"
         MINOR_VERSION: "0"
     scripts:
       # - *local_properties
