@@ -103,7 +103,7 @@ workflows:
         - push
         - pull_request
       branch_patterns:
-        - pattern: test_codemagic_trigger
+        - pattern: main
           include: true
           source: true
     scripts:
