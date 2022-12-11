@@ -69,7 +69,7 @@ workflows:
         bundle_identifier: org.dontpanicapp
       vars:
         MAJOR_VERSION: "2"
-        MINOR_VERSION: "0"
+        MINOR_VERSION: "1"
     scripts:
       # - *local_properties
       - *get_packages
