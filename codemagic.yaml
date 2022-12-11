@@ -14,11 +14,9 @@ definitions:
     - "*.snap"
     - build/windows/**/*.msix
     - flutter_drive.log
-    - test_results.zip
-    - server_test_results.zip
   generic_publishing: &generic_publishing
     slack:
-      channel: "#run-nepanikar-cicd"
+      channel: "#run-nepanikar-codemagic"
       notify_on_build_start: false
   scripts:
     - &local_properties
@@ -72,6 +70,42 @@ workflows:
       vars:
         MAJOR_VERSION: "2"
         MINOR_VERSION: "0"
+    scripts:
+      # - *local_properties
+      - *get_packages
+      # - *build_android
+      - *setup_ios
+      - *build_ios
+    artifacts: *artifacts
+    publishing:
+      <<: *generic_publishing
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
+
+  dev:
+    name: Development
+    <<: *instance
+    integrations:
+      app_store_connect: Codemagic
+    environment:
+      <<: *env_versions
+      # android_signing:
+      #   - add keystore
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: org.dontpanicapp
+      vars:
+        MAJOR_VERSION: "2"
+        MINOR_VERSION: "0"
+    triggering:
+      events:
+        - push
+        - pull_request
+      branch_patterns:
+        - pattern: test_codemagic_trigger
+          include: true
+          source: true
     scripts:
       # - *local_properties
       - *get_packages
