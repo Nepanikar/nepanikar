@@ -9,6 +9,8 @@ import 'package:nepanikar/screens/contacts/university_contacts_screen.dart';
 import 'package:nepanikar/screens/home/anxiety/anxiety_screen.dart';
 import 'package:nepanikar/screens/home/anxiety/anxiety_tips_route.dart';
 import 'package:nepanikar/screens/home/depression/depression_activity_plan_screen.dart';
+import 'package:nepanikar/screens/home/depression/depression_nice_made_happy_screen.dart';
+import 'package:nepanikar/screens/home/depression/depression_praise_my_achievements_screen.dart';
 import 'package:nepanikar/screens/home/depression/depression_screen.dart';
 import 'package:nepanikar/screens/home/depression/depression_tips_screen.dart';
 import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_distractions_screen.dart';
@@ -17,6 +19,12 @@ import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_screen.da
 import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_tasks_screen.dart';
 import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_tips_screen.dart';
 import 'package:nepanikar/screens/home/eating_disorder/meal_plan_screen.dart';
+import 'package:nepanikar/screens/home/eating_disorder/tasks/eating_disorder_food_afraid_of_screen.dart';
+import 'package:nepanikar/screens/home/eating_disorder/tasks/eating_disorder_food_challenges_screen.dart';
+import 'package:nepanikar/screens/home/eating_disorder/tasks/eating_disorder_food_creative_screen.dart';
+import 'package:nepanikar/screens/home/eating_disorder/tasks/eating_disorder_food_i_like_screen.dart';
+import 'package:nepanikar/screens/home/eating_disorder/tasks/eating_disorder_food_motivation_screen.dart';
+import 'package:nepanikar/screens/home/eating_disorder/tasks/eating_disorder_like_on_myself_screen.dart';
 import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_fail.dart';
 import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_figure.dart';
 import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_general.dart';
@@ -31,6 +39,7 @@ import 'package:nepanikar/screens/home/self_harm/self_harm_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_timer_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_tips_screen.dart';
 import 'package:nepanikar/screens/home/suicidal_thoughts/suicidal_thoughts_plan_screen.dart';
+import 'package:nepanikar/screens/home/suicidal_thoughts/suicidal_thoughts_reasons_no_screen.dart';
 import 'package:nepanikar/screens/home/suicidal_thoughts/suicidal_thoughts_screen.dart';
 import 'package:nepanikar/screens/main/contacts_screen.dart';
 import 'package:nepanikar/screens/main/main_screen.dart';
@@ -87,8 +96,7 @@ const _homeRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<AnxietyAppRoute>(path: 'home/anxiety'),
   TypedGoRoute<AnxietyTipsAppRoute>(path: 'home/anxiety/tips'),
   ..._selfHarmRoutes,
-  TypedGoRoute<MyRecordsRoute>(path: 'home/my-records'),
-  TypedGoRoute<MoodTrackRoute>(path: 'home/my-records/mood-track'),
+  ..._myRecordsRoutes,
   ..._suicidalThoughtsRoutes,
   ..._eatingDisorderRoutes,
 ];
@@ -97,6 +105,8 @@ const _depressionRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<DepressionRoute>(path: 'home/depression'),
   TypedGoRoute<DepressionTipsAppRoute>(path: 'home/depression/tips'),
   TypedGoRoute<DepressionActivityPlanRoute>(path: 'home/depression/activity-plan'),
+  TypedGoRoute<DepressionNiceMadeHappyRoute>(path: 'home/depression/nice-made-happy'),
+  TypedGoRoute<DepressionPraiseMyAchievementsRoute>(path: 'home/depression/praise-my-achievements'),
 ];
 
 const _selfHarmRoutes = <TypedGoRoute<GoRouteData>>[
@@ -110,19 +120,34 @@ const _selfHarmRoutes = <TypedGoRoute<GoRouteData>>[
 const _suicidalThoughtsRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<SuicidalThoughtsRoute>(path: 'home/suicidal-thoughts'),
   TypedGoRoute<SuicidalThoughtsPlanRoute>(path: 'home/suicidal-thoughts/plan'),
+  TypedGoRoute<SuicidalThoughtsReasonsNoRoute>(path: 'home/suicidal-thoughts/reasons-no'),
 ];
 
 const _eatingDisorderRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<EatingDisorderRoute>(path: 'home/eating-disorder'),
-  TypedGoRoute<EatingDisorderTipsRoute>(path: 'home/eating-disorder/tips'),
-  TypedGoRoute<EatingDisorderTasksRoute>(path: 'home/eating-disorder/tasks'),
+  ..._eatingDisorderTipsRoutes,
+  ..._eatingDisorderTasksRoutes,
   TypedGoRoute<EatingDisorderSamplesRoute>(path: 'home/eating-disorder/samples'),
   TypedGoRoute<EatingDisorderDistractionsRoute>(path: 'home/eating-disorder/distraction'),
-  ..._eatingDisorderTipsRoutes,
   TypedGoRoute<MealPlanRoute>(path: 'home/eating-disorder/meal-plan'),
 ];
 
+const _eatingDisorderTasksRoutes = <TypedGoRoute<GoRouteData>>[
+  TypedGoRoute<EatingDisorderTasksRoute>(path: 'home/eating-disorder/tasks'),
+  TypedGoRoute<EatingDisorderFoodCreativeRoute>(path: 'home/eating-disorder/tasks/food-creative'),
+  TypedGoRoute<EatingDisorderFoodMotivationRoute>(
+    path: 'home/eating-disorder/tasks/food-motivation',
+  ),
+  TypedGoRoute<EatingDisorderFoodChallengesRoute>(
+    path: 'home/eating-disorder/tasks/food-challenges',
+  ),
+  TypedGoRoute<EatingDisorderLikeOnMyselfRoute>(path: 'home/eating-disorder/tasks/like-on-myself'),
+  TypedGoRoute<EatingDisorderFoodILikeRoute>(path: 'home/eating-disorder/tasks/food-i-like'),
+  TypedGoRoute<EatingDisorderFoodAfraidOfRoute>(path: 'home/eating-disorder/tasks/food-afraid-of'),
+];
+
 const _eatingDisorderTipsRoutes = <TypedGoRoute<GoRouteData>>[
+  TypedGoRoute<EatingDisorderTipsRoute>(path: 'home/eating-disorder/tips'),
   TypedGoRoute<EatingDisorderTipsFigureAppRoute>(path: 'home/eating-disorder/tips/figure'),
   TypedGoRoute<EatingDisorderTipsRemorseAppRoute>(
     path: 'home/eating-disorder/tips/remorse',
@@ -131,4 +156,9 @@ const _eatingDisorderTipsRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<EatingDisorderTipsVomitAppRoute>(path: 'home/eating-disorder/tips/vomit'),
   TypedGoRoute<EatingDisorderTipsFailAppRoute>(path: 'home/eating-disorder/tips/fail'),
   TypedGoRoute<EatingDisorderTipsGeneralAppRoute>(path: 'home/eating-disorder/tips/general'),
+];
+
+const _myRecordsRoutes = <TypedGoRoute<GoRouteData>>[
+  TypedGoRoute<MyRecordsRoute>(path: 'home/my-records'),
+  TypedGoRoute<MoodTrackRoute>(path: 'home/my-records/mood-track'),
 ];

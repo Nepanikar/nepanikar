@@ -24,7 +24,7 @@ class MoodTrackDao with CustomFilters {
 
   Database get _db => _dbService.database;
 
-  static const _storeKeyName = 'mood_track';
+  static const _storeKeyName = 'my_records_mood_track';
 
   Future<void> saveMood(Mood mood, [DateTime? dateTime]) async {
     final dateTimeToSave = dateTime ?? DateTime.now();

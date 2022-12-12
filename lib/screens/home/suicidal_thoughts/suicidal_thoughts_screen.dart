@@ -5,6 +5,7 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/games/breathing/breathing_exercises_screen.dart';
 import 'package:nepanikar/screens/home/suicidal_thoughts/suicidal_thoughts_plan_screen.dart';
+import 'package:nepanikar/screens/home/suicidal_thoughts/suicidal_thoughts_reasons_no_screen.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
@@ -27,9 +28,9 @@ class SuicidalThoughtsScreen extends StatelessWidget {
         onTap: () => context.push(const SuicidalThoughtsPlanRoute().location),
       ),
       LongTile(
-        text: '${context.l10n.reasons} TODO',
+        text: context.l10n.reasons,
         image: Assets.illustrations.modules.suicidalThoughts.svg(),
-        onTap: () => {},
+        onTap: () => context.push(const SuicidalThoughtsReasonsNoRoute().location),
       ),
       LongTile(
         text: context.l10n.breath,
