@@ -55,6 +55,14 @@ GoRoute get $mainRoute => GoRouteData.$route(
           factory: $DepressionActivityPlanRouteExtension._fromState,
         ),
         GoRouteData.$route(
+          path: 'home/depression/nice-made-happy',
+          factory: $DepressionNiceMadeHappyRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'home/depression/praise-my-achievements',
+          factory: $DepressionPraiseMyAchievementsRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: 'home/anxiety',
           factory: $AnxietyAppRouteExtension._fromState,
         ),
@@ -92,7 +100,7 @@ GoRoute get $mainRoute => GoRouteData.$route(
         ),
         GoRouteData.$route(
           path: 'home/my-records/diary',
-          factory: $MyRecordsDiariesListRouteExtension._fromState,
+          factory: $MyRecordsDiaryRecordsRouteExtension._fromState,
         ),
         GoRouteData.$route(
           path: 'home/my-records/diary/detail',
@@ -111,24 +119,16 @@ GoRoute get $mainRoute => GoRouteData.$route(
           factory: $SuicidalThoughtsPlanRouteExtension._fromState,
         ),
         GoRouteData.$route(
+          path: 'home/suicidal-thoughts/reasons-no',
+          factory: $SuicidalThoughtsReasonsNoRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: 'home/eating-disorder',
           factory: $EatingDisorderRouteExtension._fromState,
         ),
         GoRouteData.$route(
           path: 'home/eating-disorder/tips',
           factory: $EatingDisorderTipsRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: 'home/eating-disorder/tasks',
-          factory: $EatingDisorderTasksRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: 'home/eating-disorder/samples',
-          factory: $EatingDisorderSamplesRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: 'home/eating-disorder/distraction',
-          factory: $EatingDisorderDistractionsRouteExtension._fromState,
         ),
         GoRouteData.$route(
           path: 'home/eating-disorder/tips/figure',
@@ -153,6 +153,42 @@ GoRoute get $mainRoute => GoRouteData.$route(
         GoRouteData.$route(
           path: 'home/eating-disorder/tips/general',
           factory: $EatingDisorderTipsGeneralAppRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'home/eating-disorder/tasks',
+          factory: $EatingDisorderTasksRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'home/eating-disorder/tasks/food-creative',
+          factory: $EatingDisorderFoodCreativeRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'home/eating-disorder/tasks/food-motivation',
+          factory: $EatingDisorderFoodMotivationRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'home/eating-disorder/tasks/food-challenges',
+          factory: $EatingDisorderFoodChallengesRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'home/eating-disorder/tasks/like-on-myself',
+          factory: $EatingDisorderLikeOnMyselfRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'home/eating-disorder/tasks/food-i-like',
+          factory: $EatingDisorderFoodILikeRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'home/eating-disorder/tasks/food-afraid-of',
+          factory: $EatingDisorderFoodAfraidOfRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'home/eating-disorder/samples',
+          factory: $EatingDisorderSamplesRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'home/eating-disorder/distraction',
+          factory: $EatingDisorderDistractionsRouteExtension._fromState,
         ),
         GoRouteData.$route(
           path: 'home/eating-disorder/meal-plan',
@@ -302,6 +338,34 @@ extension $DepressionActivityPlanRouteExtension on DepressionActivityPlanRoute {
   void push(BuildContext context) => context.push(location, extra: this);
 }
 
+extension $DepressionNiceMadeHappyRouteExtension
+    on DepressionNiceMadeHappyRoute {
+  static DepressionNiceMadeHappyRoute _fromState(GoRouterState state) =>
+      const DepressionNiceMadeHappyRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/depression/nice-made-happy',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $DepressionPraiseMyAchievementsRouteExtension
+    on DepressionPraiseMyAchievementsRoute {
+  static DepressionPraiseMyAchievementsRoute _fromState(GoRouterState state) =>
+      const DepressionPraiseMyAchievementsRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/depression/praise-my-achievements',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
 extension $AnxietyAppRouteExtension on AnxietyAppRoute {
   static AnxietyAppRoute _fromState(GoRouterState state) =>
       const AnxietyAppRoute();
@@ -418,9 +482,9 @@ extension $MoodTrackRouteExtension on MoodTrackRoute {
   void push(BuildContext context) => context.push(location, extra: this);
 }
 
-extension $MyRecordsDiariesListRouteExtension on MyRecordsDiariesListRoute {
-  static MyRecordsDiariesListRoute _fromState(GoRouterState state) =>
-      const MyRecordsDiariesListRoute();
+extension $MyRecordsDiaryRecordsRouteExtension on MyRecordsDiaryRecordsRoute {
+  static MyRecordsDiaryRecordsRoute _fromState(GoRouterState state) =>
+      const MyRecordsDiaryRecordsRoute();
 
   String get location => GoRouteData.$location(
         '/home/my-records/diary',
@@ -483,6 +547,20 @@ extension $SuicidalThoughtsPlanRouteExtension on SuicidalThoughtsPlanRoute {
   void push(BuildContext context) => context.push(location, extra: this);
 }
 
+extension $SuicidalThoughtsReasonsNoRouteExtension
+    on SuicidalThoughtsReasonsNoRoute {
+  static SuicidalThoughtsReasonsNoRoute _fromState(GoRouterState state) =>
+      const SuicidalThoughtsReasonsNoRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/suicidal-thoughts/reasons-no',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
 extension $EatingDisorderRouteExtension on EatingDisorderRoute {
   static EatingDisorderRoute _fromState(GoRouterState state) =>
       const EatingDisorderRoute();
@@ -502,46 +580,6 @@ extension $EatingDisorderTipsRouteExtension on EatingDisorderTipsRoute {
 
   String get location => GoRouteData.$location(
         '/home/eating-disorder/tips',
-      );
-
-  void go(BuildContext context) => context.go(location, extra: this);
-
-  void push(BuildContext context) => context.push(location, extra: this);
-}
-
-extension $EatingDisorderTasksRouteExtension on EatingDisorderTasksRoute {
-  static EatingDisorderTasksRoute _fromState(GoRouterState state) =>
-      const EatingDisorderTasksRoute();
-
-  String get location => GoRouteData.$location(
-        '/home/eating-disorder/tasks',
-      );
-
-  void go(BuildContext context) => context.go(location, extra: this);
-
-  void push(BuildContext context) => context.push(location, extra: this);
-}
-
-extension $EatingDisorderSamplesRouteExtension on EatingDisorderSamplesRoute {
-  static EatingDisorderSamplesRoute _fromState(GoRouterState state) =>
-      const EatingDisorderSamplesRoute();
-
-  String get location => GoRouteData.$location(
-        '/home/eating-disorder/samples',
-      );
-
-  void go(BuildContext context) => context.go(location, extra: this);
-
-  void push(BuildContext context) => context.push(location, extra: this);
-}
-
-extension $EatingDisorderDistractionsRouteExtension
-    on EatingDisorderDistractionsRoute {
-  static EatingDisorderDistractionsRoute _fromState(GoRouterState state) =>
-      const EatingDisorderDistractionsRoute();
-
-  String get location => GoRouteData.$location(
-        '/home/eating-disorder/distraction',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
@@ -626,6 +664,130 @@ extension $EatingDisorderTipsGeneralAppRouteExtension
 
   String get location => GoRouteData.$location(
         '/home/eating-disorder/tips/general',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $EatingDisorderTasksRouteExtension on EatingDisorderTasksRoute {
+  static EatingDisorderTasksRoute _fromState(GoRouterState state) =>
+      const EatingDisorderTasksRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/eating-disorder/tasks',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $EatingDisorderFoodCreativeRouteExtension
+    on EatingDisorderFoodCreativeRoute {
+  static EatingDisorderFoodCreativeRoute _fromState(GoRouterState state) =>
+      const EatingDisorderFoodCreativeRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/eating-disorder/tasks/food-creative',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $EatingDisorderFoodMotivationRouteExtension
+    on EatingDisorderFoodMotivationRoute {
+  static EatingDisorderFoodMotivationRoute _fromState(GoRouterState state) =>
+      const EatingDisorderFoodMotivationRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/eating-disorder/tasks/food-motivation',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $EatingDisorderFoodChallengesRouteExtension
+    on EatingDisorderFoodChallengesRoute {
+  static EatingDisorderFoodChallengesRoute _fromState(GoRouterState state) =>
+      const EatingDisorderFoodChallengesRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/eating-disorder/tasks/food-challenges',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $EatingDisorderLikeOnMyselfRouteExtension
+    on EatingDisorderLikeOnMyselfRoute {
+  static EatingDisorderLikeOnMyselfRoute _fromState(GoRouterState state) =>
+      const EatingDisorderLikeOnMyselfRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/eating-disorder/tasks/like-on-myself',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $EatingDisorderFoodILikeRouteExtension
+    on EatingDisorderFoodILikeRoute {
+  static EatingDisorderFoodILikeRoute _fromState(GoRouterState state) =>
+      const EatingDisorderFoodILikeRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/eating-disorder/tasks/food-i-like',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $EatingDisorderFoodAfraidOfRouteExtension
+    on EatingDisorderFoodAfraidOfRoute {
+  static EatingDisorderFoodAfraidOfRoute _fromState(GoRouterState state) =>
+      const EatingDisorderFoodAfraidOfRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/eating-disorder/tasks/food-afraid-of',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $EatingDisorderSamplesRouteExtension on EatingDisorderSamplesRoute {
+  static EatingDisorderSamplesRoute _fromState(GoRouterState state) =>
+      const EatingDisorderSamplesRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/eating-disorder/samples',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $EatingDisorderDistractionsRouteExtension
+    on EatingDisorderDistractionsRoute {
+  static EatingDisorderDistractionsRoute _fromState(GoRouterState state) =>
+      const EatingDisorderDistractionsRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/eating-disorder/distraction',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);

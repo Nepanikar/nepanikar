@@ -4,6 +4,7 @@ import 'package:nepanikar/app/theme/sizes.dart';
 import 'package:nepanikar/services/db/common/checklist_item_model.dart';
 import 'package:nepanikar/services/db/common/nepanikar_checklist_form_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
+import 'package:nepanikar/widgets/empty_records_state_widget.dart';
 import 'package:nepanikar/widgets/nepanikar_horizontal_divider.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
@@ -61,6 +62,10 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
             builder: (_, snapshot) {
               final savedListItems = snapshot.data ?? {};
               final savedListItemsLength = savedListItems.length;
+
+              if (snapshot.hasData && savedListItems.isEmpty) {
+                return const EmptyRecordsStateWidget();
+              }
 
               return ListView.separated(
                 itemCount: savedListItems.length,

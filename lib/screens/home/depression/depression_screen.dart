@@ -4,6 +4,8 @@ import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/screens/home/depression/depression_activity_plan_screen.dart';
+import 'package:nepanikar/screens/home/depression/depression_nice_made_happy_screen.dart';
+import 'package:nepanikar/screens/home/depression/depression_praise_my_achievements_screen.dart';
 import 'package:nepanikar/screens/home/depression/depression_tips_screen.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
@@ -32,14 +34,14 @@ class DepressionScreen extends StatelessWidget {
         onTap: () => context.push(const DepressionActivityPlanRoute().location),
       ),
       LongTile(
-        text: '${context.l10n.depression_nice} TODO',
+        text: context.l10n.depression_nice,
         image: Assets.illustrations.modules.relaxation.svg(),
-        onTap: () => {},
+        onTap: () => context.push(const DepressionNiceMadeHappyRoute().location),
       ),
       LongTile(
-        text: '${context.l10n.depression_praise} TODO',
+        text: context.l10n.depression_praise,
         image: Assets.illustrations.modules.relaxation.svg(),
-        onTap: () => {},
+        onTap: () => context.push(const DepressionPraiseMyAchievementsRoute().location),
       ),
     ];
     return NepanikarScreenWrapper(

@@ -11,15 +11,15 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/diary/diary_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
-class MyRecordsDiariesListRoute extends GoRouteData {
-  const MyRecordsDiariesListRoute();
+class MyRecordsDiaryRecordsRoute extends GoRouteData {
+  const MyRecordsDiaryRecordsRoute();
 
   @override
-  Widget build(BuildContext context) => const MyRecordsDiariesListScreen();
+  Widget build(BuildContext context) => const MyRecordsDiaryRecordsScreen();
 }
 
-class MyRecordsDiariesListScreen extends StatelessWidget {
-  const MyRecordsDiariesListScreen({super.key});
+class MyRecordsDiaryRecordsScreen extends StatelessWidget {
+  const MyRecordsDiaryRecordsScreen({super.key});
 
   MyRecordsDiaryDao get _myRecordsDiaryDao => registry.get<MyRecordsDiaryDao>();
 
