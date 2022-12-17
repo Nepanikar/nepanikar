@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nepanikar/services/db/depression/depression_module_db.dart';
 import 'package:nepanikar/services/db/eating_disorder/eating_disorder_module_db.dart';
 import 'package:nepanikar/services/db/my_records/my_records_module_db.dart';
@@ -21,8 +22,11 @@ class DatabaseService {
 
   Future<void> init() async {
     mainStore = StoreRef.main();
-    final db = await _checkPreloadDataFromOldAppVersion();
-    if (!_isDataMigrationFromOldAppVersionNeeded) await _initModuleDaos(db);
+    final db = await _initDb();
+    if (!_areDaosInitialized) {
+      await _initModuleDaos(db);
+      _areDaosInitialized = true;
+    }
   }
 
   Future<void> _initModuleDaos(Database db) async {
@@ -33,13 +37,14 @@ class DatabaseService {
     _suicidalThoughtsModuleDb = await SuicidalThoughtsModuleDb(this).initModuleDaos();
     _eatingDisorderModuleDb = await EatingDisorderModuleDb(this).initModuleDaos();
     _myRecordsModuleDb = await MyRecordsModuleDb(this).initModuleDaos();
+    _areDaosInitialized = true;
   }
 
   final SaveDirectories _saveDirectories;
 
   late final Database database;
 
-  late final StoreRef<String, Map<String, dynamic>> mainStore;
+  late final StoreRef<String, dynamic> mainStore;
 
   late final UserSettingsDao _userSettingsDao;
   late final DepressionModuleDb _depressionModuleDb;
@@ -48,12 +53,14 @@ class DatabaseService {
   late final EatingDisorderModuleDb _eatingDisorderModuleDb;
   late final MyRecordsModuleDb _myRecordsModuleDb;
 
-  bool _isDataMigrationFromOldAppVersionNeeded = false;
+  bool _areDaosInitialized = false;
 
   static const _dbFileName = 'app.db';
 
+  static const _dataPreloadedKey = 'data_preloaded';
+
   /// https://github.com/tekartik/sembast.dart/blob/master/sembast/doc/open.md#preloading-data
-  Future<Database> _checkPreloadDataFromOldAppVersion() async {
+  Future<Database> _initDb() async {
     final db = databaseFactoryIo.openDatabase(
       join(_saveDirectories.dbDirPath, _dbFileName),
       version: 1,
@@ -62,11 +69,10 @@ class DatabaseService {
         if (oldVersion == 0) {
           debugPrint('DATABASE_SERVICE: Creating database for the first time - first app install.');
           final oldVersionAppDataExists = await _oldAppVersionDataExists();
-          // ignore: dead_code
           if (oldVersionAppDataExists) {
             debugPrint('DATABASE_SERVICE: Old app version data FOUND.');
-            _isDataMigrationFromOldAppVersionNeeded = true;
             await _initModuleDaos(db);
+            await _setDataPreloaded(); // Do not preload data if old app version data exists.
             await _doDataMigrationFromOldAppVersion();
           } else {
             debugPrint('DATABASE_SERVICE: Old app version data NOT FOUND.');
@@ -75,6 +81,29 @@ class DatabaseService {
       },
     );
     return db;
+  }
+
+  Future<void> checkDataPreloaded(AppLocalizations l10n) async {
+    final areDataPreloaded = await mainStore.record(_dataPreloadedKey).get(database) as bool?;
+    if (areDataPreloaded == null || !areDataPreloaded) {
+      debugPrint('DATABASE_SERVICE: Preloading default data.');
+      await preloadDefaultData(l10n);
+      await _setDataPreloaded();
+    } else {
+      debugPrint('DATABASE_SERVICE: Default data preload not needed.');
+    }
+  }
+
+  Future<void> _setDataPreloaded() async {
+    await mainStore.record(_dataPreloadedKey).put(database, true);
+  }
+
+  Future<void> preloadDefaultData(AppLocalizations l10n) async {
+    await _depressionModuleDb.preloadDefaultModuleData(l10n);
+    await _selfHarmModuleDb.preloadDefaultModuleData(l10n);
+    await _suicidalThoughtsModuleDb.preloadDefaultModuleData(l10n);
+    await _eatingDisorderModuleDb.preloadDefaultModuleData(l10n);
+    await _myRecordsModuleDb.preloadDefaultModuleData(l10n);
   }
 
   Future<bool> _oldAppVersionDataExists() async {
