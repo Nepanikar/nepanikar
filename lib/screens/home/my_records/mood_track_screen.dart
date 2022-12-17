@@ -1,7 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:nepanikar/app/app_constants.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
@@ -22,13 +21,20 @@ class MoodTrackRoute extends GoRouteData {
   const MoodTrackRoute();
 
   @override
-  Widget build(BuildContext context) => const MoodTrackScreen();
+  Widget build(BuildContext context) => const MoodTrackScreen<MoodTrackDao>();
 }
 
-class MoodTrackScreen extends StatelessWidget {
-  const MoodTrackScreen({super.key});
+class MoodTrackScreen<T extends MoodTrackDao> extends StatelessWidget {
+  const MoodTrackScreen({
+    super.key,
+    this.appBarTitle,
+    this.appBarDescription = '',
+  });
 
-  MoodTrackDao get _moodTrackDao => registry.get<MoodTrackDao>();
+  final String? appBarTitle;
+  final String appBarDescription;
+
+  T get _trackDao => registry.get<T>();
 
   DateTime get _now => getNowDateTimeLocal();
 
@@ -38,21 +44,20 @@ class MoodTrackScreen extends StatelessWidget {
     const pageHorizontalPadding = EdgeInsets.symmetric(horizontal: pageSidePadding);
 
     return NepanikarScreenWrapper(
-      appBarTitle: context.l10n.depression_mood,
-      // TODO: description
-      appBarDescription: AppConstants.loremIpsumShort,
+      appBarTitle: appBarTitle ?? context.l10n.depression_mood,
+      appBarDescription: appBarDescription,
       isModuleList: false,
       children: [
         const SizedBox(height: 16),
         Padding(
           padding: pageHorizontalPadding,
           child: StreamBuilder<MoodTrack?>(
-            stream: _moodTrackDao.latestMoodTrackStream,
+            stream: _trackDao.latestMoodTrackStream,
             builder: (_, snapshot) {
               final latestMoodTrack = snapshot.data;
               return MoodPicker(
                 activeMood: latestMoodTrack?.mood,
-                onPick: (mood) async => _moodTrackDao.saveMood(mood),
+                onPick: _trackDao.saveMood,
               );
             },
           ),
@@ -84,7 +89,7 @@ class MoodTrackScreen extends StatelessWidget {
         const SizedBox(height: 20),
         Card(
           child: StreamBuilder<List<MoodTrack>>(
-            stream: _moodTrackDao.allMoodTracksStream,
+            stream: _trackDao.allMoodTracksStream,
             builder: (_, snapshot) {
               final allMoodTrackData = snapshot.data ?? [];
               final firstMoodTrackDate = allMoodTrackData.firstOrNull?.date;
