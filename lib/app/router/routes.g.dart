@@ -103,6 +103,10 @@ GoRoute get $mainRoute => GoRouteData.$route(
           factory: $MyRecordsDiaryRecordsRouteExtension._fromState,
         ),
         GoRouteData.$route(
+          path: 'home/my-records/diary/add',
+          factory: $MyRecordsDiaryAddRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: 'home/my-records/diary/detail',
           factory: $MyRecordsDiaryDetailRouteExtension._fromState,
         ),
@@ -488,6 +492,19 @@ extension $MyRecordsDiaryRecordsRouteExtension on MyRecordsDiaryRecordsRoute {
 
   String get location => GoRouteData.$location(
         '/home/my-records/diary',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $MyRecordsDiaryAddRouteExtension on MyRecordsDiaryAddRoute {
+  static MyRecordsDiaryAddRoute _fromState(GoRouterState state) =>
+      const MyRecordsDiaryAddRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/my-records/diary/add',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);

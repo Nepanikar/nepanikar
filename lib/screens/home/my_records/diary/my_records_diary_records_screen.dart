@@ -3,8 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/sizes.dart';
+import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_add_screen.dart';
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_detail_screen.dart';
-import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_edit_screen.dart';
 import 'package:nepanikar/services/db/my_records/diary/diary_record_model.dart';
 import 'package:nepanikar/services/db/my_records/diary/my_records_diary_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
@@ -35,7 +35,7 @@ class MyRecordsDiaryRecordsScreen extends StatelessWidget {
       isCardStackLayout: true,
       expandToMaxScreenHeight: true,
       floatingActionButton: FloatingActionButton(
-        onPressed: () => context.push(const MyRecordsDiaryEditRoute().location),
+        onPressed: () => context.push(const MyRecordsDiaryAddRoute().location),
         child: const Icon(Icons.add),
       ),
       children: [
