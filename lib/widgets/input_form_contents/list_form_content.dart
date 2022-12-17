@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/theme/colors.dart';
+import 'package:nepanikar/app/theme/sizes.dart';
 import 'package:nepanikar/services/db/common/nepanikar_list_form_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_horizontal_divider.dart';
@@ -58,6 +59,7 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
             stream: _allFormItemsStream,
             builder: (_, snapshot) {
               final savedListItems = snapshot.data ?? [];
+              final savedListItemsLength = savedListItems.length;
 
               return ListView.separated(
                 itemCount: savedListItems.length,
@@ -70,9 +72,11 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
                   final record = savedListItems[i];
                   final formKey = record.key;
                   final formText = record.value;
-                  final isLastItem = i == savedListItems.length - 1;
+                  final isLastItem = i == savedListItemsLength - 1;
+
                   return Padding(
-                    padding: EdgeInsets.only(bottom: isLastItem ? 56 : 0),
+                    padding:
+                        EdgeInsets.only(bottom: isLastItem ? NepanikarSizes.fabBottomPadding : 0),
                     child: ListTile(
                       key: Key(formKey),
                       minLeadingWidth: 0,

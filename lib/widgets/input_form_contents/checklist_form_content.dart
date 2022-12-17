@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/theme/colors.dart';
+import 'package:nepanikar/app/theme/sizes.dart';
 import 'package:nepanikar/services/db/common/checklist_item_model.dart';
 import 'package:nepanikar/services/db/common/nepanikar_checklist_form_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
@@ -59,6 +60,7 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
             stream: _allFormItemsStream,
             builder: (_, snapshot) {
               final savedListItems = snapshot.data ?? {};
+              final savedListItemsLength = savedListItems.length;
 
               return ListView.separated(
                 itemCount: savedListItems.length,
@@ -73,9 +75,11 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
                   final checkForm = record.value;
                   final checkFormState = checkForm.isChecked;
                   final checkFormText = checkForm.text;
-                  final isLastItem = i == savedListItems.length - 1;
+                  final isLastItem = i == savedListItemsLength - 1;
+
                   return Padding(
-                    padding: EdgeInsets.only(bottom: isLastItem ? 56 : 0),
+                    padding:
+                        EdgeInsets.only(bottom: isLastItem ? NepanikarSizes.fabBottomPadding : 0),
                     child: ListTile(
                       key: Key(checkFormKey),
                       minLeadingWidth: 0,

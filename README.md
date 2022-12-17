@@ -55,6 +55,7 @@ to regenerate the JSON file.
 ### Commands
 
 - `flutter packages pub run build_runner build -d` - regenerate go_route/freezed/assets files
+- `flutter pub run build_runner watch --delete-conflicting-outputs` - watch and generate automatically changes when files are changed
 - `flutter gen-l10n` - recompile .arb language files
 
 ### Credits

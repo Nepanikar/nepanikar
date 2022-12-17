@@ -3,47 +3,38 @@ import 'package:intl/intl.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
-import 'package:nepanikar/helpers/date_helpers.dart';
 import 'package:nepanikar/widgets/material_wrapper.dart';
 
 class NepanikarDatePicker extends StatelessWidget {
   const NepanikarDatePicker({
     super.key,
-    required this.firstDate,
-    required this.lastDate,
-    required this.activeRange,
+    this.initialDate,
     required this.onPick,
-    this.dateFormatLabelPattern,
   });
 
-  final DateTime firstDate;
-  final DateTime lastDate;
-  final DateTimeRange? activeRange;
-  final ValueChanged<DateTimeRange> onPick;
-  final String? dateFormatLabelPattern;
+  final DateTime? initialDate;
+  final ValueChanged<DateTime> onPick;
 
-  Future<DateTimeRange?> _showDateRangePicker(BuildContext context) {
-    return showDateRangePicker(
+  Future<DateTime?> _showDatePicker(BuildContext context) {
+    final now = DateTime.now();
+    return showDatePicker(
       context: context,
-      firstDate: firstDate,
-      lastDate: lastDate,
-      initialDateRange: activeRange,
+      initialDate: now,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(now.year + 5),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final dateFormatLabelPattern = this.dateFormatLabelPattern ?? CustomDateFormats.datePickerLabel;
-    String formatDate(DateTime date) =>
-        DateFormat(dateFormatLabelPattern, Localizations.localeOf(context).languageCode)
-            .format(date);
-
+    final locale = Localizations.localeOf(context);
+    final dateToDisplay = initialDate ?? DateTime.now();
     return MaterialWrapper(
       color: NepanikarColors.filledContainer,
       onTap: () async {
-        final pickedDateRange = await _showDateRangePicker(context);
-        if (pickedDateRange != null) {
-          onPick.call(pickedDateRange);
+        final pickedDate = await _showDatePicker(context);
+        if (pickedDate != null) {
+          onPick.call(pickedDate);
         }
       },
       child: SizedBox(
@@ -56,9 +47,7 @@ class NepanikarDatePicker extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
-                  activeRange != null
-                      ? '${formatDate(activeRange!.start)} - ${formatDate(activeRange!.end)}'
-                      : '',
+                  DateFormat.yMd(locale.languageCode).format(dateToDisplay),
                   style: NepanikarFonts.bodyRoman.copyWith(color: NepanikarColors.dark),
                 ),
                 const Spacer(),

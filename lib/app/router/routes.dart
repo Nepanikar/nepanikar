@@ -23,6 +23,9 @@ import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips
 import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_overeat.dart';
 import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_remorse.dart';
 import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_vomit.dart';
+import 'package:nepanikar/screens/home/my_records/diary/my_records_diaries_screen.dart';
+import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_detail_screen.dart';
+import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_edit_screen.dart';
 import 'package:nepanikar/screens/home/my_records/mood_track_screen.dart';
 import 'package:nepanikar/screens/home/my_records/my_records_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_helped_screen.dart';
@@ -89,6 +92,9 @@ const _homeRoutes = <TypedGoRoute<GoRouteData>>[
   ..._selfHarmRoutes,
   TypedGoRoute<MyRecordsRoute>(path: 'home/my-records'),
   TypedGoRoute<MoodTrackRoute>(path: 'home/my-records/mood-track'),
+  TypedGoRoute<MyRecordsDiariesListRoute>(path: 'home/my-records/diary'),
+  TypedGoRoute<MyRecordsDiaryDetailRoute>(path: 'home/my-records/diary/detail'),
+  TypedGoRoute<MyRecordsDiaryEditRoute>(path: 'home/my-records/diary/edit'),
   ..._suicidalThoughtsRoutes,
   ..._eatingDisorderRoutes,
 ];

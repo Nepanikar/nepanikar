@@ -91,6 +91,18 @@ GoRoute get $mainRoute => GoRouteData.$route(
           factory: $MoodTrackRouteExtension._fromState,
         ),
         GoRouteData.$route(
+          path: 'home/my-records/diary',
+          factory: $MyRecordsDiariesListRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'home/my-records/diary/detail',
+          factory: $MyRecordsDiaryDetailRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'home/my-records/diary/edit',
+          factory: $MyRecordsDiaryEditRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: 'home/suicidal-thoughts',
           factory: $SuicidalThoughtsRouteExtension._fromState,
         ),
@@ -399,6 +411,45 @@ extension $MoodTrackRouteExtension on MoodTrackRoute {
 
   String get location => GoRouteData.$location(
         '/home/my-records/mood-track',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $MyRecordsDiariesListRouteExtension on MyRecordsDiariesListRoute {
+  static MyRecordsDiariesListRoute _fromState(GoRouterState state) =>
+      const MyRecordsDiariesListRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/my-records/diary',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $MyRecordsDiaryDetailRouteExtension on MyRecordsDiaryDetailRoute {
+  static MyRecordsDiaryDetailRoute _fromState(GoRouterState state) =>
+      const MyRecordsDiaryDetailRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/my-records/diary/detail',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $MyRecordsDiaryEditRouteExtension on MyRecordsDiaryEditRoute {
+  static MyRecordsDiaryEditRoute _fromState(GoRouterState state) =>
+      const MyRecordsDiaryEditRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/my-records/diary/edit',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
