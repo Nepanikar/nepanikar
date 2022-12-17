@@ -9,6 +9,7 @@ import 'package:nepanikar/services/db/my_records/diary/diary_record_model.dart';
 import 'package:nepanikar/services/db/my_records/diary/my_records_diary_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/diary/diary_tile.dart';
+import 'package:nepanikar/widgets/empty_records_state_widget.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
 class MyRecordsDiaryRecordsRoute extends GoRouteData {
@@ -43,6 +44,11 @@ class MyRecordsDiaryRecordsScreen extends StatelessWidget {
           builder: (_, snapshot) {
             final diaryRecords = snapshot.data ?? {};
             final diaryRecordsLength = diaryRecords.length;
+
+            if (snapshot.hasData && diaryRecordsLength == 0) {
+              // TODO: l10n
+              return const EmptyRecordsStateWidget(emptyText: 'Zatím v deníku nemáš žádný záznam');
+            }
 
             return ListView.builder(
               shrinkWrap: true,
