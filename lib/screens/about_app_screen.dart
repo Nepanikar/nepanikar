@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/services/db/database_service.dart';
+import 'package:nepanikar/services/save_directories.dart';
 import 'package:nepanikar/utils/app_config.dart';
 import 'package:nepanikar/utils/registry.dart';
 
@@ -16,6 +17,8 @@ class AboutAppScreen extends StatelessWidget {
   const AboutAppScreen({super.key});
 
   AppConfig get _appConfig => registry.get<AppConfig>();
+
+  SaveDirectories get _saveDirectories => registry.get<SaveDirectories>();
 
   Future<String> readOldAppContents() async {
     final db = registry.get<DatabaseService>();
@@ -34,6 +37,20 @@ class AboutAppScreen extends StatelessWidget {
             children: [
               // TODO: Localization
               Text('Verze: ${_appConfig.appVersion}\n'),
+              const SizedBox(height: 16),
+              const Text('All files in save directories:\n'),
+              FutureBuilder<String>(
+                future: _saveDirectories.listAllDir(),
+                builder: (_, snapshot) {
+                  if (snapshot.hasData) {
+                    return Center(child: Text(snapshot.data!));
+                  } else {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                },
+              ),
+              const SizedBox(height: 16),
+              const Text('Old config file contents:\n'),
               FutureBuilder<String>(
                 future: readOldAppContents(),
                 builder: (_, snapshot) {
