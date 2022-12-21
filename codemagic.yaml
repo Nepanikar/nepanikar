@@ -53,6 +53,14 @@ definitions:
           --build-name=$MAJOR_VERSION.$MINOR_VERSION.$BUILD_NUMBER \
           --build-number=$((($MAJOR_VERSION*100000)+($MINOR_VERSION*10000)+$BUILD_NUMBER)) \
           --verbose --no-tree-shake-icons
+    - &publish_huawei
+    - name: Publish to the AppGallery store
+        script: |
+          cd android
+          chmod +x gradlew
+          fastlane add_plugin huawei_appgallery_connect
+          bundle install
+          bundle exec fastlane huawei
 
 workflows:
   release:
@@ -62,8 +70,10 @@ workflows:
       app_store_connect: Codemagic
     environment:
       <<: *env_versions
-      # android_signing:
-      #   - add keystore
+      groups:
+        - app_gallery # Includes CLIENT_ID, CLIENT_SECRET, APP_ID
+      android_signing:
+        - REPLACE_REF_HERE
       ios_signing:
         distribution_type: app_store
         bundle_identifier: org.dontpanicapp
@@ -72,11 +82,12 @@ workflows:
         MINOR_VERSION: "1"
         TESTFLIGHT_EXTERNAL_GROUP_NAME: "App Store External Testing"
     scripts:
-      # - *local_properties
+      - *local_properties
       - *get_packages
-      # - *build_android
+      - *build_android
       - *setup_ios
       - *build_ios
+      - *publish_huawei
     artifacts: *artifacts
     publishing:
       <<: *generic_publishing
@@ -85,6 +96,10 @@ workflows:
         submit_to_testflight: true
         beta_groups:
           - $TESTFLIGHT_EXTERNAL_GROUP_NAME
+      google_play:
+        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIAL
+        track: production
+        submit_as_draft: true
 
   dev:
     name: Development
@@ -93,8 +108,8 @@ workflows:
       app_store_connect: Codemagic
     environment:
       <<: *env_versions
-      # android_signing:
-      #   - add keystore
+      android_signing:
+        - REPLACE_REF_HERE
       ios_signing:
         distribution_type: app_store
         bundle_identifier: org.dontpanicapp
@@ -111,9 +126,9 @@ workflows:
           include: true
           source: true
     scripts:
-      # - *local_properties
+      - *local_properties
       - *get_packages
-      # - *build_android
+      - *build_android
       - *setup_ios
       - *build_ios
     artifacts: *artifacts
@@ -124,3 +139,6 @@ workflows:
         submit_to_testflight: true
         beta_groups:
           - $TESTFLIGHT_EXTERNAL_GROUP_NAME
+      google_play:
+        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIAL
+        track: beta
