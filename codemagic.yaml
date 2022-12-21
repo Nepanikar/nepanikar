@@ -72,8 +72,9 @@ workflows:
       <<: *env_versions
       groups:
         - app_gallery # Includes CLIENT_ID, CLIENT_SECRET, APP_ID
+        - google_credentials
       android_signing:
-        - REPLACE_REF_HERE
+        - Nepanikar-Android
       ios_signing:
         distribution_type: app_store
         bundle_identifier: org.dontpanicapp
@@ -97,7 +98,7 @@ workflows:
         beta_groups:
           - $TESTFLIGHT_EXTERNAL_GROUP_NAME
       google_play:
-        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIAL
+        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
         track: production
         submit_as_draft: true
 
@@ -109,7 +110,9 @@ workflows:
     environment:
       <<: *env_versions
       android_signing:
-        - REPLACE_REF_HERE
+        - Nepanikar-Android
+      groups:
+        - google_credentials
       ios_signing:
         distribution_type: app_store
         bundle_identifier: org.dontpanicapp
@@ -140,5 +143,5 @@ workflows:
         beta_groups:
           - $TESTFLIGHT_EXTERNAL_GROUP_NAME
       google_play:
-        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIAL
-        track: beta
+        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
+        track: alpha
