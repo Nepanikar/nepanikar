@@ -52,16 +52,6 @@ android {
         versionName flutterVersionName
     }
 
-    buildTypes {
-        release {
-            if (System.getenv()["CI"]) { // CI=true is exported by Codemagic
-                signingConfig signingConfigs.release
-            } else {
-                signingConfig signingConfigs.debug
-            }
-        }
-    }
-
     signingConfigs {
         release {
             storeFile file(System.getenv()["CM_KEYSTORE_PATH"])
@@ -75,6 +65,16 @@ android {
             storePassword = "android"
             keyAlias = "androiddebugkey"
             keyPassword = "android"
+        }
+    }
+
+    buildTypes {
+        release {
+            if (System.getenv()["CI"]) { // CI=true is exported by Codemagic
+                signingConfig signingConfigs.release
+            } else {
+                signingConfig signingConfigs.debug
+            }
         }
     }
 
