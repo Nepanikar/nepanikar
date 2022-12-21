@@ -55,11 +55,10 @@ android {
     buildTypes {
         release {
             if (System.getenv()["CI"]) { // CI=true is exported by Codemagic
-                signingConfig signingConfigs.debug
-//                storeFile file(System.getenv()["CM_KEYSTORE_PATH"])
-//                storePassword System.getenv()["CM_KEYSTORE_PASSWORD"]
-//                keyAlias System.getenv()["CM_KEY_ALIAS"]
-//                keyPassword System.getenv()["CM_KEY_PASSWORD"]
+                storeFile = file(System.getenv()["CM_KEYSTORE_PATH"])
+                storePassword = System.getenv()["CM_KEYSTORE_PASSWORD"]
+                keyAlias = System.getenv()["CM_KEY_ALIAS"]
+                keyPassword = System.getenv()["CM_KEY_PASSWORD"]
             } else {
                 signingConfig signingConfigs.debug
             }
