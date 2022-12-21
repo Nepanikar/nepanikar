@@ -55,10 +55,7 @@ android {
     buildTypes {
         release {
             if (System.getenv()["CI"]) { // CI=true is exported by Codemagic
-                storeFile file(System.getenv()["CM_KEYSTORE_PATH"])
-                storePassword System.getenv()["CM_KEYSTORE_PASSWORD"]
-                keyAlias System.getenv()["CM_KEY_ALIAS"]
-                keyPassword System.getenv()["CM_KEY_PASSWORD"]
+                signingConfig signingConfigs.release
             } else {
                 signingConfig signingConfigs.debug
             }
@@ -66,6 +63,13 @@ android {
     }
 
     signingConfigs {
+        release {
+            storeFile file(System.getenv()["CM_KEYSTORE_PATH"])
+            storePassword System.getenv()["CM_KEYSTORE_PASSWORD"]
+            keyAlias System.getenv()["CM_KEY_ALIAS"]
+            keyPassword System.getenv()["CM_KEY_PASSWORD"]
+        }
+
         debug {
             storeFile = file("nepanikar_debug.keystore")
             storePassword = "android"
@@ -73,6 +77,8 @@ android {
             keyPassword = "android"
         }
     }
+
+    namespace "org.dontpanic"
 }
 
 flutter {
