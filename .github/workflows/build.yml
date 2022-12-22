@@ -7,7 +7,7 @@ on:
 env:
   flutter_version: '3.3.9'
   CI: false
-  #  These are debug values and not used in production
+  #  These are debug values and are not used in production (workaround for this error https://stackoverflow.com/q/54457245):
   CM_KEYSTORE_PATH: 'nepanikar_debug.keystore'
   CM_KEYSTORE_PASSWORD: 'android'
   CM_KEY_ALIAS: 'androiddebugkey'
@@ -27,9 +27,6 @@ jobs:
           cache: true
           cache-key: ${{ runner.OS }}-flutter-${{ env.flutter_version }}
           cache-path: ${{ runner.tool_cache }}/flutter
-
-      - name: Fix GitHub CI Gradle build
-        run: sh ./bin/ci_workflow_scripts/fix_github_ci.sh
 
       - name: Install dependencies
         run: flutter pub get
