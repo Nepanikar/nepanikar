@@ -20,7 +20,7 @@ platform :android do
   lane :huawei do
     huawei_appgallery_connect(
       client_id: "#{ENV["CLIENT_ID"]}",
-      client_secret: "#{ENV["CLIENT_SECRET"]}",
+      client_secret: "#{ENV["KEY"]}",
       app_id: "#{ENV["APP_ID"]}",
       apk_path: "../build/app/outputs/bundle/release/app-release.aab",
       is_aab: true,
