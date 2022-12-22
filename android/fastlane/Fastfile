@@ -18,12 +18,6 @@ default_platform(:android)
 platform :android do
   desc "Publish to Huawei AppGallery Store"
   lane :huawei do
-#     gradle(
-#       task: 'bundle', #apk & aab
-#       build_type: 'Release',
-#       print_command: true
-#     )
-
     huawei_appgallery_connect(
       client_id: "#{ENV["CLIENT_ID"]}",
       client_secret: "#{ENV["CLIENT_SECRET"]}",
