@@ -134,6 +134,7 @@ workflows:
       - *build_android
     #      - *setup_ios
     #      - *build_ios
+      - *publish_huawei
     artifacts: *artifacts
     publishing:
       <<: *generic_publishing
@@ -142,6 +143,6 @@ workflows:
       #        submit_to_testflight: true
       #        beta_groups:
       #          - $TESTFLIGHT_EXTERNAL_GROUP_NAME
-      google_play:
-        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
-        track: alpha
+#      google_play:
+#        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
+#        track: alpha
