@@ -112,6 +112,7 @@ workflows:
       android_signing:
         - Nepanikar-Android
       groups:
+        - app_gallery # Includes CLIENT_ID, CLIENT_SECRET, APP_ID
         - google_credentials
       ios_signing:
         distribution_type: app_store
