@@ -1,0 +1,1 @@
+sed -i -e "s#System.getenv()[\"CI\"]#false" android/app/build.gradle

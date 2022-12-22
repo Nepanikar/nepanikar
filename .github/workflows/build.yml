@@ -21,6 +21,9 @@ jobs:
           cache-key: ${{ runner.OS }}-flutter-${{ env.flutter_version }}
           cache-path: ${{ runner.tool_cache }}/flutter
 
+      - name: Fix GitHub CI Gradle build
+        run: sh ./bin/ci_workflow_scripts/fix_github_ci.sh
+
       - name: Install dependencies
         run: flutter pub get
 
