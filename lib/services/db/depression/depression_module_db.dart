@@ -1,3 +1,5 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nepanikar/helpers/localization_helpers.dart';
 import 'package:nepanikar/services/db/common/nepanikar_module_db.dart';
 import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/services/db/depression/depression_activity_plan_dao.dart';
@@ -34,5 +36,13 @@ class DepressionModuleDb implements NepanikarModuleDb {
     //await _depressionActivityPlanDao.doOldVersionMigration(); // TODO
     //await _depressionNiceMadeHappyDao.doOldVersionMigration(); // TODO
     //await _depressionPraiseMyAchievementsDao.doOldVersionMigration(); // TODO
+  }
+
+  @override
+  Future<void> preloadDefaultModuleData(AppLocalizations l10n) async {
+    await _depressionActivityPlanDao.preloadDefaultData(l10n.plan_example.extractToItems());
+    await _depressionNiceMadeHappyDao.preloadDefaultData(l10n.nice_example.extractToItems());
+    await _depressionPraiseMyAchievementsDao
+        .preloadDefaultData(l10n.praise_example.extractToItems());
   }
 }

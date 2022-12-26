@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nepanikar/services/db/common/nepanikar_module_db.dart';
 import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_dao.dart';
@@ -27,4 +28,7 @@ class MyRecordsModuleDb implements NepanikarModuleDb {
       await _moodTrackDao.doOldVersionMigration(moodTrackConfig);
     }
   }
+
+  @override
+  Future<void> preloadDefaultModuleData(AppLocalizations l10n) async {}
 }
