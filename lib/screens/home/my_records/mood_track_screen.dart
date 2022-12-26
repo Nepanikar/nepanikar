@@ -12,7 +12,7 @@ import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/mood/mood_chart.dart';
 import 'package:nepanikar/widgets/mood/mood_picker.dart';
-import 'package:nepanikar/widgets/nepanikar_date_picker.dart';
+import 'package:nepanikar/widgets/nepanikar_date_range_picker.dart';
 import 'package:nepanikar/widgets/nepanikar_dropdown.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:provider/provider.dart';
@@ -147,7 +147,7 @@ class MoodTrackScreen<T extends MoodTrackDao> extends StatelessWidget {
                   onPressed: () => moodChartFilterProvider.shiftDateRange(DateRangeSwitch.previous),
                 ),
                 Expanded(
-                  child: NepanikarDatePicker(
+                  child: NepanikarDateRangePicker(
                     firstDate: firstMoodTrackDate == null
                         ? currDateRangeStart ?? DateTime(_now.year, _now.month - 1)
                         : currDateRangeStart != null &&

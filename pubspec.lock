@@ -198,7 +198,7 @@ packages:
     source: hosted
     version: "2.1.17"
   equatable:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: equatable
       url: "https://pub.dartlang.org"

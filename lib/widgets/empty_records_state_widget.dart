@@ -5,7 +5,12 @@ import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/screen_resolution_helpers.dart';
 
 class EmptyRecordsStateWidget extends StatelessWidget {
-  const EmptyRecordsStateWidget({super.key});
+  const EmptyRecordsStateWidget({
+    super.key,
+    this.emptyText,
+  });
+
+  final String? emptyText;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +26,7 @@ class EmptyRecordsStateWidget extends StatelessWidget {
         const SizedBox(height: 26),
         Text(
           // TODO: l10n
-          'Zatím nemáš žádný záznam',
+          emptyText ?? 'Zatím nemáš žádný záznam',
           textAlign: TextAlign.center,
           style: NepanikarFonts.title3.copyWith(
             fontWeight: FontWeight.w500,

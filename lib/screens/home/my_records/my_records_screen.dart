@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
+import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_records_screen.dart';
 import 'package:nepanikar/screens/home/my_records/mood_track_screen.dart';
 import 'package:nepanikar/screens/home/my_records/my_records_sleep_track_screen.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
@@ -32,9 +33,9 @@ class MyRecordsScreen extends StatelessWidget {
         onTap: () => context.push(const MyRecordsSleepTrackRoute().location),
       ),
       LongTile(
-        text: '${context.l10n.diary} TODO',
+        text: context.l10n.diary,
         image: Assets.illustrations.modules.myRecords.svg(),
-        onTap: () => {},
+        onTap: () => context.push(const MyRecordsDiaryRecordsRoute().location),
       ),
       LongTile(
         text: '${context.l10n.journal} TODO',
