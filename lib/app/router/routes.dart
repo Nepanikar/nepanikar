@@ -33,6 +33,7 @@ import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips
 import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_vomit.dart';
 import 'package:nepanikar/screens/home/my_records/mood_track_screen.dart';
 import 'package:nepanikar/screens/home/my_records/my_records_screen.dart';
+import 'package:nepanikar/screens/home/my_records/my_records_sleep_track_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_helped_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_plan_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_screen.dart';
@@ -161,4 +162,5 @@ const _eatingDisorderTipsRoutes = <TypedGoRoute<GoRouteData>>[
 const _myRecordsRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<MyRecordsRoute>(path: 'home/my-records'),
   TypedGoRoute<MoodTrackRoute>(path: 'home/my-records/mood-track'),
+  TypedGoRoute<MyRecordsSleepTrackRoute>(path: 'home/my-records/sleep-track'),
 ];

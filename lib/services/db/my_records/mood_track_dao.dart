@@ -11,8 +11,9 @@ import 'package:sembast/sembast.dart';
 class MoodTrackDao with CustomFilters {
   MoodTrackDao({
     required DatabaseService dbService,
+    String? storeKeyName,
   })  : _dbService = dbService,
-        _store = intMapStoreFactory.store(_storeKeyName);
+        _store = intMapStoreFactory.store(storeKeyName ?? _storeKeyName);
 
   Future<MoodTrackDao> init() async {
     registry.registerSingleton<MoodTrackDao>(this);
