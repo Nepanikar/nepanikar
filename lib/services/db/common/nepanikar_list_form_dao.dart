@@ -22,6 +22,10 @@ abstract class NepanikarListFormDao {
     await _store.add(_db, '');
   }
 
+  Future<void> _addFormTexts(List<String> texts) async {
+    await _store.addAll(_db, texts);
+  }
+
   Future<void> updateFormText(String key, {required String text}) async {
     await _store.record(key).put(_db, text);
   }
@@ -32,6 +36,10 @@ abstract class NepanikarListFormDao {
 
   Stream<List<RecordSnapshot<String, ListFormItem>>> get allFormItemsRecordsStream =>
       _store.query().onSnapshots(_db);
+
+  Future<void> preloadDefaultData(List<String> texts) async {
+    await _addFormTexts(texts);
+  }
 
   Future<void> doOldVersionMigration() async {
     // TODO: implement doOldVersionMigration

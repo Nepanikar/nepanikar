@@ -1,3 +1,5 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nepanikar/helpers/localization_helpers.dart';
 import 'package:nepanikar/services/db/common/nepanikar_module_db.dart';
 import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/services/db/suicidal_thoughts/suicidal_thoughts_plan_dao.dart';
@@ -29,5 +31,10 @@ class SuicidalThoughtsModuleDb implements NepanikarModuleDb {
   Future<void> doModuleOldVersionMigration(NepanikarConfig moduleConfig) async {
     //await _suicidalThoughtsPlanDao.doOldVersionMigration(); // TODO
     //await _suicidalThoughtsReasonsNoDao.doOldVersionMigration(); // TODO
+  }
+
+  @override
+  Future<void> preloadDefaultModuleData(AppLocalizations l10n) async {
+    await _suicidalThoughtsReasonsNoDao.preloadDefaultData(l10n.reasons_example.extractToItems());
   }
 }
