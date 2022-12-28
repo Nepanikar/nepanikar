@@ -1,1 +1,1 @@
-A simple package for managing the migation of data from the old Don't Panic app version.
+A simple package for managing the migration of data from the old Don't Panic app version.

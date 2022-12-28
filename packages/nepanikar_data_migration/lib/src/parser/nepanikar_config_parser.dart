@@ -16,6 +16,8 @@ class NepanikarConfigParser {
 
   static const QT_DATE_TIME_PATTERN = 'E MMM d HH:mm:ss yyyy z';
 
+  static const QT_DATE_PATTERN = 'd.M.yyyy';
+
   // TODO: Add support for other languages
   static final supportedLocales = ['cs', 'en'];
 
@@ -46,13 +48,14 @@ extension NepanikarParserStringExt on String {
     return cleanFromUnicodes ? cleanUnicodes() : this;
   }
 
-  DateTime? getIniDateTimeValue({bool cleanFromUnicodes = true}) {
+  DateTime? getIniDateTimeValue({bool cleanFromUnicodes = true, String? dateTimePattern}) {
     final strValue = getIniStrValue(cleanFromUnicodes: cleanFromUnicodes);
     if (strValue == null) return null;
     DateTime? dateTime;
     for (final locale in NepanikarConfigParser.supportedLocales) {
       try {
-        dateTime = DateFormat(NepanikarConfigParser.QT_DATE_TIME_PATTERN, locale).parse(strValue);
+        dateTime = DateFormat(dateTimePattern ?? NepanikarConfigParser.QT_DATE_TIME_PATTERN, locale)
+            .parse(strValue);
         break;
       } on FormatException catch (e) {
         print(e.toString());
@@ -72,10 +75,48 @@ extension NepanikarParserStringExt on String {
 
   bool? getIniBoolValue({bool cleanFromUnicodes = false}) {
     final strValue = getIniStrValue(cleanFromUnicodes: cleanFromUnicodes)?.toLowerCase();
-    final isBool = strValue == 'true' || strValue == 'false';
+    final trueValues = ['true', 't'];
+    final falseValues = ['false', 'f'];
+    final isBool = trueValues.contains(strValue) || falseValues.contains(strValue);
     if (isBool) {
-      return strValue == 'true';
+      return trueValues.contains(strValue);
     }
     return null;
   }
+}
+
+extension ConfigItemsToMapExt on Config {
+  /// The key is typically in format "1\value".
+  Map<String, String?>? itemsToMap(String sectionName, [String? keyNamePart = 'value']) {
+    final sectionEntries = items(sectionName);
+    if (sectionEntries == null) return null;
+    final map = <String, String?>{};
+    for (final keyValuePair in sectionEntries) {
+      if (keyValuePair.length == 2) {
+        final key = keyValuePair[0];
+        final value = keyValuePair[1]?.getIniStrValue();
+        if (key != null) {
+          if (keyNamePart != null && key.contains(keyNamePart)) {
+            map[key] = value;
+          } else if (keyNamePart == null) {
+            map[key] = value;
+          }
+        }
+      }
+    }
+    return map;
+  }
+}
+
+int confKeysSorter(String a, String b) {
+  final keyA = a.split('\\');
+  final keyB = b.split('\\');
+  if (keyA.isNotEmpty && keyB.isNotEmpty) {
+    final intA = int.tryParse(keyA.first);
+    final intB = int.tryParse(keyB.first);
+    if (intA != null && intB != null) {
+      return intA.compareTo(intB);
+    }
+  }
+  return a.compareTo(b);
 }
