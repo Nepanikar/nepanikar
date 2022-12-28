@@ -76,13 +76,15 @@ class MoodTrackDao with CustomFilters {
         }
       });
 
-  Future<void> doOldVersionMigration(MoodTrackDTO moodTrackConfig) async {
+  Future<void> doOldVersionMigration(MyRecordsMoodTrackDTO moodTrackConfig) async {
     final valuesMap = moodTrackConfig.values;
-    for (final moodTrackEntry in valuesMap.entries) {
-      final mood = Mood.fromInteger(moodTrackEntry.value);
-      if (mood != null) {
-        final dateTime = moodTrackEntry.key;
-        await saveMood(mood, dateTime);
+    if (valuesMap != null) {
+      for (final moodTrackEntry in valuesMap.entries) {
+        final mood = Mood.fromInteger(moodTrackEntry.value);
+        if (mood != null) {
+          final dateTime = moodTrackEntry.key;
+          await saveMood(mood, dateTime);
+        }
       }
     }
   }
