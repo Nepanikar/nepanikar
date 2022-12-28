@@ -22,6 +22,11 @@ abstract class NepanikarCheckListFormDao {
     await _store.add(_db, emptyItem);
   }
 
+  Future<void> _addFormTexts(List<String> texts) async {
+    final items = texts.map((text) => ChecklistItem(text: text).toJson()).toList();
+    await _store.addAll(_db, items);
+  }
+
   Future<void> updateFormText(
     String key, {
     required ChecklistItem item,
@@ -53,6 +58,10 @@ abstract class NepanikarCheckListFormDao {
             .toList();
         return Map.fromEntries(entries);
       });
+
+  Future<void> preloadDefaultData(List<String> texts) async {
+    await _addFormTexts(texts);
+  }
 
   Future<void> doOldVersionMigration() async {
     // TODO: implement doOldVersionMigration

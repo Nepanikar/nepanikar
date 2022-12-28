@@ -7,6 +7,7 @@ import 'package:nepanikar/screens/home/my_records/my_records_screen.dart';
 import 'package:nepanikar/screens/main/contacts_screen.dart';
 import 'package:nepanikar/screens/main/home_screen.dart';
 import 'package:nepanikar/screens/main/settings_screen.dart';
+import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/utils/contacts_data_manager.dart';
 import 'package:nepanikar/utils/registry.dart';
@@ -23,6 +24,8 @@ class _MainScreenState extends State<MainScreen> {
 
   ContactsDataManager get _contactsDataManager => registry.get<ContactsDataManager>();
 
+  DatabaseService get _databaseService => registry.get<DatabaseService>();
+
   UserSettingsDao get _userSettingsDao => registry.get<UserSettingsDao>();
 
   List<Widget> get _routes {
@@ -34,6 +37,12 @@ class _MainScreenState extends State<MainScreen> {
       ContactsScreen(countryContacts: countryContacts),
       const SettingsScreen()
     ];
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _databaseService.checkDataPreloaded(context.l10n);
   }
 
   void _onItemTapped(int index) {
