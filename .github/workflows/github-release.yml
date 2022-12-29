@@ -6,6 +6,12 @@ on:
 
 env:
   flutter_version: '3.3.9'
+  CI: false
+  #  These are debug values and are not used in production (workaround for this error https://stackoverflow.com/q/54457245):
+  CM_KEYSTORE_PATH: 'nepanikar_debug.keystore'
+  CM_KEYSTORE_PASSWORD: 'android'
+  CM_KEY_ALIAS: 'androiddebugkey'
+  CM_KEY_PASSWORD: 'android'
 
 jobs:
   android:
