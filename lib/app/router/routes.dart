@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/games/balance/balance_game_screen.dart';
 import 'package:nepanikar/games/breathing/breathing_exercises_screen.dart';
 import 'package:nepanikar/games/breathing/breathing_game_screen.dart';
 import 'package:nepanikar/games/math/math_game_screen.dart';
@@ -88,6 +89,7 @@ const _gameRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<MathGameRoute>(path: 'games/math'),
   TypedGoRoute<BreathingExercisesRoute>(path: 'games/breathing-list'),
   TypedGoRoute<BreathingGameRoute>(path: 'games/breathing/:shape'),
+  TypedGoRoute<BalanceGameRoute>(path: 'games/balance'),
 ];
 
 const _contactRoutes = <TypedGoRoute<GoRouteData>>[

@@ -31,6 +31,10 @@ GoRoute get $mainRoute => GoRouteData.$route(
           factory: $BreathingGameRouteExtension._fromState,
         ),
         GoRouteData.$route(
+          path: 'games/balance',
+          factory: $BalanceGameRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: 'contacts',
           factory: $ContactsRouteExtension._fromState,
         ),
@@ -262,6 +266,19 @@ extension $BreathingGameRouteExtension on BreathingGameRoute {
 
   String get location => GoRouteData.$location(
         '/games/breathing/${Uri.encodeComponent(_$BreathingGameShapeEnumMap[shape]!)}',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $BalanceGameRouteExtension on BalanceGameRoute {
+  static BalanceGameRoute _fromState(GoRouterState state) =>
+      const BalanceGameRoute();
+
+  String get location => GoRouteData.$location(
+        '/games/balance',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
