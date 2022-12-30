@@ -21,7 +21,7 @@ class BalanceGameScreen extends StatefulWidget {
 }
 
 class _BalanceGameScreenState extends State<BalanceGameScreen> {
-  Timer? gameLoop;
+  late final Timer gameLoop;
   double angle = 0;
   double speed = 0;
   double windStrength = 0.1;
@@ -32,27 +32,33 @@ class _BalanceGameScreenState extends State<BalanceGameScreen> {
 
   @override
   void initState() {
+    super.initState();
+
     // 30 FPS game loop using timer
     gameLoop = Timer.periodic(const Duration(milliseconds: 33), (timer) {
       // Random interference
-      setState(() {
-        speed = speed + (math.Random().nextDouble() - 0.5) * 0.7;
-      });
-      // Right wind active
+      if (math.Random().nextDouble() < 0.03) {
+        setState(() {
+          speed = speed + (math.Random().nextDouble() - 0.5);
+        });
+      }
+      // Left wind active
       if (leftButtonActive) {
         setState(() {
           speed = speed + windStrength;
         });
       }
-      // Right button active
+      // Right wind active
       if (rightButtonActive) {
         setState(() {
           speed = speed - windStrength;
         });
       }
       // Final angle
+      final newSpeed = speed + (angle * 0.0018);
       setState(() {
-        angle = angle + (0.5 * speed);
+        speed = newSpeed;
+        angle = angle + newSpeed;
       });
       // Fail check
       if (angle.abs() > limitAngle) {
@@ -64,13 +70,11 @@ class _BalanceGameScreenState extends State<BalanceGameScreen> {
         });
       }
     });
-
-    super.initState();
   }
 
   @override
   void dispose() {
-    gameLoop?.cancel();
+    gameLoop.cancel();
     super.dispose();
   }
 
