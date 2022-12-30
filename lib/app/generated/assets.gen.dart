@@ -366,11 +366,18 @@ class $AssetsIllustrationsGamesMathGen {
 class $AssetsIllustrationsGamesSwingGen {
   const $AssetsIllustrationsGamesSwingGen();
 
+  /// File path: assets/illustrations/games/swing/balance.svg
+  SvgGenImage get balance => const SvgGenImage('assets/illustrations/games/swing/balance.svg');
+
+  /// File path: assets/illustrations/games/swing/balance_stand.png
+  AssetGenImage get balanceStand =>
+      const AssetGenImage('assets/illustrations/games/swing/balance_stand.png');
+
   /// File path: assets/illustrations/games/swing/swing.svg
   SvgGenImage get swing => const SvgGenImage('assets/illustrations/games/swing/swing.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [swing];
+  List<dynamic> get values => [balance, balanceStand, swing];
 }
 
 class Assets {
