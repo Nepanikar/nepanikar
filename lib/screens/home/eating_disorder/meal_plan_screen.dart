@@ -8,16 +8,12 @@ class MealPlanRoute extends GoRouteData {
   const MealPlanRoute();
 
   @override
-  Page<void> buildPageWithState(
-    BuildContext context,
-    GoRouterState state,
-  ) =>
-      MaterialPage(
-        child: MealPlanScreen(
-          id: state.queryParams['id'],
-          title: state.queryParams['title'],
-        ),
-      );
+  Widget build(BuildContext context, GoRouterState state) {
+    return MealPlanScreen(
+      id: state.queryParams['id'],
+      title: state.queryParams['title'],
+    );
+  }
 }
 
 class MealPlanScreen extends StatelessWidget {

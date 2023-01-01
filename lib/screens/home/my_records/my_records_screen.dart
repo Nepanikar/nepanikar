@@ -11,7 +11,7 @@ class MyRecordsRoute extends GoRouteData {
   const MyRecordsRoute();
 
   @override
-  Widget build(BuildContext context) => const MyRecordsScreen();
+  Widget build(BuildContext context, _) => const MyRecordsScreen();
 }
 
 class MyRecordsScreen extends StatelessWidget {

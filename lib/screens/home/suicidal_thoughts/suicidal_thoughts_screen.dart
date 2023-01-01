@@ -13,7 +13,7 @@ class SuicidalThoughtsRoute extends GoRouteData {
   const SuicidalThoughtsRoute();
 
   @override
-  Widget build(BuildContext context) => const SuicidalThoughtsScreen();
+  Widget build(BuildContext context, _) => const SuicidalThoughtsScreen();
 }
 
 class SuicidalThoughtsScreen extends StatelessWidget {

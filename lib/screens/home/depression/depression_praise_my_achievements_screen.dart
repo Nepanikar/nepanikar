@@ -8,7 +8,7 @@ class DepressionPraiseMyAchievementsRoute extends GoRouteData {
   const DepressionPraiseMyAchievementsRoute();
 
   @override
-  Widget build(BuildContext context) => const DepressionPraiseMyAchievementsScreen();
+  Widget build(BuildContext context, _) => const DepressionPraiseMyAchievementsScreen();
 }
 
 class DepressionPraiseMyAchievementsScreen extends StatelessWidget {

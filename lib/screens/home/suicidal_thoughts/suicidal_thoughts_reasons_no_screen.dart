@@ -8,7 +8,7 @@ class SuicidalThoughtsReasonsNoRoute extends GoRouteData {
   const SuicidalThoughtsReasonsNoRoute();
 
   @override
-  Widget build(BuildContext context) => const SuicidalThoughtsReasonsNoScreen();
+  Widget build(BuildContext context, _) => const SuicidalThoughtsReasonsNoScreen();
 }
 
 class SuicidalThoughtsReasonsNoScreen extends StatelessWidget {

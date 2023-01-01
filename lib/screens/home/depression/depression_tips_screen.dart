@@ -8,7 +8,7 @@ class DepressionTipsAppRoute extends GoRouteData {
   const DepressionTipsAppRoute();
 
   @override
-  Widget build(BuildContext context) => const DepressionTipsAppScreen();
+  Widget build(BuildContext context, _) => const DepressionTipsAppScreen();
 }
 
 class DepressionTipsAppScreen extends StatelessWidget {

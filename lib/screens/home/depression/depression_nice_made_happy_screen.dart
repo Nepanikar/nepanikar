@@ -8,7 +8,7 @@ class DepressionNiceMadeHappyRoute extends GoRouteData {
   const DepressionNiceMadeHappyRoute();
 
   @override
-  Widget build(BuildContext context) => const DepressionNiceMadeHappy();
+  Widget build(BuildContext context, _) => const DepressionNiceMadeHappy();
 }
 
 class DepressionNiceMadeHappy extends StatelessWidget {

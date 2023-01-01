@@ -12,7 +12,7 @@ class EatingDisorderDistractionsRoute extends GoRouteData {
   const EatingDisorderDistractionsRoute();
 
   @override
-  Widget build(BuildContext context) => const EatingDisorderDistractionsScreen();
+  Widget build(BuildContext context, _) => const EatingDisorderDistractionsScreen();
 }
 
 class EatingDisorderDistractionsScreen extends StatelessWidget {

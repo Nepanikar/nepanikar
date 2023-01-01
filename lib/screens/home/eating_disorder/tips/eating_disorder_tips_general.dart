@@ -8,7 +8,7 @@ class EatingDisorderTipsGeneralAppRoute extends GoRouteData {
   const EatingDisorderTipsGeneralAppRoute();
 
   @override
-  Widget build(BuildContext context) => const EatingDisorderTipsGeneralScreen();
+  Widget build(BuildContext context, _) => const EatingDisorderTipsGeneralScreen();
 }
 
 class EatingDisorderTipsGeneralScreen extends StatelessWidget {
