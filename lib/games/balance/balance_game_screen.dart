@@ -10,7 +10,7 @@ class BalanceGameRoute extends GoRouteData {
   const BalanceGameRoute();
 
   @override
-  Widget build(BuildContext context) => const BalanceGameScreen();
+  Widget build(BuildContext context, _) => const BalanceGameScreen();
 }
 
 class BalanceGameScreen extends StatefulWidget {

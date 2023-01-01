@@ -8,7 +8,7 @@ class MyRecordsSleepTrackRoute extends GoRouteData {
   const MyRecordsSleepTrackRoute();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, _) {
     return MoodTrackScreen<MyRecordsSleepTrackDao>(
       appBarTitle: context.l10n.sleep_title,
       appBarDescription: context.l10n.sleep_text,

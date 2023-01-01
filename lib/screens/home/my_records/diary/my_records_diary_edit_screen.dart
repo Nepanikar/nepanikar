@@ -10,12 +10,10 @@ class MyRecordsDiaryEditRoute extends GoRouteData {
   const MyRecordsDiaryEditRoute();
 
   @override
-  Page<void> buildPageWithState(BuildContext context, GoRouterState state) {
-    return MaterialPage<void>(
-      child: MyRecordsDiaryEditScreen(
-        // TODO: Do not found page if state extra is null
-        diaryRecordRouteExtraData: state.extra! as DiaryRecordRouteExtraData,
-      ),
+  Widget build(BuildContext context, GoRouterState state) {
+    return MyRecordsDiaryEditScreen(
+      // TODO: Do not found page if state extra is null
+      diaryRecordRouteExtraData: state.extra! as DiaryRecordRouteExtraData,
     );
   }
 }
