@@ -36,7 +36,7 @@ class NepanikarChecklistFormDTO extends Equatable {
   /// List of text items with checkboxes.
   ///
   /// Key is the text of the item, value is the checkbox state.
-  final Iterable<MapEntry<String, bool>>? records;
+  final List<MapEntry<String, bool>>? records;
 
   @override
   List<Object?> get props => [records];

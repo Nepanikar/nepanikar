@@ -1,7 +1,7 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
+import 'package:nepanikar/helpers/iterable_helpers.dart';
 import 'package:nepanikar/services/db/filters.dart';
 
 part 'mood_track_model.freezed.dart';
@@ -60,10 +60,7 @@ enum Mood {
     }
   }
 
-  static Mood? fromInteger(int value) {
-    final mood = Mood.values.firstWhereOrNull((mood) => mood.index == value);
-    return mood;
-  }
+  static Mood? fromInteger(int value) => Mood.values.elementAtOrNull(value);
 }
 
 @freezed

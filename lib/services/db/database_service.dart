@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nepanikar/services/db/depression/depression_module_db.dart';
 import 'package:nepanikar/services/db/eating_disorder/eating_disorder_module_db.dart';
+import 'package:nepanikar/services/db/my_contacts/my_contacts_module_db.dart';
 import 'package:nepanikar/services/db/my_records/my_records_module_db.dart';
 import 'package:nepanikar/services/db/self_harm/self_harm_module_db.dart';
 import 'package:nepanikar/services/db/suicidal_thoughts/suicidal_thoughts_module_db.dart';
@@ -25,7 +26,6 @@ class DatabaseService {
     final db = await _initDb();
     if (!_areDaosInitialized) {
       await _initModuleDaos(db);
-      _areDaosInitialized = true;
     }
   }
 
@@ -37,6 +37,7 @@ class DatabaseService {
     _suicidalThoughtsModuleDb = await SuicidalThoughtsModuleDb(this).initModuleDaos();
     _eatingDisorderModuleDb = await EatingDisorderModuleDb(this).initModuleDaos();
     _myRecordsModuleDb = await MyRecordsModuleDb(this).initModuleDaos();
+    _myContactsModuleDb = await MyContactsModuleDb(this).initModuleDaos();
     _areDaosInitialized = true;
   }
 
@@ -52,6 +53,7 @@ class DatabaseService {
   late final SuicidalThoughtsModuleDb _suicidalThoughtsModuleDb;
   late final EatingDisorderModuleDb _eatingDisorderModuleDb;
   late final MyRecordsModuleDb _myRecordsModuleDb;
+  late final MyContactsModuleDb _myContactsModuleDb;
 
   bool _areDaosInitialized = false;
 
@@ -104,6 +106,7 @@ class DatabaseService {
     await _suicidalThoughtsModuleDb.preloadDefaultModuleData(l10n);
     await _eatingDisorderModuleDb.preloadDefaultModuleData(l10n);
     await _myRecordsModuleDb.preloadDefaultModuleData(l10n);
+    await _myContactsModuleDb.preloadDefaultModuleData(l10n);
   }
 
   Future<bool> _oldAppVersionDataExists() async {
@@ -128,14 +131,34 @@ class DatabaseService {
 
     final nepanikarConfig = NepanikarConfigParser.parseConfigFile(configFile);
 
-    final myRecordsModuleConfig = nepanikarConfig.myRecordsModuleConfig;
-    if (myRecordsModuleConfig != null) {
-      await _myRecordsModuleDb.doModuleOldVersionMigration(myRecordsModuleConfig);
+    final depressionModuleConfig = nepanikarConfig.depressionModuleConfig;
+    if (depressionModuleConfig != null) {
+      await _depressionModuleDb.doModuleOldVersionMigration(depressionModuleConfig);
     }
 
     final selfHarmModuleConfig = nepanikarConfig.selfHarmModuleConfig;
     if (selfHarmModuleConfig != null) {
       await _selfHarmModuleDb.doModuleOldVersionMigration(selfHarmModuleConfig);
+    }
+
+    final suicidalThoughtsModuleConfig = nepanikarConfig.suicidalThoughtsModuleConfig;
+    if (suicidalThoughtsModuleConfig != null) {
+      await _suicidalThoughtsModuleDb.doModuleOldVersionMigration(suicidalThoughtsModuleConfig);
+    }
+
+    final eatingDisorderModuleConfig = nepanikarConfig.eatingDisorderModuleConfig;
+    if (eatingDisorderModuleConfig != null) {
+      await _eatingDisorderModuleDb.doModuleOldVersionMigration(eatingDisorderModuleConfig);
+    }
+
+    final myRecordsModuleConfig = nepanikarConfig.myRecordsModuleConfig;
+    if (myRecordsModuleConfig != null) {
+      await _myRecordsModuleDb.doModuleOldVersionMigration(myRecordsModuleConfig);
+    }
+
+    final myContactsModuleConfig = nepanikarConfig.myContactsModuleConfig;
+    if (myContactsModuleConfig != null) {
+      await _myContactsModuleDb.doModuleOldVersionMigration(myContactsModuleConfig);
     }
   }
 
@@ -147,5 +170,6 @@ class DatabaseService {
     await _suicidalThoughtsModuleDb.clearModule();
     await _eatingDisorderModuleDb.clearModule();
     await _myRecordsModuleDb.clearModule();
+    await _myContactsModuleDb.clearModule();
   }
 }

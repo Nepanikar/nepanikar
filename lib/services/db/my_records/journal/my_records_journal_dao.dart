@@ -1,18 +1,18 @@
 import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/services/db/filters.dart';
-import 'package:nepanikar/services/db/my_records/diary/diary_record_model.dart';
+import 'package:nepanikar/services/db/my_records/journal/my_records_journal_record_model.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 import 'package:sembast/sembast.dart';
 
-class MyRecordsDiaryDao {
-  MyRecordsDiaryDao({
+class MyRecordsJournalDao {
+  MyRecordsJournalDao({
     required DatabaseService dbService,
   })  : _dbService = dbService,
         _store = stringMapStoreFactory.store(_storeKeyName);
 
-  Future<MyRecordsDiaryDao> init() async {
-    registry.registerSingleton<MyRecordsDiaryDao>(this);
+  Future<MyRecordsJournalDao> init() async {
+    registry.registerSingleton<MyRecordsJournalDao>(this);
     return this;
   }
 
@@ -21,23 +21,23 @@ class MyRecordsDiaryDao {
 
   Database get _db => _dbService.database;
 
-  static const _storeKeyName = 'my_records_diary';
+  static const _storeKeyName = 'my_records_journal';
 
-  Future<String> createRecord(DiaryRecord diaryRecord) async {
-    final item = diaryRecord.toJson();
+  Future<String> createRecord(JournalRecord journalRecord) async {
+    final item = journalRecord.toJson();
     return _store.add(_db, item);
   }
 
-  Future<void> _addRecords(List<DiaryRecord> items) async {
+  Future<void> _addRecords(List<JournalRecord> items) async {
     final serializedItems = items.map((item) => item.toJson()).toList();
     await _store.addAll(_db, serializedItems);
   }
 
   Future<void> updateRecord(
     String key, {
-    required DiaryRecord updatedDiaryRecord,
+    required JournalRecord updatedJournalRecord,
   }) async {
-    final updatedItem = updatedDiaryRecord.toJson();
+    final updatedItem = updatedJournalRecord.toJson();
     await _store.record(key).put(_db, updatedItem);
   }
 
@@ -45,14 +45,14 @@ class MyRecordsDiaryDao {
     await _store.record(key).delete(_db);
   }
 
-  Stream<DiaryRecord?> watchRecordById(String key) =>
+  Stream<JournalRecord?> watchRecordById(String key) =>
       _store.record(key).onSnapshot(_db).map((snapshot) {
         final json = snapshot?.value;
         if (json == null) return null;
-        return DiaryRecord.fromJson(json);
+        return JournalRecord.fromJson(json);
       });
 
-  Stream<Map<String, DiaryRecord>> get allRecordsStream => _store
+  Stream<Map<String, JournalRecord>> get allRecordsStream => _store
           .query(finder: Finder(sortOrders: [SortOrder(FilterKeys.dateWithTime, false)]))
           .onSnapshots(_db)
           .map((event) {
@@ -60,27 +60,28 @@ class MyRecordsDiaryDao {
             .map((e) {
               final value = e.value;
               if (value == null) return null;
-              final model = DiaryRecord.fromJson(value);
-              return MapEntry<String, DiaryRecord>(e.key, model);
+              final model = JournalRecord.fromJson(value);
+              return MapEntry<String, JournalRecord>(e.key, model);
             })
-            .whereType<MapEntry<String, DiaryRecord>>()
+            .whereType<MapEntry<String, JournalRecord>>()
             .toList();
         return Map.fromEntries(entries);
       });
 
-  Future<void> doOldVersionMigration(MyRecordsDiaryDTO diaryConfig) async {
-    final recordEntries = diaryConfig.recordEntries;
-    if (recordEntries != null) {
-      final diaryRecords = recordEntries
+  Future<void> doOldVersionMigration(MyRecordsJournalDTO journalConfig) async {
+    final records = journalConfig.records;
+    if (records != null) {
+      final journalRecords = records
           .map(
-            (dateTextEntry) => DiaryRecord(
-              dateTime: dateTextEntry.key,
-              title: '',
-              text: dateTextEntry.value,
+            (r) => JournalRecord(
+              dateTime: r.date,
+              answers: r.answers
+                  .map((a) => JournalRecordAnswer(question: a.item1, answer: a.item2))
+                  .toList(),
             ),
           )
           .toList();
-      await _addRecords(diaryRecords);
+      await _addRecords(journalRecords);
     }
   }
 

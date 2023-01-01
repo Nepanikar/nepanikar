@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/utils/app_config.dart';
+import 'package:nepanikar/utils/extensions.dart';
 import 'package:nepanikar/utils/registry.dart';
 
 class AboutAppRoute extends GoRouteData {
@@ -38,7 +40,16 @@ class AboutAppScreen extends StatelessWidget {
                 future: readOldAppContents(),
                 builder: (_, snapshot) {
                   if (snapshot.hasData) {
-                    return Center(child: Text(snapshot.data!));
+                    final configContents = snapshot.data!;
+                    return Center(
+                      child: GestureDetector(
+                        onLongPress: () {
+                          Clipboard.setData(ClipboardData(text: configContents));
+                          context.showInfoSnackbar(text: 'Konfig byl zkopírován do schránky');
+                        },
+                        child: Text(configContents),
+                      ),
+                    );
                   } else {
                     return const Center(child: CircularProgressIndicator());
                   }

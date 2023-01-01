@@ -38,6 +38,7 @@ dependencies:
   sembast: ^3.3.1
   time_machine: ^0.9.17
   timer_builder: ^2.0.0
+  tuple: ^2.0.1
   url_launcher: ^6.1.7
 
 dev_dependencies:

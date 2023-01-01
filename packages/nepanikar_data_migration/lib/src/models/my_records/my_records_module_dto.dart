@@ -8,7 +8,7 @@ class MyRecordsModuleDTO extends Equatable {
     required this.sleepTrackConfig,
     required this.diaryConfig,
     required this.journalConfig,
-    required this.foodConfig,
+    required this.foodRecordConfig,
   });
 
   factory MyRecordsModuleDTO.getData(Config config) {
@@ -42,7 +42,7 @@ class MyRecordsModuleDTO extends Equatable {
       sleepTrackConfig: sleepTrackConfig,
       diaryConfig: diaryConfig,
       journalConfig: journalConfig,
-      foodConfig: foodConfig,
+      foodRecordConfig: foodConfig,
     );
   }
 
@@ -50,7 +50,7 @@ class MyRecordsModuleDTO extends Equatable {
   final MyRecordsSleepTrackDTO? sleepTrackConfig;
   final MyRecordsDiaryDTO? diaryConfig;
   final MyRecordsJournalDTO? journalConfig;
-  final MyRecordsFoodDTO? foodConfig;
+  final MyRecordsFoodDTO? foodRecordConfig;
 
   @override
   List<Object?> get props => [
@@ -58,6 +58,6 @@ class MyRecordsModuleDTO extends Equatable {
         sleepTrackConfig,
         diaryConfig,
         journalConfig,
-        foodConfig,
+        foodRecordConfig,
       ];
 }
