@@ -13,16 +13,18 @@ _$_CountryContacts _$$_CountryContactsFromJson(Map<String, dynamic> json) =>
           ?.map((e) => PhoneContact.fromJson(e as Map<String, dynamic>))
           .toList(),
       crisisCenterContacts: (json['crisisCenterContacts'] as List<dynamic>?)
-          ?.map((e) => CrisisCenterContact.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => RegionContact.fromJson(e as Map<String, dynamic>))
           .toList(),
       chatContacts: (json['chatContacts'] as List<dynamic>?)
           ?.map((e) => ChatContact.fromJson(e as Map<String, dynamic>))
           .toList(),
       universityRegionContacts:
           (json['universityRegionContacts'] as List<dynamic>?)
-              ?.map((e) =>
-                  UniversityRegionContact.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => RegionContact.fromJson(e as Map<String, dynamic>))
               .toList(),
+      eatingDisorderContacts: (json['eatingDisorderContacts'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
     );
 
 Map<String, dynamic> _$$_CountryContactsToJson(_$_CountryContacts instance) =>
@@ -32,4 +34,5 @@ Map<String, dynamic> _$$_CountryContactsToJson(_$_CountryContacts instance) =>
       'crisisCenterContacts': instance.crisisCenterContacts,
       'chatContacts': instance.chatContacts,
       'universityRegionContacts': instance.universityRegionContacts,
+      'eatingDisorderContacts': instance.eatingDisorderContacts,
     };

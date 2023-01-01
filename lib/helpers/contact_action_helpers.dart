@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:linkify/linkify.dart';
 import 'package:nepanikar/utils/extensions.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 Future<void> launchPhoneNum(String phoneNum) async {
   final phoneUri = Uri.tryParse('tel:$phoneNum');
@@ -10,6 +11,14 @@ Future<void> launchPhoneNum(String phoneNum) async {
     await launchUrl(phoneUri);
   } else {
     debugPrint('Could not launch phone: $phoneUri');
+  }
+}
+
+Future<void> launchUrLink(String url) async {
+  if (await canLaunchUrlString(url)) {
+    await launchUrlString(url, mode: LaunchMode.externalApplication);
+  } else {
+    debugPrint('Could not url link: $url');
   }
 }
 

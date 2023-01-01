@@ -43,6 +43,14 @@ GoRoute get $mainRoute => GoRouteData.$route(
           factory: $PhoneContactsRouteExtension._fromState,
         ),
         GoRouteData.$route(
+          path: 'contacts/crisis-center',
+          factory: $CrisisCenterContactsRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'contacts/chat',
+          factory: $ChatContactsRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: 'contacts/universities',
           factory: $UniversityContactsRouteExtension._fromState,
         ),
@@ -206,6 +214,10 @@ GoRoute get $mainRoute => GoRouteData.$route(
           path: 'home/eating-disorder/meal-plan',
           factory: $MealPlanRouteExtension._fromState,
         ),
+        GoRouteData.$route(
+          path: 'home/eating-disorder/contacts',
+          factory: $EatingDisorderContactsRouteExtension._fromState,
+        ),
       ],
     );
 
@@ -304,6 +316,32 @@ extension $PhoneContactsRouteExtension on PhoneContactsRoute {
 
   String get location => GoRouteData.$location(
         '/contacts/phones',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $CrisisCenterContactsRouteExtension on CrisisCenterContactsRoute {
+  static CrisisCenterContactsRoute _fromState(GoRouterState state) =>
+      const CrisisCenterContactsRoute();
+
+  String get location => GoRouteData.$location(
+        '/contacts/crisis-center',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $ChatContactsRouteExtension on ChatContactsRoute {
+  static ChatContactsRoute _fromState(GoRouterState state) =>
+      const ChatContactsRoute();
+
+  String get location => GoRouteData.$location(
+        '/contacts/chat',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
@@ -851,6 +889,19 @@ extension $MealPlanRouteExtension on MealPlanRoute {
 
   String get location => GoRouteData.$location(
         '/home/eating-disorder/meal-plan',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $EatingDisorderContactsRouteExtension on EatingDisorderContactsRoute {
+  static EatingDisorderContactsRoute _fromState(GoRouterState state) =>
+      const EatingDisorderContactsRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/eating-disorder/contacts',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);

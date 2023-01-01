@@ -22,10 +22,12 @@ CountryContacts _$CountryContactsFromJson(Map<String, dynamic> json) {
 mixin _$CountryContacts {
   String get languageTag => throw _privateConstructorUsedError;
   List<PhoneContact>? get phoneContacts => throw _privateConstructorUsedError;
-  List<CrisisCenterContact>? get crisisCenterContacts =>
+  List<RegionContact>? get crisisCenterContacts =>
       throw _privateConstructorUsedError;
   List<ChatContact>? get chatContacts => throw _privateConstructorUsedError;
-  List<UniversityRegionContact>? get universityRegionContacts =>
+  List<RegionContact>? get universityRegionContacts =>
+      throw _privateConstructorUsedError;
+  List<String>? get eatingDisorderContacts =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -43,9 +45,10 @@ abstract class $CountryContactsCopyWith<$Res> {
   $Res call(
       {String languageTag,
       List<PhoneContact>? phoneContacts,
-      List<CrisisCenterContact>? crisisCenterContacts,
+      List<RegionContact>? crisisCenterContacts,
       List<ChatContact>? chatContacts,
-      List<UniversityRegionContact>? universityRegionContacts});
+      List<RegionContact>? universityRegionContacts,
+      List<String>? eatingDisorderContacts});
 }
 
 /// @nodoc
@@ -66,6 +69,7 @@ class _$CountryContactsCopyWithImpl<$Res, $Val extends CountryContacts>
     Object? crisisCenterContacts = freezed,
     Object? chatContacts = freezed,
     Object? universityRegionContacts = freezed,
+    Object? eatingDisorderContacts = freezed,
   }) {
     return _then(_value.copyWith(
       languageTag: null == languageTag
@@ -79,7 +83,7 @@ class _$CountryContactsCopyWithImpl<$Res, $Val extends CountryContacts>
       crisisCenterContacts: freezed == crisisCenterContacts
           ? _value.crisisCenterContacts
           : crisisCenterContacts // ignore: cast_nullable_to_non_nullable
-              as List<CrisisCenterContact>?,
+              as List<RegionContact>?,
       chatContacts: freezed == chatContacts
           ? _value.chatContacts
           : chatContacts // ignore: cast_nullable_to_non_nullable
@@ -87,7 +91,11 @@ class _$CountryContactsCopyWithImpl<$Res, $Val extends CountryContacts>
       universityRegionContacts: freezed == universityRegionContacts
           ? _value.universityRegionContacts
           : universityRegionContacts // ignore: cast_nullable_to_non_nullable
-              as List<UniversityRegionContact>?,
+              as List<RegionContact>?,
+      eatingDisorderContacts: freezed == eatingDisorderContacts
+          ? _value.eatingDisorderContacts
+          : eatingDisorderContacts // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ) as $Val);
   }
 }
@@ -103,9 +111,10 @@ abstract class _$$_CountryContactsCopyWith<$Res>
   $Res call(
       {String languageTag,
       List<PhoneContact>? phoneContacts,
-      List<CrisisCenterContact>? crisisCenterContacts,
+      List<RegionContact>? crisisCenterContacts,
       List<ChatContact>? chatContacts,
-      List<UniversityRegionContact>? universityRegionContacts});
+      List<RegionContact>? universityRegionContacts,
+      List<String>? eatingDisorderContacts});
 }
 
 /// @nodoc
@@ -124,6 +133,7 @@ class __$$_CountryContactsCopyWithImpl<$Res>
     Object? crisisCenterContacts = freezed,
     Object? chatContacts = freezed,
     Object? universityRegionContacts = freezed,
+    Object? eatingDisorderContacts = freezed,
   }) {
     return _then(_$_CountryContacts(
       languageTag: null == languageTag
@@ -137,7 +147,7 @@ class __$$_CountryContactsCopyWithImpl<$Res>
       crisisCenterContacts: freezed == crisisCenterContacts
           ? _value._crisisCenterContacts
           : crisisCenterContacts // ignore: cast_nullable_to_non_nullable
-              as List<CrisisCenterContact>?,
+              as List<RegionContact>?,
       chatContacts: freezed == chatContacts
           ? _value._chatContacts
           : chatContacts // ignore: cast_nullable_to_non_nullable
@@ -145,7 +155,11 @@ class __$$_CountryContactsCopyWithImpl<$Res>
       universityRegionContacts: freezed == universityRegionContacts
           ? _value._universityRegionContacts
           : universityRegionContacts // ignore: cast_nullable_to_non_nullable
-              as List<UniversityRegionContact>?,
+              as List<RegionContact>?,
+      eatingDisorderContacts: freezed == eatingDisorderContacts
+          ? _value._eatingDisorderContacts
+          : eatingDisorderContacts // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ));
   }
 }
@@ -156,13 +170,15 @@ class _$_CountryContacts extends _CountryContacts {
   const _$_CountryContacts(
       {required this.languageTag,
       final List<PhoneContact>? phoneContacts,
-      final List<CrisisCenterContact>? crisisCenterContacts,
+      final List<RegionContact>? crisisCenterContacts,
       final List<ChatContact>? chatContacts,
-      final List<UniversityRegionContact>? universityRegionContacts})
+      final List<RegionContact>? universityRegionContacts,
+      final List<String>? eatingDisorderContacts})
       : _phoneContacts = phoneContacts,
         _crisisCenterContacts = crisisCenterContacts,
         _chatContacts = chatContacts,
         _universityRegionContacts = universityRegionContacts,
+        _eatingDisorderContacts = eatingDisorderContacts,
         super._();
 
   factory _$_CountryContacts.fromJson(Map<String, dynamic> json) =>
@@ -180,9 +196,9 @@ class _$_CountryContacts extends _CountryContacts {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<CrisisCenterContact>? _crisisCenterContacts;
+  final List<RegionContact>? _crisisCenterContacts;
   @override
-  List<CrisisCenterContact>? get crisisCenterContacts {
+  List<RegionContact>? get crisisCenterContacts {
     final value = _crisisCenterContacts;
     if (value == null) return null;
     if (_crisisCenterContacts is EqualUnmodifiableListView)
@@ -201,9 +217,9 @@ class _$_CountryContacts extends _CountryContacts {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<UniversityRegionContact>? _universityRegionContacts;
+  final List<RegionContact>? _universityRegionContacts;
   @override
-  List<UniversityRegionContact>? get universityRegionContacts {
+  List<RegionContact>? get universityRegionContacts {
     final value = _universityRegionContacts;
     if (value == null) return null;
     if (_universityRegionContacts is EqualUnmodifiableListView)
@@ -212,9 +228,20 @@ class _$_CountryContacts extends _CountryContacts {
     return EqualUnmodifiableListView(value);
   }
 
+  final List<String>? _eatingDisorderContacts;
+  @override
+  List<String>? get eatingDisorderContacts {
+    final value = _eatingDisorderContacts;
+    if (value == null) return null;
+    if (_eatingDisorderContacts is EqualUnmodifiableListView)
+      return _eatingDisorderContacts;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   String toString() {
-    return 'CountryContacts(languageTag: $languageTag, phoneContacts: $phoneContacts, crisisCenterContacts: $crisisCenterContacts, chatContacts: $chatContacts, universityRegionContacts: $universityRegionContacts)';
+    return 'CountryContacts(languageTag: $languageTag, phoneContacts: $phoneContacts, crisisCenterContacts: $crisisCenterContacts, chatContacts: $chatContacts, universityRegionContacts: $universityRegionContacts, eatingDisorderContacts: $eatingDisorderContacts)';
   }
 
   @override
@@ -231,7 +258,9 @@ class _$_CountryContacts extends _CountryContacts {
             const DeepCollectionEquality()
                 .equals(other._chatContacts, _chatContacts) &&
             const DeepCollectionEquality().equals(
-                other._universityRegionContacts, _universityRegionContacts));
+                other._universityRegionContacts, _universityRegionContacts) &&
+            const DeepCollectionEquality().equals(
+                other._eatingDisorderContacts, _eatingDisorderContacts));
   }
 
   @JsonKey(ignore: true)
@@ -242,7 +271,8 @@ class _$_CountryContacts extends _CountryContacts {
       const DeepCollectionEquality().hash(_phoneContacts),
       const DeepCollectionEquality().hash(_crisisCenterContacts),
       const DeepCollectionEquality().hash(_chatContacts),
-      const DeepCollectionEquality().hash(_universityRegionContacts));
+      const DeepCollectionEquality().hash(_universityRegionContacts),
+      const DeepCollectionEquality().hash(_eatingDisorderContacts));
 
   @JsonKey(ignore: true)
   @override
@@ -260,12 +290,12 @@ class _$_CountryContacts extends _CountryContacts {
 
 abstract class _CountryContacts extends CountryContacts {
   const factory _CountryContacts(
-          {required final String languageTag,
-          final List<PhoneContact>? phoneContacts,
-          final List<CrisisCenterContact>? crisisCenterContacts,
-          final List<ChatContact>? chatContacts,
-          final List<UniversityRegionContact>? universityRegionContacts}) =
-      _$_CountryContacts;
+      {required final String languageTag,
+      final List<PhoneContact>? phoneContacts,
+      final List<RegionContact>? crisisCenterContacts,
+      final List<ChatContact>? chatContacts,
+      final List<RegionContact>? universityRegionContacts,
+      final List<String>? eatingDisorderContacts}) = _$_CountryContacts;
   const _CountryContacts._() : super._();
 
   factory _CountryContacts.fromJson(Map<String, dynamic> json) =
@@ -276,11 +306,13 @@ abstract class _CountryContacts extends CountryContacts {
   @override
   List<PhoneContact>? get phoneContacts;
   @override
-  List<CrisisCenterContact>? get crisisCenterContacts;
+  List<RegionContact>? get crisisCenterContacts;
   @override
   List<ChatContact>? get chatContacts;
   @override
-  List<UniversityRegionContact>? get universityRegionContacts;
+  List<RegionContact>? get universityRegionContacts;
+  @override
+  List<String>? get eatingDisorderContacts;
   @override
   @JsonKey(ignore: true)
   _$$_CountryContactsCopyWith<_$_CountryContacts> get copyWith =>
