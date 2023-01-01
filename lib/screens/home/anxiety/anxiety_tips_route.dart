@@ -8,7 +8,7 @@ class AnxietyTipsAppRoute extends GoRouteData {
   const AnxietyTipsAppRoute();
 
   @override
-  Widget build(BuildContext context) => const AnxietyTipsAppScreen();
+  Widget build(BuildContext context, _) => const AnxietyTipsAppScreen();
 }
 
 class AnxietyTipsAppScreen extends StatelessWidget {

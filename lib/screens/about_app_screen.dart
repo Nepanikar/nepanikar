@@ -9,7 +9,7 @@ class AboutAppRoute extends GoRouteData {
   const AboutAppRoute();
 
   @override
-  Widget build(BuildContext context) => const AboutAppScreen();
+  Widget build(BuildContext context, _) => const AboutAppScreen();
 }
 
 class AboutAppScreen extends StatelessWidget {

@@ -11,7 +11,7 @@ class BreathingExercisesRoute extends GoRouteData {
   const BreathingExercisesRoute();
 
   @override
-  Widget build(BuildContext context) => const BreathingExercisesScreen();
+  Widget build(BuildContext context, _) => const BreathingExercisesScreen();
 }
 
 class BreathingExercisesScreen extends StatelessWidget {

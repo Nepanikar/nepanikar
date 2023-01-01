@@ -8,7 +8,7 @@ class EatingDisorderTipsFailAppRoute extends GoRouteData {
   const EatingDisorderTipsFailAppRoute();
 
   @override
-  Widget build(BuildContext context) => const EatingDisorderTipsFailScreen();
+  Widget build(BuildContext context, _) => const EatingDisorderTipsFailScreen();
 }
 
 class EatingDisorderTipsFailScreen extends StatelessWidget {

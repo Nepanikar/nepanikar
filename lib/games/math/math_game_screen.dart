@@ -14,7 +14,7 @@ class MathGameRoute extends GoRouteData {
   const MathGameRoute();
 
   @override
-  Widget build(BuildContext context) => const MathGameScreen();
+  Widget build(BuildContext context, _) => const MathGameScreen();
 }
 
 class MathGameScreen extends StatefulWidget {

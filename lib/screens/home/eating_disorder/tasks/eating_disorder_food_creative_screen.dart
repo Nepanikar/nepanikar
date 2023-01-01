@@ -8,7 +8,7 @@ class EatingDisorderFoodCreativeRoute extends GoRouteData {
   const EatingDisorderFoodCreativeRoute();
 
   @override
-  Widget build(BuildContext context) => const EatingDisorderFoodCreativeScreen();
+  Widget build(BuildContext context, _) => const EatingDisorderFoodCreativeScreen();
 }
 
 class EatingDisorderFoodCreativeScreen extends StatelessWidget {

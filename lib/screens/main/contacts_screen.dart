@@ -22,7 +22,7 @@ class ContactsRoute extends GoRouteData {
   UserSettingsDao get _userSettingsDao => registry.get<UserSettingsDao>();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, _) {
     final locale = _userSettingsDao.locale;
     return ContactsScreen(
       countryContacts: _contactsDataManager.getContactsFromLocale(locale),

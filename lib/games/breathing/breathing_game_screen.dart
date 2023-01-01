@@ -19,7 +19,7 @@ class BreathingGameRoute extends GoRouteData {
   final BreathingGameShape shape;
 
   @override
-  Widget build(BuildContext context) => BreathingGameScreen(
+  Widget build(BuildContext context, _) => BreathingGameScreen(
         shape: shape,
       );
 }

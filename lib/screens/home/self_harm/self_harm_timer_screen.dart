@@ -15,7 +15,7 @@ class SelfHarmTimerRoute extends GoRouteData {
   const SelfHarmTimerRoute();
 
   @override
-  Widget build(BuildContext context) => const SelfHarmTimerScreen();
+  Widget build(BuildContext context, _) => const SelfHarmTimerScreen();
 }
 
 class SelfHarmTimerScreen extends StatelessWidget {

@@ -20,7 +20,7 @@ class UniversityContactsRoute extends GoRouteData {
   UserSettingsDao get _userSettingsDao => registry.get<UserSettingsDao>();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, _) {
     final locale = _userSettingsDao.locale;
     final universityRegionContacts =
         _contactsManager.getContactsFromLocale(locale).universityRegionContacts;
