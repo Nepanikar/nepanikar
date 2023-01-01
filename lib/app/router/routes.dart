@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/games/balance/balance_game_screen.dart';
 import 'package:nepanikar/games/breathing/breathing_exercises_screen.dart';
 import 'package:nepanikar/games/breathing/breathing_game_screen.dart';
 import 'package:nepanikar/games/math/math_game_screen.dart';
@@ -31,8 +32,13 @@ import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips
 import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_overeat.dart';
 import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_remorse.dart';
 import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_vomit.dart';
+import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_add_screen.dart';
+import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_detail_screen.dart';
+import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_edit_screen.dart';
+import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_records_screen.dart';
 import 'package:nepanikar/screens/home/my_records/mood_track_screen.dart';
 import 'package:nepanikar/screens/home/my_records/my_records_screen.dart';
+import 'package:nepanikar/screens/home/my_records/my_records_sleep_track_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_helped_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_plan_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_screen.dart';
@@ -83,6 +89,7 @@ const _gameRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<MathGameRoute>(path: 'games/math'),
   TypedGoRoute<BreathingExercisesRoute>(path: 'games/breathing-list'),
   TypedGoRoute<BreathingGameRoute>(path: 'games/breathing/:shape'),
+  TypedGoRoute<BalanceGameRoute>(path: 'games/balance'),
 ];
 
 const _contactRoutes = <TypedGoRoute<GoRouteData>>[
@@ -161,4 +168,9 @@ const _eatingDisorderTipsRoutes = <TypedGoRoute<GoRouteData>>[
 const _myRecordsRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<MyRecordsRoute>(path: 'home/my-records'),
   TypedGoRoute<MoodTrackRoute>(path: 'home/my-records/mood-track'),
+  TypedGoRoute<MyRecordsSleepTrackRoute>(path: 'home/my-records/sleep-track'),
+  TypedGoRoute<MyRecordsDiaryRecordsRoute>(path: 'home/my-records/diary'),
+  TypedGoRoute<MyRecordsDiaryAddRoute>(path: 'home/my-records/diary/add'),
+  TypedGoRoute<MyRecordsDiaryDetailRoute>(path: 'home/my-records/diary/detail'),
+  TypedGoRoute<MyRecordsDiaryEditRoute>(path: 'home/my-records/diary/edit'),
 ];

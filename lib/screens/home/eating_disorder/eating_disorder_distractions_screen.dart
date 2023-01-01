@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
+import 'package:nepanikar/games/balance/balance_game_screen.dart';
 import 'package:nepanikar/games/breathing/breathing_exercises_screen.dart';
 import 'package:nepanikar/games/math/math_game_screen.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
@@ -32,9 +33,9 @@ class EatingDisorderDistractionsScreen extends StatelessWidget {
         onTap: () => {},
       ),
       LongTile(
-        text: '${context.l10n.game_balance} TODO',
+        text: context.l10n.game_balance,
         image: Assets.illustrations.games.swing.swing.svg(),
-        onTap: () => {},
+        onTap: () => context.push(const BalanceGameRoute().location),
       ),
       LongTile(
         text: context.l10n.breath,

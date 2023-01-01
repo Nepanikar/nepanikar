@@ -9,5 +9,10 @@ class NepanikarSizes {
 
   static const screenContentPadding = EdgeInsets.all(24.0);
 
-  static SeparatorBuilder separatorBuilder({double height = 12}) => () => SizedBox(height: height);
+  static const separatorHeight = 12.0;
+
+  static SeparatorBuilder separatorBuilder({double height = separatorHeight}) =>
+      () => SizedBox(height: height);
+
+  static const double fabBottomPadding = 56.0;
 }

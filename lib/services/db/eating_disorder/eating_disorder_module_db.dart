@@ -1,3 +1,5 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nepanikar/helpers/localization_helpers.dart';
 import 'package:nepanikar/services/db/common/nepanikar_module_db.dart';
 import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/services/db/eating_disorder/eating_disorder_food_afraid_of_dao.dart';
@@ -53,5 +55,13 @@ class EatingDisorderModuleDb implements NepanikarModuleDb {
     //await _eatingDisorderLikeOnMyselfDao.doOldVersionMigration(); // TODO
     //await _eatingDisorderFoodILikeDao.doOldVersionMigration(); // TODO
     //await _eatingDisorderFoodAfraidOfDao.doOldVersionMigration(); // TODO
+  }
+
+  @override
+  Future<void> preloadDefaultModuleData(AppLocalizations l10n) async {
+    await _eatingDisorderFoodCreativeDao
+        .preloadDefaultData(l10n.food_creative_text.extractToItems());
+    await _eatingDisorderFoodChallengesDao
+        .preloadDefaultData(l10n.food_challenge_text.extractToItems());
   }
 }

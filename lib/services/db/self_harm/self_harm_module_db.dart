@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nepanikar/services/db/common/nepanikar_module_db.dart';
 import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/services/db/self_harm/self_harm_helped_dao.dart';
@@ -37,4 +38,7 @@ class SelfHarmModuleDb implements NepanikarModuleDb {
     }
     // await _selfHarmHelpedDao.doOldVersionMigration(); // TODO
   }
+
+  @override
+  Future<void> preloadDefaultModuleData(AppLocalizations l10n) async {}
 }
