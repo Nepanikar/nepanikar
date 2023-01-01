@@ -77,10 +77,12 @@ class NepanikarScreenWrapper extends StatelessWidget {
                           width: layoutContext.screenWidth,
                           height: expandToMaxScreenHeight ? context.screenHeight : null,
                           child: Card(
+                            clipBehavior: Clip.hardEdge,
                             margin: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                             child: Padding(
                               padding: const EdgeInsets.all(16),
                               child: SingleChildScrollView(
+                                clipBehavior: Clip.none,
                                 child: getPageContent(),
                               ),
                             ),

@@ -2,6 +2,8 @@ import 'package:sembast/sembast.dart';
 
 class FilterKeys {
   static const String date = 'date';
+
+  static const String dateWithTime = 'dateWithTime';
 }
 
 mixin CustomFilters {

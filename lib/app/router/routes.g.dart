@@ -31,6 +31,10 @@ GoRoute get $mainRoute => GoRouteData.$route(
           factory: $BreathingGameRouteExtension._fromState,
         ),
         GoRouteData.$route(
+          path: 'games/balance',
+          factory: $BalanceGameRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: 'contacts',
           factory: $ContactsRouteExtension._fromState,
         ),
@@ -97,6 +101,26 @@ GoRoute get $mainRoute => GoRouteData.$route(
         GoRouteData.$route(
           path: 'home/my-records/mood-track',
           factory: $MoodTrackRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'home/my-records/sleep-track',
+          factory: $MyRecordsSleepTrackRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'home/my-records/diary',
+          factory: $MyRecordsDiaryRecordsRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'home/my-records/diary/add',
+          factory: $MyRecordsDiaryAddRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'home/my-records/diary/detail',
+          factory: $MyRecordsDiaryDetailRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'home/my-records/diary/edit',
+          factory: $MyRecordsDiaryEditRouteExtension._fromState,
         ),
         GoRouteData.$route(
           path: 'home/suicidal-thoughts',
@@ -242,6 +266,19 @@ extension $BreathingGameRouteExtension on BreathingGameRoute {
 
   String get location => GoRouteData.$location(
         '/games/breathing/${Uri.encodeComponent(_$BreathingGameShapeEnumMap[shape]!)}',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $BalanceGameRouteExtension on BalanceGameRoute {
+  static BalanceGameRoute _fromState(GoRouterState state) =>
+      const BalanceGameRoute();
+
+  String get location => GoRouteData.$location(
+        '/games/balance',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
@@ -463,6 +500,71 @@ extension $MoodTrackRouteExtension on MoodTrackRoute {
 
   String get location => GoRouteData.$location(
         '/home/my-records/mood-track',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $MyRecordsSleepTrackRouteExtension on MyRecordsSleepTrackRoute {
+  static MyRecordsSleepTrackRoute _fromState(GoRouterState state) =>
+      const MyRecordsSleepTrackRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/my-records/sleep-track',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $MyRecordsDiaryRecordsRouteExtension on MyRecordsDiaryRecordsRoute {
+  static MyRecordsDiaryRecordsRoute _fromState(GoRouterState state) =>
+      const MyRecordsDiaryRecordsRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/my-records/diary',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $MyRecordsDiaryAddRouteExtension on MyRecordsDiaryAddRoute {
+  static MyRecordsDiaryAddRoute _fromState(GoRouterState state) =>
+      const MyRecordsDiaryAddRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/my-records/diary/add',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $MyRecordsDiaryDetailRouteExtension on MyRecordsDiaryDetailRoute {
+  static MyRecordsDiaryDetailRoute _fromState(GoRouterState state) =>
+      const MyRecordsDiaryDetailRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/my-records/diary/detail',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $MyRecordsDiaryEditRouteExtension on MyRecordsDiaryEditRoute {
+  static MyRecordsDiaryEditRoute _fromState(GoRouterState state) =>
+      const MyRecordsDiaryEditRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/my-records/diary/edit',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
