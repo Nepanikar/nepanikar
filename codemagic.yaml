@@ -54,7 +54,7 @@ definitions:
           --build-number=$((($MAJOR_VERSION*100000)+($MINOR_VERSION*10000)+$BUILD_NUMBER)) \
           --verbose --no-tree-shake-icons
     - &publish_huawei
-      name: Publish to the AppGallery store
+      name: Publish to the Huawei AppGallery store
       script: |
         cd android
         chmod +x gradlew
