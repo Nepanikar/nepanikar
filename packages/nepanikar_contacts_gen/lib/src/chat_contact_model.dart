@@ -7,8 +7,8 @@ part 'chat_contact_model.g.dart';
 @freezed
 class ChatContact with _$ChatContact {
   const factory ChatContact({
-    required String title,
-    String? subtitle,
+    String? name,
+    required String url,
   }) = _ChatContact;
 
   const ChatContact._();

@@ -4,19 +4,20 @@ import 'package:linkify/linkify.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/contact_action_helpers.dart';
+import 'package:nepanikar/utils/custom_linkifiers.dart';
 import 'package:nepanikar_contacts_gen/nepanikar_contacts_gen.dart';
 
-class UniversityContactsList extends StatelessWidget {
-  const UniversityContactsList({
+class RegionItemContactsList extends StatelessWidget {
+  const RegionItemContactsList({
     super.key,
-    required this.universityContact,
+    required this.regionItemContact,
   });
 
-  final UniversityContact universityContact;
+  final RegionItemContact regionItemContact;
 
   Widget _buildUniversityHeader() {
     return Text(
-      universityContact.name,
+      regionItemContact.name,
       style: NepanikarFonts.title3.copyWith(
         color: NepanikarColors.primary,
         fontWeight: FontWeight.w700,
@@ -35,12 +36,13 @@ class UniversityContactsList extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         _buildUniversityHeader(),
-        ...universityContact.contacts.map((contact) {
+        ...regionItemContact.contactAddresses.map((contact) {
           final linkifiedText = linkify(
             contact,
-            linkifiers: const [EmailLinkifier(), UrlLinkifier()],
+            linkifiers: const [EmailLinkifier(), UrlLinkifier(), PhoneNumberLinkifier()],
             options: const LinkifyOptions(looseUrl: true, removeWww: true),
           );
+
           return Padding(
             padding: const EdgeInsets.only(top: 12),
             child: Text.rich(
@@ -57,13 +59,16 @@ class UniversityContactsList extends StatelessWidget {
                           onTap: () async => launchLinkableContact(e),
                           onLongPress: () async => copyContact(context, displayText),
                           child: Text(
-                            isEmail ? displayText : displayUrlLink,
+                            isEmail || e is PhoneNumberElement ? displayText : displayUrlLink,
                             style: linkifiedTextStyle,
                           ),
                         ),
                       );
                     }
-                    return TextSpan(text: e.text, style: linkifiedTextStyle);
+                    return TextSpan(
+                      text: e.text,
+                      style: linkifiedTextStyle.copyWith(decoration: TextDecoration.none),
+                    );
                   },
                 ).toList(),
               ),

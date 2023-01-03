@@ -5,8 +5,10 @@ import 'package:nepanikar/games/breathing/breathing_exercises_screen.dart';
 import 'package:nepanikar/games/breathing/breathing_game_screen.dart';
 import 'package:nepanikar/games/math/math_game_screen.dart';
 import 'package:nepanikar/screens/about_app_screen.dart';
+import 'package:nepanikar/screens/contacts/chat_contacts_screen.dart';
+import 'package:nepanikar/screens/contacts/eating_disorder_contacts_screen.dart';
 import 'package:nepanikar/screens/contacts/phone_contacts_screen.dart';
-import 'package:nepanikar/screens/contacts/university_contacts_screen.dart';
+import 'package:nepanikar/screens/contacts/region_contacts_screen.dart';
 import 'package:nepanikar/screens/home/anxiety/anxiety_screen.dart';
 import 'package:nepanikar/screens/home/anxiety/anxiety_tips_route.dart';
 import 'package:nepanikar/screens/home/depression/depression_activity_plan_screen.dart';
@@ -95,6 +97,8 @@ const _gameRoutes = <TypedGoRoute<GoRouteData>>[
 const _contactRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<ContactsRoute>(path: 'contacts'),
   TypedGoRoute<PhoneContactsRoute>(path: 'contacts/phones'),
+  TypedGoRoute<CrisisCenterContactsRoute>(path: 'contacts/crisis-center'),
+  TypedGoRoute<ChatContactsRoute>(path: 'contacts/chat'),
   TypedGoRoute<UniversityContactsRoute>(path: 'contacts/universities'),
 ];
 
@@ -137,6 +141,7 @@ const _eatingDisorderRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<EatingDisorderSamplesRoute>(path: 'home/eating-disorder/samples'),
   TypedGoRoute<EatingDisorderDistractionsRoute>(path: 'home/eating-disorder/distraction'),
   TypedGoRoute<MealPlanRoute>(path: 'home/eating-disorder/meal-plan'),
+  TypedGoRoute<EatingDisorderContactsRoute>(path: 'home/eating-disorder/contacts'),
 ];
 
 const _eatingDisorderTasksRoutes = <TypedGoRoute<GoRouteData>>[
