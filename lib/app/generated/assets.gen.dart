@@ -278,7 +278,7 @@ class $AssetsIllustrationsContactsGen {
 class $AssetsIllustrationsGamesGen {
   const $AssetsIllustrationsGamesGen();
 
-  $AssetsIllustrationsGamesBaloonsGen get baloons => const $AssetsIllustrationsGamesBaloonsGen();
+  $AssetsIllustrationsGamesBalloonsGen get balloons => const $AssetsIllustrationsGamesBalloonsGen();
   $AssetsIllustrationsGamesMathGen get math => const $AssetsIllustrationsGamesMathGen();
   $AssetsIllustrationsGamesSwingGen get swing => const $AssetsIllustrationsGamesSwingGen();
 }
@@ -337,14 +337,31 @@ class $AssetsIllustrationsMoodsGen {
   List<SvgGenImage> get values => [mood0Sad, mood1Bad, mood2Okay, mood3Good, mood4Happy];
 }
 
-class $AssetsIllustrationsGamesBaloonsGen {
-  const $AssetsIllustrationsGamesBaloonsGen();
+class $AssetsIllustrationsGamesBalloonsGen {
+  const $AssetsIllustrationsGamesBalloonsGen();
 
-  /// File path: assets/illustrations/games/baloons/baloons.svg
-  SvgGenImage get baloons => const SvgGenImage('assets/illustrations/games/baloons/baloons.svg');
+  /// File path: assets/illustrations/games/balloons/balloon_unwanted1.svg
+  SvgGenImage get balloonUnwanted1 =>
+      const SvgGenImage('assets/illustrations/games/balloons/balloon_unwanted1.svg');
+
+  /// File path: assets/illustrations/games/balloons/balloon_unwanted2.svg
+  SvgGenImage get balloonUnwanted2 =>
+      const SvgGenImage('assets/illustrations/games/balloons/balloon_unwanted2.svg');
+
+  /// File path: assets/illustrations/games/balloons/balloon_wanted.svg
+  SvgGenImage get balloonWanted =>
+      const SvgGenImage('assets/illustrations/games/balloons/balloon_wanted.svg');
+
+  /// File path: assets/illustrations/games/balloons/baloons.svg
+  SvgGenImage get baloons => const SvgGenImage('assets/illustrations/games/balloons/baloons.svg');
+
+  /// File path: assets/illustrations/games/balloons/touch_gesture.svg
+  SvgGenImage get touchGesture =>
+      const SvgGenImage('assets/illustrations/games/balloons/touch_gesture.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [baloons];
+  List<SvgGenImage> get values =>
+      [balloonUnwanted1, balloonUnwanted2, balloonWanted, baloons, touchGesture];
 }
 
 class $AssetsIllustrationsGamesMathGen {
