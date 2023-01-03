@@ -53,6 +53,14 @@ definitions:
           --build-name=$MAJOR_VERSION.$MINOR_VERSION.$BUILD_NUMBER \
           --build-number=$((($MAJOR_VERSION*100000)+($MINOR_VERSION*10000)+$BUILD_NUMBER)) \
           --verbose --no-tree-shake-icons
+    - &publish_huawei
+      name: Publish to the Huawei AppGallery store
+      script: |
+        cd android
+        chmod +x gradlew
+        fastlane add_plugin huawei_appgallery_connect
+        bundle install
+        bundle exec fastlane huawei
 
 workflows:
   release:
@@ -63,6 +71,7 @@ workflows:
     environment:
       <<: *env_versions
       groups:
+        - app_gallery
         - google_credentials
       android_signing:
         - Nepanikar-Android
@@ -79,6 +88,7 @@ workflows:
       - *build_android
       - *setup_ios
       - *build_ios
+      - *publish_huawei
     artifacts: *artifacts
     publishing:
       <<: *generic_publishing

@@ -1,0 +1,31 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  desc "Publish to Huawei AppGallery Store"
+  lane :huawei do
+    huawei_appgallery_connect(
+      client_id: "#{ENV["CLIENT_ID"]}",
+      client_secret: "#{ENV["KEY"]}",
+      app_id: "#{ENV["APP_ID"]}",
+      apk_path: "../build/app/outputs/bundle/release/app-release.aab",
+      is_aab: true,
+      submit_for_review: false,
+      delay_before_submit_for_review: 20
+    )
+  end
+end
