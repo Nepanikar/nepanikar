@@ -133,32 +133,68 @@ class DatabaseService {
 
     final depressionModuleConfig = nepanikarConfig.depressionModuleConfig;
     if (depressionModuleConfig != null) {
-      await _depressionModuleDb.doModuleOldVersionMigration(depressionModuleConfig);
+      try {
+        await _depressionModuleDb.doModuleOldVersionMigration(depressionModuleConfig);
+      } catch (e) {
+        debugPrint(
+          'DATABASE_SERVICE: Error while migrating depression module data from old app version: $e',
+        );
+      }
     }
 
     final selfHarmModuleConfig = nepanikarConfig.selfHarmModuleConfig;
     if (selfHarmModuleConfig != null) {
-      await _selfHarmModuleDb.doModuleOldVersionMigration(selfHarmModuleConfig);
+      try {
+        await _selfHarmModuleDb.doModuleOldVersionMigration(selfHarmModuleConfig);
+      } catch (e) {
+        debugPrint(
+          'DATABASE_SERVICE: Error while migrating self harm module data from old app version: $e',
+        );
+      }
     }
 
     final suicidalThoughtsModuleConfig = nepanikarConfig.suicidalThoughtsModuleConfig;
     if (suicidalThoughtsModuleConfig != null) {
-      await _suicidalThoughtsModuleDb.doModuleOldVersionMigration(suicidalThoughtsModuleConfig);
+      try {
+        await _suicidalThoughtsModuleDb.doModuleOldVersionMigration(suicidalThoughtsModuleConfig);
+      } catch (e) {
+        debugPrint(
+          'DATABASE_SERVICE: Error while migrating suicidal thoughts module data from old app version: $e',
+        );
+      }
     }
 
     final eatingDisorderModuleConfig = nepanikarConfig.eatingDisorderModuleConfig;
     if (eatingDisorderModuleConfig != null) {
-      await _eatingDisorderModuleDb.doModuleOldVersionMigration(eatingDisorderModuleConfig);
+      try {
+        await _eatingDisorderModuleDb.doModuleOldVersionMigration(eatingDisorderModuleConfig);
+      } catch (e) {
+        debugPrint(
+          'DATABASE_SERVICE: Error while migrating eating disorder module data from old app version: $e',
+        );
+      }
     }
 
     final myRecordsModuleConfig = nepanikarConfig.myRecordsModuleConfig;
     if (myRecordsModuleConfig != null) {
-      await _myRecordsModuleDb.doModuleOldVersionMigration(myRecordsModuleConfig);
+      try {
+        await _myRecordsModuleDb.doModuleOldVersionMigration(myRecordsModuleConfig);
+      } catch (e) {
+        debugPrint(
+          'DATABASE_SERVICE: Error while migrating my records module data from old app version: $e',
+        );
+      }
     }
 
     final myContactsModuleConfig = nepanikarConfig.myContactsModuleConfig;
     if (myContactsModuleConfig != null) {
-      await _myContactsModuleDb.doModuleOldVersionMigration(myContactsModuleConfig);
+      try {
+        await _myContactsModuleDb.doModuleOldVersionMigration(myContactsModuleConfig);
+      } catch (e) {
+        debugPrint(
+          'DATABASE_SERVICE: Error while migrating my contacts module data from old app version: $e',
+        );
+      }
     }
   }
 
