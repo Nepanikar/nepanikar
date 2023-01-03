@@ -7,5 +7,9 @@ extension IterableExtension<T> on Iterable<T> {
 }
 
 extension ListExtensions<E> on List<E> {
-  E? elementAtOrNull(int index) => index <= -1 ? null : (index < length) ? this[index] : null;
+  E? elementAtOrNull(int index) => index <= -1
+      ? null
+      : (index < length)
+          ? this[index]
+          : null;
 }
