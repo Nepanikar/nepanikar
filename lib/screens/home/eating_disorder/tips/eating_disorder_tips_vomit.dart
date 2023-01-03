@@ -8,7 +8,7 @@ class EatingDisorderTipsVomitAppRoute extends GoRouteData {
   const EatingDisorderTipsVomitAppRoute();
 
   @override
-  Widget build(BuildContext context) => const EatingDisorderTipsVomitScreen();
+  Widget build(BuildContext context, _) => const EatingDisorderTipsVomitScreen();
 }
 
 class EatingDisorderTipsVomitScreen extends StatelessWidget {

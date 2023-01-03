@@ -8,12 +8,12 @@ part of 'chat_contact_model.dart';
 
 _$_ChatContact _$$_ChatContactFromJson(Map<String, dynamic> json) =>
     _$_ChatContact(
-      title: json['title'] as String,
-      subtitle: json['subtitle'] as String?,
+      name: json['name'] as String?,
+      url: json['url'] as String,
     );
 
 Map<String, dynamic> _$$_ChatContactToJson(_$_ChatContact instance) =>
     <String, dynamic>{
-      'title': instance.title,
-      'subtitle': instance.subtitle,
+      'name': instance.name,
+      'url': instance.url,
     };

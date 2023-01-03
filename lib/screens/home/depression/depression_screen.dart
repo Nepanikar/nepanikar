@@ -14,7 +14,7 @@ class DepressionRoute extends GoRouteData {
   const DepressionRoute();
 
   @override
-  Widget build(BuildContext context) => const DepressionScreen();
+  Widget build(BuildContext context, _) => const DepressionScreen();
 }
 
 class DepressionScreen extends StatelessWidget {

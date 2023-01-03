@@ -6,6 +6,7 @@ const cs_Contacts = CountryContacts(
   crisisCenterContacts: _crisisCenterContacts,
   chatContacts: _chatContacts,
   universityRegionContacts: _universityRegionContacts,
+  eatingDisorderContacts: _eatingDisorderContacts,
 );
 
 const _phoneContacts = <PhoneContact>[
@@ -66,92 +67,127 @@ St–pá‎ 8–16 hod.''',
   ),
 ];
 
-const _crisisCenterContacts = <CrisisCenterContact>[
-  CrisisCenterContact(title: 'CrisisCenterContact TODO'),
+const _crisisCenterContacts = <RegionContact>[
+  RegionContact(
+    region: 'Praha a Středočeský kraj',
+    contacts: [
+      RegionItemContact(
+        name: 'Centrum krizové péče',
+        contactAddresses: [
+          'Pondělí až pátek 8:00 – 15:30',
+          'Psychiatrická klinika VFN v Praze, Ke Karlovu 11, 120 00 Praha 2',
+          'Telefonní krizová linka: 605 851 658',
+          'E-mail: ckp@vfn.cz',
+        ],
+      ),
+    ],
+  )
 ];
 
 const _chatContacts = <ChatContact>[
-  ChatContact(title: 'Poradna 1 - TODO'),
-  ChatContact(title: 'Poradna 2 - TODO'),
+  ChatContact(
+    name: 'Nepanikař',
+    url: 'https://nepanikar.eu/poradna/',
+  ),
+  ChatContact(
+    name: 'iPoradna',
+    url: 'https://iporadna.cz/elinka-chatova-poradna/',
+  ),
+  ChatContact(
+    name: 'Linka bezpečí',
+    url: 'https://chat.linkabezpeci.cz/',
+  ),
+  ChatContact(
+    name: 'Modrá linka',
+    url: 'https://chat.modralinka.cz/',
+  ),
+  ChatContact(
+    name: 'Chat pražské linky důvěry',
+    url: 'https://www.chat-pomoc.cz/',
+  ),
+  ChatContact(
+    name: 'Linka první psychické pomoci',
+    url: 'https://linkapsychickepomoci.cz/chat/',
+  ),
 ];
 
-const _universityRegionContacts = <UniversityRegionContact>[
-  UniversityRegionContact(
+const _universityRegionContacts = <RegionContact>[
+  RegionContact(
     region: 'Praha a Středočeský kraj',
-    universities: [
-      UniversityContact(
+    contacts: [
+      RegionItemContact(
         name: 'Akademie výtvarných umění Praha',
-        contacts: [
+        contactAddresses: [
           'https://avu.cz/oddeleni/psychologicke-pracoviste',
           'psycholog@avu.cz',
         ],
       ),
-      UniversityContact(
+      RegionItemContact(
         name: 'Česká zemědělská univerzita v Praze',
-        contacts: [
+        contactAddresses: [
           'https://www.fzp.czu.cz/cs/r-6896-studium/r-9878-informace-pro-studenty/r-12299-poradenstvi-pro-studenty',
           'sabolovak@fzp.czu.cz',
           'tendonkelaar@fzp.czu.cz',
         ],
       ),
-      UniversityContact(
+      RegionItemContact(
         name: 'České vysoké učení technické v Praze',
-        contacts: [
+        contactAddresses: [
           'https://www.cips.cvut.cz/poradny/psychologicka-poradna/',
           'cips@cvut.cz',
         ],
       ),
-      UniversityContact(
+      RegionItemContact(
         name: 'Policejní akademie ČR v Praze',
-        contacts: [
+        contactAddresses: [
           'chvostkova@polac.cz',
         ],
       ),
-      UniversityContact(
+      RegionItemContact(
         name: 'Univerzita Jana Amose Komenského, s.r.o.',
-        contacts: [
+        contactAddresses: [
           'http://www.ujak.cz/akademicke-poradenske-centrum/',
           'kocurova.marie@ujak.cz',
         ],
       ),
-      UniversityContact(
+      RegionItemContact(
         name: 'Univerzita Karlova',
-        contacts: [
+        contactAddresses: [
           'https://centrumcarolina.cuni.cz/CC-31.html',
           'hedvika.boukalova@ff.cuni.cz',
           'vendula.vinklerova@centrum.cz',
         ],
       ),
-      UniversityContact(
+      RegionItemContact(
         name: 'Vysoká škola ekonomická v Praze',
-        contacts: [
+        contactAddresses: [
           'https://ac.vse.cz/nase-sluzby/psychologicka-poradna/',
           'jiri.knap@vse.cz',
         ],
       ),
     ],
   ),
-  UniversityRegionContact(
+  RegionContact(
     region: 'Jihomoravský kraj',
-    universities: [
-      UniversityContact(
+    contacts: [
+      RegionItemContact(
         name: 'Masarykova univerzita',
-        contacts: [
+        contactAddresses: [
           'https://www.teiresias.muni.cz/',
           'teiresias@muni.cz',
         ],
       ),
-      UniversityContact(
+      RegionItemContact(
         name: 'Mendelova univerzita v Brně',
-        contacts: [
+        contactAddresses: [
           'https://icv.mendelu.cz/pcentrum/psychologicke-poradenstvi/?psn=1700',
           'pcentrum@mendelu.cz',
           'petra.kadlecova@mendelu.cz',
         ],
       ),
-      UniversityContact(
+      RegionItemContact(
         name: 'Vysoké učení technické v Brně',
-        contacts: [
+        contactAddresses: [
           'https://www.lli.vutbr.cz/psychologicke-poradenstvi',
           'eva.viktorinova@vutbr.cz',
           'Petr.Matousek@lli.vutbr.cz',
@@ -160,67 +196,67 @@ const _universityRegionContacts = <UniversityRegionContact>[
       ),
     ],
   ),
-  UniversityRegionContact(
+  RegionContact(
     region: 'Olomoucký kraj',
-    universities: [
-      UniversityContact(
+    contacts: [
+      RegionItemContact(
         name: 'Univerzita Palackého v Olomouci',
-        contacts: [
+        contactAddresses: [
           'https://www.upol.cz/studenti/pruvodce/poradenstvi/#c23969',
           'michaela.pugnerova@upol.cz',
         ],
       ),
     ],
   ),
-  UniversityRegionContact(
+  RegionContact(
     region: 'Jihočeský kraj',
-    universities: [
-      UniversityContact(
+    contacts: [
+      RegionItemContact(
         name: 'Jihočeská univerzita v Českých Budějovicích',
-        contacts: [
+        contactAddresses: [
           'http://www.pf.jcu.cz/structure/poradna/',
           'zbajgarova@pf.jcu.cz',
         ],
       ),
     ],
   ),
-  UniversityRegionContact(
+  RegionContact(
     region: 'Moravskoslezský kraj',
-    universities: [
-      UniversityContact(
+    contacts: [
+      RegionItemContact(
         name: 'Ostravská univerzita',
-        contacts: [
+        contactAddresses: [
           'https://www.osu.cz/poradenske-centrum/psychologicke-poradenstvi/',
           'pavlina.jablonska@osu.cz',
         ],
       ),
-      UniversityContact(
+      RegionItemContact(
         name: 'Slezská univerzita v Opavě',
-        contacts: [
+        contactAddresses: [
           'https://www.slu.cz/slu/cz/psychologickekonzultace',
           'BChodura@vez.opa.justice.cz',
         ],
       ),
     ],
   ),
-  UniversityRegionContact(
+  RegionContact(
     region: 'Plzeňský kraj',
-    universities: [
-      UniversityContact(
+    contacts: [
+      RegionItemContact(
         name: 'Západočeská univerzita v Plzni',
-        contacts: [
+        contactAddresses: [
           'https://old.zcu.cz/pracoviste/ipc/psychologicke-poradenstvi/',
           'psyche@rek.zcu.cz',
         ],
       ),
     ],
   ),
-  UniversityRegionContact(
+  RegionContact(
     region: 'Vysočina',
-    universities: [
-      UniversityContact(
+    contacts: [
+      RegionItemContact(
         name: 'Vysoká škola polytechnická Jihlava',
-        contacts: [
+        contactAddresses: [
           'http://www.vspj.cz/student/poradenske-a-karierni-centrum-vspj',
           'simona.mertlova@vspj.cz',
           'poradce@vspj.cz',
@@ -228,36 +264,36 @@ const _universityRegionContacts = <UniversityRegionContact>[
       ),
     ],
   ),
-  UniversityRegionContact(
+  RegionContact(
     region: 'Ústecký kraj',
-    universities: [
-      UniversityContact(
+    contacts: [
+      RegionItemContact(
         name: 'Univerzita Jana Evangelisty Purkyně v Ústí nad Labem',
-        contacts: [
+        contactAddresses: [
           'https://www.pf.ujep.cz/cs/katedra-psychologie-psychologicka-poradna',
           'michala.linkova@ujep.cz',
         ],
       ),
     ],
   ),
-  UniversityRegionContact(
+  RegionContact(
     region: 'Liberecký kraj',
-    universities: [
-      UniversityContact(
+    contacts: [
+      RegionItemContact(
         name: 'Technická univerzita v Liberci',
-        contacts: [
+        contactAddresses: [
           'https://www.tul.cz/studenti/sluzby-studentum/podpora-a-poradenstvi/',
           'lucie.hubertova@tul.cz',
         ],
       ),
     ],
   ),
-  UniversityRegionContact(
+  RegionContact(
     region: 'Královéhradecký kraj',
-    universities: [
-      UniversityContact(
+    contacts: [
+      RegionItemContact(
         name: 'Univerzita Hradec Králové',
-        contacts: [
+        contactAddresses: [
           'https://www.uhk.cz/cs/univerzita-hradec-kralove/uhk/celouniverzitni-pracoviste/ipakc/psychologicka-a-terapeuticka-podpora',
           'katerina.juklova@uhk.cz',
           'gabriela.slaninova@uhk.cz',
@@ -267,12 +303,12 @@ const _universityRegionContacts = <UniversityRegionContact>[
       ),
     ],
   ),
-  UniversityRegionContact(
+  RegionContact(
     region: 'Pardubický kraj',
-    universities: [
-      UniversityContact(
+    contacts: [
+      RegionItemContact(
         name: 'Univerzita Pardubice',
-        contacts: [
+        contactAddresses: [
           'https://www.upce.cz/krizova-intervence',
           'barbora.bajova@upce.cz',
           'hana.jelinkova@upce.cz',
@@ -280,16 +316,21 @@ const _universityRegionContacts = <UniversityRegionContact>[
       ),
     ],
   ),
-  UniversityRegionContact(
+  RegionContact(
     region: 'Zlínský kraj',
-    universities: [
-      UniversityContact(
+    contacts: [
+      RegionItemContact(
         name: 'Univerzita Tomáše Bati ve Zlíně',
-        contacts: [
+        contactAddresses: [
           'https://akademickaporadna.utb.cz/poradna/',
           'poradnak@utb.cz',
         ],
       ),
     ],
   ),
+];
+
+const _eatingDisorderContacts = <String>[
+  'http://www.anabell.cz/',
+  '774 467 293',
 ];

@@ -20,8 +20,8 @@ ChatContact _$ChatContactFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ChatContact {
-  String get title => throw _privateConstructorUsedError;
-  String? get subtitle => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String get url => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +35,7 @@ abstract class $ChatContactCopyWith<$Res> {
           ChatContact value, $Res Function(ChatContact) then) =
       _$ChatContactCopyWithImpl<$Res, ChatContact>;
   @useResult
-  $Res call({String title, String? subtitle});
+  $Res call({String? name, String url});
 }
 
 /// @nodoc
@@ -51,18 +51,18 @@ class _$ChatContactCopyWithImpl<$Res, $Val extends ChatContact>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? title = null,
-    Object? subtitle = freezed,
+    Object? name = freezed,
+    Object? url = null,
   }) {
     return _then(_value.copyWith(
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      subtitle: freezed == subtitle
-          ? _value.subtitle
-          : subtitle // ignore: cast_nullable_to_non_nullable
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -75,7 +75,7 @@ abstract class _$$_ChatContactCopyWith<$Res>
       __$$_ChatContactCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String title, String? subtitle});
+  $Res call({String? name, String url});
 }
 
 /// @nodoc
@@ -89,18 +89,18 @@ class __$$_ChatContactCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? title = null,
-    Object? subtitle = freezed,
+    Object? name = freezed,
+    Object? url = null,
   }) {
     return _then(_$_ChatContact(
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      subtitle: freezed == subtitle
-          ? _value.subtitle
-          : subtitle // ignore: cast_nullable_to_non_nullable
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -108,19 +108,19 @@ class __$$_ChatContactCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ChatContact extends _ChatContact {
-  const _$_ChatContact({required this.title, this.subtitle}) : super._();
+  const _$_ChatContact({this.name, required this.url}) : super._();
 
   factory _$_ChatContact.fromJson(Map<String, dynamic> json) =>
       _$$_ChatContactFromJson(json);
 
   @override
-  final String title;
+  final String? name;
   @override
-  final String? subtitle;
+  final String url;
 
   @override
   String toString() {
-    return 'ChatContact(title: $title, subtitle: $subtitle)';
+    return 'ChatContact(name: $name, url: $url)';
   }
 
   @override
@@ -128,14 +128,13 @@ class _$_ChatContact extends _ChatContact {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ChatContact &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.subtitle, subtitle) ||
-                other.subtitle == subtitle));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.url, url) || other.url == url));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, title, subtitle);
+  int get hashCode => Object.hash(runtimeType, name, url);
 
   @JsonKey(ignore: true)
   @override
@@ -152,17 +151,17 @@ class _$_ChatContact extends _ChatContact {
 }
 
 abstract class _ChatContact extends ChatContact {
-  const factory _ChatContact(
-      {required final String title, final String? subtitle}) = _$_ChatContact;
+  const factory _ChatContact({final String? name, required final String url}) =
+      _$_ChatContact;
   const _ChatContact._() : super._();
 
   factory _ChatContact.fromJson(Map<String, dynamic> json) =
       _$_ChatContact.fromJson;
 
   @override
-  String get title;
+  String? get name;
   @override
-  String? get subtitle;
+  String get url;
   @override
   @JsonKey(ignore: true)
   _$$_ChatContactCopyWith<_$_ChatContact> get copyWith =>

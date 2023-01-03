@@ -12,7 +12,7 @@ class EatingDisorderSamplesRoute extends GoRouteData {
   const EatingDisorderSamplesRoute();
 
   @override
-  Widget build(BuildContext context) => const EatingDisordersSamplesScreen();
+  Widget build(BuildContext context, _) => const EatingDisordersSamplesScreen();
 }
 
 class EatingDisordersSamplesScreen extends StatelessWidget {

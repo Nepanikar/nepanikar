@@ -5,8 +5,9 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/screens/contacts/chat_contacts_screen.dart';
 import 'package:nepanikar/screens/contacts/phone_contacts_screen.dart';
-import 'package:nepanikar/screens/contacts/university_contacts_screen.dart';
+import 'package:nepanikar/screens/contacts/region_contacts_screen.dart';
 import 'package:nepanikar/services/db/my_contacts/my_contact_crisis_message_dao.dart';
 import 'package:nepanikar/services/db/my_contacts/my_contacts_records/my_contacts_record_model.dart';
 import 'package:nepanikar/services/db/my_contacts/my_contacts_records/my_contacts_records_dao.dart';
@@ -27,7 +28,7 @@ class ContactsRoute extends GoRouteData {
   UserSettingsDao get _userSettingsDao => registry.get<UserSettingsDao>();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, _) {
     final locale = _userSettingsDao.locale;
     return ContactsScreen(
       countryContacts: _contactsDataManager.getContactsFromLocale(locale),
@@ -66,15 +67,15 @@ class ContactsScreen extends StatelessWidget {
         ),
       if (countryContacts.crisisCenterContacts != null)
         LongTile(
-          text: '${context.l10n.center} TODO',
+          text: '${context.l10n.center} TODO doplnit kontakty',
           image: Assets.illustrations.contacts.crisisCenters.svg(),
-          onTap: () => {},
+          onTap: () => context.push(const CrisisCenterContactsRoute().location),
         ),
       if (countryContacts.chatContacts != null)
         LongTile(
-          text: '${context.l10n.chat} TODO',
+          text: context.l10n.chat,
           image: Assets.illustrations.contacts.chat.svg(),
-          onTap: () => {},
+          onTap: () => context.push(const ChatContactsRoute().location),
         ),
       if (countryContacts.universityRegionContacts != null)
         LongTile(

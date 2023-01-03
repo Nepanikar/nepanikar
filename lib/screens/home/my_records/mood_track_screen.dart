@@ -21,7 +21,7 @@ class MoodTrackRoute extends GoRouteData {
   const MoodTrackRoute();
 
   @override
-  Widget build(BuildContext context) => const MoodTrackScreen<MoodTrackDao>();
+  Widget build(BuildContext context, _) => const MoodTrackScreen<MoodTrackDao>();
 }
 
 class MoodTrackScreen<T extends MoodTrackDao> extends StatelessWidget {

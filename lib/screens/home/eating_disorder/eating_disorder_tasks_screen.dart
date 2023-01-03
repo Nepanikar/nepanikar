@@ -16,7 +16,7 @@ class EatingDisorderTasksRoute extends GoRouteData {
   const EatingDisorderTasksRoute();
 
   @override
-  Widget build(BuildContext context) => const EatingDisorderTasksScreen();
+  Widget build(BuildContext context, _) => const EatingDisorderTasksScreen();
 }
 
 class EatingDisorderTasksScreen extends StatelessWidget {

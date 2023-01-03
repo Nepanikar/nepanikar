@@ -10,7 +10,7 @@ class SelfHarmPlanRoute extends GoRouteData {
   const SelfHarmPlanRoute();
 
   @override
-  Widget build(BuildContext context) => const SelfHarmPlanScreen();
+  Widget build(BuildContext context, _) => const SelfHarmPlanScreen();
 }
 
 class SelfHarmPlanScreen extends StatelessWidget {

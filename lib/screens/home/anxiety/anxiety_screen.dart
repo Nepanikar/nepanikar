@@ -14,7 +14,7 @@ class AnxietyAppRoute extends GoRouteData {
   const AnxietyAppRoute();
 
   @override
-  Widget build(BuildContext context) => const AnxietyAppScreen();
+  Widget build(BuildContext context, _) => const AnxietyAppScreen();
 }
 
 class AnxietyAppScreen extends StatelessWidget {
