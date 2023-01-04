@@ -2,9 +2,6 @@ class AppConstants {
   /// If true, the app will have turned on Analytics.
   static const bool IS_PROD = bool.fromEnvironment('IS_PROD');
 
-  /// If true, Firebase will be disabled completely.
-  static const bool DISABLE_FIREBASE = bool.fromEnvironment('DISABLE_FIREBASE');
-
   static const String loremIpsum = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. '
       'Curabitur vitae diam non enim vestibulum interdum. Nullam at arcu a est sollicitudin euismod. '
       'Aliquam ante. Nulla turpis magna, cursus sit amet, suscipit a, interdum id, felis. In laoreet, '
