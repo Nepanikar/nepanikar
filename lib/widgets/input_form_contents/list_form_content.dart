@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/sizes.dart';
+import 'package:nepanikar/helpers/platform_helpers.dart';
 import 'package:nepanikar/services/db/common/nepanikar_list_form_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/empty_records_state_widget.dart';
@@ -51,9 +53,25 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
         appBarDescription: widget.appBarDescription,
         isCardStackLayout: true,
         isModuleList: false,
-        floatingActionButton: FloatingActionButton(
-          onPressed: () async => _listFormDao.createFormText(),
-          child: const Icon(Icons.add),
+        appBarActions: platformMapper<List<Widget>?>(
+          ios: () => [
+            IconButton(
+              icon: const Icon(CupertinoIcons.add),
+              // TODO: l10n
+              tooltip: 'Přidat položku',
+              onPressed: () async => _listFormDao.createFormText(),
+            ),
+          ],
+          android: () => null,
+        ),
+        floatingActionButton: platformMapper<Widget?>(
+          ios: () => null,
+          android: () => FloatingActionButton(
+            onPressed: () async => _listFormDao.createFormText(),
+            // TODO: l10n
+            tooltip: 'Přidat položku',
+            child: const Icon(Icons.add),
+          ),
         ),
         children: [
           StreamBuilder<List<RecordSnapshot<String, ListFormItem>>>(
