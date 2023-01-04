@@ -37,7 +37,7 @@ jobs:
         run: sh ./bin/ci_workflow_scripts/prebuild_v2.sh ${{github.run_number}}
 
       - name: Build apk
-        run: flutter build apk --release
+        run: flutter build apk --release --dart-define=DISABLE_FIREBASE=true
 
       - name: Save to artifacts
         uses: actions/upload-artifact@v3
