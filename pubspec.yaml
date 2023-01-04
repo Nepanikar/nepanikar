@@ -11,6 +11,8 @@ dependencies:
   cupertino_icons: ^1.0.5
   email_validator: ^2.1.17
   equatable: ^2.0.5
+  firebase_core: ^2.4.1
+  firebase_crashlytics: ^3.0.9
   fl_chart: ^0.55.2
   flextras: ^1.0.0
   flutter:
