@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'dart:math' as math;
 import 'dart:ui';
 
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
+import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/utils/lottie_cache_manager.dart';
 import 'package:nepanikar/utils/registry.dart';
 
@@ -35,6 +37,7 @@ class _BalloonsGameScreenState extends State<BalloonsGameScreen> with TickerProv
   int elapsed = 0;
   double? confettiX;
   double? confettiY;
+  bool showHint = true;
 
   late final double sceneWidth;
   late final double sceneHeight;
@@ -57,15 +60,9 @@ class _BalloonsGameScreenState extends State<BalloonsGameScreen> with TickerProv
           lightVariant: math.Random().nextBool(),
         );
       } else {
-        return Balloon(
+        return e.copyWith(
           x: e.x + e.wiggleAmount * math.sin(e.wiggleSpeed * elapsed + 100 * i),
           y: e.y - e.speed,
-          wanted: e.wanted,
-          height: e.height,
-          speed: e.speed,
-          wiggleAmount: e.wiggleAmount,
-          wiggleSpeed: e.wiggleSpeed,
-          lightVariant: e.lightVariant,
         );
       }
     }).toList();
@@ -121,72 +118,103 @@ class _BalloonsGameScreenState extends State<BalloonsGameScreen> with TickerProv
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: NepanikarColors.primary,
-      appBar: AppBar(),
-      body: Stack(
-        children: [
-          ...balloons.mapIndexed(
-            (i, e) => Positioned(
-              top: e.y,
-              left: e.x,
-              child: Stack(
-                children: [
-                  if (e.wanted)
-                    Assets.illustrations.games.balloons.balloonWanted.svg(width: 100)
-                  else
-                    e.lightVariant
-                        ? Assets.illustrations.games.balloons.balloonUnwanted1.svg(width: 100)
-                        : Assets.illustrations.games.balloons.balloonUnwanted2.svg(width: 100),
-                  GestureDetector(
-                    onTap: () {
-                      if (e.wanted) {
-                        setState(() {
-                          confettiX = e.x;
-                          confettiY = e.y;
-                          balloons.elementAt(i).y = -99999;
-                        });
+      body: SafeArea(
+        child: Stack(
+          children: [
+            ...balloons.mapIndexed(
+              (i, e) => Positioned(
+                top: e.y,
+                left: e.x,
+                child: Stack(
+                  children: [
+                    if (e.wanted)
+                      Assets.illustrations.games.balloons.balloonWanted.svg(width: 100)
+                    else
+                      e.lightVariant
+                          ? Assets.illustrations.games.balloons.balloonUnwanted1.svg(width: 100)
+                          : Assets.illustrations.games.balloons.balloonUnwanted2.svg(width: 100),
+                    GestureDetector(
+                      onTap: () {
+                        if (e.wanted) {
+                          setState(() {
+                            confettiX = e.x;
+                            confettiY = e.y;
+                            balloons.elementAt(i).y = -99999;
+                            showHint = false;
+                          });
 
-                        _controller
-                          ..reset()
-                          ..duration = const Duration(milliseconds: 800)
-                          ..forward();
-                      }
-                    },
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(e.height),
-                      child: Container(
-                        width: e.height,
-                        height: e.height + 20,
-                        color: Colors.transparent,
+                          _controller
+                            ..reset()
+                            ..duration = const Duration(milliseconds: 800)
+                            ..forward();
+                        }
+                      },
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(e.height),
+                        child: Container(
+                          width: e.height,
+                          height: e.height + 20,
+                          color: Colors.transparent,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          if (confettiX != null)
-            Positioned(
-              top: confettiY! - (sceneWidth / 2),
-              left: confettiX! - (sceneWidth / 2),
-              child: IgnorePointer(
-                child: _lottieCacheManager.loadFromCache(
-                  controller: _controller,
-                  Assets.animatedIllustrations.confetti,
-                  repeat: false,
-                  width: sceneWidth + 100,
-                  height: sceneWidth,
-                  fit: BoxFit.contain,
+                  ],
                 ),
               ),
             ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 28.0),
-              child: Assets.illustrations.games.balloons.touchGesture.svg(),
-            ),
-          )
-        ],
+            if (confettiX != null)
+              Positioned(
+                top: confettiY! - (sceneWidth / 2),
+                left: confettiX! - (sceneWidth / 2),
+                child: IgnorePointer(
+                  child: _lottieCacheManager.loadFromCache(
+                    controller: _controller,
+                    Assets.animatedIllustrations.confetti,
+                    repeat: false,
+                    width: sceneWidth + 100,
+                    height: sceneWidth,
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ),
+            if (showHint)
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Assets.illustrations.games.balloons.touchGesture.svg(),
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    Text(
+                      //TODO: l10n
+                      'Dotykem praskej pouze bílé balónky',
+                      style: NepanikarFonts.bodySmallMedium
+                          .copyWith(color: Colors.white, fontSize: 14),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    )
+                  ],
+                ),
+              ),
+            Align(
+              alignment: Alignment.topLeft,
+              child: GestureDetector(
+                onTap: () => GoRouter.of(context).pop(),
+                child: Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: Icon(
+                    Platform.isAndroid ? Icons.arrow_back : Icons.arrow_back_ios,
+                    color: Colors.white,
+                    size: 25,
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -203,6 +231,28 @@ class Balloon {
     required this.wiggleSpeed,
     required this.lightVariant,
   });
+
+  Balloon copyWith({
+    double? x,
+    double? y,
+    bool? wanted,
+    double? height,
+    double? speed,
+    double? wiggleAmount,
+    double? wiggleSpeed,
+    bool? lightVariant,
+  }) {
+    return Balloon(
+      x: x ?? this.x,
+      y: y ?? this.y,
+      wanted: wanted ?? this.wanted,
+      height: height ?? this.height,
+      speed: speed ?? this.speed,
+      wiggleAmount: wiggleAmount ?? this.wiggleAmount,
+      wiggleSpeed: wiggleSpeed ?? this.wiggleSpeed,
+      lightVariant: lightVariant ?? this.lightVariant,
+    );
+  }
 
   final double x;
   double y;
