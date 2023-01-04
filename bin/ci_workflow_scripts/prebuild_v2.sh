@@ -8,3 +8,5 @@ sed -i -e "s#namespace \"org.dontpanic\"#namespace \"org.dontpanic.dev\"#" andro
 sed -i -e "s#package org.dontpanic#package org.dontpanic.dev#" android/app/src/main/kotlin/org/dontpanic/MainActivity.kt
 sed -i -e "s#title: 'Nepanikař'#title: 'Nepanikař v2 [dev]'" lib/main.dart
 sed -i -e "s#version: 0.1.0#version: 0.1.$1#" pubspec.yaml
+sed -i -e "s#apply plugin: \'com.google.gms.google-services\'#//apply plugin: \'com.google.gms.google-services\'#" android/app/build.gradle
+sed -i -e "s#apply plugin: \'com.google.firebase.crashlytics\'#//apply plugin: \'com.google.firebase.crashlytics\'#" android/app/build.gradle
