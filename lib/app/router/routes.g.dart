@@ -35,6 +35,10 @@ GoRoute get $mainRoute => GoRouteData.$route(
           factory: $BalanceGameRouteExtension._fromState,
         ),
         GoRouteData.$route(
+          path: 'games/balloons',
+          factory: $BalloonsGameRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: 'contacts',
           factory: $ContactsRouteExtension._fromState,
         ),
@@ -291,6 +295,19 @@ extension $BalanceGameRouteExtension on BalanceGameRoute {
 
   String get location => GoRouteData.$location(
         '/games/balance',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $BalloonsGameRouteExtension on BalloonsGameRoute {
+  static BalloonsGameRoute _fromState(GoRouterState state) =>
+      const BalloonsGameRoute();
+
+  String get location => GoRouteData.$location(
+        '/games/balloons',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
