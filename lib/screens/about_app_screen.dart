@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:native_shared_preferences/native_shared_preferences.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/utils/app_config.dart';
@@ -21,9 +24,21 @@ class AboutAppScreen extends StatelessWidget {
 
   Future<String> readOldAppContents() async {
     final db = registry.get<DatabaseService>();
-    final configContents = await db.getOldAppConfigFile();
-    if (configContents == null) return 'Konfig soubor stare verze appky nebyl nenalezen';
-    return configContents.readAsString();
+    if (Platform.isAndroid) {
+      final configContents = await db.getOldAndroidAppConfigFile();
+      if (configContents == null) return 'Konfig soubor stare verze appky nebyl nenalezen';
+      return configContents.readAsString();
+    } else {
+      try {
+        final map = await NativeSharedPreferences.getSharedPreferencesMap();
+        if (!map.containsKey('selfHarmExist') && !map.containsKey('selfHarmPlan.size')) {
+          return 'Konfig soubor stare verze appky byl nalezen';
+        }
+        return map.toString().split(',').join('\n');
+      } on Exception catch (e) {
+        return 'Chyba pri cteni IOS konfig souboru stare verze appky: $e';
+      }
+    }
   }
 
   @override

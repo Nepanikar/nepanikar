@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:native_shared_preferences/native_shared_preferences.dart';
 import 'package:nepanikar/services/db/depression/depression_module_db.dart';
 import 'package:nepanikar/services/db/eating_disorder/eating_disorder_module_db.dart';
 import 'package:nepanikar/services/db/my_contacts/my_contacts_module_db.dart';
@@ -110,14 +111,24 @@ class DatabaseService {
   }
 
   Future<bool> _oldAppVersionDataExists() async {
-    final configPath = _saveDirectories.oldAppDataConfigFilePath;
-    if (await File(configPath).exists()) {
-      return true;
+    if (Platform.isAndroid) {
+      final configPath = _saveDirectories.oldAppDataConfigFilePath;
+      if (await File(configPath).exists()) {
+        return true;
+      }
+      return false;
+    } else if (Platform.isIOS) {
+      try {
+        final map = await NativeSharedPreferences.getSharedPreferencesMap();
+        return map.containsKey('selfHarmExist') || map.containsKey('selfHarmPlan.size');
+      } on Exception catch (e) {
+        debugPrint('DATABASE_SERVICE: Error while checking if old app version IOS data exists: $e');
+      }
     }
     return false;
   }
 
-  Future<File?> getOldAppConfigFile() async {
+  Future<File?> getOldAndroidAppConfigFile() async {
     final configPath = _saveDirectories.oldAppDataConfigFilePath;
     if (await File(configPath).exists()) {
       return File(configPath);
@@ -126,7 +137,7 @@ class DatabaseService {
   }
 
   Future<void> _doDataMigrationFromOldAppVersion() async {
-    final configFile = await getOldAppConfigFile();
+    final configFile = await getOldAndroidAppConfigFile();
     if (configFile == null) return;
 
     final nepanikarConfig = NepanikarConfigParser.parseConfigFile(configFile);
