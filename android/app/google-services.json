@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "588305139365",
+    "project_id": "nepanikar-cad6d",
+    "storage_bucket": "nepanikar-cad6d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:588305139365:android:9028ab99a76291dc2daf4c",
+        "android_client_info": {
+          "package_name": "org.dontpanic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "588305139365-17301b21hka68b0nil8opo16f325m0t0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0trvsrzv5DXQtDbZOXwJ_70cysVzAhTE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "588305139365-17301b21hka68b0nil8opo16f325m0t0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "588305139365-6hg7euqeo6l8vp7fcgct9l9bds0lgo3l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.dontpanicapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
