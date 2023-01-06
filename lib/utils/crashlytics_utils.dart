@@ -6,7 +6,7 @@ Future<void> logExceptionToCrashlytics(
   StackTrace? stackTrace, {
   required String logMessage,
 }) async {
-  if (!kDebugMode) {
+  if (kDebugMode) {
     debugPrint(logMessage);
     debugPrint(exception.toString());
     debugPrint(stackTrace.toString());
