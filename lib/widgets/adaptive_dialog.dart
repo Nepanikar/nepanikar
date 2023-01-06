@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter/material.dart';
 
@@ -14,8 +16,8 @@ Future<void> showAdaptiveDialog(
   final res = await showOkCancelAlertDialog(
     context: context,
     useRootNavigator: false,
-    title: title,
-    message: description,
+    title: Platform.isIOS ? (title ?? description) : title,
+    message: Platform.isIOS ? (title != null ? description : null) : description,
     okLabel: okLabel,
     cancelLabel: cancelLabel,
     defaultType: defaultType,
