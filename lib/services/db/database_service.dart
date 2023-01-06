@@ -12,6 +12,7 @@ import 'package:nepanikar/services/db/self_harm/self_harm_module_db.dart';
 import 'package:nepanikar/services/db/suicidal_thoughts/suicidal_thoughts_module_db.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/services/save_directories.dart';
+import 'package:nepanikar/utils/crashlytics_utils.dart';
 import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 import 'package:path/path.dart';
 import 'package:sembast/sembast.dart';
@@ -121,8 +122,12 @@ class DatabaseService {
       try {
         final map = await NativeSharedPreferences.getSharedPreferencesMap();
         return map.containsKey('selfHarmExist') || map.containsKey('selfHarmPlan.size');
-      } on Exception catch (e) {
-        debugPrint('DATABASE_SERVICE: Error while checking if old app version IOS data exists: $e');
+      } catch (e, s) {
+        await logExceptionToCrashlytics(
+          e,
+          s,
+          logMessage: 'DATABASE_SERVICE: Error while checking if old app version IOS data exists',
+        );
       }
     }
     return false;
@@ -146,9 +151,12 @@ class DatabaseService {
     if (depressionModuleConfig != null) {
       try {
         await _depressionModuleDb.doModuleOldVersionMigration(depressionModuleConfig);
-      } catch (e) {
-        debugPrint(
-          'DATABASE_SERVICE: Error while migrating depression module data from old app version: $e',
+      } catch (e, s) {
+        await logExceptionToCrashlytics(
+          e,
+          s,
+          logMessage:
+              'DATABASE_SERVICE: Error while migrating depression module data from old app version',
         );
       }
     }
@@ -157,9 +165,12 @@ class DatabaseService {
     if (selfHarmModuleConfig != null) {
       try {
         await _selfHarmModuleDb.doModuleOldVersionMigration(selfHarmModuleConfig);
-      } catch (e) {
-        debugPrint(
-          'DATABASE_SERVICE: Error while migrating self harm module data from old app version: $e',
+      } catch (e, s) {
+        await logExceptionToCrashlytics(
+          e,
+          s,
+          logMessage:
+              'DATABASE_SERVICE: Error while migrating self harm module data from old app version',
         );
       }
     }
@@ -168,9 +179,12 @@ class DatabaseService {
     if (suicidalThoughtsModuleConfig != null) {
       try {
         await _suicidalThoughtsModuleDb.doModuleOldVersionMigration(suicidalThoughtsModuleConfig);
-      } catch (e) {
-        debugPrint(
-          'DATABASE_SERVICE: Error while migrating suicidal thoughts module data from old app version: $e',
+      } catch (e, s) {
+        await logExceptionToCrashlytics(
+          e,
+          s,
+          logMessage:
+              'DATABASE_SERVICE: Error while migrating suicidal thoughts module data from old app version',
         );
       }
     }
@@ -179,9 +193,12 @@ class DatabaseService {
     if (eatingDisorderModuleConfig != null) {
       try {
         await _eatingDisorderModuleDb.doModuleOldVersionMigration(eatingDisorderModuleConfig);
-      } catch (e) {
-        debugPrint(
-          'DATABASE_SERVICE: Error while migrating eating disorder module data from old app version: $e',
+      } catch (e, s) {
+        await logExceptionToCrashlytics(
+          e,
+          s,
+          logMessage:
+              'DATABASE_SERVICE: Error while migrating eating disorder module data from old app version',
         );
       }
     }
@@ -190,9 +207,12 @@ class DatabaseService {
     if (myRecordsModuleConfig != null) {
       try {
         await _myRecordsModuleDb.doModuleOldVersionMigration(myRecordsModuleConfig);
-      } catch (e) {
-        debugPrint(
-          'DATABASE_SERVICE: Error while migrating my records module data from old app version: $e',
+      } catch (e, s) {
+        await logExceptionToCrashlytics(
+          e,
+          s,
+          logMessage:
+              'DATABASE_SERVICE: Error while migrating my records module data from old app version',
         );
       }
     }
@@ -201,9 +221,12 @@ class DatabaseService {
     if (myContactsModuleConfig != null) {
       try {
         await _myContactsModuleDb.doModuleOldVersionMigration(myContactsModuleConfig);
-      } catch (e) {
-        debugPrint(
-          'DATABASE_SERVICE: Error while migrating my contacts module data from old app version: $e',
+      } catch (e, s) {
+        await logExceptionToCrashlytics(
+          e,
+          s,
+          logMessage:
+              'DATABASE_SERVICE: Error while migrating my contacts module data from old app version',
         );
       }
     }

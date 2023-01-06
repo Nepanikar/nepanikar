@@ -4,6 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
+import 'package:nepanikar/utils/crashlytics_utils.dart';
 import 'package:nepanikar_contacts_gen/nepanikar_contacts_gen.dart';
 
 class ContactsDataManager {
@@ -12,11 +13,11 @@ class ContactsDataManager {
   late final AllContacts _allContacts;
 
   Future<void> init() async {
-    _allContacts = await rootBundle.loadString(Assets.contacts.allContacts).then((s) {
+    _allContacts = await rootBundle.loadString(Assets.contacts.allContacts).then((s) async {
       try {
         return AllContacts.fromJson(jsonDecode(s) as Map<String, dynamic>);
-      } catch (e) {
-        debugPrint('AllContacts JSON decoding has failed: $e');
+      } catch (e, s) {
+        await logExceptionToCrashlytics(e, s, logMessage: 'Error decoding AllContacts json.');
         return const AllContacts(countryContacts: []);
       }
     });
