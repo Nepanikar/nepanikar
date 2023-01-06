@@ -1,4 +1,5 @@
 import 'package:nepanikar/services/db/database_service.dart';
+import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 import 'package:sembast/sembast.dart';
 
 typedef ListFormItem = String;
@@ -41,8 +42,11 @@ abstract class NepanikarListFormDao {
     await _addFormTexts(texts);
   }
 
-  Future<void> doOldVersionMigration() async {
-    // TODO: implement doOldVersionMigration
+  Future<void> doOldVersionMigration(NepanikarListFormDTO listFormConfig) async {
+    final listFormItems = listFormConfig.texts;
+    if (listFormItems != null) {
+      await _addFormTexts(listFormItems);
+    }
   }
 
   Future<void> clear() async {

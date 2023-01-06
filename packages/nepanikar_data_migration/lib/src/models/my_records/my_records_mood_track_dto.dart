@@ -35,6 +35,9 @@ class MyRecordsMoodTrackDTO extends Equatable {
     );
   }
 
+  factory MyRecordsMoodTrackDTO.fromValues(Map<DateTime, int> values) =>
+      MyRecordsMoodTrackDTO._(values: values);
+
   /// The map of mood track values.
   ///
   /// Key is the date, value is the mood (0 - sad, 4 happy).

@@ -2,12 +2,12 @@ import 'package:equatable/equatable.dart';
 import 'package:ini/ini.dart';
 import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 
-class ContactsMyContactsDTO extends Equatable {
-  const ContactsMyContactsDTO._({
-    required this.myContactsEntries,
+class MyContactsRecordsDTO extends Equatable {
+  const MyContactsRecordsDTO._({
+    required this.recordEntries,
   });
 
-  factory ContactsMyContactsDTO.getData(Config config) {
+  factory MyContactsRecordsDTO.getData(Config config) {
     final myContactsNamesMap = config.itemsToMap('myContactsNames');
     final myContactsNumbersMap = config.itemsToMap('myContactsNumbers');
 
@@ -23,14 +23,14 @@ class ContactsMyContactsDTO extends Equatable {
       }
     }
 
-    return ContactsMyContactsDTO._(
-      myContactsEntries: myContactsEntries.isEmpty ? null : myContactsEntries,
+    return MyContactsRecordsDTO._(
+      recordEntries: myContactsEntries.isEmpty ? null : myContactsEntries,
     );
   }
 
   /// Key is name of the contact, value is the phone number or email address.
-  final Iterable<MapEntry<String, String>>? myContactsEntries;
+  final List<MapEntry<String, String>>? recordEntries;
 
   @override
-  List<Object?> get props => [myContactsEntries];
+  List<Object?> get props => [recordEntries];
 }

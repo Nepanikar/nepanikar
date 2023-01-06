@@ -38,7 +38,7 @@ extension NepanikarParserStringExt on String {
         final charCode = int.parse(hex, radix: 16);
         return String.fromCharCode(charCode);
       },
-    ).replaceAll('\\', '');
+    ).replaceAll('\\n', '\n').replaceAll('\\', ''); // Replace all backslashes except newline.
   }
 
   String? getIniStrValue({bool cleanFromUnicodes = true}) {

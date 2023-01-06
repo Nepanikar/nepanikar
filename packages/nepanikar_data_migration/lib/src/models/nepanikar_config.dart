@@ -9,7 +9,7 @@ class NepanikarConfig extends Equatable {
     required this.suicidalThoughtsModuleConfig,
     required this.eatingDisorderModuleConfig,
     required this.myRecordsModuleConfig,
-    required this.contactsModuleConfig,
+    required this.myContactsModuleConfig,
   });
 
   factory NepanikarConfig.getData(Config config) {
@@ -38,9 +38,9 @@ class NepanikarConfig extends Equatable {
       myRecordsModuleConfig = MyRecordsModuleDTO.getData(config);
     } catch (_) {}
 
-    ContactsModuleDTO? contactsModuleConfig;
+    MyContactsModuleDTO? myContactsModuleConfig;
     try {
-      contactsModuleConfig = ContactsModuleDTO.getData(config);
+      myContactsModuleConfig = MyContactsModuleDTO.getData(config);
     } catch (_) {}
 
     return NepanikarConfig._(
@@ -49,7 +49,7 @@ class NepanikarConfig extends Equatable {
       suicidalThoughtsModuleConfig: suicidalThoughtsModuleConfig,
       eatingDisorderModuleConfig: eatingDisorderModuleConfig,
       myRecordsModuleConfig: myRecordsModuleConfig,
-      contactsModuleConfig: contactsModuleConfig,
+      myContactsModuleConfig: myContactsModuleConfig,
     );
   }
 
@@ -58,7 +58,7 @@ class NepanikarConfig extends Equatable {
   final SuicidalThoughtsModuleDTO? suicidalThoughtsModuleConfig;
   final EatingDisorderModuleDTO? eatingDisorderModuleConfig;
   final MyRecordsModuleDTO? myRecordsModuleConfig;
-  final ContactsModuleDTO? contactsModuleConfig;
+  final MyContactsModuleDTO? myContactsModuleConfig;
 
   @override
   List<Object?> get props => [
@@ -67,6 +67,6 @@ class NepanikarConfig extends Equatable {
         suicidalThoughtsModuleConfig,
         eatingDisorderModuleConfig,
         myRecordsModuleConfig,
-        contactsModuleConfig,
+        myContactsModuleConfig,
       ];
 }

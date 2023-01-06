@@ -25,23 +25,25 @@ enum FoodQuestionProblem { vomit, exercise, selfHarm, laxative, anxietyAttack }
 class FoodRecordAnswerDTO extends Equatable {
   const FoodRecordAnswerDTO({
     required this.foodType,
+    required this.isTaken,
     required this.textQuestionAnswers,
     required this.feelTickedAnswers,
     required this.problemTickedAnswers,
   });
 
   final FoodType foodType;
+  final bool isTaken;
   final List<Tuple2<FoodQuestionText, String>> textQuestionAnswers;
   final List<FoodQuestionFeel> feelTickedAnswers;
   final List<FoodQuestionProblem> problemTickedAnswers;
 
   @override
   List<Object> get props =>
-      [foodType, textQuestionAnswers, feelTickedAnswers, problemTickedAnswers];
+      [foodType, isTaken, textQuestionAnswers, feelTickedAnswers, problemTickedAnswers];
 
   @override
   String toString() {
-    return 'FoodRecordAnswerDTO(foodType: $foodType, textQuestionAnswers: $textQuestionAnswers, feelTickedAnswers: $feelTickedAnswers, problemTickedAnswers: $problemTickedAnswers)';
+    return 'FoodRecordAnswerDTO(foodType: $foodType, isTaken: $isTaken, textQuestionAnswers: $textQuestionAnswers, feelTickedAnswers: $feelTickedAnswers, problemTickedAnswers: $problemTickedAnswers)';
   }
 }
 
@@ -77,6 +79,7 @@ class MyRecordsFoodDTO extends Equatable {
 
     FoodRecordAnswerDTO getFoodRecordAnswer({
       required FoodType foodType,
+      required bool isTaken,
       required String? dataConfigLine,
     }) {
       final textQuestionAnswers = <Tuple2<FoodQuestionText, String>>[];
@@ -86,6 +89,7 @@ class MyRecordsFoodDTO extends Equatable {
       if (dataConfigLine == null) {
         return FoodRecordAnswerDTO(
           foodType: foodType,
+          isTaken: isTaken,
           textQuestionAnswers: textQuestionAnswers,
           feelTickedAnswers: feelTickedAnswers,
           problemTickedAnswers: problemTickedAnswers,
@@ -101,22 +105,22 @@ class MyRecordsFoodDTO extends Equatable {
           }
         }
 
-        for (final feelAnswer in FoodQuestionFeel.values) {
-          final answer = dataConfigLineParts.elementAtOrNull(5);
-          if (answer != null && answer.length == 10) {
-            final answerBool = answer.split('').elementAtOrNull(feelAnswer.index);
+        final feelAnswers = dataConfigLineParts.elementAtOrNull(5);
+        if (feelAnswers != null && feelAnswers.length == 10) {
+          for (final feelQuestion in FoodQuestionFeel.values) {
+            final answerBool = feelAnswers.split('').elementAtOrNull(feelQuestion.index);
             if (answerBool == '1') {
-              feelTickedAnswers.add(feelAnswer);
+              feelTickedAnswers.add(feelQuestion);
             }
           }
         }
 
-        for (final problemAnswer in FoodQuestionProblem.values) {
-          final answer = dataConfigLineParts.elementAtOrNull(6);
-          if (answer != null && answer.length == 5) {
-            final answerBool = answer.split('').elementAtOrNull(problemAnswer.index);
+        final problemAnswers = dataConfigLineParts.elementAtOrNull(6);
+        if (problemAnswers != null && problemAnswers.length == 5) {
+          for (final problemQuestion in FoodQuestionProblem.values) {
+            final answerBool = problemAnswers.split('').elementAtOrNull(problemQuestion.index);
             if (answerBool == '1') {
-              problemTickedAnswers.add(problemAnswer);
+              problemTickedAnswers.add(problemQuestion);
             }
           }
         }
@@ -124,6 +128,7 @@ class MyRecordsFoodDTO extends Equatable {
 
       return FoodRecordAnswerDTO(
         foodType: foodType,
+        isTaken: isTaken,
         textQuestionAnswers: textQuestionAnswers,
         feelTickedAnswers: feelTickedAnswers,
         problemTickedAnswers: problemTickedAnswers,
@@ -141,31 +146,43 @@ class MyRecordsFoodDTO extends Equatable {
               ) ??
               DateTime(2000);
 
+          bool getIsTaken(int index) {
+            final isTaken = splitValues.elementAtOrNull(index);
+            if (isTaken == null) return false;
+            return isTaken != '-1';
+          }
+
           final answers = <FoodRecordAnswerDTO>[];
           answers.addAll(
             [
               getFoodRecordAnswer(
                 foodType: FoodType.breakfast,
+                isTaken: getIsTaken(1),
                 dataConfigLine: foodTypeBreakfastMap?[record.key],
               ),
               getFoodRecordAnswer(
                 foodType: FoodType.amSnack,
+                isTaken: getIsTaken(2),
                 dataConfigLine: foodTypeAmSnackMap?[record.key],
               ),
               getFoodRecordAnswer(
                 foodType: FoodType.lunch,
+                isTaken: getIsTaken(3),
                 dataConfigLine: foodTypeLunchMap?[record.key],
               ),
               getFoodRecordAnswer(
                 foodType: FoodType.pmSnack,
+                isTaken: getIsTaken(4),
                 dataConfigLine: foodTypePmSnackMap?[record.key],
               ),
               getFoodRecordAnswer(
                 foodType: FoodType.dinner,
+                isTaken: getIsTaken(5),
                 dataConfigLine: foodTypeDinnerMap?[record.key],
               ),
               getFoodRecordAnswer(
                 foodType: FoodType.secondDinner,
+                isTaken: getIsTaken(6),
                 dataConfigLine: foodTypeSecondDinnerMap?[record.key],
               ),
             ],

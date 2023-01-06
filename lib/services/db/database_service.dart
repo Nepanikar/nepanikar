@@ -3,8 +3,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:native_shared_preferences/native_shared_preferences.dart';
 import 'package:nepanikar/services/db/depression/depression_module_db.dart';
 import 'package:nepanikar/services/db/eating_disorder/eating_disorder_module_db.dart';
+import 'package:nepanikar/services/db/my_contacts/my_contacts_module_db.dart';
 import 'package:nepanikar/services/db/my_records/my_records_module_db.dart';
 import 'package:nepanikar/services/db/self_harm/self_harm_module_db.dart';
 import 'package:nepanikar/services/db/suicidal_thoughts/suicidal_thoughts_module_db.dart';
@@ -25,7 +27,6 @@ class DatabaseService {
     final db = await _initDb();
     if (!_areDaosInitialized) {
       await _initModuleDaos(db);
-      _areDaosInitialized = true;
     }
   }
 
@@ -37,6 +38,7 @@ class DatabaseService {
     _suicidalThoughtsModuleDb = await SuicidalThoughtsModuleDb(this).initModuleDaos();
     _eatingDisorderModuleDb = await EatingDisorderModuleDb(this).initModuleDaos();
     _myRecordsModuleDb = await MyRecordsModuleDb(this).initModuleDaos();
+    _myContactsModuleDb = await MyContactsModuleDb(this).initModuleDaos();
     _areDaosInitialized = true;
   }
 
@@ -52,6 +54,7 @@ class DatabaseService {
   late final SuicidalThoughtsModuleDb _suicidalThoughtsModuleDb;
   late final EatingDisorderModuleDb _eatingDisorderModuleDb;
   late final MyRecordsModuleDb _myRecordsModuleDb;
+  late final MyContactsModuleDb _myContactsModuleDb;
 
   bool _areDaosInitialized = false;
 
@@ -104,17 +107,28 @@ class DatabaseService {
     await _suicidalThoughtsModuleDb.preloadDefaultModuleData(l10n);
     await _eatingDisorderModuleDb.preloadDefaultModuleData(l10n);
     await _myRecordsModuleDb.preloadDefaultModuleData(l10n);
+    await _myContactsModuleDb.preloadDefaultModuleData(l10n);
   }
 
   Future<bool> _oldAppVersionDataExists() async {
-    final configPath = _saveDirectories.oldAppDataConfigFilePath;
-    if (await File(configPath).exists()) {
-      return true;
+    if (Platform.isAndroid) {
+      final configPath = _saveDirectories.oldAppDataConfigFilePath;
+      if (await File(configPath).exists()) {
+        return true;
+      }
+      return false;
+    } else if (Platform.isIOS) {
+      try {
+        final map = await NativeSharedPreferences.getSharedPreferencesMap();
+        return map.containsKey('selfHarmExist') || map.containsKey('selfHarmPlan.size');
+      } on Exception catch (e) {
+        debugPrint('DATABASE_SERVICE: Error while checking if old app version IOS data exists: $e');
+      }
     }
     return false;
   }
 
-  Future<File?> getOldAppConfigFile() async {
+  Future<File?> getOldAndroidAppConfigFile() async {
     final configPath = _saveDirectories.oldAppDataConfigFilePath;
     if (await File(configPath).exists()) {
       return File(configPath);
@@ -123,19 +137,75 @@ class DatabaseService {
   }
 
   Future<void> _doDataMigrationFromOldAppVersion() async {
-    final configFile = await getOldAppConfigFile();
+    final configFile = await getOldAndroidAppConfigFile();
     if (configFile == null) return;
 
     final nepanikarConfig = NepanikarConfigParser.parseConfigFile(configFile);
 
-    final myRecordsModuleConfig = nepanikarConfig.myRecordsModuleConfig;
-    if (myRecordsModuleConfig != null) {
-      await _myRecordsModuleDb.doModuleOldVersionMigration(myRecordsModuleConfig);
+    final depressionModuleConfig = nepanikarConfig.depressionModuleConfig;
+    if (depressionModuleConfig != null) {
+      try {
+        await _depressionModuleDb.doModuleOldVersionMigration(depressionModuleConfig);
+      } catch (e) {
+        debugPrint(
+          'DATABASE_SERVICE: Error while migrating depression module data from old app version: $e',
+        );
+      }
     }
 
     final selfHarmModuleConfig = nepanikarConfig.selfHarmModuleConfig;
     if (selfHarmModuleConfig != null) {
-      await _selfHarmModuleDb.doModuleOldVersionMigration(selfHarmModuleConfig);
+      try {
+        await _selfHarmModuleDb.doModuleOldVersionMigration(selfHarmModuleConfig);
+      } catch (e) {
+        debugPrint(
+          'DATABASE_SERVICE: Error while migrating self harm module data from old app version: $e',
+        );
+      }
+    }
+
+    final suicidalThoughtsModuleConfig = nepanikarConfig.suicidalThoughtsModuleConfig;
+    if (suicidalThoughtsModuleConfig != null) {
+      try {
+        await _suicidalThoughtsModuleDb.doModuleOldVersionMigration(suicidalThoughtsModuleConfig);
+      } catch (e) {
+        debugPrint(
+          'DATABASE_SERVICE: Error while migrating suicidal thoughts module data from old app version: $e',
+        );
+      }
+    }
+
+    final eatingDisorderModuleConfig = nepanikarConfig.eatingDisorderModuleConfig;
+    if (eatingDisorderModuleConfig != null) {
+      try {
+        await _eatingDisorderModuleDb.doModuleOldVersionMigration(eatingDisorderModuleConfig);
+      } catch (e) {
+        debugPrint(
+          'DATABASE_SERVICE: Error while migrating eating disorder module data from old app version: $e',
+        );
+      }
+    }
+
+    final myRecordsModuleConfig = nepanikarConfig.myRecordsModuleConfig;
+    if (myRecordsModuleConfig != null) {
+      try {
+        await _myRecordsModuleDb.doModuleOldVersionMigration(myRecordsModuleConfig);
+      } catch (e) {
+        debugPrint(
+          'DATABASE_SERVICE: Error while migrating my records module data from old app version: $e',
+        );
+      }
+    }
+
+    final myContactsModuleConfig = nepanikarConfig.myContactsModuleConfig;
+    if (myContactsModuleConfig != null) {
+      try {
+        await _myContactsModuleDb.doModuleOldVersionMigration(myContactsModuleConfig);
+      } catch (e) {
+        debugPrint(
+          'DATABASE_SERVICE: Error while migrating my contacts module data from old app version: $e',
+        );
+      }
     }
   }
 
@@ -147,5 +217,6 @@ class DatabaseService {
     await _suicidalThoughtsModuleDb.clearModule();
     await _eatingDisorderModuleDb.clearModule();
     await _myRecordsModuleDb.clearModule();
+    await _myContactsModuleDb.clearModule();
   }
 }

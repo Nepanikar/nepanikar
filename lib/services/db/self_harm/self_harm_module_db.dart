@@ -31,12 +31,20 @@ class SelfHarmModuleDb implements NepanikarModuleDb {
   }
 
   Future<void> doModuleOldVersionMigration(SelfHarmModuleDTO moduleConfig) async {
-    // await _selfHarmPlanDao.doOldVersionMigration(); // TODO
+    final planFormConfig = moduleConfig.selfHarmPlanConfig;
+    if (planFormConfig != null) {
+      await _selfHarmPlanDao.doOldVersionMigration(planFormConfig);
+    }
+
     final selfHarmTimerConfig = moduleConfig.selfHarmTimerConfig;
     if (selfHarmTimerConfig != null) {
       await _selfHarmTimerDao.doOldVersionMigration(selfHarmTimerConfig);
     }
-    // await _selfHarmHelpedDao.doOldVersionMigration(); // TODO
+
+    final selfHarmHelpedConfig = moduleConfig.selfHarmHelpedConfig;
+    if (selfHarmHelpedConfig != null) {
+      await _selfHarmHelpedDao.doOldVersionMigration(selfHarmHelpedConfig);
+    }
   }
 
   @override

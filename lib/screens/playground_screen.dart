@@ -69,19 +69,28 @@ class PlaygroundScreen extends StatelessWidget {
                 text: 'DEV: Vygenerovat náhodná data sledování nálady (posledních 400 dní)',
                 onTapAsync: () async {
                   await _moodTrackDao.clear();
-                  final end = getNowDateTimeLocal();
+                  final end = getNowDateUtc();
                   final start = end.subtract(const Duration(days: 400));
                   final dateRangeValues = List.generate(
                     end.difference(start).inDays + 1,
                     (i) => start.add(Duration(days: i)),
                   );
-                  for (final date in dateRangeValues) {
-                    final randomMood = Mood.values[Random().nextInt(Mood.values.length)];
-                    final randomNum = Random().nextInt(4);
-                    if (randomNum <= 1) {
-                      await _moodTrackDao.saveMood(randomMood, date);
-                    }
-                  }
+                  final r = Random();
+                  final moodTracks = dateRangeValues
+                      .map(
+                        (d) {
+                          final randomNum = r.nextInt(4);
+                          return randomNum <= 1
+                              ? MoodTrack(
+                                  date: d,
+                                  mood: Mood.values[r.nextInt(Mood.values.length)],
+                                )
+                              : null;
+                        },
+                      )
+                      .whereType<MoodTrack>()
+                      .toList();
+                  await _moodTrackDao.saveMoods(moodTracks);
                 },
               ),
               Column(
