@@ -7,6 +7,7 @@ import 'package:nepanikar/games/balance/balance_game_screen.dart';
 import 'package:nepanikar/games/balloons/balloons_game_screen.dart';
 import 'package:nepanikar/games/breathing/breathing_exercises_screen.dart';
 import 'package:nepanikar/games/math/math_game_screen.dart';
+import 'package:nepanikar/games/relaxation/relaxation_screen.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
@@ -44,9 +45,9 @@ class EatingDisorderDistractionsScreen extends StatelessWidget {
         onTap: () => context.push(const BreathingExercisesRoute().location),
       ),
       LongTile(
-        text: '${context.l10n.relaxation} TODO',
+        text: context.l10n.relaxation,
         image: Assets.illustrations.modules.anxietyPanic.svg(),
-        onTap: () => {},
+        onTap: () => context.push(const RelaxationRoute().location),
       ),
     ];
     return NepanikarScreenWrapper(
