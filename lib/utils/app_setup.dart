@@ -1,11 +1,11 @@
 import 'dart:async';
-import 'dart:ui' as ui;
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+// ignore: implementation_imports
+import 'package:flutter_localizations/src/utils/date_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/router/go_router_config.dart';
 import 'package:nepanikar/firebase_options.dart';
@@ -36,9 +36,7 @@ Future<void> setup() async {
   await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(!kDebugMode);
 
   // Initialize intl localizations.
-  for (final delegate in AppLocalizations.localizationsDelegates) {
-    await delegate.load(ui.Locale(ui.window.locale.languageCode));
-  }
+  loadDateIntlDataIfNotLoaded();
 
   // router
   registry.registerSingleton<GoRouter>(goRouterConfig);
