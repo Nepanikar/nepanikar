@@ -11,6 +11,7 @@ class NepanikarScreenWrapper extends StatelessWidget {
     required this.appBarTitle,
     required this.children,
     this.appBarDescription,
+    this.appBarActions,
     this.isModuleList = true,
     this.isCardStackLayout = false,
     this.floatingActionButton,
@@ -20,6 +21,8 @@ class NepanikarScreenWrapper extends StatelessWidget {
   final String appBarTitle;
 
   final String? appBarDescription;
+
+  final List<Widget>? appBarActions;
 
   /// If `true`, then the children will be wrapped in a [SeparatedColumn] with spacings.
   final bool isModuleList;
@@ -57,7 +60,7 @@ class NepanikarScreenWrapper extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(title: Text(appBarTitle)),
+      appBar: AppBar(title: Text(appBarTitle), actions: appBarActions),
       resizeToAvoidBottomInset: false,
       floatingActionButton: floatingActionButton,
       body: SafeArea(

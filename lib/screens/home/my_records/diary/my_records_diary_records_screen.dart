@@ -1,8 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/sizes.dart';
+import 'package:nepanikar/helpers/platform_helpers.dart';
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_add_screen.dart';
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_detail_screen.dart';
 import 'package:nepanikar/services/db/my_records/diary/diary_record_model.dart';
@@ -34,9 +36,25 @@ class MyRecordsDiaryRecordsScreen extends StatelessWidget {
       isModuleList: false,
       isCardStackLayout: true,
       expandToMaxScreenHeight: true,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => context.push(const MyRecordsDiaryAddRoute().location),
-        child: const Icon(Icons.add),
+      appBarActions: platformMapper<List<Widget>?>(
+        ios: () => [
+          IconButton(
+            icon: const Icon(CupertinoIcons.add),
+            // TODO: l10n
+            tooltip: 'Přidat položku',
+            onPressed: () => context.push(const MyRecordsDiaryAddRoute().location),
+          ),
+        ],
+        android: () => null,
+      ),
+      floatingActionButton: platformMapper<Widget?>(
+        ios: () => null,
+        android: () => FloatingActionButton(
+          onPressed: () => context.push(const MyRecordsDiaryAddRoute().location),
+          // TODO: l10n
+          tooltip: 'Přidat položku',
+          child: const Icon(Icons.add),
+        ),
       ),
       children: [
         StreamBuilder<Map<String, DiaryRecord>>(
