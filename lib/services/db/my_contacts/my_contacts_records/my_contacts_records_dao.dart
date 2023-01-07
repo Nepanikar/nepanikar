@@ -27,8 +27,7 @@ class MyContactsRecordsDao {
     await _store.addAll(_db, serializedItems);
   }
 
-  Stream<Map<String, MyContactRecord>> get allRecordsStream =>
-      _store.query().onSnapshots(_db).map((event) {
+  Stream<Map<String, MyContactRecord>> get allRecordsStream => _store.query().onSnapshots(_db).map((event) {
         final entries = event
             .map((e) {
               final value = e.value;
@@ -44,14 +43,13 @@ class MyContactsRecordsDao {
   Future<void> doOldVersionMigration(MyContactsRecordsDTO myContactsRecordsConfig) async {
     final recordEntries = myContactsRecordsConfig.recordEntries;
     if (recordEntries != null) {
-      final records = recordEntries
-          .map((entry) => MyContactRecord(name: entry.key, contactAddress: entry.value))
-          .toList();
+      final records =
+          recordEntries.map((entry) => MyContactRecord(name: entry.key, contactAddress: entry.value)).toList();
       await _addRecords(records);
     }
   }
 
   Future<void> clear() async {
-    await _store.drop(_db);
+    await _store.delete(_db);
   }
 }

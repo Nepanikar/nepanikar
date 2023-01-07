@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/services/db/database_service.dart';
+import 'package:nepanikar/utils/extensions.dart';
+import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
+
+  DatabaseService get _databaseService => registry.get<DatabaseService>();
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +27,26 @@ class SettingsScreen extends StatelessWidget {
                   hideTopSeparator: true,
                   leading: const Icon(Icons.shield_outlined),
                   text: context.l10n.reset_inputs,
-                  onTap: () {},
+                  onTap: () {
+                    // TODO: l10n
+                    context.showNepanikarDialog(
+                      title: 'Smazat data',
+                      text: 'Opravdu chcete smazat všechna data?',
+                      secondaryBtnLabel: 'Zrušit',
+                      onSecondaryBtnTap: (dialogContext) => Navigator.pop(dialogContext),
+                      primaryBtnLabel: 'Smazat',
+                      onPrimaryBtnTap: (dialogContext) async {
+                        await _databaseService.clearAll();
+                        await _databaseService.preloadDefaultData(context.l10n);
+                        Navigator.pop(dialogContext);
+                        context.hideCurrentSnackBar();
+                        context.showSuccessSnackbar(
+                          text: 'Vaše data byla úspěšně smazaná.',
+                          leading: Assets.icons.checkmarks.checkCircular.svg(),
+                        );
+                      },
+                    );
+                  },
                 ),
                 _SettingsMenuItem(
                   leading: const Icon(Icons.shield_outlined),

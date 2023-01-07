@@ -45,8 +45,7 @@ class MyRecordsDiaryDao {
     await _store.record(key).delete(_db);
   }
 
-  Stream<DiaryRecord?> watchRecordById(String key) =>
-      _store.record(key).onSnapshot(_db).map((snapshot) {
+  Stream<DiaryRecord?> watchRecordById(String key) => _store.record(key).onSnapshot(_db).map((snapshot) {
         final json = snapshot?.value;
         if (json == null) return null;
         return DiaryRecord.fromJson(json);
@@ -85,6 +84,6 @@ class MyRecordsDiaryDao {
   }
 
   Future<void> clear() async {
-    await _store.drop(_db);
+    await _store.delete(_db);
   }
 }

@@ -35,8 +35,7 @@ abstract class NepanikarListFormDao {
     await _store.record(key).delete(_db);
   }
 
-  Stream<List<RecordSnapshot<String, ListFormItem>>> get allFormItemsRecordsStream =>
-      _store.query().onSnapshots(_db);
+  Stream<List<RecordSnapshot<String, ListFormItem>>> get allFormItemsRecordsStream => _store.query().onSnapshots(_db);
 
   Future<void> preloadDefaultData(List<String> texts) async {
     await _addFormTexts(texts);
@@ -50,6 +49,6 @@ abstract class NepanikarListFormDao {
   }
 
   Future<void> clear() async {
-    await _store.drop(_db);
+    await _store.delete(_db);
   }
 }
