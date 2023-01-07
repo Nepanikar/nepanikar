@@ -1,6 +1,7 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
@@ -42,7 +43,7 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
     super.initState();
 
     player.open(
-      Audio('assets/audio/relaxCS.mp3'),
+      Audio(Assets.audio.relaxCS),
       autoStart: false,
     );
 
@@ -61,8 +62,9 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
   }
 
   @override
-  void dispose() {
-    player.dispose();
+  Future<void> dispose() async {
+    await player.stop();
+    await player.dispose();
     super.dispose();
   }
 
