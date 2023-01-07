@@ -30,6 +30,8 @@ class _CrisisMessageScreenState extends State<CrisisMessageScreen> {
   final _addressEmailController = TextEditingController();
   final _messageTextController = TextEditingController();
 
+  final _messageFocusNode = FocusNode();
+
   late final Stream<Tuple2<String, String>> _contactAddressAndMessageStream;
 
   @override
@@ -40,11 +42,14 @@ class _CrisisMessageScreenState extends State<CrisisMessageScreen> {
 
   Widget _buildForm({
     required TextEditingController textController,
+    required TextInputAction textInputAction,
     required String initialValue,
     required String labelText,
     required String hintText,
     required int minLines,
     required VoidCallback onSaved,
+    FocusNode? focusNode,
+    VoidCallback? onFieldSubmitted,
   }) {
     textController
       ..text = initialValue
@@ -69,9 +74,11 @@ class _CrisisMessageScreenState extends State<CrisisMessageScreen> {
           },
           child: TextField(
             controller: textController,
+            focusNode: focusNode,
             minLines: minLines,
+            onEditingComplete: onFieldSubmitted,
             maxLines: null,
-            textInputAction: TextInputAction.newline,
+            textInputAction: textInputAction,
             decoration: InputDecoration(
               hintText: hintText,
             ),
@@ -106,19 +113,25 @@ class _CrisisMessageScreenState extends State<CrisisMessageScreen> {
                     labelText: context.l10n.my_contacts_numbers_example,
                     hintText: context.l10n.custom_write,
                     minLines: 1,
+                    textInputAction: TextInputAction.next,
                     onSaved: () async {
                       await _myContactsCrisisMessageDao.saveContactAddress(
                         _addressEmailController.text,
                       );
                     },
+                    onFieldSubmitted: () {
+                      FocusScope.of(context).requestFocus(_messageFocusNode);
+                    },
                   ),
                   const SizedBox(height: 4),
                   _buildForm(
                     textController: _messageTextController,
+                    focusNode: _messageFocusNode,
                     initialValue: message,
                     labelText: context.l10n.message_text,
                     hintText: context.l10n.custom_write_body,
                     minLines: 2,
+                    textInputAction: TextInputAction.newline,
                     onSaved: () async {
                       await _myContactsCrisisMessageDao.saveBodyMessage(
                         _messageTextController.text,
