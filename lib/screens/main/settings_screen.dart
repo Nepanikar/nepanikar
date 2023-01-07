@@ -11,9 +11,14 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
+  @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
   DatabaseService get _databaseService => registry.get<DatabaseService>();
 
   @override
@@ -42,12 +47,14 @@ class SettingsScreen extends StatelessWidget {
                       onPrimaryBtnTap: (dialogContext) async {
                         await _databaseService.clearAll();
                         await _databaseService.preloadDefaultData(context.l10n);
-                        Navigator.pop(dialogContext);
-                        context.hideCurrentSnackBar();
-                        context.showSuccessSnackbar(
-                          text: 'Vaše data byla úspěšně smazaná.',
-                          leading: Assets.icons.checkmarks.checkCircular.svg(),
-                        );
+                        if (mounted) {
+                          Navigator.pop(dialogContext);
+                          context.hideCurrentSnackBar();
+                          context.showSuccessSnackbar(
+                            text: 'Vaše data byla úspěšně smazaná.',
+                            leading: Assets.icons.checkmarks.checkCircular.svg(),
+                          );
+                        }
                       },
                     );
                   },
