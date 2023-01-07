@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
@@ -61,6 +62,10 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 _SettingsMenuItem(
                   leading: const Icon(Icons.shield_outlined),
+                  // TODO: Add to Localazy
+                  onTap: () {
+                    context.push('/settings/export');
+                  },
                   text: context.l10n.import_export,
                 ),
                 _SettingsMenuItem(
@@ -109,9 +114,7 @@ class _SettingsMenuItem extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: Border(
-          top: hideTopSeparator
-              ? BorderSide.none
-              : const BorderSide(color: Color(0xffF2F2F5)),
+          top: hideTopSeparator ? BorderSide.none : const BorderSide(color: Color(0xffF2F2F5)),
         ),
       ),
       child: InkWell(
