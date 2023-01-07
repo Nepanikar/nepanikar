@@ -6,9 +6,9 @@ import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/screens/contacts/chat_contacts_screen.dart';
+import 'package:nepanikar/screens/contacts/crisis_message_screen.dart';
 import 'package:nepanikar/screens/contacts/phone_contacts_screen.dart';
 import 'package:nepanikar/screens/contacts/region_contacts_screen.dart';
-import 'package:nepanikar/services/db/my_contacts/my_contact_crisis_message_dao.dart';
 import 'package:nepanikar/services/db/my_contacts/my_contacts_records/my_contacts_record_model.dart';
 import 'package:nepanikar/services/db/my_contacts/my_contacts_records/my_contacts_records_dao.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
@@ -18,7 +18,6 @@ import 'package:nepanikar/widgets/data_dialog.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:nepanikar_contacts_gen/nepanikar_contacts_gen.dart';
-import 'package:tuple/tuple.dart';
 
 class ContactsRoute extends GoRouteData {
   const ContactsRoute();
@@ -48,16 +47,11 @@ class ContactsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final modules = <Widget>[
       LongTile(
-        text: '${context.l10n.contacts_message} TODO',
+        text: context.l10n.contacts_message,
         image: Assets.illustrations.contacts.phones.svg(color: Colors.white),
         textTextStyle: NepanikarFonts.bodyHeavy.copyWith(color: Colors.white),
         backgroundColor: NepanikarColors.secondary,
-        // TODO:
-        onTap: () => showDataDialog<Tuple2<String, String>>(
-          context,
-          dataStream: registry.get<MyContactsCrisisMessageDao>().contactAddressAndMessageStream,
-          itemBuilder: (tupleData) => Text(tupleData.toString()),
-        ),
+        onTap: () => context.push(const CrisisMessageRoute().location),
       ),
       if (countryContacts.phoneContacts != null)
         LongTile(
