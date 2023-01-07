@@ -51,6 +51,8 @@ class ContactsScreen extends StatelessWidget {
         image: Assets.illustrations.contacts.phones.svg(color: Colors.white),
         textTextStyle: NepanikarFonts.bodyHeavy.copyWith(color: Colors.white),
         backgroundColor: NepanikarColors.secondary,
+        trailing:
+            Assets.icons.navigation.arrowRight.svg(width: 16, height: 16, color: Colors.white),
         onTap: () => context.push(const CrisisMessageRoute().location),
       ),
       if (countryContacts.phoneContacts != null)
