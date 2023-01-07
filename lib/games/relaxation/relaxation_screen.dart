@@ -49,22 +49,26 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
 
     player.current.listen((playingAudio) {
       if (playingAudio?.audio != null) {
-        setState(() {
-          songDuration = playingAudio!.audio.duration;
-        });
+        if (mounted) {
+          setState(() {
+            songDuration = playingAudio!.audio.duration;
+          });
+        }
       }
     });
     player.currentPosition.listen((currPosition) {
-      setState(() {
-        sliderPosition = currPosition;
-      });
+      if (mounted) {
+        setState(() {
+          sliderPosition = currPosition;
+        });
+      }
     });
   }
 
   @override
-  Future<void> dispose() async {
-    await player.stop();
-    await player.dispose();
+  void dispose() {
+    player.stop();
+    player.dispose();
     super.dispose();
   }
 
@@ -120,11 +124,13 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
                       max: songDuration.inMilliseconds.toDouble(),
                       divisions: 100,
                       onChanged: (double value) {
-                        setState(() {
-                          sliderPosition = Duration(
-                            milliseconds: value.toInt(),
-                          );
-                        });
+                        if (mounted) {
+                          setState(() {
+                            sliderPosition = Duration(
+                              milliseconds: value.toInt(),
+                            );
+                          });
+                        }
                         player.seek(
                           Duration(
                             milliseconds: value.toInt(),
