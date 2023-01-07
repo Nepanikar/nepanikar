@@ -6,6 +6,7 @@ import 'package:nepanikar/games/breathing/breathing_exercises_screen.dart';
 import 'package:nepanikar/games/breathing/breathing_game_screen.dart';
 import 'package:nepanikar/games/math/math_game_screen.dart';
 import 'package:nepanikar/games/relaxation/relaxation_screen.dart';
+import 'package:nepanikar/games/relaxation/relaxations_list_screen.dart';
 import 'package:nepanikar/screens/about_app_screen.dart';
 import 'package:nepanikar/screens/contacts/chat_contacts_screen.dart';
 import 'package:nepanikar/screens/contacts/eating_disorder_contacts_screen.dart';
@@ -95,7 +96,8 @@ const _gameRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<BreathingGameRoute>(path: 'games/breathing/:shape'),
   TypedGoRoute<BalanceGameRoute>(path: 'games/balance'),
   TypedGoRoute<BalloonsGameRoute>(path: 'games/balloons'),
-  TypedGoRoute<RelaxationRoute>(path: 'games/relaxation'),
+  TypedGoRoute<RelaxationRoute>(path: 'games/relaxation/:relaxationType'),
+  TypedGoRoute<RelaxationsListRoute>(path: 'games/relaxation-list'),
 ];
 
 const _contactRoutes = <TypedGoRoute<GoRouteData>>[

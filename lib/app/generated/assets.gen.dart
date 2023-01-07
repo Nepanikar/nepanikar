@@ -28,11 +28,17 @@ class $AssetsAnimatedIllustrationsGen {
 class $AssetsAudioGen {
   const $AssetsAudioGen();
 
+  /// File path: assets/audio/eveningCS.mp3
+  String get eveningCS => 'assets/audio/eveningCS.mp3';
+
+  /// File path: assets/audio/morningCS.mp3
+  String get morningCS => 'assets/audio/morningCS.mp3';
+
   /// File path: assets/audio/relaxCS.mp3
   String get relaxCS => 'assets/audio/relaxCS.mp3';
 
   /// List of all assets
-  List<String> get values => [relaxCS];
+  List<String> get values => [eveningCS, morningCS, relaxCS];
 }
 
 class $AssetsContactsGen {

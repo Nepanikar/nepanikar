@@ -2,19 +2,33 @@ import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
-import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+enum RelaxationType {
+  general,
+  morning,
+  evening,
+}
 
 class RelaxationRoute extends GoRouteData {
-  const RelaxationRoute();
+  const RelaxationRoute({
+    required this.relaxationType,
+  });
+
+  final RelaxationType relaxationType;
 
   @override
-  Widget build(BuildContext context, _) => const RelaxationScreen();
+  Widget build(BuildContext context, _) => RelaxationScreen(
+        relaxationType: relaxationType,
+      );
 }
 
 class RelaxationScreen extends StatefulWidget {
-  const RelaxationScreen({super.key});
+  const RelaxationScreen({super.key, required this.relaxationType});
+
+  final RelaxationType relaxationType;
 
   @override
   State<RelaxationScreen> createState() => _RelaxationScreenState();
@@ -25,6 +39,11 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
 
   Duration songDuration = Duration.zero;
   Duration sliderPosition = Duration.zero;
+
+  late String title;
+  late String asset;
+  late String? description;
+  late String? url;
 
   String labelFromMilliseconds(int time) {
     final int sHours = Duration(milliseconds: time).inHours;
@@ -38,12 +57,39 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
     return '$rMinutes:$rSeconds';
   }
 
+  Future<void> _launchUrl(String url) async {
+    if (!await launchUrl(Uri.parse(url))) {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   void initState() {
     super.initState();
 
+    switch (widget.relaxationType) {
+      case RelaxationType.general:
+
+        /// Not translated, bcs this module is only used in CS and SK lang
+        title = 'Relaxace';
+        asset = Assets.audio.relaxCS;
+        break;
+      case RelaxationType.morning:
+        title = 'Ranní zastavení';
+        asset = Assets.audio.morningCS;
+        description = 'Dlouhodobé zaznamenávání nálady ti pomůže Odpověď uvnitř';
+        url = 'https://www.odpoveduvnitr.cz/';
+        break;
+      case RelaxationType.evening:
+        title = 'Večerní zastavení';
+        asset = Assets.audio.eveningCS;
+        description = 'Dlouhodobé zaznamenávání nálady ti pomůže Odpověď uvnitř';
+        url = 'https://www.odpoveduvnitr.cz/';
+        break;
+    }
+
     player.open(
-      Audio(Assets.audio.relaxCS),
+      Audio(asset),
       autoStart: false,
     );
 
@@ -75,12 +121,27 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: NepanikarColors.primarySwatch.shade200,
+      backgroundColor: NepanikarColors.primarySwatch,
       appBar: AppBar(
-        title: Text(context.l10n.relaxation),
+        title: Text(title),
       ),
       body: Stack(
         children: [
+          if (description != null)
+            Align(
+              alignment: Alignment.topCenter,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 28.0),
+                child: GestureDetector(
+                  onTap: () => _launchUrl(url!),
+                  child: Text(
+                    description!,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: NepanikarColors.primarySwatch.shade300),
+                  ),
+                ),
+              ),
+            ),
           Align(
             child: StreamBuilder(
               stream: player.isPlaying,
@@ -116,6 +177,8 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
                     data: const SliderThemeData(
                       trackHeight: 6,
                       inactiveTrackColor: Colors.white,
+                      activeTrackColor: Colors.white24,
+                      thumbColor: Colors.white,
                     ),
                     child: Slider(
                       value: sliderPosition.inMilliseconds
@@ -146,11 +209,17 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
                       children: [
                         Text(
                           labelFromMilliseconds(sliderPosition.inMilliseconds),
-                          style: NepanikarFonts.bodySmallMedium.copyWith(fontSize: 15),
+                          style: NepanikarFonts.bodySmallMedium.copyWith(
+                            fontSize: 15,
+                            color: Colors.white,
+                          ),
                         ),
                         Text(
                           labelFromMilliseconds(songDuration.inMilliseconds),
-                          style: NepanikarFonts.bodySmallMedium.copyWith(fontSize: 15),
+                          style: NepanikarFonts.bodySmallMedium.copyWith(
+                            fontSize: 15,
+                            color: Colors.white,
+                          ),
                         ),
                       ],
                     ),

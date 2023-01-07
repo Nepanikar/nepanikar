@@ -7,7 +7,7 @@ import 'package:nepanikar/games/balance/balance_game_screen.dart';
 import 'package:nepanikar/games/balloons/balloons_game_screen.dart';
 import 'package:nepanikar/games/breathing/breathing_exercises_screen.dart';
 import 'package:nepanikar/games/math/math_game_screen.dart';
-import 'package:nepanikar/games/relaxation/relaxation_screen.dart';
+import 'package:nepanikar/games/relaxation/relaxations_list_screen.dart';
 import 'package:nepanikar/screens/home/anxiety/anxiety_tips_route.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
@@ -53,7 +53,7 @@ class AnxietyAppScreen extends StatelessWidget {
       LongTile(
         text: context.l10n.relaxation,
         image: Assets.illustrations.modules.relaxation.svg(),
-        onTap: () => context.push(const RelaxationRoute().location),
+        onTap: () => context.push(const RelaxationsListRoute().location),
       ),
     ];
 
