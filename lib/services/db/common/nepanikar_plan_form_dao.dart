@@ -33,8 +33,7 @@ abstract class NepanikarPlanFormDao {
     }
   }
 
-  Stream<List<RecordSnapshot<String, PlanFormItem?>>> get allFormItemsRecordsStream =>
-      _store.query().onSnapshots(_db);
+  Stream<List<RecordSnapshot<String, PlanFormItem?>>> get allFormItemsRecordsStream => _store.query().onSnapshots(_db);
 
   Future<void> doOldVersionMigration(NepanikarListFormDTO planFormConfig) async {
     final planFormItems = planFormConfig.texts;
@@ -44,6 +43,6 @@ abstract class NepanikarPlanFormDao {
   }
 
   Future<void> clear() async {
-    await _store.drop(_db);
+    await _store.delete(_db);
   }
 }

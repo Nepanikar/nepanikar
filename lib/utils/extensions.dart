@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/widgets/nepanikar_dialog.dart';
 import 'package:nepanikar/widgets/snackbars.dart';
 
 extension SnackbarControllersExt on BuildContext {
@@ -49,6 +50,31 @@ extension CustomSnackBar on BuildContext {
         leading: leading,
         trailing: trailing,
       ),
+    );
+  }
+}
+
+extension NepanikarDialogExtension on BuildContext {
+  dynamic showNepanikarDialog({
+    String? title,
+    required String text,
+    required String primaryBtnLabel,
+    required void Function(BuildContext dialogContext) onPrimaryBtnTap,
+    required String secondaryBtnLabel,
+    required void Function(BuildContext dialogContext) onSecondaryBtnTap,
+  }) {
+    return showDialog(
+      context: this,
+      builder: (context) {
+        return NepanikarDialog(
+          title: title,
+          text: text,
+          primaryBtnLabel: primaryBtnLabel,
+          onPrimaryBtnTap: onPrimaryBtnTap,
+          secondaryBtnLabel: secondaryBtnLabel,
+          onSecondaryBtnTap: onSecondaryBtnTap,
+        );
+      },
     );
   }
 }
