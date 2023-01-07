@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -40,6 +41,12 @@ class SettingsScreen extends StatelessWidget {
                 _SettingsMenuItem(
                   leading: const Icon(Icons.shield_outlined),
                   text: context.l10n.support_us,
+                  onTap: () async {
+                    final url = Uri.parse(
+                      'https://www.darujme.cz/projekt/1203622',
+                    );
+                    await launchUrl(url, mode: LaunchMode.externalApplication);
+                  },
                 ),
                 const _LanguagePicker(),
                 _SettingsMenuItem(
@@ -77,7 +84,9 @@ class _SettingsMenuItem extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: Border(
-          top: hideTopSeparator ? BorderSide.none : const BorderSide(color: Color(0xffF2F2F5)),
+          top: hideTopSeparator
+              ? BorderSide.none
+              : const BorderSide(color: Color(0xffF2F2F5)),
         ),
       ),
       child: InkWell(
