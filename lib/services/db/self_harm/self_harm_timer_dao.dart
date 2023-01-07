@@ -29,7 +29,8 @@ class SelfHarmTimerDao {
   static const _selfHarmTimerRecordEndTimestampKey = 'self_harm_timer_record_end_timestamp';
 
   Future<void> startSelfHarmTimer([DateTime? startDateTime]) async {
-    final timestampNow = startDateTime != null ? Timestamp.fromDateTime(startDateTime.toUtc()) : Timestamp.now();
+    final timestampNow =
+        startDateTime != null ? Timestamp.fromDateTime(startDateTime.toUtc()) : Timestamp.now();
     await _store.record(_selfHarmTimerCurrentTimestampKey).put(_db, timestampNow);
   }
 
@@ -43,15 +44,20 @@ class SelfHarmTimerDao {
       final dateTimeNow = DateTime.now().toUtc();
       final newPossibleRecordRange = DateTimeRange(start: timerStartDate, end: dateTimeNow);
       final timerBestRecordRange = await getBestTimerRecordDateTimeRange();
-      if (timerBestRecordRange == null || newPossibleRecordRange.duration > timerBestRecordRange.duration) {
+      if (timerBestRecordRange == null ||
+          newPossibleRecordRange.duration > timerBestRecordRange.duration) {
         await saveNewBestRecord(newPossibleRecordRange);
       }
     }
   }
 
   Future<void> saveNewBestRecord(DateTimeRange dateTimeRange) async {
-    await _store.record(_selfHarmTimerRecordStartTimestampKey).put(_db, Timestamp.fromDateTime(dateTimeRange.start));
-    await _store.record(_selfHarmTimerRecordEndTimestampKey).put(_db, Timestamp.fromDateTime(dateTimeRange.end));
+    await _store
+        .record(_selfHarmTimerRecordStartTimestampKey)
+        .put(_db, Timestamp.fromDateTime(dateTimeRange.start));
+    await _store
+        .record(_selfHarmTimerRecordEndTimestampKey)
+        .put(_db, Timestamp.fromDateTime(dateTimeRange.end));
   }
 
   Future<DateTime?> getCurrentTimerStartDateTime() async {
@@ -60,7 +66,8 @@ class SelfHarmTimerDao {
   }
 
   Future<DateTimeRange?> getBestTimerRecordDateTimeRange() async {
-    final startRecordTimestamp = await _store.record(_selfHarmTimerRecordStartTimestampKey).get(_db);
+    final startRecordTimestamp =
+        await _store.record(_selfHarmTimerRecordStartTimestampKey).get(_db);
     final endRecordTimestamp = await _store.record(_selfHarmTimerRecordEndTimestampKey).get(_db);
     if (startRecordTimestamp != null && endRecordTimestamp != null) {
       return DateTimeRange(
