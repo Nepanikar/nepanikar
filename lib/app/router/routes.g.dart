@@ -43,6 +43,10 @@ GoRoute get $mainRoute => GoRouteData.$route(
           factory: $ContactsRouteExtension._fromState,
         ),
         GoRouteData.$route(
+          path: 'contacts/crisis-message',
+          factory: $CrisisMessageRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: 'contacts/phones',
           factory: $PhoneContactsRouteExtension._fromState,
         ),
@@ -320,6 +324,19 @@ extension $ContactsRouteExtension on ContactsRoute {
 
   String get location => GoRouteData.$location(
         '/contacts',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $CrisisMessageRouteExtension on CrisisMessageRoute {
+  static CrisisMessageRoute _fromState(GoRouterState state) =>
+      const CrisisMessageRoute();
+
+  String get location => GoRouteData.$location(
+        '/contacts/crisis-message',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
