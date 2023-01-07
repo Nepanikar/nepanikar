@@ -24,6 +24,8 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   DatabaseService get _databaseService => registry.get<DatabaseService>();
 
+  AppConfig get _appConfig => registry.get<AppConfig>();
+
   @override
   Widget build(BuildContext context) {
     return NepanikarScreenWrapper(
