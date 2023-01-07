@@ -15,6 +15,10 @@ GoRoute get $mainRoute => GoRouteData.$route(
       factory: $MainRouteExtension._fromState,
       routes: [
         GoRouteData.$route(
+          path: 'settings/sponsors',
+          factory: $SponsorsRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: 'settings/about-app',
           factory: $AboutAppRouteExtension._fromState,
         ),
@@ -238,6 +242,18 @@ extension $MainRouteExtension on MainRoute {
 
   String get location => GoRouteData.$location(
         '/',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $SponsorsRouteExtension on SponsorsRoute {
+  static SponsorsRoute _fromState(GoRouterState state) => const SponsorsRoute();
+
+  String get location => GoRouteData.$location(
+        '/settings/sponsors',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
