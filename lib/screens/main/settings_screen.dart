@@ -1,14 +1,20 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/services/db/database_service.dart';
+import 'package:nepanikar/utils/app_config.dart';
 import 'package:nepanikar/utils/extensions.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
+
+  AppConfig get _appConfig => registry.get<AppConfig>();
 
   DatabaseService get _databaseService => registry.get<DatabaseService>();
 
@@ -51,7 +57,16 @@ class SettingsScreen extends StatelessWidget {
                 _SettingsMenuItem(
                   leading: const Icon(Icons.shield_outlined),
                   text: context.l10n.rate,
-                  onTap: () {},
+                  onTap: () async {
+                    final uri = Uri.parse(
+                      Platform.isAndroid
+                          ? 'market://details?id=${_appConfig.googlePlayAppId}'
+                          : 'https://apps.apple.com/app/id${_appConfig.appStoreAppId}',
+                    );
+                    if (await canLaunchUrl(uri)) {
+                      await launchUrl(uri);
+                    }
+                  },
                 ),
                 _SettingsMenuItem(
                   leading: const Icon(Icons.shield_outlined),
