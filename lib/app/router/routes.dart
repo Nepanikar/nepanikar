@@ -55,6 +55,7 @@ import 'package:nepanikar/screens/home/suicidal_thoughts/suicidal_thoughts_reaso
 import 'package:nepanikar/screens/home/suicidal_thoughts/suicidal_thoughts_screen.dart';
 import 'package:nepanikar/screens/main/contacts_screen.dart';
 import 'package:nepanikar/screens/main/main_screen.dart';
+import 'package:nepanikar/screens/settings/export_screen.dart';
 
 part 'routes.g.dart';
 
@@ -89,6 +90,7 @@ class MainRoute extends GoRouteData {
 
 const _settingsRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<AboutAppRoute>(path: 'settings/about-app'),
+  TypedGoRoute<ExportRoute>(path: 'settings/export'),
 ];
 
 const _gameRoutes = <TypedGoRoute<GoRouteData>>[

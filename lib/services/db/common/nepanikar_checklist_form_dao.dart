@@ -46,8 +46,7 @@ abstract class NepanikarCheckListFormDao {
     await _store.record(key).delete(_db);
   }
 
-  Stream<Map<String, ChecklistItem>> get allFormItemsRecordsStream =>
-      _store.query().onSnapshots(_db).map((event) {
+  Stream<Map<String, ChecklistItem>> get allFormItemsRecordsStream => _store.query().onSnapshots(_db).map((event) {
         final entries = event
             .map((e) {
               final value = e.value;
@@ -74,6 +73,6 @@ abstract class NepanikarCheckListFormDao {
   }
 
   Future<void> clear() async {
-    await _store.drop(_db);
+    await _store.delete(_db);
   }
 }

@@ -10,6 +10,7 @@ import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/router/go_router_config.dart';
 import 'package:nepanikar/firebase_options.dart';
 import 'package:nepanikar/services/db/database_service.dart';
+import 'package:nepanikar/services/export_service.dart';
 import 'package:nepanikar/services/save_directories.dart';
 import 'package:nepanikar/utils/app_config.dart';
 import 'package:nepanikar/utils/contacts_data_manager.dart';
@@ -61,9 +62,19 @@ Future<void> setup() async {
   );
   await registry.get<DatabaseService>().init();
 
+  registry.registerSingleton(
+    ExportService(
+      databaseService: registry.get<DatabaseService>(),
+    ),
+  );
+
   // utils
   final appInfo = await PackageInfo.fromPlatform();
-  final config = AppConfig(packageInfo: appInfo);
+  final config = AppConfig(
+    packageInfo: appInfo,
+    googlePlayAppId: 'org.dontpanic',
+    appStoreAppId: '1459513911',
+  );
   registry.registerLazySingleton<AppConfig>(() => config);
 
   await precacheSvgs();
