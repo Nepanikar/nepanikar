@@ -155,8 +155,7 @@ class DatabaseService {
         await logExceptionToCrashlytics(
           e,
           s,
-          logMessage:
-              'DATABASE_SERVICE: Error while migrating depression module data from old app version',
+          logMessage: 'DATABASE_SERVICE: Error while migrating depression module data from old app version',
         );
       }
     }
@@ -169,8 +168,7 @@ class DatabaseService {
         await logExceptionToCrashlytics(
           e,
           s,
-          logMessage:
-              'DATABASE_SERVICE: Error while migrating self harm module data from old app version',
+          logMessage: 'DATABASE_SERVICE: Error while migrating self harm module data from old app version',
         );
       }
     }
@@ -183,8 +181,7 @@ class DatabaseService {
         await logExceptionToCrashlytics(
           e,
           s,
-          logMessage:
-              'DATABASE_SERVICE: Error while migrating suicidal thoughts module data from old app version',
+          logMessage: 'DATABASE_SERVICE: Error while migrating suicidal thoughts module data from old app version',
         );
       }
     }
@@ -197,8 +194,7 @@ class DatabaseService {
         await logExceptionToCrashlytics(
           e,
           s,
-          logMessage:
-              'DATABASE_SERVICE: Error while migrating eating disorder module data from old app version',
+          logMessage: 'DATABASE_SERVICE: Error while migrating eating disorder module data from old app version',
         );
       }
     }
@@ -211,8 +207,7 @@ class DatabaseService {
         await logExceptionToCrashlytics(
           e,
           s,
-          logMessage:
-              'DATABASE_SERVICE: Error while migrating my records module data from old app version',
+          logMessage: 'DATABASE_SERVICE: Error while migrating my records module data from old app version',
         );
       }
     }
@@ -225,15 +220,14 @@ class DatabaseService {
         await logExceptionToCrashlytics(
           e,
           s,
-          logMessage:
-              'DATABASE_SERVICE: Error while migrating my contacts module data from old app version',
+          logMessage: 'DATABASE_SERVICE: Error while migrating my contacts module data from old app version',
         );
       }
     }
   }
 
   Future<void> clearAll() async {
-    await mainStore.drop(database);
+    await mainStore.delete(database);
     await _userSettingsDao.clear();
     await _depressionModuleDb.clearModule();
     await _selfHarmModuleDb.clearModule();

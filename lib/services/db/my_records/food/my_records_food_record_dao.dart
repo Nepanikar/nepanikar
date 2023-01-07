@@ -32,8 +32,7 @@ class MyRecordsFoodRecordDao {
     await _store.record(key).delete(_db);
   }
 
-  Stream<DailyFoodRecord?> watchRecordById(String key) =>
-      _store.record(key).onSnapshot(_db).map((snapshot) {
+  Stream<DailyFoodRecord?> watchRecordById(String key) => _store.record(key).onSnapshot(_db).map((snapshot) {
         final json = snapshot?.value;
         if (json == null) return null;
         return DailyFoodRecord.fromJson(json);
@@ -88,6 +87,6 @@ class MyRecordsFoodRecordDao {
   }
 
   Future<void> clear() async {
-    await _store.drop(_db);
+    await _store.delete(_db);
   }
 }
