@@ -282,7 +282,8 @@ extension $MathGameRouteExtension on MathGameRoute {
 }
 
 extension $BreathingExercisesRouteExtension on BreathingExercisesRoute {
-  static BreathingExercisesRoute _fromState(GoRouterState state) => const BreathingExercisesRoute();
+  static BreathingExercisesRoute _fromState(GoRouterState state) =>
+      const BreathingExercisesRoute();
 
   String get location => GoRouteData.$location(
         '/games/breathing-list',
@@ -294,7 +295,8 @@ extension $BreathingExercisesRouteExtension on BreathingExercisesRoute {
 }
 
 extension $BreathingGameRouteExtension on BreathingGameRoute {
-  static BreathingGameRoute _fromState(GoRouterState state) => BreathingGameRoute(
+  static BreathingGameRoute _fromState(GoRouterState state) =>
+      BreathingGameRoute(
         shape: _$BreathingGameShapeEnumMap._$fromName(state.params['shape']!),
       );
 
@@ -308,7 +310,8 @@ extension $BreathingGameRouteExtension on BreathingGameRoute {
 }
 
 extension $BalanceGameRouteExtension on BalanceGameRoute {
-  static BalanceGameRoute _fromState(GoRouterState state) => const BalanceGameRoute();
+  static BalanceGameRoute _fromState(GoRouterState state) =>
+      const BalanceGameRoute();
 
   String get location => GoRouteData.$location(
         '/games/balance',
@@ -320,7 +323,8 @@ extension $BalanceGameRouteExtension on BalanceGameRoute {
 }
 
 extension $BalloonsGameRouteExtension on BalloonsGameRoute {
-  static BalloonsGameRoute _fromState(GoRouterState state) => const BalloonsGameRoute();
+  static BalloonsGameRoute _fromState(GoRouterState state) =>
+      const BalloonsGameRoute();
 
   String get location => GoRouteData.$location(
         '/games/balloons',
@@ -344,7 +348,8 @@ extension $ContactsRouteExtension on ContactsRoute {
 }
 
 extension $CrisisMessageRouteExtension on CrisisMessageRoute {
-  static CrisisMessageRoute _fromState(GoRouterState state) => const CrisisMessageRoute();
+  static CrisisMessageRoute _fromState(GoRouterState state) =>
+      const CrisisMessageRoute();
 
   String get location => GoRouteData.$location(
         '/contacts/crisis-message',
@@ -356,7 +361,8 @@ extension $CrisisMessageRouteExtension on CrisisMessageRoute {
 }
 
 extension $PhoneContactsRouteExtension on PhoneContactsRoute {
-  static PhoneContactsRoute _fromState(GoRouterState state) => const PhoneContactsRoute();
+  static PhoneContactsRoute _fromState(GoRouterState state) =>
+      const PhoneContactsRoute();
 
   String get location => GoRouteData.$location(
         '/contacts/phones',
@@ -381,7 +387,8 @@ extension $CrisisCenterContactsRouteExtension on CrisisCenterContactsRoute {
 }
 
 extension $ChatContactsRouteExtension on ChatContactsRoute {
-  static ChatContactsRoute _fromState(GoRouterState state) => const ChatContactsRoute();
+  static ChatContactsRoute _fromState(GoRouterState state) =>
+      const ChatContactsRoute();
 
   String get location => GoRouteData.$location(
         '/contacts/chat',
@@ -393,7 +400,8 @@ extension $ChatContactsRouteExtension on ChatContactsRoute {
 }
 
 extension $UniversityContactsRouteExtension on UniversityContactsRoute {
-  static UniversityContactsRoute _fromState(GoRouterState state) => const UniversityContactsRoute();
+  static UniversityContactsRoute _fromState(GoRouterState state) =>
+      const UniversityContactsRoute();
 
   String get location => GoRouteData.$location(
         '/contacts/universities',
@@ -405,7 +413,8 @@ extension $UniversityContactsRouteExtension on UniversityContactsRoute {
 }
 
 extension $DepressionRouteExtension on DepressionRoute {
-  static DepressionRoute _fromState(GoRouterState state) => const DepressionRoute();
+  static DepressionRoute _fromState(GoRouterState state) =>
+      const DepressionRoute();
 
   String get location => GoRouteData.$location(
         '/home/depression',
@@ -417,7 +426,8 @@ extension $DepressionRouteExtension on DepressionRoute {
 }
 
 extension $DepressionTipsAppRouteExtension on DepressionTipsAppRoute {
-  static DepressionTipsAppRoute _fromState(GoRouterState state) => const DepressionTipsAppRoute();
+  static DepressionTipsAppRoute _fromState(GoRouterState state) =>
+      const DepressionTipsAppRoute();
 
   String get location => GoRouteData.$location(
         '/home/depression/tips',
@@ -441,7 +451,8 @@ extension $DepressionActivityPlanRouteExtension on DepressionActivityPlanRoute {
   void push(BuildContext context) => context.push(location, extra: this);
 }
 
-extension $DepressionNiceMadeHappyRouteExtension on DepressionNiceMadeHappyRoute {
+extension $DepressionNiceMadeHappyRouteExtension
+    on DepressionNiceMadeHappyRoute {
   static DepressionNiceMadeHappyRoute _fromState(GoRouterState state) =>
       const DepressionNiceMadeHappyRoute();
 
@@ -454,7 +465,8 @@ extension $DepressionNiceMadeHappyRouteExtension on DepressionNiceMadeHappyRoute
   void push(BuildContext context) => context.push(location, extra: this);
 }
 
-extension $DepressionPraiseMyAchievementsRouteExtension on DepressionPraiseMyAchievementsRoute {
+extension $DepressionPraiseMyAchievementsRouteExtension
+    on DepressionPraiseMyAchievementsRoute {
   static DepressionPraiseMyAchievementsRoute _fromState(GoRouterState state) =>
       const DepressionPraiseMyAchievementsRoute();
 
@@ -468,7 +480,8 @@ extension $DepressionPraiseMyAchievementsRouteExtension on DepressionPraiseMyAch
 }
 
 extension $AnxietyAppRouteExtension on AnxietyAppRoute {
-  static AnxietyAppRoute _fromState(GoRouterState state) => const AnxietyAppRoute();
+  static AnxietyAppRoute _fromState(GoRouterState state) =>
+      const AnxietyAppRoute();
 
   String get location => GoRouteData.$location(
         '/home/anxiety',
@@ -480,7 +493,8 @@ extension $AnxietyAppRouteExtension on AnxietyAppRoute {
 }
 
 extension $AnxietyTipsAppRouteExtension on AnxietyTipsAppRoute {
-  static AnxietyTipsAppRoute _fromState(GoRouterState state) => const AnxietyTipsAppRoute();
+  static AnxietyTipsAppRoute _fromState(GoRouterState state) =>
+      const AnxietyTipsAppRoute();
 
   String get location => GoRouteData.$location(
         '/home/anxiety/tips',
@@ -504,7 +518,8 @@ extension $SelfHarmRouteExtension on SelfHarmRoute {
 }
 
 extension $SelfHarmTipsRouteExtension on SelfHarmTipsRoute {
-  static SelfHarmTipsRoute _fromState(GoRouterState state) => const SelfHarmTipsRoute();
+  static SelfHarmTipsRoute _fromState(GoRouterState state) =>
+      const SelfHarmTipsRoute();
 
   String get location => GoRouteData.$location(
         '/home/self-harm/tips',
@@ -516,7 +531,8 @@ extension $SelfHarmTipsRouteExtension on SelfHarmTipsRoute {
 }
 
 extension $SelfHarmHelpedRouteExtension on SelfHarmHelpedRoute {
-  static SelfHarmHelpedRoute _fromState(GoRouterState state) => const SelfHarmHelpedRoute();
+  static SelfHarmHelpedRoute _fromState(GoRouterState state) =>
+      const SelfHarmHelpedRoute();
 
   String get location => GoRouteData.$location(
         '/home/self-harm/helped',
@@ -528,7 +544,8 @@ extension $SelfHarmHelpedRouteExtension on SelfHarmHelpedRoute {
 }
 
 extension $SelfHarmPlanRouteExtension on SelfHarmPlanRoute {
-  static SelfHarmPlanRoute _fromState(GoRouterState state) => const SelfHarmPlanRoute();
+  static SelfHarmPlanRoute _fromState(GoRouterState state) =>
+      const SelfHarmPlanRoute();
 
   String get location => GoRouteData.$location(
         '/home/self-harm/plan',
@@ -540,7 +557,8 @@ extension $SelfHarmPlanRouteExtension on SelfHarmPlanRoute {
 }
 
 extension $SelfHarmTimerRouteExtension on SelfHarmTimerRoute {
-  static SelfHarmTimerRoute _fromState(GoRouterState state) => const SelfHarmTimerRoute();
+  static SelfHarmTimerRoute _fromState(GoRouterState state) =>
+      const SelfHarmTimerRoute();
 
   String get location => GoRouteData.$location(
         '/home/self-harm/timer',
@@ -552,7 +570,8 @@ extension $SelfHarmTimerRouteExtension on SelfHarmTimerRoute {
 }
 
 extension $MyRecordsRouteExtension on MyRecordsRoute {
-  static MyRecordsRoute _fromState(GoRouterState state) => const MyRecordsRoute();
+  static MyRecordsRoute _fromState(GoRouterState state) =>
+      const MyRecordsRoute();
 
   String get location => GoRouteData.$location(
         '/home/my-records',
@@ -564,7 +583,8 @@ extension $MyRecordsRouteExtension on MyRecordsRoute {
 }
 
 extension $MoodTrackRouteExtension on MoodTrackRoute {
-  static MoodTrackRoute _fromState(GoRouterState state) => const MoodTrackRoute();
+  static MoodTrackRoute _fromState(GoRouterState state) =>
+      const MoodTrackRoute();
 
   String get location => GoRouteData.$location(
         '/home/my-records/mood-track',
@@ -602,7 +622,8 @@ extension $MyRecordsDiaryRecordsRouteExtension on MyRecordsDiaryRecordsRoute {
 }
 
 extension $MyRecordsDiaryAddRouteExtension on MyRecordsDiaryAddRoute {
-  static MyRecordsDiaryAddRoute _fromState(GoRouterState state) => const MyRecordsDiaryAddRoute();
+  static MyRecordsDiaryAddRoute _fromState(GoRouterState state) =>
+      const MyRecordsDiaryAddRoute();
 
   String get location => GoRouteData.$location(
         '/home/my-records/diary/add',
@@ -627,7 +648,8 @@ extension $MyRecordsDiaryDetailRouteExtension on MyRecordsDiaryDetailRoute {
 }
 
 extension $MyRecordsDiaryEditRouteExtension on MyRecordsDiaryEditRoute {
-  static MyRecordsDiaryEditRoute _fromState(GoRouterState state) => const MyRecordsDiaryEditRoute();
+  static MyRecordsDiaryEditRoute _fromState(GoRouterState state) =>
+      const MyRecordsDiaryEditRoute();
 
   String get location => GoRouteData.$location(
         '/home/my-records/diary/edit',
@@ -639,7 +661,8 @@ extension $MyRecordsDiaryEditRouteExtension on MyRecordsDiaryEditRoute {
 }
 
 extension $SuicidalThoughtsRouteExtension on SuicidalThoughtsRoute {
-  static SuicidalThoughtsRoute _fromState(GoRouterState state) => const SuicidalThoughtsRoute();
+  static SuicidalThoughtsRoute _fromState(GoRouterState state) =>
+      const SuicidalThoughtsRoute();
 
   String get location => GoRouteData.$location(
         '/home/suicidal-thoughts',
@@ -663,7 +686,8 @@ extension $SuicidalThoughtsPlanRouteExtension on SuicidalThoughtsPlanRoute {
   void push(BuildContext context) => context.push(location, extra: this);
 }
 
-extension $SuicidalThoughtsReasonsNoRouteExtension on SuicidalThoughtsReasonsNoRoute {
+extension $SuicidalThoughtsReasonsNoRouteExtension
+    on SuicidalThoughtsReasonsNoRoute {
   static SuicidalThoughtsReasonsNoRoute _fromState(GoRouterState state) =>
       const SuicidalThoughtsReasonsNoRoute();
 
@@ -677,7 +701,8 @@ extension $SuicidalThoughtsReasonsNoRouteExtension on SuicidalThoughtsReasonsNoR
 }
 
 extension $EatingDisorderRouteExtension on EatingDisorderRoute {
-  static EatingDisorderRoute _fromState(GoRouterState state) => const EatingDisorderRoute();
+  static EatingDisorderRoute _fromState(GoRouterState state) =>
+      const EatingDisorderRoute();
 
   String get location => GoRouteData.$location(
         '/home/eating-disorder',
@@ -689,7 +714,8 @@ extension $EatingDisorderRouteExtension on EatingDisorderRoute {
 }
 
 extension $EatingDisorderTipsRouteExtension on EatingDisorderTipsRoute {
-  static EatingDisorderTipsRoute _fromState(GoRouterState state) => const EatingDisorderTipsRoute();
+  static EatingDisorderTipsRoute _fromState(GoRouterState state) =>
+      const EatingDisorderTipsRoute();
 
   String get location => GoRouteData.$location(
         '/home/eating-disorder/tips',
@@ -700,7 +726,8 @@ extension $EatingDisorderTipsRouteExtension on EatingDisorderTipsRoute {
   void push(BuildContext context) => context.push(location, extra: this);
 }
 
-extension $EatingDisorderTipsFigureAppRouteExtension on EatingDisorderTipsFigureAppRoute {
+extension $EatingDisorderTipsFigureAppRouteExtension
+    on EatingDisorderTipsFigureAppRoute {
   static EatingDisorderTipsFigureAppRoute _fromState(GoRouterState state) =>
       const EatingDisorderTipsFigureAppRoute();
 
@@ -713,7 +740,8 @@ extension $EatingDisorderTipsFigureAppRouteExtension on EatingDisorderTipsFigure
   void push(BuildContext context) => context.push(location, extra: this);
 }
 
-extension $EatingDisorderTipsRemorseAppRouteExtension on EatingDisorderTipsRemorseAppRoute {
+extension $EatingDisorderTipsRemorseAppRouteExtension
+    on EatingDisorderTipsRemorseAppRoute {
   static EatingDisorderTipsRemorseAppRoute _fromState(GoRouterState state) =>
       const EatingDisorderTipsRemorseAppRoute();
 
@@ -726,7 +754,8 @@ extension $EatingDisorderTipsRemorseAppRouteExtension on EatingDisorderTipsRemor
   void push(BuildContext context) => context.push(location, extra: this);
 }
 
-extension $EatingDisorderTipsOvereatAppRouteExtension on EatingDisorderTipsOvereatAppRoute {
+extension $EatingDisorderTipsOvereatAppRouteExtension
+    on EatingDisorderTipsOvereatAppRoute {
   static EatingDisorderTipsOvereatAppRoute _fromState(GoRouterState state) =>
       const EatingDisorderTipsOvereatAppRoute();
 
@@ -739,7 +768,8 @@ extension $EatingDisorderTipsOvereatAppRouteExtension on EatingDisorderTipsOvere
   void push(BuildContext context) => context.push(location, extra: this);
 }
 
-extension $EatingDisorderTipsVomitAppRouteExtension on EatingDisorderTipsVomitAppRoute {
+extension $EatingDisorderTipsVomitAppRouteExtension
+    on EatingDisorderTipsVomitAppRoute {
   static EatingDisorderTipsVomitAppRoute _fromState(GoRouterState state) =>
       const EatingDisorderTipsVomitAppRoute();
 
@@ -752,7 +782,8 @@ extension $EatingDisorderTipsVomitAppRouteExtension on EatingDisorderTipsVomitAp
   void push(BuildContext context) => context.push(location, extra: this);
 }
 
-extension $EatingDisorderTipsFailAppRouteExtension on EatingDisorderTipsFailAppRoute {
+extension $EatingDisorderTipsFailAppRouteExtension
+    on EatingDisorderTipsFailAppRoute {
   static EatingDisorderTipsFailAppRoute _fromState(GoRouterState state) =>
       const EatingDisorderTipsFailAppRoute();
 
@@ -765,7 +796,8 @@ extension $EatingDisorderTipsFailAppRouteExtension on EatingDisorderTipsFailAppR
   void push(BuildContext context) => context.push(location, extra: this);
 }
 
-extension $EatingDisorderTipsGeneralAppRouteExtension on EatingDisorderTipsGeneralAppRoute {
+extension $EatingDisorderTipsGeneralAppRouteExtension
+    on EatingDisorderTipsGeneralAppRoute {
   static EatingDisorderTipsGeneralAppRoute _fromState(GoRouterState state) =>
       const EatingDisorderTipsGeneralAppRoute();
 
@@ -791,7 +823,8 @@ extension $EatingDisorderTasksRouteExtension on EatingDisorderTasksRoute {
   void push(BuildContext context) => context.push(location, extra: this);
 }
 
-extension $EatingDisorderFoodCreativeRouteExtension on EatingDisorderFoodCreativeRoute {
+extension $EatingDisorderFoodCreativeRouteExtension
+    on EatingDisorderFoodCreativeRoute {
   static EatingDisorderFoodCreativeRoute _fromState(GoRouterState state) =>
       const EatingDisorderFoodCreativeRoute();
 
@@ -804,7 +837,8 @@ extension $EatingDisorderFoodCreativeRouteExtension on EatingDisorderFoodCreativ
   void push(BuildContext context) => context.push(location, extra: this);
 }
 
-extension $EatingDisorderFoodMotivationRouteExtension on EatingDisorderFoodMotivationRoute {
+extension $EatingDisorderFoodMotivationRouteExtension
+    on EatingDisorderFoodMotivationRoute {
   static EatingDisorderFoodMotivationRoute _fromState(GoRouterState state) =>
       const EatingDisorderFoodMotivationRoute();
 
@@ -817,7 +851,8 @@ extension $EatingDisorderFoodMotivationRouteExtension on EatingDisorderFoodMotiv
   void push(BuildContext context) => context.push(location, extra: this);
 }
 
-extension $EatingDisorderFoodChallengesRouteExtension on EatingDisorderFoodChallengesRoute {
+extension $EatingDisorderFoodChallengesRouteExtension
+    on EatingDisorderFoodChallengesRoute {
   static EatingDisorderFoodChallengesRoute _fromState(GoRouterState state) =>
       const EatingDisorderFoodChallengesRoute();
 
@@ -830,7 +865,8 @@ extension $EatingDisorderFoodChallengesRouteExtension on EatingDisorderFoodChall
   void push(BuildContext context) => context.push(location, extra: this);
 }
 
-extension $EatingDisorderLikeOnMyselfRouteExtension on EatingDisorderLikeOnMyselfRoute {
+extension $EatingDisorderLikeOnMyselfRouteExtension
+    on EatingDisorderLikeOnMyselfRoute {
   static EatingDisorderLikeOnMyselfRoute _fromState(GoRouterState state) =>
       const EatingDisorderLikeOnMyselfRoute();
 
@@ -843,7 +879,8 @@ extension $EatingDisorderLikeOnMyselfRouteExtension on EatingDisorderLikeOnMysel
   void push(BuildContext context) => context.push(location, extra: this);
 }
 
-extension $EatingDisorderFoodILikeRouteExtension on EatingDisorderFoodILikeRoute {
+extension $EatingDisorderFoodILikeRouteExtension
+    on EatingDisorderFoodILikeRoute {
   static EatingDisorderFoodILikeRoute _fromState(GoRouterState state) =>
       const EatingDisorderFoodILikeRoute();
 
@@ -856,7 +893,8 @@ extension $EatingDisorderFoodILikeRouteExtension on EatingDisorderFoodILikeRoute
   void push(BuildContext context) => context.push(location, extra: this);
 }
 
-extension $EatingDisorderFoodAfraidOfRouteExtension on EatingDisorderFoodAfraidOfRoute {
+extension $EatingDisorderFoodAfraidOfRouteExtension
+    on EatingDisorderFoodAfraidOfRoute {
   static EatingDisorderFoodAfraidOfRoute _fromState(GoRouterState state) =>
       const EatingDisorderFoodAfraidOfRoute();
 
@@ -882,7 +920,8 @@ extension $EatingDisorderSamplesRouteExtension on EatingDisorderSamplesRoute {
   void push(BuildContext context) => context.push(location, extra: this);
 }
 
-extension $EatingDisorderDistractionsRouteExtension on EatingDisorderDistractionsRoute {
+extension $EatingDisorderDistractionsRouteExtension
+    on EatingDisorderDistractionsRoute {
   static EatingDisorderDistractionsRoute _fromState(GoRouterState state) =>
       const EatingDisorderDistractionsRoute();
 
@@ -927,5 +966,6 @@ const _$BreathingGameShapeEnumMap = {
 };
 
 extension<T extends Enum> on Map<T, String> {
-  T _$fromName(String value) => entries.singleWhere((element) => element.value == value).key;
+  T _$fromName(String value) =>
+      entries.singleWhere((element) => element.value == value).key;
 }
