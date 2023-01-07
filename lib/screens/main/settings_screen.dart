@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
+import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/screens/settings/export_screen.dart';
 import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/utils/extensions.dart';
 import 'package:nepanikar/utils/registry.dart';
@@ -64,7 +66,7 @@ class SettingsScreen extends StatelessWidget {
                   leading: const Icon(Icons.shield_outlined),
                   // TODO: Add to Localazy
                   onTap: () {
-                    context.push('/settings/export');
+                    context.push(const ExportRoute().location);
                   },
                   text: context.l10n.import_export,
                 ),
