@@ -32,7 +32,7 @@ class AboutAppScreen extends StatelessWidget {
       try {
         final map = await NativeSharedPreferences.getSharedPreferencesMap();
         if (!map.containsKey('selfHarmExist') && !map.containsKey('selfHarmPlan.size')) {
-          return 'Konfig soubor stare verze appky byl nalezen';
+          return 'Konfig soubor stare verze appky nebyl nalezen';
         }
         return map.toString().split(',').join('\n');
       } on Exception catch (e) {

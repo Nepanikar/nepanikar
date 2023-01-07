@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
+import 'package:nepanikar/utils/crashlytics_utils.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -24,8 +24,8 @@ class SaveDirectories {
   Future<void> clearSaveDirectories() async {
     try {
       await supportDir.delete(recursive: true);
-    } catch (e) {
-      debugPrint(e.toString());
+    } catch (e, s) {
+      await logExceptionToCrashlytics(e, s, logMessage: 'Error deleting save directories.');
     }
   }
 }
