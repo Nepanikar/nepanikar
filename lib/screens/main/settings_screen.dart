@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
+import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/screens/settings/export_screen.dart';
 import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/utils/extensions.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -60,11 +64,21 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 _SettingsMenuItem(
                   leading: const Icon(Icons.shield_outlined),
+                  // TODO: Add to Localazy
+                  onTap: () {
+                    context.push(const ExportRoute().location);
+                  },
                   text: context.l10n.import_export,
                 ),
                 _SettingsMenuItem(
                   leading: const Icon(Icons.shield_outlined),
                   text: context.l10n.support_us,
+                  onTap: () async {
+                    final url = Uri.parse(
+                      'https://www.darujme.cz/projekt/1203622',
+                    );
+                    await launchUrl(url, mode: LaunchMode.externalApplication);
+                  },
                 ),
                 const _LanguagePicker(),
                 _SettingsMenuItem(

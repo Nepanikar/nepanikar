@@ -2,14 +2,9 @@
 /// *****************************************************
 ///  FlutterGen
 /// *****************************************************
-
-// coverage:ignore-file
-// ignore_for_file: type=lint
-// ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal
-
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
 
 class $AssetsAnimatedIllustrationsGen {
@@ -46,8 +41,14 @@ class $AssetsIconsGen {
 
   $AssetsIconsCheckmarksGen get checkmarks => const $AssetsIconsCheckmarksGen();
 
+  /// File path: assets/icons/export.svg
+  SvgGenImage get export => const SvgGenImage('assets/icons/export.svg');
+
   /// File path: assets/icons/home.svg
   SvgGenImage get home => const SvgGenImage('assets/icons/home.svg');
+
+  /// File path: assets/icons/import.svg
+  SvgGenImage get import => const SvgGenImage('assets/icons/import.svg');
 
   /// File path: assets/icons/logo.svg
   SvgGenImage get logo => const SvgGenImage('assets/icons/logo.svg');
@@ -70,8 +71,19 @@ class $AssetsIconsGen {
   SvgGenImage get warningWavy => const SvgGenImage('assets/icons/warning_wavy.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values =>
-      [calendar, calendarEvent, home, logo, marker, phone, settings, spinner, warningWavy];
+  List<SvgGenImage> get values => [
+        calendar,
+        calendarEvent,
+        export,
+        home,
+        import,
+        logo,
+        marker,
+        phone,
+        settings,
+        spinner,
+        warningWavy
+      ];
 }
 
 class $AssetsIllustrationsGen {
