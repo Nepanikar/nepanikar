@@ -70,7 +70,11 @@ Future<void> setup() async {
 
   // utils
   final appInfo = await PackageInfo.fromPlatform();
-  final config = AppConfig(packageInfo: appInfo);
+  final config = AppConfig(
+    packageInfo: appInfo,
+    googlePlayAppId: 'org.dontpanic',
+    appStoreAppId: '1459513911',
+  );
   registry.registerLazySingleton<AppConfig>(() => config);
 
   await precacheSvgs();
