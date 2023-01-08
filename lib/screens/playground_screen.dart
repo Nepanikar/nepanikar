@@ -10,7 +10,7 @@ import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/games/math/math_game_screen.dart';
 import 'package:nepanikar/helpers/date_helpers.dart';
-import 'package:nepanikar/screens/about_app_screen.dart';
+import 'package:nepanikar/screens/settings/about_app_screen.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_dao.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';

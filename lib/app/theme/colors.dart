@@ -14,6 +14,19 @@ class NepanikarColors {
   static const white = Color(0xffffffff);
   static const purple200 = Color(0xffe2d2ef);
 
+  static final cardShadow = [
+    BoxShadow(
+      color: const Color(0xff280446).withOpacity(0.08),
+      blurRadius: 32,
+      offset: const Offset(0, 8), // changes position of shadow
+    ),
+    BoxShadow(
+      color: const Color(0xff2C0B4A).withOpacity(0.04),
+      blurRadius: 4,
+      offset: const Offset(0, 2), // changes position of shadow
+    ),
+  ];
+
   static const _primarySwatch = <int, Color>{
     50: Color(0xffFAF4FF), //10%
     100: Color(0xffFAF4FF), //20%

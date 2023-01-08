@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
+import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/widgets/nepanikar_horizontal_divider.dart';
 
@@ -39,18 +40,7 @@ class LongTile extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0xff280446).withOpacity(0.08),
-            blurRadius: 32,
-            offset: const Offset(0, 8), // changes position of shadow
-          ),
-          BoxShadow(
-            color: const Color(0xff2C0B4A).withOpacity(0.04),
-            blurRadius: 4,
-            offset: const Offset(0, 2), // changes position of shadow
-          ),
-        ],
+        boxShadow: NepanikarColors.cardShadow,
       ),
       child: Material(
         borderRadius: BorderRadius.circular(16),

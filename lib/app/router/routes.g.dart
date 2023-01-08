@@ -27,6 +27,10 @@ GoRoute get $mainRoute => GoRouteData.$route(
           factory: $ExportRouteExtension._fromState,
         ),
         GoRouteData.$route(
+          path: 'settings/language',
+          factory: $LanguagesRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: 'games/math',
           factory: $MathGameRouteExtension._fromState,
         ),
@@ -311,6 +315,19 @@ extension $ExportRouteExtension on ExportRoute {
 
   String get location => GoRouteData.$location(
         '/settings/export',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $LanguagesRouteExtension on LanguagesRoute {
+  static LanguagesRoute _fromState(GoRouterState state) =>
+      const LanguagesRoute();
+
+  String get location => GoRouteData.$location(
+        '/settings/language',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);

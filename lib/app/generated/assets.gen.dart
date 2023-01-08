@@ -54,6 +54,9 @@ class $AssetsContactsGen {
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/about_app.svg
+  SvgGenImage get aboutApp => const SvgGenImage('assets/icons/about_app.svg');
+
   /// File path: assets/icons/calendar.svg
   SvgGenImage get calendar => const SvgGenImage('assets/icons/calendar.svg');
 
@@ -62,14 +65,38 @@ class $AssetsIconsGen {
 
   $AssetsIconsCheckmarksGen get checkmarks => const $AssetsIconsCheckmarksGen();
 
+  /// File path: assets/icons/delete_data.svg
+  SvgGenImage get deleteData => const SvgGenImage('assets/icons/delete_data.svg');
+
+  /// File path: assets/icons/donate.svg
+  SvgGenImage get donate => const SvgGenImage('assets/icons/donate.svg');
+
   /// File path: assets/icons/export.svg
   SvgGenImage get export => const SvgGenImage('assets/icons/export.svg');
+
+  /// File path: assets/icons/export_data.svg
+  SvgGenImage get exportData => const SvgGenImage('assets/icons/export_data.svg');
+
+  /// File path: assets/icons/facebook.svg
+  SvgGenImage get facebook => const SvgGenImage('assets/icons/facebook.svg');
+
+  /// File path: assets/icons/globe.svg
+  SvgGenImage get globe => const SvgGenImage('assets/icons/globe.svg');
+
+  /// File path: assets/icons/heart.svg
+  SvgGenImage get heart => const SvgGenImage('assets/icons/heart.svg');
 
   /// File path: assets/icons/home.svg
   SvgGenImage get home => const SvgGenImage('assets/icons/home.svg');
 
   /// File path: assets/icons/import.svg
   SvgGenImage get import => const SvgGenImage('assets/icons/import.svg');
+
+  /// File path: assets/icons/instagram.svg
+  SvgGenImage get instagram => const SvgGenImage('assets/icons/instagram.svg');
+
+  /// File path: assets/icons/language.svg
+  SvgGenImage get language => const SvgGenImage('assets/icons/language.svg');
 
   /// File path: assets/icons/logo.svg
   SvgGenImage get logo => const SvgGenImage('assets/icons/logo.svg');
@@ -93,11 +120,20 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [
+        aboutApp,
         calendar,
         calendarEvent,
+        deleteData,
+        donate,
         export,
+        exportData,
+        facebook,
+        globe,
+        heart,
         home,
         import,
+        instagram,
+        language,
         logo,
         marker,
         phone,
@@ -220,8 +256,12 @@ class $AssetsSponsorsGen {
   const $AssetsSponsorsGen();
 
   /// File path: assets/sponsors/sponsor_cesko_digital.png
-  AssetGenImage get sponsorCeskoDigital =>
+  AssetGenImage get sponsorCeskoDigitalPng =>
       const AssetGenImage('assets/sponsors/sponsor_cesko_digital.png');
+
+  /// File path: assets/sponsors/sponsor_cesko_digital.svg
+  SvgGenImage get sponsorCeskoDigitalSvg =>
+      const SvgGenImage('assets/sponsors/sponsor_cesko_digital.svg');
 
   /// File path: assets/sponsors/sponsor_kofi.png
   AssetGenImage get sponsorKofi => const AssetGenImage('assets/sponsors/sponsor_kofi.png');
@@ -241,8 +281,9 @@ class $AssetsSponsorsGen {
   AssetGenImage get sponsorUniqa => const AssetGenImage('assets/sponsors/sponsor_uniqa.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [
-        sponsorCeskoDigital,
+  List<dynamic> get values => [
+        sponsorCeskoDigitalPng,
+        sponsorCeskoDigitalSvg,
         sponsorKofi,
         sponsorLivechatoo,
         sponsorPpf,
