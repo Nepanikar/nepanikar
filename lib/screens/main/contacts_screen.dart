@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/app_constants.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/contact_action_helpers.dart';
 import 'package:nepanikar/screens/contacts/chat_contacts_screen.dart';
 import 'package:nepanikar/screens/contacts/crisis_message_screen.dart';
+import 'package:nepanikar/screens/contacts/email_counselling_screen.dart';
 import 'package:nepanikar/screens/contacts/phone_contacts_screen.dart';
 import 'package:nepanikar/screens/contacts/region_contacts_screen.dart';
 import 'package:nepanikar/services/db/my_contacts/my_contacts_records/my_contacts_record_model.dart';
@@ -45,6 +48,8 @@ class ContactsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final locale = Localizations.localeOf(context);
+
     final modules = <Widget>[
       LongTile(
         text: context.l10n.contacts_message,
@@ -91,6 +96,27 @@ class ContactsScreen extends StatelessWidget {
           ),
         ),
       ),
+      if ([NepanikarLanguages.cs.languageCode, NepanikarLanguages.sk.languageCode]
+          .contains(locale.languageCode)) ...[
+        LongTile(
+          // TODO: l10n
+          text: 'Online terapie',
+          image: Assets.illustrations.contacts.chat.svg(),
+          onTap: () => launchUrLink(AppConstants.nepanikarTherapyUrl),
+        ),
+        LongTile(
+          // TODO: l10n
+          text: 'E-mailová poradna',
+          image: Assets.illustrations.contacts.chat.svg(),
+          onTap: () => context.push(
+            const EmailCounsellingRoute().location,
+            extra: const CrisisMessageRouteExtraData(
+              contactAddress: AppConstants.nepanikarContactEmail,
+              subjectMessage: 'Pomoc z aplikace',
+            ),
+          ),
+        ),
+      ],
     ];
 
     return NepanikarScreenWrapper(

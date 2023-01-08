@@ -10,4 +10,7 @@ class AppConstants {
       'Pellentesque sapien. Quisque tincidunt scelerisque libero.';
 
   static final String loremIpsumShort = loremIpsum.split('.').first;
+
+  static const nepanikarTherapyUrl = 'https://nepanikar.eu/terapie/';
+  static const nepanikarContactEmail = 'pomoc@nepanikar.eu';
 }
