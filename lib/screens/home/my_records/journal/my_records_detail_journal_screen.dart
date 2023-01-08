@@ -106,6 +106,8 @@ class _MyRecordsJournalDetailScreenState extends State<MyRecordsJournalDetailScr
 
   @override
   Widget build(BuildContext context) {
+    final labelTextStyle = NepanikarFonts.bodySmallHeavy.copyWith(fontWeight: FontWeight.w700);
+
     return GestureDetector(
       onTapDown: (_) => FocusScope.of(context).unfocus(),
       child: StreamBuilder<JournalRecord?>(
@@ -128,6 +130,9 @@ class _MyRecordsJournalDetailScreenState extends State<MyRecordsJournalDetailScr
             isModuleList: false,
             isCardStackLayout: true,
             children: [
+              // TODO: l10n
+              Text('Datum zápisu', style: labelTextStyle),
+              const SizedBox(height: 8),
               // TODO: l10n
               NepanikarDatePicker(
                 initialDate: _selectedDate ?? journalRecord.dateTime,
