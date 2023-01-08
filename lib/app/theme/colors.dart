@@ -11,6 +11,8 @@ class NepanikarColors {
   static const success = Color(0xff6FD866);
   static const info = Color(0xffFEC786);
   static const filledContainer = Color(0xffEDE8F3);
+  static const white = Color(0xffffffff);
+  static const purple200 = Color(0xffe2d2ef);
 
   static const _primarySwatch = <int, Color>{
     50: Color(0xffFAF4FF), //10%

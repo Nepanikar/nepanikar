@@ -18,6 +18,7 @@ dependencies:
   flextras: ^1.0.0
   flutter:
     sdk: flutter
+  flutter_file_dialog: ^2.3.2
   flutter_localizations:
     sdk: flutter
   flutter_svg: ^1.1.6
@@ -96,3 +97,4 @@ flutter:
     - assets/illustrations/games/balloons/
     - assets/illustrations/games/swing/
     - assets/meals/
+    - assets/sponsors/

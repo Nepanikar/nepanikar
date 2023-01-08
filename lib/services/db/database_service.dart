@@ -63,10 +63,12 @@ class DatabaseService {
 
   static const _dataPreloadedKey = 'data_preloaded';
 
+  late final databasePath = join(_saveDirectories.dbDirPath, _dbFileName);
+
   /// https://github.com/tekartik/sembast.dart/blob/master/sembast/doc/open.md#preloading-data
   Future<Database> _initDb() async {
     final db = databaseFactoryIo.openDatabase(
-      join(_saveDirectories.dbDirPath, _dbFileName),
+      databasePath,
       version: 1,
       onVersionChanged: (db, oldVersion, newVersion) async {
         // If oldVersion is 0, we are creating the database for the first time.
@@ -233,7 +235,7 @@ class DatabaseService {
   }
 
   Future<void> clearAll() async {
-    await mainStore.drop(database);
+    await mainStore.delete(database);
     await _userSettingsDao.clear();
     await _depressionModuleDb.clearModule();
     await _selfHarmModuleDb.clearModule();

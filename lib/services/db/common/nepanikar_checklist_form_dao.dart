@@ -74,6 +74,6 @@ abstract class NepanikarCheckListFormDao {
   }
 
   Future<void> clear() async {
-    await _store.drop(_db);
+    await _store.delete(_db);
   }
 }

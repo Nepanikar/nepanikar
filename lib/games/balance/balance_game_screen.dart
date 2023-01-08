@@ -55,7 +55,7 @@ class _BalanceGameScreenState extends State<BalanceGameScreen> {
         });
       }
       // Final angle
-      final newSpeed = speed + (angle * 0.0018);
+      final newSpeed = speed + (angle * 0.001);
       setState(() {
         speed = newSpeed;
         angle = angle + newSpeed;

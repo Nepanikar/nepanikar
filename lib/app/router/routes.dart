@@ -7,6 +7,7 @@ import 'package:nepanikar/games/breathing/breathing_game_screen.dart';
 import 'package:nepanikar/games/math/math_game_screen.dart';
 import 'package:nepanikar/screens/about_app_screen.dart';
 import 'package:nepanikar/screens/contacts/chat_contacts_screen.dart';
+import 'package:nepanikar/screens/contacts/crisis_message_screen.dart';
 import 'package:nepanikar/screens/contacts/eating_disorder_contacts_screen.dart';
 import 'package:nepanikar/screens/contacts/phone_contacts_screen.dart';
 import 'package:nepanikar/screens/contacts/region_contacts_screen.dart';
@@ -39,6 +40,8 @@ import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_add_scr
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_detail_screen.dart';
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_edit_screen.dart';
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_records_screen.dart';
+import 'package:nepanikar/screens/home/my_records/journal/my_records_detail_journal_screen.dart';
+import 'package:nepanikar/screens/home/my_records/journal/my_records_journal_records_screen.dart';
 import 'package:nepanikar/screens/home/my_records/mood_track_screen.dart';
 import 'package:nepanikar/screens/home/my_records/my_records_screen.dart';
 import 'package:nepanikar/screens/home/my_records/my_records_sleep_track_screen.dart';
@@ -52,6 +55,8 @@ import 'package:nepanikar/screens/home/suicidal_thoughts/suicidal_thoughts_reaso
 import 'package:nepanikar/screens/home/suicidal_thoughts/suicidal_thoughts_screen.dart';
 import 'package:nepanikar/screens/main/contacts_screen.dart';
 import 'package:nepanikar/screens/main/main_screen.dart';
+import 'package:nepanikar/screens/settings/export_screen.dart';
+import 'package:nepanikar/screens/settings/sponsors_screen.dart';
 
 part 'routes.g.dart';
 
@@ -85,7 +90,9 @@ class MainRoute extends GoRouteData {
 }
 
 const _settingsRoutes = <TypedGoRoute<GoRouteData>>[
+  TypedGoRoute<SponsorsRoute>(path: 'settings/sponsors'),
   TypedGoRoute<AboutAppRoute>(path: 'settings/about-app'),
+  TypedGoRoute<ExportRoute>(path: 'settings/export'),
 ];
 
 const _gameRoutes = <TypedGoRoute<GoRouteData>>[
@@ -98,6 +105,7 @@ const _gameRoutes = <TypedGoRoute<GoRouteData>>[
 
 const _contactRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<ContactsRoute>(path: 'contacts'),
+  TypedGoRoute<CrisisMessageRoute>(path: 'contacts/crisis-message'),
   TypedGoRoute<PhoneContactsRoute>(path: 'contacts/phones'),
   TypedGoRoute<CrisisCenterContactsRoute>(path: 'contacts/crisis-center'),
   TypedGoRoute<ChatContactsRoute>(path: 'contacts/chat'),
@@ -180,4 +188,7 @@ const _myRecordsRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<MyRecordsDiaryAddRoute>(path: 'home/my-records/diary/add'),
   TypedGoRoute<MyRecordsDiaryDetailRoute>(path: 'home/my-records/diary/detail'),
   TypedGoRoute<MyRecordsDiaryEditRoute>(path: 'home/my-records/diary/edit'),
+  TypedGoRoute<MyRecordsDiaryRecordsRoute>(path: 'home/my-records/diary'),
+  TypedGoRoute<MyRecordsJournalRecordsRoute>(path: 'home/my-records/journal'),
+  TypedGoRoute<MyRecordsJournalDetailRoute>(path: 'home/my-records/journal-detail'),
 ];
