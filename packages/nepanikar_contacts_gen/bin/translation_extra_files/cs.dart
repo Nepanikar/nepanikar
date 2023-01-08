@@ -1,7 +1,8 @@
 import 'package:nepanikar_contacts_gen/nepanikar_contacts_gen.dart';
 
-const cs_Contacts = CountryContacts(
-  languageTag: 'cs',
+// ignore: non_constant_identifier_names
+final cs_Contacts = CountryContacts(
+  languageTag: NepanikarLanguages.cs.languageCode,
   phoneContacts: _phoneContacts,
   crisisCenterContacts: _crisisCenterContacts,
   chatContacts: _chatContacts,

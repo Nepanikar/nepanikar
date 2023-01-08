@@ -1,7 +1,8 @@
 import 'package:nepanikar_contacts_gen/nepanikar_contacts_gen.dart';
 
-const sk_Contacts = CountryContacts(
-  languageTag: 'sk',
+// ignore: non_constant_identifier_names
+final sk_Contacts = CountryContacts(
+  languageTag: NepanikarLanguages.sk.languageCode,
   phoneContacts: _phoneContacts,
   chatContacts: _chatContacts,
 );
