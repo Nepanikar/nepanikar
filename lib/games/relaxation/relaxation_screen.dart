@@ -42,7 +42,7 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
 
   late String title;
   late String asset;
-  late String? description;
+  String? description;
   late String? url;
 
   String labelFromMilliseconds(int time) {
@@ -54,7 +54,7 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
     final int rMinutes = sMinutes - (sHours * 60);
     final int rSeconds = sSeconds - (sMinutes * 60 + sHours * 60 * 60);
 
-    return '$rMinutes:$rSeconds';
+    return '${rMinutes < 10 ? '0' : ''}$rMinutes:${rSeconds < 10 ? '0' : ''}$rSeconds';
   }
 
   Future<void> _launchUrl(String url) async {

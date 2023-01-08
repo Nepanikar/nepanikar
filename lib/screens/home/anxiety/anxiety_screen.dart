@@ -9,6 +9,8 @@ import 'package:nepanikar/games/breathing/breathing_exercises_screen.dart';
 import 'package:nepanikar/games/math/math_game_screen.dart';
 import 'package:nepanikar/games/relaxation/relaxations_list_screen.dart';
 import 'package:nepanikar/screens/home/anxiety/anxiety_tips_route.dart';
+import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
+import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
@@ -21,6 +23,8 @@ class AnxietyAppRoute extends GoRouteData {
 
 class AnxietyAppScreen extends StatelessWidget {
   const AnxietyAppScreen({super.key});
+
+  UserSettingsDao get _userSettingsDao => registry.get<UserSettingsDao>();
 
   @override
   Widget build(BuildContext context) {
@@ -50,11 +54,12 @@ class AnxietyAppScreen extends StatelessWidget {
         image: Assets.illustrations.games.swing.swing.svg(),
         onTap: () => context.push(const BalanceGameRoute().location),
       ),
-      LongTile(
-        text: context.l10n.relaxation,
-        image: Assets.illustrations.modules.relaxation.svg(),
-        onTap: () => context.push(const RelaxationsListRoute().location),
-      ),
+      if (['cs', 'sk'].contains(_userSettingsDao.locale.languageCode))
+        LongTile(
+          text: context.l10n.relaxation,
+          image: Assets.illustrations.modules.relaxation.svg(),
+          onTap: () => context.push(const RelaxationsListRoute().location),
+        ),
     ];
 
     return NepanikarScreenWrapper(

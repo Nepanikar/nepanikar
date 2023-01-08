@@ -41,7 +41,7 @@ class RelaxationsListScreen extends StatelessWidget {
           ),
         ),
         LongTile(
-          text: 'Relaxace zastavení',
+          text: 'Večerní zastavení',
           image: Assets.illustrations.modules.relaxation.svg(),
           onTap: () => context.push(
             const RelaxationRoute(
