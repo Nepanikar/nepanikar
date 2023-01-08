@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nepanikar/app/generated/fonts.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/app/theme/sizes.dart';
