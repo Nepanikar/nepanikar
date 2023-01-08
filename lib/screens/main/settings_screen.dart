@@ -7,6 +7,7 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/screens/settings/export_screen.dart';
+import 'package:nepanikar/screens/settings/sponsors_screen.dart';
 import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/utils/app_config.dart';
 import 'package:nepanikar/utils/extensions.dart';
@@ -77,6 +78,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       await launchUrl(uri);
                     }
                   },
+                ),
+                _SettingsMenuItem(
+                  leading: const Icon(Icons.shield_outlined),
+                  text: context.l10n.support,
+                  onTap: () => context.push(const SponsorsRoute().location),
                 ),
                 _SettingsMenuItem(
                   leading: const Icon(Icons.shield_outlined),
