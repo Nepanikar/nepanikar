@@ -23,6 +23,37 @@ class MyRecordsFoodRecordDao {
 
   static const _storeKeyName = 'my_records_food_records';
 
+  Future<String> createRecord() async {
+    return _store.add(_db, getEmptyDailyFoodRecord().toJson());
+  }
+
+  Future<void> updateRecordDate(
+    String id,
+    DailyFoodRecord record,
+    DateTime newDate,
+  ) async {
+    final updatedRecord = record.copyWith(dateTime: newDate);
+    await _store.record(id).update(_db, updatedRecord.toJson());
+  }
+
+  Future<void> updateMenuTakenState(
+    String id,
+    DailyFoodRecord record,
+    FoodType foodType,
+  ) async {
+    final updatedRecord = record.getUpdatedIsTakenByFoodType(foodType);
+    await _store.record(id).update(_db, updatedRecord.toJson());
+  }
+
+  Future<void> updateFoodTypeAnswer(
+    String id,
+    DailyFoodRecord record,
+    DailyFoodRecordAnswer foodTypeAnswer,
+  ) async {
+    final updatedRecord = record.getUpdatedFromAnswer(foodTypeAnswer);
+    await _store.record(id).update(_db, updatedRecord.toJson());
+  }
+
   Future<void> _addRecords(List<DailyFoodRecord> items) async {
     final serializedItems = items.map((item) => item.toJson()).toList();
     await _store.addAll(_db, serializedItems);

@@ -268,6 +268,10 @@ class $AssetsIconsCheckmarksGen {
   /// File path: assets/icons/checkmarks/check_circular.svg
   SvgGenImage get checkCircular => const SvgGenImage('assets/icons/checkmarks/check_circular.svg');
 
+  /// File path: assets/icons/checkmarks/check_circular_unchecked.svg
+  SvgGenImage get checkCircularUnchecked =>
+      const SvgGenImage('assets/icons/checkmarks/check_circular_unchecked.svg');
+
   /// File path: assets/icons/checkmarks/error.svg
   SvgGenImage get error => const SvgGenImage('assets/icons/checkmarks/error.svg');
 
@@ -278,7 +282,7 @@ class $AssetsIconsCheckmarksGen {
   SvgGenImage get success => const SvgGenImage('assets/icons/checkmarks/success.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [checkCircular, error, info, success];
+  List<SvgGenImage> get values => [checkCircular, checkCircularUnchecked, error, info, success];
 }
 
 class $AssetsIconsNavigationGen {

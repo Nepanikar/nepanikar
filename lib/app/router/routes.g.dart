@@ -147,16 +147,25 @@ GoRoute get $mainRoute => GoRouteData.$route(
           factory: $MyRecordsDiaryEditRouteExtension._fromState,
         ),
         GoRouteData.$route(
-          path: 'home/my-records/diary',
-          factory: $MyRecordsDiaryRecordsRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
           path: 'home/my-records/journal',
           factory: $MyRecordsJournalRecordsRouteExtension._fromState,
         ),
         GoRouteData.$route(
           path: 'home/my-records/journal-detail',
           factory: $MyRecordsJournalDetailRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'home/my-records/food-records',
+          factory: $MyRecordsFoodRecordsListRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'home/my-records/food-records/detail',
+          factory: $MyRecordsFoodRecordsDetailMenuListRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'home/my-records/food-records/detail/menu-detail',
+          factory:
+              $MyRecordsFoodRecordsDetailMenuDetailRouteExtension._fromState,
         ),
         GoRouteData.$route(
           path: 'home/suicidal-thoughts',
@@ -708,6 +717,50 @@ extension $MyRecordsJournalDetailRouteExtension on MyRecordsJournalDetailRoute {
 
   String get location => GoRouteData.$location(
         '/home/my-records/journal-detail',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $MyRecordsFoodRecordsListRouteExtension
+    on MyRecordsFoodRecordsListRoute {
+  static MyRecordsFoodRecordsListRoute _fromState(GoRouterState state) =>
+      const MyRecordsFoodRecordsListRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/my-records/food-records',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $MyRecordsFoodRecordsDetailMenuListRouteExtension
+    on MyRecordsFoodRecordsDetailMenuListRoute {
+  static MyRecordsFoodRecordsDetailMenuListRoute _fromState(
+          GoRouterState state) =>
+      const MyRecordsFoodRecordsDetailMenuListRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/my-records/food-records/detail',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $MyRecordsFoodRecordsDetailMenuDetailRouteExtension
+    on MyRecordsFoodRecordsDetailMenuDetailRoute {
+  static MyRecordsFoodRecordsDetailMenuDetailRoute _fromState(
+          GoRouterState state) =>
+      const MyRecordsFoodRecordsDetailMenuDetailRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/my-records/food-records/detail/menu-detail',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
