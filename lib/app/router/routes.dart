@@ -40,6 +40,8 @@ import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_add_scr
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_detail_screen.dart';
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_edit_screen.dart';
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_records_screen.dart';
+import 'package:nepanikar/screens/home/my_records/journal/my_records_detail_journal_screen.dart';
+import 'package:nepanikar/screens/home/my_records/journal/my_records_journal_records_screen.dart';
 import 'package:nepanikar/screens/home/my_records/mood_track_screen.dart';
 import 'package:nepanikar/screens/home/my_records/my_records_screen.dart';
 import 'package:nepanikar/screens/home/my_records/my_records_sleep_track_screen.dart';
@@ -186,4 +188,7 @@ const _myRecordsRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<MyRecordsDiaryAddRoute>(path: 'home/my-records/diary/add'),
   TypedGoRoute<MyRecordsDiaryDetailRoute>(path: 'home/my-records/diary/detail'),
   TypedGoRoute<MyRecordsDiaryEditRoute>(path: 'home/my-records/diary/edit'),
+  TypedGoRoute<MyRecordsDiaryRecordsRoute>(path: 'home/my-records/diary'),
+  TypedGoRoute<MyRecordsJournalRecordsRoute>(path: 'home/my-records/journal'),
+  TypedGoRoute<MyRecordsJournalDetailRoute>(path: 'home/my-records/journal-detail'),
 ];
