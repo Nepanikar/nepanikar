@@ -81,7 +81,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 _SettingsMenuItem(
                   leading: const Icon(Icons.shield_outlined),
-                  text: 'Podpořili nás',
+                  text: context.l10n.support,
                   onTap: () => context.push(const SponsorsRoute().location),
                 ),
                 _SettingsMenuItem(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/widgets/nepanikar_clean_screen_wrapper.dart';
 import 'package:nepanikar/widgets/sponsor_tile.dart';
 
@@ -17,11 +18,12 @@ class SponsorsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NepanikarCleanScreenWrapper(
-      appBarTitle: 'Podpořili nás',
+      appBarTitle: context.l10n.support,
       child: Column(
         children: [
           SponsorTile(
-            title: 'Hlavní parneři',
+            // TODO: l10n
+            title: 'Hlavní partneři',
             type: SponsorType.primary,
             logoPaths: [
               Assets.sponsors.sponsorPpf.path,
@@ -30,7 +32,8 @@ class SponsorsScreen extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           SponsorTile(
-            title: 'Další parneři',
+            // TODO: l10n
+            title: 'Další partneři',
             type: SponsorType.secondary,
             logoPaths: [
               Assets.sponsors.sponsorUniqa.path,
