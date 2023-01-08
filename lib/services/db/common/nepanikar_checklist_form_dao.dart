@@ -1,5 +1,6 @@
 import 'package:nepanikar/services/db/common/checklist_item_model.dart';
 import 'package:nepanikar/services/db/database_service.dart';
+import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 import 'package:sembast/sembast.dart';
 
 abstract class NepanikarCheckListFormDao {
@@ -22,9 +23,9 @@ abstract class NepanikarCheckListFormDao {
     await _store.add(_db, emptyItem);
   }
 
-  Future<void> _addFormTexts(List<String> texts) async {
-    final items = texts.map((text) => ChecklistItem(text: text).toJson()).toList();
-    await _store.addAll(_db, items);
+  Future<void> _addFormItems(List<ChecklistItem> items) async {
+    final serializedItems = items.map((item) => item.toJson()).toList();
+    await _store.addAll(_db, serializedItems);
   }
 
   Future<void> updateFormText(
@@ -60,14 +61,19 @@ abstract class NepanikarCheckListFormDao {
       });
 
   Future<void> preloadDefaultData(List<String> texts) async {
-    await _addFormTexts(texts);
+    await _addFormItems(texts.map((e) => ChecklistItem(text: e)).toList());
   }
 
-  Future<void> doOldVersionMigration() async {
-    // TODO: implement doOldVersionMigration
+  Future<void> doOldVersionMigration(NepanikarChecklistFormDTO checklistConfig) async {
+    final checklistItems = checklistConfig.records;
+    if (checklistItems != null) {
+      await _addFormItems(
+        checklistItems.map((e) => ChecklistItem(text: e.key, isChecked: e.value)).toList(),
+      );
+    }
   }
 
   Future<void> clear() async {
-    await _store.drop(_db);
+    await _store.delete(_db);
   }
 }

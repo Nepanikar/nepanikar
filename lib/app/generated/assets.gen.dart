@@ -62,8 +62,14 @@ class $AssetsIconsGen {
 
   $AssetsIconsCheckmarksGen get checkmarks => const $AssetsIconsCheckmarksGen();
 
+  /// File path: assets/icons/export.svg
+  SvgGenImage get export => const SvgGenImage('assets/icons/export.svg');
+
   /// File path: assets/icons/home.svg
   SvgGenImage get home => const SvgGenImage('assets/icons/home.svg');
+
+  /// File path: assets/icons/import.svg
+  SvgGenImage get import => const SvgGenImage('assets/icons/import.svg');
 
   /// File path: assets/icons/logo.svg
   SvgGenImage get logo => const SvgGenImage('assets/icons/logo.svg');
@@ -86,8 +92,19 @@ class $AssetsIconsGen {
   SvgGenImage get warningWavy => const SvgGenImage('assets/icons/warning_wavy.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values =>
-      [calendar, calendarEvent, home, logo, marker, phone, settings, spinner, warningWavy];
+  List<SvgGenImage> get values => [
+        calendar,
+        calendarEvent,
+        export,
+        home,
+        import,
+        logo,
+        marker,
+        phone,
+        settings,
+        spinner,
+        warningWavy
+      ];
 }
 
 class $AssetsIllustrationsGen {
@@ -199,6 +216,41 @@ class $AssetsMealsGen {
       ];
 }
 
+class $AssetsSponsorsGen {
+  const $AssetsSponsorsGen();
+
+  /// File path: assets/sponsors/sponsor_cesko_digital.png
+  AssetGenImage get sponsorCeskoDigital =>
+      const AssetGenImage('assets/sponsors/sponsor_cesko_digital.png');
+
+  /// File path: assets/sponsors/sponsor_kofi.png
+  AssetGenImage get sponsorKofi => const AssetGenImage('assets/sponsors/sponsor_kofi.png');
+
+  /// File path: assets/sponsors/sponsor_livechatoo.png
+  AssetGenImage get sponsorLivechatoo =>
+      const AssetGenImage('assets/sponsors/sponsor_livechatoo.png');
+
+  /// File path: assets/sponsors/sponsor_ppf.png
+  AssetGenImage get sponsorPpf => const AssetGenImage('assets/sponsors/sponsor_ppf.png');
+
+  /// File path: assets/sponsors/sponsor_rodiny_orlickych.png
+  AssetGenImage get sponsorRodinyOrlickych =>
+      const AssetGenImage('assets/sponsors/sponsor_rodiny_orlickych.png');
+
+  /// File path: assets/sponsors/sponsor_uniqa.png
+  AssetGenImage get sponsorUniqa => const AssetGenImage('assets/sponsors/sponsor_uniqa.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [
+        sponsorCeskoDigital,
+        sponsorKofi,
+        sponsorLivechatoo,
+        sponsorPpf,
+        sponsorRodinyOrlickych,
+        sponsorUniqa
+      ];
+}
+
 class $AssetsAnimatedIllustrationsMoodsGen {
   const $AssetsAnimatedIllustrationsMoodsGen();
 
@@ -232,6 +284,10 @@ class $AssetsIconsCheckmarksGen {
   /// File path: assets/icons/checkmarks/check_circular.svg
   SvgGenImage get checkCircular => const SvgGenImage('assets/icons/checkmarks/check_circular.svg');
 
+  /// File path: assets/icons/checkmarks/check_circular_unchecked.svg
+  SvgGenImage get checkCircularUnchecked =>
+      const SvgGenImage('assets/icons/checkmarks/check_circular_unchecked.svg');
+
   /// File path: assets/icons/checkmarks/error.svg
   SvgGenImage get error => const SvgGenImage('assets/icons/checkmarks/error.svg');
 
@@ -242,7 +298,7 @@ class $AssetsIconsCheckmarksGen {
   SvgGenImage get success => const SvgGenImage('assets/icons/checkmarks/success.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [checkCircular, error, info, success];
+  List<SvgGenImage> get values => [checkCircular, checkCircularUnchecked, error, info, success];
 }
 
 class $AssetsIconsNavigationGen {
@@ -423,6 +479,7 @@ class Assets {
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsIllustrationsGen illustrations = $AssetsIllustrationsGen();
   static const $AssetsMealsGen meals = $AssetsMealsGen();
+  static const $AssetsSponsorsGen sponsors = $AssetsSponsorsGen();
 }
 
 class AssetGenImage {

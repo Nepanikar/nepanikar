@@ -25,6 +25,13 @@ class NepanikarFonts {
     color: NepanikarColors.dark,
   );
 
+  static const dialogTitle = TextStyle(
+    fontSize: 20,
+    height: 1.35,
+    fontWeight: FontWeight.w700,
+    color: NepanikarColors.dark,
+  );
+
   static const bodyBlack = TextStyle(
     fontSize: 15,
     height: 1.333,

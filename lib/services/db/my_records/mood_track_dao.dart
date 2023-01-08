@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:nepanikar/helpers/date_helpers.dart';
 import 'package:nepanikar/services/db/database_service.dart';
@@ -27,8 +26,8 @@ class MoodTrackDao with CustomFilters {
 
   static const _storeKeyName = 'my_records_mood_track';
 
-  Future<void> saveMood(Mood mood, [DateTime? dateTime]) async {
-    final dateTimeToSave = dateTime ?? DateTime.now();
+  Future<void> saveMood(Mood mood) async {
+    final dateTimeToSave = DateTime.now();
     final date = DateTime.utc(dateTimeToSave.year, dateTimeToSave.month, dateTimeToSave.day);
     final moodTrack = MoodTrack(mood: mood, date: date);
     final json = moodTrack.toJson();
@@ -45,22 +44,14 @@ class MoodTrackDao with CustomFilters {
     });
   }
 
-  Stream<List<MoodTrack>> get allMoodTracksStream =>
-      _store.query().onSnapshots(_db).map((snapshots) {
-        final results = snapshots
-            .map((snapshot) {
-              final json = snapshot.value;
-              try {
-                return MoodTrack.fromJson(json);
-              } catch (e) {
-                return null;
-              }
-            })
-            .whereType<MoodTrack>()
-            .sorted((a, b) => a.date.compareTo(b.date))
-            .toList();
-        return results;
-      });
+  Future<void> saveMoods(List<MoodTrack> items) async {
+    await _store.addAll(_db, items.map((m) => m.toJson()).toList());
+  }
+
+  Stream<List<MoodTrack>> get allMoodTracksStream => _store
+      .query(finder: Finder(sortOrders: [SortOrder(FilterKeys.date)]))
+      .onSnapshots(_db)
+      .map((snapshots) => snapshots.map((snapshot) => MoodTrack.fromJson(snapshot.value)).toList());
 
   Stream<MoodTrack?> get latestMoodTrackStream => _store
           .query(finder: Finder(filter: getDateEqualsFilter(getNowDateUtc())))
@@ -79,17 +70,19 @@ class MoodTrackDao with CustomFilters {
   Future<void> doOldVersionMigration(MyRecordsMoodTrackDTO moodTrackConfig) async {
     final valuesMap = moodTrackConfig.values;
     if (valuesMap != null) {
-      for (final moodTrackEntry in valuesMap.entries) {
-        final mood = Mood.fromInteger(moodTrackEntry.value);
-        if (mood != null) {
-          final dateTime = moodTrackEntry.key;
-          await saveMood(mood, dateTime);
-        }
-      }
+      final moodTracks = valuesMap.entries
+          .map((dateMoodEntry) {
+            final date = dateMoodEntry.key.toUtcDate();
+            final mood = Mood.fromInteger(dateMoodEntry.value);
+            return mood == null ? null : MoodTrack(date: date, mood: mood);
+          })
+          .whereType<MoodTrack>()
+          .toList();
+      await saveMoods(moodTracks);
     }
   }
 
   Future<void> clear() async {
-    await _store.drop(_db);
+    await _store.delete(_db);
   }
 }

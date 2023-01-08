@@ -7,6 +7,7 @@ environment:
   sdk: ">=2.18.1 <3.0.0"
 
 dependencies:
+  adaptive_dialog: ^1.8.0+1
   assets_audio_player: ^3.0.6
   collection: ^1.16.0
   cupertino_icons: ^1.0.5
@@ -18,6 +19,7 @@ dependencies:
   flextras: ^1.0.0
   flutter:
     sdk: flutter
+  flutter_file_dialog: ^2.3.2
   flutter_localizations:
     sdk: flutter
   flutter_svg: ^1.1.6
@@ -28,6 +30,10 @@ dependencies:
   json_annotation: ^4.7.0
   linkify: ^4.1.0
   lottie: ^2.1.0
+  native_shared_preferences:
+    git:
+      url: https://github.com/Nepanikar/native_shared_preferences.git
+      ref: 9c85498974324f927bde0c0dd69bd45fafba71e9
   nepanikar_contacts_gen:
     path: ./packages/nepanikar_contacts_gen
   nepanikar_data_migration:
@@ -41,6 +47,7 @@ dependencies:
   sembast: ^3.3.1
   time_machine: ^0.9.17
   timer_builder: ^2.0.0
+  tuple: ^2.0.1
   url_launcher: ^6.1.7
 
 dev_dependencies:
@@ -91,4 +98,5 @@ flutter:
     - assets/illustrations/games/balloons/
     - assets/illustrations/games/swing/
     - assets/meals/
+    - assets/sponsors/
     - assets/audio/

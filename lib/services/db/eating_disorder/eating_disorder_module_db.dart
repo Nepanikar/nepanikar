@@ -48,13 +48,36 @@ class EatingDisorderModuleDb implements NepanikarModuleDb {
     await _eatingDisorderFoodAfraidOfDao.clear();
   }
 
-  Future<void> doModuleOldVersionMigration(NepanikarConfig moduleConfig) async {
-    //await _eatingDisorderFoodCreativeDao.doOldVersionMigration(); // TODO
-    //await _eatingDisorderFoodMotivationDao.doOldVersionMigration(); // TODO
-    //await _eatingDisorderFoodChallengesDao.doOldVersionMigration(); // TODO
-    //await _eatingDisorderLikeOnMyselfDao.doOldVersionMigration(); // TODO
-    //await _eatingDisorderFoodILikeDao.doOldVersionMigration(); // TODO
-    //await _eatingDisorderFoodAfraidOfDao.doOldVersionMigration(); // TODO
+  Future<void> doModuleOldVersionMigration(EatingDisorderModuleDTO moduleConfig) async {
+    final foodCreativeConfig = moduleConfig.eatingDisorderFoodCreativeConfig;
+    if (foodCreativeConfig != null) {
+      await _eatingDisorderFoodCreativeDao.doOldVersionMigration(foodCreativeConfig);
+    }
+
+    final foodMotivationConfig = moduleConfig.eatingDisorderFoodMotivationConfig;
+    if (foodMotivationConfig != null) {
+      await _eatingDisorderFoodMotivationDao.doOldVersionMigration(foodMotivationConfig);
+    }
+
+    final foodChallengesConfig = moduleConfig.eatingDisorderFoodChallengesConfig;
+    if (foodChallengesConfig != null) {
+      await _eatingDisorderFoodChallengesDao.doOldVersionMigration(foodChallengesConfig);
+    }
+
+    final likeOnMyselfConfig = moduleConfig.eatingDisorderFoodLikeOnMyselfConfig;
+    if (likeOnMyselfConfig != null) {
+      await _eatingDisorderLikeOnMyselfDao.doOldVersionMigration(likeOnMyselfConfig);
+    }
+
+    final foodILikeConfig = moduleConfig.eatingDisorderFoodILikeConfig;
+    if (foodILikeConfig != null) {
+      await _eatingDisorderFoodILikeDao.doOldVersionMigration(foodILikeConfig);
+    }
+
+    final foodAfraidOfConfig = moduleConfig.eatingDisorderFoodAfraidOfConfig;
+    if (foodAfraidOfConfig != null) {
+      await _eatingDisorderFoodAfraidOfDao.doOldVersionMigration(foodAfraidOfConfig);
+    }
   }
 
   @override

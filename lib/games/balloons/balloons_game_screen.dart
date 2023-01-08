@@ -82,7 +82,7 @@ class _BalloonsGameScreenState extends State<BalloonsGameScreen> with TickerProv
     setState(() {
       minSpeed = 0.01 * size.height;
       speedMultiplier = 0.01 * size.height;
-      wiggleMultiplier = 0.05 * size.height;
+      wiggleMultiplier = 0.02 * size.height;
       sceneWidth = size.width;
       sceneHeight = size.height;
       balloons = List.generate(

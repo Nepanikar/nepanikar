@@ -16,6 +16,7 @@ class LongTile extends StatelessWidget {
     this.trailing,
     this.subContent,
     this.backgroundColor,
+    this.showSubContentSeparator = true,
   });
 
   final Color? backgroundColor;
@@ -23,9 +24,10 @@ class LongTile extends StatelessWidget {
   final TextStyle textTextStyle;
   final String? description;
   final TextStyle descriptionTextStyle;
-  final Widget image;
+  final Widget? image;
   final VoidCallback? onTap;
   final VoidCallback? onLongPress;
+  final bool showSubContentSeparator;
 
   /// Defaults to arrow right icon.
   final Widget? trailing;
@@ -64,14 +66,16 @@ class LongTile extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
                 child: Row(
+                  crossAxisAlignment:
+                      image == null ? CrossAxisAlignment.start : CrossAxisAlignment.center,
                   children: [
-                    ConstrainedBox(
-                      constraints: BoxConstraints.tight(const Size.square(40)),
-                      child: image,
-                    ),
-                    const SizedBox(
-                      width: 16,
-                    ),
+                    if (image != null) ...[
+                      ConstrainedBox(
+                        constraints: BoxConstraints.tight(const Size.square(40)),
+                        child: image,
+                      ),
+                      const SizedBox(width: 16),
+                    ],
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,12 +102,13 @@ class LongTile extends StatelessWidget {
               ),
             ),
             if (subContent != null) ...[
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: Theme.of(context).listTileTheme.horizontalTitleGap ?? 0,
+              if (showSubContentSeparator)
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: Theme.of(context).listTileTheme.horizontalTitleGap ?? 0,
+                  ),
+                  child: const NepanikarHorizontalDivider(),
                 ),
-                child: const NepanikarHorizontalDivider(),
-              ),
               subContent!,
             ],
           ],

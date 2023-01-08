@@ -21,7 +21,7 @@ Future<void> main(List<String> arguments) async {
   const filePath = './bin/example_data/DontPanic_small.conf';
   final conf = nep_data_migration.NepanikarConfigParser.parseConfigFile(File(filePath));
   print(
-    conf.myRecordsModuleConfig?.foodConfig?.records
+    conf.myRecordsModuleConfig?.foodRecordConfig?.records
         .toString()
         .replaceAll('FoodRecordDTO', '\n\nFoodRecordDTO'),
   );

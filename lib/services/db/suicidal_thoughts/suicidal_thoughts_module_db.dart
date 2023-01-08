@@ -28,9 +28,16 @@ class SuicidalThoughtsModuleDb implements NepanikarModuleDb {
     await _suicidalThoughtsReasonsNoDao.clear();
   }
 
-  Future<void> doModuleOldVersionMigration(NepanikarConfig moduleConfig) async {
-    //await _suicidalThoughtsPlanDao.doOldVersionMigration(); // TODO
-    //await _suicidalThoughtsReasonsNoDao.doOldVersionMigration(); // TODO
+  Future<void> doModuleOldVersionMigration(SuicidalThoughtsModuleDTO moduleConfig) async {
+    final planFormConfig = moduleConfig.suicidalThoughtsPlanConfig;
+    if (planFormConfig != null) {
+      await _suicidalThoughtsPlanDao.doOldVersionMigration(planFormConfig);
+    }
+
+    final reasonsNoConfig = moduleConfig.suicidalThoughtsReasonsNoConfig;
+    if (reasonsNoConfig != null) {
+      await _suicidalThoughtsReasonsNoDao.doOldVersionMigration(reasonsNoConfig);
+    }
   }
 
   @override

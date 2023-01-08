@@ -2,6 +2,7 @@ import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/services/db/filters.dart';
 import 'package:nepanikar/services/db/my_records/diary/diary_record_model.dart';
 import 'package:nepanikar/utils/registry.dart';
+import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 import 'package:sembast/sembast.dart';
 
 class MyRecordsDiaryDao {
@@ -25,6 +26,11 @@ class MyRecordsDiaryDao {
   Future<String> createRecord(DiaryRecord diaryRecord) async {
     final item = diaryRecord.toJson();
     return _store.add(_db, item);
+  }
+
+  Future<void> _addRecords(List<DiaryRecord> items) async {
+    final serializedItems = items.map((item) => item.toJson()).toList();
+    await _store.addAll(_db, serializedItems);
   }
 
   Future<void> updateRecord(
@@ -62,11 +68,23 @@ class MyRecordsDiaryDao {
         return Map.fromEntries(entries);
       });
 
-  Future<void> doOldVersionMigration() async {
-    // TODO: implement doOldVersionMigration
+  Future<void> doOldVersionMigration(MyRecordsDiaryDTO diaryConfig) async {
+    final recordEntries = diaryConfig.recordEntries;
+    if (recordEntries != null) {
+      final diaryRecords = recordEntries
+          .map(
+            (dateTextEntry) => DiaryRecord(
+              dateTime: dateTextEntry.key,
+              title: '',
+              text: dateTextEntry.value,
+            ),
+          )
+          .toList();
+      await _addRecords(diaryRecords);
+    }
   }
 
   Future<void> clear() async {
-    await _store.drop(_db);
+    await _store.delete(_db);
   }
 }

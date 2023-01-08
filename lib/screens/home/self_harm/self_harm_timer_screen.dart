@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
+import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/localization_helpers.dart';
+import 'package:nepanikar/screens/main/contacts_screen.dart';
 import 'package:nepanikar/services/db/self_harm/self_harm_timer_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
+import 'package:nepanikar/widgets/adaptive_dialog.dart';
 import 'package:nepanikar/widgets/nepanikar_button.dart';
 import 'package:nepanikar/widgets/nepanikar_horizontal_divider.dart';
 import 'package:time_machine/time_machine.dart';
@@ -85,9 +88,25 @@ class SelfHarmTimerScreen extends StatelessWidget {
                                 )
                               else
                                 NepanikarButton(
-                                  onTap: () async {
-                                    await _selfHarmTimerDao.stopSelfHarmTimer();
-                                    await _selfHarmTimerDao.startSelfHarmTimer();
+                                  onTap: () {
+                                    showAdaptiveDialog(
+                                      context,
+                                      description: context.l10n.really_stop_timer,
+                                      onOk: () async {
+                                        await _selfHarmTimerDao.stopSelfHarmTimer();
+                                        await _selfHarmTimerDao.startSelfHarmTimer();
+                                        // ignore: use_build_context_synchronously
+                                        await showAdaptiveDialog(
+                                          context,
+                                          description: context.l10n.need_help,
+                                          onOk: () => context.push(const ContactsRoute().location),
+                                          okLabel: context.l10n.mood_help_yes,
+                                          cancelLabel: context.l10n.mood_help_no,
+                                        );
+                                      },
+                                      okLabel: context.l10n.mood_help_yes,
+                                      cancelLabel: context.l10n.mood_help_no,
+                                    );
                                   },
                                   expandToContentWidth: true,
                                   text: context.l10n.stop,

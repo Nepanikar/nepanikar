@@ -32,10 +32,21 @@ class DepressionModuleDb implements NepanikarModuleDb {
     await _depressionPraiseMyAchievementsDao.clear();
   }
 
-  Future<void> doModuleOldVersionMigration(NepanikarConfig moduleConfig) async {
-    //await _depressionActivityPlanDao.doOldVersionMigration(); // TODO
-    //await _depressionNiceMadeHappyDao.doOldVersionMigration(); // TODO
-    //await _depressionPraiseMyAchievementsDao.doOldVersionMigration(); // TODO
+  Future<void> doModuleOldVersionMigration(DepressionModuleDTO moduleConfig) async {
+    final activityPlanConfig = moduleConfig.depressionActivityPlanConfig;
+    if (activityPlanConfig != null) {
+      await _depressionActivityPlanDao.doOldVersionMigration(activityPlanConfig);
+    }
+
+    final niceMadeHappyConfig = moduleConfig.depressionNiceMadeHappyConfig;
+    if (niceMadeHappyConfig != null) {
+      await _depressionNiceMadeHappyDao.doOldVersionMigration(niceMadeHappyConfig);
+    }
+
+    final praiseMyAchievementsConfig = moduleConfig.depressionPraiseMyAchievementsConfig;
+    if (praiseMyAchievementsConfig != null) {
+      await _depressionPraiseMyAchievementsDao.doOldVersionMigration(praiseMyAchievementsConfig);
+    }
   }
 
   @override
