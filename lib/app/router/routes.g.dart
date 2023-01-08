@@ -15,8 +15,16 @@ GoRoute get $mainRoute => GoRouteData.$route(
       factory: $MainRouteExtension._fromState,
       routes: [
         GoRouteData.$route(
+          path: 'settings/sponsors',
+          factory: $SponsorsRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: 'settings/about-app',
           factory: $AboutAppRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'settings/export',
+          factory: $ExportRouteExtension._fromState,
         ),
         GoRouteData.$route(
           path: 'games/math',
@@ -41,6 +49,10 @@ GoRoute get $mainRoute => GoRouteData.$route(
         GoRouteData.$route(
           path: 'contacts',
           factory: $ContactsRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'contacts/crisis-message',
+          factory: $CrisisMessageRouteExtension._fromState,
         ),
         GoRouteData.$route(
           path: 'contacts/phones',
@@ -133,6 +145,14 @@ GoRoute get $mainRoute => GoRouteData.$route(
         GoRouteData.$route(
           path: 'home/my-records/diary/edit',
           factory: $MyRecordsDiaryEditRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'home/my-records/journal',
+          factory: $MyRecordsJournalRecordsRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'home/my-records/journal-detail',
+          factory: $MyRecordsJournalDetailRouteExtension._fromState,
         ),
         GoRouteData.$route(
           path: 'home/my-records/food-records',
@@ -250,11 +270,35 @@ extension $MainRouteExtension on MainRoute {
   void push(BuildContext context) => context.push(location, extra: this);
 }
 
+extension $SponsorsRouteExtension on SponsorsRoute {
+  static SponsorsRoute _fromState(GoRouterState state) => const SponsorsRoute();
+
+  String get location => GoRouteData.$location(
+        '/settings/sponsors',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
 extension $AboutAppRouteExtension on AboutAppRoute {
   static AboutAppRoute _fromState(GoRouterState state) => const AboutAppRoute();
 
   String get location => GoRouteData.$location(
         '/settings/about-app',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $ExportRouteExtension on ExportRoute {
+  static ExportRoute _fromState(GoRouterState state) => const ExportRoute();
+
+  String get location => GoRouteData.$location(
+        '/settings/export',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
@@ -333,6 +377,19 @@ extension $ContactsRouteExtension on ContactsRoute {
 
   String get location => GoRouteData.$location(
         '/contacts',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $CrisisMessageRouteExtension on CrisisMessageRoute {
+  static CrisisMessageRoute _fromState(GoRouterState state) =>
+      const CrisisMessageRoute();
+
+  String get location => GoRouteData.$location(
+        '/contacts/crisis-message',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
@@ -633,6 +690,33 @@ extension $MyRecordsDiaryEditRouteExtension on MyRecordsDiaryEditRoute {
 
   String get location => GoRouteData.$location(
         '/home/my-records/diary/edit',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $MyRecordsJournalRecordsRouteExtension
+    on MyRecordsJournalRecordsRoute {
+  static MyRecordsJournalRecordsRoute _fromState(GoRouterState state) =>
+      const MyRecordsJournalRecordsRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/my-records/journal',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $MyRecordsJournalDetailRouteExtension on MyRecordsJournalDetailRoute {
+  static MyRecordsJournalDetailRoute _fromState(GoRouterState state) =>
+      const MyRecordsJournalDetailRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/my-records/journal-detail',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
