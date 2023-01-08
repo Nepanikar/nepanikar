@@ -151,6 +151,18 @@ GoRoute get $mainRoute => GoRouteData.$route(
           factory: $MyRecordsDiaryEditRouteExtension._fromState,
         ),
         GoRouteData.$route(
+          path: 'home/my-records/diary',
+          factory: $MyRecordsDiaryRecordsRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'home/my-records/journal',
+          factory: $MyRecordsJournalRecordsRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'home/my-records/journal-detail',
+          factory: $MyRecordsJournalDetailRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: 'home/suicidal-thoughts',
           factory: $SuicidalThoughtsRouteExtension._fromState,
         ),
@@ -686,6 +698,33 @@ extension $MyRecordsDiaryEditRouteExtension on MyRecordsDiaryEditRoute {
 
   String get location => GoRouteData.$location(
         '/home/my-records/diary/edit',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $MyRecordsJournalRecordsRouteExtension
+    on MyRecordsJournalRecordsRoute {
+  static MyRecordsJournalRecordsRoute _fromState(GoRouterState state) =>
+      const MyRecordsJournalRecordsRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/my-records/journal',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $MyRecordsJournalDetailRouteExtension on MyRecordsJournalDetailRoute {
+  static MyRecordsJournalDetailRoute _fromState(GoRouterState state) =>
+      const MyRecordsJournalDetailRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/my-records/journal-detail',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);

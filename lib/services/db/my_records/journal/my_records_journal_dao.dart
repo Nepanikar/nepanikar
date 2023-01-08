@@ -45,7 +45,8 @@ class MyRecordsJournalDao {
     await _store.record(key).delete(_db);
   }
 
-  Stream<JournalRecord?> watchRecordById(String key) => _store.record(key).onSnapshot(_db).map((snapshot) {
+  Stream<JournalRecord?> watchRecordById(String key) =>
+      _store.record(key).onSnapshot(_db).map((snapshot) {
         final json = snapshot?.value;
         if (json == null) return null;
         return JournalRecord.fromJson(json);
@@ -74,7 +75,9 @@ class MyRecordsJournalDao {
           .map(
             (r) => JournalRecord(
               dateTime: r.date,
-              answers: r.answers.map((a) => JournalRecordAnswer(question: a.item1, answer: a.item2)).toList(),
+              answers: r.answers
+                  .map((a) => JournalRecordAnswer(question: a.item1, answer: a.item2))
+                  .toList(),
             ),
           )
           .toList();
