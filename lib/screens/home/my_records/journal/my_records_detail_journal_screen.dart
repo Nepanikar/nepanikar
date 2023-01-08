@@ -145,12 +145,13 @@ class _MyRecordsJournalDetailScreenState extends State<MyRecordsJournalDetailScr
                 text: 'Uložit',
                 expandToContentWidth: true,
                 onTap: () async {
+                  final goRouter = GoRouter.of(context);
                   final journalRecord = _constructJournalRecord(_selectedDate!);
                   await _myRecordsJournalDao.updateRecord(
                     widget.journalId,
                     updatedJournalRecord: journalRecord,
                   );
-                  if (mounted) FocusScope.of(context).unfocus();
+                  goRouter.pop();
                 },
               ),
               const SizedBox(height: 16),
