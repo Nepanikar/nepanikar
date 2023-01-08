@@ -2,16 +2,22 @@
 /// *****************************************************
 ///  FlutterGen
 /// *****************************************************
-import 'package:flutter/services.dart';
+
+// coverage:ignore-file
+// ignore_for_file: type=lint
+// ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal
+
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
 
 class $AssetsAnimatedIllustrationsGen {
   const $AssetsAnimatedIllustrationsGen();
 
   /// File path: assets/animated_illustrations/confetti.json
-  LottieGenImage get confetti => const LottieGenImage('assets/animated_illustrations/confetti.json');
+  LottieGenImage get confetti =>
+      const LottieGenImage('assets/animated_illustrations/confetti.json');
 
   $AssetsAnimatedIllustrationsMoodsGen get moods => const $AssetsAnimatedIllustrationsMoodsGen();
 
@@ -70,8 +76,19 @@ class $AssetsIconsGen {
   SvgGenImage get warningWavy => const SvgGenImage('assets/icons/warning_wavy.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values =>
-      [calendar, calendarEvent, export, home, import, logo, marker, phone, settings, spinner, warningWavy];
+  List<SvgGenImage> get values => [
+        calendar,
+        calendarEvent,
+        export,
+        home,
+        import,
+        logo,
+        marker,
+        phone,
+        settings,
+        spinner,
+        warningWavy
+      ];
 }
 
 class $AssetsIllustrationsGen {
@@ -187,45 +204,59 @@ class $AssetsSponsorsGen {
   const $AssetsSponsorsGen();
 
   /// File path: assets/sponsors/sponsor_cesko_digital.png
-  AssetGenImage get sponsorCeskoDigital => const AssetGenImage('assets/sponsors/sponsor_cesko_digital.png');
+  AssetGenImage get sponsorCeskoDigital =>
+      const AssetGenImage('assets/sponsors/sponsor_cesko_digital.png');
 
   /// File path: assets/sponsors/sponsor_kofi.png
   AssetGenImage get sponsorKofi => const AssetGenImage('assets/sponsors/sponsor_kofi.png');
 
   /// File path: assets/sponsors/sponsor_livechatoo.png
-  AssetGenImage get sponsorLivechatoo => const AssetGenImage('assets/sponsors/sponsor_livechatoo.png');
+  AssetGenImage get sponsorLivechatoo =>
+      const AssetGenImage('assets/sponsors/sponsor_livechatoo.png');
 
   /// File path: assets/sponsors/sponsor_ppf.png
   AssetGenImage get sponsorPpf => const AssetGenImage('assets/sponsors/sponsor_ppf.png');
 
   /// File path: assets/sponsors/sponsor_rodiny_orlickych.png
-  AssetGenImage get sponsorRodinyOrlickych => const AssetGenImage('assets/sponsors/sponsor_rodiny_orlickych.png');
+  AssetGenImage get sponsorRodinyOrlickych =>
+      const AssetGenImage('assets/sponsors/sponsor_rodiny_orlickych.png');
 
   /// File path: assets/sponsors/sponsor_uniqa.png
   AssetGenImage get sponsorUniqa => const AssetGenImage('assets/sponsors/sponsor_uniqa.png');
 
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [sponsorCeskoDigital, sponsorKofi, sponsorLivechatoo, sponsorPpf, sponsorRodinyOrlickych, sponsorUniqa];
+  List<AssetGenImage> get values => [
+        sponsorCeskoDigital,
+        sponsorKofi,
+        sponsorLivechatoo,
+        sponsorPpf,
+        sponsorRodinyOrlickych,
+        sponsorUniqa
+      ];
 }
 
 class $AssetsAnimatedIllustrationsMoodsGen {
   const $AssetsAnimatedIllustrationsMoodsGen();
 
   /// File path: assets/animated_illustrations/moods/mood_0_sad.json
-  LottieGenImage get mood0Sad => const LottieGenImage('assets/animated_illustrations/moods/mood_0_sad.json');
+  LottieGenImage get mood0Sad =>
+      const LottieGenImage('assets/animated_illustrations/moods/mood_0_sad.json');
 
   /// File path: assets/animated_illustrations/moods/mood_1_bad.json
-  LottieGenImage get mood1Bad => const LottieGenImage('assets/animated_illustrations/moods/mood_1_bad.json');
+  LottieGenImage get mood1Bad =>
+      const LottieGenImage('assets/animated_illustrations/moods/mood_1_bad.json');
 
   /// File path: assets/animated_illustrations/moods/mood_2_okay.json
-  LottieGenImage get mood2Okay => const LottieGenImage('assets/animated_illustrations/moods/mood_2_okay.json');
+  LottieGenImage get mood2Okay =>
+      const LottieGenImage('assets/animated_illustrations/moods/mood_2_okay.json');
 
   /// File path: assets/animated_illustrations/moods/mood_3_good.json
-  LottieGenImage get mood3Good => const LottieGenImage('assets/animated_illustrations/moods/mood_3_good.json');
+  LottieGenImage get mood3Good =>
+      const LottieGenImage('assets/animated_illustrations/moods/mood_3_good.json');
 
   /// File path: assets/animated_illustrations/moods/mood_4_happy.json
-  LottieGenImage get mood4Happy => const LottieGenImage('assets/animated_illustrations/moods/mood_4_happy.json');
+  LottieGenImage get mood4Happy =>
+      const LottieGenImage('assets/animated_illustrations/moods/mood_4_happy.json');
 
   /// List of all assets
   List<LottieGenImage> get values => [mood0Sad, mood1Bad, mood2Okay, mood3Good, mood4Happy];
@@ -279,7 +310,8 @@ class $AssetsIllustrationsContactsGen {
   SvgGenImage get chat => const SvgGenImage('assets/illustrations/contacts/chat.svg');
 
   /// File path: assets/illustrations/contacts/crisis_centers.svg
-  SvgGenImage get crisisCenters => const SvgGenImage('assets/illustrations/contacts/crisis_centers.svg');
+  SvgGenImage get crisisCenters =>
+      const SvgGenImage('assets/illustrations/contacts/crisis_centers.svg');
 
   /// File path: assets/illustrations/contacts/my_contacts.svg
   SvgGenImage get myContacts => const SvgGenImage('assets/illustrations/contacts/my_contacts.svg');
@@ -288,7 +320,8 @@ class $AssetsIllustrationsContactsGen {
   SvgGenImage get phones => const SvgGenImage('assets/illustrations/contacts/phones.svg');
 
   /// File path: assets/illustrations/contacts/universities.svg
-  SvgGenImage get universities => const SvgGenImage('assets/illustrations/contacts/universities.svg');
+  SvgGenImage get universities =>
+      const SvgGenImage('assets/illustrations/contacts/universities.svg');
 
   /// List of all assets
   List<SvgGenImage> get values => [chat, crisisCenters, myContacts, phones, universities];
@@ -306,13 +339,15 @@ class $AssetsIllustrationsModulesGen {
   const $AssetsIllustrationsModulesGen();
 
   /// File path: assets/illustrations/modules/anxiety_panic.svg
-  SvgGenImage get anxietyPanic => const SvgGenImage('assets/illustrations/modules/anxiety_panic.svg');
+  SvgGenImage get anxietyPanic =>
+      const SvgGenImage('assets/illustrations/modules/anxiety_panic.svg');
 
   /// File path: assets/illustrations/modules/depression.svg
   SvgGenImage get depression => const SvgGenImage('assets/illustrations/modules/depression.svg');
 
   /// File path: assets/illustrations/modules/eating_disorder.svg
-  SvgGenImage get eatingDisorder => const SvgGenImage('assets/illustrations/modules/eating_disorder.svg');
+  SvgGenImage get eatingDisorder =>
+      const SvgGenImage('assets/illustrations/modules/eating_disorder.svg');
 
   /// File path: assets/illustrations/modules/my_records.svg
   SvgGenImage get myRecords => const SvgGenImage('assets/illustrations/modules/my_records.svg');
@@ -324,7 +359,8 @@ class $AssetsIllustrationsModulesGen {
   SvgGenImage get selfHarm => const SvgGenImage('assets/illustrations/modules/self_harm.svg');
 
   /// File path: assets/illustrations/modules/suicidal_thoughts.svg
-  SvgGenImage get suicidalThoughts => const SvgGenImage('assets/illustrations/modules/suicidal_thoughts.svg');
+  SvgGenImage get suicidalThoughts =>
+      const SvgGenImage('assets/illustrations/modules/suicidal_thoughts.svg');
 
   /// List of all assets
   List<SvgGenImage> get values =>
@@ -357,22 +393,27 @@ class $AssetsIllustrationsGamesBalloonsGen {
   const $AssetsIllustrationsGamesBalloonsGen();
 
   /// File path: assets/illustrations/games/balloons/balloon_unwanted1.svg
-  SvgGenImage get balloonUnwanted1 => const SvgGenImage('assets/illustrations/games/balloons/balloon_unwanted1.svg');
+  SvgGenImage get balloonUnwanted1 =>
+      const SvgGenImage('assets/illustrations/games/balloons/balloon_unwanted1.svg');
 
   /// File path: assets/illustrations/games/balloons/balloon_unwanted2.svg
-  SvgGenImage get balloonUnwanted2 => const SvgGenImage('assets/illustrations/games/balloons/balloon_unwanted2.svg');
+  SvgGenImage get balloonUnwanted2 =>
+      const SvgGenImage('assets/illustrations/games/balloons/balloon_unwanted2.svg');
 
   /// File path: assets/illustrations/games/balloons/balloon_wanted.svg
-  SvgGenImage get balloonWanted => const SvgGenImage('assets/illustrations/games/balloons/balloon_wanted.svg');
+  SvgGenImage get balloonWanted =>
+      const SvgGenImage('assets/illustrations/games/balloons/balloon_wanted.svg');
 
   /// File path: assets/illustrations/games/balloons/baloons.svg
   SvgGenImage get baloons => const SvgGenImage('assets/illustrations/games/balloons/baloons.svg');
 
   /// File path: assets/illustrations/games/balloons/touch_gesture.svg
-  SvgGenImage get touchGesture => const SvgGenImage('assets/illustrations/games/balloons/touch_gesture.svg');
+  SvgGenImage get touchGesture =>
+      const SvgGenImage('assets/illustrations/games/balloons/touch_gesture.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [balloonUnwanted1, balloonUnwanted2, balloonWanted, baloons, touchGesture];
+  List<SvgGenImage> get values =>
+      [balloonUnwanted1, balloonUnwanted2, balloonWanted, baloons, touchGesture];
 }
 
 class $AssetsIllustrationsGamesMathGen {
@@ -398,7 +439,8 @@ class $AssetsIllustrationsGamesSwingGen {
   SvgGenImage get balance => const SvgGenImage('assets/illustrations/games/swing/balance.svg');
 
   /// File path: assets/illustrations/games/swing/balance_stand.png
-  AssetGenImage get balanceStand => const AssetGenImage('assets/illustrations/games/swing/balance_stand.png');
+  AssetGenImage get balanceStand =>
+      const AssetGenImage('assets/illustrations/games/swing/balance_stand.png');
 
   /// File path: assets/illustrations/games/swing/swing.svg
   SvgGenImage get swing => const SvgGenImage('assets/illustrations/games/swing/swing.svg');
@@ -410,7 +452,8 @@ class $AssetsIllustrationsGamesSwingGen {
 class Assets {
   Assets._();
 
-  static const $AssetsAnimatedIllustrationsGen animatedIllustrations = $AssetsAnimatedIllustrationsGen();
+  static const $AssetsAnimatedIllustrationsGen animatedIllustrations =
+      $AssetsAnimatedIllustrationsGen();
   static const $AssetsContactsGen contacts = $AssetsContactsGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsIllustrationsGen illustrations = $AssetsIllustrationsGen();
