@@ -7,6 +7,9 @@ import 'package:nepanikar/games/balance/balance_game_screen.dart';
 import 'package:nepanikar/games/balloons/balloons_game_screen.dart';
 import 'package:nepanikar/games/breathing/breathing_exercises_screen.dart';
 import 'package:nepanikar/games/math/math_game_screen.dart';
+import 'package:nepanikar/games/relaxation/relaxations_list_screen.dart';
+import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
+import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
@@ -19,6 +22,8 @@ class EatingDisorderDistractionsRoute extends GoRouteData {
 
 class EatingDisorderDistractionsScreen extends StatelessWidget {
   const EatingDisorderDistractionsScreen({super.key});
+
+  UserSettingsDao get _userSettingsDao => registry.get<UserSettingsDao>();
 
   @override
   Widget build(BuildContext context) {
@@ -43,11 +48,12 @@ class EatingDisorderDistractionsScreen extends StatelessWidget {
         image: Assets.illustrations.modules.anxietyPanic.svg(),
         onTap: () => context.push(const BreathingExercisesRoute().location),
       ),
-      LongTile(
-        text: '${context.l10n.relaxation} TODO',
-        image: Assets.illustrations.modules.anxietyPanic.svg(),
-        onTap: () => {},
-      ),
+      if (['cs', 'sk'].contains(_userSettingsDao.locale.languageCode))
+        LongTile(
+          text: context.l10n.relaxation,
+          image: Assets.illustrations.modules.anxietyPanic.svg(),
+          onTap: () => context.push(const RelaxationsListRoute().location),
+        ),
     ];
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.distraction,

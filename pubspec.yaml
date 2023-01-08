@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   adaptive_dialog: ^1.8.0+1
+  assets_audio_player: ^3.0.6
   collection: ^1.16.0
   cupertino_icons: ^1.0.5
   email_validator: ^2.1.17
@@ -98,3 +99,4 @@ flutter:
     - assets/illustrations/games/swing/
     - assets/meals/
     - assets/sponsors/
+    - assets/audio/

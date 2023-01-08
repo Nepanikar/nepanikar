@@ -25,6 +25,22 @@ class $AssetsAnimatedIllustrationsGen {
   List<LottieGenImage> get values => [confetti];
 }
 
+class $AssetsAudioGen {
+  const $AssetsAudioGen();
+
+  /// File path: assets/audio/eveningCS.mp3
+  String get eveningCS => 'assets/audio/eveningCS.mp3';
+
+  /// File path: assets/audio/morningCS.mp3
+  String get morningCS => 'assets/audio/morningCS.mp3';
+
+  /// File path: assets/audio/relaxCS.mp3
+  String get relaxCS => 'assets/audio/relaxCS.mp3';
+
+  /// List of all assets
+  List<String> get values => [eveningCS, morningCS, relaxCS];
+}
+
 class $AssetsContactsGen {
   const $AssetsContactsGen();
 
@@ -458,6 +474,7 @@ class Assets {
 
   static const $AssetsAnimatedIllustrationsGen animatedIllustrations =
       $AssetsAnimatedIllustrationsGen();
+  static const $AssetsAudioGen audio = $AssetsAudioGen();
   static const $AssetsContactsGen contacts = $AssetsContactsGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsIllustrationsGen illustrations = $AssetsIllustrationsGen();

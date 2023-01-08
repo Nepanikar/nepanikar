@@ -47,6 +47,14 @@ GoRoute get $mainRoute => GoRouteData.$route(
           factory: $BalloonsGameRouteExtension._fromState,
         ),
         GoRouteData.$route(
+          path: 'games/relaxation/:relaxationType',
+          factory: $RelaxationRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'games/relaxation-list',
+          factory: $RelaxationsListRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: 'contacts',
           factory: $ContactsRouteExtension._fromState,
         ),
@@ -365,6 +373,34 @@ extension $BalloonsGameRouteExtension on BalloonsGameRoute {
 
   String get location => GoRouteData.$location(
         '/games/balloons',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $RelaxationRouteExtension on RelaxationRoute {
+  static RelaxationRoute _fromState(GoRouterState state) => RelaxationRoute(
+        relaxationType:
+            _$RelaxationTypeEnumMap._$fromName(state.params['relaxationType']!),
+      );
+
+  String get location => GoRouteData.$location(
+        '/games/relaxation/${Uri.encodeComponent(_$RelaxationTypeEnumMap[relaxationType]!)}',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $RelaxationsListRouteExtension on RelaxationsListRoute {
+  static RelaxationsListRoute _fromState(GoRouterState state) =>
+      const RelaxationsListRoute();
+
+  String get location => GoRouteData.$location(
+        '/games/relaxation-list',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
@@ -1071,6 +1107,12 @@ const _$BreathingGameShapeEnumMap = {
   BreathingGameShape.circle: 'circle',
   BreathingGameShape.square: 'square',
   BreathingGameShape.triangle: 'triangle',
+};
+
+const _$RelaxationTypeEnumMap = {
+  RelaxationType.general: 'general',
+  RelaxationType.morning: 'morning',
+  RelaxationType.evening: 'evening',
 };
 
 extension<T extends Enum> on Map<T, String> {
