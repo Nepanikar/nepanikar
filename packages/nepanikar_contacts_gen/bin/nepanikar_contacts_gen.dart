@@ -9,7 +9,7 @@ import 'translation_extra_files/sk.dart';
 
 const appContactsAssetDirPath = '../../assets/contacts';
 
-const allContacts = AllContacts(
+final allContacts = AllContacts(
   countryContacts: <CountryContacts>[
     cs_Contacts,
     en_Contacts,

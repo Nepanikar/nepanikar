@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
@@ -13,19 +14,41 @@ class CrisisMessageRoute extends GoRouteData {
   const CrisisMessageRoute();
 
   @override
-  Widget build(BuildContext context, _) => const CrisisMessageScreen();
+  Widget build(BuildContext context, _) => const CrisisMessageContent();
 }
 
-class CrisisMessageScreen extends StatefulWidget {
-  const CrisisMessageScreen({super.key});
+class CrisisMessageRouteExtraData extends Equatable {
+  const CrisisMessageRouteExtraData({
+    this.contactAddress,
+    this.subjectMessage,
+  });
+
+  final String? contactAddress;
+  final String? subjectMessage;
 
   @override
-  State<CrisisMessageScreen> createState() => _CrisisMessageScreenState();
+  List<Object?> get props => [contactAddress, subjectMessage];
 }
 
-class _CrisisMessageScreenState extends State<CrisisMessageScreen> {
+class CrisisMessageContent extends StatefulWidget {
+  const CrisisMessageContent({
+    super.key,
+    this.contactAddress,
+    this.subjectMessage,
+  });
+
+  final String? contactAddress;
+  final String? subjectMessage;
+
+  @override
+  State<CrisisMessageContent> createState() => _CrisisMessageContentState();
+}
+
+class _CrisisMessageContentState extends State<CrisisMessageContent> {
   MyContactsCrisisMessageDao get _myContactsCrisisMessageDao =>
       registry.get<MyContactsCrisisMessageDao>();
+
+  bool get _hasInitialValues => widget.contactAddress != null && widget.subjectMessage != null;
 
   final _addressEmailController = TextEditingController();
   final _messageTextController = TextEditingController();
@@ -47,7 +70,7 @@ class _CrisisMessageScreenState extends State<CrisisMessageScreen> {
     required String labelText,
     required String hintText,
     required int minLines,
-    required VoidCallback onSaved,
+    required VoidCallback? onSaved,
     FocusNode? focusNode,
     VoidCallback? onFieldSubmitted,
   }) {
@@ -69,7 +92,7 @@ class _CrisisMessageScreenState extends State<CrisisMessageScreen> {
         Focus(
           onFocusChange: (hasFocus) async {
             if (!hasFocus) {
-              onSaved();
+              onSaved?.call();
             }
           },
           child: TextField(
@@ -102,8 +125,9 @@ class _CrisisMessageScreenState extends State<CrisisMessageScreen> {
           StreamBuilder<Tuple2<String, String>>(
             stream: _contactAddressAndMessageStream,
             builder: (_, snapshot) {
-              final contactAddress = snapshot.data?.item1 ?? '';
-              final message = snapshot.data?.item2 ?? '';
+              final contactAddress =
+                  _hasInitialValues ? widget.contactAddress! : snapshot.data?.item1 ?? '';
+              final message = _hasInitialValues ? '' : snapshot.data?.item2 ?? '';
 
               return Column(
                 children: [
@@ -114,14 +138,14 @@ class _CrisisMessageScreenState extends State<CrisisMessageScreen> {
                     hintText: context.l10n.custom_write,
                     minLines: 1,
                     textInputAction: TextInputAction.next,
-                    onSaved: () async {
-                      await _myContactsCrisisMessageDao.saveContactAddress(
-                        _addressEmailController.text,
-                      );
-                    },
-                    onFieldSubmitted: () {
-                      FocusScope.of(context).requestFocus(_messageFocusNode);
-                    },
+                    onSaved: _hasInitialValues
+                        ? null
+                        : () async {
+                            await _myContactsCrisisMessageDao.saveContactAddress(
+                              _addressEmailController.text,
+                            );
+                          },
+                    onFieldSubmitted: () => FocusScope.of(context).requestFocus(_messageFocusNode),
                   ),
                   const SizedBox(height: 4),
                   _buildForm(
@@ -132,11 +156,13 @@ class _CrisisMessageScreenState extends State<CrisisMessageScreen> {
                     hintText: context.l10n.custom_write_body,
                     minLines: 2,
                     textInputAction: TextInputAction.newline,
-                    onSaved: () async {
-                      await _myContactsCrisisMessageDao.saveBodyMessage(
-                        _messageTextController.text,
-                      );
-                    },
+                    onSaved: _hasInitialValues
+                        ? null
+                        : () async {
+                            await _myContactsCrisisMessageDao.saveBodyMessage(
+                              _messageTextController.text,
+                            );
+                          },
                   ),
                   const SizedBox(height: 16),
                   ValueListenableBuilder<TextEditingValue>(
@@ -152,7 +178,8 @@ class _CrisisMessageScreenState extends State<CrisisMessageScreen> {
                             scheme: isEmail ? 'mailto' : 'sms',
                             path: address,
                             queryParameters: {
-                              if (isEmail) 'subject': context.l10n.contacts_message,
+                              if (isEmail)
+                                'subject': widget.subjectMessage ?? context.l10n.contacts_message,
                               'body': contactText,
                             },
                           );

@@ -79,6 +79,10 @@ GoRoute get $mainRoute => GoRouteData.$route(
           factory: $UniversityContactsRouteExtension._fromState,
         ),
         GoRouteData.$route(
+          path: 'contacts/email-counselling',
+          factory: $EmailCounsellingRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: 'home/depression',
           factory: $DepressionRouteExtension._fromState,
         ),
@@ -478,6 +482,19 @@ extension $UniversityContactsRouteExtension on UniversityContactsRoute {
 
   String get location => GoRouteData.$location(
         '/contacts/universities',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $EmailCounsellingRouteExtension on EmailCounsellingRoute {
+  static EmailCounsellingRoute _fromState(GoRouterState state) =>
+      const EmailCounsellingRoute();
+
+  String get location => GoRouteData.$location(
+        '/contacts/email-counselling',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
