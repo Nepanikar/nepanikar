@@ -54,6 +54,7 @@ import 'package:nepanikar/screens/home/suicidal_thoughts/suicidal_thoughts_scree
 import 'package:nepanikar/screens/main/contacts_screen.dart';
 import 'package:nepanikar/screens/main/main_screen.dart';
 import 'package:nepanikar/screens/settings/export_screen.dart';
+import 'package:nepanikar/screens/settings/sponsors_screen.dart';
 
 part 'routes.g.dart';
 
@@ -87,6 +88,7 @@ class MainRoute extends GoRouteData {
 }
 
 const _settingsRoutes = <TypedGoRoute<GoRouteData>>[
+  TypedGoRoute<SponsorsRoute>(path: 'settings/sponsors'),
   TypedGoRoute<AboutAppRoute>(path: 'settings/about-app'),
   TypedGoRoute<ExportRoute>(path: 'settings/export'),
 ];
