@@ -97,11 +97,13 @@ class _MainScreenState extends State<MainScreen> {
           ),
           _buildBottomNavigationBarItem(
             svgIconPath: Assets.icons.phone.path,
+            // TODO: l10n
             label: 'Kontakty',
             isSelected: _selectedIndex == 2,
           ),
           _buildBottomNavigationBarItem(
             svgIconPath: Assets.icons.settings.path,
+            // TODO: l10n
             label: 'Nastavení',
             isSelected: _selectedIndex == 3,
           ),
