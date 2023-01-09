@@ -167,31 +167,38 @@ class _CrisisMessageContentState extends State<CrisisMessageContent> {
                   const SizedBox(height: 16),
                   ValueListenableBuilder<TextEditingValue>(
                     valueListenable: _addressEmailController,
-                    builder: (_, value, __) {
-                      final contactText = _messageTextController.text;
-                      final address = value.text;
+                    builder: (_, addressVal, __) {
+                      final address = addressVal.text;
 
-                      return NepanikarButton(
-                        onTap: () async {
-                          final isEmail = address.contains('@');
-                          final uri = Uri(
-                            scheme: isEmail ? 'mailto' : 'sms',
-                            path: address,
-                            queryParameters: {
-                              if (isEmail)
-                                'subject': widget.subjectMessage ?? context.l10n.contacts_message,
-                              'body': contactText,
+                      return ValueListenableBuilder<TextEditingValue>(
+                        valueListenable: _messageTextController,
+                        builder: (_, msgVal, __) {
+                          final contactText = msgVal.text;
+
+                          return NepanikarButton(
+                            onTap: () async {
+                              final isEmail = address.contains('@');
+                              final uri = Uri(
+                                scheme: isEmail ? 'mailto' : 'sms',
+                                path: address,
+                                queryParameters: {
+                                  if (isEmail)
+                                    'subject':
+                                        widget.subjectMessage ?? context.l10n.contacts_message,
+                                  'body': contactText,
+                                },
+                              );
+                              if (await canLaunchUrl(uri)) {
+                                await launchUrl(uri);
+                              } else {
+                                debugPrint('Could not launch $uri');
+                              }
                             },
+                            expandToContentWidth: true,
+                            enabled: address.isNotEmpty,
+                            text: context.l10n.send,
                           );
-                          if (await canLaunchUrl(uri)) {
-                            await launchUrl(uri);
-                          } else {
-                            debugPrint('Could not launch $uri');
-                          }
                         },
-                        expandToContentWidth: true,
-                        enabled: address.isNotEmpty,
-                        text: context.l10n.send,
                       );
                     },
                   ),
