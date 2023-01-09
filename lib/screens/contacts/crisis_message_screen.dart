@@ -167,9 +167,8 @@ class _CrisisMessageContentState extends State<CrisisMessageContent> {
                   const SizedBox(height: 16),
                   ValueListenableBuilder<TextEditingValue>(
                     valueListenable: _addressEmailController,
-                    builder: (_, value, __) {
-                      final contactText = _messageTextController.text;
-                      final address = value.text;
+                    builder: (_, addressVal, __) {
+                      final address = addressVal.text;
 
                       return NepanikarButton(
                         onTap: () async {
@@ -180,7 +179,7 @@ class _CrisisMessageContentState extends State<CrisisMessageContent> {
                             queryParameters: {
                               if (isEmail)
                                 'subject': widget.subjectMessage ?? context.l10n.contacts_message,
-                              'body': contactText,
+                              'body': _messageTextController.text,
                             },
                           );
                           if (await canLaunchUrl(uri)) {
