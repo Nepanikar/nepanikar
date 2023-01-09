@@ -11,11 +11,13 @@ class DiaryTile extends StatelessWidget {
     required this.date,
     required this.title,
     required this.onTap,
+    this.isTitle = true,
   });
 
   final DateTime date;
   final String title;
   final VoidCallback? onTap;
+  final bool isTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,10 @@ class DiaryTile extends StatelessWidget {
         color: NepanikarColors.primarySwatch.shade700,
       ),
       description: title,
-      descriptionTextStyle: textStyle.copyWith(fontWeight: FontWeight.w500),
+      descriptionTextStyle: textStyle.copyWith(
+        fontWeight: isTitle ? FontWeight.w500 : FontWeight.w300,
+      ),
+      descriptionMaxLines: 1,
       onTap: onTap,
     );
   }

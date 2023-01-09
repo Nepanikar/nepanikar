@@ -18,12 +18,15 @@ class NepanikarConfigParser {
 
   static const QT_DATE_PATTERN = 'd.M.yyyy';
 
-  // TODO: Add support for other languages
-  static final supportedLocales = ['cs', 'en'];
+  static final fallbackParseLocale = ['cs', 'en'];
 
-  static NepanikarConfig parseConfigFile(File configFile) {
+  static NepanikarConfig parseAndroidConfigFile(File configFile) {
     final config = Config.fromStrings(configFile.readAsLinesSync(encoding: NEPANIKAR_CONF_CODEC));
-    return NepanikarConfig.getData(config);
+    return NepanikarConfig.getAndroidData(config);
+  }
+
+  static NepanikarConfig parseIosConfigFile(Map<String, Object> config) {
+    return NepanikarConfig.getIosData(config);
   }
 }
 
@@ -32,11 +35,10 @@ extension NepanikarParserStringExt on String {
     return replaceAllMapped(
       RegExp(NepanikarConfigParser.QT_UNICODE_PATTERN, caseSensitive: false),
       (match) {
-        // TODO: Handle this, parsing can crash.
-        final hex = match.group(1)!;
-        // TODO: Handle this, parsing can crash.
-        final charCode = int.parse(hex, radix: 16);
-        return String.fromCharCode(charCode);
+        final hex = match.group(1) ?? '';
+        if (hex.isEmpty) return '?';
+        final charCode = int.tryParse(hex, radix: 16);
+        return charCode == null ? '?' : String.fromCharCode(charCode);
       },
     ).replaceAll('\\n', '\n').replaceAll('\\', ''); // Replace all backslashes except newline.
   }
@@ -52,19 +54,27 @@ extension NepanikarParserStringExt on String {
     final strValue = getIniStrValue(cleanFromUnicodes: cleanFromUnicodes);
     if (strValue == null) return null;
     DateTime? dateTime;
-    for (final locale in NepanikarConfigParser.supportedLocales) {
-      try {
-        dateTime = DateFormat(dateTimePattern ?? NepanikarConfigParser.QT_DATE_TIME_PATTERN, locale)
-            .parse(strValue);
-        break;
-      } on FormatException catch (e) {
-        print(e.toString());
-        continue;
-      } catch (e) {
-        print(e.toString());
-        continue;
+
+    try {
+      dateTime =
+          DateFormat(dateTimePattern ?? NepanikarConfigParser.QT_DATE_TIME_PATTERN).parse(strValue);
+    } catch (e) {
+      print(e.toString());
+
+      // Trying out fallback languages.
+      for (final locale in NepanikarConfigParser.fallbackParseLocale) {
+        try {
+          dateTime =
+              DateFormat(dateTimePattern ?? NepanikarConfigParser.QT_DATE_TIME_PATTERN, locale)
+                  .parse(strValue);
+          break;
+        } catch (e) {
+          print(e.toString());
+          continue;
+        }
       }
     }
+
     return dateTime;
   }
 

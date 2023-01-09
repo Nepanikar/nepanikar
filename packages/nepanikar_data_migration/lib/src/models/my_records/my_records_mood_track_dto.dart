@@ -7,7 +7,7 @@ class MyRecordsMoodTrackDTO extends Equatable {
     required this.values,
   });
 
-  factory MyRecordsMoodTrackDTO.getData(Config config, {String sectionName = 'moods'}) {
+  factory MyRecordsMoodTrackDTO.getAndroidData(Config config, {String sectionName = 'moods'}) {
     final convertedValues = <DateTime, int>{};
     final confValues = config.items(sectionName);
 
@@ -25,6 +25,34 @@ class MyRecordsMoodTrackDTO extends Equatable {
                 final date = DateTime.utc(dateTime.year, dateTime.month, dateTime.day);
                 convertedValues[date] = value - 1;
               }
+            }
+          }
+        }
+      }
+    }
+    return MyRecordsMoodTrackDTO._(
+      values: convertedValues.isEmpty ? null : convertedValues,
+    );
+  }
+
+  factory MyRecordsMoodTrackDTO.getIosData(
+    Map<String, Object> config, {
+    String sectionName = 'moods',
+  }) {
+    final moodValuesSize = config['$sectionName.size']?.toString().getIniIntValue();
+
+    final convertedValues = <DateTime, int>{};
+    if (moodValuesSize != null) {
+      for (var i = 1; i <= moodValuesSize; i++) {
+        final line = config['$sectionName.$i.value']?.toString();
+        if (line != null) {
+          final split = line.split('|');
+          if (split.length == 2) {
+            final dateTime = split[0].getIniDateTimeValue(cleanFromUnicodes: false);
+            final value = split[1].getIniIntValue();
+            if (dateTime != null && value != null) {
+              final date = DateTime.utc(dateTime.year, dateTime.month, dateTime.day);
+              convertedValues[date] = value - 1;
             }
           }
         }

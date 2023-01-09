@@ -9,10 +9,10 @@ class DepressionModuleDTO extends Equatable {
     required this.depressionPraiseMyAchievementsConfig,
   });
 
-  factory DepressionModuleDTO.getData(Config config) {
+  factory DepressionModuleDTO.getAndroidData(Config config) {
     NepanikarChecklistFormDTO? depressionActivityPlanConfig;
     try {
-      depressionActivityPlanConfig = NepanikarChecklistFormDTO.getData(
+      depressionActivityPlanConfig = NepanikarChecklistFormDTO.getAndroidData(
         config,
         sectionTextsName: 'plan',
         sectionCheckboxStatesName: 'planC',
@@ -21,13 +21,42 @@ class DepressionModuleDTO extends Equatable {
 
     NepanikarListFormDTO? depressionNiceMadeHappyConfig;
     try {
-      depressionNiceMadeHappyConfig = NepanikarListFormDTO.getData(config, sectionName: 'nice');
+      depressionNiceMadeHappyConfig =
+          NepanikarListFormDTO.getAndroidData(config, sectionName: 'nice');
     } catch (_) {}
 
     NepanikarListFormDTO? depressionPraiseMyAchievementsConfig;
     try {
       depressionPraiseMyAchievementsConfig =
-          NepanikarListFormDTO.getData(config, sectionName: 'praise');
+          NepanikarListFormDTO.getAndroidData(config, sectionName: 'praise');
+    } catch (_) {}
+
+    return DepressionModuleDTO._(
+      depressionActivityPlanConfig: depressionActivityPlanConfig,
+      depressionNiceMadeHappyConfig: depressionNiceMadeHappyConfig,
+      depressionPraiseMyAchievementsConfig: depressionPraiseMyAchievementsConfig,
+    );
+  }
+
+  factory DepressionModuleDTO.getIosData(Map<String, Object> config) {
+    NepanikarChecklistFormDTO? depressionActivityPlanConfig;
+    try {
+      depressionActivityPlanConfig = NepanikarChecklistFormDTO.getIosData(
+        config,
+        sectionTextsName: 'plan',
+        sectionCheckboxStatesName: 'planC',
+      );
+    } catch (_) {}
+
+    NepanikarListFormDTO? depressionNiceMadeHappyConfig;
+    try {
+      depressionNiceMadeHappyConfig = NepanikarListFormDTO.getIosData(config, sectionName: 'nice');
+    } catch (_) {}
+
+    NepanikarListFormDTO? depressionPraiseMyAchievementsConfig;
+    try {
+      depressionPraiseMyAchievementsConfig =
+          NepanikarListFormDTO.getIosData(config, sectionName: 'praise');
     } catch (_) {}
 
     return DepressionModuleDTO._(

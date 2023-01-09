@@ -85,7 +85,8 @@ class MyRecordsDiaryRecordsScreen extends StatelessWidget {
                   ),
                   child: DiaryTile(
                     date: recordData.dateTime,
-                    title: recordData.title,
+                    isTitle: recordData.title.isNotEmpty,
+                    title: recordData.title.isEmpty ? recordData.text : recordData.title,
                     onTap: () => context.push(
                       const MyRecordsDiaryDetailRoute().location,
                       extra: DiaryRecordRouteExtraData(

@@ -12,35 +12,76 @@ class NepanikarConfig extends Equatable {
     required this.myContactsModuleConfig,
   });
 
-  factory NepanikarConfig.getData(Config config) {
+  factory NepanikarConfig.getAndroidData(Config config) {
     DepressionModuleDTO? depressionModuleConfig;
     try {
-      depressionModuleConfig = DepressionModuleDTO.getData(config);
+      depressionModuleConfig = DepressionModuleDTO.getAndroidData(config);
     } catch (_) {}
 
     SelfHarmModuleDTO? selfHarmModuleConfig;
     try {
-      selfHarmModuleConfig = SelfHarmModuleDTO.getData(config);
+      selfHarmModuleConfig = SelfHarmModuleDTO.getAndroidData(config);
     } catch (_) {}
 
     SuicidalThoughtsModuleDTO? suicidalThoughtsModuleConfig;
     try {
-      suicidalThoughtsModuleConfig = SuicidalThoughtsModuleDTO.getData(config);
+      suicidalThoughtsModuleConfig = SuicidalThoughtsModuleDTO.getAndroidData(config);
     } catch (_) {}
 
     EatingDisorderModuleDTO? eatingDisorderModuleConfig;
     try {
-      eatingDisorderModuleConfig = EatingDisorderModuleDTO.getData(config);
+      eatingDisorderModuleConfig = EatingDisorderModuleDTO.getAndroidData(config);
     } catch (_) {}
 
     MyRecordsModuleDTO? myRecordsModuleConfig;
     try {
-      myRecordsModuleConfig = MyRecordsModuleDTO.getData(config);
+      myRecordsModuleConfig = MyRecordsModuleDTO.getAndroidData(config);
     } catch (_) {}
 
     MyContactsModuleDTO? myContactsModuleConfig;
     try {
-      myContactsModuleConfig = MyContactsModuleDTO.getData(config);
+      myContactsModuleConfig = MyContactsModuleDTO.getAndroidData(config);
+    } catch (_) {}
+
+    return NepanikarConfig._(
+      depressionModuleConfig: depressionModuleConfig,
+      selfHarmModuleConfig: selfHarmModuleConfig,
+      suicidalThoughtsModuleConfig: suicidalThoughtsModuleConfig,
+      eatingDisorderModuleConfig: eatingDisorderModuleConfig,
+      myRecordsModuleConfig: myRecordsModuleConfig,
+      myContactsModuleConfig: myContactsModuleConfig,
+    );
+  }
+
+  factory NepanikarConfig.getIosData(Map<String, Object> config) {
+    DepressionModuleDTO? depressionModuleConfig;
+    try {
+      depressionModuleConfig = DepressionModuleDTO.getIosData(config);
+    } catch (_) {}
+
+    SelfHarmModuleDTO? selfHarmModuleConfig;
+    try {
+      selfHarmModuleConfig = SelfHarmModuleDTO.getIosData(config);
+    } catch (_) {}
+
+    SuicidalThoughtsModuleDTO? suicidalThoughtsModuleConfig;
+    try {
+      suicidalThoughtsModuleConfig = SuicidalThoughtsModuleDTO.getIosData(config);
+    } catch (_) {}
+
+    EatingDisorderModuleDTO? eatingDisorderModuleConfig;
+    try {
+      eatingDisorderModuleConfig = EatingDisorderModuleDTO.getIosData(config);
+    } catch (_) {}
+
+    MyRecordsModuleDTO? myRecordsModuleConfig;
+    try {
+      myRecordsModuleConfig = MyRecordsModuleDTO.getIosData(config);
+    } catch (_) {}
+
+    MyContactsModuleDTO? myContactsModuleConfig;
+    try {
+      myContactsModuleConfig = MyContactsModuleDTO.getIosData(config);
     } catch (_) {}
 
     return NepanikarConfig._(

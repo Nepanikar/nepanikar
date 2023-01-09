@@ -8,12 +8,22 @@ class MyContactsCrisisMessageDTO extends Equatable {
     required this.contactMessageBody,
   });
 
-  factory MyContactsCrisisMessageDTO.getData(Config config) {
+  factory MyContactsCrisisMessageDTO.getAndroidData(Config config) {
     const sectionName = 'General';
 
     final contactMessageAddress =
         config.get(sectionName, 'contactMessageAddress')?.getIniStrValue();
     final contactMessageBody = config.get(sectionName, 'contactMessageBody')?.getIniStrValue();
+
+    return MyContactsCrisisMessageDTO._(
+      contactMessageAddress: contactMessageAddress,
+      contactMessageBody: contactMessageBody,
+    );
+  }
+
+  factory MyContactsCrisisMessageDTO.getIosData(Map<String, Object> config) {
+    final contactMessageAddress = config['contactMessageAddress']?.toString();
+    final contactMessageBody = config['contactMessageBody']?.toString();
 
     return MyContactsCrisisMessageDTO._(
       contactMessageAddress: contactMessageAddress,

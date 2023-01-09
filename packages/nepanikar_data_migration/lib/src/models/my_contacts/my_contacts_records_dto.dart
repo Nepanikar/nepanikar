@@ -7,7 +7,7 @@ class MyContactsRecordsDTO extends Equatable {
     required this.recordEntries,
   });
 
-  factory MyContactsRecordsDTO.getData(Config config) {
+  factory MyContactsRecordsDTO.getAndroidData(Config config) {
     final myContactsNamesMap = config.itemsToMap('myContactsNames');
     final myContactsNumbersMap = config.itemsToMap('myContactsNumbers');
 
@@ -19,6 +19,23 @@ class MyContactsRecordsDTO extends Equatable {
       for (final contactNumberEntry in sortedContactsNumbersMapEntries) {
         final name = myContactsNamesMap?[contactNumberEntry.key] ?? '';
         final contact = contactNumberEntry.value ?? '';
+        myContactsEntries.add(MapEntry(name, contact));
+      }
+    }
+
+    return MyContactsRecordsDTO._(
+      recordEntries: myContactsEntries.isEmpty ? null : myContactsEntries,
+    );
+  }
+
+  factory MyContactsRecordsDTO.getIosData(Map<String, Object> config) {
+    final myContactsNumbersSize = config['myContactsNumbers.size']?.toString().getIniIntValue();
+
+    final myContactsEntries = <MapEntry<String, String>>[];
+    if (myContactsNumbersSize != null) {
+      for (var i = 1; i <= myContactsNumbersSize; i++) {
+        final name = config['myContactsNames.$i.value']?.toString() ?? '';
+        final contact = config['myContactsNumbers.$i.value']?.toString() ?? '';
         myContactsEntries.add(MapEntry(name, contact));
       }
     }

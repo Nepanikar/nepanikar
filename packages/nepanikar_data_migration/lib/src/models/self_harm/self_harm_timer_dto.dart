@@ -8,7 +8,7 @@ class SelfHarmTimerDTO extends Equatable {
     required this.selfHarmTimerRecord,
   });
 
-  factory SelfHarmTimerDTO.getData(Config config) {
+  factory SelfHarmTimerDTO.getAndroidData(Config config) {
     const sectionName = 'General';
 
     final selfHarmTimer = config.get(sectionName, 'selfHarmTimer')?.getIniBoolValue();
@@ -23,6 +23,27 @@ class SelfHarmTimerDTO extends Equatable {
     }
 
     final selfHarmTimerRecord = config.get(sectionName, 'selfHarmTimerRecord')?.getIniIntValue();
+
+    return SelfHarmTimerDTO._(
+      currSelfHarmTimerStartDateTime: currSelfHarmTimerStartDateTime,
+      selfHarmTimerRecord: selfHarmTimerRecord,
+    );
+  }
+
+  factory SelfHarmTimerDTO.getIosData(Map<String, Object> config) {
+    final selfHarmTimer = config['selfHarmTimer']?.toString().getIniBoolValue();
+
+    final DateTime? currSelfHarmTimerStartDateTime;
+
+    // Whether the self harm timer is running, get start Date Time.
+    if (selfHarmTimer == true) {
+      currSelfHarmTimerStartDateTime =
+          config['selfHarmTimerDate']?.toString().getIniDateTimeValue(cleanFromUnicodes: false);
+    } else {
+      currSelfHarmTimerStartDateTime = null;
+    }
+
+    final selfHarmTimerRecord = config['selfHarmTimerRecord']?.toString().getIniIntValue();
 
     return SelfHarmTimerDTO._(
       currSelfHarmTimerStartDateTime: currSelfHarmTimerStartDateTime,

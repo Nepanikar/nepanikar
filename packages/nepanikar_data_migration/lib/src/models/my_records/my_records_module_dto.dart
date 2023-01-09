@@ -11,30 +11,65 @@ class MyRecordsModuleDTO extends Equatable {
     required this.foodRecordConfig,
   });
 
-  factory MyRecordsModuleDTO.getData(Config config) {
+  factory MyRecordsModuleDTO.getAndroidData(Config config) {
     MyRecordsMoodTrackDTO? moodTrackConfig;
     try {
-      moodTrackConfig = MyRecordsMoodTrackDTO.getData(config);
+      moodTrackConfig = MyRecordsMoodTrackDTO.getAndroidData(config);
     } catch (_) {}
 
     MyRecordsSleepTrackDTO? sleepTrackConfig;
     try {
-      sleepTrackConfig = MyRecordsSleepTrackDTO.getData(config);
+      sleepTrackConfig = MyRecordsSleepTrackDTO.getAndroidData(config);
     } catch (_) {}
 
     MyRecordsDiaryDTO? diaryConfig;
     try {
-      diaryConfig = MyRecordsDiaryDTO.getData(config);
+      diaryConfig = MyRecordsDiaryDTO.getAndroidData(config);
     } catch (_) {}
 
     MyRecordsJournalDTO? journalConfig;
     try {
-      journalConfig = MyRecordsJournalDTO.getData(config);
+      journalConfig = MyRecordsJournalDTO.getAndroidData(config);
     } catch (_) {}
 
     MyRecordsFoodDTO? foodConfig;
     try {
-      foodConfig = MyRecordsFoodDTO.getData(config);
+      foodConfig = MyRecordsFoodDTO.getAndroidData(config);
+    } catch (_) {}
+
+    return MyRecordsModuleDTO._(
+      moodTrackConfig: moodTrackConfig,
+      sleepTrackConfig: sleepTrackConfig,
+      diaryConfig: diaryConfig,
+      journalConfig: journalConfig,
+      foodRecordConfig: foodConfig,
+    );
+  }
+
+  factory MyRecordsModuleDTO.getIosData(Map<String, Object> config) {
+    MyRecordsMoodTrackDTO? moodTrackConfig;
+    try {
+      moodTrackConfig = MyRecordsMoodTrackDTO.getIosData(config);
+    } catch (_) {}
+
+    MyRecordsSleepTrackDTO? sleepTrackConfig;
+    try {
+      sleepTrackConfig = MyRecordsSleepTrackDTO.getIosData(config);
+    } catch (_) {}
+
+    MyRecordsDiaryDTO? diaryConfig;
+    try {
+      diaryConfig = MyRecordsDiaryDTO.getIosData(config);
+    } catch (_) {}
+
+    MyRecordsJournalDTO? journalConfig;
+    try {
+      journalConfig = MyRecordsJournalDTO.getIosData(config);
+    } catch (_) {}
+
+    MyRecordsFoodDTO? foodConfig;
+    try {
+      foodConfig = MyRecordsFoodDTO.getIosData(config);
     } catch (_) {}
 
     return MyRecordsModuleDTO._(

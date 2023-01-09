@@ -8,16 +8,17 @@ class SuicidalThoughtsModuleDTO extends Equatable {
     required this.suicidalThoughtsReasonsNoConfig,
   });
 
-  factory SuicidalThoughtsModuleDTO.getData(Config config) {
+  factory SuicidalThoughtsModuleDTO.getAndroidData(Config config) {
     NepanikarListFormDTO? suicidalThoughtsPlanConfig;
     try {
-      suicidalThoughtsPlanConfig = NepanikarListFormDTO.getData(config, sectionName: 'suicidePlan');
+      suicidalThoughtsPlanConfig =
+          NepanikarListFormDTO.getAndroidData(config, sectionName: 'suicidePlan');
     } catch (_) {}
 
     NepanikarListFormDTO? suicidalThoughtsReasonsNoConfig;
     try {
       suicidalThoughtsReasonsNoConfig =
-          NepanikarListFormDTO.getData(config, sectionName: 'reasons');
+          NepanikarListFormDTO.getAndroidData(config, sectionName: 'reasons');
     } catch (_) {}
 
     return SuicidalThoughtsModuleDTO._(
@@ -25,6 +26,26 @@ class SuicidalThoughtsModuleDTO extends Equatable {
       suicidalThoughtsReasonsNoConfig: suicidalThoughtsReasonsNoConfig,
     );
   }
+
+  factory SuicidalThoughtsModuleDTO.getIosData(Map<String, Object> config) {
+    NepanikarListFormDTO? suicidalThoughtsPlanConfig;
+    try {
+      suicidalThoughtsPlanConfig =
+          NepanikarListFormDTO.getIosData(config, sectionName: 'suicidePlan');
+    } catch (_) {}
+
+    NepanikarListFormDTO? suicidalThoughtsReasonsNoConfig;
+    try {
+      suicidalThoughtsReasonsNoConfig =
+          NepanikarListFormDTO.getIosData(config, sectionName: 'reasons');
+    } catch (_) {}
+
+    return SuicidalThoughtsModuleDTO._(
+      suicidalThoughtsPlanConfig: suicidalThoughtsPlanConfig,
+      suicidalThoughtsReasonsNoConfig: suicidalThoughtsReasonsNoConfig,
+    );
+  }
+
 
   final NepanikarListFormDTO? suicidalThoughtsPlanConfig;
   final NepanikarListFormDTO? suicidalThoughtsReasonsNoConfig;

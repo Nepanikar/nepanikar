@@ -60,12 +60,70 @@ class FoodRecordDTO extends Equatable {
   List<Object> get props => [date, answers];
 }
 
+FoodRecordAnswerDTO _getFoodRecordAnswer({
+  required FoodType foodType,
+  required bool isTaken,
+  required String? dataConfigLine,
+}) {
+  final textQuestionAnswers = <Tuple2<FoodQuestionText, String>>[];
+  final feelTickedAnswers = <FoodQuestionFeel>[];
+  final problemTickedAnswers = <FoodQuestionProblem>[];
+
+  if (dataConfigLine == null) {
+    return FoodRecordAnswerDTO(
+      foodType: foodType,
+      isTaken: isTaken,
+      textQuestionAnswers: textQuestionAnswers,
+      feelTickedAnswers: feelTickedAnswers,
+      problemTickedAnswers: problemTickedAnswers,
+    );
+  }
+
+  final dataConfigLineParts = dataConfigLine.split('|');
+  if (dataConfigLineParts.length >= 6) {
+    for (final foodTextQuestion in FoodQuestionText.values) {
+      if (foodTextQuestion.index < 4) {
+        final answer = dataConfigLineParts.elementAtOrNull(foodTextQuestion.index);
+        textQuestionAnswers.add(Tuple2(foodTextQuestion, answer ?? ''));
+      }
+    }
+
+    final feelAnswers = dataConfigLineParts.elementAtOrNull(5);
+    if (feelAnswers != null && feelAnswers.length == 10) {
+      for (final feelQuestion in FoodQuestionFeel.values) {
+        final answerBool = feelAnswers.split('').elementAtOrNull(feelQuestion.index);
+        if (answerBool == '1') {
+          feelTickedAnswers.add(feelQuestion);
+        }
+      }
+    }
+
+    final problemAnswers = dataConfigLineParts.elementAtOrNull(6);
+    if (problemAnswers != null && problemAnswers.length == 5) {
+      for (final problemQuestion in FoodQuestionProblem.values) {
+        final answerBool = problemAnswers.split('').elementAtOrNull(problemQuestion.index);
+        if (answerBool == '1') {
+          problemTickedAnswers.add(problemQuestion);
+        }
+      }
+    }
+  }
+
+  return FoodRecordAnswerDTO(
+    foodType: foodType,
+    isTaken: isTaken,
+    textQuestionAnswers: textQuestionAnswers,
+    feelTickedAnswers: feelTickedAnswers,
+    problemTickedAnswers: problemTickedAnswers,
+  );
+}
+
 class MyRecordsFoodDTO extends Equatable {
   const MyRecordsFoodDTO._({
     required this.records,
   });
 
-  factory MyRecordsFoodDTO.getData(Config config) {
+  factory MyRecordsFoodDTO.getAndroidData(Config config) {
     final records = <FoodRecordDTO>[];
 
     final foodRecordsDateMap = config.itemsToMap('foodRecordDates');
@@ -76,64 +134,6 @@ class MyRecordsFoodDTO extends Equatable {
     final foodTypePmSnackMap = config.itemsToMap('foodRecordPmSnack');
     final foodTypeDinnerMap = config.itemsToMap('foodRecordDinner');
     final foodTypeSecondDinnerMap = config.itemsToMap('foodRecordSecondDinner');
-
-    FoodRecordAnswerDTO getFoodRecordAnswer({
-      required FoodType foodType,
-      required bool isTaken,
-      required String? dataConfigLine,
-    }) {
-      final textQuestionAnswers = <Tuple2<FoodQuestionText, String>>[];
-      final feelTickedAnswers = <FoodQuestionFeel>[];
-      final problemTickedAnswers = <FoodQuestionProblem>[];
-
-      if (dataConfigLine == null) {
-        return FoodRecordAnswerDTO(
-          foodType: foodType,
-          isTaken: isTaken,
-          textQuestionAnswers: textQuestionAnswers,
-          feelTickedAnswers: feelTickedAnswers,
-          problemTickedAnswers: problemTickedAnswers,
-        );
-      }
-
-      final dataConfigLineParts = dataConfigLine.split('|');
-      if (dataConfigLineParts.length >= 6) {
-        for (final foodTextQuestion in FoodQuestionText.values) {
-          if (foodTextQuestion.index < 4) {
-            final answer = dataConfigLineParts.elementAtOrNull(foodTextQuestion.index);
-            textQuestionAnswers.add(Tuple2(foodTextQuestion, answer ?? ''));
-          }
-        }
-
-        final feelAnswers = dataConfigLineParts.elementAtOrNull(5);
-        if (feelAnswers != null && feelAnswers.length == 10) {
-          for (final feelQuestion in FoodQuestionFeel.values) {
-            final answerBool = feelAnswers.split('').elementAtOrNull(feelQuestion.index);
-            if (answerBool == '1') {
-              feelTickedAnswers.add(feelQuestion);
-            }
-          }
-        }
-
-        final problemAnswers = dataConfigLineParts.elementAtOrNull(6);
-        if (problemAnswers != null && problemAnswers.length == 5) {
-          for (final problemQuestion in FoodQuestionProblem.values) {
-            final answerBool = problemAnswers.split('').elementAtOrNull(problemQuestion.index);
-            if (answerBool == '1') {
-              problemTickedAnswers.add(problemQuestion);
-            }
-          }
-        }
-      }
-
-      return FoodRecordAnswerDTO(
-        foodType: foodType,
-        isTaken: isTaken,
-        textQuestionAnswers: textQuestionAnswers,
-        feelTickedAnswers: feelTickedAnswers,
-        problemTickedAnswers: problemTickedAnswers,
-      );
-    }
 
     if (foodRecordsDateMap != null) {
       for (final record in foodRecordsDateMap.entries) {
@@ -155,35 +155,110 @@ class MyRecordsFoodDTO extends Equatable {
           final answers = <FoodRecordAnswerDTO>[];
           answers.addAll(
             [
-              getFoodRecordAnswer(
+              _getFoodRecordAnswer(
                 foodType: FoodType.breakfast,
                 isTaken: getIsTaken(1),
                 dataConfigLine: foodTypeBreakfastMap?[record.key],
               ),
-              getFoodRecordAnswer(
+              _getFoodRecordAnswer(
                 foodType: FoodType.amSnack,
                 isTaken: getIsTaken(2),
                 dataConfigLine: foodTypeAmSnackMap?[record.key],
               ),
-              getFoodRecordAnswer(
+              _getFoodRecordAnswer(
                 foodType: FoodType.lunch,
                 isTaken: getIsTaken(3),
                 dataConfigLine: foodTypeLunchMap?[record.key],
               ),
-              getFoodRecordAnswer(
+              _getFoodRecordAnswer(
                 foodType: FoodType.pmSnack,
                 isTaken: getIsTaken(4),
                 dataConfigLine: foodTypePmSnackMap?[record.key],
               ),
-              getFoodRecordAnswer(
+              _getFoodRecordAnswer(
                 foodType: FoodType.dinner,
                 isTaken: getIsTaken(5),
                 dataConfigLine: foodTypeDinnerMap?[record.key],
               ),
-              getFoodRecordAnswer(
+              _getFoodRecordAnswer(
                 foodType: FoodType.secondDinner,
                 isTaken: getIsTaken(6),
                 dataConfigLine: foodTypeSecondDinnerMap?[record.key],
+              ),
+            ],
+          );
+
+          records.add(FoodRecordDTO(date: date, answers: answers));
+        }
+      }
+    }
+
+    return MyRecordsFoodDTO._(
+      records: records.isEmpty ? null : records,
+    );
+  }
+
+  factory MyRecordsFoodDTO.getIosData(Map<String, Object> config) {
+    final foodRecordsDatesSize = config['foodRecordDates.size']?.toString().getIniIntValue();
+
+    const foodTypeBreakfastKey = 'foodRecordBreakfast';
+    const foodTypeAmSnackKey = 'foodRecordAmSnack';
+    const foodTypeLunchKey = 'foodRecordLunch';
+    const foodTypePmSnackKey = 'foodRecordPmSnack';
+    const foodTypeDinnerKey = 'foodRecordDinner';
+    const foodTypeSecondDinnerKey = 'foodRecordSecondDinner';
+
+    final records = <FoodRecordDTO>[];
+    if (foodRecordsDatesSize != null) {
+      for (var i = 1; i <= foodRecordsDatesSize; i++) {
+        final foodRecordDateLine = config['foodRecordDates.$i.value']?.toString();
+        if (foodRecordDateLine == null) continue;
+        final splitValues = foodRecordDateLine.split('|');
+        if (splitValues.isNotEmpty) {
+          final date = splitValues.first.getIniDateTimeValue(
+                cleanFromUnicodes: false,
+                dateTimePattern: NepanikarConfigParser.QT_DATE_PATTERN,
+              ) ??
+              DateTime(2000);
+
+          bool getIsTaken(int index) {
+            final isTaken = splitValues.elementAtOrNull(index);
+            if (isTaken == null) return false;
+            return isTaken != '-1';
+          }
+
+          final answers = <FoodRecordAnswerDTO>[];
+          answers.addAll(
+            [
+              _getFoodRecordAnswer(
+                foodType: FoodType.breakfast,
+                isTaken: getIsTaken(1),
+                dataConfigLine: config['$foodTypeBreakfastKey.$i.value']?.toString(),
+              ),
+              _getFoodRecordAnswer(
+                foodType: FoodType.amSnack,
+                isTaken: getIsTaken(2),
+                dataConfigLine: config['$foodTypeAmSnackKey.$i.value']?.toString(),
+              ),
+              _getFoodRecordAnswer(
+                foodType: FoodType.lunch,
+                isTaken: getIsTaken(3),
+                dataConfigLine: config['$foodTypeLunchKey.$i.value']?.toString(),
+              ),
+              _getFoodRecordAnswer(
+                foodType: FoodType.pmSnack,
+                isTaken: getIsTaken(4),
+                dataConfigLine: config['$foodTypePmSnackKey.$i.value']?.toString(),
+              ),
+              _getFoodRecordAnswer(
+                foodType: FoodType.dinner,
+                isTaken: getIsTaken(5),
+                dataConfigLine: config['$foodTypeDinnerKey.$i.value']?.toString(),
+              ),
+              _getFoodRecordAnswer(
+                foodType: FoodType.secondDinner,
+                isTaken: getIsTaken(6),
+                dataConfigLine: config['$foodTypeSecondDinnerKey.$i.value']?.toString(),
               ),
             ],
           );
