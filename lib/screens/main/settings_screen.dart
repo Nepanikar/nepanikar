@@ -8,6 +8,7 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/contact_action_helpers.dart';
 import 'package:nepanikar/screens/settings/about_app_screen.dart';
 import 'package:nepanikar/screens/settings/export_screen.dart';
 import 'package:nepanikar/screens/settings/languages_screen.dart';
@@ -30,12 +31,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
   AppConfig get _appConfig => registry.get<AppConfig>();
 
   DatabaseService get _databaseService => registry.get<DatabaseService>();
-
-  Future<void> _launchUrl(String url) async {
-    if (!await launchUrl(Uri.parse(url))) {
-      throw 'Could not launch $url';
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -148,21 +143,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ),
                           const Spacer(),
                           GestureDetector(
-                            onTap: () => _launchUrl(AppConstants.nepanikarWeb),
+                            onTap: () => launchUrLink(AppConstants.nepanikarWeb),
                             child: Assets.icons.globe.svg(),
                           ),
                           const SizedBox(
                             width: 27,
                           ),
                           GestureDetector(
-                            onTap: () => _launchUrl(AppConstants.nepanikarInstagram),
+                            onTap: () => launchUrLink(AppConstants.nepanikarInstagram),
                             child: Assets.icons.instagram.svg(),
                           ),
                           const SizedBox(
                             width: 27,
                           ),
                           GestureDetector(
-                            onTap: () => _launchUrl(AppConstants.nepanikarFacebook),
+                            onTap: () => launchUrLink(AppConstants.nepanikarFacebook),
                             child: Assets.icons.facebook.svg(),
                           ),
                         ],
