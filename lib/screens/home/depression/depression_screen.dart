@@ -25,22 +25,22 @@ class DepressionScreen extends StatelessWidget {
     final modules = <Widget>[
       LongTile(
         text: context.l10n.depression_help,
-        image: Assets.illustrations.modules.relaxation.svg(),
+        image: Assets.illustrations.modules.whatCanHelpMe.svg(),
         onTap: () => context.push(const DepressionTipsAppRoute().location),
       ),
       LongTile(
         text: context.l10n.depression_plan,
-        image: Assets.illustrations.modules.relaxation.svg(),
+        image: Assets.illustrations.modules.activityPlanning.svg(),
         onTap: () => context.push(const DepressionActivityPlanRoute().location),
       ),
       LongTile(
         text: context.l10n.depression_nice,
-        image: Assets.illustrations.modules.relaxation.svg(),
+        image: Assets.illustrations.modules.whatPleasedMe.svg(),
         onTap: () => context.push(const DepressionNiceMadeHappyRoute().location),
       ),
       LongTile(
         text: context.l10n.depression_praise,
-        image: Assets.illustrations.modules.relaxation.svg(),
+        image: Assets.illustrations.modules.mySuccess.svg(),
         onTap: () => context.push(const DepressionPraiseMyAchievementsRoute().location),
       ),
     ];
