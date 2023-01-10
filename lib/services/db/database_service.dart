@@ -122,8 +122,9 @@ class DatabaseService {
       return false;
     } else if (Platform.isIOS) {
       try {
-        final map = await NativeSharedPreferences.getSharedPreferencesMap();
-        return map.containsKey('selfHarmExist') || map.containsKey('selfHarmPlan.size');
+        final Map<String, Object> configMap =
+            await NativeSharedPreferences.getSharedPreferencesMap();
+        return configMap.containsKey('selfHarmExist') || configMap.containsKey('selfHarmPlan.size');
       } catch (e, s) {
         await logExceptionToCrashlytics(
           e,
@@ -143,11 +144,30 @@ class DatabaseService {
     return null;
   }
 
-  Future<void> _doDataMigrationFromOldAppVersion() async {
-    final configFile = await getOldAndroidAppConfigFile();
-    if (configFile == null) return;
+  Future<Map<String, Object>> getOldIosAppConfigMap() async {
+    try {
+      final Map<String, Object> configMap = await NativeSharedPreferences.getSharedPreferencesMap();
+      return configMap;
+    } catch (e, s) {
+      await logExceptionToCrashlytics(
+        e,
+        s,
+        logMessage: 'DATABASE_SERVICE: Error while getting old app version IOS data',
+      );
+    }
+    return {};
+  }
 
-    final nepanikarConfig = NepanikarConfigParser.parseConfigFile(configFile);
+  Future<void> _doDataMigrationFromOldAppVersion() async {
+    final NepanikarConfig nepanikarConfig;
+    if (Platform.isAndroid) {
+      final configFile = await getOldAndroidAppConfigFile();
+      if (configFile == null) return;
+      nepanikarConfig = NepanikarConfigParser.parseAndroidConfigFile(configFile);
+    } else {
+      final config = await NativeSharedPreferences.getSharedPreferencesMap();
+      nepanikarConfig = NepanikarConfigParser.parseIosConfigFile(config);
+    }
 
     final depressionModuleConfig = nepanikarConfig.depressionModuleConfig;
     if (depressionModuleConfig != null) {

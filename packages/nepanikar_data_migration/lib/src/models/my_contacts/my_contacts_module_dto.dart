@@ -8,15 +8,32 @@ class MyContactsModuleDTO extends Equatable {
     required this.contactsCrisisMessageConfig,
   });
 
-  factory MyContactsModuleDTO.getData(Config config) {
+  factory MyContactsModuleDTO.getAndroidData(Config config) {
     MyContactsRecordsDTO? contactsMyContactsConfig;
     try {
-      contactsMyContactsConfig = MyContactsRecordsDTO.getData(config);
+      contactsMyContactsConfig = MyContactsRecordsDTO.getAndroidData(config);
     } catch (_) {}
 
     MyContactsCrisisMessageDTO? contactsCrisisMessageConfig;
     try {
-      contactsCrisisMessageConfig = MyContactsCrisisMessageDTO.getData(config);
+      contactsCrisisMessageConfig = MyContactsCrisisMessageDTO.getAndroidData(config);
+    } catch (_) {}
+
+    return MyContactsModuleDTO._(
+      contactsMyContactsConfig: contactsMyContactsConfig,
+      contactsCrisisMessageConfig: contactsCrisisMessageConfig,
+    );
+  }
+
+  factory MyContactsModuleDTO.getIosData(Map<String, Object> config) {
+    MyContactsRecordsDTO? contactsMyContactsConfig;
+    try {
+      contactsMyContactsConfig = MyContactsRecordsDTO.getIosData(config);
+    } catch (_) {}
+
+    MyContactsCrisisMessageDTO? contactsCrisisMessageConfig;
+    try {
+      contactsCrisisMessageConfig = MyContactsCrisisMessageDTO.getIosData(config);
     } catch (_) {}
 
     return MyContactsModuleDTO._(

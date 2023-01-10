@@ -23,7 +23,7 @@ class MyRecordsJournalDTO extends Equatable {
     required this.records,
   });
 
-  factory MyRecordsJournalDTO.getData(Config config) {
+  factory MyRecordsJournalDTO.getAndroidData(Config config) {
     const sectionName = 'journalRecords';
 
     final records = <JournalRecordDTO>[];
@@ -51,6 +51,39 @@ class MyRecordsJournalDTO extends Equatable {
               }
               records.add(JournalRecordDTO(date: date, answers: answers));
             }
+          }
+        }
+      }
+    }
+
+    return MyRecordsJournalDTO._(
+      records: records.isEmpty ? null : records,
+    );
+  }
+
+  factory MyRecordsJournalDTO.getIosData(Map<String, Object> config) {
+    final journalRecordsSize = config['journalRecords.size']?.toString().getIniIntValue();
+
+    final records = <JournalRecordDTO>[];
+    if (journalRecordsSize != null) {
+      for (var i = 1; i <= journalRecordsSize; i++) {
+        final line = config['journalRecords.$i.value']?.toString();
+        if (line != null) {
+          final splitValues = line.split('|');
+          if (splitValues.length >= 6) {
+            final date = splitValues[0].getIniDateTimeValue(
+                  cleanFromUnicodes: false,
+                  dateTimePattern: NepanikarConfigParser.QT_DATE_PATTERN,
+                ) ??
+                DateTime(2000);
+            final answers = <Tuple2<JournalQuestion, String>>[];
+            for (final journalQuestion in JournalQuestion.values) {
+              // First item is the date, so we need to add 1 to the index.
+              final answer =
+                  splitValues.elementAtOrNull(journalQuestion.index + 1)?.getIniStrValue() ?? '';
+              answers.add(Tuple2(journalQuestion, answer));
+            }
+            records.add(JournalRecordDTO(date: date, answers: answers));
           }
         }
       }

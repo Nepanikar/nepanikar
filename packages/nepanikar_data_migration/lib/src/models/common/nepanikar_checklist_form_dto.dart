@@ -8,7 +8,7 @@ class NepanikarChecklistFormDTO extends Equatable {
     required this.records,
   });
 
-  factory NepanikarChecklistFormDTO.getData(
+  factory NepanikarChecklistFormDTO.getAndroidData(
     Config config, {
     required String sectionTextsName,
     required String sectionCheckboxStatesName,
@@ -25,6 +25,28 @@ class NepanikarChecklistFormDTO extends Equatable {
         final text = textEntry.value ?? '';
         final checkboxState = checkboxStatesMap?[textEntry.key];
         records.add(MapEntry(text, checkboxState?.getIniBoolValue() ?? false));
+      }
+    }
+
+    return NepanikarChecklistFormDTO._(
+      records: records.isEmpty ? null : records,
+    );
+  }
+
+  factory NepanikarChecklistFormDTO.getIosData(
+    Map<String, Object> config, {
+    required String sectionTextsName,
+    required String sectionCheckboxStatesName,
+  }) {
+    final textsSize = config['$sectionTextsName.size']?.toString().getIniIntValue();
+
+    final records = <MapEntry<String, bool>>[];
+    if (textsSize != null) {
+      for (var i = 1; i <= textsSize; i++) {
+        final text = config['$sectionTextsName.$i.value']?.toString() ?? '';
+        final checkboxState =
+            config['$sectionCheckboxStatesName.$i.value']?.toString().getIniBoolValue();
+        records.add(MapEntry(text, checkboxState ?? false));
       }
     }
 

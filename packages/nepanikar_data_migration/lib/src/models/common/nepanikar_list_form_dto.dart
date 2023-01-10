@@ -8,13 +8,30 @@ class NepanikarListFormDTO extends Equatable {
     required this.texts,
   });
 
-  factory NepanikarListFormDTO.getData(Config config, {required String sectionName}) {
+  factory NepanikarListFormDTO.getAndroidData(Config config, {required String sectionName}) {
     final itemsMap = config.itemsToMap(sectionName);
 
     final texts = <String>[];
     if (itemsMap != null) {
       final sortedKeys = itemsMap.keys.toList()..sort(confKeysSorter);
       texts.addAll(sortedKeys.map((key) => itemsMap[key] ?? ''));
+    }
+
+    return NepanikarListFormDTO._(
+      texts: texts.isEmpty ? null : texts,
+    );
+  }
+
+  factory NepanikarListFormDTO.getIosData(
+    Map<String, Object> config, {
+    required String sectionName,
+  }) {
+    final itemsSize = config['$sectionName.size']?.toString().getIniIntValue();
+
+    final texts = <String>[];
+    if (itemsSize != null) {
+      final keys = List.generate(itemsSize, (i) => '$sectionName.${i + 1}.value');
+      texts.addAll(keys.map((key) => config[key]?.toString() ?? ''));
     }
 
     return NepanikarListFormDTO._(

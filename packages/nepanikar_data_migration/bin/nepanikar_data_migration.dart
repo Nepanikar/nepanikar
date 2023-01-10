@@ -10,7 +10,7 @@ Future<void> main(List<String> arguments) async {
   // final a = codec.encode(testStr);
   // final ab = codec.decode(a);
 
-  for (final locale in nep_data_migration.NepanikarConfigParser.supportedLocales) {
+  for (final locale in nep_data_migration.NepanikarConfigParser.fallbackParseLocale) {
     await initializeDateFormatting(locale);
   }
   const testStr = r'Zam\x11b\x159\xedm se na jin\xe9';
@@ -19,7 +19,7 @@ Future<void> main(List<String> arguments) async {
   // print(testStr2.cleanUnicodes());
 
   const filePath = './bin/example_data/DontPanic_small.conf';
-  final conf = nep_data_migration.NepanikarConfigParser.parseConfigFile(File(filePath));
+  final conf = nep_data_migration.NepanikarConfigParser.parseAndroidConfigFile(File(filePath));
   print(
     conf.myRecordsModuleConfig?.foodRecordConfig?.records
         .toString()

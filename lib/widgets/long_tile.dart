@@ -11,6 +11,7 @@ class LongTile extends StatelessWidget {
     this.textTextStyle = NepanikarFonts.bodyHeavy,
     this.description,
     this.descriptionTextStyle = NepanikarFonts.bodySmallMedium,
+    this.descriptionMaxLines,
     required this.image,
     required this.onTap,
     this.onLongPress,
@@ -25,6 +26,7 @@ class LongTile extends StatelessWidget {
   final TextStyle textTextStyle;
   final String? description;
   final TextStyle descriptionTextStyle;
+  final int? descriptionMaxLines;
   final Widget? image;
   final VoidCallback? onTap;
   final VoidCallback? onLongPress;
@@ -78,6 +80,8 @@ class LongTile extends StatelessWidget {
                             Text(
                               description!,
                               style: descriptionTextStyle,
+                              maxLines: descriptionMaxLines,
+                              overflow: descriptionMaxLines != null ? TextOverflow.ellipsis : null,
                             ),
                         ],
                       ),

@@ -7,7 +7,7 @@ class MyRecordsDiaryDTO extends Equatable {
     required this.recordEntries,
   });
 
-  factory MyRecordsDiaryDTO.getData(Config config) {
+  factory MyRecordsDiaryDTO.getAndroidData(Config config) {
     const sectionName = 'diaryRecords';
 
     final recordEntries = <MapEntry<DateTime, String>>[];
@@ -29,6 +29,33 @@ class MyRecordsDiaryDTO extends Equatable {
               final text = splitValues[1].getIniStrValue() ?? '';
               recordEntries.add(MapEntry(date, text));
             }
+          }
+        }
+      }
+    }
+
+    return MyRecordsDiaryDTO._(
+      recordEntries: recordEntries.isEmpty ? null : recordEntries,
+    );
+  }
+
+  factory MyRecordsDiaryDTO.getIosData(Map<String, Object> config) {
+    final diaryRecordsSize = config['diaryRecords.size']?.toString().getIniIntValue();
+
+    final recordEntries = <MapEntry<DateTime, String>>[];
+    if (diaryRecordsSize != null) {
+      for (var i = 1; i <= diaryRecordsSize; i++) {
+        final line = config['diaryRecords.$i.value']?.toString();
+        if (line != null) {
+          final splitValues = line.split('|');
+          if (splitValues.length >= 2) {
+            final date = splitValues[0].getIniDateTimeValue(
+                  cleanFromUnicodes: false,
+                  dateTimePattern: NepanikarConfigParser.QT_DATE_PATTERN,
+                ) ??
+                DateTime(2000);
+            final text = splitValues[1].getIniStrValue() ?? '';
+            recordEntries.add(MapEntry(date, text));
           }
         }
       }
