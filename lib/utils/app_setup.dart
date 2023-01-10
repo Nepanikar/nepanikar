@@ -85,6 +85,4 @@ Future<void> setup() async {
 
   registry.registerSingleton<ContactsDataManager>(ContactsDataManager());
   await registry.get<ContactsDataManager>().init();
-
-  FlutterNativeSplash.remove();
 }
