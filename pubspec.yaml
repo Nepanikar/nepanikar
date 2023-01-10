@@ -22,6 +22,7 @@ dependencies:
   flutter_file_dialog: ^2.3.2
   flutter_localizations:
     sdk: flutter
+  flutter_native_splash: ^2.2.16
   flutter_svg: ^1.1.6
   freezed_annotation: ^2.2.0
   get_it: ^7.2.0
