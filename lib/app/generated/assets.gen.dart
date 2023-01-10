@@ -115,6 +115,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/spinner.svg
   SvgGenImage get spinner => const SvgGenImage('assets/icons/spinner.svg');
 
+  /// File path: assets/icons/user_circle.svg
+  SvgGenImage get userCircle => const SvgGenImage('assets/icons/user_circle.svg');
+
   /// File path: assets/icons/warning_wavy.svg
   SvgGenImage get warningWavy => const SvgGenImage('assets/icons/warning_wavy.svg');
 
@@ -139,6 +142,7 @@ class $AssetsIconsGen {
         phone,
         settings,
         spinner,
+        userCircle,
         warningWavy
       ];
 }

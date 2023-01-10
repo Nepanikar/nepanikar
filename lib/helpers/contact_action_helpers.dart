@@ -14,6 +14,15 @@ Future<void> launchPhoneNum(String phoneNum) async {
   }
 }
 
+Future<void> launchSmsNum(String phoneNum) async {
+  final smsUri = Uri.tryParse('sms:$phoneNum');
+  if (smsUri != null && await canLaunchUrl(smsUri)) {
+    await launchUrl(smsUri);
+  } else {
+    debugPrint('Could not launch sms: $smsUri');
+  }
+}
+
 Future<void> launchUrLink(String url) async {
   if (await canLaunchUrlString(url)) {
     await launchUrlString(url, mode: LaunchMode.externalApplication);
