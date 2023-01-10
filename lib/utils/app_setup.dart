@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 // ignore: implementation_imports
 import 'package:flutter_localizations/src/utils/date_localizations.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/router/go_router_config.dart';
 import 'package:nepanikar/firebase_options.dart';
@@ -20,7 +21,8 @@ import 'package:nepanikar/utils/svg_utils.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 Future<void> setup() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -83,4 +85,6 @@ Future<void> setup() async {
 
   registry.registerSingleton<ContactsDataManager>(ContactsDataManager());
   await registry.get<ContactsDataManager>().init();
+
+  FlutterNativeSplash.remove();
 }
