@@ -53,6 +53,7 @@ class MyRecordsScreen extends StatelessWidget {
 
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.my_records,
+      showBottomNavbar: true,
       children: modules,
     );
   }

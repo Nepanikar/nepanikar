@@ -93,7 +93,9 @@ class MainRoute extends GoRouteData {
   const MainRoute();
 
   @override
-  Widget build(BuildContext context, _) => const MainScreen();
+  Widget build(BuildContext context, _) => MainScreen(
+        extra: _.extra as MainPageExtra?,
+      );
 }
 
 const _settingsRoutes = <TypedGoRoute<GoRouteData>>[
