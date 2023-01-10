@@ -399,19 +399,74 @@ class $AssetsIllustrationsGamesGen {
 class $AssetsIllustrationsModulesGen {
   const $AssetsIllustrationsModulesGen();
 
+  /// File path: assets/illustrations/modules/activity_planning.svg
+  SvgGenImage get activityPlanning =>
+      const SvgGenImage('assets/illustrations/modules/activity_planning.svg');
+
   /// File path: assets/illustrations/modules/anxiety_panic.svg
   SvgGenImage get anxietyPanic =>
       const SvgGenImage('assets/illustrations/modules/anxiety_panic.svg');
 
+  /// File path: assets/illustrations/modules/breathing.svg
+  SvgGenImage get breathing => const SvgGenImage('assets/illustrations/modules/breathing.svg');
+
+  /// File path: assets/illustrations/modules/breathing_circle.svg
+  SvgGenImage get breathingCircle =>
+      const SvgGenImage('assets/illustrations/modules/breathing_circle.svg');
+
+  /// File path: assets/illustrations/modules/breathing_square.svg
+  SvgGenImage get breathingSquare =>
+      const SvgGenImage('assets/illustrations/modules/breathing_square.svg');
+
+  /// File path: assets/illustrations/modules/breathing_triangle.svg
+  SvgGenImage get breathingTriangle =>
+      const SvgGenImage('assets/illustrations/modules/breathing_triangle.svg');
+
   /// File path: assets/illustrations/modules/depression.svg
   SvgGenImage get depression => const SvgGenImage('assets/illustrations/modules/depression.svg');
+
+  /// File path: assets/illustrations/modules/diary.svg
+  SvgGenImage get diary => const SvgGenImage('assets/illustrations/modules/diary.svg');
 
   /// File path: assets/illustrations/modules/eating_disorder.svg
   SvgGenImage get eatingDisorder =>
       const SvgGenImage('assets/illustrations/modules/eating_disorder.svg');
 
+  /// File path: assets/illustrations/modules/email_help.svg
+  SvgGenImage get emailHelp => const SvgGenImage('assets/illustrations/modules/email_help.svg');
+
+  /// File path: assets/illustrations/modules/emergency_plan.svg
+  SvgGenImage get emergencyPlan =>
+      const SvgGenImage('assets/illustrations/modules/emergency_plan.svg');
+
+  /// File path: assets/illustrations/modules/figure.svg
+  SvgGenImage get figure => const SvgGenImage('assets/illustrations/modules/figure.svg');
+
+  /// File path: assets/illustrations/modules/food_tracker.svg
+  SvgGenImage get foodTracker => const SvgGenImage('assets/illustrations/modules/food_tracker.svg');
+
+  /// File path: assets/illustrations/modules/homework.svg
+  SvgGenImage get homework => const SvgGenImage('assets/illustrations/modules/homework.svg');
+
+  /// File path: assets/illustrations/modules/journal.svg
+  SvgGenImage get journal => const SvgGenImage('assets/illustrations/modules/journal.svg');
+
+  /// File path: assets/illustrations/modules/mood_tracker.svg
+  SvgGenImage get moodTracker => const SvgGenImage('assets/illustrations/modules/mood_tracker.svg');
+
   /// File path: assets/illustrations/modules/my_records.svg
   SvgGenImage get myRecords => const SvgGenImage('assets/illustrations/modules/my_records.svg');
+
+  /// File path: assets/illustrations/modules/my_success.svg
+  SvgGenImage get mySuccess => const SvgGenImage('assets/illustrations/modules/my_success.svg');
+
+  /// File path: assets/illustrations/modules/online_therapy.svg
+  SvgGenImage get onlineTherapy =>
+      const SvgGenImage('assets/illustrations/modules/online_therapy.svg');
+
+  /// File path: assets/illustrations/modules/reaseons_why_not.svg
+  SvgGenImage get reaseonsWhyNot =>
+      const SvgGenImage('assets/illustrations/modules/reaseons_why_not.svg');
 
   /// File path: assets/illustrations/modules/relaxation.svg
   SvgGenImage get relaxation => const SvgGenImage('assets/illustrations/modules/relaxation.svg');
@@ -419,13 +474,66 @@ class $AssetsIllustrationsModulesGen {
   /// File path: assets/illustrations/modules/self_harm.svg
   SvgGenImage get selfHarm => const SvgGenImage('assets/illustrations/modules/self_harm.svg');
 
+  /// File path: assets/illustrations/modules/sleep_tracker.svg
+  SvgGenImage get sleepTracker =>
+      const SvgGenImage('assets/illustrations/modules/sleep_tracker.svg');
+
+  /// File path: assets/illustrations/modules/success_tracker.svg
+  SvgGenImage get successTracker =>
+      const SvgGenImage('assets/illustrations/modules/success_tracker.svg');
+
   /// File path: assets/illustrations/modules/suicidal_thoughts.svg
   SvgGenImage get suicidalThoughts =>
       const SvgGenImage('assets/illustrations/modules/suicidal_thoughts.svg');
 
+  /// File path: assets/illustrations/modules/what_can_help_me.svg
+  SvgGenImage get whatCanHelpMe =>
+      const SvgGenImage('assets/illustrations/modules/what_can_help_me.svg');
+
+  /// File path: assets/illustrations/modules/what_helped_me.svg
+  SvgGenImage get whatHelpedMe =>
+      const SvgGenImage('assets/illustrations/modules/what_helped_me.svg');
+
+  /// File path: assets/illustrations/modules/what_pleased_me.svg
+  SvgGenImage get whatPleasedMe =>
+      const SvgGenImage('assets/illustrations/modules/what_pleased_me.svg');
+
+  /// File path: assets/illustrations/modules/what_to_do_anxiety.svg
+  SvgGenImage get whatToDoAnxiety =>
+      const SvgGenImage('assets/illustrations/modules/what_to_do_anxiety.svg');
+
   /// List of all assets
-  List<SvgGenImage> get values =>
-      [anxietyPanic, depression, eatingDisorder, myRecords, relaxation, selfHarm, suicidalThoughts];
+  List<SvgGenImage> get values => [
+        activityPlanning,
+        anxietyPanic,
+        breathing,
+        breathingCircle,
+        breathingSquare,
+        breathingTriangle,
+        depression,
+        diary,
+        eatingDisorder,
+        emailHelp,
+        emergencyPlan,
+        figure,
+        foodTracker,
+        homework,
+        journal,
+        moodTracker,
+        myRecords,
+        mySuccess,
+        onlineTherapy,
+        reaseonsWhyNot,
+        relaxation,
+        selfHarm,
+        sleepTracker,
+        successTracker,
+        suicidalThoughts,
+        whatCanHelpMe,
+        whatHelpedMe,
+        whatPleasedMe,
+        whatToDoAnxiety
+      ];
 }
 
 class $AssetsIllustrationsMoodsGen {

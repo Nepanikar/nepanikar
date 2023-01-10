@@ -101,13 +101,13 @@ class ContactsScreen extends StatelessWidget {
         LongTile(
           // TODO: l10n
           text: 'Online terapie',
-          image: Assets.illustrations.contacts.chat.svg(),
+          image: Assets.illustrations.modules.onlineTherapy.svg(),
           onTap: () => launchUrLink(AppConstants.nepanikarTherapyUrl),
         ),
         LongTile(
           // TODO: l10n
           text: 'E-mailová poradna',
-          image: Assets.illustrations.contacts.chat.svg(),
+          image: Assets.illustrations.modules.emailHelp.svg(),
           onTap: () => context.push(
             const EmailCounsellingRoute().location,
             extra: const CrisisMessageRouteExtraData(

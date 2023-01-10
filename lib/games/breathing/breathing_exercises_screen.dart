@@ -23,7 +23,7 @@ class BreathingExercisesScreen extends StatelessWidget {
       LongTile(
         //TODO: l10n
         text: 'Dechové cvičení I',
-        image: Assets.illustrations.modules.anxietyPanic.svg(),
+        image: Assets.illustrations.modules.breathingCircle.svg(),
         onTap: () => context.push(
           const BreathingGameRoute(shape: BreathingGameShape.circle).location,
         ),
@@ -31,7 +31,7 @@ class BreathingExercisesScreen extends StatelessWidget {
       LongTile(
         //TODO: l10n
         text: 'Dechové cvičení II',
-        image: Assets.illustrations.modules.anxietyPanic.svg(),
+        image: Assets.illustrations.modules.breathingTriangle.svg(),
         onTap: () => context.push(
           const BreathingGameRoute(shape: BreathingGameShape.triangle).location,
         ),
@@ -39,7 +39,7 @@ class BreathingExercisesScreen extends StatelessWidget {
       LongTile(
         //TODO: l10n
         text: 'Dechové cvičení III',
-        image: Assets.illustrations.modules.anxietyPanic.svg(),
+        image: Assets.illustrations.modules.breathingSquare.svg(),
         onTap: () => context.push(
           const BreathingGameRoute(shape: BreathingGameShape.square).location,
         ),

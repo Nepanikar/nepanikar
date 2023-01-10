@@ -9,20 +9,43 @@ class SelfHarmModuleDTO extends Equatable {
     required this.selfHarmTimerConfig,
   });
 
-  factory SelfHarmModuleDTO.getData(Config config) {
+  factory SelfHarmModuleDTO.getAndroidData(Config config) {
     NepanikarListFormDTO? selfHarmHelpedConfig;
     try {
-      selfHarmHelpedConfig = NepanikarListFormDTO.getData(config, sectionName: 'selfHarmHelped');
+      selfHarmHelpedConfig =
+          NepanikarListFormDTO.getAndroidData(config, sectionName: 'selfHarmHelped');
     } catch (_) {}
 
     NepanikarListFormDTO? selfHarmPlanConfig;
     try {
-      selfHarmPlanConfig = NepanikarListFormDTO.getData(config, sectionName: 'selfHarmPlan');
+      selfHarmPlanConfig = NepanikarListFormDTO.getAndroidData(config, sectionName: 'selfHarmPlan');
     } catch (_) {}
 
     SelfHarmTimerDTO? selfHarmTimerConfig;
     try {
-      selfHarmTimerConfig = SelfHarmTimerDTO.getData(config);
+      selfHarmTimerConfig = SelfHarmTimerDTO.getAndroidData(config);
+    } catch (_) {}
+    return SelfHarmModuleDTO._(
+      selfHarmHelpedConfig: selfHarmHelpedConfig,
+      selfHarmPlanConfig: selfHarmPlanConfig,
+      selfHarmTimerConfig: selfHarmTimerConfig,
+    );
+  }
+
+  factory SelfHarmModuleDTO.getIosData(Map<String, Object> config) {
+    NepanikarListFormDTO? selfHarmHelpedConfig;
+    try {
+      selfHarmHelpedConfig = NepanikarListFormDTO.getIosData(config, sectionName: 'selfHarmHelped');
+    } catch (_) {}
+
+    NepanikarListFormDTO? selfHarmPlanConfig;
+    try {
+      selfHarmPlanConfig = NepanikarListFormDTO.getIosData(config, sectionName: 'selfHarmPlan');
+    } catch (_) {}
+
+    SelfHarmTimerDTO? selfHarmTimerConfig;
+    try {
+      selfHarmTimerConfig = SelfHarmTimerDTO.getIosData(config);
     } catch (_) {}
     return SelfHarmModuleDTO._(
       selfHarmHelpedConfig: selfHarmHelpedConfig,

@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>GA-firstReport</key>
+		<true/>
+		<key>contactMessageAddress</key>
+		<string></string>
+		<key>contactMessageBody</key>
+		<string></string>
+		<key>diaryRecords.1.value</key>
+		<string>9.1.2016|Ahojdáá|$_^#_$</string>
+		<key>diaryRecords.2.value</key>
+		<string>9.1.2023|Some title|$_^#_$</string>
+		<key>diaryRecords.size</key>
+		<integer>2</integer>
+		<key>foodAfraid.1.value</key>
+		<string>The food I am scared of</string>
+		<key>foodAfraid.size</key>
+		<integer>1</integer>
+		<key>foodAfraidC.1.value</key>
+		<string>f</string>
+		<key>foodAfraidC.size</key>
+		<integer>1</integer>
+		<key>foodChallenge.1.value</key>
+		<string>I want to be and I know how to be kind to myself</string>
+		<key>foodChallenge.10.value</key>
+		<string>I will show someone how important they are to me</string>
+		<key>foodChallenge.11.value</key>
+		<string>If I don’t have any professional help, today I will find some</string>
+		<key>foodChallenge.12.value</key>
+		<string>Today is a rest day because I need it</string>
+		<key>foodChallenge.13.value</key>
+		<string>I will acknowledge what I need and miss in my life</string>
+		<key>foodChallenge.14.value</key>
+		<string>I will say thanks to my parents because they have brought me up as an honest person</string>
+		<key>foodChallenge.15.value</key>
+		<string>I will think about the people who care about me</string>
+		<key>foodChallenge.16.value</key>
+		<string>I will create my own motto</string>
+		<key>foodChallenge.17.value</key>
+		<string>Today I won’t be afraid of eating.</string>
+		<key>foodChallenge.18.value</key>
+		<string>Today I will share my insecurities and fears with someone</string>
+		<key>foodChallenge.19.value</key>
+		<string>I will forgive all the people who have hurt me. I am forgiving to myself.</string>
+		<key>foodChallenge.2.value</key>
+		<string>Today I will try to think positively and believe that everything will be fine</string>
+		<key>foodChallenge.20.value</key>
+		<string>Starting today I will try to speak about what bugs me and how I feel</string>
+		<key>foodChallenge.21.value</key>
+		<string>From now on I wll not be afraid of saying that I am tired or that I don't feel like doing something.</string>
+		<key>foodChallenge.22.value</key>
+		<string>I learn to say NO.</string>
+		<key>foodChallenge.23.value</key>
+		<string>I will start writing my new diary</string>
+		<key>foodChallenge.24.value</key>
+		<string>I won't tolerate any hateful comments that others say about anyone's weight.</string>
+		<key>foodChallenge.25.value</key>
+		<string>I will write down all the things I have already achieved in my life</string>
+		<key>foodChallenge.26.value</key>
+		<string>I have as many friends as I have fingers on my hands</string>
+		<key>foodChallenge.3.value</key>
+		<string>From today, I won’t hide my feelings anymore</string>
+		<key>foodChallenge.4.value</key>
+		<string>Each hour I will praise myself</string>
+		<key>foodChallenge.5.value</key>
+		<string>Today I will write down 20 of my personal goals which I would like to achieve in the future</string>
+		<key>foodChallenge.6.value</key>
+		<string>I will focus on different things than food and start to find the meaning of my life</string>
+		<key>foodChallenge.7.value</key>
+		<string>I will stop vilifying and harming myself</string>
+		<key>foodChallenge.8.value</key>
+		<string>I will spread gratitude to others because they care about me</string>
+		<key>foodChallenge.9.value</key>
+		<string>I will acknowledge what is good for me and my body</string>
+		<key>foodChallenge.size</key>
+		<integer>26</integer>
+		<key>foodChallengeC.1.value</key>
+		<string>f</string>
+		<key>foodChallengeC.10.value</key>
+		<string>f</string>
+		<key>foodChallengeC.11.value</key>
+		<string>f</string>
+		<key>foodChallengeC.12.value</key>
+		<string>f</string>
+		<key>foodChallengeC.13.value</key>
+		<string>f</string>
+		<key>foodChallengeC.14.value</key>
+		<string>f</string>
+		<key>foodChallengeC.15.value</key>
+		<string>f</string>
+		<key>foodChallengeC.16.value</key>
+		<string>f</string>
+		<key>foodChallengeC.17.value</key>
+		<string>f</string>
+		<key>foodChallengeC.18.value</key>
+		<string>f</string>
+		<key>foodChallengeC.19.value</key>
+		<string>f</string>
+		<key>foodChallengeC.2.value</key>
+		<string>f</string>
+		<key>foodChallengeC.20.value</key>
+		<string>f</string>
+		<key>foodChallengeC.21.value</key>
+		<string>f</string>
+		<key>foodChallengeC.22.value</key>
+		<string>f</string>
+		<key>foodChallengeC.23.value</key>
+		<string>f</string>
+		<key>foodChallengeC.24.value</key>
+		<string>f</string>
+		<key>foodChallengeC.25.value</key>
+		<string>f</string>
+		<key>foodChallengeC.26.value</key>
+		<string>f</string>
+		<key>foodChallengeC.3.value</key>
+		<string>f</string>
+		<key>foodChallengeC.4.value</key>
+		<string>f</string>
+		<key>foodChallengeC.5.value</key>
+		<string>f</string>
+		<key>foodChallengeC.6.value</key>
+		<string>f</string>
+		<key>foodChallengeC.7.value</key>
+		<string>f</string>
+		<key>foodChallengeC.8.value</key>
+		<string>f</string>
+		<key>foodChallengeC.9.value</key>
+		<string>f</string>
+		<key>foodChallengeC.size</key>
+		<integer>26</integer>
+		<key>foodCreative.1.value</key>
+		<string>Draw a picture of your illness and tear up the paper.</string>
+		<key>foodCreative.10.value</key>
+		<string>Try to play any musical instrument.</string>
+		<key>foodCreative.11.value</key>
+		<string>Find out how to make origami from paper.</string>
+		<key>foodCreative.12.value</key>
+		<string>Write down moments from your life you would like to experience again.</string>
+		<key>foodCreative.13.value</key>
+		<string>Create a decoration for your room</string>
+		<key>foodCreative.2.value</key>
+		<string>Write a letter to your ill “self”, say thanks and goodbye.</string>
+		<key>foodCreative.3.value</key>
+		<string>Write down the bullet points why you want to be healthy and what are the obstacles on your recovery journey.</string>
+		<key>foodCreative.4.value</key>
+		<string>Sort out your paper mess on your table.</string>
+		<key>foodCreative.5.value</key>
+		<string>Try out a new hairstyle.</string>
+		<key>foodCreative.6.value</key>
+		<string>Stretch your muscles.</string>
+		<key>foodCreative.7.value</key>
+		<string>Have you thought about a tattoo? Buy Henna and find the proper place on your beautiful body!</string>
+		<key>foodCreative.8.value</key>
+		<string>Create a memory book of your favourite vacation. Print some photos or stickers, be creative.</string>
+		<key>foodCreative.9.value</key>
+		<string>Study a new language.</string>
+		<key>foodCreative.size</key>
+		<integer>13</integer>
+		<key>foodCreativeC.1.value</key>
+		<string>f</string>
+		<key>foodCreativeC.10.value</key>
+		<string>f</string>
+		<key>foodCreativeC.11.value</key>
+		<string>f</string>
+		<key>foodCreativeC.12.value</key>
+		<string>f</string>
+		<key>foodCreativeC.13.value</key>
+		<string>f</string>
+		<key>foodCreativeC.2.value</key>
+		<string>f</string>
+		<key>foodCreativeC.3.value</key>
+		<string>f</string>
+		<key>foodCreativeC.4.value</key>
+		<string>f</string>
+		<key>foodCreativeC.5.value</key>
+		<string>f</string>
+		<key>foodCreativeC.6.value</key>
+		<string>f</string>
+		<key>foodCreativeC.7.value</key>
+		<string>f</string>
+		<key>foodCreativeC.8.value</key>
+		<string>f</string>
+		<key>foodCreativeC.9.value</key>
+		<string>f</string>
+		<key>foodCreativeC.size</key>
+		<integer>13</integer>
+		<key>foodExist</key>
+		<true/>
+		<key>foodFoodLike.1.value</key>
+		<string></string>
+		<key>foodFoodLike.size</key>
+		<integer>1</integer>
+		<key>foodFoodLikeC.1.value</key>
+		<string>f</string>
+		<key>foodFoodLikeC.size</key>
+		<integer>1</integer>
+		<key>foodLike.1.value</key>
+		<string></string>
+		<key>foodLike.size</key>
+		<integer>1</integer>
+		<key>foodLikeC.1.value</key>
+		<string>f</string>
+		<key>foodLikeC.size</key>
+		<integer>1</integer>
+		<key>foodMotivation.1.value</key>
+		<string></string>
+		<key>foodMotivation.size</key>
+		<integer>1</integer>
+		<key>foodMotivationC.1.value</key>
+		<string>f</string>
+		<key>foodMotivationC.size</key>
+		<integer>1</integer>
+		<key>foodRecordAmSnack.size</key>
+		<integer>0</integer>
+		<key>foodRecordBreakfast.size</key>
+		<integer>0</integer>
+		<key>foodRecordDates.size</key>
+		<integer>0</integer>
+		<key>foodRecordDinner.size</key>
+		<integer>0</integer>
+		<key>foodRecordLunch.size</key>
+		<integer>0</integer>
+		<key>foodRecordPmSnack.size</key>
+		<integer>0</integer>
+		<key>foodRecordSecondDinner.size</key>
+		<integer>0</integer>
+		<key>language</key>
+		<string>EN</string>
+		<key>moods.size</key>
+		<integer>0</integer>
+		<key>myContactsNames.1.value</key>
+		<string>Name</string>
+		<key>myContactsNames.size</key>
+		<integer>1</integer>
+		<key>myContactsNumbers.1.value</key>
+		<string>Phone number or email</string>
+		<key>myContactsNumbers.size</key>
+		<integer>1</integer>
+		<key>nice.1.value</key>
+		<string>The weather was nice...</string>
+		<key>nice.size</key>
+		<integer>1</integer>
+		<key>notificationsOn</key>
+		<false/>
+		<key>plan.1.value</key>
+		<string>I will go shopping</string>
+		<key>plan.size</key>
+		<integer>1</integer>
+		<key>planC.1.value</key>
+		<string>t</string>
+		<key>planC.size</key>
+		<integer>1</integer>
+		<key>praise.1.value</key>
+		<string>I did my daily exercise</string>
+		<key>praise.size</key>
+		<integer>1</integer>
+		<key>reasons.1.value</key>
+		<string>Play with my pet (doggie, kitten, guinea pig)</string>
+		<key>reasons.2.value</key>
+		<string>Listen to guitar and sing at campfire</string>
+		<key>reasons.3.value</key>
+		<string>Study what I like</string>
+		<key>reasons.4.value</key>
+		<string>Find myself a partner</string>
+		<key>reasons.5.value</key>
+		<string>Have children</string>
+		<key>reasons.6.value</key>
+		<string>Help others</string>
+		<key>reasons.size</key>
+		<integer>6</integer>
+		<key>selfHarmExist</key>
+		<true/>
+		<key>selfHarmHelped.1.value</key>
+		<string></string>
+		<key>selfHarmHelped.size</key>
+		<integer>1</integer>
+		<key>selfHarmPlan.1.value</key>
+		<string></string>
+		<key>selfHarmPlan.2.value</key>
+		<string></string>
+		<key>selfHarmPlan.3.value</key>
+		<string></string>
+		<key>selfHarmPlan.4.value</key>
+		<string></string>
+		<key>selfHarmPlan.size</key>
+		<integer>4</integer>
+		<key>selfHarmTimer</key>
+		<true/>
+		<key>selfHarmTimerDate</key>
+		<string>Mon Jan 9 18:57:15 2023 GMT+0100</string>
+		<key>selfHarmTimerRecord</key>
+		<integer>430</integer>
+		<key>sleep.size</key>
+		<integer>0</integer>
+		<key>suicidePlan.1.value</key>
+		<string>Whom do I write for...</string>
+		<key>suicidePlan.2.value</key>
+		<string>Hi it's been hard lately for me, can we talk?</string>
+		<key>suicidePlan.3.value</key>
+		<string>What will I do...</string>
+		<key>suicidePlan.4.value</key>
+		<string>Where will I go...</string>
+		<key>suicidePlan.5.value</key>
+		<string>People I care about</string>
+		<key>suicidePlan.size</key>
+		<integer>5</integer>
+		<key>themeHue</key>
+		<real>0.76000000000000001</real>
+		<key>themeLight</key>
+		<real>-0.050000000000000003</real>
+	</dict>
+</plist>

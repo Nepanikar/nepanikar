@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
@@ -37,6 +38,12 @@ class _MainScreenState extends State<MainScreen> {
       ContactsScreen(countryContacts: countryContacts),
       const SettingsScreen()
     ];
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    FlutterNativeSplash.remove();
   }
 
   @override
