@@ -6,4 +6,6 @@ extension ScreenResolutionHelpers on BuildContext {
   double get screenWidth => screenSize.width;
 
   double get screenHeight => screenSize.height;
+
+  bool get isSmallScreen => screenHeight < 750;
 }
