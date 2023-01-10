@@ -47,7 +47,7 @@ class EatingDisorderScreen extends StatelessWidget {
       ),
       LongTile(
         text: context.l10n.food_tasks,
-        image: Assets.illustrations.modules.eatingDisorder.svg(),
+        image: Assets.illustrations.modules.homework.svg(),
         onTap: () => context.push(const EatingDisorderTasksRoute().location),
       ),
       LongTile(
@@ -57,7 +57,7 @@ class EatingDisorderScreen extends StatelessWidget {
       ),
       LongTile(
         text: context.l10n.distraction,
-        image: Assets.illustrations.modules.eatingDisorder.svg(),
+        image: Assets.illustrations.games.math.math.svg(),
         onTap: () => context.push(const EatingDisorderDistractionsRoute().location),
       ),
       if (shouldShowContactsTile)

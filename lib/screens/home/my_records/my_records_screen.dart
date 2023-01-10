@@ -26,27 +26,27 @@ class MyRecordsScreen extends StatelessWidget {
     final modules = <Widget>[
       LongTile(
         text: context.l10n.depression_mood,
-        image: Assets.illustrations.modules.myRecords.svg(),
+        image: Assets.illustrations.modules.moodTracker.svg(),
         onTap: () => context.push(const MoodTrackRoute().location),
       ),
       LongTile(
         text: context.l10n.sleep_title,
-        image: Assets.illustrations.modules.myRecords.svg(),
+        image: Assets.illustrations.modules.sleepTracker.svg(),
         onTap: () => context.push(const MyRecordsSleepTrackRoute().location),
       ),
       LongTile(
         text: context.l10n.diary,
-        image: Assets.illustrations.modules.myRecords.svg(),
+        image: Assets.illustrations.modules.diary.svg(),
         onTap: () => context.push(const MyRecordsDiaryRecordsRoute().location),
       ),
       LongTile(
         text: context.l10n.journal,
-        image: Assets.illustrations.modules.myRecords.svg(),
+        image: Assets.illustrations.modules.journal.svg(),
         onTap: () => context.push(const MyRecordsJournalRecordsRoute().location),
       ),
       LongTile(
         text: context.l10n.food_records,
-        image: Assets.illustrations.modules.myRecords.svg(),
+        image: Assets.illustrations.modules.foodTracker.svg(),
         onTap: () => context.push(const MyRecordsFoodRecordsListRoute().location),
       ),
     ];

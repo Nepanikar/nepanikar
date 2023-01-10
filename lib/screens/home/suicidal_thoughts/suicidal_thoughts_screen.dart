@@ -24,17 +24,17 @@ class SuicidalThoughtsScreen extends StatelessWidget {
     final modules = <Widget>[
       LongTile(
         text: context.l10n.plan,
-        image: Assets.illustrations.modules.suicidalThoughts.svg(),
+        image: Assets.illustrations.modules.emergencyPlan.svg(),
         onTap: () => context.push(const SuicidalThoughtsPlanRoute().location),
       ),
       LongTile(
         text: context.l10n.reasons,
-        image: Assets.illustrations.modules.suicidalThoughts.svg(),
+        image: Assets.illustrations.modules.reaseonsWhyNot.svg(),
         onTap: () => context.push(const SuicidalThoughtsReasonsNoRoute().location),
       ),
       LongTile(
         text: context.l10n.breath,
-        image: Assets.illustrations.modules.anxietyPanic.svg(),
+        image: Assets.illustrations.modules.breathing.svg(),
         onTap: () => context.push(const BreathingExercisesRoute().location),
       ),
     ];

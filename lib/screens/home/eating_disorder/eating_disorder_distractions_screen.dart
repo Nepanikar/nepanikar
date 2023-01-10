@@ -45,13 +45,13 @@ class EatingDisorderDistractionsScreen extends StatelessWidget {
       ),
       LongTile(
         text: context.l10n.breath,
-        image: Assets.illustrations.modules.anxietyPanic.svg(),
+        image: Assets.illustrations.modules.breathing.svg(),
         onTap: () => context.push(const BreathingExercisesRoute().location),
       ),
       if (['cs', 'sk'].contains(_userSettingsDao.locale.languageCode))
         LongTile(
           text: context.l10n.relaxation,
-          image: Assets.illustrations.modules.anxietyPanic.svg(),
+          image: Assets.illustrations.modules.relaxation.svg(),
           onTap: () => context.push(const RelaxationsListRoute().location),
         ),
     ];
