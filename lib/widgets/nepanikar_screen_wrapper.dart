@@ -1,9 +1,15 @@
 import 'package:flextras/flextras.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/generated/assets.gen.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
+import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/app/theme/sizes.dart';
 import 'package:nepanikar/helpers/screen_resolution_helpers.dart';
+import 'package:nepanikar/screens/main/main_screen.dart';
+import 'package:nepanikar/widgets/bottom_navbar_item.dart';
 
 class NepanikarScreenWrapper extends StatelessWidget {
   const NepanikarScreenWrapper({
@@ -16,6 +22,7 @@ class NepanikarScreenWrapper extends StatelessWidget {
     this.isCardStackLayout = false,
     this.floatingActionButton,
     this.expandToMaxScreenHeight = false,
+    this.showBottomNavbar = false,
   });
 
   final String appBarTitle;
@@ -36,6 +43,8 @@ class NepanikarScreenWrapper extends StatelessWidget {
 
   /// Used only in card stack layout.
   final bool expandToMaxScreenHeight;
+
+  final bool showBottomNavbar;
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +79,46 @@ class NepanikarScreenWrapper extends StatelessWidget {
               ),
               child: floatingActionButton,
             ),
+      bottomNavigationBar: showBottomNavbar
+          ? BottomNavigationBar(
+              items: <BottomNavigationBarItem>[
+                buildBottomNavigationBarItem(
+                  svgIconPath: Assets.icons.home.path,
+                  label: context.l10n.home,
+                  isSelected: true,
+                ),
+                buildBottomNavigationBarItem(
+                  svgIconPath: Assets.icons.calendarEvent.path,
+                  // TODO: l10n
+                  label: 'Záznamy',
+                ),
+                buildBottomNavigationBarItem(
+                  svgIconPath: Assets.icons.phone.path,
+                  // TODO: l10n
+                  label: 'Kontakty',
+                ),
+                buildBottomNavigationBarItem(
+                  svgIconPath: Assets.icons.settings.path,
+                  // TODO: l10n
+                  label: 'Nastavení',
+                ),
+              ],
+              showUnselectedLabels: true,
+              type: BottomNavigationBarType.fixed,
+              backgroundColor: const Color(0xAAFAF4FF),
+              elevation: 0,
+              selectedItemColor: NepanikarColors.primarySwatch.shade800,
+              unselectedItemColor: NepanikarColors.primarySwatch.shade700,
+              onTap: (index) {
+                context
+                  ..go(const MainRoute().location)
+                  ..pushReplacement(
+                    const MainRoute().location,
+                    extra: MainPageExtra(initIndex: index),
+                  );
+              },
+            )
+          : null,
       body: SafeArea(
         child: isCardStackLayout
             ? Stack(

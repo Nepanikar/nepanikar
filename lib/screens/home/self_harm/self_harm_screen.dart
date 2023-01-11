@@ -53,6 +53,7 @@ class SelfHarmScreen extends StatelessWidget {
 
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.self_harm,
+      showBottomNavbar: true,
       children: modules,
     );
   }

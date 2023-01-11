@@ -46,6 +46,7 @@ class DepressionScreen extends StatelessWidget {
     ];
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.depression,
+      showBottomNavbar: true,
       children: modules,
     );
   }

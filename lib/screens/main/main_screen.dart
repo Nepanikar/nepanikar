@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
@@ -12,9 +11,19 @@ import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/utils/contacts_data_manager.dart';
 import 'package:nepanikar/utils/registry.dart';
+import 'package:nepanikar/widgets/bottom_navbar_item.dart';
+
+class MainPageExtra {
+  MainPageExtra({
+    required this.initIndex,
+  });
+  int initIndex;
+}
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+  const MainScreen({super.key, this.extra});
+
+  final MainPageExtra? extra;
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -34,7 +43,9 @@ class _MainScreenState extends State<MainScreen> {
     final countryContacts = _contactsDataManager.getContactsFromLocale(locale);
     return <Widget>[
       HomeScreen(showQuickHelpButton: countryContacts.phoneContacts != null),
-      const MyRecordsScreen(),
+      const MyRecordsScreen(
+        showBottomNavbar: false,
+      ),
       ContactsScreen(countryContacts: countryContacts),
       const SettingsScreen()
     ];
@@ -44,12 +55,19 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     super.initState();
     FlutterNativeSplash.remove();
+    setState(() {
+      _selectedIndex = widget.extra?.initIndex ?? _selectedIndex;
+    });
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     _databaseService.checkDataPreloaded(context.l10n);
+
+    setState(() {
+      _selectedIndex = widget.extra?.initIndex ?? _selectedIndex;
+    });
   }
 
   void _onItemTapped(int index) {
@@ -58,57 +76,30 @@ class _MainScreenState extends State<MainScreen> {
     });
   }
 
-  BottomNavigationBarItem _buildBottomNavigationBarItem({
-    required bool isSelected,
-    required String svgIconPath,
-    required String label,
-  }) {
-    return BottomNavigationBarItem(
-      icon: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 6),
-            child: SvgPicture.asset(
-              Assets.icons.marker.path,
-              color: isSelected ? NepanikarColors.primarySwatch.shade800 : Colors.transparent,
-            ),
-          ),
-          SvgPicture.asset(
-            svgIconPath,
-            color: isSelected
-                ? NepanikarColors.primarySwatch.shade800
-                : NepanikarColors.primarySwatch.shade700,
-          ),
-        ],
-      ),
-      label: label,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: _routes.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
-          _buildBottomNavigationBarItem(
+          buildBottomNavigationBarItem(
             svgIconPath: Assets.icons.home.path,
             label: context.l10n.home,
             isSelected: _selectedIndex == 0,
           ),
-          _buildBottomNavigationBarItem(
+          buildBottomNavigationBarItem(
             svgIconPath: Assets.icons.calendarEvent.path,
             // TODO: l10n
             label: 'Záznamy',
             isSelected: _selectedIndex == 1,
           ),
-          _buildBottomNavigationBarItem(
+          buildBottomNavigationBarItem(
             svgIconPath: Assets.icons.phone.path,
             // TODO: l10n
             label: 'Kontakty',
             isSelected: _selectedIndex == 2,
           ),
-          _buildBottomNavigationBarItem(
+          buildBottomNavigationBarItem(
             svgIconPath: Assets.icons.settings.path,
             // TODO: l10n
             label: 'Nastavení',

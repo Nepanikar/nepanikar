@@ -56,6 +56,10 @@ class EatingDisorderTasksScreen extends StatelessWidget {
         onTap: () => context.push(const EatingDisorderFoodAfraidOfRoute().location),
       ),
     ];
-    return NepanikarScreenWrapper(appBarTitle: context.l10n.food_tasks, children: modules);
+    return NepanikarScreenWrapper(
+      appBarTitle: context.l10n.food_tasks,
+      showBottomNavbar: true,
+      children: modules,
+    );
   }
 }
