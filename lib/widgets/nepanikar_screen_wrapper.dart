@@ -62,7 +62,14 @@ class NepanikarScreenWrapper extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(appBarTitle), actions: appBarActions),
       resizeToAvoidBottomInset: false,
-      floatingActionButton: floatingActionButton,
+      floatingActionButton: floatingActionButton == null
+          ? null
+          : Padding(
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom,
+              ),
+              child: floatingActionButton,
+            ),
       body: SafeArea(
         child: isCardStackLayout
             ? Stack(

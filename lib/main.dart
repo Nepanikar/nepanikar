@@ -7,6 +7,7 @@ import 'package:nepanikar/providers/mood_chart_filter_provider.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/utils/app_setup.dart';
 import 'package:nepanikar/utils/registry.dart';
+import 'package:nepanikar/widgets/nepanikar_scroll_behavior.dart';
 import 'package:nepanikar_contacts_gen/nepanikar_contacts_gen.dart';
 import 'package:provider/provider.dart';
 
@@ -45,10 +46,14 @@ class Nepanikar extends StatelessWidget {
             routerConfig: _goRouter,
             builder: (context, child) {
               return child != null
-                  ? MediaQuery(
-                      // To not influence app's font size by the system font size.
-                      data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                      child: child,
+                  ? ScrollConfiguration(
+                      behavior: NepanikarScrollBehavior(),
+                      child: MediaQuery(
+                        // To not influence app's font size by the system font size.
+                        // TODO: Should be resolved, accessibility is important.
+                        data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                        child: child,
+                      ),
                     )
                   : const SizedBox.shrink();
             },
