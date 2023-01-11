@@ -7,6 +7,7 @@ import 'package:nepanikar/helpers/screen_resolution_helpers.dart';
 import 'package:nepanikar/services/db/my_contacts/my_contacts_records/my_contacts_record_model.dart';
 import 'package:nepanikar/services/db/my_contacts/my_contacts_records/my_contacts_records_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
+import 'package:nepanikar/widgets/adaptive_dialog.dart';
 import 'package:nepanikar/widgets/nepanikar_horizontal_divider.dart';
 
 class MyContactTile extends StatefulWidget {
@@ -88,7 +89,7 @@ class _MyContactTileState extends State<MyContactTile> {
                       ),
                       _buildTextField(
                         // TODO: l10n
-                        hintText: 'Telefon nebo email',
+                        hintText: 'Telefon',
                         controller: _contactAddressController,
                         onChanged: (value) async => _myContactsRecordsDao.updateContactAddress(
                           widget.id,
@@ -101,7 +102,15 @@ class _MyContactTileState extends State<MyContactTile> {
                 ),
                 IconButton(
                   icon: Icon(Icons.close, color: NepanikarColors.primarySwatch.shade500, size: 20),
-                  onPressed: () async => _myContactsRecordsDao.deleteRecord(widget.id),
+                  onPressed: () async {
+                    await showAdaptiveDialog(
+                      context,
+                      description: context.l10n.really_remove,
+                      onOk: () async => _myContactsRecordsDao.deleteRecord(widget.id),
+                      okLabel: context.l10n.mood_help_yes,
+                      cancelLabel: context.l10n.mood_help_no,
+                    );
+                  },
                 ),
               ],
             ),
