@@ -71,7 +71,14 @@ class NepanikarScreenWrapper extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(appBarTitle), actions: appBarActions),
       resizeToAvoidBottomInset: false,
-      floatingActionButton: floatingActionButton,
+      floatingActionButton: floatingActionButton == null
+          ? null
+          : Padding(
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom,
+              ),
+              child: floatingActionButton,
+            ),
       bottomNavigationBar: showBottomNavbar
           ? BottomNavigationBar(
               items: <BottomNavigationBarItem>[
@@ -103,21 +110,15 @@ class NepanikarScreenWrapper extends StatelessWidget {
               selectedItemColor: NepanikarColors.primarySwatch.shade800,
               unselectedItemColor: NepanikarColors.primarySwatch.shade700,
               onTap: (index) {
-                context.pushReplacement(
-                  const MainRoute().location,
-                  extra: MainPageExtra(initIndex: index),
-                );
+                context
+                  ..go(const MainRoute().location)
+                  ..pushReplacement(
+                    const MainRoute().location,
+                    extra: MainPageExtra(initIndex: index),
+                  );
               },
             )
           : null,
-      floatingActionButton: floatingActionButton == null
-          ? null
-          : Padding(
-              padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom,
-              ),
-              child: floatingActionButton,
-            ),
       body: SafeArea(
         child: isCardStackLayout
             ? Stack(

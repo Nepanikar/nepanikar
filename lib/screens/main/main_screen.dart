@@ -43,7 +43,9 @@ class _MainScreenState extends State<MainScreen> {
     final countryContacts = _contactsDataManager.getContactsFromLocale(locale);
     return <Widget>[
       HomeScreen(showQuickHelpButton: countryContacts.phoneContacts != null),
-      const MyRecordsScreen(),
+      const MyRecordsScreen(
+        showBottomNavbar: false,
+      ),
       ContactsScreen(countryContacts: countryContacts),
       const SettingsScreen()
     ];
@@ -53,6 +55,9 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     super.initState();
     FlutterNativeSplash.remove();
+    setState(() {
+      _selectedIndex = widget.extra?.initIndex ?? _selectedIndex;
+    });
   }
 
   @override

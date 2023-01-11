@@ -19,7 +19,9 @@ class MyRecordsRoute extends GoRouteData {
 }
 
 class MyRecordsScreen extends StatelessWidget {
-  const MyRecordsScreen({super.key});
+  const MyRecordsScreen({super.key, this.showBottomNavbar = true});
+
+  final bool showBottomNavbar;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +55,7 @@ class MyRecordsScreen extends StatelessWidget {
 
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.my_records,
-      showBottomNavbar: true,
+      showBottomNavbar: showBottomNavbar,
       children: modules,
     );
   }
