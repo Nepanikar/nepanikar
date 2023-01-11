@@ -4,6 +4,7 @@ import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/screen_resolution_helpers.dart';
 import 'package:nepanikar/screens/home/anxiety/anxiety_screen.dart';
 import 'package:nepanikar/screens/home/depression/depression_screen.dart';
 import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_screen.dart';
@@ -89,7 +90,7 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 32),
+              SizedBox(height: context.isSmallScreen ? 16 : 32),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: StreamBuilder<MoodTrack?>(
@@ -103,11 +104,16 @@ class HomeScreen extends StatelessWidget {
                   },
                 ),
               ),
-              const Align(
+              Align(
                 alignment: Alignment.centerLeft,
                 child: Padding(
-                  padding: EdgeInsets.only(left: 24.0, right: 24.0, bottom: 16.0, top: 30),
-                  child: Text(
+                  padding: EdgeInsets.only(
+                    left: 24.0,
+                    right: 24.0,
+                    bottom: 16.0,
+                    top: context.isSmallScreen ? 20 : 30,
+                  ),
+                  child: const Text(
                     //TODO: l10n
                     'S čím můžeme pomoci?',
                     style: NepanikarFonts.title2,
@@ -120,9 +126,9 @@ class HomeScreen extends StatelessWidget {
                   shrinkWrap: true,
                   primary: false,
                   crossAxisCount: 2,
-                  crossAxisSpacing: 16,
-                  mainAxisSpacing: 16,
-                  childAspectRatio: 1.2,
+                  crossAxisSpacing: context.isSmallScreen ? 12 : 16,
+                  mainAxisSpacing: context.isSmallScreen ? 12 : 16,
+                  childAspectRatio: context.isSmallScreen ? 1.4 : 1.2,
                   children: modules,
                 ),
               ),

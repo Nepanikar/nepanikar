@@ -41,6 +41,7 @@ class SuicidalThoughtsScreen extends StatelessWidget {
 
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.suicidal_thoughts,
+      showBottomNavbar: true,
       children: modules,
     );
   }

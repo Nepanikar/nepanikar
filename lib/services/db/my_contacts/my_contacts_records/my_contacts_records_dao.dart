@@ -22,9 +22,32 @@ class MyContactsRecordsDao {
 
   static const _storeKeyName = 'my_contacts_records';
 
+  Future<void> addNewRecord() async {
+    const emptyRecord = MyContactRecord(name: '', contactAddress: '');
+    await _store.add(_db, emptyRecord.toJson());
+  }
+
   Future<void> _addRecords(List<MyContactRecord> items) async {
     final serializedItems = items.map((item) => item.toJson()).toList();
     await _store.addAll(_db, serializedItems);
+  }
+
+  Future<void> updateName(String id, MyContactRecord currRecord, String newName) async {
+    final updatedRecord = currRecord.copyWith(name: newName);
+    await _store.record(id).update(_db, updatedRecord.toJson());
+  }
+
+  Future<void> updateContactAddress(
+    String id,
+    MyContactRecord currRecord,
+    String newContactAddress,
+  ) async {
+    final updatedRecord = currRecord.copyWith(contactAddress: newContactAddress);
+    await _store.record(id).update(_db, updatedRecord.toJson());
+  }
+
+  Future<void> deleteRecord(String id) async {
+    await _store.record(id).delete(_db);
   }
 
   Stream<Map<String, MyContactRecord>> get allRecordsStream =>

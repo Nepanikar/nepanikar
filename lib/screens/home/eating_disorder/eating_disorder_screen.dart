@@ -69,6 +69,7 @@ class EatingDisorderScreen extends StatelessWidget {
     ];
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.food,
+      showBottomNavbar: true,
       children: modules,
     );
   }

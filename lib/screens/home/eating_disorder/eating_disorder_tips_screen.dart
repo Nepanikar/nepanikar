@@ -58,6 +58,7 @@ class EatingDisorderTipsScreen extends StatelessWidget {
     ];
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.food_tips,
+      showBottomNavbar: true,
       children: modules,
     );
   }

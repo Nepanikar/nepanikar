@@ -64,6 +64,7 @@ class AnxietyAppScreen extends StatelessWidget {
 
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.anxiety_panic,
+      showBottomNavbar: true,
       children: modules,
     );
   }

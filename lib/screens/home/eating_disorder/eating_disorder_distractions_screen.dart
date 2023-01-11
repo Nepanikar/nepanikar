@@ -57,6 +57,7 @@ class EatingDisorderDistractionsScreen extends StatelessWidget {
     ];
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.distraction,
+      showBottomNavbar: true,
       children: modules,
     );
   }
