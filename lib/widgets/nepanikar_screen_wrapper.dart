@@ -110,11 +110,22 @@ class NepanikarScreenWrapper extends StatelessWidget {
               },
             )
           : null,
+      floatingActionButton: floatingActionButton == null
+          ? null
+          : Padding(
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom,
+              ),
+              child: floatingActionButton,
+            ),
       body: SafeArea(
         child: isCardStackLayout
             ? Stack(
                 children: [
-                  _buildAppBarContent(context),
+                  AppBarOverflowContent(
+                    appBarDescription: appBarDescription,
+                    isCardStackLayout: isCardStackLayout,
+                  ),
                   LayoutBuilder(
                     builder: (layoutContext, constraints) {
                       return Container(
@@ -147,13 +158,19 @@ class NepanikarScreenWrapper extends StatelessWidget {
                 child: appBarDescription == null
                     ? Stack(
                         children: [
-                          _buildAppBarContent(context),
+                          AppBarOverflowContent(
+                            appBarDescription: appBarDescription,
+                            isCardStackLayout: isCardStackLayout,
+                          ),
                           getPageContent(),
                         ],
                       )
                     : Column(
                         children: [
-                          _buildAppBarContent(context),
+                          AppBarOverflowContent(
+                            appBarDescription: appBarDescription,
+                            isCardStackLayout: isCardStackLayout,
+                          ),
                           getPageContent(),
                         ],
                       ),
@@ -161,8 +178,20 @@ class NepanikarScreenWrapper extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _buildAppBarContent(BuildContext context) {
+class AppBarOverflowContent extends StatelessWidget {
+  const AppBarOverflowContent({
+    super.key,
+    required this.appBarDescription,
+    required this.isCardStackLayout,
+  });
+
+  final String? appBarDescription;
+  final bool isCardStackLayout;
+
+  @override
+  Widget build(BuildContext context) {
     final pageSidePadding = NepanikarSizes.screenContentPadding.left;
     return Container(
       color: NepanikarColors.primary,

@@ -11,6 +11,7 @@ import 'package:nepanikar/screens/contacts/chat_contacts_screen.dart';
 import 'package:nepanikar/screens/contacts/crisis_message_screen.dart';
 import 'package:nepanikar/screens/contacts/eating_disorder_contacts_screen.dart';
 import 'package:nepanikar/screens/contacts/email_counselling_screen.dart';
+import 'package:nepanikar/screens/contacts/my_contacts_screen.dart';
 import 'package:nepanikar/screens/contacts/phone_contacts_screen.dart';
 import 'package:nepanikar/screens/contacts/region_contacts_screen.dart';
 import 'package:nepanikar/screens/home/anxiety/anxiety_screen.dart';
@@ -122,6 +123,7 @@ const _contactRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<CrisisCenterContactsRoute>(path: 'contacts/crisis-center'),
   TypedGoRoute<ChatContactsRoute>(path: 'contacts/chat'),
   TypedGoRoute<UniversityContactsRoute>(path: 'contacts/universities'),
+  TypedGoRoute<MyContactsRecordsRoute>(path: 'contacts/my-contacts-records'),
   TypedGoRoute<EmailCounsellingRoute>(path: 'contacts/email-counselling'),
 ];
 

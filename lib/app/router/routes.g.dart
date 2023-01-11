@@ -83,6 +83,10 @@ GoRoute get $mainRoute => GoRouteData.$route(
           factory: $UniversityContactsRouteExtension._fromState,
         ),
         GoRouteData.$route(
+          path: 'contacts/my-contacts-records',
+          factory: $MyContactsRecordsRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: 'contacts/email-counselling',
           factory: $EmailCounsellingRouteExtension._fromState,
         ),
@@ -499,6 +503,19 @@ extension $UniversityContactsRouteExtension on UniversityContactsRoute {
 
   String get location => GoRouteData.$location(
         '/contacts/universities',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $MyContactsRecordsRouteExtension on MyContactsRecordsRoute {
+  static MyContactsRecordsRoute _fromState(GoRouterState state) =>
+      const MyContactsRecordsRoute();
+
+  String get location => GoRouteData.$location(
+        '/contacts/my-contacts-records',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);

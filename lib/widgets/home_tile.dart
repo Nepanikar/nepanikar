@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/screen_resolution_helpers.dart';
 
 class HomeTile extends StatelessWidget {
   const HomeTile({
@@ -48,7 +49,7 @@ class HomeTile extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
-                      height: 40,
+                      height: context.isSmallScreen ? 30 : 40,
                       child: image,
                     ),
                     Assets.icons.navigation.arrowRight.svg(width: 16, height: 16)
@@ -59,7 +60,9 @@ class HomeTile extends StatelessWidget {
                     Flexible(
                       child: Text(
                         text,
-                        style: NepanikarFonts.bodyHeavy,
+                        style: NepanikarFonts.bodyHeavy.copyWith(
+                          fontSize: context.isSmallScreen ? 14 : 15,
+                        ),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),

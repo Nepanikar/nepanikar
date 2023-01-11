@@ -10,14 +10,12 @@ import 'package:nepanikar/helpers/contact_action_helpers.dart';
 import 'package:nepanikar/screens/contacts/chat_contacts_screen.dart';
 import 'package:nepanikar/screens/contacts/crisis_message_screen.dart';
 import 'package:nepanikar/screens/contacts/email_counselling_screen.dart';
+import 'package:nepanikar/screens/contacts/my_contacts_screen.dart';
 import 'package:nepanikar/screens/contacts/phone_contacts_screen.dart';
 import 'package:nepanikar/screens/contacts/region_contacts_screen.dart';
-import 'package:nepanikar/services/db/my_contacts/my_contacts_records/my_contacts_record_model.dart';
-import 'package:nepanikar/services/db/my_contacts/my_contacts_records/my_contacts_records_dao.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/utils/contacts_data_manager.dart';
 import 'package:nepanikar/utils/registry.dart';
-import 'package:nepanikar/widgets/data_dialog.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:nepanikar_contacts_gen/nepanikar_contacts_gen.dart';
@@ -85,16 +83,9 @@ class ContactsScreen extends StatelessWidget {
           onTap: () => context.push(const UniversityContactsRoute().location),
         ),
       LongTile(
-        text: '${context.l10n.my_contacts} TODO',
+        text: context.l10n.my_contacts,
         image: Assets.illustrations.contacts.myContacts.svg(),
-        // TODO:
-        onTap: () => showDataDialog<Map<String, MyContactRecord>>(
-          context,
-          dataStream: registry.get<MyContactsRecordsDao>().allRecordsStream,
-          itemBuilder: (itemsMap) => Column(
-            children: itemsMap.values.map((v) => Text(v.toString())).toList(),
-          ),
-        ),
+        onTap: () => context.push(const MyContactsRecordsRoute().location),
       ),
       if ([NepanikarLanguages.cs.languageCode, NepanikarLanguages.sk.languageCode]
           .contains(locale.languageCode)) ...[
