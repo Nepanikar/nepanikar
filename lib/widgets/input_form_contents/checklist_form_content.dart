@@ -174,7 +174,7 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
                                         disabledBorder: InputBorder.none,
                                         errorBorder: InputBorder.none,
                                         focusedErrorBorder: InputBorder.none,
-                                        contentPadding: const EdgeInsets.only(top: 14, bottom: 8),
+                                        contentPadding: const EdgeInsets.only(top: 15, bottom: 8),
                                         suffixIcon: IconButton(
                                           onPressed: () async {
                                             if (FocusScope.of(context).hasFocus) {
