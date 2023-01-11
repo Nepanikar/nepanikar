@@ -68,7 +68,7 @@ class ContactsScreen extends StatelessWidget {
         ),
       if (countryContacts.crisisCenterContacts != null)
         LongTile(
-          text: '${context.l10n.center} TODO doplnit kontakty',
+          text: context.l10n.center,
           image: Assets.illustrations.contacts.crisisCenters.svg(),
           onTap: () => context.push(const CrisisCenterContactsRoute().location),
         ),

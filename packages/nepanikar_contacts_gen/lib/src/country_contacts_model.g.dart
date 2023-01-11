@@ -8,7 +8,7 @@ part of 'country_contacts_model.dart';
 
 _$_CountryContacts _$$_CountryContactsFromJson(Map<String, dynamic> json) =>
     _$_CountryContacts(
-      languageTag: json['languageTag'] as String,
+      languageCode: json['languageCode'] as String,
       phoneContacts: (json['phoneContacts'] as List<dynamic>?)
           ?.map((e) => PhoneContact.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -29,7 +29,7 @@ _$_CountryContacts _$$_CountryContactsFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$_CountryContactsToJson(_$_CountryContacts instance) =>
     <String, dynamic>{
-      'languageTag': instance.languageTag,
+      'languageCode': instance.languageCode,
       'phoneContacts': instance.phoneContacts,
       'crisisCenterContacts': instance.crisisCenterContacts,
       'chatContacts': instance.chatContacts,

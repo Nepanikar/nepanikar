@@ -9,7 +9,7 @@ part 'country_contacts_model.g.dart';
 @freezed
 class CountryContacts with _$CountryContacts {
   const factory CountryContacts({
-    required String languageTag,
+    required String languageCode,
     List<PhoneContact>? phoneContacts,
     List<RegionContact>? crisisCenterContacts,
     List<ChatContact>? chatContacts,

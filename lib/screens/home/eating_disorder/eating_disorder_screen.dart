@@ -24,10 +24,10 @@ class EatingDisorderRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, _) {
     final locale = _userSettingsDao.locale;
-    final crisisCenterRegionContacts =
-        _contactsManager.getContactsFromLocale(locale).crisisCenterContacts;
+    final eatingDisorderContacts =
+        _contactsManager.getContactsFromLocale(locale).eatingDisorderContacts;
     return EatingDisorderScreen(
-      shouldShowContactsTile: crisisCenterRegionContacts != null,
+      shouldShowContactsTile: eatingDisorderContacts != null,
     );
   }
 }

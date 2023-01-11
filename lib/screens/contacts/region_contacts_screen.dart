@@ -100,21 +100,25 @@ class _RegionContactsScreenState extends State<RegionContactsScreen> {
       isCardStackLayout: true,
       children: [
         // TODO: l10n
-        Text(
-          'Vyberte kraj',
-          style: NepanikarFonts.bodySmallMedium.copyWith(fontWeight: FontWeight.w700),
-        ),
-        const SizedBox(height: 5),
-        NepanikarDropdown<RegionContact>.outlined(
-          activeItem: _activeDropdownMenuItem,
-          expand: true,
-          items: widget.regionContacts,
-          labelBuilder: (item) => item.region,
-          onPick: _onDropdownMenuItemSelected,
-        ),
+        if (widget.regionContacts.length > 1) ...[
+          Text(
+            'Vyberte region',
+            style: NepanikarFonts.bodySmallMedium.copyWith(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 5),
+          NepanikarDropdown<RegionContact>.outlined(
+            activeItem: _activeDropdownMenuItem,
+            expand: true,
+            items: widget.regionContacts,
+            labelBuilder: (item) => item.region,
+            onPick: _onDropdownMenuItemSelected,
+          ),
+        ],
         if (_activeDropdownMenuItem != null) ...[
-          const SizedBox(height: 20),
-          _buildRegionHeader(_activeDropdownMenuItem!.region),
+          if (widget.regionContacts.length > 1) ...[
+            const SizedBox(height: 20),
+            _buildRegionHeader(_activeDropdownMenuItem!.region),
+          ],
           ..._activeDropdownMenuItem!.contacts.map(
             (u) => Padding(
               padding: const EdgeInsets.only(top: 18),
