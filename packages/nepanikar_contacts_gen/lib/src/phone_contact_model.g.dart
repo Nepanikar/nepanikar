@@ -49,19 +49,10 @@ _$_SubPhoneContact _$$_SubPhoneContactFromJson(Map<String, dynamic> json) =>
     _$_SubPhoneContact(
       title: json['title'] as String,
       tel: json['tel'] as String,
-      action:
-          $enumDecodeNullable(_$SubPhoneContactActionEnumMap, json['action']) ??
-              SubPhoneContactAction.phone,
     );
 
 Map<String, dynamic> _$$_SubPhoneContactToJson(_$_SubPhoneContact instance) =>
     <String, dynamic>{
       'title': instance.title,
       'tel': instance.tel,
-      'action': _$SubPhoneContactActionEnumMap[instance.action]!,
     };
-
-const _$SubPhoneContactActionEnumMap = {
-  SubPhoneContactAction.phone: 'phone',
-  SubPhoneContactAction.whatsApp: 'whatsApp',
-};

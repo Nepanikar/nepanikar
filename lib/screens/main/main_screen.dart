@@ -42,7 +42,7 @@ class _MainScreenState extends State<MainScreen> {
     final locale = _userSettingsDao.locale;
     final countryContacts = _contactsDataManager.getContactsFromLocale(locale);
     return <Widget>[
-      HomeScreen(showQuickHelpButton: countryContacts.phoneContacts != null),
+      const HomeScreen(),
       const MyRecordsScreen(
         showBottomNavbar: false,
       ),

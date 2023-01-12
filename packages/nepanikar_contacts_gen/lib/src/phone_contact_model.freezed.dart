@@ -541,7 +541,6 @@ SubPhoneContact _$SubPhoneContactFromJson(Map<String, dynamic> json) {
 mixin _$SubPhoneContact {
   String get title => throw _privateConstructorUsedError;
   String get tel => throw _privateConstructorUsedError;
-  SubPhoneContactAction get action => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -555,7 +554,7 @@ abstract class $SubPhoneContactCopyWith<$Res> {
           SubPhoneContact value, $Res Function(SubPhoneContact) then) =
       _$SubPhoneContactCopyWithImpl<$Res, SubPhoneContact>;
   @useResult
-  $Res call({String title, String tel, SubPhoneContactAction action});
+  $Res call({String title, String tel});
 }
 
 /// @nodoc
@@ -573,7 +572,6 @@ class _$SubPhoneContactCopyWithImpl<$Res, $Val extends SubPhoneContact>
   $Res call({
     Object? title = null,
     Object? tel = null,
-    Object? action = null,
   }) {
     return _then(_value.copyWith(
       title: null == title
@@ -584,10 +582,6 @@ class _$SubPhoneContactCopyWithImpl<$Res, $Val extends SubPhoneContact>
           ? _value.tel
           : tel // ignore: cast_nullable_to_non_nullable
               as String,
-      action: null == action
-          ? _value.action
-          : action // ignore: cast_nullable_to_non_nullable
-              as SubPhoneContactAction,
     ) as $Val);
   }
 }
@@ -600,7 +594,7 @@ abstract class _$$_SubPhoneContactCopyWith<$Res>
       __$$_SubPhoneContactCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String title, String tel, SubPhoneContactAction action});
+  $Res call({String title, String tel});
 }
 
 /// @nodoc
@@ -616,7 +610,6 @@ class __$$_SubPhoneContactCopyWithImpl<$Res>
   $Res call({
     Object? title = null,
     Object? tel = null,
-    Object? action = null,
   }) {
     return _then(_$_SubPhoneContact(
       title: null == title
@@ -627,10 +620,6 @@ class __$$_SubPhoneContactCopyWithImpl<$Res>
           ? _value.tel
           : tel // ignore: cast_nullable_to_non_nullable
               as String,
-      action: null == action
-          ? _value.action
-          : action // ignore: cast_nullable_to_non_nullable
-              as SubPhoneContactAction,
     ));
   }
 }
@@ -638,10 +627,7 @@ class __$$_SubPhoneContactCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_SubPhoneContact extends _SubPhoneContact {
-  const _$_SubPhoneContact(
-      {required this.title,
-      required this.tel,
-      this.action = SubPhoneContactAction.phone})
+  const _$_SubPhoneContact({required this.title, required this.tel})
       : super._();
 
   factory _$_SubPhoneContact.fromJson(Map<String, dynamic> json) =>
@@ -651,13 +637,10 @@ class _$_SubPhoneContact extends _SubPhoneContact {
   final String title;
   @override
   final String tel;
-  @override
-  @JsonKey()
-  final SubPhoneContactAction action;
 
   @override
   String toString() {
-    return 'SubPhoneContact(title: $title, tel: $tel, action: $action)';
+    return 'SubPhoneContact(title: $title, tel: $tel)';
   }
 
   @override
@@ -666,13 +649,12 @@ class _$_SubPhoneContact extends _SubPhoneContact {
         (other.runtimeType == runtimeType &&
             other is _$_SubPhoneContact &&
             (identical(other.title, title) || other.title == title) &&
-            (identical(other.tel, tel) || other.tel == tel) &&
-            (identical(other.action, action) || other.action == action));
+            (identical(other.tel, tel) || other.tel == tel));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, title, tel, action);
+  int get hashCode => Object.hash(runtimeType, title, tel);
 
   @JsonKey(ignore: true)
   @override
@@ -691,8 +673,7 @@ class _$_SubPhoneContact extends _SubPhoneContact {
 abstract class _SubPhoneContact extends SubPhoneContact {
   const factory _SubPhoneContact(
       {required final String title,
-      required final String tel,
-      final SubPhoneContactAction action}) = _$_SubPhoneContact;
+      required final String tel}) = _$_SubPhoneContact;
   const _SubPhoneContact._() : super._();
 
   factory _SubPhoneContact.fromJson(Map<String, dynamic> json) =
@@ -702,8 +683,6 @@ abstract class _SubPhoneContact extends SubPhoneContact {
   String get title;
   @override
   String get tel;
-  @override
-  SubPhoneContactAction get action;
   @override
   @JsonKey(ignore: true)
   _$$_SubPhoneContactCopyWith<_$_SubPhoneContact> get copyWith =>

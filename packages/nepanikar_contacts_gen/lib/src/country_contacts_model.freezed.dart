@@ -20,7 +20,7 @@ CountryContacts _$CountryContactsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CountryContacts {
-  String get languageTag => throw _privateConstructorUsedError;
+  String get languageCode => throw _privateConstructorUsedError;
   List<PhoneContact>? get phoneContacts => throw _privateConstructorUsedError;
   List<RegionContact>? get crisisCenterContacts =>
       throw _privateConstructorUsedError;
@@ -43,7 +43,7 @@ abstract class $CountryContactsCopyWith<$Res> {
       _$CountryContactsCopyWithImpl<$Res, CountryContacts>;
   @useResult
   $Res call(
-      {String languageTag,
+      {String languageCode,
       List<PhoneContact>? phoneContacts,
       List<RegionContact>? crisisCenterContacts,
       List<ChatContact>? chatContacts,
@@ -64,7 +64,7 @@ class _$CountryContactsCopyWithImpl<$Res, $Val extends CountryContacts>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? languageTag = null,
+    Object? languageCode = null,
     Object? phoneContacts = freezed,
     Object? crisisCenterContacts = freezed,
     Object? chatContacts = freezed,
@@ -72,9 +72,9 @@ class _$CountryContactsCopyWithImpl<$Res, $Val extends CountryContacts>
     Object? eatingDisorderContacts = freezed,
   }) {
     return _then(_value.copyWith(
-      languageTag: null == languageTag
-          ? _value.languageTag
-          : languageTag // ignore: cast_nullable_to_non_nullable
+      languageCode: null == languageCode
+          ? _value.languageCode
+          : languageCode // ignore: cast_nullable_to_non_nullable
               as String,
       phoneContacts: freezed == phoneContacts
           ? _value.phoneContacts
@@ -109,7 +109,7 @@ abstract class _$$_CountryContactsCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String languageTag,
+      {String languageCode,
       List<PhoneContact>? phoneContacts,
       List<RegionContact>? crisisCenterContacts,
       List<ChatContact>? chatContacts,
@@ -128,7 +128,7 @@ class __$$_CountryContactsCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? languageTag = null,
+    Object? languageCode = null,
     Object? phoneContacts = freezed,
     Object? crisisCenterContacts = freezed,
     Object? chatContacts = freezed,
@@ -136,9 +136,9 @@ class __$$_CountryContactsCopyWithImpl<$Res>
     Object? eatingDisorderContacts = freezed,
   }) {
     return _then(_$_CountryContacts(
-      languageTag: null == languageTag
-          ? _value.languageTag
-          : languageTag // ignore: cast_nullable_to_non_nullable
+      languageCode: null == languageCode
+          ? _value.languageCode
+          : languageCode // ignore: cast_nullable_to_non_nullable
               as String,
       phoneContacts: freezed == phoneContacts
           ? _value._phoneContacts
@@ -168,7 +168,7 @@ class __$$_CountryContactsCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_CountryContacts extends _CountryContacts {
   const _$_CountryContacts(
-      {required this.languageTag,
+      {required this.languageCode,
       final List<PhoneContact>? phoneContacts,
       final List<RegionContact>? crisisCenterContacts,
       final List<ChatContact>? chatContacts,
@@ -185,7 +185,7 @@ class _$_CountryContacts extends _CountryContacts {
       _$$_CountryContactsFromJson(json);
 
   @override
-  final String languageTag;
+  final String languageCode;
   final List<PhoneContact>? _phoneContacts;
   @override
   List<PhoneContact>? get phoneContacts {
@@ -241,7 +241,7 @@ class _$_CountryContacts extends _CountryContacts {
 
   @override
   String toString() {
-    return 'CountryContacts(languageTag: $languageTag, phoneContacts: $phoneContacts, crisisCenterContacts: $crisisCenterContacts, chatContacts: $chatContacts, universityRegionContacts: $universityRegionContacts, eatingDisorderContacts: $eatingDisorderContacts)';
+    return 'CountryContacts(languageCode: $languageCode, phoneContacts: $phoneContacts, crisisCenterContacts: $crisisCenterContacts, chatContacts: $chatContacts, universityRegionContacts: $universityRegionContacts, eatingDisorderContacts: $eatingDisorderContacts)';
   }
 
   @override
@@ -249,8 +249,8 @@ class _$_CountryContacts extends _CountryContacts {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CountryContacts &&
-            (identical(other.languageTag, languageTag) ||
-                other.languageTag == languageTag) &&
+            (identical(other.languageCode, languageCode) ||
+                other.languageCode == languageCode) &&
             const DeepCollectionEquality()
                 .equals(other._phoneContacts, _phoneContacts) &&
             const DeepCollectionEquality()
@@ -267,7 +267,7 @@ class _$_CountryContacts extends _CountryContacts {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      languageTag,
+      languageCode,
       const DeepCollectionEquality().hash(_phoneContacts),
       const DeepCollectionEquality().hash(_crisisCenterContacts),
       const DeepCollectionEquality().hash(_chatContacts),
@@ -290,7 +290,7 @@ class _$_CountryContacts extends _CountryContacts {
 
 abstract class _CountryContacts extends CountryContacts {
   const factory _CountryContacts(
-      {required final String languageTag,
+      {required final String languageCode,
       final List<PhoneContact>? phoneContacts,
       final List<RegionContact>? crisisCenterContacts,
       final List<ChatContact>? chatContacts,
@@ -302,7 +302,7 @@ abstract class _CountryContacts extends CountryContacts {
       _$_CountryContacts.fromJson;
 
   @override
-  String get languageTag;
+  String get languageCode;
   @override
   List<PhoneContact>? get phoneContacts;
   @override

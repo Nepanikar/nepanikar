@@ -28,7 +28,6 @@ class SubPhoneContact with _$SubPhoneContact {
   const factory SubPhoneContact({
     required String title,
     required String tel,
-    @Default(SubPhoneContactAction.phone) SubPhoneContactAction action,
   }) = _SubPhoneContact;
 
   const SubPhoneContact._();
@@ -36,11 +35,6 @@ class SubPhoneContact with _$SubPhoneContact {
   factory SubPhoneContact.fromJson(Map<String, Object?> json) => _$SubPhoneContactFromJson(json);
 
   String get unformattedTel => tel.unformatPhoneNum();
-}
-
-enum SubPhoneContactAction {
-  phone,
-  whatsApp;
 }
 
 extension PhoneContactSingleExt on PhoneContactSingle {

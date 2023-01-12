@@ -25,8 +25,14 @@ class ContactsDataManager {
 
   CountryContacts getContactsFromLocale(Locale locale) {
     return _allContacts.countryContacts.firstWhereOrNull(
-          (countryContacts) => countryContacts.languageTag == locale.toLanguageTag(),
+          (countryContacts) => countryContacts.languageCode == locale.languageCode,
         ) ??
-        const CountryContacts(languageTag: 'not_found');
+        _defaultContacts;
   }
+
+  CountryContacts get _defaultContacts =>
+      _allContacts.countryContacts.firstWhereOrNull(
+        (countryContacts) => countryContacts.languageCode == NepanikarLanguages.en.languageCode,
+      ) ??
+      const CountryContacts(languageCode: 'not_found');
 }

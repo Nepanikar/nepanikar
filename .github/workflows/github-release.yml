@@ -100,9 +100,9 @@ jobs:
         uses: ncipollo/release-action@v1
         if: github.event_name != 'pull_request'
         with:
-          name: Android build (dev-0.1.${{github.run_number}})
+          name: Android build (dev-0.2.${{github.run_number}})
           commit: ${{ github.sha }}
-          tag: dev-0.1.${{github.run_number}}
+          tag: dev-0.2.${{github.run_number}}
           artifacts: "build/app/outputs/flutter-apk/app-release.apk, build/app/outputs/flutter-apk/app-migration-test.apk"
           token: ${{ secrets.GITHUB_TOKEN }}
 

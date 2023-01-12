@@ -19,12 +19,7 @@ import 'package:nepanikar/widgets/home_tile.dart';
 import 'package:nepanikar/widgets/mood/mood_picker.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({
-    super.key,
-    required this.showQuickHelpButton,
-  });
-
-  final bool showQuickHelpButton;
+  const HomeScreen({super.key});
 
   MoodTrackDao get _moodTrackDao => registry.get<MoodTrackDao>();
 
@@ -91,7 +86,7 @@ class HomeScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    if (showQuickHelpButton) const Expanded(child: QuickHelpButton()),
+                    const Expanded(child: QuickHelpButton()),
                   ],
                 ),
               ),
