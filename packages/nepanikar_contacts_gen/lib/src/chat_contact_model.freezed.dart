@@ -15,44 +15,31 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ChatContact _$ChatContactFromJson(Map<String, dynamic> json) {
-  switch (json['runtimeType']) {
-    case 'default':
-      return ChatContactSingle.fromJson(json);
-    case 'subList':
-      return ChatContactSubList.fromJson(json);
-
-    default:
-      throw CheckedFromJsonException(json, 'runtimeType', 'ChatContact',
-          'Invalid union type "${json['runtimeType']}"!');
-  }
+  return ChatContactSubList.fromJson(json);
 }
 
 /// @nodoc
 mixin _$ChatContact {
   String get title => throw _privateConstructorUsedError;
   String? get subtitle => throw _privateConstructorUsedError;
+  List<SubChatContact> get subChatContacts =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(bool pinned, String title, String url, String? subtitle)
-        $default, {
+  TResult when<TResult extends Object?>({
     required TResult Function(String title, String? subtitle,
             List<SubChatContact> subChatContacts)
         subList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(bool pinned, String title, String url, String? subtitle)?
-        $default, {
+  TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String title, String? subtitle,
             List<SubChatContact> subChatContacts)?
         subList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(bool pinned, String title, String url, String? subtitle)?
-        $default, {
+  TResult maybeWhen<TResult extends Object?>({
     TResult Function(String title, String? subtitle,
             List<SubChatContact> subChatContacts)?
         subList,
@@ -60,20 +47,17 @@ mixin _$ChatContact {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(ChatContactSingle value) $default, {
+  TResult map<TResult extends Object?>({
     required TResult Function(ChatContactSubList value) subList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(ChatContactSingle value)? $default, {
+  TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ChatContactSubList value)? subList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(ChatContactSingle value)? $default, {
+  TResult maybeMap<TResult extends Object?>({
     TResult Function(ChatContactSubList value)? subList,
     required TResult orElse(),
   }) =>
@@ -90,7 +74,8 @@ abstract class $ChatContactCopyWith<$Res> {
           ChatContact value, $Res Function(ChatContact) then) =
       _$ChatContactCopyWithImpl<$Res, ChatContact>;
   @useResult
-  $Res call({String title, String? subtitle});
+  $Res call(
+      {String title, String? subtitle, List<SubChatContact> subChatContacts});
 }
 
 /// @nodoc
@@ -108,6 +93,7 @@ class _$ChatContactCopyWithImpl<$Res, $Val extends ChatContact>
   $Res call({
     Object? title = null,
     Object? subtitle = freezed,
+    Object? subChatContacts = null,
   }) {
     return _then(_value.copyWith(
       title: null == title
@@ -118,213 +104,12 @@ class _$ChatContactCopyWithImpl<$Res, $Val extends ChatContact>
           ? _value.subtitle
           : subtitle // ignore: cast_nullable_to_non_nullable
               as String?,
+      subChatContacts: null == subChatContacts
+          ? _value.subChatContacts
+          : subChatContacts // ignore: cast_nullable_to_non_nullable
+              as List<SubChatContact>,
     ) as $Val);
   }
-}
-
-/// @nodoc
-abstract class _$$ChatContactSingleCopyWith<$Res>
-    implements $ChatContactCopyWith<$Res> {
-  factory _$$ChatContactSingleCopyWith(
-          _$ChatContactSingle value, $Res Function(_$ChatContactSingle) then) =
-      __$$ChatContactSingleCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({bool pinned, String title, String url, String? subtitle});
-}
-
-/// @nodoc
-class __$$ChatContactSingleCopyWithImpl<$Res>
-    extends _$ChatContactCopyWithImpl<$Res, _$ChatContactSingle>
-    implements _$$ChatContactSingleCopyWith<$Res> {
-  __$$ChatContactSingleCopyWithImpl(
-      _$ChatContactSingle _value, $Res Function(_$ChatContactSingle) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? pinned = null,
-    Object? title = null,
-    Object? url = null,
-    Object? subtitle = freezed,
-  }) {
-    return _then(_$ChatContactSingle(
-      pinned: null == pinned
-          ? _value.pinned
-          : pinned // ignore: cast_nullable_to_non_nullable
-              as bool,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String,
-      subtitle: freezed == subtitle
-          ? _value.subtitle
-          : subtitle // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$ChatContactSingle extends ChatContactSingle {
-  const _$ChatContactSingle(
-      {this.pinned = false,
-      required this.title,
-      required this.url,
-      this.subtitle,
-      final String? $type})
-      : $type = $type ?? 'default',
-        super._();
-
-  factory _$ChatContactSingle.fromJson(Map<String, dynamic> json) =>
-      _$$ChatContactSingleFromJson(json);
-
-  @override
-  @JsonKey()
-  final bool pinned;
-  @override
-  final String title;
-  @override
-  final String url;
-  @override
-  final String? subtitle;
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
-
-  @override
-  String toString() {
-    return 'ChatContact(pinned: $pinned, title: $title, url: $url, subtitle: $subtitle)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ChatContactSingle &&
-            (identical(other.pinned, pinned) || other.pinned == pinned) &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.url, url) || other.url == url) &&
-            (identical(other.subtitle, subtitle) ||
-                other.subtitle == subtitle));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, pinned, title, url, subtitle);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ChatContactSingleCopyWith<_$ChatContactSingle> get copyWith =>
-      __$$ChatContactSingleCopyWithImpl<_$ChatContactSingle>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(bool pinned, String title, String url, String? subtitle)
-        $default, {
-    required TResult Function(String title, String? subtitle,
-            List<SubChatContact> subChatContacts)
-        subList,
-  }) {
-    return $default(pinned, title, url, subtitle);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(bool pinned, String title, String url, String? subtitle)?
-        $default, {
-    TResult? Function(String title, String? subtitle,
-            List<SubChatContact> subChatContacts)?
-        subList,
-  }) {
-    return $default?.call(pinned, title, url, subtitle);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(bool pinned, String title, String url, String? subtitle)?
-        $default, {
-    TResult Function(String title, String? subtitle,
-            List<SubChatContact> subChatContacts)?
-        subList,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(pinned, title, url, subtitle);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(ChatContactSingle value) $default, {
-    required TResult Function(ChatContactSubList value) subList,
-  }) {
-    return $default(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(ChatContactSingle value)? $default, {
-    TResult? Function(ChatContactSubList value)? subList,
-  }) {
-    return $default?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(ChatContactSingle value)? $default, {
-    TResult Function(ChatContactSubList value)? subList,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ChatContactSingleToJson(
-      this,
-    );
-  }
-}
-
-abstract class ChatContactSingle extends ChatContact {
-  const factory ChatContactSingle(
-      {final bool pinned,
-      required final String title,
-      required final String url,
-      final String? subtitle}) = _$ChatContactSingle;
-  const ChatContactSingle._() : super._();
-
-  factory ChatContactSingle.fromJson(Map<String, dynamic> json) =
-      _$ChatContactSingle.fromJson;
-
-  bool get pinned;
-  @override
-  String get title;
-  String get url;
-  @override
-  String? get subtitle;
-  @override
-  @JsonKey(ignore: true)
-  _$$ChatContactSingleCopyWith<_$ChatContactSingle> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -377,10 +162,8 @@ class _$ChatContactSubList extends ChatContactSubList {
   const _$ChatContactSubList(
       {required this.title,
       this.subtitle,
-      required final List<SubChatContact> subChatContacts,
-      final String? $type})
+      required final List<SubChatContact> subChatContacts})
       : _subChatContacts = subChatContacts,
-        $type = $type ?? 'subList',
         super._();
 
   factory _$ChatContactSubList.fromJson(Map<String, dynamic> json) =>
@@ -397,9 +180,6 @@ class _$ChatContactSubList extends ChatContactSubList {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_subChatContacts);
   }
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
 
   @override
   String toString() {
@@ -432,9 +212,7 @@ class _$ChatContactSubList extends ChatContactSubList {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(bool pinned, String title, String url, String? subtitle)
-        $default, {
+  TResult when<TResult extends Object?>({
     required TResult Function(String title, String? subtitle,
             List<SubChatContact> subChatContacts)
         subList,
@@ -444,9 +222,7 @@ class _$ChatContactSubList extends ChatContactSubList {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(bool pinned, String title, String url, String? subtitle)?
-        $default, {
+  TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String title, String? subtitle,
             List<SubChatContact> subChatContacts)?
         subList,
@@ -456,9 +232,7 @@ class _$ChatContactSubList extends ChatContactSubList {
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(bool pinned, String title, String url, String? subtitle)?
-        $default, {
+  TResult maybeWhen<TResult extends Object?>({
     TResult Function(String title, String? subtitle,
             List<SubChatContact> subChatContacts)?
         subList,
@@ -472,8 +246,7 @@ class _$ChatContactSubList extends ChatContactSubList {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(ChatContactSingle value) $default, {
+  TResult map<TResult extends Object?>({
     required TResult Function(ChatContactSubList value) subList,
   }) {
     return subList(this);
@@ -481,8 +254,7 @@ class _$ChatContactSubList extends ChatContactSubList {
 
   @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(ChatContactSingle value)? $default, {
+  TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ChatContactSubList value)? subList,
   }) {
     return subList?.call(this);
@@ -490,8 +262,7 @@ class _$ChatContactSubList extends ChatContactSubList {
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(ChatContactSingle value)? $default, {
+  TResult maybeMap<TResult extends Object?>({
     TResult Function(ChatContactSubList value)? subList,
     required TResult orElse(),
   }) {
@@ -524,6 +295,7 @@ abstract class ChatContactSubList extends ChatContact {
   String get title;
   @override
   String? get subtitle;
+  @override
   List<SubChatContact> get subChatContacts;
   @override
   @JsonKey(ignore: true)

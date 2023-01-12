@@ -27,25 +27,7 @@ class ChatContactTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return chatContact.map(
-      (c) => _buildSingleContact(context, c),
       subList: (c) => _buildSubListContact(context, c),
-    );
-  }
-
-  Widget _buildSingleContact(BuildContext context, ChatContactSingle contact) {
-    final isPinned = contact.pinned;
-    final textColor = isPinned ? Colors.white : null;
-    return LongTile(
-      text: contact.title,
-      textTextStyle: _textTextStyle.copyWith(color: textColor),
-      description: contact.subtitle,
-      descriptionTextStyle: _descriptionChatTextStyle.copyWith(color: textColor),
-      image: Assets.illustrations.contacts.chat.svg(color: textColor),
-      trailing:
-          Text(_getShortUrlLink(contact.url), style: _charUrlTextStyle.copyWith(color: textColor)),
-      backgroundColor: isPinned ? NepanikarColors.secondary : null,
-      onTap: () async => launchUrLink(contact.url),
-      onLongPress: () async => copyContact(context, contact.url),
     );
   }
 

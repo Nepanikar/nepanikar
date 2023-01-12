@@ -5,13 +5,6 @@ part 'chat_contact_model.g.dart';
 
 @freezed
 class ChatContact with _$ChatContact {
-  const factory ChatContact({
-    @Default(false) bool pinned,
-    required String title,
-    required String url,
-    String? subtitle,
-  }) = ChatContactSingle;
-
   const ChatContact._();
 
   const factory ChatContact.subList({
