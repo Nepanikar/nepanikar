@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -27,6 +30,7 @@ class MyRecordsJournalRecordsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final analytics = registry.get<FirebaseAnalytics>();
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.journal,
       // TODO: l10n
@@ -43,6 +47,7 @@ class MyRecordsJournalRecordsScreen extends StatelessWidget {
             onPressed: () async {
               final goRouter = GoRouter.of(context);
               final id = await _myRecordsJournalDao.createRecord(getEmptyJournalRecord());
+              unawaited(analytics.logEvent(name: 'journal_record_created'));
               goRouter.push(
                 const MyRecordsJournalDetailRoute().location,
                 extra: JournalRecordRouteExtraData(
@@ -61,6 +66,7 @@ class MyRecordsJournalRecordsScreen extends StatelessWidget {
           onPressed: () async {
             final goRouter = GoRouter.of(context);
             final id = await _myRecordsJournalDao.createRecord(getEmptyJournalRecord());
+            unawaited(analytics.logEvent(name: 'journal_record_created'));
             goRouter.push(
               const MyRecordsJournalDetailRoute().location,
               extra: JournalRecordRouteExtraData(

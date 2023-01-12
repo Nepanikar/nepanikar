@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
@@ -22,6 +23,8 @@ class MoodPicker extends StatefulWidget {
 
 class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
   Mood? activeMood;
+
+  final analytics = registry.get<FirebaseAnalytics>();
 
   final _lottieCacheManager = registry.get<LottieCacheManager>();
 
@@ -95,6 +98,12 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
                       leading: Assets.icons.checkmarks.checkCircular.svg(),
                     );
                     widget.onPick.call(pickedMood);
+                    analytics.logEvent(
+                      name: 'mood_picked',
+                      parameters: {
+                        'mood': pickedMood.name,
+                      },
+                    );
                   },
                   borderRadius: BorderRadius.circular(12),
                   child: Opacity(

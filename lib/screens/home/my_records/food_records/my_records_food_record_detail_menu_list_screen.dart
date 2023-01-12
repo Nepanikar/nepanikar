@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
@@ -45,6 +48,7 @@ class MyRecordsFoodRecordsDetailMenuListScreen extends StatefulWidget {
 class _MyRecordsFoodRecordsDetailMenuListScreenState
     extends State<MyRecordsFoodRecordsDetailMenuListScreen> {
   late final Stream<DailyFoodRecord?> _dailyFoodRecordStream;
+  final analytics = registry<FirebaseAnalytics>();
 
   MyRecordsFoodRecordDao get _myRecordsFoodRecordDao => registry.get<MyRecordsFoodRecordDao>();
 
@@ -147,6 +151,7 @@ class _MyRecordsFoodRecordsDetailMenuListScreenState
                   description: context.l10n.really_remove,
                   onOk: () async {
                     await _myRecordsFoodRecordDao.deleteRecord(widget.id);
+                    unawaited(analytics.logEvent(name: 'delete_food_record'));
                     goRouter.pop();
                   },
                   okLabel: context.l10n.mood_help_yes,

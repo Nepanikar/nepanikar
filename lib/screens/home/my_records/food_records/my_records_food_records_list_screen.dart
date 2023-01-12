@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -28,6 +31,7 @@ class MyRecordsFoodRecordsListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final analytics = registry.get<FirebaseAnalytics>();
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.food_records,
       // TODO: l10n
@@ -44,6 +48,7 @@ class MyRecordsFoodRecordsListScreen extends StatelessWidget {
             onPressed: () async {
               final goRouter = GoRouter.of(context);
               final id = await _myRecordsFoodRecordDao.createRecord();
+              unawaited(analytics.logEvent(name: 'food_record_created'));
               goRouter.push(
                 const MyRecordsFoodRecordsDetailMenuListRoute().location,
                 extra: FoodRecordRouteExtraData(id: id, dailyFoodRecord: getEmptyDailyFoodRecord()),
@@ -59,6 +64,7 @@ class MyRecordsFoodRecordsListScreen extends StatelessWidget {
           onPressed: () async {
             final goRouter = GoRouter.of(context);
             final id = await _myRecordsFoodRecordDao.createRecord();
+            unawaited(analytics.logEvent(name: 'food_record_created'));
             goRouter.push(
               const MyRecordsFoodRecordsDetailMenuListRoute().location,
               extra: FoodRecordRouteExtraData(id: id, dailyFoodRecord: getEmptyDailyFoodRecord()),

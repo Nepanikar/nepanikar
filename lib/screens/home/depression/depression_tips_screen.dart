@@ -13,6 +13,7 @@ class DepressionTipsAppRoute extends GoRouteData {
 
 class DepressionTipsAppScreen extends StatelessWidget {
   const DepressionTipsAppScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final strings = context.l10n.depression_tips.split('\n');

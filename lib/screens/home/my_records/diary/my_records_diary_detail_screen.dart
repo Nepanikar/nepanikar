@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:equatable/equatable.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
@@ -55,6 +58,7 @@ class MyRecordsDiaryDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final locale = Localizations.localeOf(context);
     final screenSize = context.screenSize;
+    final analytics = registry.get<FirebaseAnalytics>();
 
     return StreamBuilder<DiaryRecord?>(
       stream: _myRecordsDiaryDao.watchRecordById(_diaryRecordId),
@@ -104,6 +108,7 @@ class MyRecordsDiaryDetailScreen extends StatelessWidget {
                   onOk: () async {
                     final goRouter = GoRouter.of(context);
                     await _myRecordsDiaryDao.deleteRecord(_diaryRecordId);
+                    unawaited(analytics.logEvent(name: 'delete_diary_record'));
                     goRouter.pop();
                   },
                   okLabel: context.l10n.mood_help_yes,

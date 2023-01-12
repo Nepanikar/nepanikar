@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:equatable/equatable.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
@@ -52,6 +55,8 @@ class MyRecordsJournalDetailScreen extends StatefulWidget {
 
 class _MyRecordsJournalDetailScreenState extends State<MyRecordsJournalDetailScreen> {
   final Map<JournalQuestion, TextEditingController> _textEditingControllersMap = {};
+
+  final analytics = registry.get<FirebaseAnalytics>();
 
   Map<JournalQuestion, String> get _answers => {
         for (final entry in _textEditingControllersMap.entries) entry.key: entry.value.text,
@@ -171,6 +176,7 @@ class _MyRecordsJournalDetailScreenState extends State<MyRecordsJournalDetailScr
                     description: context.l10n.really_remove,
                     onOk: () async {
                       await _myRecordsJournalDao.deleteRecord(widget.journalId);
+                      unawaited(analytics.logEvent(name: 'journal_record_deleted'));
                       goRouter.pop();
                     },
                     okLabel: context.l10n.mood_help_yes,

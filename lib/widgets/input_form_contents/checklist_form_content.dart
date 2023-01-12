@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/theme/colors.dart';
@@ -27,6 +28,8 @@ class ChecklistFormContent<T extends NepanikarCheckListFormDao> extends Stateful
 class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
     extends State<ChecklistFormContent> {
   late final Stream<Map<String, ChecklistItem>> _allFormItemsStream;
+
+  final analytics = registry.get<FirebaseAnalytics>();
 
   T get _listFormDao => registry.get<T>();
 
@@ -60,7 +63,12 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
               icon: const Icon(CupertinoIcons.add),
               // TODO: l10n
               tooltip: 'Přidat položku',
-              onPressed: () async => _listFormDao.createFormText(),
+              onPressed: () async {
+                await _listFormDao.createFormText();
+                await analytics.logEvent(
+                  name: 'add_activity',
+                );
+              },
             ),
           ],
           android: () => null,
@@ -68,7 +76,12 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
         floatingActionButton: platformMapper<Widget?>(
           ios: () => null,
           android: () => FloatingActionButton(
-            onPressed: () async => _listFormDao.createFormText(),
+            onPressed: () async {
+              await _listFormDao.createFormText();
+              await analytics.logEvent(
+                name: 'add_activity',
+              );
+            },
             // TODO: l10n
             tooltip: 'Přidat položku',
             child: const Icon(Icons.add),
@@ -183,6 +196,9 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
                                             WidgetsBinding.instance.addPostFrameCallback((_) async {
                                               _idTextMap.remove(checkFormKey);
                                               await _listFormDao.deleteFormItem(checkFormKey);
+                                              await analytics.logEvent(
+                                                name: 'delete_activity',
+                                              );
                                             });
                                           },
                                           icon: const Icon(Icons.clear, size: 16),

@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:collection/collection.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flextras/flextras.dart';
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
@@ -30,6 +33,7 @@ class PlanFormContent<T extends NepanikarPlanFormDao> extends StatefulWidget {
 
 class _PlanFormContentState<T extends NepanikarPlanFormDao> extends State<PlanFormContent> {
   final _textControllersMap = <int, TextEditingController>{};
+  final analytics = registry.get<FirebaseAnalytics>();
 
   late final Stream<List<RecordSnapshot<String, PlanFormItem?>>> _allFormItemsStream;
 
@@ -109,6 +113,14 @@ class _PlanFormContentState<T extends NepanikarPlanFormDao> extends State<PlanFo
                               await _planFormDao.saveFormText(
                                 formIndex,
                                 text: textController?.text,
+                              );
+                              unawaited(
+                                analytics.logEvent(
+                                  name: 'input focused',
+                                  parameters: {
+                                    'form_index': formIndex,
+                                  },
+                                ),
                               );
                             }
                           },

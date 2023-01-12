@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
@@ -30,6 +33,7 @@ class SelfHarmTimerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final analytics = registry.get<FirebaseAnalytics>();
     return Scaffold(
       backgroundColor: NepanikarColors.primary,
       appBar: AppBar(title: Text(context.l10n.self_harm_timer)),
@@ -82,7 +86,10 @@ class SelfHarmTimerScreen extends StatelessWidget {
                               const SizedBox(height: 16),
                               if (!isTimerRunning)
                                 NepanikarButton(
-                                  onTap: () async => _selfHarmTimerDao.startSelfHarmTimer(),
+                                  onTap: () async {
+                                    await _selfHarmTimerDao.startSelfHarmTimer();
+                                    unawaited(analytics.logEvent(name: 'start_self_harm_timer'));
+                                  },
                                   expandToContentWidth: true,
                                   text: context.l10n.start,
                                 )
@@ -95,6 +102,9 @@ class SelfHarmTimerScreen extends StatelessWidget {
                                       onOk: () async {
                                         await _selfHarmTimerDao.stopSelfHarmTimer();
                                         await _selfHarmTimerDao.startSelfHarmTimer();
+                                        unawaited(
+                                          analytics.logEvent(name: 'restart_self_harm_timer'),
+                                        );
                                         // ignore: use_build_context_synchronously
                                         await showAdaptiveDialog(
                                           context,
