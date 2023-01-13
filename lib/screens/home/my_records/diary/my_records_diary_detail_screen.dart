@@ -108,7 +108,7 @@ class MyRecordsDiaryDetailScreen extends StatelessWidget {
                   onOk: () async {
                     final goRouter = GoRouter.of(context);
                     await _myRecordsDiaryDao.deleteRecord(_diaryRecordId);
-                    unawaited(analytics.logEvent(name: 'delete_diary_record'));
+                    unawaited(analytics.logEvent(name: 'diary_record_deleted'));
                     goRouter.pop();
                   },
                   okLabel: context.l10n.mood_help_yes,
