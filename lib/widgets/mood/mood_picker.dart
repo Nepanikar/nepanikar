@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
@@ -73,8 +74,9 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        AutoSizeText(
           context.l10n.mood_welcome_title,
+          maxLines: 1,
           style: NepanikarFonts.title2,
         ),
         const SizedBox(height: 14),
