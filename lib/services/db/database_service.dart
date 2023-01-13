@@ -94,7 +94,6 @@ class DatabaseService {
     if (areDataPreloaded == null || !areDataPreloaded) {
       debugPrint('DATABASE_SERVICE: Preloading default data.');
       await preloadDefaultData(l10n);
-      await _setDataPreloaded();
     } else {
       debugPrint('DATABASE_SERVICE: Default data preload not needed.');
     }
@@ -111,6 +110,7 @@ class DatabaseService {
     await _eatingDisorderModuleDb.preloadDefaultModuleData(l10n);
     await _myRecordsModuleDb.preloadDefaultModuleData(l10n);
     await _myContactsModuleDb.preloadDefaultModuleData(l10n);
+    await _setDataPreloaded();
   }
 
   Future<bool> _oldAppVersionDataExists() async {
@@ -158,12 +158,40 @@ class DatabaseService {
     return {};
   }
 
+  Future<void> _clearOldAppConfigData({
+    required File? androidConfigFile,
+  }) async {
+    if (Platform.isAndroid) {
+      if (androidConfigFile == null) return;
+      try {
+        await androidConfigFile.delete();
+      } catch (e, s) {
+        await logExceptionToCrashlytics(
+          e,
+          s,
+          logMessage: 'DATABASE_SERVICE: Error while deleting old app Android data config file',
+        );
+      }
+    } else if (Platform.isIOS) {
+      final nativeSharedPref = await NativeSharedPreferences.getInstance();
+      try {
+        await nativeSharedPref.clear();
+      } catch (e, s) {
+        await logExceptionToCrashlytics(
+          e,
+          s,
+          logMessage: 'DATABASE_SERVICE: Error while clearing old app version IOS data',
+        );
+      }
+    }
+  }
+
   Future<void> _doDataMigrationFromOldAppVersion() async {
     final NepanikarConfig nepanikarConfig;
+    final File? androidConfigFile = await getOldAndroidAppConfigFile();
     if (Platform.isAndroid) {
-      final configFile = await getOldAndroidAppConfigFile();
-      if (configFile == null) return;
-      nepanikarConfig = NepanikarConfigParser.parseAndroidConfigFile(configFile);
+      if (androidConfigFile == null) return;
+      nepanikarConfig = NepanikarConfigParser.parseAndroidConfigFile(androidConfigFile);
     } else {
       final config = await NativeSharedPreferences.getSharedPreferencesMap();
       nepanikarConfig = NepanikarConfigParser.parseIosConfigFile(config);
@@ -252,6 +280,9 @@ class DatabaseService {
         );
       }
     }
+
+    // Clear old config files so that this migration is not done somehow again.
+    await _clearOldAppConfigData(androidConfigFile: androidConfigFile);
   }
 
   Future<void> clearAll() async {
