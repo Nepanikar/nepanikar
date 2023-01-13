@@ -36,10 +36,10 @@ class LanguagesScreen extends StatelessWidget {
             children: AppLocalizations.supportedLocales
                 .mapIndexed(
                   (index, item) => _LanguageItem(
-                    text: item.languageCode,
+                    text: item.toLanguageTag(),
                     hideTopSeparator: index == 0,
                     selected: _userSettingsDao.locale.languageCode == item.languageCode,
-                    onTap: () => _userSettingsDao.saveLocale(Locale(item.languageCode)),
+                    onTap: () => _userSettingsDao.saveLocale(item),
                   ),
                 )
                 .toList(),
