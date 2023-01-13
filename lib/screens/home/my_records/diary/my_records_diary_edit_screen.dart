@@ -39,10 +39,8 @@ class MyRecordsDiaryEditScreen extends StatelessWidget {
     final analytics = registry.get<FirebaseAnalytics>();
     return DiaryEditContent(
       diaryRecordRouteExtraData: diaryRecordRouteExtraData,
-      // TODO: l10n Matěj
-      appBarTitle: 'Upravit záznam',
-      // TODO: l10n Matěj
-      primaryButtonText: 'Uložit',
+      appBarTitle: context.l10n.diary_edit_appbar_title,
+      primaryButtonText: context.l10n.save,
       onPrimaryButtonTap: (diaryRecord) async {
         // Update an existing diary record.
         final goRouter = GoRouter.of(context);

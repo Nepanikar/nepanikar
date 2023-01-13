@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:nepanikar/app/app_constants.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/services/db/suicidal_thoughts/suicidal_thoughts_plan_dao.dart';
 import 'package:nepanikar/widgets/input_form_contents/plan_form_content.dart';
@@ -19,8 +18,7 @@ class SuicidalThoughtsPlanScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return PlanFormContent<SuicidalThoughtsPlanDao>(
       appBarTitle: context.l10n.plan,
-      // TODO: description Matěj
-      appBarDescription: AppConstants.loremIpsumShort,
+      appBarDescription: context.l10n.emergency_plan_description,
       planItems: {
         context.l10n.feeling_bad_write: context.l10n.custom_write,
         context.l10n.feeling_bad_write_body: context.l10n.custom_write_body,

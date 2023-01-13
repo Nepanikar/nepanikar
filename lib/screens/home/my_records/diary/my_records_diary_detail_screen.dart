@@ -66,8 +66,7 @@ class MyRecordsDiaryDetailScreen extends StatelessWidget {
         final diaryRecord = snapshot.data ?? diaryRecordRouteExtraData.diaryRecord;
 
         return NepanikarScreenWrapper(
-          // TODO: l10n Matěj
-          appBarTitle: 'Detail záznamu',
+          appBarTitle: context.l10n.diary_detail_appbar_title,
           appBarDescription: '',
           isModuleList: false,
           isCardStackLayout: true,
@@ -87,7 +86,7 @@ class MyRecordsDiaryDetailScreen extends StatelessWidget {
             Text(diaryRecord.text, style: NepanikarFonts.bodyRoman),
             SizedBox(height: screenSize.height * 0.2),
             NepanikarButton(
-              text: 'Upravit',
+              text: context.l10n.edit,
               expandToContentWidth: true,
               onTap: () => context.push(
                 const MyRecordsDiaryEditRoute().location,

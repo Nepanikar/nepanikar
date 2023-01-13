@@ -38,8 +38,7 @@ class MyContactsRecordsScreen extends StatelessWidget {
             ios: () => [
               IconButton(
                 icon: const Icon(CupertinoIcons.add),
-                // TODO: l10n Matěj
-                tooltip: 'Přidat položku',
+                tooltip: context.l10n.add_item,
                 onPressed: () async {
                   await _myContactsRecordsDao.addNewRecord();
                 },
@@ -54,8 +53,7 @@ class MyContactsRecordsScreen extends StatelessWidget {
             onPressed: () async {
               await _myContactsRecordsDao.addNewRecord();
             },
-            // TODO: l10n Matěj
-            tooltip: 'Přidat položku',
+            tooltip: context.l10n.add_item,
             child: const Icon(Icons.add),
           ),
         ),

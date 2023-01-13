@@ -1,6 +1,7 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/sizes.dart';
 import 'package:nepanikar/helpers/platform_helpers.dart';
@@ -61,8 +62,7 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
           ios: () => [
             IconButton(
               icon: const Icon(CupertinoIcons.add),
-              // TODO: l10n Matěj
-              tooltip: 'Přidat položku',
+              tooltip: context.l10n.add_item,
               onPressed: () async {
                 await _listFormDao.createFormText();
                 await analytics.logEvent(
@@ -82,8 +82,7 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
                 name: 'add_activity',
               );
             },
-            // TODO: l10n Matěj
-            tooltip: 'Přidat položku',
+            tooltip: context.l10n.add_item,
             child: const Icon(Icons.add),
           ),
         ),
@@ -179,8 +178,7 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
                                                 : NepanikarColors.primarySwatch.shade400,
                                           ),
                                       decoration: InputDecoration(
-                                        // TODO: l10n Matěj
-                                        hintText: 'Aktivita',
+                                        hintText: context.l10n.activity_hint_text,
                                         border: InputBorder.none,
                                         enabledBorder: InputBorder.none,
                                         focusedBorder: InputBorder.none,

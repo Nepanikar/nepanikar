@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:linkify/linkify.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/utils/extensions.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -43,8 +44,7 @@ Future<void> launchLinkableContact(LinkableElement linkableElement) async {
 Future<void> copyContact(BuildContext context, String contactStr) async {
   context.showInfoSnackbar(
     leading: const Icon(Icons.info_outline),
-    // TODO: l10n Matěj
-    text: 'Kontakt byl zkopírován do schránky',
+    text: context.l10n.contact_copied_snackbar,
   );
   await Clipboard.setData(ClipboardData(text: contactStr));
 }

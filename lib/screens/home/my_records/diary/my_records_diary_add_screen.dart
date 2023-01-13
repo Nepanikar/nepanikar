@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_detail_screen.dart';
 import 'package:nepanikar/services/db/my_records/diary/my_records_diary_dao.dart';
@@ -27,10 +28,8 @@ class MyRecordsDiaryAddScreen extends StatelessWidget {
 
     return DiaryEditContent(
       diaryRecordRouteExtraData: null,
-      // TODO: l10n Matěj
-      appBarTitle: 'Nový záznam',
-      // TODO: l10n Matěj
-      primaryButtonText: 'Uložit',
+      appBarTitle: context.l10n.diary_add_appbar_title,
+      primaryButtonText: context.l10n.save,
       onPrimaryButtonTap: (diaryRecord) async {
         // Create a new diary record.
         final goRouter = GoRouter.of(context);
@@ -45,8 +44,7 @@ class MyRecordsDiaryAddScreen extends StatelessWidget {
           ),
         );
       },
-      // TODO: l10n Matěj
-      secondaryButtonText: 'Zrušit',
+      secondaryButtonText: context.l10n.cancel,
       onSecondaryButtonTap: () {
         // Cancel creating a new diary record.
         context.pop();

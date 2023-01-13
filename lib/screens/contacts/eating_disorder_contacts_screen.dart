@@ -2,7 +2,6 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:linkify/linkify.dart';
-import 'package:nepanikar/app/app_constants.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
@@ -52,8 +51,7 @@ class EatingDisorderContactsScreen extends StatelessWidget {
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.food_contact,
       isModuleList: false,
-      // TODO: description Matěj
-      appBarDescription: AppConstants.loremIpsumShort,
+      appBarDescription: context.l10n.eating_disorder_description,
       isCardStackLayout: true,
       showBottomNavbar: true,
       children: [

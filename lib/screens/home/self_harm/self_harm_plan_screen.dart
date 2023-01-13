@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:nepanikar/app/app_constants.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/helpers/localization_helpers.dart';
 import 'package:nepanikar/services/db/self_harm/self_harm_plan_dao.dart';
@@ -20,8 +19,7 @@ class SelfHarmPlanScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return PlanFormContent<SelfHarmPlanDao>(
       appBarTitle: context.l10n.plan,
-      // TODO: description Matěj
-      appBarDescription: AppConstants.loremIpsumShort,
+      appBarDescription: context.l10n.emergency_plan_description,
       planItems: {
         for (final title in context.l10n.self_harm_plan_questions.extractToItems()) title: null,
       },
