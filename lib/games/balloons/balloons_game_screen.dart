@@ -7,6 +7,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/utils/lottie_cache_manager.dart';
@@ -188,8 +189,7 @@ class _BalloonsGameScreenState extends State<BalloonsGameScreen> with TickerProv
                       height: 12,
                     ),
                     Text(
-                      //TODO: l10n Martin
-                      'Dotykem praskej pouze bílé balónky',
+                      context.l10n.balloons_game_tip,
                       style: NepanikarFonts.bodySmallMedium
                           .copyWith(color: Colors.white, fontSize: 14),
                     ),

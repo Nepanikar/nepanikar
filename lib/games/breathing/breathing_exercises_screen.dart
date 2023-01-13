@@ -21,24 +21,21 @@ class BreathingExercisesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final modules = <Widget>[
       LongTile(
-        //TODO: l10n Martin
-        text: 'Dechové cvičení I',
+        text: context.l10n.breathing_exercise_i,
         image: Assets.illustrations.modules.breathingCircle.svg(),
         onTap: () => context.push(
           const BreathingGameRoute(shape: BreathingGameShape.circle).location,
         ),
       ),
       LongTile(
-        //TODO: l10n Martin
-        text: 'Dechové cvičení II',
+        text: context.l10n.breathing_exercise_ii,
         image: Assets.illustrations.modules.breathingTriangle.svg(),
         onTap: () => context.push(
           const BreathingGameRoute(shape: BreathingGameShape.triangle).location,
         ),
       ),
       LongTile(
-        //TODO: l10n Martin
-        text: 'Dechové cvičení III',
+        text: context.l10n.breathing_exercise_iii,
         image: Assets.illustrations.modules.breathingSquare.svg(),
         onTap: () => context.push(
           const BreathingGameRoute(shape: BreathingGameShape.square).location,

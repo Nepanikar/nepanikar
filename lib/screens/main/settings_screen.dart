@@ -35,8 +35,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return NepanikarScreenWrapper(
-      // TODO: l10n Martin
-      appBarTitle: 'Nastavení',
+      appBarTitle: context.l10n.settings,
       children: [
         DecoratedBox(
           decoration: BoxDecoration(
@@ -55,13 +54,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     leading: Assets.icons.deleteData.svg(),
                     text: context.l10n.reset_inputs,
                     onTap: () {
-                      // TODO: l10n Martin
                       context.showNepanikarDialog(
-                        title: 'Smazat data',
-                        text: 'Opravdu chcete smazat všechna data?',
-                        secondaryBtnLabel: 'Zrušit',
+                        title: context.l10n.delete_data_title,
+                        text: context.l10n.delete_data_description,
+                        secondaryBtnLabel: context.l10n.cancel,
                         onSecondaryBtnTap: (dialogContext) => Navigator.pop(dialogContext),
-                        primaryBtnLabel: 'Smazat',
+                        primaryBtnLabel: context.l10n.clear_button,
                         onPrimaryBtnTap: (dialogContext) async {
                           await _databaseService.clearAll();
                           await _databaseService.preloadDefaultData(context.l10n);
@@ -69,7 +67,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             Navigator.pop(dialogContext);
                             context.hideCurrentSnackBar();
                             context.showSuccessSnackbar(
-                              text: 'Vaše data byla úspěšně smazaná.',
+                              text: context.l10n.delete_success,
                               leading: Assets.icons.checkmarks.checkCircular.svg(),
                             );
                           }
@@ -137,8 +135,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       child: Row(
                         children: [
                           Text(
-                            //TODO: l10n Martin
-                            'Sledujte nás',
+                            context.l10n.follow_us,
                             style: NepanikarFonts.bodySmallMedium.copyWith(fontSize: 15),
                           ),
                           const Spacer(),

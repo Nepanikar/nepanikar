@@ -88,8 +88,7 @@ class _MyContactTileState extends State<MyContactTile> {
                             _myContactsRecordsDao.updateName(widget.id, widget.record, value),
                       ),
                       _buildTextField(
-                        // TODO: l10n Martin
-                        hintText: 'Telefon',
+                        hintText: context.l10n.phone,
                         controller: _contactAddressController,
                         onChanged: (value) async => _myContactsRecordsDao.updateContactAddress(
                           widget.id,
@@ -126,14 +125,12 @@ class _MyContactTileState extends State<MyContactTile> {
                     children: [
                       TextButton(
                         style: buttonStyle,
-                        // TODO: l10n Martin
-                        child: const Text('Poslat sms'),
+                        child: Text(context.l10n.send_sms),
                         onPressed: () => launchSmsNum(_contactAddressController.text),
                       ),
                       TextButton(
                         style: buttonStyle,
-                        // TODO: l10n Martin
-                        child: const Text('Zavolat'),
+                        child: Text(context.l10n.make_call),
                         onPressed: () => launchPhoneNum(_contactAddressController.text),
                       ),
                     ],

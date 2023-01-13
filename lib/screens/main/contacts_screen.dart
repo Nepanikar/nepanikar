@@ -90,20 +90,18 @@ class ContactsScreen extends StatelessWidget {
       if ([NepanikarLanguages.cs.languageCode, NepanikarLanguages.sk.languageCode]
           .contains(locale.languageCode)) ...[
         LongTile(
-          // TODO: l10n Martin
-          text: 'Online terapie',
+          text: context.l10n.online_therapy,
           image: Assets.illustrations.modules.onlineTherapy.svg(),
           onTap: () => launchUrLink(AppConstants.nepanikarTherapyUrl),
         ),
         LongTile(
-          // TODO: l10n Martin
-          text: 'E-mailová poradna',
+          text: context.l10n.email_consultation,
           image: Assets.illustrations.modules.emailHelp.svg(),
           onTap: () => context.push(
             const EmailCounsellingRoute().location,
-            extra: const CrisisMessageRouteExtraData(
+            extra: CrisisMessageRouteExtraData(
               contactAddress: AppConstants.nepanikarContactEmail,
-              subjectMessage: 'Pomoc z aplikace',
+              subjectMessage: context.l10n.counselling_email_subject,
             ),
           ),
         ),

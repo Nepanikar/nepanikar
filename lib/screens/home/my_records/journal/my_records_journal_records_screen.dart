@@ -33,7 +33,7 @@ class MyRecordsJournalRecordsScreen extends StatelessWidget {
     final analytics = registry.get<FirebaseAnalytics>();
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.journal,
-      // TODO: l10n Martin
+      // TODO: l10n missing description?
       appBarDescription: '',
       isModuleList: false,
       isCardStackLayout: true,
@@ -42,8 +42,7 @@ class MyRecordsJournalRecordsScreen extends StatelessWidget {
         ios: () => [
           IconButton(
             icon: const Icon(CupertinoIcons.add),
-            // TODO: l10n Martin
-            tooltip: 'Přidat položku',
+            tooltip: context.l10n.add_item,
             onPressed: () async {
               final goRouter = GoRouter.of(context);
               final id = await _myRecordsJournalDao.createRecord(getEmptyJournalRecord());
@@ -75,8 +74,7 @@ class MyRecordsJournalRecordsScreen extends StatelessWidget {
               ),
             );
           },
-          // TODO: l10n Martin
-          tooltip: 'Přidat položku',
+          tooltip: context.l10n.add_item,
           child: const Icon(Icons.add),
         ),
       ),

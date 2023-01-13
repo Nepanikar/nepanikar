@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/anxiety_tip_item.dart';
@@ -125,8 +126,7 @@ class _TipsCarouselBodyState extends State<TipsCarouselBody> {
                                 curve: Curves.easeInOut,
                               ),
                               enabled: activeIndex > 0,
-                              // TODO: l10n Martin
-                              text: 'Předchozí',
+                              text: context.l10n.previous,
                               leadingIcon: Assets.icons.navigation.chevronLeft,
                             ),
                           ),
@@ -140,8 +140,7 @@ class _TipsCarouselBodyState extends State<TipsCarouselBody> {
                                 curve: Curves.easeInOut,
                               ),
                               enabled: activeIndex.floor() < widget.pages.length - 1,
-                              // TODO: l10n Martin
-                              text: 'Další',
+                              text: context.l10n.next,
                               trailingIcon: Assets.icons.navigation.chevronRight,
                             ),
                           ),

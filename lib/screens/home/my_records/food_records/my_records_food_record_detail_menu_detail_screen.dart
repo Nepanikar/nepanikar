@@ -167,8 +167,7 @@ class _MyRecordsFoodRecordsDetailMenuDetailScreenState
           ),
           const SizedBox(height: 16),
           NepanikarButton(
-            // TODO: l10n Martin
-            text: 'Uložit',
+            text: context.l10n.save,
             expandToContentWidth: true,
             onTap: () async {
               final goRouter = GoRouter.of(context);

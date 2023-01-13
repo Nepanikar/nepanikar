@@ -83,8 +83,7 @@ class _MyRecordsFoodRecordsDetailMenuListScreenState
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              // TODO: l10n Martin
-              'Detail záznamu',
+              context.l10n.note_detail,
               style: NepanikarFonts.bodySmallMedium.copyWith(color: NepanikarColors.primary),
             ),
             const SizedBox(width: 4),
@@ -115,8 +114,7 @@ class _MyRecordsFoodRecordsDetailMenuListScreenState
           isModuleList: false,
           isCardStackLayout: true,
           children: [
-            // TODO: l10n Martin
-            Text('Datum zápisu', style: labelTextStyle),
+            Text(context.l10n.date_of_note, style: labelTextStyle),
             const SizedBox(height: 8),
             NepanikarDatePicker(
               initialDate: dailyFoodRecord.dateTime,
@@ -141,8 +139,7 @@ class _MyRecordsFoodRecordsDetailMenuListScreenState
               ),
             const SizedBox(height: 24),
             NepanikarButton.secondary(
-              // TODO: l10n Martin
-              text: 'Smazat záznam',
+              text: context.l10n.delete_record,
               expandToContentWidth: true,
               onTap: () async {
                 final goRouter = GoRouter.of(context);
