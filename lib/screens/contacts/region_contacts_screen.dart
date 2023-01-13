@@ -102,7 +102,7 @@ class _RegionContactsScreenState extends State<RegionContactsScreen> {
         // TODO: l10n Matěj
         if (widget.regionContacts.length > 1) ...[
           Text(
-            'Vyberte region',
+            'Vyber region',
             style: NepanikarFonts.bodySmallMedium.copyWith(fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 5),

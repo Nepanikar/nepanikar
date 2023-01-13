@@ -91,7 +91,7 @@ class _DiaryEditContentState extends State<DiaryEditContent> {
             textInputAction: TextInputAction.next,
             decoration: const InputDecoration(
               // TODO: l10n Matěj
-              hintText: 'Pojmenujte zápis',
+              hintText: 'Pojmenuj zápis',
             ),
           ),
           const SizedBox(height: 12),
@@ -106,7 +106,6 @@ class _DiaryEditContentState extends State<DiaryEditContent> {
           ),
           const SizedBox(height: 16),
           NepanikarButton(
-            // TODO: l10n Matěj
             text: widget.primaryButtonText,
             expandToContentWidth: true,
             onTap: () => widget.onPrimaryButtonTap(_constructDiaryRecord()),

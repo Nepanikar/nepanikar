@@ -81,7 +81,7 @@ class MoodTrackScreen<T extends MoodTrackDao> extends StatelessWidget {
             alignment: Alignment.centerLeft,
             // TODO: l10n Matěj
             child: Text(
-              'Nastavte si rozmezí data a sledujte vývoj nálady',
+              'Nastav si rozmezí data a sleduj vývoj nálady',
               style: NepanikarFonts.bodyRoman.copyWith(color: NepanikarColors.primary),
             ),
           ),
