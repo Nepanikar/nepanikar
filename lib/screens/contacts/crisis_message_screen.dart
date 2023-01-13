@@ -173,14 +173,14 @@ class _CrisisMessageContentState extends State<CrisisMessageContent> {
                       return NepanikarButton(
                         onTap: () async {
                           final isEmail = address.contains('@');
+                          final bodyMessage = _messageTextController.text;
                           final uri = Uri(
                             scheme: isEmail ? 'mailto' : 'sms',
                             path: address,
-                            queryParameters: {
-                              if (isEmail)
-                                'subject': widget.subjectMessage ?? context.l10n.contacts_message,
-                              'body': _messageTextController.text,
-                            },
+                            // Not using queryParameters because it adds a + sign instead of a space.
+                            query: isEmail
+                                ? 'subject=${widget.subjectMessage ?? context.l10n.contacts_message}&body=$bodyMessage'
+                                : 'body=$bodyMessage',
                           );
                           if (await canLaunchUrl(uri)) {
                             await launchUrl(uri);
