@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/screen_resolution_helpers.dart';
@@ -25,8 +26,7 @@ class EmptyRecordsStateWidget extends StatelessWidget {
         ),
         const SizedBox(height: 26),
         Text(
-          // TODO: l10n Matěj
-          emptyText ?? 'Zatím nemáš žádný záznam',
+          emptyText ?? context.l10n.no_record_yet_empty_text,
           textAlign: TextAlign.center,
           style: NepanikarFonts.title3.copyWith(
             fontWeight: FontWeight.w500,

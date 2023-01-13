@@ -137,10 +137,9 @@ class _MathGameScreenState extends State<MathGameScreen> {
                                   keyboardType: TextInputType.number,
                                   controller: _textEditingController,
                                   onSubmitted: _evaluateEquation,
-                                  decoration: const InputDecoration(
-                                    // TODO: l10n Matěj
-                                    hintText: 'Jaký je výsledek?',
-                                    contentPadding: EdgeInsets.symmetric(
+                                  decoration: InputDecoration(
+                                    hintText: context.l10n.math_game_answer_button,
+                                    contentPadding: const EdgeInsets.symmetric(
                                       horizontal: 12,
                                       vertical: 16,
                                     ),

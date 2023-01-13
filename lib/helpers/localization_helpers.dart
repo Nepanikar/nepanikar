@@ -4,6 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 
 String _platformLocale = Platform.localeName.split('_').firstOrNull ?? 'en';
 
@@ -11,16 +12,15 @@ final initialLocale = Locale(
   AppLocalizations.supportedLocales.contains(Locale(_platformLocale)) ? _platformLocale : 'en',
 );
 
-// TODO: l10n Matěj
 String pluralYears(
   BuildContext context, {
   required int value,
 }) {
   return Intl.plural(
     value,
-    one: 'Rok',
-    few: 'Roky',
-    other: 'Roků',
+    one: context.l10n.plural_year_one,
+    few: context.l10n.plural_year_few,
+    other: context.l10n.plural_year_other,
     locale: Localizations.localeOf(context).languageCode,
   );
 }
@@ -31,9 +31,9 @@ String pluralMonths(
 }) {
   return Intl.plural(
     value,
-    one: 'Měsíc',
-    few: 'Měsíce',
-    other: 'Měsíců',
+    one: context.l10n.plural_month_one,
+    few: context.l10n.plural_month_few,
+    other: context.l10n.plural_month_other,
     locale: Localizations.localeOf(context).languageCode,
   );
 }
@@ -57,9 +57,9 @@ String pluralHours(
 }) {
   return Intl.plural(
     value,
-    one: 'Hodina',
-    few: 'Hodiny',
-    other: 'Hodin',
+    one: context.l10n.plural_hour_one,
+    few: context.l10n.plural_hour_few,
+    other: context.l10n.plural_hour_other,
     locale: Localizations.localeOf(context).languageCode,
   );
 }
@@ -70,9 +70,9 @@ String pluralMinutes(
 }) {
   return Intl.plural(
     value,
-    one: 'Minuta',
-    few: 'Minuty',
-    other: 'Minut',
+    one: context.l10n.plural_minutes_one,
+    few: context.l10n.plural_minutes_few,
+    other: context.l10n.plural_minutes_other,
     locale: Localizations.localeOf(context).languageCode,
   );
 }
@@ -83,9 +83,9 @@ String pluralSeconds(
 }) {
   return Intl.plural(
     value,
-    one: 'Sekunda',
-    few: 'Sekundy',
-    other: 'Sekund',
+    one: context.l10n.plural_second_one,
+    few: context.l10n.plural_second_few,
+    other: context.l10n.plural_second_other,
     locale: Localizations.localeOf(context).languageCode,
   );
 }

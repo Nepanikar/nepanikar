@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/helpers/iterable_helpers.dart';
 import 'package:nepanikar/services/db/filters.dart';
 
 part 'mood_track_model.freezed.dart';
+
 part 'mood_track_model.g.dart';
 
 enum Mood {
@@ -45,18 +47,17 @@ enum Mood {
   }
 
   String getLabel(BuildContext context) {
-    // TODO: l10n Matěj
     switch (this) {
       case Mood.sad:
-        return 'Mizerně';
+        return context.l10n.mood_miserable_sad;
       case Mood.bad:
-        return 'Smutně';
+        return context.l10n.mood_bad_sad;
       case Mood.okay:
-        return 'Nic moc';
+        return context.l10n.mood_not_much;
       case Mood.good:
-        return 'Dobře';
+        return context.l10n.mood_good;
       case Mood.happy:
-        return 'Super';
+        return context.l10n.mood_great_happy;
     }
   }
 

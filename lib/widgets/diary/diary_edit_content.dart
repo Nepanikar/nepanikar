@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_detail_screen.dart';
 import 'package:nepanikar/services/db/my_records/diary/diary_record_model.dart';
@@ -71,8 +72,7 @@ class _DiaryEditContentState extends State<DiaryEditContent> {
         isModuleList: false,
         isCardStackLayout: true,
         children: [
-          // TODO: l10n Matěj
-          Text('Datum zápisu', style: labelTextStyle),
+          Text(context.l10n.date_of_entry_label, style: labelTextStyle),
           const SizedBox(height: 8),
           NepanikarDatePicker(
             initialDate: _dateTime,
@@ -83,20 +83,17 @@ class _DiaryEditContentState extends State<DiaryEditContent> {
             },
           ),
           const SizedBox(height: 12),
-          // TODO: l10n Matěj
-          Text('Název zápisu', style: labelTextStyle),
+          Text(context.l10n.title_entry_label, style: labelTextStyle),
           const SizedBox(height: 8),
           TextField(
             controller: _titleEditingController,
             textInputAction: TextInputAction.next,
-            decoration: const InputDecoration(
-              // TODO: l10n Matěj
-              hintText: 'Pojmenujte zápis',
+            decoration: InputDecoration(
+              hintText: context.l10n.title_entry_hint_text,
             ),
           ),
           const SizedBox(height: 12),
-          // TODO: l10n Matěj
-          Text('Text zápisu', style: labelTextStyle),
+          Text(context.l10n.text_of_entry_label, style: labelTextStyle),
           const SizedBox(height: 8),
           TextField(
             controller: _textContentEditingController,
@@ -106,7 +103,6 @@ class _DiaryEditContentState extends State<DiaryEditContent> {
           ),
           const SizedBox(height: 16),
           NepanikarButton(
-            // TODO: l10n Matěj
             text: widget.primaryButtonText,
             expandToContentWidth: true,
             onTap: () => widget.onPrimaryButtonTap(_constructDiaryRecord()),

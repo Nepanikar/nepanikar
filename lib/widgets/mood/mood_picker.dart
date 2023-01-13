@@ -1,6 +1,8 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
 import 'package:nepanikar/utils/extensions.dart';
@@ -72,9 +74,9 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Ahoj, jak se dnes cítíš?',
-          // TODO: l10n Matěj
+        AutoSizeText(
+          context.l10n.mood_welcome_title,
+          maxLines: 1,
           style: NepanikarFonts.title2,
         ),
         const SizedBox(height: 14),
@@ -93,8 +95,7 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
                     _playLottieAnim(pickedMood);
                     context.hideCurrentSnackBar();
                     context.showSuccessSnackbar(
-                      text: 'Náladu jsme úspěšně zaznamenali',
-                      // TODO: l10n Matěj
+                      text: context.l10n.mood_tracked_success_snackbar,
                       leading: Assets.icons.checkmarks.checkCircular.svg(),
                     );
                     widget.onPick.call(pickedMood);

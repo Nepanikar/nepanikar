@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/helpers/date_helpers.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
 
@@ -19,18 +20,17 @@ enum ChartFilter {
   bool get isCustom => this == ChartFilter.custom;
 
   String getLabel(BuildContext context) {
-    // TODO: l10n Matěj
     switch (this) {
       case ChartFilter.lastWeek:
-        return 'Poslední týden';
+        return context.l10n.chart_filter_last_week;
       case ChartFilter.lastMonth:
-        return 'Poslední měsíc';
+        return context.l10n.chart_filter_last_month;
       case ChartFilter.last3Months:
-        return 'Poslední 3 měsíce';
+        return context.l10n.chart_filter_last_3_months;
       case ChartFilter.last6Months:
-        return 'Posledních 6 měsíců';
+        return context.l10n.chart_filter_last_6_months;
       case ChartFilter.custom:
-        return 'Vlastní';
+        return context.l10n.chart_filter_custom;
     }
   }
 

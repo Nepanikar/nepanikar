@@ -63,9 +63,9 @@ class SelfHarmTimerScreen extends StatelessWidget {
                           return Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              // TODO: l10n Matěj
+                              // TODO: l10n Matěj doplnit roky, dny logic
                               if (isTimerRunning) ...[
-                                _buildCardTitle('Vedeš si skvěle.\nJen tak dál!'),
+                                _buildCardTitle(context.l10n.self_harm_timer_begin),
                                 const Padding(
                                   padding: EdgeInsets.symmetric(vertical: 16),
                                   child: NepanikarHorizontalDivider(),
@@ -197,7 +197,6 @@ class SelfHarmTimerScreen extends StatelessWidget {
       );
     }
 
-    // TODO: l10n Matěj
     if (dateTimeRange == null) {
       return Column(
         mainAxisSize: MainAxisSize.min,
@@ -207,7 +206,7 @@ class SelfHarmTimerScreen extends StatelessWidget {
             children: [
               buildTextSpan(
                 value: '-',
-                label: 'Roků ',
+                label: '${context.l10n.plural_year_other} ',
                 labelStyleSameAsValueStyle: true,
               ),
               buildTextSpan(
@@ -240,7 +239,6 @@ class SelfHarmTimerScreen extends StatelessWidget {
     final minutesDiff = period.minutes;
     final secondsDiff = period.seconds;
 
-    // TODO: l10n Matěj
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
