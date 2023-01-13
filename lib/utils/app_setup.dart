@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/src/utils/date_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/app_constants.dart';
 import 'package:nepanikar/app/router/go_router_config.dart';
 import 'package:nepanikar/firebase_options.dart';
 import 'package:nepanikar/services/db/database_service.dart';
@@ -41,7 +42,7 @@ Future<void> setup() async {
 
   // Analytics
   registry.registerSingleton<FirebaseAnalytics>(FirebaseAnalytics.instance);
-  await registry.get<FirebaseAnalytics>().setAnalyticsCollectionEnabled(kReleaseMode);
+  await registry.get<FirebaseAnalytics>().setAnalyticsCollectionEnabled(AppConstants.IS_PROD);
 
   // Initialize intl localizations.
   loadDateIntlDataIfNotLoaded();

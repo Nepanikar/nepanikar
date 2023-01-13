@@ -33,7 +33,7 @@ definitions:
         flutter build appbundle --release \
           --build-name=$MAJOR_VERSION.$MINOR_VERSION.$BUILD_NUMBER \
           --build-number=$((($MAJOR_VERSION*100000)+($MINOR_VERSION*10000)+$BUILD_NUMBER)) \
-          --verbose --no-tree-shake-icons
+          --verbose --no-tree-shake-icons --dart-define IS_PROD=$IS_PROD
         android-app-bundle build-universal-apk \
           --bundle 'build/**/outputs/**/*.aab' \
           --ks "$CM_KEYSTORE_PATH" \
@@ -52,7 +52,7 @@ definitions:
         flutter build ipa --export-options-plist=/Users/builder/export_options.plist \
           --build-name=$MAJOR_VERSION.$MINOR_VERSION.$BUILD_NUMBER \
           --build-number=$((($MAJOR_VERSION*100000)+($MINOR_VERSION*10000)+$BUILD_NUMBER)) \
-          --verbose --no-tree-shake-icons
+          --verbose --no-tree-shake-icons --dart-define IS_PROD=$IS_PROD
     - &publish_huawei
       name: Publish to the Huawei AppGallery store
       script: |
@@ -81,6 +81,7 @@ workflows:
       vars:
         MAJOR_VERSION: "2"
         MINOR_VERSION: "1"
+        IS_PROD: "true" # Turns on Analytics.
         TESTFLIGHT_EXTERNAL_GROUP_NAME: "App Store External Testing"
     scripts:
       - *local_properties
@@ -119,6 +120,7 @@ workflows:
       vars:
         MAJOR_VERSION: "2"
         MINOR_VERSION: "0"
+        IS_PROD: "false"
         TESTFLIGHT_EXTERNAL_GROUP_NAME: "App Store External Testing"
     triggering:
       events:
