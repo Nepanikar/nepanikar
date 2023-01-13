@@ -120,7 +120,7 @@ workflows:
       vars:
         MAJOR_VERSION: "2"
         MINOR_VERSION: "0"
-        IS_PROD: "false"
+        IS_PROD: "true"
         TESTFLIGHT_EXTERNAL_GROUP_NAME: "App Store External Testing"
     triggering:
       events:
@@ -134,16 +134,16 @@ workflows:
       - *local_properties
       - *get_packages
       - *build_android
-      - *setup_ios
-      - *build_ios
+#      - *setup_ios
+#      - *build_ios
     artifacts: *artifacts
     publishing:
       <<: *generic_publishing
-      app_store_connect:
-        auth: integration
-        submit_to_testflight: true
-        beta_groups:
-          - $TESTFLIGHT_EXTERNAL_GROUP_NAME
-      google_play:
-        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
-        track: alpha
+#      app_store_connect:
+#        auth: integration
+#        submit_to_testflight: true
+#        beta_groups:
+#          - $TESTFLIGHT_EXTERNAL_GROUP_NAME
+#      google_play:
+#        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
+#        track: alpha
