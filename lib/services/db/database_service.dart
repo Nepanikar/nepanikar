@@ -173,8 +173,8 @@ class DatabaseService {
         );
       }
     } else if (Platform.isIOS) {
-      final nativeSharedPref = await NativeSharedPreferences.getInstance();
       try {
+        final nativeSharedPref = await NativeSharedPreferences.getInstance();
         await nativeSharedPref.clear();
       } catch (e, s) {
         await logExceptionToCrashlytics(
