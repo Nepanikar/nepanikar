@@ -16,7 +16,7 @@ class AnxietyTipsAppScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final strings = context.l10n.depression_tips.split('\n');
+    final strings = context.l10n.panic_tips.split('\n');
 
     return Scaffold(
       appBar: AppBar(title: Text(context.l10n.panic_tips_9)),
