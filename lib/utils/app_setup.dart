@@ -41,7 +41,7 @@ Future<void> setup() async {
 
   // Analytics
   registry.registerSingleton<FirebaseAnalytics>(FirebaseAnalytics.instance);
-  await registry.get<FirebaseAnalytics>().setAnalyticsCollectionEnabled(!kDebugMode);
+  await registry.get<FirebaseAnalytics>().setAnalyticsCollectionEnabled(kReleaseMode);
 
   // Initialize intl localizations.
   loadDateIntlDataIfNotLoaded();

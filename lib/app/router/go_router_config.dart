@@ -18,6 +18,7 @@ final goRouterConfig = GoRouter(
 
 class GoRouterObserver extends NavigatorObserver {
   GoRouterObserver({required this.analytics});
+
   final FirebaseAnalytics analytics;
 
   @override

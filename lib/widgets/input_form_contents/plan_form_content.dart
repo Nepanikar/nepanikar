@@ -116,7 +116,7 @@ class _PlanFormContentState<T extends NepanikarPlanFormDao> extends State<PlanFo
                               );
                               unawaited(
                                 analytics.logEvent(
-                                  name: 'input focused',
+                                  name: 'input_focused',
                                   parameters: {
                                     'form_index': formIndex,
                                   },
