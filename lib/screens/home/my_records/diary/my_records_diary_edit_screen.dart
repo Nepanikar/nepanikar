@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
@@ -33,6 +36,7 @@ class MyRecordsDiaryEditScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final analytics = registry.get<FirebaseAnalytics>();
     return DiaryEditContent(
       diaryRecordRouteExtraData: diaryRecordRouteExtraData,
       // TODO: l10n
@@ -46,6 +50,7 @@ class MyRecordsDiaryEditScreen extends StatelessWidget {
           _initialDiaryRecordId,
           updatedDiaryRecord: diaryRecord,
         );
+        unawaited(analytics.logEvent(name: 'diary_record_updated'));
         goRouter.pop();
       },
       secondaryButtonText: context.l10n.clear_button,
@@ -57,6 +62,7 @@ class MyRecordsDiaryEditScreen extends StatelessWidget {
             // Delete an existing diary record.
             final goRouter = GoRouter.of(context);
             await _myRecordsDiaryDao.deleteRecord(_initialDiaryRecordId);
+            unawaited(analytics.logEvent(name: 'diary_record_deleted'));
             // TODO: Use popUntil instead of pop twice
             goRouter.pop();
             goRouter.pop();

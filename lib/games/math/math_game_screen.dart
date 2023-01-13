@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
@@ -26,6 +29,7 @@ class MathGameScreen extends StatefulWidget {
 
 class _MathGameScreenState extends State<MathGameScreen> {
   MathAnswerResultState _answerResultState = MathAnswerResultState.notAnsweredYet;
+  final analytics = registry.get<FirebaseAnalytics>();
 
   late MathEquation _equation;
 
@@ -49,12 +53,15 @@ class _MathGameScreenState extends State<MathGameScreen> {
     if (_equation.isValid(textInput)) {
       if (mounted) _setAnswerResultState(MathAnswerResultState.correct);
       await Future.delayed(_winAnimDuration);
+
       if (mounted) _generateNewEquation();
+      unawaited(analytics.logEvent(name: 'math_game_correct_answer'));
     } else {
       if (mounted) {
         _textEditingController.clear();
         _setAnswerResultState(MathAnswerResultState.wrong);
         if (!isInputActionFromButton) _focusNode.requestFocus();
+        unawaited(analytics.logEvent(name: 'math_game_wrong_answer'));
       }
     }
   }

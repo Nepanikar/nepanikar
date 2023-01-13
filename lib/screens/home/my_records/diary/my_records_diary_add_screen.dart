@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/router/routes.dart';
@@ -20,6 +23,8 @@ class MyRecordsDiaryAddScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final analytics = registry.get<FirebaseAnalytics>();
+
     return DiaryEditContent(
       diaryRecordRouteExtraData: null,
       // TODO: l10n
@@ -30,6 +35,7 @@ class MyRecordsDiaryAddScreen extends StatelessWidget {
         // Create a new diary record.
         final goRouter = GoRouter.of(context);
         final id = await _myRecordsDiaryDao.createRecord(diaryRecord);
+        unawaited(analytics.logEvent(name: 'diary_record_created'));
         goRouter.pop();
         goRouter.push(
           const MyRecordsDiaryDetailRoute().location,

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
@@ -38,20 +39,16 @@ Future<void> setup() async {
   };
   await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(!kDebugMode);
 
+  // Analytics
+  registry.registerSingleton<FirebaseAnalytics>(FirebaseAnalytics.instance);
+  await registry.get<FirebaseAnalytics>().setAnalyticsCollectionEnabled(kReleaseMode);
+
   // Initialize intl localizations.
   loadDateIntlDataIfNotLoaded();
 
   // router
   registry.registerSingleton<GoRouter>(goRouterConfig);
   registry.registerLazySingleton<GlobalKey<NavigatorState>>(() => GlobalKey());
-
-  // TODO: Integrate with Firebase Analytics & Crashlytics
-  // firebase
-  // await Firebase.initializeApp();
-  // await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(!kDebugMode);
-
-  // registry.registerSingleton<FirebaseAnalytics>(FirebaseAnalytics.instance);
-  // await registry.get<FirebaseAnalytics>().setAnalyticsCollectionEnabled(!kDebugMode);
 
   // services
   registry.registerSingleton<SaveDirectories>(SaveDirectories());

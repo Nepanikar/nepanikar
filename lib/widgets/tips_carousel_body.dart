@@ -1,6 +1,10 @@
+import 'dart:async';
+
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
+import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/anxiety_tip_item.dart';
 import 'package:nepanikar/widgets/nepanikar_button.dart';
 
@@ -18,6 +22,7 @@ class _TipsCarouselBodyState extends State<TipsCarouselBody> {
     viewportFraction: 0.8,
   );
   double activeIndex = 0;
+  final analytics = registry.get<FirebaseAnalytics>();
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +49,14 @@ class _TipsCarouselBodyState extends State<TipsCarouselBody> {
                           setState(() {
                             activeIndex = controller.page!;
                           });
+                          unawaited(
+                            analytics.logEvent(
+                              name: 'slide',
+                              parameters: {
+                                'index': activeIndex.toInt(),
+                              },
+                            ),
+                          );
                         }
                         return false;
                       },

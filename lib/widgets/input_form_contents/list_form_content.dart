@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/theme/colors.dart';
@@ -26,6 +27,7 @@ class ListFormContent<T extends NepanikarListFormDao> extends StatefulWidget {
 
 class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFormContent> {
   late final Stream<List<RecordSnapshot<String, ListFormItem>>> _allFormItemsStream;
+  final analytics = registry.get<FirebaseAnalytics>();
 
   T get _listFormDao => registry.get<T>();
 
@@ -59,7 +61,12 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
               icon: const Icon(CupertinoIcons.add),
               // TODO: l10n
               tooltip: 'Přidat položku',
-              onPressed: () async => _listFormDao.createFormText(),
+              onPressed: () async {
+                await _listFormDao.createFormText();
+                await analytics.logEvent(
+                  name: 'add_item',
+                );
+              },
             ),
           ],
           android: () => null,
@@ -67,7 +74,12 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
         floatingActionButton: platformMapper<Widget?>(
           ios: () => null,
           android: () => FloatingActionButton(
-            onPressed: () async => _listFormDao.createFormText(),
+            onPressed: () async {
+              await _listFormDao.createFormText();
+              await analytics.logEvent(
+                name: 'add_item',
+              );
+            },
             // TODO: l10n
             tooltip: 'Přidat položku',
             child: const Icon(Icons.add),
@@ -137,6 +149,9 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
                                 WidgetsBinding.instance.addPostFrameCallback((_) async {
                                   _idTextMap.remove(formKey);
                                   await _listFormDao.deleteFormItem(formKey);
+                                  await analytics.logEvent(
+                                    name: 'delete_item',
+                                  );
                                 });
                               },
                               icon: const Icon(Icons.clear, size: 16),

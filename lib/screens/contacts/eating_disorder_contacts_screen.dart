@@ -55,6 +55,7 @@ class EatingDisorderContactsScreen extends StatelessWidget {
       // TODO: description
       appBarDescription: AppConstants.loremIpsumShort,
       isCardStackLayout: true,
+      showBottomNavbar: true,
       children: [
         ...eatingDisorderContacts.map((contact) {
           final linkifiedText = linkify(
