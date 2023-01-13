@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/fonts.gen.dart';
 import 'package:nepanikar/app/theme/theme.dart';
+import 'package:nepanikar/helpers/localization_helpers.dart';
 import 'package:nepanikar/providers/mood_chart_filter_provider.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/utils/app_setup.dart';
@@ -34,7 +35,7 @@ class Nepanikar extends StatelessWidget {
         builder: (_, snapshot) {
           final locale = snapshot.data;
           return MaterialApp.router(
-            title: 'Nepanikař',
+            title: _getAppNameFromLocale(locale),
             theme: NepanikarTheme.getThemeData(
               fontFamily: locale?.languageCode == NepanikarLanguages.uk.languageCode
                   ? null
@@ -62,4 +63,15 @@ class Nepanikar extends StatelessWidget {
       ),
     );
   }
+}
+
+String _getAppNameFromLocale(Locale? locale) {
+  final appLangCode = locale?.languageCode ?? platformLocale;
+
+  if (appLangCode == NepanikarLanguages.cs.languageCode) {
+    return 'Nepanikař';
+  } else if (appLangCode == NepanikarLanguages.sk.languageCode) {
+    return 'Nepanikár';
+  }
+  return "Don't panic";
 }

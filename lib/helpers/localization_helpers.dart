@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
 
-String _platformLocale = Platform.localeName.split('_').firstOrNull ?? 'en';
+String platformLocale = Platform.localeName.split('_').firstOrNull ?? 'en';
 
 final initialLocale = Locale(
-  AppLocalizations.supportedLocales.contains(Locale(_platformLocale)) ? _platformLocale : 'en',
+  AppLocalizations.supportedLocales.contains(Locale(platformLocale)) ? platformLocale : 'en',
 );
 
 // TODO: l10n Matěj
