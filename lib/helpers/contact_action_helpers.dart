@@ -43,7 +43,7 @@ Future<void> launchLinkableContact(LinkableElement linkableElement) async {
 Future<void> copyContact(BuildContext context, String contactStr) async {
   context.showInfoSnackbar(
     leading: const Icon(Icons.info_outline),
-    // TODO: l10n
+    // TODO: l10n Matěj
     text: 'Kontakt byl zkopírován do schránky',
   );
   await Clipboard.setData(ClipboardData(text: contactStr));

@@ -114,7 +114,7 @@ class HomeScreen extends StatelessWidget {
                     top: context.isSmallScreen ? 20 : 30,
                   ),
                   child: const Text(
-                    //TODO: l10n
+                    //TODO: l10n Martin
                     'S čím můžeme pomoci?',
                     style: NepanikarFonts.title2,
                   ),

@@ -19,7 +19,7 @@ enum ChartFilter {
   bool get isCustom => this == ChartFilter.custom;
 
   String getLabel(BuildContext context) {
-    // TODO: l10n
+    // TODO: l10n Matěj
     switch (this) {
       case ChartFilter.lastWeek:
         return 'Poslední týden';

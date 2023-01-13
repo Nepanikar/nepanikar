@@ -45,7 +45,7 @@ enum Mood {
   }
 
   String getLabel(BuildContext context) {
-    // TODO: l10n
+    // TODO: l10n Matěj
     switch (this) {
       case Mood.sad:
         return 'Mizerně';

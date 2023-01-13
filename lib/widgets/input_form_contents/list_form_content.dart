@@ -59,7 +59,7 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
           ios: () => [
             IconButton(
               icon: const Icon(CupertinoIcons.add),
-              // TODO: l10n
+              // TODO: l10n Martin
               tooltip: 'Přidat položku',
               onPressed: () async {
                 await _listFormDao.createFormText();
@@ -80,7 +80,7 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
                 name: 'add_item',
               );
             },
-            // TODO: l10n
+            // TODO: l10n Martin
             tooltip: 'Přidat položku',
             child: const Icon(Icons.add),
           ),
@@ -132,7 +132,7 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
                           maxLines: null,
                           textInputAction: TextInputAction.newline,
                           decoration: InputDecoration(
-                            // TODO: l10n
+                            // TODO: l10n Martin
                             hintText: 'Odpověď',
                             border: InputBorder.none,
                             enabledBorder: InputBorder.none,

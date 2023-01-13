@@ -89,19 +89,19 @@ class _MainScreenState extends State<MainScreen> {
           ),
           buildBottomNavigationBarItem(
             svgIconPath: Assets.icons.calendarEvent.path,
-            // TODO: l10n
+            // TODO: l10n Martin
             label: 'Záznamy',
             isSelected: _selectedIndex == 1,
           ),
           buildBottomNavigationBarItem(
             svgIconPath: Assets.icons.phone.path,
-            // TODO: l10n
+            // TODO: l10n Martin
             label: 'Kontakty',
             isSelected: _selectedIndex == 2,
           ),
           buildBottomNavigationBarItem(
             svgIconPath: Assets.icons.settings.path,
-            // TODO: l10n
+            // TODO: l10n Martin
             label: 'Nastavení',
             isSelected: _selectedIndex == 3,
           ),

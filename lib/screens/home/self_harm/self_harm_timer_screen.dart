@@ -63,7 +63,7 @@ class SelfHarmTimerScreen extends StatelessWidget {
                           return Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              // TODO: l10n
+                              // TODO: l10n Matěj
                               if (isTimerRunning) ...[
                                 _buildCardTitle('Vedeš si skvěle.\nJen tak dál!'),
                                 const Padding(
@@ -197,7 +197,7 @@ class SelfHarmTimerScreen extends StatelessWidget {
       );
     }
 
-    // TODO: l10n
+    // TODO: l10n Matěj
     if (dateTimeRange == null) {
       return Column(
         mainAxisSize: MainAxisSize.min,
@@ -240,7 +240,7 @@ class SelfHarmTimerScreen extends StatelessWidget {
     final minutesDiff = period.minutes;
     final secondsDiff = period.seconds;
 
-    // TODO: l10n
+    // TODO: l10n Matěj
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
