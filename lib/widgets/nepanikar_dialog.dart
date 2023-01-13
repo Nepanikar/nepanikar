@@ -44,14 +44,14 @@ class NepanikarDialog extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Flexible(
-                  child: NepanikarButton.secondary(
+                  child: NepanikarButton(
                     onTap: () => onSecondaryBtnTap(context),
                     text: secondaryBtnLabel,
                   ),
                 ),
                 const SizedBox(width: 10),
                 Flexible(
-                  child: NepanikarButton(
+                  child: NepanikarButton.secondary(
                     onTap: () => onPrimaryBtnTap(context),
                     text: primaryBtnLabel,
                   ),
