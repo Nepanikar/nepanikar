@@ -207,18 +207,26 @@ class _SettingsMenuItem extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              if (leading != null) ...[
-                leading!,
-                const SizedBox(
-                  width: 16,
+              Flexible(
+                child: Row(
+                  children: [
+                    if (leading != null) ...[
+                      leading!,
+                      const SizedBox(
+                        width: 16,
+                      ),
+                    ],
+                    Flexible(
+                      child: Text(
+                        text,
+                        style: NepanikarFonts.bodySmallMedium.copyWith(fontSize: 15),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-              Text(
-                text,
-                style: NepanikarFonts.bodySmallMedium.copyWith(fontSize: 15),
               ),
-              const Spacer(),
               Opacity(
                 opacity: onTap != null ? 1 : 0.5,
                 child: const Icon(
