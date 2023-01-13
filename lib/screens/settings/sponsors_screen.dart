@@ -22,8 +22,7 @@ class SponsorsScreen extends StatelessWidget {
       child: Column(
         children: [
           SponsorTile(
-            // TODO: l10n Martin
-            title: 'Hlavní partneři',
+            title: context.l10n.main_partners,
             type: SponsorType.primary,
             logoPaths: [
               Assets.sponsors.sponsorPpf.path,
@@ -32,8 +31,7 @@ class SponsorsScreen extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           SponsorTile(
-            // TODO: l10n Martin
-            title: 'Další partneři',
+            title: context.l10n.other_partners,
             type: SponsorType.secondary,
             logoPaths: [
               Assets.sponsors.sponsorUniqa.path,

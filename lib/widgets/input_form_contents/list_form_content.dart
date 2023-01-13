@@ -1,6 +1,7 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/sizes.dart';
 import 'package:nepanikar/helpers/platform_helpers.dart';
@@ -59,8 +60,7 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
           ios: () => [
             IconButton(
               icon: const Icon(CupertinoIcons.add),
-              // TODO: l10n Martin
-              tooltip: 'Přidat položku',
+              tooltip: context.l10n.add_item,
               onPressed: () async {
                 await _listFormDao.createFormText();
                 await analytics.logEvent(
@@ -80,8 +80,7 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
                 name: 'add_item',
               );
             },
-            // TODO: l10n Martin
-            tooltip: 'Přidat položku',
+            tooltip: context.l10n.add_item,
             child: const Icon(Icons.add),
           ),
         ),
@@ -132,8 +131,7 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
                           maxLines: null,
                           textInputAction: TextInputAction.newline,
                           decoration: InputDecoration(
-                            // TODO: l10n Martin
-                            hintText: 'Odpověď',
+                            hintText: context.l10n.answer,
                             border: InputBorder.none,
                             enabledBorder: InputBorder.none,
                             focusedBorder: InputBorder.none,

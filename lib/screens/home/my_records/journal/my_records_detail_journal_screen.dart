@@ -135,10 +135,8 @@ class _MyRecordsJournalDetailScreenState extends State<MyRecordsJournalDetailScr
             isModuleList: false,
             isCardStackLayout: true,
             children: [
-              // TODO: l10n Martin
-              Text('Datum zápisu', style: labelTextStyle),
+              Text(context.l10n.date_of_note, style: labelTextStyle),
               const SizedBox(height: 8),
-              // TODO: l10n Martin
               NepanikarDatePicker(
                 initialDate: _selectedDate ?? journalRecord.dateTime,
                 onPick: (date) {
@@ -151,8 +149,7 @@ class _MyRecordsJournalDetailScreenState extends State<MyRecordsJournalDetailScr
               _generateFields(),
               const SizedBox(height: 16),
               NepanikarButton(
-                // TODO: l10n Martin
-                text: 'Uložit',
+                text: context.l10n.save,
                 expandToContentWidth: true,
                 onTap: () async {
                   final goRouter = GoRouter.of(context);
@@ -166,7 +163,6 @@ class _MyRecordsJournalDetailScreenState extends State<MyRecordsJournalDetailScr
               ),
               const SizedBox(height: 16),
               NepanikarButton.secondary(
-                // TODO: l10n Martin
                 text: context.l10n.clear_button,
                 expandToContentWidth: true,
                 onTap: () async {

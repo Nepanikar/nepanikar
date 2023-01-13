@@ -43,13 +43,11 @@ class _ExportScreenState extends State<ExportScreen> {
             });
             await registry.get<ExportService>().export(
               onSuccess: () {
-                // TODO: l10n Martin
-                context.showSuccessSnackbar(text: 'Export byl úspěšný.');
+                context.showSuccessSnackbar(text: context.l10n.export_successful);
               },
               onError: () {
-                // TODO: l10n Martin
                 context.showErrorSnackbar(
-                  text: 'Při exportování nastala chyba.',
+                  text: context.l10n.export_failed,
                 );
               },
             );
@@ -70,13 +68,11 @@ class _ExportScreenState extends State<ExportScreen> {
             });
             await registry.get<ExportService>().import(
               onSuccess: () {
-                // TODO: l10n Martin
-                context.showSuccessSnackbar(text: 'Import byl úspěšný.');
+                context.showSuccessSnackbar(text: context.l10n.import_successful);
               },
               onError: () {
-                // TODO: l10n Martin
                 context.showErrorSnackbar(
-                  text: 'Při importování nastala chyba.',
+                  text: context.l10n.import_failed,
                 );
               },
             );
