@@ -43,11 +43,11 @@ class _ExportScreenState extends State<ExportScreen> {
             });
             await registry.get<ExportService>().export(
               onSuccess: () {
-                // TODO: Add to Localazy
+                // TODO: l10n Martin
                 context.showSuccessSnackbar(text: 'Export byl úspěšný.');
               },
               onError: () {
-                // TODO: Add to Localazy
+                // TODO: l10n Martin
                 context.showErrorSnackbar(
                   text: 'Při exportování nastala chyba.',
                 );
@@ -70,11 +70,11 @@ class _ExportScreenState extends State<ExportScreen> {
             });
             await registry.get<ExportService>().import(
               onSuccess: () {
-                // TODO: Add to Localazy
+                // TODO: l10n Martin
                 context.showSuccessSnackbar(text: 'Import byl úspěšný.');
               },
               onError: () {
-                // TODO: Add to Localazy
+                // TODO: l10n Martin
                 context.showErrorSnackbar(
                   text: 'Při importování nastala chyba.',
                 );

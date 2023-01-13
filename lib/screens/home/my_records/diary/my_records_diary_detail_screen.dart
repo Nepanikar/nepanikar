@@ -66,7 +66,7 @@ class MyRecordsDiaryDetailScreen extends StatelessWidget {
         final diaryRecord = snapshot.data ?? diaryRecordRouteExtraData.diaryRecord;
 
         return NepanikarScreenWrapper(
-          // TODO: l10n
+          // TODO: l10n Maťej
           appBarTitle: 'Detail záznamu',
           appBarDescription: '',
           isModuleList: false,

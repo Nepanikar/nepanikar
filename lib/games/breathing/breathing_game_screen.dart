@@ -206,7 +206,7 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 28.0),
                     child: Text(
-                      //TODO: l10n
+                      //TODO: l10n Martin
                       'Posaďte se a opřete se o něco pevného.',
                       style: TextStyle(
                         color: NepanikarColors.primarySwatch.shade300,
@@ -221,7 +221,7 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  //TODO: l10n
+                  //TODO: l10n Martin
                   'Rychlost dechu',
                   style: NepanikarFonts.bodyBlack.copyWith(color: Colors.white),
                 ),

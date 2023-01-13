@@ -35,7 +35,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return NepanikarScreenWrapper(
-      // TODO: l10n
+      // TODO: l10n Martin
       appBarTitle: 'Nastavení',
       children: [
         DecoratedBox(
@@ -55,7 +55,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     leading: Assets.icons.deleteData.svg(),
                     text: context.l10n.reset_inputs,
                     onTap: () {
-                      // TODO: l10n
+                      // TODO: l10n Martin
                       context.showNepanikarDialog(
                         title: 'Smazat data',
                         text: 'Opravdu chcete smazat všechna data?',
@@ -137,7 +137,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       child: Row(
                         children: [
                           Text(
-                            //TODO: l10n
+                            //TODO: l10n Martin
                             'Sledujte nás',
                             style: NepanikarFonts.bodySmallMedium.copyWith(fontSize: 15),
                           ),

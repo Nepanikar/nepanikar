@@ -188,7 +188,7 @@ class _BalloonsGameScreenState extends State<BalloonsGameScreen> with TickerProv
                       height: 12,
                     ),
                     Text(
-                      //TODO: l10n
+                      //TODO: l10n Martin
                       'Dotykem praskej pouze bílé balónky',
                       style: NepanikarFonts.bodySmallMedium
                           .copyWith(color: Colors.white, fontSize: 14),

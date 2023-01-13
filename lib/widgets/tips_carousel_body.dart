@@ -125,7 +125,7 @@ class _TipsCarouselBodyState extends State<TipsCarouselBody> {
                                 curve: Curves.easeInOut,
                               ),
                               enabled: activeIndex > 0,
-                              // TODO: l10n
+                              // TODO: l10n Martin
                               text: 'Předchozí',
                               leadingIcon: Assets.icons.navigation.chevronLeft,
                             ),
@@ -140,7 +140,7 @@ class _TipsCarouselBodyState extends State<TipsCarouselBody> {
                                 curve: Curves.easeInOut,
                               ),
                               enabled: activeIndex.floor() < widget.pages.length - 1,
-                              // TODO: l10n
+                              // TODO: l10n Martin
                               text: 'Další',
                               trailingIcon: Assets.icons.navigation.chevronRight,
                             ),

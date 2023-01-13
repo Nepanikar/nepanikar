@@ -27,9 +27,9 @@ class MyRecordsDiaryAddScreen extends StatelessWidget {
 
     return DiaryEditContent(
       diaryRecordRouteExtraData: null,
-      // TODO: l10n
+      // TODO: l10n Maťej
       appBarTitle: 'Nový záznam',
-      // TODO: l10n
+      // TODO: l10n Maťej
       primaryButtonText: 'Uložit',
       onPrimaryButtonTap: (diaryRecord) async {
         // Create a new diary record.
@@ -45,7 +45,7 @@ class MyRecordsDiaryAddScreen extends StatelessWidget {
           ),
         );
       },
-      // TODO: l10n
+      // TODO: l10n Maťej
       secondaryButtonText: 'Zrušit',
       onSecondaryButtonTap: () {
         // Cancel creating a new diary record.

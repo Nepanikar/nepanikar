@@ -30,7 +30,7 @@ class MyRecordsDiaryRecordsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.diary,
-      // TODO: l10n
+      // TODO: l10n Martin
       appBarDescription:
           'Zapisujte si vaše dosažené výsledky a posuny. Můžete se kdykoliv k záznamům vrátit.',
       isModuleList: false,
@@ -40,7 +40,7 @@ class MyRecordsDiaryRecordsScreen extends StatelessWidget {
         ios: () => [
           IconButton(
             icon: const Icon(CupertinoIcons.add),
-            // TODO: l10n
+            // TODO: l10n Martin
             tooltip: 'Přidat položku',
             onPressed: () => context.push(const MyRecordsDiaryAddRoute().location),
           ),
@@ -51,7 +51,7 @@ class MyRecordsDiaryRecordsScreen extends StatelessWidget {
         ios: () => null,
         android: () => FloatingActionButton(
           onPressed: () => context.push(const MyRecordsDiaryAddRoute().location),
-          // TODO: l10n
+          // TODO: l10n Martin
           tooltip: 'Přidat položku',
           child: const Icon(Icons.add),
         ),
@@ -64,7 +64,7 @@ class MyRecordsDiaryRecordsScreen extends StatelessWidget {
             final diaryRecordsLength = diaryRecords.length;
 
             if (snapshot.hasData && diaryRecordsLength == 0) {
-              // TODO: l10n
+              // TODO: l10n Martin
               return const EmptyRecordsStateWidget(emptyText: 'Zatím v deníku nemáš žádný záznam');
             }
 

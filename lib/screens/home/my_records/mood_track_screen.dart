@@ -67,7 +67,7 @@ class MoodTrackScreen<T extends MoodTrackDao> extends StatelessWidget {
           padding: pageHorizontalPadding,
           child: Align(
             alignment: Alignment.centerLeft,
-            // TODO: l10n
+            // TODO: l10n Maťej
             child: Text(
               'Statistika',
               style: NepanikarFonts.title2,
@@ -79,7 +79,7 @@ class MoodTrackScreen<T extends MoodTrackDao> extends StatelessWidget {
           padding: pageHorizontalPadding,
           child: Align(
             alignment: Alignment.centerLeft,
-            // TODO: l10n
+            // TODO: l10n Maťej
             child: Text(
               'Nastavte si rozmezí data a sledujte vývoj nálady',
               style: NepanikarFonts.bodyRoman.copyWith(color: NepanikarColors.primary),

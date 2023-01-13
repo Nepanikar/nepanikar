@@ -34,7 +34,7 @@ class MyRecordsFoodRecordsListScreen extends StatelessWidget {
     final analytics = registry.get<FirebaseAnalytics>();
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.food_records,
-      // TODO: l10n
+      // TODO: l10n Maťej
       appBarDescription: '',
       isModuleList: false,
       isCardStackLayout: true,
@@ -43,7 +43,7 @@ class MyRecordsFoodRecordsListScreen extends StatelessWidget {
         ios: () => [
           IconButton(
             icon: const Icon(CupertinoIcons.add),
-            // TODO: l10n
+            // TODO: l10n Maťej
             tooltip: 'Přidat položku',
             onPressed: () async {
               final goRouter = GoRouter.of(context);
@@ -70,7 +70,7 @@ class MyRecordsFoodRecordsListScreen extends StatelessWidget {
               extra: FoodRecordRouteExtraData(id: id, dailyFoodRecord: getEmptyDailyFoodRecord()),
             );
           },
-          // TODO: l10n
+          // TODO: l10n Maťej
           tooltip: 'Přidat položku',
           child: const Icon(Icons.add),
         ),

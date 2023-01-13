@@ -74,7 +74,7 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
       children: [
         const Text(
           'Ahoj, jak se dnes cítíš?',
-          // TODO: l10n
+          // TODO: l10n Maťej
           style: NepanikarFonts.title2,
         ),
         const SizedBox(height: 14),
@@ -94,7 +94,7 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
                     context.hideCurrentSnackBar();
                     context.showSuccessSnackbar(
                       text: 'Náladu jsme úspěšně zaznamenali',
-                      // TODO: l10n
+                      // TODO: l10n Maťej
                       leading: Assets.icons.checkmarks.checkCircular.svg(),
                     );
                     widget.onPick.call(pickedMood);

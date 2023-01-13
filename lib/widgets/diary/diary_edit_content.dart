@@ -71,7 +71,7 @@ class _DiaryEditContentState extends State<DiaryEditContent> {
         isModuleList: false,
         isCardStackLayout: true,
         children: [
-          // TODO: l10n
+          // TODO: l10n Maťej
           Text('Datum zápisu', style: labelTextStyle),
           const SizedBox(height: 8),
           NepanikarDatePicker(
@@ -83,19 +83,19 @@ class _DiaryEditContentState extends State<DiaryEditContent> {
             },
           ),
           const SizedBox(height: 12),
-          // TODO: l10n
+          // TODO: l10n Maťej
           Text('Název zápisu', style: labelTextStyle),
           const SizedBox(height: 8),
           TextField(
             controller: _titleEditingController,
             textInputAction: TextInputAction.next,
             decoration: const InputDecoration(
-              // TODO: l10n
+              // TODO: l10n Maťej
               hintText: 'Pojmenujte zápis',
             ),
           ),
           const SizedBox(height: 12),
-          // TODO: l10n
+          // TODO: l10n Maťej
           Text('Text zápisu', style: labelTextStyle),
           const SizedBox(height: 8),
           TextField(
@@ -106,7 +106,7 @@ class _DiaryEditContentState extends State<DiaryEditContent> {
           ),
           const SizedBox(height: 16),
           NepanikarButton(
-            // TODO: l10n
+            // TODO: l10n Maťej
             text: widget.primaryButtonText,
             expandToContentWidth: true,
             onTap: () => widget.onPrimaryButtonTap(_constructDiaryRecord()),

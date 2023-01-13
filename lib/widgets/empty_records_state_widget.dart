@@ -25,7 +25,7 @@ class EmptyRecordsStateWidget extends StatelessWidget {
         ),
         const SizedBox(height: 26),
         Text(
-          // TODO: l10n
+          // TODO: l10n Maťej
           emptyText ?? 'Zatím nemáš žádný záznam',
           textAlign: TextAlign.center,
           style: NepanikarFonts.title3.copyWith(

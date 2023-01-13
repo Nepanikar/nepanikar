@@ -33,7 +33,7 @@ class MyRecordsJournalRecordsScreen extends StatelessWidget {
     final analytics = registry.get<FirebaseAnalytics>();
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.journal,
-      // TODO: l10n
+      // TODO: l10n Martin
       appBarDescription: '',
       isModuleList: false,
       isCardStackLayout: true,
@@ -42,7 +42,7 @@ class MyRecordsJournalRecordsScreen extends StatelessWidget {
         ios: () => [
           IconButton(
             icon: const Icon(CupertinoIcons.add),
-            // TODO: l10n
+            // TODO: l10n Martin
             tooltip: 'Přidat položku',
             onPressed: () async {
               final goRouter = GoRouter.of(context);
@@ -75,7 +75,7 @@ class MyRecordsJournalRecordsScreen extends StatelessWidget {
               ),
             );
           },
-          // TODO: l10n
+          // TODO: l10n Martin
           tooltip: 'Přidat položku',
           child: const Icon(Icons.add),
         ),

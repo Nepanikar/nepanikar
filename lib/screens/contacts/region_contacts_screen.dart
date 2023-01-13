@@ -95,11 +95,11 @@ class _RegionContactsScreenState extends State<RegionContactsScreen> {
     return NepanikarScreenWrapper(
       appBarTitle: widget.appBarTitle,
       isModuleList: false,
-      // TODO: description
+      // TODO: l10n Maťej
       appBarDescription: AppConstants.loremIpsumShort,
       isCardStackLayout: true,
       children: [
-        // TODO: l10n
+        // TODO: l10n Matěj
         if (widget.regionContacts.length > 1) ...[
           Text(
             'Vyberte region',

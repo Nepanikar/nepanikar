@@ -19,7 +19,7 @@ class SuicidalThoughtsPlanScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return PlanFormContent<SuicidalThoughtsPlanDao>(
       appBarTitle: context.l10n.plan,
-      // TODO: description
+      // TODO: description Maťej
       appBarDescription: AppConstants.loremIpsumShort,
       planItems: {
         context.l10n.feeling_bad_write: context.l10n.custom_write,

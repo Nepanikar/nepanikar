@@ -20,7 +20,7 @@ class SelfHarmPlanScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return PlanFormContent<SelfHarmPlanDao>(
       appBarTitle: context.l10n.plan,
-      // TODO: description
+      // TODO: description Maťej
       appBarDescription: AppConstants.loremIpsumShort,
       planItems: {
         for (final title in context.l10n.self_harm_plan_questions.extractToItems()) title: null,
