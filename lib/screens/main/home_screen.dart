@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
@@ -113,8 +114,9 @@ class HomeScreen extends StatelessWidget {
                     bottom: 16.0,
                     top: context.isSmallScreen ? 20 : 30,
                   ),
-                  child: Text(
+                  child: AutoSizeText(
                     context.l10n.homepage_subtitle,
+                    maxLines: 1,
                     style: NepanikarFonts.title2,
                   ),
                 ),
