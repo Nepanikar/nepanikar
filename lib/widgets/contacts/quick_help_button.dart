@@ -31,7 +31,7 @@ class QuickHelpButton extends StatelessWidget {
                     const SizedBox(width: 8),
                     Flexible(
                       child: Text(
-                        // TODO: l10n Maťej
+                        // TODO: l10n Matěj
                         'Rychlá pomoc',
                         style: NepanikarFonts.bodyHeavy.copyWith(color: Colors.white),
                       ),

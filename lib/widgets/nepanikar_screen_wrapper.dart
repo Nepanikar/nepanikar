@@ -89,17 +89,17 @@ class NepanikarScreenWrapper extends StatelessWidget {
                 ),
                 buildBottomNavigationBarItem(
                   svgIconPath: Assets.icons.calendarEvent.path,
-                  // TODO: l10n Maťej
+                  // TODO: l10n Matěj
                   label: 'Záznamy',
                 ),
                 buildBottomNavigationBarItem(
                   svgIconPath: Assets.icons.phone.path,
-                  // TODO: l10n Maťej
+                  // TODO: l10n Matěj
                   label: 'Kontakty',
                 ),
                 buildBottomNavigationBarItem(
                   svgIconPath: Assets.icons.settings.path,
-                  // TODO: l10n Maťej
+                  // TODO: l10n Matěj
                   label: 'Nastavení',
                 ),
               ],

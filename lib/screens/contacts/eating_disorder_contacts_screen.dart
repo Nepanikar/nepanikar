@@ -52,7 +52,7 @@ class EatingDisorderContactsScreen extends StatelessWidget {
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.food_contact,
       isModuleList: false,
-      // TODO: description Maťej
+      // TODO: description Matěj
       appBarDescription: AppConstants.loremIpsumShort,
       isCardStackLayout: true,
       showBottomNavbar: true,

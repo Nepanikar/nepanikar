@@ -61,7 +61,7 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
           ios: () => [
             IconButton(
               icon: const Icon(CupertinoIcons.add),
-              // TODO: l10n Maťej
+              // TODO: l10n Matěj
               tooltip: 'Přidat položku',
               onPressed: () async {
                 await _listFormDao.createFormText();
@@ -82,7 +82,7 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
                 name: 'add_activity',
               );
             },
-            // TODO: l10n Maťej
+            // TODO: l10n Matěj
             tooltip: 'Přidat položku',
             child: const Icon(Icons.add),
           ),
@@ -179,7 +179,7 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
                                                 : NepanikarColors.primarySwatch.shade400,
                                           ),
                                       decoration: InputDecoration(
-                                        // TODO: l10n Maťej
+                                        // TODO: l10n Matěj
                                         hintText: 'Aktivita',
                                         border: InputBorder.none,
                                         enabledBorder: InputBorder.none,

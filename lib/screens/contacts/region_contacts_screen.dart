@@ -95,7 +95,7 @@ class _RegionContactsScreenState extends State<RegionContactsScreen> {
     return NepanikarScreenWrapper(
       appBarTitle: widget.appBarTitle,
       isModuleList: false,
-      // TODO: l10n Maťej
+      // TODO: l10n Matěj
       appBarDescription: AppConstants.loremIpsumShort,
       isCardStackLayout: true,
       children: [
