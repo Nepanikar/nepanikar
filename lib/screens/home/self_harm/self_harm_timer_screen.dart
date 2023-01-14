@@ -31,6 +31,27 @@ class SelfHarmTimerScreen extends StatelessWidget {
 
   DateTime get _now => DateTime.now();
 
+  String _getMotivationTitle(BuildContext context, Duration diffFromStartDateTime) {
+    final l10n = context.l10n;
+    if (diffFromStartDateTime.inMinutes < 60) {
+      return l10n.self_harm_timer_begin;
+    } else if (diffFromStartDateTime.inHours < 24) {
+      return l10n.self_harm_timer_hour;
+    } else if (diffFromStartDateTime.inDays < 7) {
+      return l10n.self_harm_timer_day;
+    } else if (diffFromStartDateTime.inDays < 30) {
+      return l10n.self_harm_timer_week;
+    } else if (diffFromStartDateTime.inDays < 90) {
+      return l10n.self_harm_timer_month;
+    } else if (diffFromStartDateTime.inDays < 180) {
+      return l10n.self_harm_timer_3_months;
+    } else if (diffFromStartDateTime.inDays < 365) {
+      return l10n.self_harm_timer_half_year;
+    } else {
+      return l10n.self_harm_timer_year;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final analytics = registry.get<FirebaseAnalytics>();
@@ -63,9 +84,10 @@ class SelfHarmTimerScreen extends StatelessWidget {
                           return Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              // TODO: l10n Matěj doplnit roky, dny logic
                               if (isTimerRunning) ...[
-                                _buildCardTitle(context.l10n.self_harm_timer_begin),
+                                _buildCardTitle(
+                                  _getMotivationTitle(context, _now.difference(startDateTime)),
+                                ),
                                 const Padding(
                                   padding: EdgeInsets.symmetric(vertical: 16),
                                   child: NepanikarHorizontalDivider(),
@@ -158,7 +180,7 @@ class SelfHarmTimerScreen extends StatelessWidget {
     );
   }
 
-  Align _buildCardTitle(String text) {
+  Widget _buildCardTitle(String text) {
     return Align(
       child: Text(
         text,
