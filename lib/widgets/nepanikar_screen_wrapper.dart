@@ -11,7 +11,7 @@ import 'package:nepanikar/helpers/screen_resolution_helpers.dart';
 import 'package:nepanikar/screens/main/main_screen.dart';
 import 'package:nepanikar/widgets/bottom_navbar_item.dart';
 
-class NepanikarScreenWrapper extends StatelessWidget {
+class NepanikarScreenWrapper extends StatefulWidget {
   const NepanikarScreenWrapper({
     super.key,
     required this.appBarTitle,
@@ -47,39 +47,65 @@ class NepanikarScreenWrapper extends StatelessWidget {
   final bool showBottomNavbar;
 
   @override
+  State<NepanikarScreenWrapper> createState() => _NepanikarScreenWrapperState();
+}
+
+class _NepanikarScreenWrapperState extends State<NepanikarScreenWrapper> {
+  final GlobalKey _appBarOverflowSizeKey = GlobalKey();
+
+  var _appBarOverflowSize = 0.0;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.isCardStackLayout &&
+        widget.appBarDescription != null &&
+        widget.appBarDescription!.isNotEmpty) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        final appBarOverflowSize = _appBarOverflowSizeKey.currentContext?.size;
+        if (appBarOverflowSize != null) {
+          setState(() {
+            _appBarOverflowSize = appBarOverflowSize.height;
+          });
+        }
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     Widget getPageContent() {
-      if (isModuleList) {
+      if (widget.isModuleList) {
         return SeparatedColumn(
           separatorBuilder: NepanikarSizes.separatorBuilder(),
           padding: const EdgeInsets.symmetric(
             horizontal: 24.0,
             vertical: 16.0,
           ),
-          children: children,
+          children: widget.children,
         );
       } else {
         return Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment:
-              isCardStackLayout ? CrossAxisAlignment.start : CrossAxisAlignment.center,
-          children: children,
+              widget.isCardStackLayout ? CrossAxisAlignment.start : CrossAxisAlignment.center,
+          children: widget.children,
         );
       }
     }
 
     return Scaffold(
-      appBar: AppBar(title: Text(appBarTitle), actions: appBarActions),
+      appBar: AppBar(title: Text(widget.appBarTitle), actions: widget.appBarActions),
       resizeToAvoidBottomInset: false,
-      floatingActionButton: floatingActionButton == null
+      floatingActionButton: widget.floatingActionButton == null
           ? null
           : Padding(
               padding: EdgeInsets.only(
                 bottom: MediaQuery.of(context).viewInsets.bottom,
               ),
-              child: floatingActionButton,
+              child: widget.floatingActionButton,
             ),
-      bottomNavigationBar: showBottomNavbar
+      bottomNavigationBar: widget.showBottomNavbar
           ? BottomNavigationBar(
               items: <BottomNavigationBarItem>[
                 buildBottomNavigationBarItem(
@@ -117,48 +143,45 @@ class NepanikarScreenWrapper extends StatelessWidget {
             )
           : null,
       body: SafeArea(
-        child: isCardStackLayout
+        child: widget.isCardStackLayout
             ? Stack(
                 children: [
                   AppBarOverflowContent(
-                    appBarDescription: appBarDescription,
-                    isCardStackLayout: isCardStackLayout,
+                    key: _appBarOverflowSizeKey,
+                    appBarDescription: widget.appBarDescription,
+                    isCardStackLayout: widget.isCardStackLayout,
                   ),
-                  LayoutBuilder(
-                    builder: (layoutContext, constraints) {
-                      return Container(
-                        margin: EdgeInsets.only(
-                          top: context.screenHeight - constraints.maxHeight - 32,
-                          // Padding from the keyboard, if opened.
-                          bottom: MediaQuery.of(context).viewInsets.bottom,
-                        ),
-                        child: SizedBox(
-                          width: layoutContext.screenWidth,
-                          height: expandToMaxScreenHeight ? context.screenHeight : null,
-                          child: Card(
-                            clipBehavior: Clip.hardEdge,
-                            margin: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                            child: Padding(
-                              padding: const EdgeInsets.all(16),
-                              child: SingleChildScrollView(
-                                clipBehavior: Clip.none,
-                                child: getPageContent(),
-                              ),
-                            ),
+                  Container(
+                    margin: EdgeInsets.only(
+                      top: (_appBarOverflowSize > 32 ? _appBarOverflowSize : 50) - 32,
+                      // Padding from the keyboard, if opened.
+                      bottom: MediaQuery.of(context).viewInsets.bottom,
+                    ),
+                    child: SizedBox(
+                      width: double.infinity,
+                      height: widget.expandToMaxScreenHeight ? context.screenHeight : null,
+                      child: Card(
+                        clipBehavior: Clip.hardEdge,
+                        margin: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: SingleChildScrollView(
+                            clipBehavior: Clip.none,
+                            child: getPageContent(),
                           ),
                         ),
-                      );
-                    },
+                      ),
+                    ),
                   ),
                 ],
               )
             : SingleChildScrollView(
-                child: appBarDescription == null
+                child: widget.appBarDescription == null
                     ? Stack(
                         children: [
                           AppBarOverflowContent(
-                            appBarDescription: appBarDescription,
-                            isCardStackLayout: isCardStackLayout,
+                            appBarDescription: widget.appBarDescription,
+                            isCardStackLayout: widget.isCardStackLayout,
                           ),
                           getPageContent(),
                         ],
@@ -166,8 +189,8 @@ class NepanikarScreenWrapper extends StatelessWidget {
                     : Column(
                         children: [
                           AppBarOverflowContent(
-                            appBarDescription: appBarDescription,
-                            isCardStackLayout: isCardStackLayout,
+                            appBarDescription: widget.appBarDescription,
+                            isCardStackLayout: widget.isCardStackLayout,
                           ),
                           getPageContent(),
                         ],
@@ -200,8 +223,7 @@ class AppBarOverflowContent extends StatelessWidget {
           : Padding(
               padding: EdgeInsets.fromLTRB(pageSidePadding, 6, pageSidePadding, pageSidePadding),
               child: Text(
-                isCardStackLayout ? '${appBarDescription!}\n\n' : appBarDescription!,
-                maxLines: 3,
+                isCardStackLayout ? '${appBarDescription!}\n' : appBarDescription!,
                 textAlign: TextAlign.center,
                 style: NepanikarFonts.bodyRoman.copyWith(
                   color: NepanikarColors.primarySwatch.shade400,
