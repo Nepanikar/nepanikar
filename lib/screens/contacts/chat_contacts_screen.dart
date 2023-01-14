@@ -37,6 +37,7 @@ class ChatContactsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.chat,
+      appBarDescription: context.l10n.chat_screen_description,
       children: chatContacts.map((c) => ChatContactTile(chatContact: c)).toList(),
     );
   }
