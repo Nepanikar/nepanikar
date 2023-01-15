@@ -189,7 +189,7 @@
   "mood_help_yes": "Sim",
   "mood_miserable_sad": "Miserable",
   "mood_no_data": "The graph requires at least two saved values",
-  "mood_not_much": "Not much",
+  "mood_not_much": "Okay",
   "mood_text": "How do I feel today:",
   "mood_track_chart_guide": "Set a date range and monitor the mood trend",
   "mood_tracked_success_snackbar": "The mood was successfully recorded",
