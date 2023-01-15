@@ -168,11 +168,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ),
         Container(
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 45),
-          child: Column(
-            children: [
-              Assets.sponsors.sponsorPpf.image(),
-              Assets.sponsors.sponsorCeskoDigitalSvg.svg(),
-            ],
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 245),
+            child: Column(
+              children: [
+                Assets.sponsors.sponsorPpf.image(),
+                Assets.sponsors.sponsorCeskoDigitalSvg.svg(),
+              ],
+            ),
           ),
         ),
       ],
