@@ -36,7 +36,7 @@ class HomeScreen extends StatelessWidget {
         location: const DepressionRoute().location,
       ),
       HomeTile(
-        text: 'Úzkost a panika',
+        text: context.l10n.anxiety_panic,
         image: Assets.illustrations.modules.anxietyPanic.svg(),
         location: const AnxietyAppRoute().location,
       ),
