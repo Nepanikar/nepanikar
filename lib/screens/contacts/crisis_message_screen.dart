@@ -71,6 +71,8 @@ class _CrisisMessageContentState extends State<CrisisMessageContent> {
     required String hintText,
     required int minLines,
     required VoidCallback? onSaved,
+    bool readyOnly = false,
+    bool autoFocus = false,
     FocusNode? focusNode,
     VoidCallback? onFieldSubmitted,
   }) {
@@ -99,8 +101,10 @@ class _CrisisMessageContentState extends State<CrisisMessageContent> {
             controller: textController,
             focusNode: focusNode,
             minLines: minLines,
+            readOnly: readyOnly,
             onEditingComplete: onFieldSubmitted,
             maxLines: null,
+            autofocus: autoFocus,
             textInputAction: textInputAction,
             decoration: InputDecoration(
               hintText: hintText,
@@ -117,7 +121,8 @@ class _CrisisMessageContentState extends State<CrisisMessageContent> {
       onTapDown: (_) => FocusScope.of(context).unfocus(),
       child: NepanikarScreenWrapper(
         appBarTitle: context.l10n.contacts_message,
-        appBarDescription: '',
+        appBarDescription:
+            _hasInitialValues ? context.l10n.email_counselling_screen_description : '',
         expandToMaxScreenHeight: true,
         isCardStackLayout: true,
         isModuleList: false,
@@ -138,6 +143,7 @@ class _CrisisMessageContentState extends State<CrisisMessageContent> {
                     hintText: context.l10n.custom_write,
                     minLines: 1,
                     textInputAction: TextInputAction.next,
+                    readyOnly: _hasInitialValues,
                     onSaved: _hasInitialValues
                         ? null
                         : () async {
@@ -155,6 +161,7 @@ class _CrisisMessageContentState extends State<CrisisMessageContent> {
                     labelText: context.l10n.message_text,
                     hintText: context.l10n.custom_write_body,
                     minLines: 2,
+                    autoFocus: _hasInitialValues,
                     textInputAction: TextInputAction.newline,
                     onSaved: _hasInitialValues
                         ? null
