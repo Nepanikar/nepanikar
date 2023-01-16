@@ -118,6 +118,7 @@ class _TipsCarouselBodyState extends State<TipsCarouselBody> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24.0),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Flexible(
                             child: NepanikarButton.secondary(
