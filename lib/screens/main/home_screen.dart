@@ -126,7 +126,9 @@ class HomeScreen extends StatelessWidget {
                 child: GridView.count(
                   shrinkWrap: true,
                   primary: false,
-                  crossAxisCount: (MediaQuery.of(context).size.width / 245).floor().clamp(2, 6),
+                  crossAxisCount: (MediaQuery.of(context).size.width / context.tabletMaxColumnWidth)
+                      .floor()
+                      .clamp(2, 6),
                   crossAxisSpacing: context.isSmallScreen ? 12 : 16,
                   mainAxisSpacing: context.isSmallScreen ? 12 : 16,
                   childAspectRatio: context.isSmallScreen ? 1.4 : 1.2,
