@@ -50,20 +50,22 @@ class _TipsCarouselBodyState extends State<TipsCarouselBody> {
                           setState(() {
                             activeIndex = controller.page!;
                           });
-                          unawaited(
-                            analytics.logEvent(
-                              name: 'slide',
-                              parameters: {
-                                'index': activeIndex.toInt(),
-                              },
-                            ),
-                          );
                         }
                         return false;
                       },
                       child: PageView.builder(
                         controller: controller,
                         itemCount: widget.pages.length,
+                        onPageChanged: (index) {
+                          unawaited(
+                            analytics.logEvent(
+                              name: 'slide',
+                              parameters: {
+                                'tip': index + 1,
+                              },
+                            ),
+                          );
+                        },
                         itemBuilder: (context, index) {
                           return FractionallySizedBox(
                             widthFactor: 1.01,
