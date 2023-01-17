@@ -61,7 +61,7 @@ class _TipsCarouselBodyState extends State<TipsCarouselBody> {
                             analytics.logEvent(
                               name: 'slide',
                               parameters: {
-                                'index': index,
+                                'tip': index + 1,
                               },
                             ),
                           );
