@@ -28,11 +28,13 @@ class MoodTrackScreen<T extends MoodTrackDao> extends StatelessWidget {
   const MoodTrackScreen({
     super.key,
     this.appBarTitle,
-    this.appBarDescription = '',
+    this.moodTitle,
+    this.showMoodLabels = true,
   });
 
   final String? appBarTitle;
-  final String appBarDescription;
+  final String? moodTitle;
+  final bool showMoodLabels;
 
   T get _trackDao => registry.get<T>();
 
@@ -45,7 +47,7 @@ class MoodTrackScreen<T extends MoodTrackDao> extends StatelessWidget {
 
     return NepanikarScreenWrapper(
       appBarTitle: appBarTitle ?? context.l10n.depression_mood,
-      appBarDescription: appBarDescription,
+      appBarDescription: '',
       isModuleList: false,
       children: [
         const SizedBox(height: 16),
@@ -58,6 +60,8 @@ class MoodTrackScreen<T extends MoodTrackDao> extends StatelessWidget {
               return MoodPicker(
                 activeMood: latestMoodTrack?.mood,
                 onPick: _trackDao.saveMood,
+                title: moodTitle,
+                showLabels: showMoodLabels,
               );
             },
           ),
