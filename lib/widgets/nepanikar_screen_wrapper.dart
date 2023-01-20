@@ -1,4 +1,4 @@
-import 'package:flextras/flextras.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
@@ -76,13 +76,19 @@ class _NepanikarScreenWrapperState extends State<NepanikarScreenWrapper> {
   Widget build(BuildContext context) {
     Widget getPageContent() {
       if (widget.isModuleList) {
-        return SeparatedColumn(
-          separatorBuilder: NepanikarSizes.separatorBuilder(),
-          padding: const EdgeInsets.symmetric(
-            horizontal: 24.0,
-            vertical: 16.0,
-          ),
-          children: widget.children,
+        return ListView(
+          primary: false,
+          shrinkWrap: true,
+          padding: const EdgeInsets.fromLTRB(24, 16, 24, 16),
+          children: widget.children.mapIndexed(
+            (i, e) {
+              final isFirst = i == 0;
+              return Padding(
+                padding: EdgeInsets.fromLTRB(0, isFirst ? 0 : 6, 0, 6),
+                child: e,
+              );
+            },
+          ).toList(),
         );
       } else {
         return Column(

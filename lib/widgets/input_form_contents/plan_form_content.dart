@@ -2,10 +2,8 @@ import 'dart:async';
 
 import 'package:collection/collection.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:flextras/flextras.dart';
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
-import 'package:nepanikar/app/theme/sizes.dart';
 import 'package:nepanikar/services/db/common/nepanikar_plan_form_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
@@ -87,54 +85,59 @@ class _PlanFormContentState<T extends NepanikarPlanFormDao> extends State<PlanFo
               final savedPlanItems = snapshot.data ?? [];
               _setFormTextsFromSavedList(savedPlanItems);
 
-              return SeparatedColumn(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                separatorBuilder: NepanikarSizes.separatorBuilder(height: 16),
+              return ListView(
+                shrinkWrap: true,
+                primary: false,
+                padding: EdgeInsets.zero,
                 children: widget.planItems.entries.mapIndexed(
                   (formIndex, entry) {
                     final title = entry.key;
                     final hintText = entry.value;
                     final textController = _textControllersMap[formIndex];
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          title,
-                          style: NepanikarFonts.bodySmallMedium.copyWith(
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        const SizedBox(height: 4),
-                        Focus(
-                          onFocusChange: (hasFocus) async {
-                            if (!hasFocus) {
-                              await _planFormDao.saveFormText(
-                                formIndex,
-                                text: textController?.text,
-                              );
-                              unawaited(
-                                analytics.logEvent(
-                                  name: 'input_focused',
-                                  parameters: {
-                                    'form_index': formIndex,
-                                  },
-                                ),
-                              );
-                            }
-                          },
-                          child: TextField(
-                            controller: textController,
-                            minLines: 4,
-                            maxLines: null,
-                            textInputAction: TextInputAction.newline,
-                            decoration: InputDecoration(
-                              hintText: hintText,
+                    final isLastForm = formIndex == planItemsTitles.length - 1;
+
+                    return Padding(
+                      padding: EdgeInsets.only(bottom: isLastForm ? 0 : 16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            title,
+                            style: NepanikarFonts.bodySmallMedium.copyWith(
+                              fontWeight: FontWeight.w700,
                             ),
                           ),
-                        ),
-                      ],
+                          const SizedBox(height: 4),
+                          Focus(
+                            onFocusChange: (hasFocus) async {
+                              if (!hasFocus) {
+                                await _planFormDao.saveFormText(
+                                  formIndex,
+                                  text: textController?.text,
+                                );
+                                unawaited(
+                                  analytics.logEvent(
+                                    name: 'input_focused',
+                                    parameters: {
+                                      'form_index': formIndex,
+                                    },
+                                  ),
+                                );
+                              }
+                            },
+                            child: TextField(
+                              controller: textController,
+                              minLines: 4,
+                              maxLines: null,
+                              textInputAction: TextInputAction.newline,
+                              decoration: InputDecoration(
+                                hintText: hintText,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     );
                   },
                 ).toList(),
