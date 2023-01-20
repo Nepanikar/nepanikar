@@ -18,8 +18,6 @@ class NepanikarConfigParser {
 
   static const QT_DATE_PATTERN = 'd.M.yyyy';
 
-  static final fallbackParseLocale = ['cs', 'en'];
-
   static NepanikarConfig parseAndroidConfigFile(File configFile) {
     final config = Config.fromStrings(configFile.readAsLinesSync(encoding: NEPANIKAR_CONF_CODEC));
     return NepanikarConfig.getAndroidData(config);
@@ -29,6 +27,8 @@ class NepanikarConfigParser {
     return NepanikarConfig.getIosData(config);
   }
 }
+
+List<String> get fallbackParseLocales => <String>[Platform.localeName, 'en', 'cs'];
 
 extension NepanikarParserStringExt on String {
   String cleanUnicodes() {
@@ -62,7 +62,7 @@ extension NepanikarParserStringExt on String {
       print(e.toString());
 
       // Trying out fallback languages.
-      for (final locale in NepanikarConfigParser.fallbackParseLocale) {
+      for (final locale in fallbackParseLocales) {
         try {
           dateTime =
               DateFormat(dateTimePattern ?? NepanikarConfigParser.QT_DATE_TIME_PATTERN, locale)
