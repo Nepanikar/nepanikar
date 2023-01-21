@@ -57,6 +57,7 @@ to regenerate the JSON file.
 - `flutter packages pub run build_runner build -d` - regenerate go_route/freezed/assets files
 - `flutter pub run build_runner watch -d` - watch and generate automatically changes when files are changed
 - `flutter gen-l10n` - recompile .arb language files
+- `flutter pub run flutter_native_splash:create` - regenerate splash screen
 
 ### Credits
 We thank these tools and services for making better developer experience:
