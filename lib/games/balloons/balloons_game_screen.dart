@@ -34,6 +34,8 @@ class _BalloonsGameScreenState extends State<BalloonsGameScreen> with TickerProv
   late final double minSpeed;
   late final double speedMultiplier;
   late final double wiggleMultiplier;
+  late final double fpsMultiplier;
+  final double fps = 90;
   List<Balloon> balloons = [];
   int elapsed = 0;
   double? confettiX;
@@ -55,14 +57,14 @@ class _BalloonsGameScreenState extends State<BalloonsGameScreen> with TickerProv
           y: sceneHeight,
           wanted: wanted,
           height: e.height,
-          speed: minSpeed + speedMultiplier * math.Random().nextDouble(),
-          wiggleAmount: wiggleMultiplier * math.Random().nextDouble(),
+          speed: minSpeed + (speedMultiplier / fpsMultiplier) * math.Random().nextDouble(),
+          wiggleAmount: (wiggleMultiplier / fpsMultiplier) * math.Random().nextDouble(),
           wiggleSpeed: math.Random().nextDouble() * 0.8,
           lightVariant: math.Random().nextBool(),
         );
       } else {
         return e.copyWith(
-          x: e.x + e.wiggleAmount * math.sin(e.wiggleSpeed * elapsed + 100 * i),
+          x: e.x + e.wiggleAmount * math.sin((e.wiggleSpeed / fpsMultiplier) * elapsed + 100 * i),
           y: e.y - e.speed,
         );
       }
@@ -81,8 +83,9 @@ class _BalloonsGameScreenState extends State<BalloonsGameScreen> with TickerProv
     _controller = AnimationController(vsync: this);
 
     setState(() {
-      minSpeed = 0.01 * size.height;
-      speedMultiplier = 0.01 * size.height;
+      fpsMultiplier = fps / 30;
+      minSpeed = (0.01 * size.height) / fpsMultiplier;
+      speedMultiplier = (0.01 * size.height) / fpsMultiplier;
       wiggleMultiplier = 0.02 * size.height;
       sceneWidth = size.width;
       sceneHeight = size.height;
@@ -101,9 +104,9 @@ class _BalloonsGameScreenState extends State<BalloonsGameScreen> with TickerProv
       );
     });
 
-    // 30 FPS game loop using timer
+    // N fps game loop using timer
     gameLoop = Timer.periodic(
-      const Duration(milliseconds: 33),
+      Duration(milliseconds: (1000 / fps).round()),
       (timer) => runFrame(),
     );
   }

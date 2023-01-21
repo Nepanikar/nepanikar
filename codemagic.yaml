@@ -80,7 +80,7 @@ workflows:
         bundle_identifier: org.dontpanicapp
       vars:
         MAJOR_VERSION: "2"
-        MINOR_VERSION: "4"
+        MINOR_VERSION: "5"
         TESTFLIGHT_EXTERNAL_GROUP_NAME: "App Store External Testing"
     scripts:
       - *local_properties
@@ -118,7 +118,7 @@ workflows:
         bundle_identifier: org.dontpanicapp
       vars:
         MAJOR_VERSION: "2"
-        MINOR_VERSION: "3"
+        MINOR_VERSION: "4"
         TESTFLIGHT_EXTERNAL_GROUP_NAME: "App Store External Testing"
     triggering:
       events:
