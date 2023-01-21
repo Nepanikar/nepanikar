@@ -827,7 +827,7 @@ packages:
       name: sembast
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.3.1"
+    version: "3.4.0+6"
   shared_preferences:
     dependency: transitive
     description:
