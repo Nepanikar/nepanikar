@@ -109,9 +109,8 @@ class _ExportScreenState extends State<ExportScreen> {
             return Padding(
               padding: const EdgeInsets.only(top: 15.0),
               child: LongTile(
-                text: 'Export dat ze staré verze aplikace',
-                description:
-                    'Pokud si některá svá data při přenosu do nové verze ztratil, zde je můžeš exportovat. Napiš nám na pomoc@nepanikar.eu a my ti je pomůžeme obnovit.',
+                text: context.l10n.export_old_app_title,
+                description: context.l10n.export_old_app_description,
                 image: null,
                 onTap: () async {
                   final fileContent =
