@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -63,12 +64,10 @@ class DatabaseService {
 
   static const _dataPreloadedKey = 'data_preloaded';
 
-  late final databasePath = join(_saveDirectories.dbDirPath, _dbFileName);
-
   /// https://github.com/tekartik/sembast.dart/blob/master/sembast/doc/open.md#preloading-data
   Future<Database> _initDb() async {
     final db = databaseFactoryIo.openDatabase(
-      databasePath,
+      join(_saveDirectories.dbDirPath, _dbFileName),
       version: 1,
       onVersionChanged: (db, oldVersion, newVersion) async {
         // If oldVersion is 0, we are creating the database for the first time.
@@ -158,11 +157,12 @@ class DatabaseService {
     return {};
   }
 
-  Future<void> _clearOldAppConfigData({
+  Future<void> _clearAndBackupOldAppConfigData({
     required File? androidConfigFile,
   }) async {
     if (Platform.isAndroid) {
       if (androidConfigFile == null) return;
+      await _backupOldAndroidConfigFile(androidConfigFile);
       try {
         await androidConfigFile.delete();
       } catch (e, s) {
@@ -173,6 +173,7 @@ class DatabaseService {
         );
       }
     } else if (Platform.isIOS) {
+      await _backupOldIosConfigData();
       try {
         final nativeSharedPref = await NativeSharedPreferences.getInstance();
         await nativeSharedPref.clear();
@@ -183,6 +184,35 @@ class DatabaseService {
           logMessage: 'DATABASE_SERVICE: Error while clearing old app version IOS data',
         );
       }
+    }
+  }
+
+  Future<void> _backupOldIosConfigData() async {
+    try {
+      final allData = await NativeSharedPreferences.getSharedPreferencesMap();
+      final file = File(_saveDirectories.oldAppDataConfigFileBackupPath);
+      await file.create(recursive: true);
+      await file.writeAsString(jsonEncode(allData));
+    } catch (e, s) {
+      await logExceptionToCrashlytics(
+        e,
+        s,
+        logMessage: 'DATABASE_SERVICE: Error while backing up old app version IOS data',
+      );
+    }
+  }
+
+  Future<void> _backupOldAndroidConfigFile(File androidConfigFile) async {
+    try {
+      final newFile = File(_saveDirectories.oldAppDataConfigFileBackupPath);
+      await newFile.create(recursive: true);
+      await newFile.writeAsString(await androidConfigFile.readAsString());
+    } catch (e, s) {
+      await logExceptionToCrashlytics(
+        e,
+        s,
+        logMessage: 'DATABASE_SERVICE: Error while backing up old app Android data config file',
+      );
     }
   }
 
@@ -282,7 +312,7 @@ class DatabaseService {
     }
 
     // Clear old config files so that this migration is not done somehow again.
-    await _clearOldAppConfigData(androidConfigFile: androidConfigFile);
+    await _clearAndBackupOldAppConfigData(androidConfigFile: androidConfigFile);
   }
 
   Future<void> clearAll() async {
