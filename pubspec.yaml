@@ -32,7 +32,7 @@ dependencies:
   intl: ^0.17.0
   json_annotation: ^4.7.0
   linkify: ^4.1.0
-  lottie: ^2.1.0
+  lottie: ^2.2.0
   native_shared_preferences:
     git:
       url: https://github.com/Nepanikar/native_shared_preferences.git
