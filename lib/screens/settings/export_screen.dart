@@ -1,12 +1,17 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/app_constants.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/services/export_service.dart';
+import 'package:nepanikar/services/save_directories.dart';
 import 'package:nepanikar/utils/extensions.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ExportRoute extends GoRouteData {
   const ExportRoute();
@@ -25,6 +30,16 @@ class ExportScreen extends StatefulWidget {
 class _ExportScreenState extends State<ExportScreen> {
   bool exportInProgress = false;
   bool importInProgress = false;
+
+  late final Future<bool> _oldAppConfigFileExistsFuture;
+
+  SaveDirectories get _saveDirectories => registry.get<SaveDirectories>();
+
+  @override
+  void initState() {
+    super.initState();
+    _oldAppConfigFileExistsFuture = File(_saveDirectories.oldAppDataConfigFileBackupPath).exists();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,6 +96,41 @@ class _ExportScreenState extends State<ExportScreen> {
                 importInProgress = false;
               });
             }
+          },
+        ),
+        FutureBuilder<bool>(
+          future: _oldAppConfigFileExistsFuture,
+          builder: (_, snapshot) {
+            final oldAppConfigFileExists = snapshot.data ?? false;
+            if (!oldAppConfigFileExists) {
+              return const SizedBox.shrink();
+            }
+
+            return Padding(
+              padding: const EdgeInsets.only(top: 15.0),
+              child: LongTile(
+                text: 'Export dat ze staré verze aplikace',
+                description:
+                    'Pokud si některá svá data při přenosu do nové verze ztratil, zde je můžeš exportovat. Napiš nám na pomoc@nepanikar.eu a my ti je pomůžeme obnovit.',
+                image: null,
+                onTap: () async {
+                  final fileContent =
+                      await File(_saveDirectories.oldAppDataConfigFileBackupPath).readAsString();
+                  final uri = Uri(
+                    scheme: 'mailto',
+                    path: AppConstants.nepanikarContactEmail,
+                    query:
+                        'subject=${'${context.l10n.counselling_email_subject}: Export dat ze staré verze aplikace'}'
+                        '&body=${Uri.encodeComponent(fileContent)}',
+                  );
+                  if (await canLaunchUrl(uri)) {
+                    await launchUrl(uri);
+                  } else {
+                    debugPrint('Could not launch $uri');
+                  }
+                },
+              ),
+            );
           },
         ),
       ],

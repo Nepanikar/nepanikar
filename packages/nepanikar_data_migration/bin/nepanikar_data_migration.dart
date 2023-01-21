@@ -10,7 +10,7 @@ Future<void> main(List<String> arguments) async {
   // final a = codec.encode(testStr);
   // final ab = codec.decode(a);
 
-  for (final locale in nep_data_migration.NepanikarConfigParser.fallbackParseLocale) {
+  for (final locale in nep_data_migration.fallbackParseLocales) {
     await initializeDateFormatting(locale);
   }
   const testStr = r'Zam\x11b\x159\xedm se na jin\xe9';
