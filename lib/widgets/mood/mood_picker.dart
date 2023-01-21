@@ -15,12 +15,14 @@ class MoodPicker extends StatefulWidget {
     required this.onPick,
     this.activeMood,
     this.title,
+    this.autoSizeTitle = true,
     this.showLabels = true,
   });
 
   final Mood? activeMood;
   final ValueChanged<Mood> onPick;
   final String? title;
+  final bool autoSizeTitle;
   final bool showLabels;
 
   @override
@@ -78,9 +80,9 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (widget.title != null)
+        if (!widget.autoSizeTitle)
           Text(
-            widget.title!,
+            widget.title ?? context.l10n.mood_welcome_title,
             style: NepanikarFonts.title2,
           )
         else
