@@ -81,6 +81,8 @@
   "exit": "Ukončiť",
   "export_button": "Export",
   "export_failed": "Export sa nepodaril",
+  "export_old_app_description": "Pokiaľ si niektoré svoje dáta pri prenose do novej verzie stratil/a, tu ich môžeš exportovať. Napíš nám na pomoc@nepanikar.eu a my ti ich pomôžeme obnoviť.",
+  "export_old_app_title": "Export dát zo starej verzie aplikácie",
   "export_successful": "Export bol úspešný",
   "export_data": "Export",
   "feeling_bad_do": "Ak mi bude zle, skúsim urobiť:",

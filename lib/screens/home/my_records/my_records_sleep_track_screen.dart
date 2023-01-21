@@ -11,7 +11,8 @@ class MyRecordsSleepTrackRoute extends GoRouteData {
   Widget build(BuildContext context, _) {
     return MoodTrackScreen<MyRecordsSleepTrackDao>(
       appBarTitle: context.l10n.sleep_title,
-      appBarDescription: context.l10n.sleep_text,
+      moodTitle: context.l10n.sleep_text,
+      showMoodLabels: false,
     );
   }
 }

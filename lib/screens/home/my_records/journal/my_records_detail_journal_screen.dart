@@ -207,6 +207,8 @@ class _MyRecordsJournalDetailScreenState extends State<MyRecordsJournalDetailScr
                 TextFormField(
                   controller: _textEditingControllersMap[question],
                   textInputAction: TextInputAction.next,
+                  minLines: 1,
+                  maxLines: null,
                 ),
               ],
             ),

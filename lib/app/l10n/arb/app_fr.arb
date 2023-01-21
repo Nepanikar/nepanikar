@@ -81,6 +81,8 @@
   "exit": "Fermer",
   "export_button": "Exportation",
   "export_failed": "Exportation échouée",
+  "export_old_app_description": "If you have lost some of your data during the upgrade to the new version, you can export it here. Email us at pomoc@nepanikar.eu and we'll help you recover them.",
+  "export_old_app_title": "Export data from the old app version",
   "export_successful": "Export réussi",
   "export_data": "Exporter",
   "feeling_bad_do": "Si je me sens mal, j’essaie de faire:",

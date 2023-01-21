@@ -18,7 +18,6 @@ dependencies:
   firebase_core: ^2.4.1
   firebase_crashlytics: ^3.0.10
   fl_chart: ^0.55.2
-  flextras: ^1.0.0
   flutter:
     sdk: flutter
   flutter_file_dialog: ^2.3.2

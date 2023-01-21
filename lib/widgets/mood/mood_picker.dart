@@ -14,10 +14,16 @@ class MoodPicker extends StatefulWidget {
     super.key,
     required this.onPick,
     this.activeMood,
+    this.title,
+    this.autoSizeTitle = true,
+    this.showLabels = true,
   });
 
   final Mood? activeMood;
   final ValueChanged<Mood> onPick;
+  final String? title;
+  final bool autoSizeTitle;
+  final bool showLabels;
 
   @override
   State<MoodPicker> createState() => _MoodPickerState();
@@ -74,11 +80,17 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AutoSizeText(
-          context.l10n.mood_welcome_title,
-          maxLines: 1,
-          style: NepanikarFonts.title2,
-        ),
+        if (!widget.autoSizeTitle)
+          Text(
+            widget.title ?? context.l10n.mood_welcome_title,
+            style: NepanikarFonts.title2,
+          )
+        else
+          AutoSizeText(
+            context.l10n.mood_welcome_title,
+            maxLines: 1,
+            style: NepanikarFonts.title2,
+          ),
         const SizedBox(height: 14),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -121,11 +133,13 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
                             repeat: false,
                             animate: false,
                           ),
-                          const SizedBox(height: 4),
-                          Text(
-                            mood.getLabel(context),
-                            style: NepanikarFonts.bodySmallHeavy,
-                          ),
+                          if (widget.showLabels) ...[
+                            const SizedBox(height: 4),
+                            Text(
+                              mood.getLabel(context),
+                              style: NepanikarFonts.bodySmallHeavy,
+                            ),
+                          ],
                         ],
                       ),
                     ),

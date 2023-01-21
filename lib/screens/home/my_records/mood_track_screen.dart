@@ -14,7 +14,6 @@ import 'package:nepanikar/widgets/mood/mood_chart.dart';
 import 'package:nepanikar/widgets/mood/mood_picker.dart';
 import 'package:nepanikar/widgets/nepanikar_date_range_picker.dart';
 import 'package:nepanikar/widgets/nepanikar_dropdown.dart';
-import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:provider/provider.dart';
 
 class MoodTrackRoute extends GoRouteData {
@@ -28,11 +27,13 @@ class MoodTrackScreen<T extends MoodTrackDao> extends StatelessWidget {
   const MoodTrackScreen({
     super.key,
     this.appBarTitle,
-    this.appBarDescription = '',
+    this.moodTitle,
+    this.showMoodLabels = true,
   });
 
   final String? appBarTitle;
-  final String appBarDescription;
+  final String? moodTitle;
+  final bool showMoodLabels;
 
   T get _trackDao => registry.get<T>();
 
@@ -43,66 +44,73 @@ class MoodTrackScreen<T extends MoodTrackDao> extends StatelessWidget {
     const pageSidePadding = 24.0;
     const pageHorizontalPadding = EdgeInsets.symmetric(horizontal: pageSidePadding);
 
-    return NepanikarScreenWrapper(
-      appBarTitle: appBarTitle ?? context.l10n.depression_mood,
-      appBarDescription: appBarDescription,
-      isModuleList: false,
-      children: [
-        const SizedBox(height: 16),
-        Padding(
-          padding: pageHorizontalPadding,
-          child: StreamBuilder<MoodTrack?>(
-            stream: _trackDao.latestMoodTrackStream,
-            builder: (_, snapshot) {
-              final latestMoodTrack = snapshot.data;
-              return MoodPicker(
-                activeMood: latestMoodTrack?.mood,
-                onPick: _trackDao.saveMood,
-              );
-            },
-          ),
-        ),
-        const SizedBox(height: 10),
-        Padding(
-          padding: pageHorizontalPadding,
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              context.l10n.statistics,
-              style: NepanikarFonts.title2,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(appBarTitle ?? context.l10n.depression_mood),
+      ),
+      body: SafeArea(
+        child: ListView(
+          children: [
+            const SizedBox(height: 16),
+            Padding(
+              padding: pageHorizontalPadding,
+              child: StreamBuilder<MoodTrack?>(
+                stream: _trackDao.latestMoodTrackStream,
+                builder: (_, snapshot) {
+                  final latestMoodTrack = snapshot.data;
+                  return MoodPicker(
+                    activeMood: latestMoodTrack?.mood,
+                    onPick: _trackDao.saveMood,
+                    title: moodTitle,
+                    autoSizeTitle: false,
+                    showLabels: showMoodLabels,
+                  );
+                },
+              ),
             ),
-          ),
-        ),
-        const SizedBox(height: 4),
-        Padding(
-          padding: pageHorizontalPadding,
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              context.l10n.mood_track_chart_guide,
-              style: NepanikarFonts.bodyRoman.copyWith(color: NepanikarColors.primary),
-            ),
-          ),
-        ),
-        const SizedBox(height: 20),
-        Card(
-          child: StreamBuilder<List<MoodTrack>>(
-            stream: _trackDao.allMoodTracksStream,
-            builder: (_, snapshot) {
-              final allMoodTrackData = snapshot.data ?? [];
-              final firstMoodTrackDate = allMoodTrackData.firstOrNull?.date;
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
-                child: _buildChartWithFilters(
-                  context,
-                  allMoodTrackData: allMoodTrackData,
-                  firstMoodTrackDate: firstMoodTrackDate,
+            const SizedBox(height: 10),
+            Padding(
+              padding: pageHorizontalPadding,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  context.l10n.statistics,
+                  style: NepanikarFonts.title2,
                 ),
-              );
-            },
-          ),
+              ),
+            ),
+            const SizedBox(height: 4),
+            Padding(
+              padding: pageHorizontalPadding,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  context.l10n.mood_track_chart_guide,
+                  style: NepanikarFonts.bodyRoman.copyWith(color: NepanikarColors.primary),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            Card(
+              child: StreamBuilder<List<MoodTrack>>(
+                stream: _trackDao.allMoodTracksStream,
+                builder: (_, snapshot) {
+                  final allMoodTrackData = snapshot.data ?? [];
+                  final firstMoodTrackDate = allMoodTrackData.firstOrNull?.date;
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
+                    child: _buildChartWithFilters(
+                      context,
+                      allMoodTrackData: allMoodTrackData,
+                      firstMoodTrackDate: firstMoodTrackDate,
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 
