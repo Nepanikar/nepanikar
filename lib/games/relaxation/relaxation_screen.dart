@@ -77,13 +77,13 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
       case RelaxationType.morning:
         title = 'Ranní zastavení';
         asset = Assets.audio.morningCS;
-        description = 'Dlouhodobé zaznamenávání nálady ti pomůže \nOdpověď uvnitř';
+        description = 'Audionahrávku relaxace namluvili Odpověď uvnitř';
         url = 'https://www.odpoveduvnitr.cz/';
         break;
       case RelaxationType.evening:
         title = 'Večerní zastavení';
         asset = Assets.audio.eveningCS;
-        description = 'Dlouhodobé zaznamenávání nálady ti pomůže \nOdpověď uvnitř';
+        description = 'Audionahrávku relaxace namluvili Odpověď uvnitř';
         url = 'https://www.odpoveduvnitr.cz/';
         break;
     }
