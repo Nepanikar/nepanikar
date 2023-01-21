@@ -31,7 +31,7 @@ class NepanikarScreenWrapper extends StatefulWidget {
 
   final List<Widget>? appBarActions;
 
-  /// If `true`, then the children will be wrapped in a [SeparatedColumn] with spacings.
+  /// If `true`, then the children will be separated with spacings.
   final bool isModuleList;
 
   final List<Widget> children;
