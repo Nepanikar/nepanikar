@@ -20,7 +20,7 @@ dependencies:
   fl_chart: ^0.55.2
   flutter:
     sdk: flutter
-  flutter_file_dialog: ^2.3.2
+  flutter_file_dialog: ^3.0.0
   flutter_localizations:
     sdk: flutter
   flutter_native_splash: ^2.2.17
