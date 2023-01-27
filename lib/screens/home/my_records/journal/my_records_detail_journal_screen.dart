@@ -8,8 +8,8 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/services/db/my_records/journal/my_records_journal_dao.dart';
 import 'package:nepanikar/services/db/my_records/journal/my_records_journal_record_model.dart';
+import 'package:nepanikar/utils/extensions.dart';
 import 'package:nepanikar/utils/registry.dart';
-import 'package:nepanikar/widgets/adaptive_dialog.dart';
 import 'package:nepanikar/widgets/nepanikar_button.dart';
 import 'package:nepanikar/widgets/nepanikar_date_picker.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
@@ -166,17 +166,16 @@ class _MyRecordsJournalDetailScreenState extends State<MyRecordsJournalDetailScr
                 text: context.l10n.clear_button,
                 expandToContentWidth: true,
                 onTap: () async {
-                  final goRouter = GoRouter.of(context);
-                  await showAdaptiveDialog(
-                    context,
-                    description: context.l10n.really_remove,
-                    onOk: () async {
+                  await context.showOkCancelNepanikarDialog(
+                    text: context.l10n.really_remove,
+                    onPrimaryBtnTap: (context) async {
+                      final goRouter = GoRouter.of(context);
                       await _myRecordsJournalDao.deleteRecord(widget.journalId);
                       unawaited(analytics.logEvent(name: 'journal_record_deleted'));
                       goRouter.pop();
                     },
-                    okLabel: context.l10n.mood_help_yes,
-                    cancelLabel: context.l10n.mood_help_no,
+                    primaryBtnLabel: context.l10n.mood_help_yes,
+                    secondaryBtnLabel: context.l10n.mood_help_no,
                   );
                 },
               ),
