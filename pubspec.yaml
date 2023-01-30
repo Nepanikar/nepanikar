@@ -10,7 +10,7 @@ dependencies:
   adaptive_dialog: ^1.8.0+1
   assets_audio_player: ^3.0.6
   auto_size_text: ^3.0.0
-  collection: ^1.16.0
+  collection: ^1.17.0
   cupertino_icons: ^1.0.5
   email_validator: ^2.1.17
   equatable: ^2.0.5
