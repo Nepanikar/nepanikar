@@ -42,7 +42,7 @@ dependencies:
     path: ./packages/nepanikar_data_migration
   package_info_plus: ^3.0.2
   path: ^1.8.2
-  path_provider: ^2.0.11
+  path_provider: ^2.0.12
   polygon: ^0.1.0
   provider: ^6.0.5
   rxdart: ^0.27.7
