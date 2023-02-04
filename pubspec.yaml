@@ -20,6 +20,7 @@ dependencies:
   fl_chart: ^0.55.2
   flutter:
     sdk: flutter
+  flutter_animate: ^3.1.0
   flutter_file_dialog: ^2.3.2
   flutter_localizations:
     sdk: flutter

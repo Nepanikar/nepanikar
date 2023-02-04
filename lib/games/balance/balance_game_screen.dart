@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
@@ -152,32 +153,44 @@ class _BalanceGameScreenState extends State<BalanceGameScreen> {
               ),
             ),
           ),
-          if (rightButtonActive) const Positioned(bottom: 85, right: 20, child: _WindWidget()),
-          if (leftButtonActive) const Positioned(bottom: 85, left: 20, child: _WindWidget()),
+          if (rightButtonActive) const Positioned(bottom: 105, right: 20, child: _HeartSpray()),
+          if (leftButtonActive) const Positioned(bottom: 105, left: 20, child: _HeartSpray()),
         ],
       ),
     );
   }
 }
 
-class _WindWidget extends StatelessWidget {
-  const _WindWidget();
+class _HeartSpray extends StatelessWidget {
+  const _HeartSpray();
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 70,
-      height: 250,
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Colors.transparent,
-            Colors.white38,
-          ],
-        ),
-      ),
+    return Stack(
+      children: [
+        // spawn 10 hearts
+        for (var i = 0; i < 10; i++)
+          Padding(
+            padding: EdgeInsets.only(
+              left: i.isEven ? math.Random().nextDouble() * 50 : 0,
+              right: i.isEven ? 0 : math.Random().nextDouble() * 50,
+            ),
+            child: Assets.illustrations.games.swing.heart
+                .svg()
+                .animate(
+                  delay: (i * 0.1).seconds,
+                  onPlay: (controller) {
+                    // repeat animation when finished
+                    controller.repeat();
+                  },
+                )
+                .fade(duration: 0.3.seconds)
+                .scale(duration: 0.15.seconds)
+                .slideY(begin: 1.0, end: -15, duration: 0.9.seconds)
+                .shakeX(hz: 1)
+                .fadeOut(delay: 0.2.seconds, duration: (0.9 - 0.4).seconds),
+          ),
+      ],
     );
   }
 }
