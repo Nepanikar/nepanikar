@@ -11,8 +11,8 @@ import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/screens/home/my_records/food_records/my_records_food_record_detail_menu_detail_screen.dart';
 import 'package:nepanikar/services/db/my_records/food/my_records_food_record_dao.dart';
 import 'package:nepanikar/services/db/my_records/food/my_records_food_record_model.dart';
+import 'package:nepanikar/utils/extensions.dart';
 import 'package:nepanikar/utils/registry.dart';
-import 'package:nepanikar/widgets/adaptive_dialog.dart';
 import 'package:nepanikar/widgets/nepanikar_button.dart';
 import 'package:nepanikar/widgets/nepanikar_date_picker.dart';
 import 'package:nepanikar/widgets/nepanikar_horizontal_divider.dart';
@@ -142,17 +142,16 @@ class _MyRecordsFoodRecordsDetailMenuListScreenState
               text: context.l10n.delete_record,
               expandToContentWidth: true,
               onTap: () async {
-                final goRouter = GoRouter.of(context);
-                await showAdaptiveDialog(
-                  context,
-                  description: context.l10n.really_remove,
-                  onOk: () async {
+                await context.showOkCancelNepanikarDialog(
+                  text: context.l10n.really_remove,
+                  onPrimaryBtnTap: (context) async {
+                    final goRouter = GoRouter.of(context);
                     await _myRecordsFoodRecordDao.deleteRecord(widget.id);
                     unawaited(analytics.logEvent(name: 'delete_food_record'));
                     goRouter.pop();
                   },
-                  okLabel: context.l10n.mood_help_yes,
-                  cancelLabel: context.l10n.mood_help_no,
+                  primaryBtnLabel: context.l10n.mood_help_yes,
+                  secondaryBtnLabel: context.l10n.mood_help_no,
                 );
               },
             ),

@@ -6,8 +6,8 @@ import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_detail_screen.dart';
 import 'package:nepanikar/services/db/my_records/diary/my_records_diary_dao.dart';
+import 'package:nepanikar/utils/extensions.dart';
 import 'package:nepanikar/utils/registry.dart';
-import 'package:nepanikar/widgets/adaptive_dialog.dart';
 import 'package:nepanikar/widgets/diary/diary_edit_content.dart';
 
 class MyRecordsDiaryEditRoute extends GoRouteData {
@@ -53,10 +53,9 @@ class MyRecordsDiaryEditScreen extends StatelessWidget {
       },
       secondaryButtonText: context.l10n.clear_button,
       onSecondaryButtonTap: () {
-        showAdaptiveDialog(
-          context,
-          description: context.l10n.really_remove,
-          onOk: () async {
+        context.showOkCancelNepanikarDialog(
+          text: context.l10n.really_remove,
+          onPrimaryBtnTap: (context) async {
             // Delete an existing diary record.
             final goRouter = GoRouter.of(context);
             await _myRecordsDiaryDao.deleteRecord(_initialDiaryRecordId);
@@ -65,8 +64,8 @@ class MyRecordsDiaryEditScreen extends StatelessWidget {
             goRouter.pop();
             goRouter.pop();
           },
-          okLabel: context.l10n.mood_help_yes,
-          cancelLabel: context.l10n.mood_help_no,
+          primaryBtnLabel: context.l10n.mood_help_yes,
+          secondaryBtnLabel: context.l10n.mood_help_no,
         );
       },
     );

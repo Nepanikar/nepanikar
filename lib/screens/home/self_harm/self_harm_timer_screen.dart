@@ -10,9 +10,10 @@ import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/localization_helpers.dart';
 import 'package:nepanikar/screens/main/contacts_screen.dart';
 import 'package:nepanikar/services/db/self_harm/self_harm_timer_dao.dart';
+import 'package:nepanikar/utils/extensions.dart';
 import 'package:nepanikar/utils/registry.dart';
-import 'package:nepanikar/widgets/adaptive_dialog.dart';
 import 'package:nepanikar/widgets/nepanikar_button.dart';
+import 'package:nepanikar/widgets/nepanikar_dialog.dart';
 import 'package:nepanikar/widgets/nepanikar_horizontal_divider.dart';
 import 'package:time_machine/time_machine.dart';
 import 'package:timer_builder/timer_builder.dart';
@@ -118,26 +119,26 @@ class SelfHarmTimerScreen extends StatelessWidget {
                               else
                                 NepanikarButton(
                                   onTap: () {
-                                    showAdaptiveDialog(
-                                      context,
-                                      description: context.l10n.really_stop_timer,
-                                      onOk: () async {
+                                    context.showOkCancelNepanikarDialog(
+                                      text: context.l10n.really_stop_timer,
+                                      onPrimaryBtnTap: (context) async {
                                         await _selfHarmTimerDao.stopSelfHarmTimer();
                                         await _selfHarmTimerDao.startSelfHarmTimer();
                                         unawaited(
                                           analytics.logEvent(name: 'restart_self_harm_timer'),
                                         );
                                         // ignore: use_build_context_synchronously
-                                        await showAdaptiveDialog(
-                                          context,
-                                          description: context.l10n.need_help,
-                                          onOk: () => context.push(const ContactsRoute().location),
-                                          okLabel: context.l10n.mood_help_yes,
-                                          cancelLabel: context.l10n.mood_help_no,
+                                        context.showOkCancelNepanikarDialog(
+                                          text: context.l10n.need_help,
+                                          onPrimaryBtnTap: (context) =>
+                                              context.push(const ContactsRoute().location),
+                                          primaryBtnLabel: context.l10n.mood_help_yes,
+                                          secondaryBtnLabel: context.l10n.mood_help_no,
+                                          defaultAction: DialogDefaultAction.both,
                                         );
                                       },
-                                      okLabel: context.l10n.mood_help_yes,
-                                      cancelLabel: context.l10n.mood_help_no,
+                                      primaryBtnLabel: context.l10n.mood_help_yes,
+                                      secondaryBtnLabel: context.l10n.mood_help_no,
                                     );
                                   },
                                   expandToContentWidth: true,

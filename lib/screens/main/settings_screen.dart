@@ -54,17 +54,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     leading: Assets.icons.deleteData.svg(),
                     text: context.l10n.reset_inputs,
                     onTap: () {
-                      context.showNepanikarDialog(
+                      context.showOkCancelNepanikarDialog(
                         title: context.l10n.delete_data_title,
                         text: context.l10n.delete_data_description,
                         secondaryBtnLabel: context.l10n.cancel,
-                        onSecondaryBtnTap: (dialogContext) => Navigator.pop(dialogContext),
                         primaryBtnLabel: context.l10n.clear_button,
                         onPrimaryBtnTap: (dialogContext) async {
                           await _databaseService.clearAll();
                           await _databaseService.preloadDefaultData(context.l10n);
                           if (mounted) {
-                            Navigator.pop(dialogContext);
                             context.hideCurrentSnackBar();
                             context.showSuccessSnackbar(
                               text: context.l10n.delete_success,
