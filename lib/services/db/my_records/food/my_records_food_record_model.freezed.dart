@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'my_records_food_record_model.dart';
 
@@ -341,6 +341,8 @@ class _$_DailyFoodRecordAnswer extends _DailyFoodRecordAnswer {
   @override
   @JsonKey()
   List<FoodQuestionTextAnswer> get questionTextAnswers {
+    if (_questionTextAnswers is EqualUnmodifiableListView)
+      return _questionTextAnswers;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_questionTextAnswers);
   }
@@ -349,6 +351,8 @@ class _$_DailyFoodRecordAnswer extends _DailyFoodRecordAnswer {
   @override
   @JsonKey()
   List<FoodQuestionFeel> get tickedQuestionFeels {
+    if (_tickedQuestionFeels is EqualUnmodifiableListView)
+      return _tickedQuestionFeels;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_tickedQuestionFeels);
   }
@@ -357,6 +361,8 @@ class _$_DailyFoodRecordAnswer extends _DailyFoodRecordAnswer {
   @override
   @JsonKey()
   List<FoodQuestionProblem> get tickedQuestionProblems {
+    if (_tickedQuestionProblems is EqualUnmodifiableListView)
+      return _tickedQuestionProblems;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_tickedQuestionProblems);
   }
@@ -552,6 +558,7 @@ class _$_DailyFoodRecord extends _DailyFoodRecord {
   final List<DailyFoodRecordAnswer> _answers;
   @override
   List<DailyFoodRecordAnswer> get answers {
+    if (_answers is EqualUnmodifiableListView) return _answers;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_answers);
   }

@@ -83,25 +83,25 @@ FoodRecordAnswerDTO _getFoodRecordAnswer({
   if (dataConfigLineParts.length >= 6) {
     for (final foodTextQuestion in FoodQuestionText.values) {
       if (foodTextQuestion.index < 4) {
-        final answer = dataConfigLineParts.elementAtOrNull(foodTextQuestion.index);
+        final answer = dataConfigLineParts.safeElementAtOrNull(foodTextQuestion.index);
         textQuestionAnswers.add(Tuple2(foodTextQuestion, answer ?? ''));
       }
     }
 
-    final feelAnswers = dataConfigLineParts.elementAtOrNull(5);
+    final feelAnswers = dataConfigLineParts.safeElementAtOrNull(5);
     if (feelAnswers != null && feelAnswers.length == 10) {
       for (final feelQuestion in FoodQuestionFeel.values) {
-        final answerBool = feelAnswers.split('').elementAtOrNull(feelQuestion.index);
+        final answerBool = feelAnswers.split('').safeElementAtOrNull(feelQuestion.index);
         if (answerBool == '1') {
           feelTickedAnswers.add(feelQuestion);
         }
       }
     }
 
-    final problemAnswers = dataConfigLineParts.elementAtOrNull(6);
+    final problemAnswers = dataConfigLineParts.safeElementAtOrNull(6);
     if (problemAnswers != null && problemAnswers.length == 5) {
       for (final problemQuestion in FoodQuestionProblem.values) {
-        final answerBool = problemAnswers.split('').elementAtOrNull(problemQuestion.index);
+        final answerBool = problemAnswers.split('').safeElementAtOrNull(problemQuestion.index);
         if (answerBool == '1') {
           problemTickedAnswers.add(problemQuestion);
         }
@@ -147,7 +147,7 @@ class MyRecordsFoodDTO extends Equatable {
               DateTime(2000);
 
           bool getIsTaken(int index) {
-            final isTaken = splitValues.elementAtOrNull(index);
+            final isTaken = splitValues.safeElementAtOrNull(index);
             if (isTaken == null) return false;
             return isTaken != '-1';
           }
@@ -222,7 +222,7 @@ class MyRecordsFoodDTO extends Equatable {
               DateTime(2000);
 
           bool getIsTaken(int index) {
-            final isTaken = splitValues.elementAtOrNull(index);
+            final isTaken = splitValues.safeElementAtOrNull(index);
             if (isTaken == null) return false;
             return isTaken != '-1';
           }

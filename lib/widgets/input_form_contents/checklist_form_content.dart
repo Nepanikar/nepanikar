@@ -172,7 +172,7 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
                                       minLines: 1,
                                       maxLines: null,
                                       textInputAction: TextInputAction.newline,
-                                      style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
                                             color: checkFormState == true
                                                 ? NepanikarColors.dark
                                                 : NepanikarColors.primarySwatch.shade400,

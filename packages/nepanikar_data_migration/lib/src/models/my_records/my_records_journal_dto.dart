@@ -46,7 +46,8 @@ class MyRecordsJournalDTO extends Equatable {
               for (final journalQuestion in JournalQuestion.values) {
                 // First item is the date, so we need to add 1 to the index.
                 final answer =
-                    splitValues.elementAtOrNull(journalQuestion.index + 1)?.getIniStrValue() ?? '';
+                    splitValues.safeElementAtOrNull(journalQuestion.index + 1)?.getIniStrValue() ??
+                        '';
                 answers.add(Tuple2(journalQuestion, answer));
               }
               records.add(JournalRecordDTO(date: date, answers: answers));
@@ -80,7 +81,8 @@ class MyRecordsJournalDTO extends Equatable {
             for (final journalQuestion in JournalQuestion.values) {
               // First item is the date, so we need to add 1 to the index.
               final answer =
-                  splitValues.elementAtOrNull(journalQuestion.index + 1)?.getIniStrValue() ?? '';
+                  splitValues.safeElementAtOrNull(journalQuestion.index + 1)?.getIniStrValue() ??
+                      '';
               answers.add(Tuple2(journalQuestion, answer));
             }
             records.add(JournalRecordDTO(date: date, answers: answers));

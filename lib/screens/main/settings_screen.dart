@@ -60,8 +60,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         secondaryBtnLabel: context.l10n.cancel,
                         primaryBtnLabel: context.l10n.clear_button,
                         onPrimaryBtnTap: (dialogContext) async {
+                          final l10n = context.l10n;
                           await _databaseService.clearAll();
-                          await _databaseService.preloadDefaultData(context.l10n);
+                          await _databaseService.preloadDefaultData(l10n);
                           if (mounted) {
                             context.hideCurrentSnackBar();
                             context.showSuccessSnackbar(
