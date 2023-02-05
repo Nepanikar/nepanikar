@@ -12,8 +12,8 @@ import 'package:nepanikar/helpers/screen_resolution_helpers.dart';
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_edit_screen.dart';
 import 'package:nepanikar/services/db/my_records/diary/diary_record_model.dart';
 import 'package:nepanikar/services/db/my_records/diary/my_records_diary_dao.dart';
+import 'package:nepanikar/utils/extensions.dart';
 import 'package:nepanikar/utils/registry.dart';
-import 'package:nepanikar/widgets/adaptive_dialog.dart';
 import 'package:nepanikar/widgets/nepanikar_button.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
@@ -101,17 +101,16 @@ class MyRecordsDiaryDetailScreen extends StatelessWidget {
               text: context.l10n.clear_button,
               expandToContentWidth: true,
               onTap: () {
-                showAdaptiveDialog(
-                  context,
-                  description: context.l10n.really_remove,
-                  onOk: () async {
+                context.showOkCancelNepanikarDialog(
+                  text: context.l10n.really_remove,
+                  onPrimaryBtnTap: (context) async {
                     final goRouter = GoRouter.of(context);
                     await _myRecordsDiaryDao.deleteRecord(_diaryRecordId);
                     unawaited(analytics.logEvent(name: 'diary_record_deleted'));
                     goRouter.pop();
                   },
-                  okLabel: context.l10n.mood_help_yes,
-                  cancelLabel: context.l10n.mood_help_no,
+                  primaryBtnLabel: context.l10n.mood_help_yes,
+                  secondaryBtnLabel: context.l10n.mood_help_no,
                 );
               },
             ),

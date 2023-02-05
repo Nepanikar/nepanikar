@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:nepanikar/widgets/nepanikar_dialog.dart';
 import 'package:nepanikar/widgets/snackbars.dart';
 
@@ -55,24 +56,38 @@ extension CustomSnackBar on BuildContext {
 }
 
 extension NepanikarDialogExtension on BuildContext {
-  dynamic showNepanikarDialog({
+  dynamic showOkCancelNepanikarDialog({
     String? title,
-    required String text,
+    required String? text,
     required String primaryBtnLabel,
-    required void Function(BuildContext dialogContext) onPrimaryBtnTap,
+    required DialogButtonHandler onPrimaryBtnTap,
     required String secondaryBtnLabel,
-    required void Function(BuildContext dialogContext) onSecondaryBtnTap,
+    DialogButtonHandler? onSecondaryBtnTap,
+    DialogDefaultAction defaultAction = DialogDefaultAction.secondary,
+    bool useRootNavigator = true,
+    bool popAfterAction = true,
   }) {
+    final hasBothTitleAndText = title != null && text != null;
     return showDialog(
       context: this,
+      useRootNavigator: useRootNavigator,
       builder: (context) {
         return NepanikarDialog(
-          title: title,
-          text: text,
+          title: hasBothTitleAndText ? title : text,
+          text: hasBothTitleAndText ? text : '',
           primaryBtnLabel: primaryBtnLabel,
-          onPrimaryBtnTap: onPrimaryBtnTap,
+          onPrimaryBtnTap: popAfterAction
+              ? (context) {
+                  GoRouter.of(context).pop();
+                  onPrimaryBtnTap.call(context);
+                }
+              : onPrimaryBtnTap,
           secondaryBtnLabel: secondaryBtnLabel,
-          onSecondaryBtnTap: onSecondaryBtnTap,
+          onSecondaryBtnTap: (context) {
+            if (popAfterAction) GoRouter.of(context).pop();
+            onSecondaryBtnTap?.call(context);
+          },
+          defaultAction: defaultAction,
         );
       },
     );
