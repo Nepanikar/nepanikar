@@ -16,7 +16,7 @@ dependencies:
   firebase_analytics: ^10.1.0
   firebase_core: ^2.4.1
   firebase_crashlytics: ^3.0.11
-  fl_chart: ^0.60.0
+  fl_chart: ^0.55.2 # Do not upgrade, https://github.com/imaNNeo/fl_chart/issues/1255
   flutter:
     sdk: flutter
   flutter_animate: ^3.1.0
