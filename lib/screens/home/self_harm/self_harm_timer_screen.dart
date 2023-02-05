@@ -122,20 +122,23 @@ class SelfHarmTimerScreen extends StatelessWidget {
                                     context.showOkCancelNepanikarDialog(
                                       text: context.l10n.really_stop_timer,
                                       onPrimaryBtnTap: (context) async {
+                                        final goRouter = GoRouter.of(context);
+                                        final l10n = context.l10n;
                                         await _selfHarmTimerDao.stopSelfHarmTimer();
                                         await _selfHarmTimerDao.startSelfHarmTimer();
                                         unawaited(
                                           analytics.logEvent(name: 'restart_self_harm_timer'),
                                         );
-                                        // ignore: use_build_context_synchronously
-                                        context.showOkCancelNepanikarDialog(
-                                          text: context.l10n.need_help,
-                                          onPrimaryBtnTap: (context) =>
-                                              context.push(const ContactsRoute().location),
-                                          primaryBtnLabel: context.l10n.mood_help_yes,
-                                          secondaryBtnLabel: context.l10n.mood_help_no,
-                                          defaultAction: DialogDefaultAction.both,
-                                        );
+                                        if (context.mounted) {
+                                          context.showOkCancelNepanikarDialog(
+                                            text: l10n.need_help,
+                                            onPrimaryBtnTap: (context) =>
+                                                goRouter.push(const ContactsRoute().location),
+                                            primaryBtnLabel: l10n.mood_help_yes,
+                                            secondaryBtnLabel: l10n.mood_help_no,
+                                            defaultAction: DialogDefaultAction.both,
+                                          );
+                                        }
                                       },
                                       primaryBtnLabel: context.l10n.mood_help_yes,
                                       secondaryBtnLabel: context.l10n.mood_help_no,

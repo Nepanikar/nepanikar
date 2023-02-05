@@ -17,14 +17,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.12"
-  adaptive_dialog:
-    dependency: "direct main"
-    description:
-      name: adaptive_dialog
-      sha256: "5dea5b051a217d127b57587686990131488f964a9d2ea1142401f101e18795df"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.8.2"
   analyzer:
     dependency: transitive
     description:
@@ -33,14 +25,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.4.0"
-  animations:
-    dependency: transitive
-    description:
-      name: animations
-      sha256: fe8a6bdca435f718bb1dc8a11661b2c22504c6da40ef934cee8327ed77934164
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.7"
   archive:
     dependency: transitive
     description:
@@ -273,14 +257,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
-  dynamic_color:
-    dependency: transitive
-    description:
-      name: dynamic_color
-      sha256: c4a508284b14ec4dda5adba2c28b2cdd34fbae1afead7e8c52cad87d51c5405b
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.6.2"
   email_validator:
     dependency: "direct main"
     description:
@@ -406,14 +382,22 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_animate:
+    dependency: "direct main"
+    description:
+      name: flutter_animate
+      sha256: "3cb5eb80827abb48e362a9f29f7ba4e1b0edba6b2e2f35b1d350b6ef069bb547"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.0"
   flutter_file_dialog:
     dependency: "direct main"
     description:
       name: flutter_file_dialog
-      sha256: fb19d8b7c811a70947344695001e82777921fdc0ed5c80289440f096ae22b10f
+      sha256: "94c4bc7c2e52fa6b73f4ff2f12e790b47a2564270c4c5b4a3b1d33b8d7236590"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.2"
+    version: "3.0.0"
   flutter_gen_core:
     dependency: transitive
     description:
@@ -573,14 +557,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
-  intersperse:
-    dependency: transitive
-    description:
-      name: intersperse
-      sha256: "2f8a905c96f6cbba978644a3d5b31b8d86ddc44917662df7d27a61f3df66a576"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.0"
   intl:
     dependency: "direct main"
     description:
@@ -653,14 +629,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
-  macos_ui:
-    dependency: transitive
-    description:
-      name: macos_ui
-      sha256: "2b31858b56d44e807cf192c58cf6660b584c997f4746496d4892a903c1c27a49"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.9.1"
   matcher:
     dependency: transitive
     description:
@@ -1347,4 +1315,4 @@ packages:
     version: "3.1.1"
 sdks:
   dart: ">=2.19.0 <3.0.0"
-  flutter: ">=3.4.0-17.0.pre"
+  flutter: ">=3.3.0"
