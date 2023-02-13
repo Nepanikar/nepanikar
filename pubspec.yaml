@@ -14,7 +14,7 @@ dependencies:
   email_validator: ^2.1.17
   equatable: ^2.0.5
   firebase_analytics: ^10.1.0
-  firebase_core: ^2.4.1
+  firebase_core: ^2.5.0
   firebase_crashlytics: ^3.0.11
   fl_chart: ^0.55.2
   flutter:
