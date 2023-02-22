@@ -134,31 +134,36 @@ class _BalloonsGameScreenState extends State<BalloonsGameScreen> with TickerProv
                     if (e.wanted)
                       Assets.illustrations.games.balloons.balloonWanted.svg(width: 100)
                     else
-                      e.lightVariant
-                          ? Assets.illustrations.games.balloons.balloonUnwanted1.svg(width: 100)
-                          : Assets.illustrations.games.balloons.balloonUnwanted2.svg(width: 100),
-                    GestureDetector(
-                      onTap: () {
-                        if (e.wanted) {
-                          setState(() {
-                            confettiX = e.x;
-                            confettiY = e.y;
-                            balloons.elementAt(i).y = -99999;
-                            showHint = false;
-                          });
+                      IgnorePointer(
+                        child: e.lightVariant
+                            ? Assets.illustrations.games.balloons.balloonUnwanted1.svg(width: 100)
+                            : Assets.illustrations.games.balloons.balloonUnwanted2.svg(width: 100),
+                      ),
+                    IgnorePointer(
+                      ignoring: !e.wanted,
+                      child: GestureDetector(
+                        onTap: () {
+                          if (e.wanted) {
+                            setState(() {
+                              confettiX = e.x;
+                              confettiY = e.y;
+                              balloons.elementAt(i).y = -99999;
+                              showHint = false;
+                            });
 
-                          _controller
-                            ..reset()
-                            ..duration = const Duration(milliseconds: 800)
-                            ..forward();
-                        }
-                      },
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(e.height),
-                        child: Container(
-                          width: e.height,
-                          height: e.height + 20,
-                          color: Colors.transparent,
+                            _controller
+                              ..reset()
+                              ..duration = const Duration(milliseconds: 800)
+                              ..forward();
+                          }
+                        },
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(e.height),
+                          child: Container(
+                            width: e.height,
+                            height: e.height + 20,
+                            color: Colors.transparent,
+                          ),
                         ),
                       ),
                     ),
