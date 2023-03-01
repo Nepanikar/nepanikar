@@ -285,9 +285,12 @@ extension $MainRouteExtension on MainRoute {
         '/',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $SponsorsRouteExtension on SponsorsRoute {
@@ -297,9 +300,12 @@ extension $SponsorsRouteExtension on SponsorsRoute {
         '/settings/sponsors',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $AboutAppRouteExtension on AboutAppRoute {
@@ -309,9 +315,12 @@ extension $AboutAppRouteExtension on AboutAppRoute {
         '/settings/about-app',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $ExportRouteExtension on ExportRoute {
@@ -321,9 +330,12 @@ extension $ExportRouteExtension on ExportRoute {
         '/settings/export',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $LanguagesRouteExtension on LanguagesRoute {
@@ -334,9 +346,12 @@ extension $LanguagesRouteExtension on LanguagesRoute {
         '/settings/language',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $MathGameRouteExtension on MathGameRoute {
@@ -346,9 +361,12 @@ extension $MathGameRouteExtension on MathGameRoute {
         '/games/math',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $BreathingExercisesRouteExtension on BreathingExercisesRoute {
@@ -359,9 +377,12 @@ extension $BreathingExercisesRouteExtension on BreathingExercisesRoute {
         '/games/breathing-list',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $BreathingGameRouteExtension on BreathingGameRoute {
@@ -374,9 +395,12 @@ extension $BreathingGameRouteExtension on BreathingGameRoute {
         '/games/breathing/${Uri.encodeComponent(_$BreathingGameShapeEnumMap[shape]!)}',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $BalanceGameRouteExtension on BalanceGameRoute {
@@ -387,9 +411,12 @@ extension $BalanceGameRouteExtension on BalanceGameRoute {
         '/games/balance',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $BalloonsGameRouteExtension on BalloonsGameRoute {
@@ -400,9 +427,12 @@ extension $BalloonsGameRouteExtension on BalloonsGameRoute {
         '/games/balloons',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $RelaxationRouteExtension on RelaxationRoute {
@@ -415,9 +445,12 @@ extension $RelaxationRouteExtension on RelaxationRoute {
         '/games/relaxation/${Uri.encodeComponent(_$RelaxationTypeEnumMap[relaxationType]!)}',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $RelaxationsListRouteExtension on RelaxationsListRoute {
@@ -428,9 +461,12 @@ extension $RelaxationsListRouteExtension on RelaxationsListRoute {
         '/games/relaxation-list',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $ContactsRouteExtension on ContactsRoute {
@@ -440,9 +476,12 @@ extension $ContactsRouteExtension on ContactsRoute {
         '/contacts',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $CrisisMessageRouteExtension on CrisisMessageRoute {
@@ -453,9 +492,12 @@ extension $CrisisMessageRouteExtension on CrisisMessageRoute {
         '/contacts/crisis-message',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $PhoneContactsRouteExtension on PhoneContactsRoute {
@@ -466,9 +508,12 @@ extension $PhoneContactsRouteExtension on PhoneContactsRoute {
         '/contacts/phones',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $CrisisCenterContactsRouteExtension on CrisisCenterContactsRoute {
@@ -479,9 +524,12 @@ extension $CrisisCenterContactsRouteExtension on CrisisCenterContactsRoute {
         '/contacts/crisis-center',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $ChatContactsRouteExtension on ChatContactsRoute {
@@ -492,9 +540,12 @@ extension $ChatContactsRouteExtension on ChatContactsRoute {
         '/contacts/chat',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $UniversityContactsRouteExtension on UniversityContactsRoute {
@@ -505,9 +556,12 @@ extension $UniversityContactsRouteExtension on UniversityContactsRoute {
         '/contacts/universities',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $MyContactsRecordsRouteExtension on MyContactsRecordsRoute {
@@ -518,9 +572,12 @@ extension $MyContactsRecordsRouteExtension on MyContactsRecordsRoute {
         '/contacts/my-contacts-records',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $EmailCounsellingRouteExtension on EmailCounsellingRoute {
@@ -531,9 +588,12 @@ extension $EmailCounsellingRouteExtension on EmailCounsellingRoute {
         '/contacts/email-counselling',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $DepressionRouteExtension on DepressionRoute {
@@ -544,9 +604,12 @@ extension $DepressionRouteExtension on DepressionRoute {
         '/home/depression',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $DepressionTipsAppRouteExtension on DepressionTipsAppRoute {
@@ -557,9 +620,12 @@ extension $DepressionTipsAppRouteExtension on DepressionTipsAppRoute {
         '/home/depression/tips',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $DepressionActivityPlanRouteExtension on DepressionActivityPlanRoute {
@@ -570,9 +636,12 @@ extension $DepressionActivityPlanRouteExtension on DepressionActivityPlanRoute {
         '/home/depression/activity-plan',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $DepressionNiceMadeHappyRouteExtension
@@ -584,9 +653,12 @@ extension $DepressionNiceMadeHappyRouteExtension
         '/home/depression/nice-made-happy',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $DepressionPraiseMyAchievementsRouteExtension
@@ -598,9 +670,12 @@ extension $DepressionPraiseMyAchievementsRouteExtension
         '/home/depression/praise-my-achievements',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $AnxietyAppRouteExtension on AnxietyAppRoute {
@@ -611,9 +686,12 @@ extension $AnxietyAppRouteExtension on AnxietyAppRoute {
         '/home/anxiety',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $AnxietyTipsAppRouteExtension on AnxietyTipsAppRoute {
@@ -624,9 +702,12 @@ extension $AnxietyTipsAppRouteExtension on AnxietyTipsAppRoute {
         '/home/anxiety/tips',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $SelfHarmRouteExtension on SelfHarmRoute {
@@ -636,9 +717,12 @@ extension $SelfHarmRouteExtension on SelfHarmRoute {
         '/home/self-harm',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $SelfHarmTipsRouteExtension on SelfHarmTipsRoute {
@@ -649,9 +733,12 @@ extension $SelfHarmTipsRouteExtension on SelfHarmTipsRoute {
         '/home/self-harm/tips',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $SelfHarmHelpedRouteExtension on SelfHarmHelpedRoute {
@@ -662,9 +749,12 @@ extension $SelfHarmHelpedRouteExtension on SelfHarmHelpedRoute {
         '/home/self-harm/helped',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $SelfHarmPlanRouteExtension on SelfHarmPlanRoute {
@@ -675,9 +765,12 @@ extension $SelfHarmPlanRouteExtension on SelfHarmPlanRoute {
         '/home/self-harm/plan',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $SelfHarmTimerRouteExtension on SelfHarmTimerRoute {
@@ -688,9 +781,12 @@ extension $SelfHarmTimerRouteExtension on SelfHarmTimerRoute {
         '/home/self-harm/timer',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $MyRecordsRouteExtension on MyRecordsRoute {
@@ -701,9 +797,12 @@ extension $MyRecordsRouteExtension on MyRecordsRoute {
         '/home/my-records',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $MoodTrackRouteExtension on MoodTrackRoute {
@@ -714,9 +813,12 @@ extension $MoodTrackRouteExtension on MoodTrackRoute {
         '/home/my-records/mood-track',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $MyRecordsSleepTrackRouteExtension on MyRecordsSleepTrackRoute {
@@ -727,9 +829,12 @@ extension $MyRecordsSleepTrackRouteExtension on MyRecordsSleepTrackRoute {
         '/home/my-records/sleep-track',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $MyRecordsDiaryRecordsRouteExtension on MyRecordsDiaryRecordsRoute {
@@ -740,9 +845,12 @@ extension $MyRecordsDiaryRecordsRouteExtension on MyRecordsDiaryRecordsRoute {
         '/home/my-records/diary',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $MyRecordsDiaryAddRouteExtension on MyRecordsDiaryAddRoute {
@@ -753,9 +861,12 @@ extension $MyRecordsDiaryAddRouteExtension on MyRecordsDiaryAddRoute {
         '/home/my-records/diary/add',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $MyRecordsDiaryDetailRouteExtension on MyRecordsDiaryDetailRoute {
@@ -766,9 +877,12 @@ extension $MyRecordsDiaryDetailRouteExtension on MyRecordsDiaryDetailRoute {
         '/home/my-records/diary/detail',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $MyRecordsDiaryEditRouteExtension on MyRecordsDiaryEditRoute {
@@ -779,9 +893,12 @@ extension $MyRecordsDiaryEditRouteExtension on MyRecordsDiaryEditRoute {
         '/home/my-records/diary/edit',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $MyRecordsJournalRecordsRouteExtension
@@ -793,9 +910,12 @@ extension $MyRecordsJournalRecordsRouteExtension
         '/home/my-records/journal',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $MyRecordsJournalDetailRouteExtension on MyRecordsJournalDetailRoute {
@@ -806,9 +926,12 @@ extension $MyRecordsJournalDetailRouteExtension on MyRecordsJournalDetailRoute {
         '/home/my-records/journal-detail',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $MyRecordsFoodRecordsListRouteExtension
@@ -820,9 +943,12 @@ extension $MyRecordsFoodRecordsListRouteExtension
         '/home/my-records/food-records',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $MyRecordsFoodRecordsDetailMenuListRouteExtension
@@ -835,9 +961,12 @@ extension $MyRecordsFoodRecordsDetailMenuListRouteExtension
         '/home/my-records/food-records/detail',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $MyRecordsFoodRecordsDetailMenuDetailRouteExtension
@@ -850,9 +979,12 @@ extension $MyRecordsFoodRecordsDetailMenuDetailRouteExtension
         '/home/my-records/food-records/detail/menu-detail',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $SuicidalThoughtsRouteExtension on SuicidalThoughtsRoute {
@@ -863,9 +995,12 @@ extension $SuicidalThoughtsRouteExtension on SuicidalThoughtsRoute {
         '/home/suicidal-thoughts',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $SuicidalThoughtsPlanRouteExtension on SuicidalThoughtsPlanRoute {
@@ -876,9 +1011,12 @@ extension $SuicidalThoughtsPlanRouteExtension on SuicidalThoughtsPlanRoute {
         '/home/suicidal-thoughts/plan',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $SuicidalThoughtsReasonsNoRouteExtension
@@ -890,9 +1028,12 @@ extension $SuicidalThoughtsReasonsNoRouteExtension
         '/home/suicidal-thoughts/reasons-no',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $EatingDisorderRouteExtension on EatingDisorderRoute {
@@ -903,9 +1044,12 @@ extension $EatingDisorderRouteExtension on EatingDisorderRoute {
         '/home/eating-disorder',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $EatingDisorderTipsRouteExtension on EatingDisorderTipsRoute {
@@ -916,9 +1060,12 @@ extension $EatingDisorderTipsRouteExtension on EatingDisorderTipsRoute {
         '/home/eating-disorder/tips',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $EatingDisorderTipsFigureAppRouteExtension
@@ -930,9 +1077,12 @@ extension $EatingDisorderTipsFigureAppRouteExtension
         '/home/eating-disorder/tips/figure',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $EatingDisorderTipsRemorseAppRouteExtension
@@ -944,9 +1094,12 @@ extension $EatingDisorderTipsRemorseAppRouteExtension
         '/home/eating-disorder/tips/remorse',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $EatingDisorderTipsOvereatAppRouteExtension
@@ -958,9 +1111,12 @@ extension $EatingDisorderTipsOvereatAppRouteExtension
         '/home/eating-disorder/tips/overeat',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $EatingDisorderTipsVomitAppRouteExtension
@@ -972,9 +1128,12 @@ extension $EatingDisorderTipsVomitAppRouteExtension
         '/home/eating-disorder/tips/vomit',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $EatingDisorderTipsFailAppRouteExtension
@@ -986,9 +1145,12 @@ extension $EatingDisorderTipsFailAppRouteExtension
         '/home/eating-disorder/tips/fail',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $EatingDisorderTipsGeneralAppRouteExtension
@@ -1000,9 +1162,12 @@ extension $EatingDisorderTipsGeneralAppRouteExtension
         '/home/eating-disorder/tips/general',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $EatingDisorderTasksRouteExtension on EatingDisorderTasksRoute {
@@ -1013,9 +1178,12 @@ extension $EatingDisorderTasksRouteExtension on EatingDisorderTasksRoute {
         '/home/eating-disorder/tasks',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $EatingDisorderFoodCreativeRouteExtension
@@ -1027,9 +1195,12 @@ extension $EatingDisorderFoodCreativeRouteExtension
         '/home/eating-disorder/tasks/food-creative',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $EatingDisorderFoodMotivationRouteExtension
@@ -1041,9 +1212,12 @@ extension $EatingDisorderFoodMotivationRouteExtension
         '/home/eating-disorder/tasks/food-motivation',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $EatingDisorderFoodChallengesRouteExtension
@@ -1055,9 +1229,12 @@ extension $EatingDisorderFoodChallengesRouteExtension
         '/home/eating-disorder/tasks/food-challenges',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $EatingDisorderLikeOnMyselfRouteExtension
@@ -1069,9 +1246,12 @@ extension $EatingDisorderLikeOnMyselfRouteExtension
         '/home/eating-disorder/tasks/like-on-myself',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $EatingDisorderFoodILikeRouteExtension
@@ -1083,9 +1263,12 @@ extension $EatingDisorderFoodILikeRouteExtension
         '/home/eating-disorder/tasks/food-i-like',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $EatingDisorderFoodAfraidOfRouteExtension
@@ -1097,9 +1280,12 @@ extension $EatingDisorderFoodAfraidOfRouteExtension
         '/home/eating-disorder/tasks/food-afraid-of',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $EatingDisorderSamplesRouteExtension on EatingDisorderSamplesRoute {
@@ -1110,9 +1296,12 @@ extension $EatingDisorderSamplesRouteExtension on EatingDisorderSamplesRoute {
         '/home/eating-disorder/samples',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $EatingDisorderDistractionsRouteExtension
@@ -1124,9 +1313,12 @@ extension $EatingDisorderDistractionsRouteExtension
         '/home/eating-disorder/distraction',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $MealPlanRouteExtension on MealPlanRoute {
@@ -1136,9 +1328,12 @@ extension $MealPlanRouteExtension on MealPlanRoute {
         '/home/eating-disorder/meal-plan',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 extension $EatingDisorderContactsRouteExtension on EatingDisorderContactsRoute {
@@ -1149,9 +1344,12 @@ extension $EatingDisorderContactsRouteExtension on EatingDisorderContactsRoute {
         '/home/eating-disorder/contacts',
       );
 
-  void go(BuildContext context) => context.go(location, extra: this);
+  void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location, extra: this);
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 }
 
 const _$BreathingGameShapeEnumMap = {
