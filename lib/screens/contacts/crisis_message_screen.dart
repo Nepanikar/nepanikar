@@ -132,7 +132,8 @@ class _CrisisMessageContentState extends State<CrisisMessageContent> {
             builder: (_, snapshot) {
               final contactAddress =
                   _hasInitialValues ? widget.contactAddress! : snapshot.data?.item1 ?? '';
-              final message = _hasInitialValues ? '' : snapshot.data?.item2 ?? '';
+              final message =
+                  _hasInitialValues ? _messageTextController.text : snapshot.data?.item2 ?? '';
 
               return Column(
                 children: [
