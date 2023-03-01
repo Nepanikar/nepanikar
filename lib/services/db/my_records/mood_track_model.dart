@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
-import 'package:nepanikar/helpers/iterable_helpers.dart';
 import 'package:nepanikar/services/db/filters.dart';
+import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 
 part 'mood_track_model.freezed.dart';
 
@@ -61,7 +61,7 @@ enum Mood {
     }
   }
 
-  static Mood? fromInteger(int value) => Mood.values.elementAtOrNull(value);
+  static Mood? fromInteger(int value) => Mood.values.safeElementAtOrNull(value);
 }
 
 @freezed

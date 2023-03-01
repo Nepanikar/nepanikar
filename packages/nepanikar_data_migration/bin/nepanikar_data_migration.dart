@@ -27,10 +27,10 @@ Future<void> main(List<String> arguments) async {
   );
 
   print('\n');
-  print(conf.depressionModuleConfig?.depressionActivityPlanConfig.toString());
+  print(conf.depressionModuleConfig?.depressionActivityPlanConfig);
 
   print('\n');
-  print(conf.eatingDisorderModuleConfig?.eatingDisorderFoodCreativeConfig.toString());
+  print(conf.eatingDisorderModuleConfig?.eatingDisorderFoodCreativeConfig);
 
   // const filePath2 = './bin/example_data/DontPanic_large.conf';
   // final conf2 = nep_data_migration.NepanikarConfigParser.parseConfigFile(File(filePath2));

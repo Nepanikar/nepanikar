@@ -59,7 +59,7 @@ extension NepanikarParserStringExt on String {
       dateTime =
           DateFormat(dateTimePattern ?? NepanikarConfigParser.QT_DATE_TIME_PATTERN).parse(strValue);
     } catch (e) {
-      print(e.toString());
+      print(e);
 
       // Trying out fallback languages.
       for (final locale in fallbackParseLocales) {
@@ -69,7 +69,7 @@ extension NepanikarParserStringExt on String {
                   .parse(strValue);
           break;
         } catch (e) {
-          print(e.toString());
+          print(e);
           continue;
         }
       }

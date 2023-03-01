@@ -25,7 +25,6 @@ class NepanikarTheme {
           onSecondary: Colors.white,
           error: NepanikarColors.error,
         ),
-        errorColor: NepanikarColors.error,
         primarySwatch: NepanikarColors.primarySwatch,
         appBarTheme: AppBarTheme(
           backgroundColor: NepanikarColors.primary,
@@ -80,7 +79,6 @@ class NepanikarTheme {
             ),
           ),
         ),
-        toggleableActiveColor: NepanikarColors.primary,
         unselectedWidgetColor: const Color(0xffA083B8),
         inputDecorationTheme: InputDecorationTheme(
           contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -141,6 +139,36 @@ class NepanikarTheme {
         ),
         listTileTheme: const ListTileThemeData(
           horizontalTitleGap: 16,
+        ),
+        checkboxTheme: CheckboxThemeData(
+          fillColor: MaterialStateProperty.resolveWith<Color?>((states) {
+            if (states.contains(MaterialState.selected)) {
+              return NepanikarColors.primary;
+            }
+            return null;
+          }),
+        ),
+        radioTheme: RadioThemeData(
+          fillColor: MaterialStateProperty.resolveWith<Color?>((states) {
+            if (states.contains(MaterialState.selected)) {
+              return NepanikarColors.primary;
+            }
+            return null;
+          }),
+        ),
+        switchTheme: SwitchThemeData(
+          thumbColor: MaterialStateProperty.resolveWith<Color?>((states) {
+            if (states.contains(MaterialState.selected)) {
+              return NepanikarColors.primary;
+            }
+            return null;
+          }),
+          trackColor: MaterialStateProperty.resolveWith<Color?>((states) {
+            if (states.contains(MaterialState.selected)) {
+              return NepanikarColors.primary;
+            }
+            return null;
+          }),
         ),
       );
 }

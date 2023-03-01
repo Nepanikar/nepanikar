@@ -2,8 +2,8 @@ definitions:
   instance: &instance
     max_build_duration: 60
   env_versions: &env_versions
-    flutter: 3.3.9
-    xcode: 14.1
+    flutter: 3.7.1
+    xcode: 14.2
     cocoapods: default
   artifacts: &artifacts
     - build/**/outputs/bundle/**/*.apk

@@ -113,13 +113,14 @@ class _ExportScreenState extends State<ExportScreen> {
                 description: context.l10n.export_old_app_description,
                 image: null,
                 onTap: () async {
+                  final l10n = context.l10n;
                   final fileContent =
                       await File(_saveDirectories.oldAppDataConfigFileBackupPath).readAsString();
                   final uri = Uri(
                     scheme: 'mailto',
                     path: AppConstants.nepanikarContactEmail,
                     query:
-                        'subject=${'${context.l10n.counselling_email_subject}: Export dat ze staré verze aplikace'}'
+                        'subject=${'${l10n.counselling_email_subject}: ${l10n.export_old_app_title}'}'
                         '&body=${Uri.encodeComponent(fileContent)}',
                   );
                   if (await canLaunchUrl(uri)) {
