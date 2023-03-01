@@ -97,8 +97,6 @@ workflows:
         submit_to_testflight: false
         submit_to_app_store: true
         release_type: MANUAL
-        beta_groups:
-          - $TESTFLIGHT_EXTERNAL_GROUP_NAME
       google_play:
         credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
         track: production
