@@ -15,7 +15,7 @@ dependencies:
   equatable: ^2.0.5
   firebase_analytics: ^10.1.4
   firebase_core: ^2.7.0
-  firebase_crashlytics: ^3.0.11
+  firebase_crashlytics: ^3.0.15
   fl_chart: 0.55.2 # Do not upgrade, https://github.com/imaNNeo/fl_chart/issues/1255
   flutter:
     sdk: flutter
