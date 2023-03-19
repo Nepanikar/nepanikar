@@ -9,6 +9,7 @@ environment:
 dependencies:
   assets_audio_player: ^3.0.6
   auto_size_text: ^3.0.0
+  awesome_notifications: ^0.7.4+1
   collection: ^1.17.0
   cupertino_icons: ^1.0.5
   email_validator: ^2.1.17

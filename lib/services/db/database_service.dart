@@ -34,13 +34,13 @@ class DatabaseService {
 
   Future<void> _initModuleDaos(Database db) async {
     database = db;
-    _userSettingsDao = await UserSettingsDao(dbService: this).init();
-    _depressionModuleDb = await DepressionModuleDb(this).initModuleDaos();
-    _selfHarmModuleDb = await SelfHarmModuleDb(this).initModuleDaos();
-    _suicidalThoughtsModuleDb = await SuicidalThoughtsModuleDb(this).initModuleDaos();
-    _eatingDisorderModuleDb = await EatingDisorderModuleDb(this).initModuleDaos();
-    _myRecordsModuleDb = await MyRecordsModuleDb(this).initModuleDaos();
-    _myContactsModuleDb = await MyContactsModuleDb(this).initModuleDaos();
+    userSettingsDao = await UserSettingsDao(dbService: this).init();
+    depressionModuleDb = await DepressionModuleDb(this).initModuleDaos();
+    selfHarmModuleDb = await SelfHarmModuleDb(this).initModuleDaos();
+    suicidalThoughtsModuleDb = await SuicidalThoughtsModuleDb(this).initModuleDaos();
+    eatingDisorderModuleDb = await EatingDisorderModuleDb(this).initModuleDaos();
+    myRecordsModuleDb = await MyRecordsModuleDb(this).initModuleDaos();
+    myContactsModuleDb = await MyContactsModuleDb(this).initModuleDaos();
     _areDaosInitialized = true;
   }
 
@@ -50,13 +50,13 @@ class DatabaseService {
 
   late final StoreRef<String, dynamic> mainStore;
 
-  late final UserSettingsDao _userSettingsDao;
-  late final DepressionModuleDb _depressionModuleDb;
-  late final SelfHarmModuleDb _selfHarmModuleDb;
-  late final SuicidalThoughtsModuleDb _suicidalThoughtsModuleDb;
-  late final EatingDisorderModuleDb _eatingDisorderModuleDb;
-  late final MyRecordsModuleDb _myRecordsModuleDb;
-  late final MyContactsModuleDb _myContactsModuleDb;
+  late final UserSettingsDao userSettingsDao;
+  late final DepressionModuleDb depressionModuleDb;
+  late final SelfHarmModuleDb selfHarmModuleDb;
+  late final SuicidalThoughtsModuleDb suicidalThoughtsModuleDb;
+  late final EatingDisorderModuleDb eatingDisorderModuleDb;
+  late final MyRecordsModuleDb myRecordsModuleDb;
+  late final MyContactsModuleDb myContactsModuleDb;
 
   bool _areDaosInitialized = false;
 
@@ -103,12 +103,12 @@ class DatabaseService {
   }
 
   Future<void> preloadDefaultData(AppLocalizations l10n) async {
-    await _depressionModuleDb.preloadDefaultModuleData(l10n);
-    await _selfHarmModuleDb.preloadDefaultModuleData(l10n);
-    await _suicidalThoughtsModuleDb.preloadDefaultModuleData(l10n);
-    await _eatingDisorderModuleDb.preloadDefaultModuleData(l10n);
-    await _myRecordsModuleDb.preloadDefaultModuleData(l10n);
-    await _myContactsModuleDb.preloadDefaultModuleData(l10n);
+    await depressionModuleDb.preloadDefaultModuleData(l10n);
+    await selfHarmModuleDb.preloadDefaultModuleData(l10n);
+    await suicidalThoughtsModuleDb.preloadDefaultModuleData(l10n);
+    await eatingDisorderModuleDb.preloadDefaultModuleData(l10n);
+    await myRecordsModuleDb.preloadDefaultModuleData(l10n);
+    await myContactsModuleDb.preloadDefaultModuleData(l10n);
     await _setDataPreloaded();
   }
 
@@ -230,7 +230,7 @@ class DatabaseService {
     final depressionModuleConfig = nepanikarConfig.depressionModuleConfig;
     if (depressionModuleConfig != null) {
       try {
-        await _depressionModuleDb.doModuleOldVersionMigration(depressionModuleConfig);
+        await depressionModuleDb.doModuleOldVersionMigration(depressionModuleConfig);
       } catch (e, s) {
         await logExceptionToCrashlytics(
           e,
@@ -244,7 +244,7 @@ class DatabaseService {
     final selfHarmModuleConfig = nepanikarConfig.selfHarmModuleConfig;
     if (selfHarmModuleConfig != null) {
       try {
-        await _selfHarmModuleDb.doModuleOldVersionMigration(selfHarmModuleConfig);
+        await selfHarmModuleDb.doModuleOldVersionMigration(selfHarmModuleConfig);
       } catch (e, s) {
         await logExceptionToCrashlytics(
           e,
@@ -258,7 +258,7 @@ class DatabaseService {
     final suicidalThoughtsModuleConfig = nepanikarConfig.suicidalThoughtsModuleConfig;
     if (suicidalThoughtsModuleConfig != null) {
       try {
-        await _suicidalThoughtsModuleDb.doModuleOldVersionMigration(suicidalThoughtsModuleConfig);
+        await suicidalThoughtsModuleDb.doModuleOldVersionMigration(suicidalThoughtsModuleConfig);
       } catch (e, s) {
         await logExceptionToCrashlytics(
           e,
@@ -272,7 +272,7 @@ class DatabaseService {
     final eatingDisorderModuleConfig = nepanikarConfig.eatingDisorderModuleConfig;
     if (eatingDisorderModuleConfig != null) {
       try {
-        await _eatingDisorderModuleDb.doModuleOldVersionMigration(eatingDisorderModuleConfig);
+        await eatingDisorderModuleDb.doModuleOldVersionMigration(eatingDisorderModuleConfig);
       } catch (e, s) {
         await logExceptionToCrashlytics(
           e,
@@ -286,7 +286,7 @@ class DatabaseService {
     final myRecordsModuleConfig = nepanikarConfig.myRecordsModuleConfig;
     if (myRecordsModuleConfig != null) {
       try {
-        await _myRecordsModuleDb.doModuleOldVersionMigration(myRecordsModuleConfig);
+        await myRecordsModuleDb.doModuleOldVersionMigration(myRecordsModuleConfig);
       } catch (e, s) {
         await logExceptionToCrashlytics(
           e,
@@ -300,7 +300,7 @@ class DatabaseService {
     final myContactsModuleConfig = nepanikarConfig.myContactsModuleConfig;
     if (myContactsModuleConfig != null) {
       try {
-        await _myContactsModuleDb.doModuleOldVersionMigration(myContactsModuleConfig);
+        await myContactsModuleDb.doModuleOldVersionMigration(myContactsModuleConfig);
       } catch (e, s) {
         await logExceptionToCrashlytics(
           e,
@@ -317,12 +317,12 @@ class DatabaseService {
 
   Future<void> clearAll() async {
     await mainStore.delete(database);
-    await _userSettingsDao.clear();
-    await _depressionModuleDb.clearModule();
-    await _selfHarmModuleDb.clearModule();
-    await _suicidalThoughtsModuleDb.clearModule();
-    await _eatingDisorderModuleDb.clearModule();
-    await _myRecordsModuleDb.clearModule();
-    await _myContactsModuleDb.clearModule();
+    await userSettingsDao.clear();
+    await depressionModuleDb.clearModule();
+    await selfHarmModuleDb.clearModule();
+    await suicidalThoughtsModuleDb.clearModule();
+    await eatingDisorderModuleDb.clearModule();
+    await myRecordsModuleDb.clearModule();
+    await myContactsModuleDb.clearModule();
   }
 }

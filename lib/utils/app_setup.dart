@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -13,6 +14,7 @@ import 'package:nepanikar/app/router/go_router_config.dart';
 import 'package:nepanikar/firebase_options.dart';
 import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/services/export_service.dart';
+import 'package:nepanikar/services/notifications/notifications_service.dart';
 import 'package:nepanikar/services/save_directories.dart';
 import 'package:nepanikar/utils/app_config.dart';
 import 'package:nepanikar/utils/contacts_data_manager.dart';
@@ -48,7 +50,7 @@ Future<void> setup() async {
 
   // router
   registry.registerSingleton<GoRouter>(goRouterConfig);
-  registry.registerLazySingleton<GlobalKey<NavigatorState>>(() => GlobalKey());
+  registry.registerLazySingleton<GlobalKey<NavigatorState>>(() => GlobalKey<NavigatorState>());
 
   // services
   registry.registerSingleton<SaveDirectories>(SaveDirectories());
@@ -60,6 +62,15 @@ Future<void> setup() async {
     ),
   );
   await registry.get<DatabaseService>().init();
+
+  registry.registerSingleton(
+    NotificationsService(
+      router: registry.get<GoRouter>(),
+      awesomeNotifications: AwesomeNotifications(),
+      databaseService: registry.get<DatabaseService>(),
+    ),
+  );
+  await registry.get<NotificationsService>().init();
 
   registry.registerSingleton(
     ExportService(

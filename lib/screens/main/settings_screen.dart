@@ -14,6 +14,7 @@ import 'package:nepanikar/screens/settings/export_screen.dart';
 import 'package:nepanikar/screens/settings/languages_screen.dart';
 import 'package:nepanikar/screens/settings/sponsors_screen.dart';
 import 'package:nepanikar/services/db/database_service.dart';
+import 'package:nepanikar/services/notifications/notifications_service.dart';
 import 'package:nepanikar/utils/app_config.dart';
 import 'package:nepanikar/utils/extensions.dart';
 import 'package:nepanikar/utils/registry.dart';
@@ -31,6 +32,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
   AppConfig get _appConfig => registry.get<AppConfig>();
 
   DatabaseService get _databaseService => registry.get<DatabaseService>();
+
+  NotificationsService get _notificationsService => registry.get<NotificationsService>();
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +54,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 children: [
                   _SettingsMenuItem(
                     hideTopSeparator: true,
+                    leading: Assets.icons.notificationBell.svg(),
+                    onTap: _notificationsService.checkPermission,
+                    text: context.l10n.notifications,
+                  ),
+                  _SettingsMenuItem(
                     leading: Assets.icons.deleteData.svg(),
                     text: context.l10n.reset_inputs,
                     onTap: () {
@@ -63,6 +71,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           final l10n = context.l10n;
                           await _databaseService.clearAll();
                           await _databaseService.preloadDefaultData(l10n);
+                          await _notificationsService.cancelAllScheduledNotifications();
                           if (mounted) {
                             context.hideCurrentSnackBar();
                             context.showSuccessSnackbar(

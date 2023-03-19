@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:nepanikar/services/notifications/notification_type.dart';
 
 part 'user_settings_models.freezed.dart';
 part 'user_settings_models.g.dart';
@@ -23,4 +24,18 @@ class UserLanguage with _$UserLanguage {
       );
 
   Locale toLocale() => Locale(languageCode, countryCode);
+}
+
+@freezed
+class NotificationTypeSettings with _$NotificationTypeSettings {
+  const factory NotificationTypeSettings({
+    required NotificationType type,
+    required int scheduledHour,
+    required int scheduledMinute,
+  }) = _NotificationTypeSettings;
+
+  const NotificationTypeSettings._();
+
+  factory NotificationTypeSettings.fromJson(Map<String, Object?> json) =>
+      _$NotificationTypeSettingsFromJson(json);
 }

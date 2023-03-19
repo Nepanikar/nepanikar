@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -9,6 +11,8 @@ import 'package:nepanikar/helpers/date_helpers.dart';
 import 'package:nepanikar/providers/mood_chart_filter_provider.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_dao.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
+import 'package:nepanikar/services/notifications/notification_type.dart';
+import 'package:nepanikar/services/notifications/notifications_service.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/mood/mood_chart.dart';
 import 'package:nepanikar/widgets/mood/mood_picker.dart';
@@ -29,13 +33,17 @@ class MoodTrackScreen<T extends MoodTrackDao> extends StatelessWidget {
     this.appBarTitle,
     this.moodTitle,
     this.showMoodLabels = true,
+    this.notificationType = NotificationType.moodReminder,
   });
 
   final String? appBarTitle;
   final String? moodTitle;
   final bool showMoodLabels;
+  final NotificationType notificationType;
 
   T get _trackDao => registry.get<T>();
+
+  NotificationsService get _notificationsService => registry.get<NotificationsService>();
 
   DateTime get _now => getNowDateTimeLocal();
 
@@ -60,10 +68,14 @@ class MoodTrackScreen<T extends MoodTrackDao> extends StatelessWidget {
                   final latestMoodTrack = snapshot.data;
                   return MoodPicker(
                     activeMood: latestMoodTrack?.mood,
-                    onPick: _trackDao.saveMood,
                     title: moodTitle,
                     autoSizeTitle: false,
                     showLabels: showMoodLabels,
+                    onPick: (mood) async {
+                      final l10n = context.l10n;
+                      await _trackDao.saveMood(mood);
+                      unawaited(_notificationsService.rescheduleNotifications(l10n));
+                    },
                   );
                 },
               ),

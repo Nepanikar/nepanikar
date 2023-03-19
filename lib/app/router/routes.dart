@@ -64,6 +64,7 @@ import 'package:nepanikar/screens/main/main_screen.dart';
 import 'package:nepanikar/screens/settings/about_app_screen.dart';
 import 'package:nepanikar/screens/settings/export_screen.dart';
 import 'package:nepanikar/screens/settings/languages_screen.dart';
+import 'package:nepanikar/screens/settings/notification_settings_screen.dart';
 import 'package:nepanikar/screens/settings/sponsors_screen.dart';
 
 part 'routes.g.dart';
@@ -100,6 +101,7 @@ class MainRoute extends GoRouteData {
 }
 
 const _settingsRoutes = <TypedGoRoute<GoRouteData>>[
+  TypedGoRoute<NotificationSettingsRoute>(path: 'settings/notification-settings'),
   TypedGoRoute<SponsorsRoute>(path: 'settings/sponsors'),
   TypedGoRoute<AboutAppRoute>(path: 'settings/about-app'),
   TypedGoRoute<ExportRoute>(path: 'settings/export'),

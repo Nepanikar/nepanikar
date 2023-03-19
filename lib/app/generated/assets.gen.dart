@@ -106,6 +106,9 @@ class $AssetsIconsGen {
 
   $AssetsIconsNavigationGen get navigation => const $AssetsIconsNavigationGen();
 
+  /// File path: assets/icons/notification_bell.svg
+  SvgGenImage get notificationBell => const SvgGenImage('assets/icons/notification_bell.svg');
+
   /// File path: assets/icons/phone.svg
   SvgGenImage get phone => const SvgGenImage('assets/icons/phone.svg');
 
@@ -139,6 +142,7 @@ class $AssetsIconsGen {
         language,
         logo,
         marker,
+        notificationBell,
         phone,
         settings,
         spinner,

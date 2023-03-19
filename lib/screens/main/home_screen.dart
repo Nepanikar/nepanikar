@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -14,6 +16,7 @@ import 'package:nepanikar/screens/home/self_harm/self_harm_screen.dart';
 import 'package:nepanikar/screens/home/suicidal_thoughts/suicidal_thoughts_screen.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_dao.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
+import 'package:nepanikar/services/notifications/notifications_service.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/contacts/quick_help_button.dart';
 import 'package:nepanikar/widgets/home_tile.dart';
@@ -23,6 +26,8 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   MoodTrackDao get _moodTrackDao => registry.get<MoodTrackDao>();
+
+  NotificationsService get _notificationsService => registry.get<NotificationsService>();
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +105,11 @@ class HomeScreen extends StatelessWidget {
                     final latestMoodTrack = snapshot.data;
                     return MoodPicker(
                       activeMood: latestMoodTrack?.mood,
-                      onPick: (mood) async => _moodTrackDao.saveMood(mood),
+                      onPick: (mood) async {
+                        final l10n = context.l10n;
+                        await _moodTrackDao.saveMood(mood);
+                        unawaited(_notificationsService.rescheduleNotifications(l10n));
+                      },
                     );
                   },
                 ),
