@@ -69,7 +69,7 @@ class NotificationsService {
   // Cancel all scheduled notifications.
   Future<void> cancelAllScheduledNotifications() async {
     debugPrint('NOTIFICATION_SERVICE: Cancelling all scheduled notifications');
-    await _awesomeNotifications.cancelAll();
+    await _awesomeNotifications.cancelAllSchedules();
   }
 
   /// Schedule notification ahead for 7 days.
