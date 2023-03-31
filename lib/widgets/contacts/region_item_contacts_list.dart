@@ -31,52 +31,54 @@ class RegionItemContactsList extends StatelessWidget {
       color: NepanikarColors.primary,
       decoration: TextDecoration.underline,
     );
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        _buildUniversityHeader(),
-        ...regionItemContact.contactAddresses.map((contact) {
-          final linkifiedText = linkify(
-            contact,
-            linkifiers: const [EmailLinkifier(), UrlLinkifier(), PhoneNumberLinkifier()],
-            options: const LinkifyOptions(looseUrl: true, removeWww: true),
-          );
+    return SelectionArea(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _buildUniversityHeader(),
+          ...regionItemContact.contactAddresses.map((contact) {
+            final linkifiedText = linkify(
+              contact,
+              linkifiers: const [EmailLinkifier(), UrlLinkifier(), PhoneNumberLinkifier()],
+              options: const LinkifyOptions(looseUrl: true, removeWww: true),
+            );
 
-          return Padding(
-            padding: const EdgeInsets.only(top: 12),
-            child: Text.rich(
-              TextSpan(
-                children: linkifiedText.map(
-                  (e) {
-                    if (e is LinkableElement) {
-                      final displayText = e.text;
-                      final fullLink = e.url;
-                      final displayUrlLink = Uri.tryParse(fullLink)?.host ?? displayText;
-                      final isEmail = EmailValidator.validate(displayText);
-                      return WidgetSpan(
-                        child: GestureDetector(
-                          onTap: () async => launchLinkableContact(e),
-                          onLongPress: () async => copyContact(context, displayText),
-                          child: Text(
-                            isEmail || e is PhoneNumberElement ? displayText : displayUrlLink,
-                            style: linkifiedTextStyle,
+            return Padding(
+              padding: const EdgeInsets.only(top: 12),
+              child: Text.rich(
+                TextSpan(
+                  children: linkifiedText.map(
+                    (e) {
+                      if (e is LinkableElement) {
+                        final displayText = e.text;
+                        final fullLink = e.url;
+                        final displayUrlLink = Uri.tryParse(fullLink)?.host ?? displayText;
+                        final isEmail = EmailValidator.validate(displayText);
+                        return WidgetSpan(
+                          child: GestureDetector(
+                            onTap: () async => launchLinkableContact(e),
+                            onLongPress: () async => copyContact(context, displayText),
+                            child: Text(
+                              isEmail || e is PhoneNumberElement ? displayText : displayUrlLink,
+                              style: linkifiedTextStyle,
+                            ),
                           ),
-                        ),
+                        );
+                      }
+                      return TextSpan(
+                        text: e.text,
+                        style: linkifiedTextStyle.copyWith(decoration: TextDecoration.none),
                       );
-                    }
-                    return TextSpan(
-                      text: e.text,
-                      style: linkifiedTextStyle.copyWith(decoration: TextDecoration.none),
-                    );
-                  },
-                ).toList(),
+                    },
+                  ).toList(),
+                ),
+                style: linkifiedTextStyle,
               ),
-              style: linkifiedTextStyle,
-            ),
-          );
-        }),
-      ],
+            );
+          }),
+        ],
+      ),
     );
   }
 }
