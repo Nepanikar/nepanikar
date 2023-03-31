@@ -13,15 +13,16 @@ abstract class NotificationController {
   static Future<void> onNotificationDisplayedMethod(
     ReceivedNotification receivedNotification,
   ) async {
-    // This may not work on iOS (https://github.com/rafaelsetragni/awesome_notifications/issues/743).
     final notificationData = receivedNotification.toAppNotificationData();
     debugPrint('NOTIFICATION_CONTROLLER: Notification received: ${notificationData?.type.name}');
-    await FirebaseAnalytics.instance.logEvent(
-      name: 'notification_received',
-      parameters: {
-        'notification_type': notificationData?.type.name,
-      },
-    );
+    // Commented out cuz this does not work on iOS
+    // (https://github.com/rafaelsetragni/awesome_notifications/issues/743).
+    // await FirebaseAnalytics.instance.logEvent(
+    //   name: 'notification_received',
+    //   parameters: {
+    //     'notification_type': notificationData?.type.name,
+    //   },
+    // );
   }
 
   /// Use this method to detect if the user dismissed a notification.

@@ -45,6 +45,7 @@ class NotificationsService {
         ),
       ],
     );
+    await _awesomeNotifications.resetGlobalBadge();
     await _awesomeNotifications.setListeners(
       onActionReceivedMethod: NotificationController.onActionReceivedMethod,
       onNotificationDisplayedMethod: NotificationController.onNotificationDisplayedMethod,
@@ -68,7 +69,10 @@ class NotificationsService {
 
   // Cancel all scheduled notifications.
   Future<void> cancelAllScheduledNotifications() async {
-    debugPrint('NOTIFICATION_SERVICE: Cancelling all scheduled notifications');
+    debugPrint(
+      'NOTIFICATION_SERVICE: Cancelling all scheduled notifications and resetting the badge count.',
+    );
+    await _awesomeNotifications.resetGlobalBadge();
     await _awesomeNotifications.cancelAllSchedules();
   }
 
