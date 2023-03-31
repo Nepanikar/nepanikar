@@ -155,14 +155,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             width: 27,
                           ),
                           GestureDetector(
-                            onTap: () => launchUrLink(AppConstants.nepanikarInstagram),
+                            onTap: () => launchUrLink(
+                              AppConstants.nepanikarInstagram,
+                              launchMode: LaunchMode.externalApplication,
+                            ),
                             child: Assets.icons.instagram.svg(),
                           ),
                           const SizedBox(
                             width: 27,
                           ),
                           GestureDetector(
-                            onTap: () => launchUrLink(AppConstants.nepanikarFacebook),
+                            onTap: () => launchUrLink(
+                              AppConstants.nepanikarFacebook,
+                              launchMode: LaunchMode.externalApplication,
+                            ),
                             child: Assets.icons.facebook.svg(),
                           ),
                         ],

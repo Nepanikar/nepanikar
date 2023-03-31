@@ -90,7 +90,9 @@ class PhoneContactTile extends StatelessWidget {
                       ),
                     ],
                   ),
-                  onTap: () async => launchPhoneNum(subContact.unformattedTel),
+                  onTap: () async => subContact.tel.contains('http')
+                      ? launchUrLink(subContact.tel)
+                      : launchPhoneNum(subContact.unformattedTel),
                   onLongPress: () async => copyContact(context, subContact.unformattedTel),
                 ),
               )
