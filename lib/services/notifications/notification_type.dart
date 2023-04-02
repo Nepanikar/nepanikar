@@ -3,7 +3,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/screens/home/my_records/mood_track_screen.dart';
 import 'package:nepanikar/screens/home/my_records/my_records_sleep_track_screen.dart';
-import 'package:nepanikar/services/db/database_service.dart';
+import 'package:nepanikar/services/db/my_records/mood_track_dao.dart';
+import 'package:nepanikar/services/db/my_records/my_records_sleep_track_dao.dart';
+import 'package:nepanikar/utils/registry.dart';
 
 enum NotificationType {
   moodReminder,
@@ -18,12 +20,12 @@ enum NotificationType {
     }
   }
 
-  Future<bool> isTodayAlreadyTracked(DatabaseService db) async {
+  Future<bool> isTodayAlreadyTracked() async {
     switch (this) {
       case NotificationType.moodReminder:
-        return db.myRecordsModuleDb.moodTrackDao.isTodayTracked();
+        return registry.get<MoodTrackDao>().isTodayTracked();
       case NotificationType.sleepRateReminder:
-        return db.myRecordsModuleDb.myRecordsSleepTrackDao.isTodayTracked();
+        return registry.get<MyRecordsSleepTrackDao>().isTodayTracked();
     }
   }
 

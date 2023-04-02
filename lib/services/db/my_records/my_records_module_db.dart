@@ -13,59 +13,59 @@ class MyRecordsModuleDb implements NepanikarModuleDb {
 
   final DatabaseService _dbService;
 
-  late final MoodTrackDao moodTrackDao;
-  late final MyRecordsSleepTrackDao myRecordsSleepTrackDao;
-  late final MyRecordsDiaryDao myRecordsDiaryDao;
-  late final MyRecordsJournalDao myRecordsJournalDao;
-  late final MyRecordsFoodRecordDao myRecordsFoodRecordDao;
+  late final MoodTrackDao _moodTrackDao;
+  late final MyRecordsSleepTrackDao _myRecordsSleepTrackDao;
+  late final MyRecordsDiaryDao _myRecordsDiaryDao;
+  late final MyRecordsJournalDao _myRecordsJournalDao;
+  late final MyRecordsFoodRecordDao _myRecordsFoodRecordDao;
 
   @override
   Future<MyRecordsModuleDb> initModuleDaos() async {
-    moodTrackDao = await MoodTrackDao(dbService: _dbService).init();
-    myRecordsSleepTrackDao = await MyRecordsSleepTrackDao(dbService: _dbService).init();
-    myRecordsDiaryDao = await MyRecordsDiaryDao(dbService: _dbService).init();
-    myRecordsJournalDao = await MyRecordsJournalDao(dbService: _dbService).init();
-    myRecordsFoodRecordDao = await MyRecordsFoodRecordDao(dbService: _dbService).init();
+    _moodTrackDao = await MoodTrackDao(dbService: _dbService).init();
+    _myRecordsSleepTrackDao = await MyRecordsSleepTrackDao(dbService: _dbService).init();
+    _myRecordsDiaryDao = await MyRecordsDiaryDao(dbService: _dbService).init();
+    _myRecordsJournalDao = await MyRecordsJournalDao(dbService: _dbService).init();
+    _myRecordsFoodRecordDao = await MyRecordsFoodRecordDao(dbService: _dbService).init();
     return this;
   }
 
   @override
   Future<void> clearModule() async {
-    await moodTrackDao.clear();
-    await myRecordsSleepTrackDao.clear();
-    await myRecordsDiaryDao.clear();
-    await myRecordsJournalDao.clear();
-    await myRecordsFoodRecordDao.clear();
+    await _moodTrackDao.clear();
+    await _myRecordsSleepTrackDao.clear();
+    await _myRecordsDiaryDao.clear();
+    await _myRecordsJournalDao.clear();
+    await _myRecordsFoodRecordDao.clear();
   }
 
   Future<void> doModuleOldVersionMigration(MyRecordsModuleDTO moduleConfig) async {
     final moodTrackConfig = moduleConfig.moodTrackConfig;
     if (moodTrackConfig != null) {
-      await moodTrackDao.doOldVersionMigration(moodTrackConfig);
+      await _moodTrackDao.doOldVersionMigration(moodTrackConfig);
     }
 
     final sleepTrackConfig = moduleConfig.sleepTrackConfig;
     if (sleepTrackConfig != null) {
       final sleepTrackValues = sleepTrackConfig.values;
       if (sleepTrackValues != null) {
-        await myRecordsSleepTrackDao
+        await _myRecordsSleepTrackDao
             .doOldVersionMigration(MyRecordsMoodTrackDTO.fromValues(sleepTrackValues));
       }
     }
 
     final diaryConfig = moduleConfig.diaryConfig;
     if (diaryConfig != null) {
-      await myRecordsDiaryDao.doOldVersionMigration(diaryConfig);
+      await _myRecordsDiaryDao.doOldVersionMigration(diaryConfig);
     }
 
     final journalConfig = moduleConfig.journalConfig;
     if (journalConfig != null) {
-      await myRecordsJournalDao.doOldVersionMigration(journalConfig);
+      await _myRecordsJournalDao.doOldVersionMigration(journalConfig);
     }
 
     final foodRecordConfig = moduleConfig.foodRecordConfig;
     if (foodRecordConfig != null) {
-      await myRecordsFoodRecordDao.doOldVersionMigration(foodRecordConfig);
+      await _myRecordsFoodRecordDao.doOldVersionMigration(foodRecordConfig);
     }
   }
 

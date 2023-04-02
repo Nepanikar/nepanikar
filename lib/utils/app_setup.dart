@@ -6,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
 // ignore: implementation_imports
 import 'package:flutter_localizations/src/utils/date_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -13,6 +14,7 @@ import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/router/go_router_config.dart';
 import 'package:nepanikar/firebase_options.dart';
 import 'package:nepanikar/services/db/database_service.dart';
+import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/services/export_service.dart';
 import 'package:nepanikar/services/notifications/notifications_service.dart';
 import 'package:nepanikar/services/save_directories.dart';
@@ -58,7 +60,7 @@ Future<void> setup() async {
 
   registry.registerSingleton<DatabaseService>(
     DatabaseService(
-      saveDirectories: registry.get<SaveDirectories>(),
+    saveDirectories: registry.get<SaveDirectories>(),
     ),
   );
   await registry.get<DatabaseService>().init();
@@ -67,7 +69,7 @@ Future<void> setup() async {
     NotificationsService(
       router: registry.get<GoRouter>(),
       awesomeNotifications: AwesomeNotifications(),
-      databaseService: registry.get<DatabaseService>(),
+      userSettingsDao: registry.get<UserSettingsDao>(),
     ),
   );
   await registry.get<NotificationsService>().init();

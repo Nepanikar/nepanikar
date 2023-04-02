@@ -8,7 +8,6 @@ import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/helpers/date_helpers.dart';
 import 'package:nepanikar/screens/settings/notification_settings_screen.dart';
-import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/services/notifications/app_notification_data_model.dart';
 import 'package:nepanikar/services/notifications/notification_controller.dart';
@@ -18,19 +17,17 @@ class NotificationsService {
   NotificationsService({
     required AwesomeNotifications awesomeNotifications,
     required GoRouter router,
-    required DatabaseService databaseService,
+    required UserSettingsDao userSettingsDao,
   })  : _awesomeNotifications = awesomeNotifications,
         _router = router,
-        _databaseService = databaseService;
+        _userSettingsDao = userSettingsDao;
 
   final GoRouter _router;
   final AwesomeNotifications _awesomeNotifications;
-  final DatabaseService _databaseService;
+  final UserSettingsDao _userSettingsDao;
 
   static const _basicChannelGroupKey = 'basic_channel_group';
   static const _basicChannelKey = 'basic_channel';
-
-  UserSettingsDao get _userSettingsDao => _databaseService.userSettingsDao;
 
   Future<void> init() async {
     await _awesomeNotifications.initialize(
@@ -95,7 +92,7 @@ class NotificationsService {
       final customDataPayload = AppNotificationData(type: type).toJson();
 
       const scheduleAheadDays = 8;
-      final isTodayTypeAlreadyTracked = await type.isTodayAlreadyTracked(_databaseService);
+      final isTodayTypeAlreadyTracked = await type.isTodayAlreadyTracked();
       final sevenDaysAheadList = !isTodayTypeAlreadyTracked
           ? List.generate(scheduleAheadDays, (i) => nowDate.add(Duration(days: i)))
           : List.generate(scheduleAheadDays - 1, (i) => nowDate.add(Duration(days: i + 1)));

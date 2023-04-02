@@ -28,7 +28,7 @@ class UserSettingsDao {
   static const _notificationKeyPrefix = 'notification_type_';
 
   String _getNotificationKey(NotificationType type) =>
-      '${_notificationKeyPrefix}_${type.name.toLowerCase()}';
+      '$_notificationKeyPrefix${type.name.toLowerCase()}';
 
   Locale _locale = initialLocale;
 
