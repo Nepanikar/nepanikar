@@ -60,7 +60,7 @@ Future<void> setup() async {
 
   registry.registerSingleton<DatabaseService>(
     DatabaseService(
-    saveDirectories: registry.get<SaveDirectories>(),
+      saveDirectories: registry.get<SaveDirectories>(),
     ),
   );
   await registry.get<DatabaseService>().init();
