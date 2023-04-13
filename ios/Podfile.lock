@@ -3,6 +3,9 @@ PODS:
     - Flutter
   - assets_audio_player_web (0.0.1):
     - Flutter
+  - awesome_notifications (0.0.5):
+    - Flutter
+    - IosAwnCore (= 0.7.3)
   - Firebase/Analytics (10.3.0):
     - Firebase/Core
   - Firebase/Core (10.3.0):
@@ -108,6 +111,7 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (7.10.0):
     - GoogleUtilities/Logger
+  - IosAwnCore (0.7.3)
   - nanopb (2.30909.0):
     - nanopb/decode (= 2.30909.0)
     - nanopb/encode (= 2.30909.0)
@@ -130,6 +134,7 @@ PODS:
 DEPENDENCIES:
   - assets_audio_player (from `.symlinks/plugins/assets_audio_player/ios`)
   - assets_audio_player_web (from `.symlinks/plugins/assets_audio_player_web/ios`)
+  - awesome_notifications (from `.symlinks/plugins/awesome_notifications/ios`)
   - firebase_analytics (from `.symlinks/plugins/firebase_analytics/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_crashlytics (from `.symlinks/plugins/firebase_crashlytics/ios`)
@@ -153,6 +158,7 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleUtilities
+    - IosAwnCore
     - nanopb
     - PromisesObjC
 
@@ -161,6 +167,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/assets_audio_player/ios"
   assets_audio_player_web:
     :path: ".symlinks/plugins/assets_audio_player_web/ios"
+  awesome_notifications:
+    :path: ".symlinks/plugins/awesome_notifications/ios"
   firebase_analytics:
     :path: ".symlinks/plugins/firebase_analytics/ios"
   firebase_core:
@@ -187,6 +195,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   assets_audio_player: edee322b9cb625571b830b35872ead1a295fd917
   assets_audio_player_web: 19826380c44375761aa0b9053665c1e3fbc3b86b
+  awesome_notifications: d63d9a25f126860f9a600850d99772237895b3ba
   Firebase: f92fc551ead69c94168d36c2b26188263860acd9
   firebase_analytics: 4f57c422c9c6225cd5ddd5fca28f92bde5fb21b5
   firebase_core: 1ae9f9aa76e6e1edc14fb181637ad466fd6c6fa4
@@ -202,6 +211,7 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: c7d6fff39bf2d829587d74088d582e32d75133c3
   GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f
   GoogleUtilities: bad72cb363809015b1f7f19beb1f1cd23c589f95
+  IosAwnCore: 6494e0e174d49f04f513e8a002187be226889a37
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   native_shared_preferences: 21a805f6149643c25a20a4f534692131faebadfe
   package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e

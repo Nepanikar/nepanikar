@@ -15,6 +15,10 @@ GoRoute get $mainRoute => GoRouteData.$route(
       factory: $MainRouteExtension._fromState,
       routes: [
         GoRouteData.$route(
+          path: 'settings/notification-settings',
+          factory: $NotificationSettingsRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: 'settings/sponsors',
           factory: $SponsorsRouteExtension._fromState,
         ),
@@ -283,6 +287,22 @@ extension $MainRouteExtension on MainRoute {
 
   String get location => GoRouteData.$location(
         '/',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+}
+
+extension $NotificationSettingsRouteExtension on NotificationSettingsRoute {
+  static NotificationSettingsRoute _fromState(GoRouterState state) =>
+      const NotificationSettingsRoute();
+
+  String get location => GoRouteData.$location(
+        '/settings/notification-settings',
       );
 
   void go(BuildContext context) => context.go(location);

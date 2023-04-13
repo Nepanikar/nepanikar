@@ -41,7 +41,9 @@ class PhoneContactTile extends StatelessWidget {
       image: Assets.illustrations.contacts.phones.svg(color: textColor),
       trailing: Text(contact.tel, style: _phoneNumTextStyle.copyWith(color: textColor)),
       backgroundColor: isPinned ? NepanikarColors.secondary : null,
-      onTap: () async => launchPhoneNum(contact.unformattedTel),
+      onTap: () async => contact.tel.contains('http')
+          ? launchUrLink(contact.tel)
+          : launchPhoneNum(contact.unformattedTel),
       onLongPress: () async => copyContact(context, contact.unformattedTel),
     );
   }

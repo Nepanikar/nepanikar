@@ -67,6 +67,12 @@ class MoodTrackDao with CustomFilters {
         }
       });
 
+  Future<bool> isTodayTracked() async {
+    final now = getNowDateUtc();
+    final record = await _store.findFirst(_db, finder: Finder(filter: getDateEqualsFilter(now)));
+    return record != null;
+  }
+
   Future<void> doOldVersionMigration(MyRecordsMoodTrackDTO moodTrackConfig) async {
     final valuesMap = moodTrackConfig.values;
     if (valuesMap != null) {

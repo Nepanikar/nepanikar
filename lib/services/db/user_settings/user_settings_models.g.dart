@@ -17,3 +17,24 @@ Map<String, dynamic> _$$_UserLanguageToJson(_$_UserLanguage instance) =>
       'languageCode': instance.languageCode,
       'countryCode': instance.countryCode,
     };
+
+_$_NotificationTypeSettings _$$_NotificationTypeSettingsFromJson(
+        Map<String, dynamic> json) =>
+    _$_NotificationTypeSettings(
+      type: $enumDecode(_$NotificationTypeEnumMap, json['type']),
+      scheduledHour: json['scheduledHour'] as int,
+      scheduledMinute: json['scheduledMinute'] as int,
+    );
+
+Map<String, dynamic> _$$_NotificationTypeSettingsToJson(
+        _$_NotificationTypeSettings instance) =>
+    <String, dynamic>{
+      'type': _$NotificationTypeEnumMap[instance.type]!,
+      'scheduledHour': instance.scheduledHour,
+      'scheduledMinute': instance.scheduledMinute,
+    };
+
+const _$NotificationTypeEnumMap = {
+  NotificationType.moodReminder: 'moodReminder',
+  NotificationType.sleepRateReminder: 'sleepRateReminder',
+};
