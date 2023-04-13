@@ -120,14 +120,6 @@ workflows:
         MAJOR_VERSION: "2"
         MINOR_VERSION: "5"
         TESTFLIGHT_EXTERNAL_GROUP_NAME: "App Store External Testing"
-    triggering:
-      events:
-        - push
-        - pull_request
-      branch_patterns:
-        - pattern: main
-          include: true
-          source: true
     scripts:
       - *local_properties
       - *get_packages
