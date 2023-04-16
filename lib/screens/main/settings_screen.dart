@@ -19,6 +19,7 @@ import 'package:nepanikar/utils/app_config.dart';
 import 'package:nepanikar/utils/extensions.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
+import 'package:nepanikar/widgets/semantics/semantics_widget_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -142,29 +143,30 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16),
                       child: Row(
                         children: [
-                          Text(
-                            context.l10n.follow_us,
-                            style: NepanikarFonts.bodySmallMedium.copyWith(fontSize: 15),
+                          ExcludeSemantics(
+                            child: Text(
+                              context.l10n.follow_us,
+                              style: NepanikarFonts.bodySmallMedium.copyWith(fontSize: 15),
+                            ),
                           ),
                           const Spacer(),
-                          GestureDetector(
+                          SemanticsWidgetButton(
+                            label: '${context.l10n.follow_us}: Web',
                             onTap: () => launchUrLink(AppConstants.nepanikarWeb),
                             child: Assets.icons.globe.svg(),
                           ),
-                          const SizedBox(
-                            width: 27,
-                          ),
-                          GestureDetector(
+                          const SizedBox(width: 27),
+                          SemanticsWidgetButton(
+                            label: '${context.l10n.follow_us}: Instagram',
                             onTap: () => launchUrLink(
                               AppConstants.nepanikarInstagram,
                               launchMode: LaunchMode.externalApplication,
                             ),
                             child: Assets.icons.instagram.svg(),
                           ),
-                          const SizedBox(
-                            width: 27,
-                          ),
-                          GestureDetector(
+                          const SizedBox(width: 27),
+                          SemanticsWidgetButton(
+                            label: '${context.l10n.follow_us}: Facebook',
                             onTap: () => launchUrLink(
                               AppConstants.nepanikarFacebook,
                               launchMode: LaunchMode.externalApplication,
