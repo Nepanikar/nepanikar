@@ -14,6 +14,17 @@ enum MathOperation {
     }
   }
 
+  String get semanticsSymbol {
+    switch (this) {
+      case MathOperation.add:
+        return 'plus';
+      case MathOperation.subtract:
+        return 'minus';
+      case MathOperation.multiply:
+        return '*';
+    }
+  }
+
   int calculate(int a, int b) {
     switch (this) {
       case MathOperation.add:

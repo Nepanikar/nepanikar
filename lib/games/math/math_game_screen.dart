@@ -9,6 +9,7 @@ import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/games/math/math_answer_result_state.dart';
 import 'package:nepanikar/games/math/math_equation_model.dart';
 import 'package:nepanikar/helpers/screen_resolution_helpers.dart';
+import 'package:nepanikar/helpers/semantics_helpers.dart';
 import 'package:nepanikar/utils/lottie_cache_manager.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_button.dart';
@@ -51,13 +52,18 @@ class _MathGameScreenState extends State<MathGameScreen> {
     if (textInput.isEmpty) return;
     if (isInputActionFromButton) await Future.delayed(_answerEvaluationDuration);
     if (_equation.isValid(textInput)) {
-      if (mounted) _setAnswerResultState(MathAnswerResultState.correct);
+      if (mounted) {
+        _setAnswerResultState(MathAnswerResultState.correct);
+        context.semanticsAnnounce(context.l10n.math_annouce_correct_answer);
+      }
       await Future.delayed(_winAnimDuration);
 
       if (mounted) _generateNewEquation();
       unawaited(analytics.logEvent(name: 'math_game_correct_answer'));
     } else {
       if (mounted) {
+        context.semanticsAnnounce(context.l10n.math_annouce_incorrect_answer);
+        context.semanticsAnnounce(_equation.getSemanticsText());
         _textEditingController.clear();
         _setAnswerResultState(MathAnswerResultState.wrong);
         if (!isInputActionFromButton) _focusNode.requestFocus();
@@ -80,10 +86,12 @@ class _MathGameScreenState extends State<MathGameScreen> {
   }
 
   void _generateNewEquation() {
+    final newEquation = MathEquation.generate();
+    context.semanticsAnnounce(newEquation.getSemanticsText());
     _textEditingController.clear();
     setState(() {
       _answerResultState = MathAnswerResultState.notAnsweredYet;
-      _equation = MathEquation.generate();
+      _equation = newEquation;
     });
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) _focusNode.requestFocus();
@@ -120,6 +128,7 @@ class _MathGameScreenState extends State<MathGameScreen> {
                           Align(
                             child: Text(
                               _equation.getDisplayText(),
+                              semanticsLabel: _equation.getSemanticsText(),
                               style: textStyle,
                             ),
                           ),
