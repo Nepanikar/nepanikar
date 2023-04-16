@@ -205,6 +205,8 @@ class _MyRecordsFoodRecordsDetailMenuDetailScreenState
                 TextFormField(
                   controller: _textEditingControllersMap[questionText],
                   textInputAction: TextInputAction.next,
+                  minLines: 1,
+                  maxLines: null,
                 ),
               ],
             ),

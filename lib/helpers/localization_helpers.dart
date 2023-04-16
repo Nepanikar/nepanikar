@@ -44,9 +44,9 @@ String pluralDays(
 }) {
   return Intl.plural(
     value,
-    one: 'Den',
-    few: 'Dny',
-    other: 'Dní',
+    one: context.l10n.plural_day_one,
+    few: context.l10n.plural_day_few,
+    other: context.l10n.plural_day_other,
     locale: Localizations.localeOf(context).languageCode,
   );
 }

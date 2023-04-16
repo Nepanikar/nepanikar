@@ -63,6 +63,14 @@ class _CrisisMessageContentState extends State<CrisisMessageContent> {
     _contactAddressAndMessageStream = _myContactsCrisisMessageDao.contactAddressAndMessageStream;
   }
 
+  @override
+  void dispose() {
+    _addressEmailController.dispose();
+    _messageTextController.dispose();
+    _messageFocusNode.dispose();
+    super.dispose();
+  }
+
   Widget _buildForm({
     required TextEditingController textController,
     required TextInputAction textInputAction,

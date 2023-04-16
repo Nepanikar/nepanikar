@@ -68,6 +68,8 @@ class _MyRecordsJournalDetailScreenState extends State<MyRecordsJournalDetailScr
 
   DateTime? _selectedDate;
 
+  bool _initialTextsSet = false;
+
   @override
   void initState() {
     super.initState();
@@ -97,7 +99,9 @@ class _MyRecordsJournalDetailScreenState extends State<MyRecordsJournalDetailScr
     );
   }
 
-  void _setTextsFromJournalRecord(JournalRecord journalRecord) {
+  void _setInitialTextsFromJournalRecord(JournalRecord journalRecord) {
+    if (_initialTextsSet) return;
+    _initialTextsSet = true;
     for (final answer in journalRecord.answers) {
       final controller = _textEditingControllersMap[answer.question];
       if (controller != null) {
@@ -120,7 +124,7 @@ class _MyRecordsJournalDetailScreenState extends State<MyRecordsJournalDetailScr
         builder: (_, snapshot) {
           if (!snapshot.hasData) return const SizedBox.shrink();
           final journalRecord = snapshot.data!;
-          _setTextsFromJournalRecord(journalRecord);
+          _setInitialTextsFromJournalRecord(journalRecord);
           if (_selectedDate == null) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               setState(() {
@@ -129,57 +133,59 @@ class _MyRecordsJournalDetailScreenState extends State<MyRecordsJournalDetailScr
             });
           }
 
-          return NepanikarScreenWrapper(
-            appBarTitle: context.l10n.journal,
-            appBarDescription: '',
-            isModuleList: false,
-            isCardStackLayout: true,
-            children: [
-              Text(context.l10n.date_of_note, style: labelTextStyle),
-              const SizedBox(height: 8),
-              NepanikarDatePicker(
-                initialDate: _selectedDate ?? journalRecord.dateTime,
-                onPick: (date) {
-                  setState(() {
-                    _selectedDate = date;
-                  });
-                },
-              ),
-              const SizedBox(height: 12),
-              _generateFields(),
-              const SizedBox(height: 16),
-              NepanikarButton(
-                text: context.l10n.save,
-                expandToContentWidth: true,
-                onTap: () async {
-                  final goRouter = GoRouter.of(context);
-                  final journalRecord = _constructJournalRecord(_selectedDate!);
-                  await _myRecordsJournalDao.updateRecord(
-                    widget.journalId,
-                    updatedJournalRecord: journalRecord,
-                  );
-                  goRouter.pop();
-                },
-              ),
-              const SizedBox(height: 16),
-              NepanikarButton.secondary(
-                text: context.l10n.clear_button,
-                expandToContentWidth: true,
-                onTap: () async {
-                  await context.showOkCancelNepanikarDialog(
-                    text: context.l10n.really_remove,
-                    onPrimaryBtnTap: (context) async {
-                      final goRouter = GoRouter.of(context);
-                      await _myRecordsJournalDao.deleteRecord(widget.journalId);
-                      unawaited(analytics.logEvent(name: 'journal_record_deleted'));
-                      goRouter.pop();
-                    },
-                    primaryBtnLabel: context.l10n.mood_help_yes,
-                    secondaryBtnLabel: context.l10n.mood_help_no,
-                  );
-                },
-              ),
-            ],
+          return GestureDetector(
+            child: NepanikarScreenWrapper(
+              appBarTitle: context.l10n.journal,
+              appBarDescription: '',
+              isModuleList: false,
+              isCardStackLayout: true,
+              children: [
+                Text(context.l10n.date_of_note, style: labelTextStyle),
+                const SizedBox(height: 8),
+                NepanikarDatePicker(
+                  initialDate: _selectedDate ?? journalRecord.dateTime,
+                  onPick: (date) {
+                    setState(() {
+                      _selectedDate = date;
+                    });
+                  },
+                ),
+                const SizedBox(height: 12),
+                _generateFields(),
+                const SizedBox(height: 16),
+                NepanikarButton(
+                  text: context.l10n.save,
+                  expandToContentWidth: true,
+                  onTap: () async {
+                    final goRouter = GoRouter.of(context);
+                    final journalRecord = _constructJournalRecord(_selectedDate!);
+                    await _myRecordsJournalDao.updateRecord(
+                      widget.journalId,
+                      updatedJournalRecord: journalRecord,
+                    );
+                    goRouter.pop();
+                  },
+                ),
+                const SizedBox(height: 16),
+                NepanikarButton.secondary(
+                  text: context.l10n.clear_button,
+                  expandToContentWidth: true,
+                  onTap: () async {
+                    await context.showOkCancelNepanikarDialog(
+                      text: context.l10n.really_remove,
+                      onPrimaryBtnTap: (context) async {
+                        final goRouter = GoRouter.of(context);
+                        await _myRecordsJournalDao.deleteRecord(widget.journalId);
+                        unawaited(analytics.logEvent(name: 'journal_record_deleted'));
+                        goRouter.pop();
+                      },
+                      primaryBtnLabel: context.l10n.mood_help_yes,
+                      secondaryBtnLabel: context.l10n.mood_help_no,
+                    );
+                  },
+                ),
+              ],
+            ),
           );
         },
       ),
