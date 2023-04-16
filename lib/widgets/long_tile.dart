@@ -11,6 +11,7 @@ class LongTile extends StatelessWidget {
     this.textTextStyle = NepanikarFonts.bodyHeavy,
     this.description,
     this.descriptionTextStyle = NepanikarFonts.bodySmallMedium,
+    this.descriptionSemanticsEnabled = true,
     this.descriptionMaxLines,
     required this.image,
     required this.onTap,
@@ -25,6 +26,7 @@ class LongTile extends StatelessWidget {
   final String text;
   final TextStyle textTextStyle;
   final String? description;
+  final bool descriptionSemanticsEnabled;
   final TextStyle descriptionTextStyle;
   final int? descriptionMaxLines;
   final Widget? image;
@@ -77,11 +79,14 @@ class LongTile extends StatelessWidget {
                             style: textTextStyle,
                           ),
                           if (description != null)
-                            Text(
-                              description!,
-                              style: descriptionTextStyle,
-                              maxLines: descriptionMaxLines,
-                              overflow: descriptionMaxLines != null ? TextOverflow.ellipsis : null,
+                            ExcludeSemantics(
+                              excluding: !descriptionSemanticsEnabled,
+                              child: Text(
+                                description!,
+                                style: descriptionTextStyle,
+                                maxLines: descriptionMaxLines,
+                                overflow: descriptionMaxLines != null ? TextOverflow.ellipsis : null,
+                              ),
                             ),
                         ],
                       ),

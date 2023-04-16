@@ -33,6 +33,7 @@ class DiaryTile extends StatelessWidget {
         color: NepanikarColors.primarySwatch.shade700,
       ),
       description: title,
+      descriptionSemanticsEnabled: isTitle,
       descriptionTextStyle: textStyle.copyWith(
         fontWeight: isTitle ? FontWeight.w500 : FontWeight.w300,
       ),

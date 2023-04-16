@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/semantics_helpers.dart';
 import 'package:nepanikar/services/db/my_records/journal/my_records_journal_dao.dart';
 import 'package:nepanikar/services/db/my_records/journal/my_records_journal_record_model.dart';
 import 'package:nepanikar/utils/extensions.dart';
@@ -158,6 +159,7 @@ class _MyRecordsJournalDetailScreenState extends State<MyRecordsJournalDetailScr
                   expandToContentWidth: true,
                   onTap: () async {
                     final goRouter = GoRouter.of(context);
+                    context.semanticsAnnounce(context.l10n.record_saved_announce);
                     final journalRecord = _constructJournalRecord(_selectedDate!);
                     await _myRecordsJournalDao.updateRecord(
                       widget.journalId,
@@ -175,6 +177,7 @@ class _MyRecordsJournalDetailScreenState extends State<MyRecordsJournalDetailScr
                       text: context.l10n.really_remove,
                       onPrimaryBtnTap: (context) async {
                         final goRouter = GoRouter.of(context);
+                        context.semanticsAnnounce(context.l10n.record_deleted_announce);
                         await _myRecordsJournalDao.deleteRecord(widget.journalId);
                         unawaited(analytics.logEvent(name: 'journal_record_deleted'));
                         goRouter.pop();
