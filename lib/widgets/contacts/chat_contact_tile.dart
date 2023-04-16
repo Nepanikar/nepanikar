@@ -44,7 +44,7 @@ class ChatContactTile extends StatelessWidget {
         textTextStyle: _textTextStyle,
         description: contact.subtitle,
         descriptionTextStyle: _descriptionChatTextStyle,
-        image: Assets.illustrations.contacts.chat.svg(),
+        image: ExcludeSemantics(child: Assets.illustrations.contacts.chat.svg()),
         trailing: const SizedBox.shrink(),
         onTap: null,
         subContent: Column(

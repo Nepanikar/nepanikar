@@ -15,7 +15,7 @@ extension CustomSnackBar on BuildContext {
       nepanikarSnackbar(
         text: text,
         snackbarType: SnackbarType.success,
-        leading: leading,
+        leading: ExcludeSemantics(child: leading),
         trailing: trailing,
       ),
     );
@@ -26,7 +26,7 @@ extension CustomSnackBar on BuildContext {
       nepanikarSnackbar(
         text: text,
         snackbarType: SnackbarType.error,
-        leading: leading,
+        leading: ExcludeSemantics(child: leading),
         trailing: trailing,
       ),
     );
@@ -37,7 +37,7 @@ extension CustomSnackBar on BuildContext {
       nepanikarSnackbar(
         text: text,
         snackbarType: SnackbarType.info,
-        leading: leading,
+        leading: ExcludeSemantics(child: leading),
         trailing: trailing,
       ),
     );
@@ -48,7 +48,7 @@ extension CustomSnackBar on BuildContext {
       nepanikarSnackbar(
         text: text,
         snackbarType: SnackbarType.purple,
-        leading: leading,
+        leading: ExcludeSemantics(child: leading),
         trailing: trailing,
       ),
     );
