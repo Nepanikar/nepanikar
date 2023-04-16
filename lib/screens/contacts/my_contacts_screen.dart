@@ -5,6 +5,7 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/sizes.dart';
 import 'package:nepanikar/helpers/platform_helpers.dart';
 import 'package:nepanikar/helpers/screen_resolution_helpers.dart';
+import 'package:nepanikar/helpers/semantics_helpers.dart';
 import 'package:nepanikar/services/db/my_contacts/my_contacts_records/my_contacts_record_model.dart';
 import 'package:nepanikar/services/db/my_contacts/my_contacts_records/my_contacts_records_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
@@ -26,6 +27,11 @@ class MyContactsRecordsScreen extends StatelessWidget {
 
   MyContactsRecordsDao get _myContactsRecordsDao => registry.get<MyContactsRecordsDao>();
 
+  Future<void> _onItemAdd(BuildContext context) async {
+    context.semanticsAnnounce(context.l10n.record_added_announce);
+    await _myContactsRecordsDao.addNewRecord();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -39,9 +45,7 @@ class MyContactsRecordsScreen extends StatelessWidget {
               IconButton(
                 icon: const Icon(CupertinoIcons.add),
                 tooltip: context.l10n.add_item,
-                onPressed: () async {
-                  await _myContactsRecordsDao.addNewRecord();
-                },
+                onPressed: () async => _onItemAdd(context),
               ),
             ],
             android: () => null,
@@ -50,9 +54,7 @@ class MyContactsRecordsScreen extends StatelessWidget {
         floatingActionButton: platformMapper<Widget?>(
           ios: () => null,
           android: () => FloatingActionButton(
-            onPressed: () async {
-              await _myContactsRecordsDao.addNewRecord();
-            },
+            onPressed: () async => _onItemAdd(context),
             tooltip: context.l10n.add_item,
             child: const Icon(Icons.add),
           ),
