@@ -2,6 +2,7 @@ import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -147,18 +148,22 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
               stream: player.isPlaying,
               builder: (context, asyncSnapshot) {
                 final bool isPlaying = asyncSnapshot.data ?? false;
-                return GestureDetector(
-                  onTap: () => player.playOrPause(),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(100),
-                    child: Container(
-                      color: Colors.white,
-                      width: 86,
-                      height: 86,
-                      child: Icon(
-                        isPlaying ? Icons.pause_rounded : Icons.play_arrow_rounded,
-                        size: 40,
-                        color: NepanikarColors.primary,
+                return Semantics(
+                  button: true,
+                  child: GestureDetector(
+                    onTap: () => player.playOrPause(),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(100),
+                      child: Container(
+                        color: Colors.white,
+                        width: 86,
+                        height: 86,
+                        child: Icon(
+                          isPlaying ? Icons.pause_rounded : Icons.play_arrow_rounded,
+                          semanticLabel: isPlaying ? context.l10n.stop : context.l10n.start,
+                          size: 40,
+                          color: NepanikarColors.primary,
+                        ),
                       ),
                     ),
                   ),
@@ -209,6 +214,8 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
                       children: [
                         Text(
                           labelFromMilliseconds(sliderPosition.inMilliseconds),
+                          semanticsLabel:
+                              '${context.l10n.audio_progress_announce}: ${labelFromMilliseconds(sliderPosition.inMilliseconds)} min',
                           style: NepanikarFonts.bodySmallMedium.copyWith(
                             fontSize: 15,
                             color: Colors.white,
@@ -216,6 +223,8 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
                         ),
                         Text(
                           labelFromMilliseconds(songDuration.inMilliseconds),
+                          semanticsLabel:
+                              '${context.l10n.audio_total_announce}: ${labelFromMilliseconds(songDuration.inMilliseconds)} min',
                           style: NepanikarFonts.bodySmallMedium.copyWith(
                             fontSize: 15,
                             color: Colors.white,
