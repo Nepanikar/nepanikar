@@ -11,7 +11,7 @@ enum NotificationType {
   moodReminder,
   sleepRateReminder;
 
-  String getTitle(AppLocalizations l10n) {
+  String getBodyMessage(AppLocalizations l10n) {
     switch (this) {
       case NotificationType.moodReminder:
         return l10n.notification_mood_reminder_title;

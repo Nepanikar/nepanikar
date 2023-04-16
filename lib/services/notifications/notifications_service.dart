@@ -84,11 +84,14 @@ class NotificationsService {
       final notificationSettings = await _userSettingsDao.getNotificationTypeSettings(type);
       if (notificationSettings == null) {
         // No settings for this type, skip scheduling.
-        debugPrint('NOTIFICATION_SERVICE: Skipping scheduling notifications for type: $type');
+        debugPrint(
+          'NOTIFICATION_SERVICE: Skipping scheduling notifications for type: $type (type not enabled)',
+        );
         continue;
       }
 
-      final title = type.getTitle(l10n);
+      final notificationTitleMessage = l10n.notification_reminder_header;
+      final notificationBodyMessage = type.getBodyMessage(l10n);
       final customDataPayload = AppNotificationData(type: type).toJson();
 
       const scheduleAheadDays = 8;
@@ -106,7 +109,8 @@ class NotificationsService {
         final notificationContent = NotificationContent(
           id: randomId,
           channelKey: _basicChannelKey,
-          title: title,
+          title: notificationTitleMessage,
+          body: notificationBodyMessage,
           badge: 1,
           payload: {nestedPayloadKey: jsonEncode(customDataPayload)},
         );
