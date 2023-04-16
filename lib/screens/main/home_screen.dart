@@ -79,17 +79,19 @@ class HomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Flexible(
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const SizedBox(width: 6),
-                          Assets.icons.logo.svg(),
-                          const SizedBox(width: 10),
-                          Text(
-                            context.l10n.app_name,
-                            style: NepanikarFonts.title3.copyWith(fontSize: 18.6),
-                          ),
-                        ],
+                      child: ExcludeSemantics(
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const SizedBox(width: 6),
+                            Assets.icons.logo.svg(),
+                            const SizedBox(width: 10),
+                            Text(
+                              context.l10n.app_name,
+                              style: NepanikarFonts.title3.copyWith(fontSize: 18.6),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     const Expanded(child: QuickHelpButton()),

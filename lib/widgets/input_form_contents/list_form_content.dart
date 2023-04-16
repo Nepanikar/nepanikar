@@ -5,6 +5,7 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/sizes.dart';
 import 'package:nepanikar/helpers/platform_helpers.dart';
+import 'package:nepanikar/helpers/semantics_helpers.dart';
 import 'package:nepanikar/services/db/common/nepanikar_list_form_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/empty_records_state_widget.dart';
@@ -40,6 +41,12 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
     _allFormItemsStream = _listFormDao.allFormItemsRecordsStream;
   }
 
+  Future<void> _onItemAdd() async {
+    context.semanticsAnnounce(context.l10n.item_added_announce);
+    await _listFormDao.createFormText();
+    await analytics.logEvent(name: 'add_item');
+  }
+
   @override
   void dispose() {
     _idTextMap.clear();
@@ -61,12 +68,7 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
             IconButton(
               icon: const Icon(CupertinoIcons.add),
               tooltip: context.l10n.add_item,
-              onPressed: () async {
-                await _listFormDao.createFormText();
-                await analytics.logEvent(
-                  name: 'add_item',
-                );
-              },
+              onPressed: _onItemAdd,
             ),
           ],
           android: () => null,
@@ -74,12 +76,7 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
         floatingActionButton: platformMapper<Widget?>(
           ios: () => null,
           android: () => FloatingActionButton(
-            onPressed: () async {
-              await _listFormDao.createFormText();
-              await analytics.logEvent(
-                name: 'add_item',
-              );
-            },
+            onPressed: _onItemAdd,
             tooltip: context.l10n.add_item,
             child: const Icon(Icons.add),
           ),
@@ -144,6 +141,7 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
                                 if (FocusScope.of(context).hasFocus) {
                                   FocusScope.of(context).unfocus();
                                 }
+                                context.semanticsAnnounce(context.l10n.record_deleted_announce);
                                 WidgetsBinding.instance.addPostFrameCallback((_) async {
                                   _idTextMap.remove(formKey);
                                   await _listFormDao.deleteFormItem(formKey);
@@ -152,7 +150,11 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
                                   );
                                 });
                               },
-                              icon: const Icon(Icons.clear, size: 16),
+                              icon: Icon(
+                                Icons.clear,
+                                size: 16,
+                                semanticLabel: context.l10n.delete_record,
+                              ),
                             ),
                           ),
                         ),

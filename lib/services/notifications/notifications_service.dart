@@ -14,7 +14,7 @@ import 'package:nepanikar/services/notifications/notification_controller.dart';
 import 'package:nepanikar/services/notifications/notification_type.dart';
 
 class NotificationsService {
-  NotificationsService({
+  const NotificationsService({
     required AwesomeNotifications awesomeNotifications,
     required GoRouter router,
     required UserSettingsDao userSettingsDao,
@@ -81,8 +81,8 @@ class NotificationsService {
     final r = math.Random();
     final nowDate = DateTime.now().toDate();
     for (final type in NotificationType.values) {
-      final notificationSettings = await _userSettingsDao.getNotificationTypeSettings(type);
-      if (notificationSettings == null) {
+      final notificationTypeSettings = await _userSettingsDao.getNotificationTypeSettings(type);
+      if (notificationTypeSettings == null) {
         // No settings for this type, skip scheduling.
         debugPrint(
           'NOTIFICATION_SERVICE: Skipping scheduling notifications for type: $type (type not enabled)',
@@ -115,8 +115,8 @@ class NotificationsService {
           payload: {nestedPayloadKey: jsonEncode(customDataPayload)},
         );
         final scheduledDate = date.copyWith(
-          hour: notificationSettings.scheduledHour,
-          minute: notificationSettings.scheduledMinute,
+          hour: notificationTypeSettings.scheduledHour,
+          minute: notificationTypeSettings.scheduledMinute,
         );
         debugPrint(
           'NOTIFICATION_SERVICE: Scheduling notification "$type" with id "$randomId" to date: $scheduledDate',

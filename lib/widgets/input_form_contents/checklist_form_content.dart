@@ -5,6 +5,7 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/sizes.dart';
 import 'package:nepanikar/helpers/platform_helpers.dart';
+import 'package:nepanikar/helpers/semantics_helpers.dart';
 import 'package:nepanikar/services/db/common/checklist_item_model.dart';
 import 'package:nepanikar/services/db/common/nepanikar_checklist_form_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
@@ -42,6 +43,12 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
     _allFormItemsStream = _listFormDao.allFormItemsRecordsStream;
   }
 
+  Future<void> _onItemAdd() async {
+    context.semanticsAnnounce(context.l10n.item_added_announce);
+    await _listFormDao.createFormText();
+    await analytics.logEvent(name: 'add_activity');
+  }
+
   @override
   void dispose() {
     _idTextMap.clear();
@@ -63,12 +70,7 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
             IconButton(
               icon: const Icon(CupertinoIcons.add),
               tooltip: context.l10n.add_item,
-              onPressed: () async {
-                await _listFormDao.createFormText();
-                await analytics.logEvent(
-                  name: 'add_activity',
-                );
-              },
+              onPressed: _onItemAdd,
             ),
           ],
           android: () => null,
@@ -76,12 +78,7 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
         floatingActionButton: platformMapper<Widget?>(
           ios: () => null,
           android: () => FloatingActionButton(
-            onPressed: () async {
-              await _listFormDao.createFormText();
-              await analytics.logEvent(
-                name: 'add_activity',
-              );
-            },
+            onPressed: _onItemAdd,
             tooltip: context.l10n.add_item,
             child: const Icon(Icons.add),
           ),
@@ -191,6 +188,9 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
                                             if (FocusScope.of(context).hasFocus) {
                                               FocusScope.of(context).unfocus();
                                             }
+                                            context.semanticsAnnounce(
+                                              context.l10n.record_deleted_announce,
+                                            );
                                             WidgetsBinding.instance.addPostFrameCallback((_) async {
                                               _idTextMap.remove(checkFormKey);
                                               await _listFormDao.deleteFormItem(checkFormKey);
@@ -199,7 +199,11 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
                                               );
                                             });
                                           },
-                                          icon: const Icon(Icons.clear, size: 16),
+                                          icon: Icon(
+                                            Icons.clear,
+                                            size: 16,
+                                            semanticLabel: context.l10n.delete_record,
+                                          ),
                                         ),
                                       ),
                                     ),
