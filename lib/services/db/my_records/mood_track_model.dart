@@ -61,6 +61,21 @@ enum Mood {
     }
   }
 
+  String getSemanticsLabel(BuildContext context) {
+    switch (this) {
+      case Mood.sad:
+        return '*';
+      case Mood.bad:
+        return '**';
+      case Mood.okay:
+        return '***';
+      case Mood.good:
+        return '****';
+      case Mood.happy:
+        return '*****';
+    }
+  }
+
   static Mood? fromInteger(int value) => Mood.values.safeElementAtOrNull(value);
 }
 

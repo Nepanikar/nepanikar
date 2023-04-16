@@ -105,6 +105,7 @@ class HomeScreen extends StatelessWidget {
                     final latestMoodTrack = snapshot.data;
                     return MoodPicker(
                       activeMood: latestMoodTrack?.mood,
+                      onPickMessage: context.l10n.mood_tracked_success_snackbar,
                       onPick: (mood) async {
                         final l10n = context.l10n;
                         await _moodTrackDao.saveMood(mood);

@@ -30,12 +30,16 @@ class MoodTrackScreen<T extends MoodTrackDao> extends StatelessWidget {
   const MoodTrackScreen({
     super.key,
     this.appBarTitle,
-    this.moodTitle,
+    this.headerTitle,
+    this.chartDescription,
+    this.onTrackPickMessage,
     this.showMoodLabels = true,
   });
 
   final String? appBarTitle;
-  final String? moodTitle;
+  final String? headerTitle;
+  final String? onTrackPickMessage;
+  final String? chartDescription;
   final bool showMoodLabels;
 
   T get _trackDao => registry.get<T>();
@@ -52,6 +56,13 @@ class MoodTrackScreen<T extends MoodTrackDao> extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(appBarTitle ?? context.l10n.depression_mood),
+        actions: [
+          IconButton(
+            icon: ExcludeSemantics(child: Assets.icons.notificationBell.svg(color: Colors.white)),
+            tooltip: context.l10n.notifications,
+            onPressed: _notificationsService.checkPermission,
+          ),
+        ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -66,7 +77,9 @@ class MoodTrackScreen<T extends MoodTrackDao> extends StatelessWidget {
                     final latestMoodTrack = snapshot.data;
                     return MoodPicker(
                       activeMood: latestMoodTrack?.mood,
-                      title: moodTitle,
+                      onPickMessage:
+                          onTrackPickMessage ?? context.l10n.mood_tracked_success_snackbar,
+                      header: headerTitle,
                       autoSizeTitle: false,
                       showLabels: showMoodLabels,
                       onPick: (mood) async {
@@ -95,7 +108,7 @@ class MoodTrackScreen<T extends MoodTrackDao> extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    context.l10n.mood_track_chart_guide,
+                    chartDescription ?? context.l10n.mood_track_chart_guide,
                     style: NepanikarFonts.bodyRoman.copyWith(color: NepanikarColors.primary),
                   ),
                 ),
@@ -160,7 +173,8 @@ class MoodTrackScreen<T extends MoodTrackDao> extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                  icon: Assets.icons.navigation.arrowLeft.svg(),
+                  icon: ExcludeSemantics(child: Assets.icons.navigation.arrowLeft.svg()),
+                  tooltip: context.l10n.filter_previous_time_period,
                   onPressed: () => moodChartFilterProvider.shiftDateRange(DateRangeSwitch.previous),
                 ),
                 Expanded(
@@ -177,9 +191,12 @@ class MoodTrackScreen<T extends MoodTrackDao> extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  icon: Assets.icons.navigation.arrowRight.svg(
-                    color: !canShiftNextDateRange ? Colors.grey : null,
+                  icon: ExcludeSemantics(
+                    child: Assets.icons.navigation.arrowRight.svg(
+                      color: !canShiftNextDateRange ? Colors.grey : null,
+                    ),
                   ),
+                  tooltip: context.l10n.filter_next_time_period,
                   onPressed: !canShiftNextDateRange
                       ? null
                       : () => moodChartFilterProvider.shiftDateRange(DateRangeSwitch.next),
