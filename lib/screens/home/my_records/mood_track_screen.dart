@@ -8,12 +8,14 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/date_helpers.dart';
+import 'package:nepanikar/helpers/semantics_helpers.dart';
 import 'package:nepanikar/providers/mood_chart_filter_provider.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_dao.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
 import 'package:nepanikar/services/notifications/notifications_service.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/mood/mood_chart.dart';
+import 'package:nepanikar/widgets/mood/mood_data_table.dart';
 import 'package:nepanikar/widgets/mood/mood_picker.dart';
 import 'package:nepanikar/widgets/nepanikar_date_range_picker.dart';
 import 'package:nepanikar/widgets/nepanikar_dropdown.dart';
@@ -26,7 +28,7 @@ class MoodTrackRoute extends GoRouteData {
   Widget build(BuildContext context, _) => const MoodTrackScreen<MoodTrackDao>();
 }
 
-class MoodTrackScreen<T extends MoodTrackDao> extends StatelessWidget {
+class MoodTrackScreen<T extends MoodTrackDao> extends StatefulWidget {
   const MoodTrackScreen({
     super.key,
     this.appBarTitle,
@@ -42,11 +44,28 @@ class MoodTrackScreen<T extends MoodTrackDao> extends StatelessWidget {
   final String? chartDescription;
   final bool showMoodLabels;
 
+  @override
+  State<MoodTrackScreen<T>> createState() => _MoodTrackScreenState<T>();
+}
+
+class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScreen<T>> {
   T get _trackDao => registry.get<T>();
 
   NotificationsService get _notificationsService => registry.get<NotificationsService>();
 
   DateTime get _now => getNowDateTimeLocal();
+
+  bool _showChart = true;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (mounted && context.isAccessibilityReaderEnabled) {
+      setState(() {
+        _showChart = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +74,7 @@ class MoodTrackScreen<T extends MoodTrackDao> extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(appBarTitle ?? context.l10n.depression_mood),
+        title: Text(widget.appBarTitle ?? context.l10n.depression_mood),
         actions: [
           IconButton(
             icon: ExcludeSemantics(child: Assets.icons.notificationBell.svg(color: Colors.white)),
@@ -78,10 +97,10 @@ class MoodTrackScreen<T extends MoodTrackDao> extends StatelessWidget {
                     return MoodPicker(
                       activeMood: latestMoodTrack?.mood,
                       onPickMessage:
-                          onTrackPickMessage ?? context.l10n.mood_tracked_success_snackbar,
-                      header: headerTitle,
+                          widget.onTrackPickMessage ?? context.l10n.mood_tracked_success_snackbar,
+                      header: widget.headerTitle,
                       autoSizeTitle: false,
-                      showLabels: showMoodLabels,
+                      showLabels: widget.showMoodLabels,
                       onPick: (mood) async {
                         final l10n = context.l10n;
                         await _trackDao.saveMood(mood);
@@ -108,7 +127,7 @@ class MoodTrackScreen<T extends MoodTrackDao> extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    chartDescription ?? context.l10n.mood_track_chart_guide,
+                    widget.chartDescription ?? context.l10n.mood_track_chart_guide,
                     style: NepanikarFonts.bodyRoman.copyWith(color: NepanikarColors.primary),
                   ),
                 ),
@@ -166,8 +185,19 @@ class MoodTrackScreen<T extends MoodTrackDao> extends StatelessWidget {
                 onPick: moodChartFilterProvider.setFilter,
               ),
             ),
-            const SizedBox(height: 32),
-            MoodChart(moodTrackData: filteredData),
+            SizedBox(height: _showChart ? 32 : 16),
+            if (_showChart)
+              MoodChart(
+                moodTrackData: filteredData,
+                moodLabelBuilder: (m) =>
+                    widget.showMoodLabels ? m.getLabel(context) : m.getSemanticsLabel(context),
+              )
+            else
+              MoodDataTable(
+                moodTrackData: filteredData,
+                moodLabelBuilder: (m) =>
+                    widget.showMoodLabels ? m.getLabel(context) : m.getSemanticsLabel(context),
+              ),
             const SizedBox(height: 32),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
