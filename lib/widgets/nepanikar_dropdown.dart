@@ -98,7 +98,7 @@ class NepanikarDropdown<T> extends StatelessWidget {
             isExpanded: expand,
             icon: Padding(
               padding: rightPadding,
-              child: Assets.icons.navigation.chevronDown.svg(),
+              child: ExcludeSemantics(child: Assets.icons.navigation.chevronDown.svg()),
             ),
             underline: const SizedBox.shrink(),
             dropdownColor: dropDownColor,
