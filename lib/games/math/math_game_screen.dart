@@ -112,95 +112,97 @@ class _MathGameScreenState extends State<MathGameScreen> {
         backgroundColor: NepanikarColors.primary,
         appBar: AppBar(title: Text(context.l10n.math)),
         body: SafeArea(
-          child: Stack(
-            alignment: Alignment.topCenter,
-            children: [
-              Column(
-                children: [
-                  const SizedBox(height: 90),
-                  Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(24),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          const SizedBox(height: 20),
-                          Align(
-                            child: Text(
-                              _equation.getDisplayText(),
-                              semanticsLabel: _equation.getSemanticsText(),
-                              style: textStyle,
+          child: SingleChildScrollView(
+            child: Stack(
+              alignment: Alignment.topCenter,
+              children: [
+                Column(
+                  children: [
+                    const SizedBox(height: 90),
+                    Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(24),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            const SizedBox(height: 20),
+                            Align(
+                              child: Text(
+                                _equation.getDisplayText(),
+                                semanticsLabel: _equation.getSemanticsText(),
+                                style: textStyle,
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 30),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Text('=', style: textStyle),
-                              const SizedBox(width: 19),
-                              Expanded(
-                                child: TextField(
-                                  textInputAction: TextInputAction.done,
-                                  focusNode: _focusNode,
-                                  enabled: !_answerResultState.isCorrect,
-                                  keyboardType: TextInputType.number,
-                                  controller: _textEditingController,
-                                  onSubmitted: _evaluateEquation,
-                                  decoration: InputDecoration(
-                                    hintText: context.l10n.math_game_answer_button,
-                                    contentPadding: const EdgeInsets.symmetric(
-                                      horizontal: 12,
-                                      vertical: 16,
+                            const SizedBox(height: 30),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text('=', style: textStyle),
+                                const SizedBox(width: 19),
+                                Expanded(
+                                  child: TextField(
+                                    textInputAction: TextInputAction.done,
+                                    focusNode: _focusNode,
+                                    enabled: !_answerResultState.isCorrect,
+                                    keyboardType: TextInputType.number,
+                                    controller: _textEditingController,
+                                    onSubmitted: _evaluateEquation,
+                                    decoration: InputDecoration(
+                                      hintText: context.l10n.math_game_answer_button,
+                                      contentPadding: const EdgeInsets.symmetric(
+                                        horizontal: 12,
+                                        vertical: 16,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 18),
-                          ValueListenableBuilder<TextEditingValue>(
-                            valueListenable: _textEditingController,
-                            builder: (_, textEditingValue, __) {
-                              final textInput = textEditingValue.text;
-                              return Visibility(
-                                maintainState: true,
-                                maintainAnimation: true,
-                                maintainSize: true,
-                                visible: !_answerResultState.isCorrect,
-                                child: NepanikarButton.async(
-                                  onTapAsync: () async =>
-                                      _evaluateEquation(textInput, isInputActionFromButton: true),
-                                  trailingIcon: Assets.icons.navigation.chevronRight,
-                                  enabled: textInput.isNotEmpty,
-                                  text: context.l10n.submit,
-                                ),
-                              );
-                            },
-                          ),
-                        ],
+                              ],
+                            ),
+                            const SizedBox(height: 18),
+                            ValueListenableBuilder<TextEditingValue>(
+                              valueListenable: _textEditingController,
+                              builder: (_, textEditingValue, __) {
+                                final textInput = textEditingValue.text;
+                                return Visibility(
+                                  maintainState: true,
+                                  maintainAnimation: true,
+                                  maintainSize: true,
+                                  visible: !_answerResultState.isCorrect,
+                                  child: NepanikarButton.async(
+                                    onTapAsync: () async =>
+                                        _evaluateEquation(textInput, isInputActionFromButton: true),
+                                    trailingIcon: Assets.icons.navigation.chevronRight,
+                                    enabled: textInput.isNotEmpty,
+                                    text: context.l10n.submit,
+                                  ),
+                                );
+                              },
+                            ),
+                          ],
+                        ),
                       ),
                     ),
+                  ],
+                ),
+                if (_answerResultState.isAnswered) ...[
+                  if (_answerResultState.isCorrect)
+                    Positioned(
+                      top: -(context.screenHeight * 0.15),
+                      child: IgnorePointer(
+                        child: _lottieCacheManager.loadFromCache(
+                          Assets.animatedIllustrations.confetti,
+                          repeat: false,
+                          width: context.screenWidth + 100,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    ),
+                  Positioned(
+                    child: _answerResultState.icon,
                   ),
                 ],
-              ),
-              if (_answerResultState.isAnswered) ...[
-                if (_answerResultState.isCorrect)
-                  Positioned(
-                    top: -(context.screenHeight * 0.15),
-                    child: IgnorePointer(
-                      child: _lottieCacheManager.loadFromCache(
-                        Assets.animatedIllustrations.confetti,
-                        repeat: false,
-                        width: context.screenWidth + 100,
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                  ),
-                Positioned(
-                  child: _answerResultState.icon,
-                ),
               ],
-            ],
+            ),
           ),
         ),
       ),

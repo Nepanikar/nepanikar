@@ -84,10 +84,11 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
 
   void progressListener() {
     final newIndex = (_controller.value * steps.length).floor();
+    var stepChanged = false;
     if (newIndex != _indexNotifier.value) {
+      stepChanged = true;
       _indexNotifier.value = newIndex;
       setState(() {});
-      if (mounted) context.semanticsAnnounce(steps[_indexNotifier.value]);
     }
 
     final totalSteps = 3 * steps.length;
@@ -97,7 +98,13 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
     if ((totalSteps - currStep) - discount != _countDownNotifier.value) {
       setState(() {
         _countDownNotifier.value = (totalSteps - currStep) - discount;
-        if (mounted) context.semanticsAnnounce(_countDownNotifier.value.toString());
+        if (mounted) {
+          if (stepChanged) {
+            context.semanticsAnnounce('${steps[_indexNotifier.value]} ${_countDownNotifier.value}');
+          } else {
+            context.semanticsAnnounce(_countDownNotifier.value.toString());
+          }
+        }
       });
 
       _scaleAnimation.value
@@ -107,6 +114,10 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
           milliseconds: ((_controller.duration?.inMilliseconds ?? 0) / totalSteps).round(),
         )
         ..reverse();
+    } else {
+      if (stepChanged) {
+        context.semanticsAnnounce(steps[_indexNotifier.value]);
+      }
     }
   }
 
