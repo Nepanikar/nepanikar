@@ -138,7 +138,7 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
     initSteps();
     context.semanticsAnnounce(steps[_indexNotifier.value]);
     if (context.isAccessibilityReaderEnabled) {
-      _onSliderChange(_sliderMinValue);
+      _onSliderChange(_sliderMinValue + 2);
     }
   }
 
