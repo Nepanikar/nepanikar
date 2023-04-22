@@ -66,6 +66,7 @@ class _DiaryEditContentState extends State<DiaryEditContent> {
 
     return GestureDetector(
       onTapDown: (_) => FocusScope.of(context).unfocus(),
+      excludeFromSemantics: true,
       child: NepanikarScreenWrapper(
         appBarTitle: widget.appBarTitle,
         appBarDescription: '',

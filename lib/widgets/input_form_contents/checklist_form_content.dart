@@ -59,6 +59,7 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
   Widget build(BuildContext context) {
     return GestureDetector(
       onTapDown: (_) => FocusScope.of(context).unfocus(),
+      excludeFromSemantics: true,
       child: NepanikarScreenWrapper(
         appBarTitle: widget.appBarTitle,
         expandToMaxScreenHeight: true,

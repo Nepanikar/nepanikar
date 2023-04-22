@@ -120,6 +120,7 @@ class _MyRecordsJournalDetailScreenState extends State<MyRecordsJournalDetailScr
 
     return GestureDetector(
       onTapDown: (_) => FocusScope.of(context).unfocus(),
+      excludeFromSemantics: true,
       child: StreamBuilder<JournalRecord?>(
         stream: _journalRecordStream,
         builder: (_, snapshot) {

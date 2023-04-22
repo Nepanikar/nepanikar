@@ -88,10 +88,12 @@ class _MyRecordsFoodRecordsDetailMenuListScreenState
               style: NepanikarFonts.bodySmallMedium.copyWith(color: NepanikarColors.primary),
             ),
             const SizedBox(width: 4),
-            Assets.icons.navigation.arrowRight.svg(
-              width: 16,
-              height: 16,
-              color: NepanikarColors.primary,
+            ExcludeSemantics(
+              child: Assets.icons.navigation.arrowRight.svg(
+                width: 16,
+                height: 16,
+                color: NepanikarColors.primary,
+              ),
             ),
           ],
         ),

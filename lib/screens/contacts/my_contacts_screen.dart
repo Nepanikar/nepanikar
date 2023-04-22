@@ -36,6 +36,7 @@ class MyContactsRecordsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTapDown: (_) => FocusScope.of(context).unfocus(),
+      excludeFromSemantics: true,
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(

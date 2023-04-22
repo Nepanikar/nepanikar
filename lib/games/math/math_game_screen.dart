@@ -108,6 +108,7 @@ class _MathGameScreenState extends State<MathGameScreen> {
 
     return GestureDetector(
       onTapDown: (_) => _focusNode.unfocus(),
+      excludeFromSemantics: true,
       child: Scaffold(
         backgroundColor: NepanikarColors.primary,
         appBar: AppBar(title: Text(context.l10n.math)),
