@@ -9,9 +9,11 @@ class MoodChart extends StatelessWidget {
   const MoodChart({
     super.key,
     required this.moodTrackData,
+    required this.moodLabelBuilder,
   });
 
   final Map<DateTime, MoodTrack?> moodTrackData;
+  final String Function(Mood m) moodLabelBuilder;
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +131,7 @@ class MoodChart extends StatelessWidget {
               final formattedDate =
                   DateFormat(DateFormat.ABBR_MONTH_DAY, locale).format(moodTrack.date);
               return LineTooltipItem(
-                '$formattedDate\n${moodTrack.mood.getLabel(context)}',
+                '$formattedDate\n${moodLabelBuilder.call(moodTrack.mood)}',
                 const TextStyle(color: Colors.white),
               );
             }).toList();

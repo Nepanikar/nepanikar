@@ -228,11 +228,14 @@ class AppBarOverflowContent extends StatelessWidget {
           ? null
           : Padding(
               padding: EdgeInsets.fromLTRB(pageSidePadding, 6, pageSidePadding, pageSidePadding),
-              child: Text(
-                isCardStackLayout ? '${appBarDescription!}\n' : appBarDescription!,
-                textAlign: TextAlign.center,
-                style: NepanikarFonts.bodyRoman.copyWith(
-                  color: NepanikarColors.primarySwatch.shade400,
+              child: ExcludeSemantics(
+                excluding: appBarDescription!.isEmpty,
+                child: Text(
+                  isCardStackLayout ? '${appBarDescription!}\n' : appBarDescription!,
+                  textAlign: TextAlign.center,
+                  style: NepanikarFonts.bodyRoman.copyWith(
+                    color: NepanikarColors.primarySwatch.shade400,
+                  ),
                 ),
               ),
             ),

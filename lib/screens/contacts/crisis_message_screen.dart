@@ -127,6 +127,7 @@ class _CrisisMessageContentState extends State<CrisisMessageContent> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTapDown: (_) => FocusScope.of(context).unfocus(),
+      excludeFromSemantics: true,
       child: NepanikarScreenWrapper(
         appBarTitle: context.l10n.contacts_message,
         appBarDescription:

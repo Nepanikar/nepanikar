@@ -4,6 +4,7 @@ import 'package:linkify/linkify.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/contact_action_helpers.dart';
+import 'package:nepanikar/helpers/semantics_helpers.dart';
 import 'package:nepanikar/utils/custom_linkifiers.dart';
 import 'package:nepanikar_contacts_gen/nepanikar_contacts_gen.dart';
 
@@ -61,6 +62,11 @@ class RegionItemContactsList extends StatelessWidget {
                             onLongPress: () async => copyContact(context, displayText),
                             child: Text(
                               isEmail || e is PhoneNumberElement ? displayText : displayUrlLink,
+                              semanticsLabel: e is PhoneNumberElement
+                                  ? displayText.spellOutNumFormat
+                                  : isEmail
+                                      ? 'email: $displayText'
+                                      : 'web: $displayUrlLink',
                               style: linkifiedTextStyle,
                             ),
                           ),

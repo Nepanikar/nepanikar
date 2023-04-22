@@ -4,6 +4,7 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/games/breathing/shape_painter.dart';
+import 'package:nepanikar/helpers/semantics_helpers.dart';
 
 enum BreathingGameShape {
   circle,
@@ -34,6 +35,9 @@ class BreathingGameScreen extends StatefulWidget {
 }
 
 class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerProviderStateMixin {
+  static const _sliderMinValue = 5.0;
+  static const _sliderMaxValue = 15.0;
+
   late AnimationController _controller;
   double _currentSliderValue = 10;
   final _indexNotifier = ValueNotifier<int>(0);
@@ -80,7 +84,9 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
 
   void progressListener() {
     final newIndex = (_controller.value * steps.length).floor();
+    var stepChanged = false;
     if (newIndex != _indexNotifier.value) {
+      stepChanged = true;
       _indexNotifier.value = newIndex;
       setState(() {});
     }
@@ -92,6 +98,13 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
     if ((totalSteps - currStep) - discount != _countDownNotifier.value) {
       setState(() {
         _countDownNotifier.value = (totalSteps - currStep) - discount;
+        if (mounted) {
+          if (stepChanged) {
+            context.semanticsAnnounce('${steps[_indexNotifier.value]} ${_countDownNotifier.value}');
+          } else {
+            context.semanticsAnnounce(_countDownNotifier.value.toString());
+          }
+        }
       });
 
       _scaleAnimation.value
@@ -101,7 +114,20 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
           milliseconds: ((_controller.duration?.inMilliseconds ?? 0) / totalSteps).round(),
         )
         ..reverse();
+    } else {
+      if (stepChanged) {
+        context.semanticsAnnounce(steps[_indexNotifier.value]);
+      }
     }
+  }
+
+  void _onSliderChange(double value) {
+    setState(() {
+      _currentSliderValue = value;
+      _controller.duration = Duration(seconds: 20 - value.floor());
+    });
+    _controller.forward();
+    _controller.repeat();
   }
 
   @override
@@ -119,9 +145,12 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
 
   @override
   void didChangeDependencies() {
-    initSteps();
-
     super.didChangeDependencies();
+    initSteps();
+    context.semanticsAnnounce(steps[_indexNotifier.value]);
+    if (context.isAccessibilityReaderEnabled) {
+      _onSliderChange(_sliderMinValue + 2);
+    }
   }
 
   @override
@@ -228,21 +257,14 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
                 ),
                 Slider(
                   value: _currentSliderValue,
-                  min: 5,
-                  max: 15,
+                  min: _sliderMinValue,
+                  max: _sliderMaxValue,
                   divisions: 10,
                   label: (_currentSliderValue.round() - 5).toString(),
                   thumbColor: Colors.white,
                   activeColor: Colors.white,
                   inactiveColor: NepanikarColors.primarySwatch.shade500,
-                  onChanged: (double value) {
-                    setState(() {
-                      _currentSliderValue = value;
-                      _controller.duration = Duration(seconds: 20 - value.floor());
-                    });
-                    _controller.forward();
-                    _controller.repeat();
-                  },
+                  onChanged: _onSliderChange,
                 ),
                 const SizedBox(
                   height: 38,

@@ -47,4 +47,6 @@ class MathEquation {
   }
 
   String getDisplayText() => '$a${operation.symbol}$b';
+
+  String getSemanticsText() => '$a ${operation.semanticsSymbol} $b';
 }

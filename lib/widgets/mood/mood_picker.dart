@@ -13,15 +13,17 @@ class MoodPicker extends StatefulWidget {
   const MoodPicker({
     super.key,
     required this.onPick,
+    required this.onPickMessage,
     this.activeMood,
-    this.title,
+    this.header,
     this.autoSizeTitle = true,
     this.showLabels = true,
   });
 
   final Mood? activeMood;
   final ValueChanged<Mood> onPick;
-  final String? title;
+  final String? header;
+  final String onPickMessage;
   final bool autoSizeTitle;
   final bool showLabels;
 
@@ -82,7 +84,7 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
       children: [
         if (!widget.autoSizeTitle)
           Text(
-            widget.title ?? context.l10n.mood_welcome_title,
+            widget.header ?? context.l10n.mood_welcome_title,
             style: NepanikarFonts.title2,
           )
         else
@@ -94,27 +96,31 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
         const SizedBox(height: 14),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: Mood.values.reversed
-              .map(
-                (mood) => InkWell(
+          children: Mood.values.reversed.map(
+            (mood) {
+              final isPicked = activeMood == mood;
+              return Semantics(
+                button: true,
+                selected: isPicked,
+                label: widget.showLabels ? null : mood.getSemanticsLabel(context),
+                child: InkWell(
                   onTap: () {
-                    final pickedMood = mood;
-                    if (activeMood == pickedMood) {
-                      _playLottieAnim(pickedMood);
+                    if (isPicked) {
+                      _playLottieAnim(mood);
                       return;
                     }
-                    setState(() => activeMood = pickedMood);
-                    _playLottieAnim(pickedMood);
+                    setState(() => activeMood = mood);
+                    _playLottieAnim(mood);
                     context.hideCurrentSnackBar();
                     context.showSuccessSnackbar(
-                      text: context.l10n.mood_tracked_success_snackbar,
+                      text: widget.onPickMessage,
                       leading: Assets.icons.checkmarks.checkCircular.svg(),
                     );
-                    widget.onPick.call(pickedMood);
+                    widget.onPick.call(mood);
                     analytics.logEvent(
                       name: 'mood_picked',
                       parameters: {
-                        'mood': pickedMood.name,
+                        'mood': mood.name,
                       },
                     );
                   },
@@ -145,8 +151,9 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
                     ),
                   ),
                 ),
-              )
-              .toList(),
+              );
+            },
+          ).toList(),
         )
       ],
     );

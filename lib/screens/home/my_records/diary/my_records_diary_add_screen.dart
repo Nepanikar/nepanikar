@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
+import 'package:nepanikar/helpers/semantics_helpers.dart';
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_detail_screen.dart';
 import 'package:nepanikar/services/db/my_records/diary/my_records_diary_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
@@ -33,6 +34,7 @@ class MyRecordsDiaryAddScreen extends StatelessWidget {
       onPrimaryButtonTap: (diaryRecord) async {
         // Create a new diary record.
         final goRouter = GoRouter.of(context);
+        context.semanticsAnnounce(context.l10n.record_added_announce);
         final id = await _myRecordsDiaryDao.createRecord(diaryRecord);
         unawaited(analytics.logEvent(name: 'diary_record_created'));
         goRouter.pop();

@@ -43,48 +43,50 @@ class FoodRecordTile extends StatelessWidget {
         showSubContentSeparator: false,
         subContent: Padding(
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 18),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: FoodType.values
-                .mapIndexed(
-                  (i, foodType) => Flexible(
-                    child: Padding(
-                      padding: i == 0 ? EdgeInsets.zero : const EdgeInsets.only(left: 6),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          if (_getIsFoodTypeTaken(foodType))
-                            Assets.icons.checkmarks.success.svg(
-                              width: 14,
-                              height: 14,
-                              color: NepanikarColors.primary,
-                            )
-                          else
-                            Assets.icons.checkmarks.checkCircularUnchecked.svg(
-                              width: 14,
-                              height: 14,
-                              color: NepanikarColors.primarySwatch.shade400,
-                            ),
-                          const SizedBox(width: 5),
-                          Flexible(
-                            child: Text(
-                              _getShortLabel(context, foodType),
-                              maxLines: 1,
-                              style: textStyle.copyWith(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w700,
-                                color: _getIsFoodTypeTaken(foodType)
-                                    ? NepanikarColors.dark
-                                    : NepanikarColors.primarySwatch.shade400,
+          child: ExcludeSemantics(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: FoodType.values
+                  .mapIndexed(
+                    (i, foodType) => Flexible(
+                      child: Padding(
+                        padding: i == 0 ? EdgeInsets.zero : const EdgeInsets.only(left: 6),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            if (_getIsFoodTypeTaken(foodType))
+                              Assets.icons.checkmarks.success.svg(
+                                width: 14,
+                                height: 14,
+                                color: NepanikarColors.primary,
+                              )
+                            else
+                              Assets.icons.checkmarks.checkCircularUnchecked.svg(
+                                width: 14,
+                                height: 14,
+                                color: NepanikarColors.primarySwatch.shade400,
+                              ),
+                            const SizedBox(width: 5),
+                            Flexible(
+                              child: Text(
+                                _getShortLabel(context, foodType),
+                                maxLines: 1,
+                                style: textStyle.copyWith(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w700,
+                                  color: _getIsFoodTypeTaken(foodType)
+                                      ? NepanikarColors.dark
+                                      : NepanikarColors.primarySwatch.shade400,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                )
-                .toList(),
+                  )
+                  .toList(),
+            ),
           ),
         ),
       ),

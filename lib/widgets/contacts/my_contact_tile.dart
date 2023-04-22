@@ -4,6 +4,7 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/helpers/contact_action_helpers.dart';
 import 'package:nepanikar/helpers/screen_resolution_helpers.dart';
+import 'package:nepanikar/helpers/semantics_helpers.dart';
 import 'package:nepanikar/services/db/my_contacts/my_contacts_records/my_contacts_record_model.dart';
 import 'package:nepanikar/services/db/my_contacts/my_contacts_records/my_contacts_records_dao.dart';
 import 'package:nepanikar/utils/extensions.dart';
@@ -75,7 +76,7 @@ class _MyContactTileState extends State<MyContactTile> {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 12),
-                  child: Assets.icons.userCircle.svg(),
+                  child: ExcludeSemantics(child: Assets.icons.userCircle.svg()),
                 ),
                 Expanded(
                   child: Column(
@@ -100,11 +101,19 @@ class _MyContactTileState extends State<MyContactTile> {
                   ),
                 ),
                 IconButton(
-                  icon: Icon(Icons.close, color: NepanikarColors.primarySwatch.shade500, size: 20),
+                  icon: Icon(
+                    Icons.close,
+                    semanticLabel: context.l10n.delete_record,
+                    color: NepanikarColors.primarySwatch.shade500,
+                    size: 20,
+                  ),
                   onPressed: () async {
                     await context.showOkCancelNepanikarDialog(
                       text: context.l10n.really_remove,
-                      onPrimaryBtnTap: (_) async => _myContactsRecordsDao.deleteRecord(widget.id),
+                      onPrimaryBtnTap: (_) async {
+                        context.semanticsAnnounce(context.l10n.record_deleted_announce);
+                        await _myContactsRecordsDao.deleteRecord(widget.id);
+                      },
                       primaryBtnLabel: context.l10n.mood_help_yes,
                       secondaryBtnLabel: context.l10n.mood_help_no,
                     );

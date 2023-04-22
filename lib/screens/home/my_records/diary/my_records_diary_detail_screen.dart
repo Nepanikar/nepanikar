@@ -9,6 +9,7 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/screen_resolution_helpers.dart';
+import 'package:nepanikar/helpers/semantics_helpers.dart';
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_edit_screen.dart';
 import 'package:nepanikar/services/db/my_records/diary/diary_record_model.dart';
 import 'package:nepanikar/services/db/my_records/diary/my_records_diary_dao.dart';
@@ -105,6 +106,7 @@ class MyRecordsDiaryDetailScreen extends StatelessWidget {
                   text: context.l10n.really_remove,
                   onPrimaryBtnTap: (context) async {
                     final goRouter = GoRouter.of(context);
+                    context.semanticsAnnounce(context.l10n.record_deleted_announce);
                     await _myRecordsDiaryDao.deleteRecord(_diaryRecordId);
                     unawaited(analytics.logEvent(name: 'diary_record_deleted'));
                     goRouter.pop();

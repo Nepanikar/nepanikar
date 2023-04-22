@@ -20,9 +20,11 @@ class EmptyRecordsStateWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         SizedBox(height: context.screenHeight * 0.25),
-        Assets.illustrations.modules.myRecords.svg(
-          width: context.screenWidth * 0.205,
-          color: NepanikarColors.primarySwatch.shade400,
+        ExcludeSemantics(
+          child: Assets.illustrations.modules.myRecords.svg(
+            width: context.screenWidth * 0.205,
+            color: NepanikarColors.primarySwatch.shade400,
+          ),
         ),
         const SizedBox(height: 26),
         Text(

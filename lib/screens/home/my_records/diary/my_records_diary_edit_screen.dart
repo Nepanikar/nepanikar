@@ -4,6 +4,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
+import 'package:nepanikar/helpers/semantics_helpers.dart';
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_detail_screen.dart';
 import 'package:nepanikar/services/db/my_records/diary/my_records_diary_dao.dart';
 import 'package:nepanikar/utils/extensions.dart';
@@ -44,6 +45,7 @@ class MyRecordsDiaryEditScreen extends StatelessWidget {
       onPrimaryButtonTap: (diaryRecord) async {
         // Update an existing diary record.
         final goRouter = GoRouter.of(context);
+        context.semanticsAnnounce(context.l10n.record_saved_announce);
         await _myRecordsDiaryDao.updateRecord(
           _initialDiaryRecordId,
           updatedDiaryRecord: diaryRecord,
@@ -58,6 +60,7 @@ class MyRecordsDiaryEditScreen extends StatelessWidget {
           onPrimaryBtnTap: (context) async {
             // Delete an existing diary record.
             final goRouter = GoRouter.of(context);
+            context.semanticsAnnounce(context.l10n.record_deleted_announce);
             await _myRecordsDiaryDao.deleteRecord(_initialDiaryRecordId);
             unawaited(analytics.logEvent(name: 'diary_record_deleted'));
             // TODO: Use popUntil instead of pop twice

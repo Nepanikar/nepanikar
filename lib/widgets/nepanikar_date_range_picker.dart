@@ -46,24 +46,27 @@ class NepanikarDateRangePicker extends StatelessWidget {
           onPick.call(pickedDateRange);
         }
       },
-      child: SizedBox(
-        height: kMinInteractiveDimension,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 9),
+      child: Semantics(
+        button: true,
+        child: SizedBox(
+          height: kMinInteractiveDimension,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
-                  activeRange != null
-                      ? '${formatDate(activeRange!.start)} - ${formatDate(activeRange!.end)}'
-                      : '',
-                  style: NepanikarFonts.bodyRoman.copyWith(color: NepanikarColors.dark),
-                ),
-                const Spacer(),
-                Assets.icons.calendar.svg(),
-              ],
+            padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 9),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text(
+                    activeRange != null
+                        ? '${formatDate(activeRange!.start)} - ${formatDate(activeRange!.end)}'
+                        : '',
+                    style: NepanikarFonts.bodyRoman.copyWith(color: NepanikarColors.dark),
+                  ),
+                  const Spacer(),
+                  ExcludeSemantics(child: Assets.icons.calendar.svg()),
+                ],
+              ),
             ),
           ),
         ),

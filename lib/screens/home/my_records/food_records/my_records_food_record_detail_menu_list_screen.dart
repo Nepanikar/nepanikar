@@ -8,6 +8,7 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/semantics_helpers.dart';
 import 'package:nepanikar/screens/home/my_records/food_records/my_records_food_record_detail_menu_detail_screen.dart';
 import 'package:nepanikar/services/db/my_records/food/my_records_food_record_dao.dart';
 import 'package:nepanikar/services/db/my_records/food/my_records_food_record_model.dart';
@@ -87,10 +88,12 @@ class _MyRecordsFoodRecordsDetailMenuListScreenState
               style: NepanikarFonts.bodySmallMedium.copyWith(color: NepanikarColors.primary),
             ),
             const SizedBox(width: 4),
-            Assets.icons.navigation.arrowRight.svg(
-              width: 16,
-              height: 16,
-              color: NepanikarColors.primary,
+            ExcludeSemantics(
+              child: Assets.icons.navigation.arrowRight.svg(
+                width: 16,
+                height: 16,
+                color: NepanikarColors.primary,
+              ),
             ),
           ],
         ),
@@ -146,6 +149,7 @@ class _MyRecordsFoodRecordsDetailMenuListScreenState
                   text: context.l10n.really_remove,
                   onPrimaryBtnTap: (context) async {
                     final goRouter = GoRouter.of(context);
+                    context.semanticsAnnounce(context.l10n.record_deleted_announce);
                     await _myRecordsFoodRecordDao.deleteRecord(widget.id);
                     unawaited(analytics.logEvent(name: 'delete_food_record'));
                     goRouter.pop();

@@ -6,6 +6,7 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/contact_action_helpers.dart';
+import 'package:nepanikar/helpers/semantics_helpers.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/utils/contacts_data_manager.dart';
 import 'package:nepanikar/utils/custom_linkifiers.dart';
@@ -79,6 +80,11 @@ class EatingDisorderContactsScreen extends StatelessWidget {
                             onLongPress: () async => copyContact(context, displayText),
                             child: Text(
                               isEmail || e is PhoneNumberElement ? displayText : displayUrlLink,
+                              semanticsLabel: e is PhoneNumberElement
+                                  ? displayText.spellOutNumFormat
+                                  : isEmail
+                                      ? 'email: $displayText'
+                                      : 'web: $displayUrlLink',
                               style: linkifiedTextStyle,
                             ),
                           ),

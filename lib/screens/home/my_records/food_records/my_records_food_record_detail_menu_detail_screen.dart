@@ -126,6 +126,7 @@ class _MyRecordsFoodRecordsDetailMenuDetailScreenState
   Widget build(BuildContext context) {
     return GestureDetector(
       onTapDown: (_) => FocusScope.of(context).unfocus(),
+      excludeFromSemantics: true,
       child: NepanikarScreenWrapper(
         appBarTitle: widget.foodType.getLabel(context),
         appBarDescription: '',

@@ -73,6 +73,7 @@ class _PlanFormContentState<T extends NepanikarPlanFormDao> extends State<PlanFo
   Widget build(BuildContext context) {
     return GestureDetector(
       onTapDown: (_) => FocusScope.of(context).unfocus(),
+      excludeFromSemantics: true,
       child: NepanikarScreenWrapper(
         appBarTitle: widget.appBarTitle,
         appBarDescription: widget.appBarDescription,
