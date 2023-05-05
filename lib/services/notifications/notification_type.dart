@@ -41,9 +41,9 @@ enum NotificationType {
   TimeOfDay get defaultScheduleTime {
     switch (this) {
       case NotificationType.moodReminder:
-        return const TimeOfDay(hour: 9, minute: 0);
-      case NotificationType.sleepRateReminder:
         return const TimeOfDay(hour: 19, minute: 0);
+      case NotificationType.sleepRateReminder:
+        return const TimeOfDay(hour: 9, minute: 0);
     }
   }
 
