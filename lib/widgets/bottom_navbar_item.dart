@@ -20,7 +20,7 @@ BottomNavigationBarItem buildBottomNavigationBarItem({
           child: SvgPicture.asset(
             Assets.icons.marker.path,
             color: isDarkMode ?
-                    (isSelected ? Colors.white : Colors.white)
+                    (isSelected ? Colors.white : Colors.transparent)
                     :
                     (isSelected ? NepanikarColors.primarySwatch.shade800 : Colors.transparent),
           ),
@@ -30,7 +30,7 @@ BottomNavigationBarItem buildBottomNavigationBarItem({
           color: isDarkMode ?
                     (isSelected ? Colors.white : Colors.white)
                     :
-                    (isSelected ? NepanikarColors.primarySwatch.shade800 : Colors.transparent),
+                    (isSelected ? NepanikarColors.primarySwatch.shade800 : NepanikarColors.primarySwatch.shade700),
         ),
       ],
     ),

@@ -17,8 +17,16 @@ class HomeTile extends StatelessWidget {
   final Widget image;
   final String location;
 
+
+
   @override
   Widget build(BuildContext context) {
+
+    bool _isDarkMode = false;
+    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
+    ThemeMode.dark : ThemeMode.light;
+    _isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+
     return Semantics(
       button: true,
       child: DecoratedBox(
@@ -38,6 +46,7 @@ class HomeTile extends StatelessWidget {
           ],
         ),
         child: Material(
+          color: _isDarkMode ? NepanikarColors.containerD : Colors.white,
           borderRadius: BorderRadius.circular(16),
           child: InkWell(
             borderRadius: BorderRadius.circular(16),
@@ -55,7 +64,8 @@ class HomeTile extends StatelessWidget {
                           height: context.isSmallScreen ? 30 : 40,
                           child: image,
                         ),
-                        Assets.icons.navigation.arrowRight.svg(width: 16, height: 16)
+                        Assets.icons.navigation.arrowRight.svg(width: 16, height: 16,
+                             color: _isDarkMode ? Colors.white : NepanikarColors.primaryD,)
                       ],
                     ),
                   ),
@@ -66,6 +76,7 @@ class HomeTile extends StatelessWidget {
                           text,
                           style: NepanikarFonts.bodyHeavy.copyWith(
                             fontSize: context.isSmallScreen ? 14 : 15,
+                            color: _isDarkMode ? Colors.white : NepanikarColors.primaryD,
                           ),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,

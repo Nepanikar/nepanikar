@@ -21,10 +21,10 @@ class darkTheme {
         scaffoldBackgroundColor: NepanikarColors.primaryD,
         fontFamily: fontFamily,
         colorScheme: const ColorScheme.dark().copyWith(
-          //primary: NepanikarColors.primary,
-          //secondary: NepanikarColors.secondary,
-          //onSecondary: Colors.white,
-          //error: NepanikarColors.error,
+          primary: NepanikarColors.primary,
+          secondary: NepanikarColors.secondary,
+          onSecondary: Colors.white,
+          error: NepanikarColors.error,
         ),
         primarySwatch: NepanikarColors.primarySwatch,
         appBarTheme: AppBarTheme(
@@ -176,6 +176,7 @@ class darkTheme {
           selectedItemColor: Colors.white,
           unselectedItemColor: Colors.white,
         ),
+
 
       );
 }

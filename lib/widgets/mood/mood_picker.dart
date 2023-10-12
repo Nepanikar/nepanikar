@@ -3,6 +3,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
+import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
 import 'package:nepanikar/utils/extensions.dart';
@@ -79,19 +80,25 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+
+    bool _isDarkMode;
+    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
+    ThemeMode.dark : ThemeMode.light;
+    _isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (!widget.autoSizeTitle)
           Text(
             widget.header ?? context.l10n.mood_welcome_title,
-            style: NepanikarFonts.title2,
+            style: NepanikarFonts.title2.copyWith(color: _isDarkMode ? Colors.white : NepanikarColors.primaryD),
           )
         else
           AutoSizeText(
             context.l10n.mood_welcome_title,
             maxLines: 1,
-            style: NepanikarFonts.title2,
+            style: NepanikarFonts.title2.copyWith(color: _isDarkMode ? Colors.white : NepanikarColors.primaryD),
           ),
         const SizedBox(height: 14),
         Row(
