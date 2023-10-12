@@ -8,7 +8,9 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/app/theme/theme_manager.dart';
 import 'package:nepanikar/helpers/contact_action_helpers.dart';
+import 'package:nepanikar/providers/theme_provider.dart';
 import 'package:nepanikar/screens/settings/about_app_screen.dart';
 import 'package:nepanikar/screens/settings/export_screen.dart';
 import 'package:nepanikar/screens/settings/languages_screen.dart';
@@ -21,23 +23,33 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:nepanikar/widgets/semantics/semantics_widget_button.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:provider/provider.dart';
 
 class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key});
+  //final ThemeManager themeManager;
+
+  const SettingsScreen({super.key, /*required this.themeManager*/});
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+
+
+
   AppConfig get _appConfig => registry.get<AppConfig>();
 
   DatabaseService get _databaseService => registry.get<DatabaseService>();
+
 
   NotificationsService get _notificationsService => registry.get<NotificationsService>();
 
   @override
   Widget build(BuildContext context) {
+
+
+
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.settings,
       children: [
@@ -133,6 +145,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     text: context.l10n.support,
                     onTap: () => context.push(const SponsorsRoute().location),
                   ),
+                 /* Consumer<>(
+                      builder: (context, themeProvider, child){
+                        return _SettingsMenuItem(
+                          text: "Dark mode",
+                          leading: Switch(
+                            value:
+                            onChanged: (value){
+                              themeProvider.changeTheme();
+                            },
+                          ),
+                        );
+                      }
+                  ),*/
                   Container(
                     decoration: const BoxDecoration(
                       border: Border(

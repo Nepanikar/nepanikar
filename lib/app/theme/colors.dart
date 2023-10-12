@@ -39,4 +39,11 @@ class NepanikarColors {
     800: primary, //90%
     900: Color(0xff280446), //100%
   };
+
+
+  //Dark mode colors
+  static const primaryD = Color(0xff280446);
+  static const containerD = Color(0xff491475);
+  static const headerD = Color(0xff18002D);
+
 }

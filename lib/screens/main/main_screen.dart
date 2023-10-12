@@ -12,6 +12,8 @@ import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/utils/contacts_data_manager.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/bottom_navbar_item.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
 
 class MainPageExtra {
   MainPageExtra({
@@ -29,8 +31,12 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => _MainScreenState();
 }
 
+
+
+
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
+  bool _isDarkMode = false;
 
   ContactsDataManager get _contactsDataManager => registry.get<ContactsDataManager>();
 
@@ -76,8 +82,23 @@ class _MainScreenState extends State<MainScreen> {
     });
   }
 
+  List<SvgPicture> bottomNavigationIcons =[
+    SvgPicture.asset(
+      Assets.icons.home.path,
+
+    ),
+  ];
+
+
+
   @override
   Widget build(BuildContext context) {
+
+
+    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
+            ThemeMode.dark : ThemeMode.light;
+    _isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+
     return Scaffold(
       body: _routes.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
@@ -86,30 +107,35 @@ class _MainScreenState extends State<MainScreen> {
             svgIconPath: Assets.icons.home.path,
             label: context.l10n.home,
             isSelected: _selectedIndex == 0,
+            isDarkMode: _isDarkMode,
           ),
           buildBottomNavigationBarItem(
             svgIconPath: Assets.icons.calendarEvent.path,
             label: context.l10n.records,
             isSelected: _selectedIndex == 1,
+            isDarkMode: _isDarkMode,
           ),
           buildBottomNavigationBarItem(
             svgIconPath: Assets.icons.phone.path,
             label: context.l10n.contacts_module,
             isSelected: _selectedIndex == 2,
+            isDarkMode: _isDarkMode,
           ),
           buildBottomNavigationBarItem(
             svgIconPath: Assets.icons.settings.path,
             label: context.l10n.settings,
             isSelected: _selectedIndex == 3,
+            isDarkMode: _isDarkMode,
           ),
         ],
         currentIndex: _selectedIndex,
         showUnselectedLabels: true,
         type: BottomNavigationBarType.fixed,
-        backgroundColor: const Color(0xAAFAF4FF),
+        //backgroundColor: const Color(0xAAFAF4FF),
+        //backgroundColor: NepanikarColors.containerD,
         elevation: 0,
-        selectedItemColor: NepanikarColors.primarySwatch.shade800,
-        unselectedItemColor: NepanikarColors.primarySwatch.shade700,
+        //selectedItemColor: NepanikarColors.primarySwatch.shade800,
+        //unselectedItemColor: NepanikarColors.primarySwatch.shade700,
         onTap: _onItemTapped,
       ),
     );

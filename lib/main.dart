@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/fonts.gen.dart';
+import 'package:nepanikar/app/theme/dark_theme.dart';
 import 'package:nepanikar/app/theme/theme.dart';
+import 'package:nepanikar/app/theme/theme_manager.dart';
 import 'package:nepanikar/helpers/localization_helpers.dart';
 import 'package:nepanikar/providers/mood_chart_filter_provider.dart';
+import 'package:nepanikar/providers/theme_provider.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/utils/app_setup.dart';
 import 'package:nepanikar/utils/registry.dart';
@@ -14,6 +18,11 @@ import 'package:provider/provider.dart';
 
 Future<void> main() async {
   await setup();
+
+  //final sharedPreferences = await SharedPreferences.getInstance();
+  //final themeManager = ThemeManager(sharedPreferences: sharedPreferences);
+  //themeManager.loadDarkModePreference();
+
   runApp(const Nepanikar());
 }
 
@@ -26,28 +35,39 @@ class Nepanikar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<MoodChartFilterProvider>(create: (_) => MoodChartFilterProvider()),
+
       ],
       child: StreamBuilder<Locale>(
         stream: _userSettingsDao.localeStream,
         builder: (_, snapshot) {
+
           final locale = snapshot.data;
-          return MaterialApp.router(
-            title: _getAppNameFromLocale(locale),
-            theme: NepanikarTheme.getThemeData(
-              fontFamily: locale?.languageCode == NepanikarLanguages.uk.languageCode
-                  ? null
-                  : FontFamily.satoshi,
-            ),
-            localizationsDelegates: AppLocalizations.localizationsDelegates,
-            supportedLocales: AppLocalizations.supportedLocales,
-            locale: locale,
-            routerConfig: _goRouter,
-            builder: (context, child) {
-              return child != null
-                  ? ScrollConfiguration(
+          return Consumer(
+              builder: (context, ThemeProvider, child){
+                return MaterialApp.router(
+                  title: _getAppNameFromLocale(locale),
+                  theme: NepanikarTheme.getThemeData(
+                    fontFamily: locale?.languageCode == NepanikarLanguages.uk.languageCode
+                      ? null
+                      : FontFamily.satoshi,
+                  ),
+                  darkTheme: darkTheme.getThemeData(
+                    fontFamily: locale?.languageCode == NepanikarLanguages.uk.languageCode
+                        ? null
+                        : FontFamily.satoshi,
+                  ),
+                  themeMode: ThemeMode.dark,
+                  localizationsDelegates: AppLocalizations.localizationsDelegates,
+                  supportedLocales: AppLocalizations.supportedLocales,
+                  locale: locale,
+                  routerConfig: _goRouter,
+                  builder: (context, child) {
+                    return child != null
+                        ? ScrollConfiguration(
                       behavior: NepanikarScrollBehavior(),
                       child: MediaQuery(
                         // To not influence app's font size by the system font size.
@@ -56,9 +76,12 @@ class Nepanikar extends StatelessWidget {
                         child: child,
                       ),
                     )
-                  : const SizedBox.shrink();
-            },
+                        : const SizedBox.shrink();
+                  },
+                );
+              }
           );
+
         },
       ),
     );

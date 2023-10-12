@@ -3,13 +3,14 @@ import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/app/theme/sizes.dart';
 
-class NepanikarTheme {
-  NepanikarTheme._();
+class darkTheme {
+  darkTheme._();
 
   static ThemeData getThemeData({
     required String? fontFamily,
   }) =>
       ThemeData(
+        brightness: Brightness.dark,
         pageTransitionsTheme: const PageTransitionsTheme(
           builders: <TargetPlatform, PageTransitionsBuilder>{
             TargetPlatform.android: CupertinoPageTransitionsBuilder(),
@@ -17,13 +18,13 @@ class NepanikarTheme {
           },
         ),
         primaryColor: NepanikarColors.primary,
-        scaffoldBackgroundColor: const Color(0xffFBF6FF),
+        scaffoldBackgroundColor: NepanikarColors.primaryD,
         fontFamily: fontFamily,
-        colorScheme: const ColorScheme.light().copyWith(
-          primary: NepanikarColors.primary,
-          secondary: NepanikarColors.secondary,
-          onSecondary: Colors.white,
-          error: NepanikarColors.error,
+        colorScheme: const ColorScheme.dark().copyWith(
+          //primary: NepanikarColors.primary,
+          //secondary: NepanikarColors.secondary,
+          //onSecondary: Colors.white,
+          //error: NepanikarColors.error,
         ),
         primarySwatch: NepanikarColors.primarySwatch,
         appBarTheme: AppBarTheme(
@@ -42,7 +43,7 @@ class NepanikarTheme {
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: _buttonStyle.copyWith(
             backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-              (states) {
+                  (states) {
                 if (states.contains(MaterialState.disabled)) {
                   return NepanikarColors.primarySwatch.shade500;
                 }
@@ -59,7 +60,7 @@ class NepanikarTheme {
           style: _buttonStyle.copyWith(
             backgroundColor: MaterialStateProperty.all<Color?>(Colors.white),
             foregroundColor: MaterialStateProperty.resolveWith<Color?>(
-              (states) {
+                  (states) {
                 if (states.contains(MaterialState.disabled)) {
                   return NepanikarColors.primarySwatch.shade500;
                 }
@@ -70,7 +71,7 @@ class NepanikarTheme {
               const TextStyle(color: NepanikarColors.primary, fontWeight: FontWeight.w900),
             ),
             side: MaterialStateProperty.resolveWith<BorderSide?>(
-              (states) {
+                  (states) {
                 if (states.contains(MaterialState.disabled)) {
                   return BorderSide(color: NepanikarColors.primarySwatch.shade500, width: 2.0);
                 }
@@ -170,9 +171,12 @@ class NepanikarTheme {
             return null;
           }),
         ),
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          backgroundColor: const Color(0xAAFAF4FF),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: NepanikarColors.containerD,
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.white,
         ),
+
       );
 }
 
