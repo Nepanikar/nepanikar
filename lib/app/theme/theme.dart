@@ -170,8 +170,8 @@ class NepanikarTheme {
             return null;
           }),
         ),
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          backgroundColor: const Color(0xAAFAF4FF),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor:  Color(0xAAFAF4FF),
         ),
       );
 }

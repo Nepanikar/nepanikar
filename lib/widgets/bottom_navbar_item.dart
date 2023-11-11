@@ -7,7 +7,7 @@ import 'package:nepanikar/app/theme/colors.dart';
 
 BottomNavigationBarItem buildBottomNavigationBarItem({
   bool isSelected = false,
-  bool isDarkMode = false,
+  required bool isDarkMode,
   required String svgIconPath,
   required String label,
 
@@ -28,7 +28,7 @@ BottomNavigationBarItem buildBottomNavigationBarItem({
         SvgPicture.asset(
           svgIconPath,
           color: isDarkMode ?
-                    (isSelected ? Colors.white : Colors.white)
+                    (isSelected ? Colors.white : NepanikarColors.primarySwatch.shade400)
                     :
                     (isSelected ? NepanikarColors.primarySwatch.shade800 : NepanikarColors.primarySwatch.shade700),
         ),

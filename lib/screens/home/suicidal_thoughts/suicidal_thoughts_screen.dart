@@ -21,21 +21,29 @@ class SuicidalThoughtsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
+    ThemeMode.dark : ThemeMode.light;
+    bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+
     final modules = <Widget>[
       LongTile(
         text: context.l10n.plan,
         image: Assets.illustrations.modules.emergencyPlan.svg(),
         onTap: () => context.push(const SuicidalThoughtsPlanRoute().location),
+        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.reasons,
         image: Assets.illustrations.modules.reaseonsWhyNot.svg(),
         onTap: () => context.push(const SuicidalThoughtsReasonsNoRoute().location),
+        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.breath,
         image: Assets.illustrations.modules.breathing.svg(),
         onTap: () => context.push(const BreathingExercisesRoute().location),
+        isDarkMode: isDarkMode,
       ),
     ];
 

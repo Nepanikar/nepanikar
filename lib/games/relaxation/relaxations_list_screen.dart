@@ -19,6 +19,11 @@ class RelaxationsListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
+    ThemeMode.dark : ThemeMode.light;
+    final bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.relaxation,
       children: [
@@ -30,6 +35,7 @@ class RelaxationsListScreen extends StatelessWidget {
               relaxationType: RelaxationType.general,
             ).location,
           ),
+          isDarkMode: isDarkMode,
         ),
         LongTile(
           text: 'Ranní zastavení',
@@ -39,6 +45,7 @@ class RelaxationsListScreen extends StatelessWidget {
               relaxationType: RelaxationType.morning,
             ).location,
           ),
+          isDarkMode: isDarkMode,
         ),
         LongTile(
           text: 'Večerní zastavení',
@@ -48,6 +55,7 @@ class RelaxationsListScreen extends StatelessWidget {
               relaxationType: RelaxationType.evening,
             ).location,
           ),
+          isDarkMode: isDarkMode,
         ),
       ],
     );

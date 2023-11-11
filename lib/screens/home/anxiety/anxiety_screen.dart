@@ -28,37 +28,48 @@ class AnxietyAppScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
+    ThemeMode.dark : ThemeMode.light;
+    bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+
     final modules = <Widget>[
       LongTile(
         text: context.l10n.panic_tips_9,
         image: Assets.illustrations.modules.depression.svg(),
         onTap: () => context.push(const AnxietyTipsAppRoute().location),
+        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.breath,
         image: Assets.illustrations.modules.anxietyPanic.svg(),
         onTap: () => context.push(const BreathingExercisesRoute().location),
+        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.math,
         image: Assets.illustrations.games.math.math.svg(),
         onTap: () => context.push(const MathGameRoute().location),
+        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.game_balls,
         image: Assets.illustrations.games.balloons.baloons.svg(),
         onTap: () => context.push(const BalloonsGameRoute().location),
+        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.game_balance,
         image: Assets.illustrations.games.swing.swing.svg(),
         onTap: () => context.push(const BalanceGameRoute().location),
+        isDarkMode: isDarkMode,
       ),
       if (['cs', 'sk'].contains(_userSettingsDao.locale.languageCode))
         LongTile(
           text: context.l10n.relaxation,
           image: Assets.illustrations.modules.relaxation.svg(),
           onTap: () => context.push(const RelaxationsListRoute().location),
+          isDarkMode: isDarkMode,
         ),
     ];
 

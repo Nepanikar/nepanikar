@@ -32,10 +32,16 @@ class PhoneContactTile extends StatelessWidget {
   }
 
   Widget _buildSingleContact(BuildContext context, PhoneContactSingle contact) {
+
+    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
+                                  ThemeMode.dark : ThemeMode.light;
+    bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+
     final isPinned = contact.pinned;
     final textColor = isPinned ? Colors.white : null;
     final isUrl = contact.tel.contains('http');
     return LongTile(
+      isDarkMode: isDarkMode,
       text: contact.title,
       textTextStyle: _textTextStyle.copyWith(color: textColor),
       description: contact.subtitle,
@@ -53,6 +59,11 @@ class PhoneContactTile extends StatelessWidget {
   }
 
   Widget _buildSubListContact(BuildContext context, PhoneContactSubList contact) {
+
+    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
+                                  ThemeMode.dark : ThemeMode.light;
+    bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+
     final subContactsLength = contact.subPhoneContacts.length;
     final isSingleSubList = subContactsLength == 1;
     return GestureDetector(
@@ -63,6 +74,7 @@ class PhoneContactTile extends StatelessWidget {
           ? () async => copyContact(context, contact.subPhoneContacts.first.unformattedTel)
           : null,
       child: LongTile(
+        isDarkMode: isDarkMode,
         text: contact.title,
         textTextStyle: _textTextStyle,
         description: contact.subtitle,

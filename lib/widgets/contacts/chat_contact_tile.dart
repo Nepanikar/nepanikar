@@ -32,6 +32,11 @@ class ChatContactTile extends StatelessWidget {
   }
 
   Widget _buildSubListContact(BuildContext context, ChatContactSubList contact) {
+
+    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
+    ThemeMode.dark : ThemeMode.light;
+    bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+
     final subContactsLength = contact.subChatContacts.length;
     final isSingleSubList = subContactsLength == 1;
     return GestureDetector(
@@ -40,6 +45,7 @@ class ChatContactTile extends StatelessWidget {
           ? () async => copyContact(context, contact.subChatContacts.first.url)
           : null,
       child: LongTile(
+        isDarkMode: isDarkMode,
         text: contact.title,
         textTextStyle: _textTextStyle,
         description: contact.subtitle,

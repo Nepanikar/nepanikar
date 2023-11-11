@@ -23,33 +23,43 @@ class MyRecordsScreen extends StatelessWidget {
 
   final bool showBottomNavbar;
 
+
   @override
   Widget build(BuildContext context) {
+    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
+    ThemeMode.dark : ThemeMode.light;
+    bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+
     final modules = <Widget>[
       LongTile(
         text: context.l10n.depression_mood,
         image: Assets.illustrations.modules.moodTracker.svg(),
         onTap: () => context.push(const MoodTrackRoute().location),
+        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.sleep_title,
         image: Assets.illustrations.modules.sleepTracker.svg(),
         onTap: () => context.push(const MyRecordsSleepTrackRoute().location),
+        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.diary,
         image: Assets.illustrations.modules.diary.svg(),
         onTap: () => context.push(const MyRecordsDiaryRecordsRoute().location),
+        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.journal,
         image: Assets.illustrations.modules.journal.svg(),
         onTap: () => context.push(const MyRecordsJournalRecordsRoute().location),
+        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_records,
         image: Assets.illustrations.modules.foodTracker.svg(),
         onTap: () => context.push(const MyRecordsFoodRecordsListRoute().location),
+        isDarkMode: isDarkMode,
       ),
     ];
 

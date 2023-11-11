@@ -27,6 +27,11 @@ class FoodRecordTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
+    ThemeMode.dark : ThemeMode.light;
+    bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+
     const textStyle = NepanikarFonts.bodyHeavy;
     final locale = Localizations.localeOf(context);
 
@@ -34,6 +39,7 @@ class FoodRecordTile extends StatelessWidget {
       onTap: onTap,
       child: LongTile(
         image: null,
+        isDarkMode: isDarkMode,
         text: DateFormat.yMd(locale.languageCode).format(dailyFoodRecord.dateTime),
         textTextStyle: textStyle.copyWith(
           fontSize: 12,

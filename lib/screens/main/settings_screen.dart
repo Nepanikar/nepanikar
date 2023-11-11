@@ -8,9 +8,7 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
-import 'package:nepanikar/app/theme/theme_manager.dart';
 import 'package:nepanikar/helpers/contact_action_helpers.dart';
-import 'package:nepanikar/providers/theme_provider.dart';
 import 'package:nepanikar/screens/settings/about_app_screen.dart';
 import 'package:nepanikar/screens/settings/export_screen.dart';
 import 'package:nepanikar/screens/settings/languages_screen.dart';
@@ -48,7 +46,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
 
-
+    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
+    ThemeMode.dark : ThemeMode.light;
+    bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
 
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.settings,
@@ -61,18 +61,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(16),
             child: Material(
-              color: Colors.white,
+              color: isDarkMode ? NepanikarColors.containerD : Colors.white,
               borderRadius: BorderRadius.circular(16),
               child: Column(
                 children: [
                   _SettingsMenuItem(
                     hideTopSeparator: true,
-                    leading: Assets.icons.notificationBell.svg(),
+                    leading: isDarkMode ? Assets.icons.notificationBell.svg(color: Colors.white) : Assets.icons.notificationBell.svg(),
                     onTap: _notificationsService.checkPermission,
                     text: context.l10n.notifications,
                   ),
                   _SettingsMenuItem(
-                    leading: Assets.icons.deleteData.svg(),
+                    leading: isDarkMode ? Assets.icons.deleteData.svg(color: Colors.white) : Assets.icons.deleteData.svg(),
                     text: context.l10n.reset_inputs,
                     onTap: () {
                       context.showOkCancelNepanikarDialog(
@@ -97,7 +97,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     },
                   ),
                   _SettingsMenuItem(
-                    leading: Assets.icons.heart.svg(),
+                    leading: isDarkMode ? Assets.icons.heart.svg(color: Colors.white) : Assets.icons.heart.svg(),
                     text: context.l10n.rate,
                     onTap: () async {
                       final uri = Uri.parse(
@@ -111,7 +111,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     },
                   ),
                   _SettingsMenuItem(
-                    leading: Assets.icons.donate.svg(),
+                    leading: isDarkMode ? Assets.icons.donate.svg(color: Colors.white) : Assets.icons.donate.svg(),
                     text: context.l10n.support_us,
                     onTap: () async {
                       final url = Uri.parse(
@@ -121,26 +121,26 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     },
                   ),
                   _SettingsMenuItem(
-                    leading: Assets.icons.exportData.svg(),
+                    leading: isDarkMode ? Assets.icons.exportData.svg(color: Colors.white) : Assets.icons.exportData.svg(),
                     onTap: () {
                       context.push(const ExportRoute().location);
                     },
                     text: context.l10n.import_export,
                   ),
                   _SettingsMenuItem(
-                    leading: Assets.icons.aboutApp.svg(),
+                    leading: isDarkMode ? Assets.icons.aboutApp.svg(color: Colors.white) : Assets.icons.aboutApp.svg(),
                     text: context.l10n.about_app,
                     onTap: () => context.push(const AboutAppRoute().location),
                   ),
                   _SettingsMenuItem(
-                    leading: Assets.icons.language.svg(),
+                    leading: isDarkMode ? Assets.icons.language.svg(color: Colors.white) : Assets.icons.language.svg(),
                     text: context.l10n.language,
                     onTap: () => context.push(const LanguagesRoute().location),
                   ),
                   _SettingsMenuItem(
-                    leading: const Icon(
+                    leading: Icon(
                       Icons.shield_outlined,
-                      color: NepanikarColors.primary,
+                      color: isDarkMode ? Colors.white : NepanikarColors.primary,
                     ),
                     text: context.l10n.support,
                     onTap: () => context.push(const SponsorsRoute().location),
@@ -159,9 +159,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       }
                   ),*/
                   Container(
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       border: Border(
-                        top: BorderSide(color: Color(0xffF2F2F5)),
+                        top: isDarkMode ? BorderSide(color: NepanikarColors.primarySwatch.shade700) : BorderSide(color: Color(0xffF2F2F5)),
                       ),
                     ),
                     child: Padding(
@@ -171,14 +171,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ExcludeSemantics(
                             child: Text(
                               context.l10n.follow_us,
-                              style: NepanikarFonts.bodySmallMedium.copyWith(fontSize: 15),
+                              style: isDarkMode ? NepanikarFonts.bodySmallMedium.copyWith(fontSize: 15, color: Colors.white) :
+                                                    NepanikarFonts.bodySmallMedium.copyWith(fontSize: 15),
+
                             ),
                           ),
                           const Spacer(),
                           SemanticsWidgetButton(
                             label: '${context.l10n.follow_us}: Web',
                             onTap: () => launchUrLink(AppConstants.nepanikarWeb),
-                            child: Assets.icons.globe.svg(),
+                            child: isDarkMode ? Assets.icons.globe.svg(color: Colors.white) : Assets.icons.globe.svg(),
                           ),
                           const SizedBox(width: 27),
                           SemanticsWidgetButton(
@@ -187,7 +189,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               AppConstants.nepanikarInstagram,
                               launchMode: LaunchMode.externalApplication,
                             ),
-                            child: Assets.icons.instagram.svg(),
+                            child: isDarkMode ? Assets.icons.instagram.svg(color: Colors.white) : Assets.icons.instagram.svg(),
                           ),
                           const SizedBox(width: 27),
                           SemanticsWidgetButton(
@@ -196,7 +198,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               AppConstants.nepanikarFacebook,
                               launchMode: LaunchMode.externalApplication,
                             ),
-                            child: Assets.icons.facebook.svg(),
+                            child: isDarkMode ? Assets.icons.facebook.svg(color: Colors.white) : Assets.icons.facebook.svg(),
                           ),
                         ],
                       ),
@@ -213,8 +215,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
             constraints: const BoxConstraints(maxWidth: 245),
             child: Column(
               children: [
-                Assets.sponsors.sponsorPpf.image(),
-                Assets.sponsors.sponsorCeskoDigitalSvg.svg(),
+                isDarkMode ?  Assets.sponsors.sponsorPpf.image(color: NepanikarColors.primarySwatch.shade700) : Assets.sponsors.sponsorPpf.image(),
+                isDarkMode ? Assets.sponsors.sponsorCeskoDigitalSvg.svg(color: NepanikarColors.primarySwatch.shade700) : Assets.sponsors.sponsorCeskoDigitalSvg.svg(),
               ],
             ),
           ),
@@ -240,10 +242,16 @@ class _SettingsMenuItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
+    ThemeMode.dark : ThemeMode.light;
+    bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+
     return Container(
       decoration: BoxDecoration(
         border: Border(
-          top: hideTopSeparator ? BorderSide.none : const BorderSide(color: Color(0xffF2F2F5)),
+          top: isDarkMode ? (hideTopSeparator ? BorderSide.none :  BorderSide(color: NepanikarColors.primarySwatch.shade700))
+                          : (hideTopSeparator ? BorderSide.none : const BorderSide(color: Color(0xffF2F2F5))),
         ),
       ),
       child: InkWell(
@@ -265,7 +273,8 @@ class _SettingsMenuItem extends StatelessWidget {
                     Flexible(
                       child: Text(
                         text,
-                        style: NepanikarFonts.bodySmallMedium.copyWith(fontSize: 15),
+                        style: isDarkMode ? NepanikarFonts.bodySmallMedium.copyWith(fontSize: 15, color: Colors.white)
+                                            : NepanikarFonts.bodySmallMedium.copyWith(fontSize: 15),
                       ),
                     ),
                   ],
@@ -273,9 +282,9 @@ class _SettingsMenuItem extends StatelessWidget {
               ),
               Opacity(
                 opacity: onTap != null ? 1 : 0.5,
-                child: const Icon(
+                child: Icon(
                   Icons.chevron_right,
-                  color: Color(0xffCDD1D5),
+                  color: isDarkMode ? Colors.white : const Color(0xffCDD1D5),
                 ),
               ),
             ],

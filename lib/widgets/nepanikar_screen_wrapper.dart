@@ -74,6 +74,11 @@ class _NepanikarScreenWrapperState extends State<NepanikarScreenWrapper> {
 
   @override
   Widget build(BuildContext context) {
+
+    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
+    ThemeMode.dark : ThemeMode.light;
+    bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+
     Widget getPageContent() {
       if (widget.isModuleList) {
         return ListView(
@@ -118,18 +123,22 @@ class _NepanikarScreenWrapperState extends State<NepanikarScreenWrapper> {
                   svgIconPath: Assets.icons.home.path,
                   label: context.l10n.home,
                   isSelected: true,
+                  isDarkMode: isDarkMode,
                 ),
                 buildBottomNavigationBarItem(
                   svgIconPath: Assets.icons.calendarEvent.path,
                   label: context.l10n.records,
+                  isDarkMode: isDarkMode,
                 ),
                 buildBottomNavigationBarItem(
                   svgIconPath: Assets.icons.phone.path,
                   label: context.l10n.contacts_module,
+                  isDarkMode: isDarkMode,
                 ),
                 buildBottomNavigationBarItem(
                   svgIconPath: Assets.icons.settings.path,
                   label: context.l10n.settings,
+                  isDarkMode: isDarkMode,
                 ),
               ],
               showUnselectedLabels: true,
@@ -219,9 +228,14 @@ class AppBarOverflowContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
+    ThemeMode.dark : ThemeMode.light;
+    bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+
     final pageSidePadding = NepanikarSizes.screenContentPadding.left;
     return Container(
-      color: NepanikarColors.primary,
+      color: isDarkMode ? NepanikarColors.headerD : const Color(0xffFBF6FF),
       width: double.infinity,
       height: appBarDescription == null ? 50 : null,
       child: appBarDescription == null

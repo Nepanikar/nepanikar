@@ -20,6 +20,11 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
+    ThemeMode.dark : ThemeMode.light;
+    bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+
     final modules = <Widget>[
       LongTile(
         text: context.l10n.food_breakfast,
@@ -33,6 +38,7 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
             },
           ).toString(),
         ),
+        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: '${context.l10n.food_am_snack} ',
@@ -46,6 +52,7 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
             },
           ).toString(),
         ),
+        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: '${context.l10n.food_lunch} ',
@@ -59,6 +66,7 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
             },
           ).toString(),
         ),
+        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_pm_snack,
@@ -72,6 +80,7 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
             },
           ).toString(),
         ),
+        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_dinner,
@@ -85,6 +94,7 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
             },
           ).toString(),
         ),
+        isDarkMode: isDarkMode,
       ),
     ];
     return NepanikarScreenWrapper(

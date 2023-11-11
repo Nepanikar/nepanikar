@@ -21,10 +21,16 @@ class DiaryTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
+    ThemeMode.dark : ThemeMode.light;
+    bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+
     const textStyle = NepanikarFonts.bodyHeavy;
     final locale = Localizations.localeOf(context);
 
     return LongTile(
+      isDarkMode: isDarkMode,
       image: Assets.illustrations.modules.myRecords.svg(),
       text: DateFormat.yMd(locale.languageCode).format(date),
       textTextStyle: textStyle.copyWith(

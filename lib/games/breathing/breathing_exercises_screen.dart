@@ -19,6 +19,11 @@ class BreathingExercisesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
+    ThemeMode.dark : ThemeMode.light;
+    final bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+
     final modules = <Widget>[
       LongTile(
         text: context.l10n.breathing_exercise_i,
@@ -26,6 +31,7 @@ class BreathingExercisesScreen extends StatelessWidget {
         onTap: () => context.push(
           const BreathingGameRoute(shape: BreathingGameShape.circle).location,
         ),
+        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.breathing_exercise_ii,
@@ -33,6 +39,7 @@ class BreathingExercisesScreen extends StatelessWidget {
         onTap: () => context.push(
           const BreathingGameRoute(shape: BreathingGameShape.triangle).location,
         ),
+        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.breathing_exercise_iii,
@@ -40,6 +47,7 @@ class BreathingExercisesScreen extends StatelessWidget {
         onTap: () => context.push(
           const BreathingGameRoute(shape: BreathingGameShape.square).location,
         ),
+        isDarkMode: isDarkMode,
       ),
     ];
 

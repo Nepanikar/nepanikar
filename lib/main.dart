@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/fonts.gen.dart';
 import 'package:nepanikar/app/theme/dark_theme.dart';
 import 'package:nepanikar/app/theme/theme.dart';
-import 'package:nepanikar/app/theme/theme_manager.dart';
 import 'package:nepanikar/helpers/localization_helpers.dart';
 import 'package:nepanikar/providers/mood_chart_filter_provider.dart';
-import 'package:nepanikar/providers/theme_provider.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/utils/app_setup.dart';
 import 'package:nepanikar/utils/registry.dart';

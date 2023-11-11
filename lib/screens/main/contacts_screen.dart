@@ -46,6 +46,11 @@ class ContactsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
+    ThemeMode.dark : ThemeMode.light;
+    bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+
     final locale = Localizations.localeOf(context);
 
     final modules = <Widget>[
@@ -57,35 +62,41 @@ class ContactsScreen extends StatelessWidget {
         trailing:
             Assets.icons.navigation.arrowRight.svg(width: 16, height: 16, color: Colors.white),
         onTap: () => context.push(const CrisisMessageRoute().location),
+        isDarkMode: isDarkMode,
       ),
       if (countryContacts.phoneContacts != null)
         LongTile(
           text: context.l10n.phone,
           image: Assets.illustrations.contacts.phones.svg(),
           onTap: () => context.push(const PhoneContactsRoute().location),
+          isDarkMode: isDarkMode,
         ),
       if (countryContacts.crisisCenterContacts != null)
         LongTile(
           text: context.l10n.center,
           image: Assets.illustrations.contacts.crisisCenters.svg(),
           onTap: () => context.push(const CrisisCenterContactsRoute().location),
+          isDarkMode: isDarkMode,
         ),
       if (countryContacts.chatContacts != null)
         LongTile(
           text: context.l10n.chat,
           image: Assets.illustrations.contacts.chat.svg(),
           onTap: () => context.push(const ChatContactsRoute().location),
+          isDarkMode: isDarkMode,
         ),
       if (countryContacts.universityRegionContacts != null)
         LongTile(
           text: context.l10n.universities,
           image: Assets.illustrations.contacts.universities.svg(),
           onTap: () => context.push(const UniversityContactsRoute().location),
+          isDarkMode: isDarkMode,
         ),
       LongTile(
         text: context.l10n.my_contacts,
         image: Assets.illustrations.contacts.myContacts.svg(),
         onTap: () => context.push(const MyContactsRecordsRoute().location),
+        isDarkMode: isDarkMode,
       ),
       if ([NepanikarLanguages.cs.languageCode, NepanikarLanguages.sk.languageCode]
           .contains(locale.languageCode)) ...[
@@ -93,6 +104,7 @@ class ContactsScreen extends StatelessWidget {
           text: context.l10n.online_therapy,
           image: Assets.illustrations.modules.onlineTherapy.svg(),
           onTap: () => launchUrLink(AppConstants.nepanikarTherapyUrl),
+          isDarkMode: isDarkMode,
         ),
         LongTile(
           text: context.l10n.email_consultation,
@@ -104,6 +116,7 @@ class ContactsScreen extends StatelessWidget {
               subjectMessage: context.l10n.counselling_email_subject,
             ),
           ),
+          isDarkMode: isDarkMode,
         ),
       ],
     ];

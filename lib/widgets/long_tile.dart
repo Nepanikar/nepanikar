@@ -5,6 +5,8 @@ import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/widgets/nepanikar_horizontal_divider.dart';
 
 class LongTile extends StatelessWidget {
+
+
   const LongTile({
     super.key,
     required this.text,
@@ -15,6 +17,7 @@ class LongTile extends StatelessWidget {
     this.descriptionMaxLines,
     required this.image,
     required this.onTap,
+    required this.isDarkMode,
     this.onLongPress,
     this.trailing,
     this.subContent,
@@ -22,6 +25,7 @@ class LongTile extends StatelessWidget {
     this.showSubContentSeparator = true,
   });
 
+  final bool isDarkMode;
   final Color? backgroundColor;
   final String text;
   final TextStyle textTextStyle;
@@ -50,7 +54,7 @@ class LongTile extends StatelessWidget {
         ),
         child: Material(
           borderRadius: BorderRadius.circular(16),
-          color: backgroundColor,
+          color: isDarkMode ? NepanikarColors.containerD : backgroundColor,
           clipBehavior: Clip.antiAlias,
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -78,7 +82,8 @@ class LongTile extends StatelessWidget {
                           children: [
                             Text(
                               text,
-                              style: textTextStyle,
+                              //style: textTextStyle,
+                              style: isDarkMode ? textTextStyle.copyWith(color: Colors.white) : textTextStyle,
                             ),
                             if (description != null)
                               ExcludeSemantics(
@@ -98,7 +103,8 @@ class LongTile extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 12.0),
                         child: trailing ??
                             ExcludeSemantics(
-                              child: Assets.icons.navigation.arrowRight.svg(width: 16, height: 16),
+                              child: isDarkMode ? Assets.icons.navigation.arrowRight.svg(width: 16, height: 16, color: Colors.white)
+                                                : Assets.icons.navigation.arrowRight.svg(width: 16, height: 16),
                             ),
                       ),
                     ],

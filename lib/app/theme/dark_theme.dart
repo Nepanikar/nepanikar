@@ -3,6 +3,7 @@ import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/app/theme/sizes.dart';
 
+// ignore: camel_case_types
 class darkTheme {
   darkTheme._();
 
@@ -28,7 +29,7 @@ class darkTheme {
         ),
         primarySwatch: NepanikarColors.primarySwatch,
         appBarTheme: AppBarTheme(
-          backgroundColor: NepanikarColors.primary,
+          backgroundColor: NepanikarColors.headerD,
           elevation: 0,
           centerTitle: true,
           titleTextStyle: NepanikarFonts.title3.copyWith(color: Colors.white),

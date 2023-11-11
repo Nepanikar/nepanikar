@@ -36,7 +36,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
-  bool _isDarkMode = false;
+  bool isDarkMode = false;
 
   ContactsDataManager get _contactsDataManager => registry.get<ContactsDataManager>();
 
@@ -96,8 +96,8 @@ class _MainScreenState extends State<MainScreen> {
 
 
     ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
-            ThemeMode.dark : ThemeMode.light;
-    _isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+                                  ThemeMode.dark : ThemeMode.light;
+    isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
 
     return Scaffold(
       body: _routes.elementAt(_selectedIndex),
@@ -107,32 +107,32 @@ class _MainScreenState extends State<MainScreen> {
             svgIconPath: Assets.icons.home.path,
             label: context.l10n.home,
             isSelected: _selectedIndex == 0,
-            isDarkMode: _isDarkMode,
+            isDarkMode: isDarkMode,
           ),
           buildBottomNavigationBarItem(
             svgIconPath: Assets.icons.calendarEvent.path,
             label: context.l10n.records,
             isSelected: _selectedIndex == 1,
-            isDarkMode: _isDarkMode,
+            isDarkMode: isDarkMode,
           ),
           buildBottomNavigationBarItem(
             svgIconPath: Assets.icons.phone.path,
             label: context.l10n.contacts_module,
             isSelected: _selectedIndex == 2,
-            isDarkMode: _isDarkMode,
+            isDarkMode: isDarkMode,
           ),
           buildBottomNavigationBarItem(
             svgIconPath: Assets.icons.settings.path,
             label: context.l10n.settings,
             isSelected: _selectedIndex == 3,
-            isDarkMode: _isDarkMode,
+            isDarkMode: isDarkMode,
           ),
         ],
         currentIndex: _selectedIndex,
         showUnselectedLabels: true,
         type: BottomNavigationBarType.fixed,
         //backgroundColor: const Color(0xAAFAF4FF),
-        //backgroundColor: NepanikarColors.containerD,
+        backgroundColor: isDarkMode ? NepanikarColors.containerD : const Color(0xAAFAF4FF),
         elevation: 0,
         //selectedItemColor: NepanikarColors.primarySwatch.shade800,
         //unselectedItemColor: NepanikarColors.primarySwatch.shade700,

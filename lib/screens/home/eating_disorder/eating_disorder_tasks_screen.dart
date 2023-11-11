@@ -24,36 +24,47 @@ class EatingDisorderTasksScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
+    ThemeMode.dark : ThemeMode.light;
+    bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+
     final modules = <Widget>[
       LongTile(
         text: context.l10n.food_tasks_creative,
         image: Assets.illustrations.modules.eatingDisorder.svg(),
         onTap: () => context.push(const EatingDisorderFoodCreativeRoute().location),
+        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_tasks_motivation,
         image: Assets.illustrations.modules.eatingDisorder.svg(),
         onTap: () => context.push(const EatingDisorderFoodMotivationRoute().location),
+        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_tasks_challenge,
         image: Assets.illustrations.modules.eatingDisorder.svg(),
         onTap: () => context.push(const EatingDisorderFoodChallengesRoute().location),
+        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_tasks_like,
         image: Assets.illustrations.modules.eatingDisorder.svg(),
         onTap: () => context.push(const EatingDisorderLikeOnMyselfRoute().location),
+        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_tasks_food_like,
         image: Assets.illustrations.modules.eatingDisorder.svg(),
         onTap: () => context.push(const EatingDisorderFoodILikeRoute().location),
+        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_tasks_afraid,
         image: Assets.illustrations.modules.eatingDisorder.svg(),
         onTap: () => context.push(const EatingDisorderFoodAfraidOfRoute().location),
+        isDarkMode: isDarkMode,
       ),
     ];
     return NepanikarScreenWrapper(
