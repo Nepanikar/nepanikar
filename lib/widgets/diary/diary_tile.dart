@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 
 class DiaryTile extends StatelessWidget {
@@ -21,10 +22,8 @@ class DiaryTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
-    ThemeMode.dark : ThemeMode.light;
-    bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final longTileColor = customColorsBasedOnDarkMode(context, NepanikarColors.containerD, NepanikarColors.primarySwatch.shade700);
 
     const textStyle = NepanikarFonts.bodyHeavy;
     final locale = Localizations.localeOf(context);

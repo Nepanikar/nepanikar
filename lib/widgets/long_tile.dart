@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/widgets/nepanikar_horizontal_divider.dart';
 
 class LongTile extends StatelessWidget {
@@ -45,6 +46,11 @@ class LongTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color? longTileColor = longTileColorBasedOnDarkMode(context);
+    if(backgroundColor != null){
+      longTileColor = backgroundColor;
+    }
+
     return Semantics(
       button: true,
       child: DecoratedBox(
@@ -54,7 +60,7 @@ class LongTile extends StatelessWidget {
         ),
         child: Material(
           borderRadius: BorderRadius.circular(16),
-          color: isDarkMode ? NepanikarColors.containerD : backgroundColor,
+          color: longTileColor,
           clipBehavior: Clip.antiAlias,
           child: Column(
             mainAxisSize: MainAxisSize.min,

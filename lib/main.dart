@@ -14,11 +14,10 @@ import 'package:nepanikar_contacts_gen/nepanikar_contacts_gen.dart';
 import 'package:provider/provider.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await setup();
 
-  //final sharedPreferences = await SharedPreferences.getInstance();
-  //final themeManager = ThemeManager(sharedPreferences: sharedPreferences);
-  //themeManager.loadDarkModePreference();
+  final userSettingsDao = registry.get<UserSettingsDao>();
 
   runApp(const Nepanikar());
 }
@@ -49,43 +48,46 @@ class Nepanikar extends StatelessWidget {
         builder: (_, snapshot) {
 
           final locale = snapshot.data;
-
-              return MaterialApp.router(
-                title: _getAppNameFromLocale(locale),
-                theme: NepanikarTheme.getThemeData(
-                  fontFamily: locale?.languageCode == NepanikarLanguages.uk.languageCode
-                    ? null
-                    : FontFamily.satoshi,
-                ),
-                darkTheme: darkTheme.getThemeData(
-                  fontFamily: locale?.languageCode == NepanikarLanguages.uk.languageCode
-                      ? null
-                      : FontFamily.satoshi,
-                ),
-                themeMode: ThemeMode.dark,
-                //themeMode: ThemeMode.light,
-                localizationsDelegates: AppLocalizations.localizationsDelegates,
-                supportedLocales: AppLocalizations.supportedLocales,
-                locale: locale,
-                routerConfig: _goRouter,
-                builder: (context, child) {
-                  return child != null
-                      ? ScrollConfiguration(
-                    behavior: NepanikarScrollBehavior(),
-                    child: MediaQuery(
-                      // To not influence app's font size by the system font size.
-                      // TODO: Should be resolved, accessibility is important.
-                      data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                      child: child,
+              return StreamBuilder<ThemeMode>(
+                stream: _userSettingsDao.themeModeStream,
+                builder: (context, snapshot){
+                  final themeMode = snapshot.data ?? ThemeMode.system;
+                  
+                  return MaterialApp.router(
+                    title: _getAppNameFromLocale(locale),
+                    theme: NepanikarTheme.getThemeData(
+                      fontFamily: locale?.languageCode == NepanikarLanguages.uk.languageCode
+                          ? null
+                          : FontFamily.satoshi,
                     ),
-                  )
-                      : const SizedBox.shrink();
+                    darkTheme: darkTheme.getThemeData(
+                      fontFamily: locale?.languageCode == NepanikarLanguages.uk.languageCode
+                          ? null
+                          : FontFamily.satoshi,
+                    ),
+                    themeMode: themeMode,
+                    //themeMode: ThemeMode.light,
+                    localizationsDelegates: AppLocalizations.localizationsDelegates,
+                    supportedLocales: AppLocalizations.supportedLocales,
+                    locale: locale,
+                    routerConfig: _goRouter,
+                    builder: (context, child) {
+                      return child != null
+                          ? ScrollConfiguration(
+                        behavior: NepanikarScrollBehavior(),
+                        child: MediaQuery(
+                          // To not influence app's font size by the system font size.
+                          // TODO: Should be resolved, accessibility is important.
+                          data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                          child: child,
+                        ),
+                      )
+                          : const SizedBox.shrink();
+                    },
+                  );
                 },
               );
-            }
-
-
-
+            },
       ),
     );
   }

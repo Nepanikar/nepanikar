@@ -151,6 +151,10 @@ GoRoute get $mainRoute => GoRouteData.$route(
           factory: $MoodTrackRouteExtension._fromState,
         ),
         GoRouteData.$route(
+          path: 'home/my-records/mood-picker',
+          factory: $MoodPickerRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: 'home/my-records/sleep-track',
           factory: $MyRecordsSleepTrackRouteExtension._fromState,
         ),
@@ -831,6 +835,22 @@ extension $MoodTrackRouteExtension on MoodTrackRoute {
 
   String get location => GoRouteData.$location(
         '/home/my-records/mood-track',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+}
+
+extension $MoodPickerRouteExtension on MoodPickerRoute {
+  static MoodPickerRoute _fromState(GoRouterState state) =>
+      const MoodPickerRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/my-records/mood-picker',
       );
 
   void go(BuildContext context) => context.go(location);

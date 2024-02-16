@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/theme/colors.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 
 class TipItem extends StatelessWidget {
   const TipItem({required this.scale, required this.content});
@@ -8,6 +10,8 @@ class TipItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final boxColor = longTileColorBasedOnDarkMode(context);
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 122.0),
       child: SizedBox(
@@ -16,7 +20,7 @@ class TipItem extends StatelessWidget {
           child: DecoratedBox(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
-              color: Colors.white,
+              color: boxColor,
               boxShadow: [
                 BoxShadow(
                   color: const Color(0xff2B2D41).withOpacity(0.12),

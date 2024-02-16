@@ -8,12 +8,14 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/helpers/contact_action_helpers.dart';
 import 'package:nepanikar/screens/settings/about_app_screen.dart';
 import 'package:nepanikar/screens/settings/export_screen.dart';
 import 'package:nepanikar/screens/settings/languages_screen.dart';
 import 'package:nepanikar/screens/settings/sponsors_screen.dart';
 import 'package:nepanikar/services/db/database_service.dart';
+import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/services/notifications/notifications_service.dart';
 import 'package:nepanikar/utils/app_config.dart';
 import 'package:nepanikar/utils/extensions.dart';
@@ -26,29 +28,26 @@ import 'package:provider/provider.dart';
 class SettingsScreen extends StatefulWidget {
   //final ThemeManager themeManager;
 
-  const SettingsScreen({super.key, /*required this.themeManager*/});
+  const SettingsScreen({super.key});
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-
-
-
   AppConfig get _appConfig => registry.get<AppConfig>();
 
   DatabaseService get _databaseService => registry.get<DatabaseService>();
-
 
   NotificationsService get _notificationsService => registry.get<NotificationsService>();
 
   @override
   Widget build(BuildContext context) {
-
-    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
-    ThemeMode.dark : ThemeMode.light;
-    bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+    final userSettingsDao = registry.get<UserSettingsDao>();
+    final currentTheme = Theme.of(context);
+    bool isDarkMode = currentTheme.brightness == Brightness.dark;
+    final svgColor = svgColorBasedOnDarkMode(context);
+    final pdfColor = pdfColorBasedOnDarkMode(context);
 
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.settings,
@@ -61,18 +60,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(16),
             child: Material(
-              color: isDarkMode ? NepanikarColors.containerD : Colors.white,
+              color: isDarkMode ?
+                          NepanikarColors.containerD : NepanikarColors.white,
               borderRadius: BorderRadius.circular(16),
               child: Column(
                 children: [
                   _SettingsMenuItem(
                     hideTopSeparator: true,
-                    leading: isDarkMode ? Assets.icons.notificationBell.svg(color: Colors.white) : Assets.icons.notificationBell.svg(),
+                    leading: Assets.icons.notificationBell.svg(color: svgColor),
                     onTap: _notificationsService.checkPermission,
                     text: context.l10n.notifications,
                   ),
                   _SettingsMenuItem(
-                    leading: isDarkMode ? Assets.icons.deleteData.svg(color: Colors.white) : Assets.icons.deleteData.svg(),
+                    leading: Assets.icons.deleteData.svg(color: svgColor),
                     text: context.l10n.reset_inputs,
                     onTap: () {
                       context.showOkCancelNepanikarDialog(
@@ -97,7 +97,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     },
                   ),
                   _SettingsMenuItem(
-                    leading: isDarkMode ? Assets.icons.heart.svg(color: Colors.white) : Assets.icons.heart.svg(),
+                    leading: Assets.icons.heart.svg(color: svgColor),
                     text: context.l10n.rate,
                     onTap: () async {
                       final uri = Uri.parse(
@@ -111,7 +111,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     },
                   ),
                   _SettingsMenuItem(
-                    leading: isDarkMode ? Assets.icons.donate.svg(color: Colors.white) : Assets.icons.donate.svg(),
+                    leading: Assets.icons.donate.svg(color: svgColor),
                     text: context.l10n.support_us,
                     onTap: () async {
                       final url = Uri.parse(
@@ -121,21 +121,32 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     },
                   ),
                   _SettingsMenuItem(
-                    leading: isDarkMode ? Assets.icons.exportData.svg(color: Colors.white) : Assets.icons.exportData.svg(),
+                    leading:  Assets.icons.exportData.svg(color: svgColor),
                     onTap: () {
                       context.push(const ExportRoute().location);
                     },
                     text: context.l10n.import_export,
                   ),
                   _SettingsMenuItem(
-                    leading: isDarkMode ? Assets.icons.aboutApp.svg(color: Colors.white) : Assets.icons.aboutApp.svg(),
+                    leading: Assets.icons.aboutApp.svg(color: svgColor),
                     text: context.l10n.about_app,
                     onTap: () => context.push(const AboutAppRoute().location),
                   ),
                   _SettingsMenuItem(
-                    leading: isDarkMode ? Assets.icons.language.svg(color: Colors.white) : Assets.icons.language.svg(),
+                    leading: Assets.icons.language.svg(color: svgColor),
                     text: context.l10n.language,
                     onTap: () => context.push(const LanguagesRoute().location),
+                  ),
+                  _SettingsMenuItem(
+                    text: "Dark Mode",
+                    onTap: () async{
+                      final newThemeMode = isDarkMode ? ThemeMode.light : ThemeMode.dark;
+                      await userSettingsDao.saveThemeMode(newThemeMode);
+                      setState(() {
+                        isDarkMode = !isDarkMode;
+                      });
+                    },
+
                   ),
                   _SettingsMenuItem(
                     leading: Icon(
@@ -145,19 +156,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     text: context.l10n.support,
                     onTap: () => context.push(const SponsorsRoute().location),
                   ),
-                 /* Consumer<>(
-                      builder: (context, themeProvider, child){
-                        return _SettingsMenuItem(
-                          text: "Dark mode",
-                          leading: Switch(
-                            value:
-                            onChanged: (value){
-                              themeProvider.changeTheme();
-                            },
-                          ),
-                        );
-                      }
-                  ),*/
                   Container(
                     decoration: BoxDecoration(
                       border: Border(
@@ -171,8 +169,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ExcludeSemantics(
                             child: Text(
                               context.l10n.follow_us,
-                              style: isDarkMode ? NepanikarFonts.bodySmallMedium.copyWith(fontSize: 15, color: Colors.white) :
-                                                    NepanikarFonts.bodySmallMedium.copyWith(fontSize: 15),
+                              style: NepanikarFonts.bodySmallMedium.copyWith(fontSize: 15, color: svgColor),
 
                             ),
                           ),
@@ -180,7 +177,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           SemanticsWidgetButton(
                             label: '${context.l10n.follow_us}: Web',
                             onTap: () => launchUrLink(AppConstants.nepanikarWeb),
-                            child: isDarkMode ? Assets.icons.globe.svg(color: Colors.white) : Assets.icons.globe.svg(),
+                            child: Assets.icons.globe.svg(color: svgColor),
                           ),
                           const SizedBox(width: 27),
                           SemanticsWidgetButton(
@@ -189,7 +186,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               AppConstants.nepanikarInstagram,
                               launchMode: LaunchMode.externalApplication,
                             ),
-                            child: isDarkMode ? Assets.icons.instagram.svg(color: Colors.white) : Assets.icons.instagram.svg(),
+                            child: Assets.icons.instagram.svg(color: svgColor),
                           ),
                           const SizedBox(width: 27),
                           SemanticsWidgetButton(
@@ -198,7 +195,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               AppConstants.nepanikarFacebook,
                               launchMode: LaunchMode.externalApplication,
                             ),
-                            child: isDarkMode ? Assets.icons.facebook.svg(color: Colors.white) : Assets.icons.facebook.svg(),
+                            child: Assets.icons.facebook.svg(color: svgColor),
                           ),
                         ],
                       ),
@@ -215,8 +212,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
             constraints: const BoxConstraints(maxWidth: 245),
             child: Column(
               children: [
-                isDarkMode ?  Assets.sponsors.sponsorPpf.image(color: NepanikarColors.primarySwatch.shade700) : Assets.sponsors.sponsorPpf.image(),
-                isDarkMode ? Assets.sponsors.sponsorCeskoDigitalSvg.svg(color: NepanikarColors.primarySwatch.shade700) : Assets.sponsors.sponsorCeskoDigitalSvg.svg(),
+                Assets.sponsors.sponsorPpf.image(color: pdfColor),
+                Assets.sponsors.sponsorCeskoDigitalSvg.svg(color: pdfColor),
               ],
             ),
           ),
@@ -232,20 +229,21 @@ class _SettingsMenuItem extends StatelessWidget {
     this.leading,
     required this.text,
     this.onTap,
+    this.trailing,
   });
 
   final bool hideTopSeparator;
   final Widget? leading;
-
+  final Widget? trailing;
   final String text;
   final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
 
-    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
-    ThemeMode.dark : ThemeMode.light;
-    bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+    final currentTheme = Theme.of(context);
+    final isDarkMode = currentTheme.brightness == Brightness.dark;
+    final textColor = svgColorBasedOnDarkMode(context);
 
     return Container(
       decoration: BoxDecoration(
@@ -273,8 +271,7 @@ class _SettingsMenuItem extends StatelessWidget {
                     Flexible(
                       child: Text(
                         text,
-                        style: isDarkMode ? NepanikarFonts.bodySmallMedium.copyWith(fontSize: 15, color: Colors.white)
-                                            : NepanikarFonts.bodySmallMedium.copyWith(fontSize: 15),
+                        style: NepanikarFonts.bodySmallMedium.copyWith(fontSize: 15, color: textColor),
                       ),
                     ),
                   ],
@@ -287,6 +284,7 @@ class _SettingsMenuItem extends StatelessWidget {
                   color: isDarkMode ? Colors.white : const Color(0xffCDD1D5),
                 ),
               ),
+              if(trailing != null) trailing!,
             ],
           ),
         ),

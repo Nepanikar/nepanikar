@@ -39,3 +39,29 @@ class NotificationTypeSettings with _$NotificationTypeSettings {
   factory NotificationTypeSettings.fromJson(Map<String, Object?> json) =>
       _$NotificationTypeSettingsFromJson(json);
 }
+
+@freezed
+class UserThemeMode with _$UserThemeMode {
+  const factory UserThemeMode({
+    @Default('system') String themeMode,
+  }) = _UserThemeMode;
+
+  const UserThemeMode._();
+
+  factory UserThemeMode.fromJson(Map<String, Object?> json) => _$UserThemeModeFromJson(json);
+
+  ThemeMode getThemeMode(){
+    switch (themeMode){
+      case 'dark':
+        return ThemeMode.dark;
+      case 'light':
+        return ThemeMode.light;
+      default:
+        return ThemeMode.system;
+    }
+  }
+
+  static String themeModeToString(ThemeMode themeMode){
+    return themeMode.toString().split('.').last;
+  }
+}

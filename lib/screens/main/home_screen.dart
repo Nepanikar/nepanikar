@@ -8,6 +8,7 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/helpers/screen_resolution_helpers.dart';
 import 'package:nepanikar/screens/home/anxiety/anxiety_screen.dart';
 import 'package:nepanikar/screens/home/depression/depression_screen.dart';
@@ -33,10 +34,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool _isDarkMode;
-    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
-    ThemeMode.dark : ThemeMode.light;
-    _isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+    final currentTheme = Theme.of(context);
+    final isDarkMode = currentTheme.brightness == Brightness.dark;
+    final svgColor = svgColorBasedOnDarkMode(context);
 
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
@@ -44,32 +44,32 @@ class HomeScreen extends StatelessWidget {
     final modules = <HomeTile>[
       HomeTile(
         text: context.l10n.depression,
-        image: Assets.illustrations.modules.depression.svg(color: _isDarkMode ? Colors.white : NepanikarColors.primaryD),
+        image: Assets.illustrations.modules.depression.svg(color: svgColor),
         location: const DepressionRoute().location,
       ),
       HomeTile(
         text: context.l10n.anxiety_panic,
-        image: Assets.illustrations.modules.anxietyPanic.svg(color: _isDarkMode ? Colors.white : NepanikarColors.primaryD),
+        image: Assets.illustrations.modules.anxietyPanic.svg(color: svgColor),
         location: const AnxietyAppRoute().location,
       ),
       HomeTile(
         text: context.l10n.self_harm,
-        image: Assets.illustrations.modules.selfHarm.svg(color: _isDarkMode ? Colors.white : NepanikarColors.primaryD),
+        image: Assets.illustrations.modules.selfHarm.svg(color: svgColor),
         location: const SelfHarmRoute().location,
       ),
       HomeTile(
         text: context.l10n.suicidal_thoughts,
-        image: Assets.illustrations.modules.suicidalThoughts.svg(color: _isDarkMode ? Colors.white : NepanikarColors.primaryD),
+        image: Assets.illustrations.modules.suicidalThoughts.svg(color: svgColor),
         location: const SuicidalThoughtsRoute().location,
       ),
       HomeTile(
         text: context.l10n.food,
-        image: Assets.illustrations.modules.eatingDisorder.svg(color: _isDarkMode ? Colors.white : NepanikarColors.primaryD),
+        image: Assets.illustrations.modules.eatingDisorder.svg(color: svgColor),
         location: const EatingDisorderRoute().location,
       ),
       HomeTile(
         text: context.l10n.my_records,
-        image: Assets.illustrations.modules.myRecords.svg(color: _isDarkMode ? Colors.white : NepanikarColors.primaryD),
+        image: Assets.illustrations.modules.myRecords.svg(color: svgColor),
         location: const MyRecordsRoute().location,
       ),
     ];
@@ -91,13 +91,13 @@ class HomeScreen extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             const SizedBox(width: 6),
-                            Assets.icons.logo.svg(color: _isDarkMode ? Colors.white : NepanikarColors.primaryD),
+                            Assets.icons.logo.svg(color: svgColor),
                             const SizedBox(width: 10),
                             Text(
                               context.l10n.app_name,
                               style: NepanikarFonts.title3.copyWith(
                                   fontSize: 18.6,
-                                  color: _isDarkMode ? Colors.white : NepanikarColors.primaryD
+                                  color: svgColor,
                               ),
                             ),
                           ],
@@ -139,7 +139,7 @@ class HomeScreen extends StatelessWidget {
                   child: AutoSizeText(
                     context.l10n.homepage_subtitle,
                     maxLines: 1,
-                    style: NepanikarFonts.title2.copyWith(color: _isDarkMode ? Colors.white : NepanikarColors.primaryD),
+                    style: NepanikarFonts.title2.copyWith(color: isDarkMode ? Colors.white : NepanikarColors.primaryD),
                   ),
                 ),
               ),

@@ -7,6 +7,7 @@ import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/app/theme/sizes.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/helpers/screen_resolution_helpers.dart';
 import 'package:nepanikar/screens/main/main_screen.dart';
 import 'package:nepanikar/widgets/bottom_navbar_item.dart';
@@ -74,10 +75,8 @@ class _NepanikarScreenWrapperState extends State<NepanikarScreenWrapper> {
 
   @override
   Widget build(BuildContext context) {
-
-    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
-    ThemeMode.dark : ThemeMode.light;
-    bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final containerColor = longTileColorBasedOnDarkMode(context);
 
     Widget getPageContent() {
       if (widget.isModuleList) {
@@ -143,10 +142,7 @@ class _NepanikarScreenWrapperState extends State<NepanikarScreenWrapper> {
               ],
               showUnselectedLabels: true,
               type: BottomNavigationBarType.fixed,
-              backgroundColor: const Color(0xAAFAF4FF),
               elevation: 0,
-              selectedItemColor: NepanikarColors.primarySwatch.shade800,
-              unselectedItemColor: NepanikarColors.primarySwatch.shade700,
               onTap: (index) {
                 context
                   ..go(const MainRoute().location)
@@ -176,6 +172,7 @@ class _NepanikarScreenWrapperState extends State<NepanikarScreenWrapper> {
                       width: double.infinity,
                       height: widget.expandToMaxScreenHeight ? context.screenHeight : null,
                       child: Card(
+                        color: containerColor,
                         clipBehavior: Clip.hardEdge,
                         margin: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                         child: Padding(
@@ -228,14 +225,11 @@ class AppBarOverflowContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
-    ThemeMode.dark : ThemeMode.light;
-    bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
-
     final pageSidePadding = NepanikarSizes.screenContentPadding.left;
+    final containerColor = customColorsBasedOnDarkMode(context, NepanikarColors.headerD, NepanikarColors.primary);
+
     return Container(
-      color: isDarkMode ? NepanikarColors.headerD : const Color(0xffFBF6FF),
+      color: containerColor,
       width: double.infinity,
       height: appBarDescription == null ? 50 : null,
       child: appBarDescription == null

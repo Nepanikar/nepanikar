@@ -1,10 +1,14 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
+import 'package:nepanikar/screens/home/my_records/mood/mood_picker_screen.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
 import 'package:nepanikar/utils/extensions.dart';
 import 'package:nepanikar/utils/lottie_cache_manager.dart';
@@ -80,26 +84,24 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-
-    bool _isDarkMode;
-    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
-    ThemeMode.dark : ThemeMode.light;
-    _isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+    final textStyleColor = customColorsBasedOnDarkMode(context, NepanikarColors.white, NepanikarColors.primaryD);
+    final bool isMoodPickerScreen = GoRouter.of(context).location == const MoodPickerRoute().location;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (!widget.autoSizeTitle)
-          Text(
-            widget.header ?? context.l10n.mood_welcome_title,
-            style: NepanikarFonts.title2.copyWith(color: _isDarkMode ? Colors.white : NepanikarColors.primaryD),
-          )
-        else
-          AutoSizeText(
-            context.l10n.mood_welcome_title,
-            maxLines: 1,
-            style: NepanikarFonts.title2.copyWith(color: _isDarkMode ? Colors.white : NepanikarColors.primaryD),
-          ),
+        if(!isMoodPickerScreen)
+          if (!widget.autoSizeTitle)
+            Text(
+              widget.header ?? context.l10n.mood_welcome_title,
+              style: NepanikarFonts.title2.copyWith(color: textStyleColor),
+            )
+          else
+            AutoSizeText(
+              context.l10n.mood_welcome_title,
+              maxLines: 1,
+              style: NepanikarFonts.title2.copyWith(color: textStyleColor),
+            ),
         const SizedBox(height: 14),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -112,17 +114,20 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
                 label: widget.showLabels ? null : mood.getSemanticsLabel(context),
                 child: InkWell(
                   onTap: () {
+                    if(GoRouter.of(context).location != const MoodPickerRoute().location){
+                      context.push(const MoodPickerRoute().location);
+                    }
                     if (isPicked) {
                       _playLottieAnim(mood);
                       return;
                     }
                     setState(() => activeMood = mood);
                     _playLottieAnim(mood);
-                    context.hideCurrentSnackBar();
-                    context.showSuccessSnackbar(
-                      text: widget.onPickMessage,
-                      leading: Assets.icons.checkmarks.checkCircular.svg(),
-                    );
+                    //context.hideCurrentSnackBar();
+                    // context.showSuccessSnackbar(
+                    //   text: widget.onPickMessage,
+                    //   leading: Assets.icons.checkmarks.checkCircular.svg(),
+                    // );
                     widget.onPick.call(mood);
                     analytics.logEvent(
                       name: 'mood_picked',
@@ -130,6 +135,7 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
                         'mood': mood.name,
                       },
                     );
+
                   },
                   borderRadius: BorderRadius.circular(12),
                   child: Opacity(
@@ -150,7 +156,7 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
                             const SizedBox(height: 4),
                             Text(
                               mood.getLabel(context),
-                              style: NepanikarFonts.bodySmallHeavy,
+                              style: NepanikarFonts.bodySmallHeavy.copyWith(color: textStyleColor),
                             ),
                           ],
                         ],

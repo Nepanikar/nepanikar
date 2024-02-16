@@ -23,9 +23,7 @@ class DepressionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
-    ThemeMode.dark : ThemeMode.light;
-    bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     final modules = <Widget>[
       LongTile(

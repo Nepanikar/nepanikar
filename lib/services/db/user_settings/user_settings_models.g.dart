@@ -38,3 +38,13 @@ const _$NotificationTypeEnumMap = {
   NotificationType.moodReminder: 'moodReminder',
   NotificationType.sleepRateReminder: 'sleepRateReminder',
 };
+
+_$_UserThemeMode _$$_UserThemeModeFromJson(Map<String, dynamic> json) =>
+    _$_UserThemeMode(
+      themeMode: json['themeMode'] as String? ?? 'system',
+    );
+
+Map<String, dynamic> _$$_UserThemeModeToJson(_$_UserThemeMode instance) =>
+    <String, dynamic>{
+      'themeMode': instance.themeMode,
+    };
