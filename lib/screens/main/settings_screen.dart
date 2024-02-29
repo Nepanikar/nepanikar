@@ -23,7 +23,6 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:nepanikar/widgets/semantics/semantics_widget_button.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:provider/provider.dart';
 
 class SettingsScreen extends StatefulWidget {
   //final ThemeManager themeManager;
@@ -48,6 +47,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
     bool isDarkMode = currentTheme.brightness == Brightness.dark;
     final svgColor = svgColorBasedOnDarkMode(context);
     final pdfColor = pdfColorBasedOnDarkMode(context);
+    final colorForDarkModeButton = customColorsBasedOnDarkMode(
+        context,
+        NepanikarColors.white,
+        NepanikarColors.primary,);
 
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.settings,
@@ -138,7 +141,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     onTap: () => context.push(const LanguagesRoute().location),
                   ),
                   _SettingsMenuItem(
-                    text: "Dark Mode",
+                    leading: Icon(
+                        isDarkMode ? Icons.wb_sunny : Icons.brightness_3,
+                        color: colorForDarkModeButton,),
+                    text: isDarkMode ? "Dark Mode is ON" : "Dark Mode is OFF",
                     onTap: () async{
                       final newThemeMode = isDarkMode ? ThemeMode.light : ThemeMode.dark;
                       await userSettingsDao.saveThemeMode(newThemeMode);

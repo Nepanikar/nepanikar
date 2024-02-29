@@ -10,6 +10,7 @@ import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/utils/lottie_cache_manager.dart';
 import 'package:nepanikar/utils/registry.dart';
 
@@ -120,8 +121,12 @@ class _BalloonsGameScreenState extends State<BalloonsGameScreen> with TickerProv
 
   @override
   Widget build(BuildContext context) {
+    final backgroundColor = customColorsBasedOnDarkMode(context,
+      NepanikarColors.primaryD,
+      NepanikarColors.primary,);
+
     return Scaffold(
-      backgroundColor: NepanikarColors.primary,
+      backgroundColor: backgroundColor,
       body: SafeArea(
         child: Stack(
           children: [

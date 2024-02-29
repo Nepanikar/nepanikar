@@ -5,6 +5,7 @@ import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 enum RelaxationType {
@@ -121,8 +122,10 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final backgroundColor = backgroundColorsBasedOnDarkMode(context);
+
     return Scaffold(
-      backgroundColor: NepanikarColors.primarySwatch,
+      backgroundColor: backgroundColor,
       appBar: AppBar(
         title: Text(title),
       ),

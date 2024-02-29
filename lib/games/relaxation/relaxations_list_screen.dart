@@ -4,6 +4,7 @@ import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/games/relaxation/relaxation_screen.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
@@ -19,17 +20,15 @@ class RelaxationsListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    final ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
-    ThemeMode.dark : ThemeMode.light;
-    final bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+    final svgColor = svgColorBasedOnDarkMode(context);
+    final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.relaxation,
       children: [
         LongTile(
           text: 'Relaxace',
-          image: Assets.illustrations.modules.relaxation.svg(),
+          image: Assets.illustrations.modules.relaxation.svg(color: svgColor),
           onTap: () => context.push(
             const RelaxationRoute(
               relaxationType: RelaxationType.general,
@@ -39,7 +38,7 @@ class RelaxationsListScreen extends StatelessWidget {
         ),
         LongTile(
           text: 'Ranní zastavení',
-          image: Assets.illustrations.modules.relaxation.svg(),
+          image: Assets.illustrations.modules.relaxation.svg(color: svgColor),
           onTap: () => context.push(
             const RelaxationRoute(
               relaxationType: RelaxationType.morning,
@@ -49,7 +48,7 @@ class RelaxationsListScreen extends StatelessWidget {
         ),
         LongTile(
           text: 'Večerní zastavení',
-          image: Assets.illustrations.modules.relaxation.svg(),
+          image: Assets.illustrations.modules.relaxation.svg(color: svgColor),
           onTap: () => context.push(
             const RelaxationRoute(
               relaxationType: RelaxationType.evening,

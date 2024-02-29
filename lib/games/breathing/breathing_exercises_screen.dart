@@ -4,6 +4,7 @@ import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/games/breathing/breathing_game_screen.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
@@ -19,15 +20,13 @@ class BreathingExercisesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    final ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
-    ThemeMode.dark : ThemeMode.light;
-    final bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+    final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final svgColor = svgColorBasedOnDarkMode(context);
 
     final modules = <Widget>[
       LongTile(
         text: context.l10n.breathing_exercise_i,
-        image: Assets.illustrations.modules.breathingCircle.svg(),
+        image: Assets.illustrations.modules.breathingCircle.svg(color: svgColor),
         onTap: () => context.push(
           const BreathingGameRoute(shape: BreathingGameShape.circle).location,
         ),
@@ -35,7 +34,7 @@ class BreathingExercisesScreen extends StatelessWidget {
       ),
       LongTile(
         text: context.l10n.breathing_exercise_ii,
-        image: Assets.illustrations.modules.breathingTriangle.svg(),
+        image: Assets.illustrations.modules.breathingTriangle.svg(color: svgColor),
         onTap: () => context.push(
           const BreathingGameRoute(shape: BreathingGameShape.triangle).location,
         ),
@@ -43,7 +42,7 @@ class BreathingExercisesScreen extends StatelessWidget {
       ),
       LongTile(
         text: context.l10n.breathing_exercise_iii,
-        image: Assets.illustrations.modules.breathingSquare.svg(),
+        image: Assets.illustrations.modules.breathingSquare.svg(color: svgColor),
         onTap: () => context.push(
           const BreathingGameRoute(shape: BreathingGameShape.square).location,
         ),

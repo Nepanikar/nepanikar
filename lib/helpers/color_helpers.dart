@@ -20,3 +20,7 @@ Color? longTileColorBasedOnDarkMode(BuildContext context){
 Color? customColorsBasedOnDarkMode(BuildContext context, Color? darkModeColor1, Color? lightModeColor2){
   return isDarkModeFunction(context) ? darkModeColor1 : lightModeColor2;
 }
+
+Color? backgroundColorsBasedOnDarkMode(BuildContext context){
+  return customColorsBasedOnDarkMode(context, NepanikarColors.primaryD, NepanikarColors.primary);
+}

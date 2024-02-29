@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/screens/home/depression/depression_activity_plan_screen.dart';
 import 'package:nepanikar/screens/home/depression/depression_nice_made_happy_screen.dart';
 import 'package:nepanikar/screens/home/depression/depression_praise_my_achievements_screen.dart';
@@ -22,31 +23,31 @@ class DepressionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final svgColor = svgColorBasedOnDarkMode(context);
 
     final modules = <Widget>[
       LongTile(
         text: context.l10n.depression_help,
-        image: Assets.illustrations.modules.whatCanHelpMe.svg(),
+        image: Assets.illustrations.modules.whatCanHelpMe.svg(color: svgColor),
         onTap: () => context.push(const DepressionTipsAppRoute().location),
         isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.depression_plan,
-        image: Assets.illustrations.modules.activityPlanning.svg(),
+        image: Assets.illustrations.modules.activityPlanning.svg(color: svgColor),
         onTap: () => context.push(const DepressionActivityPlanRoute().location),
         isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.depression_nice,
-        image: Assets.illustrations.modules.whatPleasedMe.svg(),
+        image: Assets.illustrations.modules.whatPleasedMe.svg(color: svgColor),
         onTap: () => context.push(const DepressionNiceMadeHappyRoute().location),
         isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.depression_praise,
-        image: Assets.illustrations.modules.mySuccess.svg(),
+        image: Assets.illustrations.modules.mySuccess.svg(color: svgColor),
         onTap: () => context.push(const DepressionPraiseMyAchievementsRoute().location),
         isDarkMode: isDarkMode,
       ),

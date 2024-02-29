@@ -6,6 +6,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 
 class BalanceGameRoute extends GoRouteData {
   const BalanceGameRoute();
@@ -82,9 +83,13 @@ class _BalanceGameScreenState extends State<BalanceGameScreen> {
   @override
   Widget build(BuildContext context) {
     final screen = MediaQuery.of(context).size;
+    final backgroundColor = customColorsBasedOnDarkMode(context,
+      NepanikarColors.containerD,
+      NepanikarColors.primary,);
+    final buttonColor = svgColorBasedOnDarkMode(context);
 
     return Scaffold(
-      backgroundColor: NepanikarColors.primary,
+      backgroundColor: backgroundColor,
       appBar: AppBar(),
       body: Stack(
         children: [
@@ -107,6 +112,7 @@ class _BalanceGameScreenState extends State<BalanceGameScreen> {
             bottom: 50,
             left: 20,
             child: Material(
+              color: buttonColor,
               borderRadius: BorderRadius.circular(40),
               child: InkWell(
                 borderRadius: BorderRadius.circular(40),
@@ -132,6 +138,7 @@ class _BalanceGameScreenState extends State<BalanceGameScreen> {
             bottom: 50,
             right: 20,
             child: Material(
+              color: buttonColor,
               borderRadius: BorderRadius.circular(40),
               child: InkWell(
                 borderRadius: BorderRadius.circular(40),

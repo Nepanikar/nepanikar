@@ -8,6 +8,7 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/games/math/math_answer_result_state.dart';
 import 'package:nepanikar/games/math/math_equation_model.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/helpers/screen_resolution_helpers.dart';
 import 'package:nepanikar/helpers/semantics_helpers.dart';
 import 'package:nepanikar/utils/lottie_cache_manager.dart';
@@ -100,17 +101,26 @@ class _MathGameScreenState extends State<MathGameScreen> {
 
   @override
   Widget build(BuildContext context) {
-    const textStyle = TextStyle(
+    final backgroundColor = backgroundColorsBasedOnDarkMode(context);
+
+    final textColor = customColorsBasedOnDarkMode(
+        context,
+        NepanikarColors.white,
+        NepanikarColors.primary,);
+
+    final cardColor = longTileColorBasedOnDarkMode(context);
+
+    final textStyle = TextStyle(
       fontSize: 56,
       fontWeight: FontWeight.w900,
-      color: NepanikarColors.primary,
+      color: textColor,
     );
 
     return GestureDetector(
       onTapDown: (_) => _focusNode.unfocus(),
       excludeFromSemantics: true,
       child: Scaffold(
-        backgroundColor: NepanikarColors.primary,
+        backgroundColor: backgroundColor,
         appBar: AppBar(title: Text(context.l10n.math)),
         body: SafeArea(
           child: SingleChildScrollView(
@@ -121,6 +131,7 @@ class _MathGameScreenState extends State<MathGameScreen> {
                   children: [
                     const SizedBox(height: 90),
                     Card(
+                      color: cardColor,
                       child: Padding(
                         padding: const EdgeInsets.all(24),
                         child: Column(
@@ -138,7 +149,7 @@ class _MathGameScreenState extends State<MathGameScreen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const Text('=', style: textStyle),
+                                Text('=', style: textStyle),
                                 const SizedBox(width: 19),
                                 Expanded(
                                   child: TextField(
