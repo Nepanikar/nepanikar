@@ -8,17 +8,19 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
+import 'package:nepanikar/providers/mood_state_provider.dart';
 import 'package:nepanikar/screens/home/my_records/mood/mood_picker_screen.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
 import 'package:nepanikar/utils/extensions.dart';
 import 'package:nepanikar/utils/lottie_cache_manager.dart';
 import 'package:nepanikar/utils/registry.dart';
+import 'package:provider/provider.dart';
 
 class MoodPicker extends StatefulWidget {
   const MoodPicker({
     super.key,
     required this.onPick,
-    required this.onPickMessage,
+    // required this.onPickMessage,
     this.activeMood,
     this.header,
     this.autoSizeTitle = true,
@@ -28,7 +30,7 @@ class MoodPicker extends StatefulWidget {
   final Mood? activeMood;
   final ValueChanged<Mood> onPick;
   final String? header;
-  final String onPickMessage;
+  // final String onPickMessage;
   final bool autoSizeTitle;
   final bool showLabels;
 
@@ -114,6 +116,7 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
                 label: widget.showLabels ? null : mood.getSemanticsLabel(context),
                 child: InkWell(
                   onTap: () {
+                    Provider.of<MoodState>(context, listen: false).setActiveMood(mood);
                     if(GoRouter.of(context).location != const MoodPickerRoute().location){
                       context.push(const MoodPickerRoute().location);
                     }
@@ -121,14 +124,10 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
                       _playLottieAnim(mood);
                       return;
                     }
+
                     setState(() => activeMood = mood);
+
                     _playLottieAnim(mood);
-                    //context.hideCurrentSnackBar();
-                    // context.showSuccessSnackbar(
-                    //   text: widget.onPickMessage,
-                    //   leading: Assets.icons.checkmarks.checkCircular.svg(),
-                    // );
-                    widget.onPick.call(mood);
                     analytics.logEvent(
                       name: 'mood_picked',
                       parameters: {
@@ -139,7 +138,7 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
                   },
                   borderRadius: BorderRadius.circular(12),
                   child: Opacity(
-                    opacity: activeMood != null && activeMood != mood ? 0.4 : 1,
+                    opacity: activeMood != null && activeMood != mood && isMoodPickerScreen ? 0.4 : 1 ,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 4),
                       child: Column(

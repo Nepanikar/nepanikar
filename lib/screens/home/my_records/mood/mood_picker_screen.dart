@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
@@ -9,13 +7,15 @@ import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/helpers/date_helpers.dart';
-import 'package:nepanikar/helpers/localization_helpers.dart';
+import 'package:nepanikar/providers/mood_state_provider.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_dao.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
 import 'package:nepanikar/services/notifications/notifications_service.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/mood/chosen_emotions.dart';
 import 'package:nepanikar/widgets/mood/mood_picker.dart';
+import 'package:nepanikar/widgets/nepanikar_button.dart';
+import 'package:provider/provider.dart';
 
 class MoodPickerRoute extends GoRouteData {
   const MoodPickerRoute();
@@ -29,11 +29,9 @@ class MoodPickerScreen<T extends MoodTrackDao> extends StatefulWidget {
   const MoodPickerScreen({
     super.key,
     this.showBottomNavbar = true,
-    this.mood,
   });
 
   final bool showBottomNavbar;
-  final Mood? mood;
 
   @override
   State<MoodPickerScreen<T>> createState() => _MoodPickerScreenState<T>();
@@ -42,9 +40,6 @@ class MoodPickerScreen<T extends MoodTrackDao> extends StatefulWidget {
 class _MoodPickerScreenState<T extends MoodTrackDao>
     extends State<MoodPickerScreen<T>> {
   T get _trackDao => registry.get<T>();
-
-  NotificationsService get _notificationsService =>
-      registry.get<NotificationsService>();
 
   DateTime get _now => getNowDateTimeLocal();
 
@@ -61,6 +56,7 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
   List<String> selectedEmotions = [];
 
   String? summary = '';
+
 
   final TextEditingController _newEmotionController = TextEditingController();
 
@@ -87,7 +83,7 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
               child: Text('Add'),
               onPressed: () {
                 _addNewEmotion();
-                Navigator.of(ctx).pop();
+                context.pop();
               },
             ),
           ],
@@ -97,16 +93,18 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
   }
 
   void _addNewEmotion() {
-    if (_newEmotionController.text.isNotEmpty && !emotions.contains(_newEmotionController.text)) {
+    if (_newEmotionController.text.isNotEmpty &&
+        !emotions.contains(_newEmotionController.text)) {
       setState(() {
         // Add the new emotion to the emotions list
         emotions.add(_newEmotionController.text);
         // You might also want to select the new emotion by default
         selectedEmotions.add(_newEmotionController.text);
         // Clear the text field after adding the new emotion
-        _onEmotionsUpdated(selectedEmotions);
+
         _newEmotionController.clear();
       });
+      _onEmotionsUpdated(selectedEmotions);
     }
   }
 
@@ -125,9 +123,10 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
 
   @override
   Widget build(BuildContext context) {
+    Mood? currentMood = Provider.of<MoodState>(context).activeMood;
     const pageSidePadding = 24.0;
     const pageHorizontalPadding =
-        EdgeInsets.symmetric(horizontal: pageSidePadding);
+    EdgeInsets.symmetric(horizontal: pageSidePadding);
     final formattedDate = DateFormat('d. MMM. yyyy   HH:mm').format(_now);
     final textStyleColor = customColorsBasedOnDarkMode(
         context, NepanikarColors.white, NepanikarColors.primaryD);
@@ -138,10 +137,10 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          formattedDate,
-          style: NepanikarFonts.title2.copyWith(color: textStyleColor),
-        ),
+          title: Text(
+            formattedDate,
+            style: NepanikarFonts.title2.copyWith(color: textStyleColor),
+          ),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -155,15 +154,15 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
                   builder: (_, snapshot) {
                     final latestMoodTrack = snapshot.data;
                     return MoodPicker(
-                      activeMood: latestMoodTrack?.mood,
+                      activeMood: currentMood,
                       autoSizeTitle: false,
                       showLabels: false,
-                      onPickMessage: 'yes',
                       onPick: (mood) async {
                         final l10n = context.l10n;
-                        await _trackDao.saveMood(mood);
-                        unawaited(_notificationsService
-                            .rescheduleNotifications(l10n));
+                        currentMood = mood;
+                        // await _trackDao.saveMood(mood);
+                        // unawaited(_notificationsService
+                        //     .rescheduleNotifications(l10n));
                       },
                     );
                   },
@@ -175,59 +174,59 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
                 child: Row(
                   children: <Widget>[
                     Expanded(
-                        child: MultiSelectDialogField(
-                          key: multiSelectKey,
-                          searchable: true,
-                          items: items,
-                          backgroundColor: NepanikarColors.primary,
-                          title: Text("Emotions"),
-                          decoration: BoxDecoration(
-                            color: NepanikarColors.containerD,
-                            borderRadius: BorderRadius.all(Radius.circular(40)),
-                            border: Border.all(
-                              color: NepanikarColors.primarySwatch.shade600,
-                            ),
+                      child: MultiSelectDialogField(
+                        key: multiSelectKey,
+                        searchable: true,
+                        items: items,
+                        backgroundColor: NepanikarColors.primary,
+                        title: Text("Emotions"),
+                        decoration: BoxDecoration(
+                          color: NepanikarColors.containerD,
+                          borderRadius: BorderRadius.all(Radius.circular(40)),
+                          border: Border.all(
+                            color: NepanikarColors.primarySwatch.shade600,
                           ),
-                          selectedColor: NepanikarColors.white,
-                          selectedItemsTextStyle: const TextStyle(
-                            color: NepanikarColors.white,
-                          ),
-                          unselectedColor: NepanikarColors.white,
-                          itemsTextStyle: const TextStyle(
-                            color: NepanikarColors.white,
-                          ),
-                          buttonIcon: const Icon(
-                            Icons.arrow_drop_down,
-                            color: NepanikarColors.white,
-                          ),
-                          buttonText:  Text(
-                            "Select Your Emotions",
-                            style: TextStyle(
-                              color: NepanikarColors.primarySwatch.shade400,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                            ),
-                          ),
-                          onConfirm: (results) {
-                            _onEmotionsUpdated(results.cast<String>());
-                          },
-                          cancelText: const Text(
-                            "CANCEL",
-                            style: TextStyle(
-                              color: NepanikarColors.white,
-                              fontSize: 16,
-                            ),
-                          ),
-                          confirmText: const Text(
-                            "CONFIRM",
-                            style: TextStyle(
-                              color: NepanikarColors.white,
-                              fontSize: 16,
-                            ),
-                          ),
-                          initialValue: selectedEmotions,
-                          chipDisplay: MultiSelectChipDisplay.none(),
                         ),
+                        selectedColor: NepanikarColors.white,
+                        selectedItemsTextStyle: const TextStyle(
+                          color: NepanikarColors.white,
+                        ),
+                        unselectedColor: NepanikarColors.white,
+                        itemsTextStyle: const TextStyle(
+                          color: NepanikarColors.white,
+                        ),
+                        buttonIcon: const Icon(
+                          Icons.arrow_drop_down,
+                          color: NepanikarColors.white,
+                        ),
+                        buttonText: Text(
+                          "Select Your Emotions",
+                          style: TextStyle(
+                            color: NepanikarColors.primarySwatch.shade400,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
+                        onConfirm: (results) {
+                          _onEmotionsUpdated(results.cast<String>());
+                        },
+                        cancelText: const Text(
+                          "CANCEL",
+                          style: TextStyle(
+                            color: NepanikarColors.white,
+                            fontSize: 16,
+                          ),
+                        ),
+                        confirmText: const Text(
+                          "CONFIRM",
+                          style: TextStyle(
+                            color: NepanikarColors.white,
+                            fontSize: 16,
+                          ),
+                        ),
+                        initialValue: selectedEmotions,
+                        chipDisplay: MultiSelectChipDisplay.none(),
+                      ),
                     ),
                     IconButton(
                       icon: const Icon(
@@ -252,19 +251,37 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
                   textAlignVertical: TextAlignVertical.top,
                   keyboardType: TextInputType.multiline,
                   decoration: const InputDecoration(
-                    labelText: 'Summary of your moment',
-                    filled: true,
-                    fillColor: NepanikarColors.containerD,
-                    alignLabelWithHint: true,
-                    border: OutlineInputBorder(),
-                    hintText: 'Describe what happened...',
-                    floatingLabelBehavior: FloatingLabelBehavior.never
+                      labelText: 'Summary of your moment',
+                      filled: true,
+                      fillColor: NepanikarColors.containerD,
+                      alignLabelWithHint: true,
+                      border: OutlineInputBorder(),
+                      hintText: 'Describe what happened...',
+                      floatingLabelBehavior: FloatingLabelBehavior.never
                   ),
                   onChanged: (value) {
                     setState(() {
                       summary = value;
                     });
                   },
+                ),
+              ),
+              const SizedBox(height: 15),
+              Padding(
+                padding: pageHorizontalPadding,
+                child: Row(
+                  children: [
+                    NepanikarButton(
+                      onTap: () async {
+                        await _trackDao.saveMood(
+                            currentMood!, selectedEmotions, summary);
+                        if(mounted){
+                        context.pop();
+                        }
+                      },
+                      text: "Save",
+                    ),
+                  ],
                 ),
               ),
             ],

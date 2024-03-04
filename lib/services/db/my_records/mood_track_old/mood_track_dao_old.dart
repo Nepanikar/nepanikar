@@ -26,18 +26,22 @@ class MoodTrackDao with CustomFilters {
 
   static const _storeKeyName = 'my_records_mood_track';
 
-  Future<void> saveMood(Mood mood, List<String>? emotions, String? summary) async {
+  Future<void> saveMood(Mood mood) async {
     final dateTimeToSave = DateTime.now();
-    final date = DateTime.utc(dateTimeToSave.year, dateTimeToSave.month, dateTimeToSave.day, dateTimeToSave.hour, dateTimeToSave.minute);
-    final moodTrack = MoodTrack(
-      mood: mood,
-      date: date,
-      emotions: emotions,
-      summary: summary,
-    );
+    final date = DateTime.utc(dateTimeToSave.year, dateTimeToSave.month, dateTimeToSave.day);
+    final moodTrack = MoodTrack(mood: mood, date: date);
     final json = moodTrack.toJson();
-    await _store.add(_db, json);
-    debugPrint('MoodTrackDao: Added new mood track: $json');
+    await _store
+        .findFirst(_db, finder: Finder(filter: getDateEqualsFilter(date)))
+        .then((record) async {
+      if (record == null) {
+        debugPrint('MoodTrackDao: Not found mood for today - adding new: $json');
+        await _store.add(_db, json);
+      } else {
+        debugPrint('MoodTrackDao: Found for today, updating to: $json');
+        await _store.record(record.key).put(_db, json);
+      }
+    });
   }
 
   Future<void> saveMoods(List<MoodTrack> items) async {

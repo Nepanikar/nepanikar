@@ -96,14 +96,11 @@ class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScree
                     final latestMoodTrack = snapshot.data;
                     return MoodPicker(
                       activeMood: latestMoodTrack?.mood,
-                      onPickMessage:
-                          widget.onTrackPickMessage ?? context.l10n.mood_tracked_success_snackbar,
                       header: widget.headerTitle,
                       autoSizeTitle: false,
                       showLabels: widget.showMoodLabels,
                       onPick: (mood) async {
                         final l10n = context.l10n;
-                        await _trackDao.saveMood(mood);
                         unawaited(_notificationsService.rescheduleNotifications(l10n));
                       },
                     );

@@ -114,13 +114,9 @@ class HomeScreen extends StatelessWidget {
                 child: StreamBuilder<MoodTrack?>(
                   stream: _moodTrackDao.latestMoodTrackStream,
                   builder: (_, snapshot) {
-                    final latestMoodTrack = snapshot.data;
                     return MoodPicker(
-                      activeMood: latestMoodTrack?.mood,
-                      onPickMessage: context.l10n.mood_tracked_success_snackbar,
                       onPick: (mood) async {
                         final l10n = context.l10n;
-                        await _moodTrackDao.saveMood(mood);
                         unawaited(_notificationsService.rescheduleNotifications(l10n));
                       },
                     );
