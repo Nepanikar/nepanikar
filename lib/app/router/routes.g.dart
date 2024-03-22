@@ -155,6 +155,18 @@ GoRoute get $mainRoute => GoRouteData.$route(
           factory: $MoodPickerRouteExtension._fromState,
         ),
         GoRouteData.$route(
+          path: 'home/my-records/mood-records',
+          factory: $MoodRecordsRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'home/my-records/search-mood-entry',
+          factory: $SearchMoodEntryRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'home/my-records/mood-records/mood-entry',
+          factory: $MoodEntryDetailRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: 'home/my-records/sleep-track',
           factory: $MyRecordsSleepTrackRouteExtension._fromState,
         ),
@@ -851,6 +863,54 @@ extension $MoodPickerRouteExtension on MoodPickerRoute {
 
   String get location => GoRouteData.$location(
         '/home/my-records/mood-picker',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+}
+
+extension $MoodRecordsRouteExtension on MoodRecordsRoute {
+  static MoodRecordsRoute _fromState(GoRouterState state) =>
+      const MoodRecordsRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/my-records/mood-records',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+}
+
+extension $SearchMoodEntryRouteExtension on SearchMoodEntryRoute {
+  static SearchMoodEntryRoute _fromState(GoRouterState state) =>
+      const SearchMoodEntryRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/my-records/search-mood-entry',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+}
+
+extension $MoodEntryDetailRouteExtension on MoodEntryDetailRoute {
+  static MoodEntryDetailRoute _fromState(GoRouterState state) =>
+      const MoodEntryDetailRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/my-records/mood-records/mood-entry',
       );
 
   void go(BuildContext context) => context.go(location);

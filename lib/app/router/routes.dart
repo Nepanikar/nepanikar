@@ -48,9 +48,11 @@ import 'package:nepanikar/screens/home/my_records/food_records/my_records_food_r
 import 'package:nepanikar/screens/home/my_records/food_records/my_records_food_records_list_screen.dart';
 import 'package:nepanikar/screens/home/my_records/journal/my_records_detail_journal_screen.dart';
 import 'package:nepanikar/screens/home/my_records/journal/my_records_journal_records_screen.dart';
+import 'package:nepanikar/screens/home/my_records/mood/mood_entry_detail_screen.dart';
 import 'package:nepanikar/screens/home/my_records/mood/mood_picker_screen.dart';
 import 'package:nepanikar/screens/home/my_records/mood/mood_records_screen.dart';
 import 'package:nepanikar/screens/home/my_records/mood/mood_track_screen.dart';
+import 'package:nepanikar/screens/home/my_records/mood/search_mood_entry.dart';
 import 'package:nepanikar/screens/home/my_records/my_records_screen.dart';
 import 'package:nepanikar/screens/home/my_records/my_records_sleep_track_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_helped_screen.dart';
@@ -204,6 +206,8 @@ const _myRecordsRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<MoodTrackRoute>(path: 'home/my-records/mood-track'),
   TypedGoRoute<MoodPickerRoute>(path: 'home/my-records/mood-picker'),
   TypedGoRoute<MoodRecordsRoute>(path: 'home/my-records/mood-records'),
+  TypedGoRoute<SearchMoodEntryRoute>(path: 'home/my-records/search-mood-entry'),
+  TypedGoRoute<MoodEntryDetailRoute>(path: 'home/my-records/mood-records/mood-entry'),
   TypedGoRoute<MyRecordsSleepTrackRoute>(path: 'home/my-records/sleep-track'),
 
   // Diary

@@ -8,6 +8,7 @@ import 'package:native_shared_preferences/native_shared_preferences.dart';
 import 'package:nepanikar/services/db/depression/depression_module_db.dart';
 import 'package:nepanikar/services/db/eating_disorder/eating_disorder_module_db.dart';
 import 'package:nepanikar/services/db/my_contacts/my_contacts_module_db.dart';
+import 'package:nepanikar/services/db/my_records/mood_track_dao.dart';
 import 'package:nepanikar/services/db/my_records/my_records_module_db.dart';
 import 'package:nepanikar/services/db/self_harm/self_harm_module_db.dart';
 import 'package:nepanikar/services/db/suicidal_thoughts/suicidal_thoughts_module_db.dart';
@@ -41,6 +42,7 @@ class DatabaseService {
     _eatingDisorderModuleDb = await EatingDisorderModuleDb(this).initModuleDaos();
     _myRecordsModuleDb = await MyRecordsModuleDb(this).initModuleDaos();
     _myContactsModuleDb = await MyContactsModuleDb(this).initModuleDaos();
+    await MoodTrackDao(dbService: this).initEmotions();
     _areDaosInitialized = true;
   }
 

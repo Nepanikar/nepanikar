@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/widgets/material_wrapper.dart';
 
 typedef LabelBuilder<T> = String Function(T value);
@@ -82,9 +83,11 @@ class NepanikarDropdown<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     const rightPadding = EdgeInsets.only(right: 16);
-    final textColor = _type.textColor;
-    final dropDownColor = _type.bgColor;
+    final textColor = customColorsBasedOnDarkMode(context, NepanikarColors.white, _type.textColor);
+    final dropDownColor = customColorsBasedOnDarkMode(context, NepanikarColors.dropdownMenuD, _type.bgColor);
+    final svgColor = svgColorBasedOnDarkMode(context);
 
     return MaterialWrapper(
       color: dropDownColor,
@@ -98,7 +101,7 @@ class NepanikarDropdown<T> extends StatelessWidget {
             isExpanded: expand,
             icon: Padding(
               padding: rightPadding,
-              child: ExcludeSemantics(child: Assets.icons.navigation.chevronDown.svg()),
+              child: ExcludeSemantics(child: Assets.icons.navigation.chevronDown.svg(color: svgColor)),
             ),
             underline: const SizedBox.shrink(),
             dropdownColor: dropDownColor,

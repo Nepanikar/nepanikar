@@ -87,6 +87,7 @@ class MoodTrack with _$MoodTrack {
     @JsonKey(name: FilterKeys.date) required DateTime date,
     List<String>? emotions,
     String? summary,
+    String? description,
   }) = _MoodTrack;
 
   const MoodTrack._();

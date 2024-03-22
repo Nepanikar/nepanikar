@@ -3,6 +3,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:nepanikar/app/theme/colors.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
 
 class MoodChart extends StatelessWidget {
@@ -34,6 +35,7 @@ class MoodChart extends StatelessWidget {
   }
 
   LineChartData _buildLineChartData(BuildContext context) {
+    final lineColor = customColorsBasedOnDarkMode(context, NepanikarColors.white, NepanikarColors.primary);
     final locale = Localizations.localeOf(context).languageCode;
     return LineChartData(
       borderData: FlBorderData(show: false),
@@ -59,11 +61,11 @@ class MoodChart extends StatelessWidget {
             show: true,
             getDotPainter: (_, __, ___, ____) => FlDotCirclePainter(
               radius: 2.8,
-              color: NepanikarColors.primary,
-              strokeColor: NepanikarColors.primary,
+              color: lineColor,
+              strokeColor: lineColor,
             ),
           ),
-          color: NepanikarColors.primary,
+          color: lineColor,
         ),
       ],
       extraLinesData: ExtraLinesData(
@@ -72,7 +74,7 @@ class MoodChart extends StatelessWidget {
             .mapIndexed(
               (i, _) => HorizontalLine(
                 y: i.toDouble(),
-                color: NepanikarColors.primary.withOpacity(0.2),
+                color: lineColor?.withOpacity(0.2),
                 strokeWidth: 1,
                 dashArray: [5],
               ),
@@ -113,10 +115,10 @@ class MoodChart extends StatelessWidget {
         getTouchedSpotIndicator: (_, spotIndexes) {
           return spotIndexes.map((spotIndex) {
             return TouchedSpotIndicatorData(
-              FlLine(color: NepanikarColors.primary, strokeWidth: 3),
+              FlLine(color: lineColor, strokeWidth: 3),
               FlDotData(
                 getDotPainter: (_, __, ___, ____) =>
-                    FlDotCirclePainter(radius: 8, color: NepanikarColors.primary, strokeWidth: 0),
+                    FlDotCirclePainter(radius: 8, color: lineColor, strokeWidth: 0),
               ),
             );
           }).toList();

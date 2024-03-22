@@ -93,11 +93,7 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-
-
-    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
-                                  ThemeMode.dark : ThemeMode.light;
-    isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+    isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
       body: _routes.elementAt(_selectedIndex),

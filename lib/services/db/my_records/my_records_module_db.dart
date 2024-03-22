@@ -47,10 +47,10 @@ class MyRecordsModuleDb implements NepanikarModuleDb {
     final sleepTrackConfig = moduleConfig.sleepTrackConfig;
     if (sleepTrackConfig != null) {
       final sleepTrackValues = sleepTrackConfig.values;
-      if (sleepTrackValues != null) {
-        await _myRecordsSleepTrackDao
-            .doOldVersionMigration(MyRecordsMoodTrackDTO.fromValues(sleepTrackValues));
-      }
+      // if (sleepTrackValues != null) {
+      //   await _myRecordsSleepTrackDao
+      //       .doOldVersionMigration(MyRecordsMoodTrackDTO.fromValues(sleepTrackValues));
+      // }
     }
 
     final diaryConfig = moduleConfig.diaryConfig;

@@ -13,6 +13,7 @@ _$_MoodTrack _$$_MoodTrackFromJson(Map<String, dynamic> json) => _$_MoodTrack(
           ?.map((e) => e as String)
           .toList(),
       summary: json['summary'] as String?,
+      description: json['description'] as String?,
     );
 
 Map<String, dynamic> _$$_MoodTrackToJson(_$_MoodTrack instance) =>
@@ -21,6 +22,7 @@ Map<String, dynamic> _$$_MoodTrackToJson(_$_MoodTrack instance) =>
       'date': instance.date.toIso8601String(),
       'emotions': instance.emotions,
       'summary': instance.summary,
+      'description': instance.description,
     };
 
 const _$MoodEnumMap = {

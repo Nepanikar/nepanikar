@@ -29,7 +29,7 @@ class MoodTrackDao with CustomFilters {
   Future<void> saveMood(Mood mood) async {
     final dateTimeToSave = DateTime.now();
     final date = DateTime.utc(dateTimeToSave.year, dateTimeToSave.month, dateTimeToSave.day);
-    final moodTrack = MoodTrack(mood: mood, date: date);
+    final moodTrack = MoodTrack(mood: mood, date: date, summary: '');
     final json = moodTrack.toJson();
     await _store
         .findFirst(_db, finder: Finder(filter: getDateEqualsFilter(date)))
@@ -80,7 +80,7 @@ class MoodTrackDao with CustomFilters {
           .map((dateMoodEntry) {
             final date = dateMoodEntry.key.toUtcDate();
             final mood = Mood.fromInteger(dateMoodEntry.value);
-            return mood == null ? null : MoodTrack(date: date, mood: mood);
+            return mood == null ? null : MoodTrack(date: date, mood: mood, summary: '');
           })
           .whereType<MoodTrack>()
           .toList();

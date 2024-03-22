@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ChosenEmotionsWidget extends StatefulWidget {
   const ChosenEmotionsWidget({
     super.key,
     required this.initialEmotions,
-    required this.onEmotionsUpdated,
+    this.onEmotionsUpdated,
+    this.deleteEmotionEnabled = true,
   });
 
   final List<String> initialEmotions;
-  final Function(List<String>) onEmotionsUpdated;
+  final Function(List<String>)? onEmotionsUpdated;
+  final bool deleteEmotionEnabled;
 
   @override
   _ChosenEmotionsWidgetState createState() => _ChosenEmotionsWidgetState();
@@ -37,21 +40,50 @@ class _ChosenEmotionsWidgetState extends State<ChosenEmotionsWidget> {
     setState(() {
       selectedEmotions.remove(emotion);
     });
-    widget.onEmotionsUpdated(selectedEmotions);
+    widget.onEmotionsUpdated?.call(selectedEmotions);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      spacing: 8.0,
-      children: selectedEmotions.map((emotion) => Chip(
-        label: Text(emotion),
-        deleteIcon: const Icon(Icons.cancel),
-        onDeleted: () => _removeEmotion(emotion),
-        backgroundColor: Colors.purple, // Customize as needed
-        deleteIconColor: Colors.white, // Customize as needed
-        labelStyle: const TextStyle(color: Colors.white), // Customize as needed
-      ),).toList(),
-    );
+    if(widget.deleteEmotionEnabled){
+      return Wrap(
+        spacing: 8.0,
+        children:
+        selectedEmotions
+            .map(
+              (emotion) => Chip(
+            label: Text(emotion),
+            deleteIcon: const Icon(Icons.cancel),
+            onDeleted: () => _removeEmotion(emotion),
+            backgroundColor: Colors.purple,
+            // Customize as needed
+            deleteIconColor: Colors.white,
+            // Customize as needed
+            labelStyle:
+            const TextStyle(color: Colors.white), // Customize as needed
+          ),
+        )
+            .toList(),
+      );
+    }
+    else {
+      return Wrap(
+        spacing: 8.0,
+        children:
+        selectedEmotions
+            .map(
+              (emotion) => Chip(
+            label: Text(emotion),
+            backgroundColor: Colors.purple,
+            // Customize as needed
+            deleteIconColor: Colors.white,
+            // Customize as needed
+            labelStyle:
+            const TextStyle(color: Colors.white), // Customize as needed
+          ),
+        )
+            .toList(),
+      );
+    }
   }
 }

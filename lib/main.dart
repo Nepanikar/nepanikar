@@ -6,7 +6,9 @@ import 'package:nepanikar/app/theme/dark_theme.dart';
 import 'package:nepanikar/app/theme/theme.dart';
 import 'package:nepanikar/helpers/localization_helpers.dart';
 import 'package:nepanikar/providers/mood_chart_filter_provider.dart';
+import 'package:nepanikar/providers/mood_entry_provider.dart';
 import 'package:nepanikar/providers/mood_state_provider.dart';
+import 'package:nepanikar/services/db/my_records/mood_track_dao.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/utils/app_setup.dart';
 import 'package:nepanikar/utils/registry.dart';
@@ -33,6 +35,8 @@ class Nepanikar extends StatelessWidget {
 
   UserSettingsDao get _userSettingsDao => registry.get<UserSettingsDao>();
 
+  MoodTrackDao get _moodTrackDao => registry.get<MoodTrackDao>();
+
 
 
   @override
@@ -42,7 +46,8 @@ class Nepanikar extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<MoodChartFilterProvider>(create: (_) => MoodChartFilterProvider()),
-        ChangeNotifierProvider<MoodState>(create: (_) => MoodState()),
+        ChangeNotifierProvider<MoodState>(create: (_) => MoodState(_moodTrackDao)),
+        ChangeNotifierProvider<MoodEntryProvider>(create: (_) => MoodEntryProvider()),
       ],
       child: StreamBuilder<Locale>(
         stream: _userSettingsDao.localeStream,

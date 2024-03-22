@@ -9,6 +9,8 @@ class NepanikarColors {
   static const secondary = Color(0xff4EA3AD);
   static const error = Color(0xffD86C66);
   static const success = Color(0xff6FD866);
+  static const deleteButton = Color(0xff964A4A);
+  static const baseButtonD = Color(0xff8654B0);
   static const info = Color(0xffFEC786);
   static const filledContainer = Color(0xffEDE8F3);
   static const white = Color(0xffffffff);
@@ -45,5 +47,5 @@ class NepanikarColors {
   static const primaryD = Color(0xff280446);
   static const containerD = Color(0xff491475);
   static const headerD = Color(0xff18002D);
-
+  static const dropdownMenuD = Color(0xff8654B0);
 }
