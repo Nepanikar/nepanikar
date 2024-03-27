@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 
 class MoodEntryCard extends StatelessWidget {
   const MoodEntryCard({
@@ -23,16 +24,18 @@ class MoodEntryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const backgroundColor = NepanikarColors.containerD;
+    final backgroundColor = customColorsBasedOnDarkMode(
+        context, NepanikarColors.containerD, NepanikarColors.white);
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return GestureDetector(
       onTap: onTap,
-      child: Card(
-        shape: RoundedRectangleBorder(
+      child: Container(
+        decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
+          boxShadow: NepanikarColors.cardShadow,
+          color: backgroundColor,
         ),
-        color: backgroundColor,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
           child: Row(
@@ -46,7 +49,7 @@ class MoodEntryCard extends StatelessWidget {
                       dateTime,
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 16,
+                        fontSize: 18,
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -54,7 +57,7 @@ class MoodEntryCard extends StatelessWidget {
                       moodDescription,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
-                          fontSize: 16
+                          fontSize: 16,
                       ),
                     ),
                   ],

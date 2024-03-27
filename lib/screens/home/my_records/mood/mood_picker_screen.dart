@@ -7,6 +7,7 @@ import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/helpers/date_helpers.dart';
+import 'package:nepanikar/main.dart';
 import 'package:nepanikar/providers/mood_state_provider.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_dao.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
@@ -53,7 +54,6 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
 
   String? description = '';
 
-
   final TextEditingController _newEmotionController = TextEditingController();
 
   void _showAddNewEmotionDialog() {
@@ -72,7 +72,6 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
             TextButton(
               child: Text('Cancel'),
               onPressed: () {
-                Provider.of<MoodState>(context, listen: false).deleteEmotion();
                 Navigator.of(ctx).pop();
               },
             ),
@@ -96,7 +95,8 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
       setState(() {
         emotions.add(_newEmotionController.text);
         selectedEmotions.add(_newEmotionController.text);
-        Provider.of<MoodState>(context, listen: false).addEmotion(_newEmotionController.text);
+        Provider.of<MoodState>(context, listen: false)
+            .addEmotion(_newEmotionController.text);
       });
       _newEmotionController.clear();
     }
@@ -118,7 +118,6 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
 
   @override
   Widget build(BuildContext context) {
-
     emotions = Provider.of<MoodState>(context).emotions;
     final items = emotions
         .map((emotion) => MultiSelectItem<String>(emotion, emotion))
@@ -127,27 +126,30 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
     Mood? currentMood = Provider.of<MoodState>(context).activeMood;
 
     const pageSidePadding = 24.0;
-    const pageHorizontalPadding = EdgeInsets.symmetric(horizontal: pageSidePadding);
+    const pageHorizontalPadding =
+        EdgeInsets.symmetric(horizontal: pageSidePadding);
 
     final formattedDate = DateFormat('d. MMM. yyyy   HH:mm').format(_now);
 
+    //Colors
     final textStyleColor = customColorsBasedOnDarkMode(
-        context, NepanikarColors.white, NepanikarColors.primaryD);
+        context, NepanikarColors.white, NepanikarColors.primaryD,);
+    final containerColor = customColorsBasedOnDarkMode(
+        context, NepanikarColors.containerD, NepanikarColors.white);
 
     final multiSelectKey = GlobalKey<FormFieldState>();
 
     return Scaffold(
       appBar: AppBar(
-          title: Text(
-            formattedDate,
-            style: NepanikarFonts.title2.copyWith(color: textStyleColor),
-          ),
+        title: Text(
+          formattedDate,
+          style: NepanikarFonts.title2.copyWith(color: NepanikarColors.white),
+        ),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const SizedBox(height: 10),
               Padding(
                 padding: pageHorizontalPadding,
                 child: StreamBuilder<MoodTrack?>(
@@ -173,13 +175,23 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
                   initialValue: summary,
                   decoration: InputDecoration(
                     labelText: 'Summary',
-                    fillColor: NepanikarColors.containerD,
+                    labelStyle: TextStyle(
+                      color: NepanikarColors.primarySwatch.shade400,
+                      fontWeight: FontWeight.bold
+                    ),
+                    fillColor: containerColor,
                     filled: true,
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide.none,
+                      borderSide: const BorderSide(
+                        color: NepanikarColors.containerD,
+                      ),
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     hintText: 'Enter a short summary',
+                    hintStyle: TextStyle(
+                      color: NepanikarColors.primarySwatch.shade400,
+                      fontWeight: FontWeight.bold,
+                    ),
                     floatingLabelBehavior: FloatingLabelBehavior.never,
                   ),
                   onChanged: (value) {
@@ -199,23 +211,26 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
                         key: multiSelectKey,
                         searchable: true,
                         items: items,
-                        backgroundColor: NepanikarColors.primary,
+                        backgroundColor: containerColor,
                         title: Text("Emotions"),
-                        decoration: const BoxDecoration(
-                          color: NepanikarColors.containerD,
-                          borderRadius: BorderRadius.all(Radius.circular(40)),
+                        decoration: BoxDecoration(
+                          color: containerColor,
+                          borderRadius: const BorderRadius.all(Radius.circular(40)),
+                          border: Border.all(
+                            color: NepanikarColors.containerD
+                          )
                         ),
-                        selectedColor: NepanikarColors.white,
-                        selectedItemsTextStyle: const TextStyle(
-                          color: NepanikarColors.white,
+                        selectedColor: textStyleColor,
+                        selectedItemsTextStyle:  TextStyle(
+                          color: textStyleColor,
                         ),
-                        unselectedColor: NepanikarColors.white,
-                        itemsTextStyle: const TextStyle(
-                          color: NepanikarColors.white,
+                        unselectedColor: textStyleColor,
+                        itemsTextStyle:  TextStyle(
+                          color: textStyleColor,
                         ),
-                        buttonIcon: const Icon(
+                        buttonIcon:  Icon(
                           Icons.arrow_drop_down,
-                          color: NepanikarColors.white,
+                          color: textStyleColor,
                         ),
                         buttonText: Text(
                           "Select Your Emotions",
@@ -228,17 +243,17 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
                         onConfirm: (results) {
                           _onEmotionsUpdated(results.cast<String>());
                         },
-                        cancelText: const Text(
+                        cancelText: Text(
                           "CANCEL",
                           style: TextStyle(
-                            color: NepanikarColors.white,
+                            color: textStyleColor,
                             fontSize: 16,
                           ),
                         ),
-                        confirmText: const Text(
+                        confirmText: Text(
                           "CONFIRM",
                           style: TextStyle(
-                            color: NepanikarColors.white,
+                            color: textStyleColor,
                             fontSize: 16,
                           ),
                         ),
@@ -247,9 +262,10 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
                       ),
                     ),
                     IconButton(
-                      icon: const Icon(
+                      icon:  Icon(
                         Icons.add_circle_outline,
                         size: 30,
+                        color: textStyleColor,
                       ),
                       onPressed: _showAddNewEmotionDialog,
                     ),
@@ -271,16 +287,25 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
                   keyboardType: TextInputType.multiline,
                   decoration: InputDecoration(
                       labelText: 'Summary of your moment',
+                      labelStyle: TextStyle(
+                        color: NepanikarColors.primarySwatch.shade400,
+                        fontWeight: FontWeight.bold,
+                      ),
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide.none,
+                        borderSide: const BorderSide(
+                            color: NepanikarColors.containerD,
+                        ),
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                       filled: true,
-                      fillColor: NepanikarColors.containerD,
+                      fillColor: containerColor,
                       alignLabelWithHint: true,
                       hintText: 'Describe what happened...',
-                      floatingLabelBehavior: FloatingLabelBehavior.never
-                  ),
+                      hintStyle: TextStyle(
+                        color: NepanikarColors.primarySwatch.shade400,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      floatingLabelBehavior: FloatingLabelBehavior.never),
                   onChanged: (value) {
                     setState(() {
                       description = value;
@@ -288,22 +313,36 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
                   },
                 ),
               ),
-              const SizedBox(height: 15),
-              Padding(
+              const SizedBox(height: 10),
+              Container(
                 padding: pageHorizontalPadding,
-                child: Row(
-                  children: [
-                    NepanikarButton(
-                      onTap: () async {
-                        await _trackDao.saveMood(
-                            currentMood!, selectedEmotions, summary, description,);
-                        if(mounted){
-                        context.pop();
-                        }
-                      },
-                      text: "Save",
+                width: 600,
+                child: ElevatedButton(
+                  onPressed: () async {
+                    await _trackDao.saveMood(
+                      currentMood!,
+                      selectedEmotions,
+                      summary,
+                      description,
+                    );
+                    if (mounted) {
+                      context.pop();
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: NepanikarColors.primary,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
                     ),
-                  ],
+                    padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                  ),
+                  child:  const Text(
+                    'Save',
+                    style:  TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
+                    ), // Text color
+                  ),
                 ),
               ),
             ],

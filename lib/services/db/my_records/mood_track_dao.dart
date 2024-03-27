@@ -171,6 +171,14 @@ class MoodTrackDao with CustomFilters {
     }
   }
 
+  Future<void> deleteRecord(int key) async {
+    final finder = Finder(filter: Filter.byKey(key));
+    await _store.delete(
+      _db,
+      finder: finder,
+    );
+  }
+
   Future<void> doOldVersionMigration(
       MyRecordsMoodTrackDTO moodTrackConfig) async {
     final valuesMap = moodTrackConfig.values;

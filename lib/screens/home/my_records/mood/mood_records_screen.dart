@@ -66,6 +66,12 @@ class _MoodRecordsScreenState<T extends MoodTrackDao>
     const pageHorizontalPadding =
     EdgeInsets.symmetric(horizontal: pageSidePadding);
 
+    //Colors
+    final containerColor = customColorsBasedOnDarkMode(
+        context, NepanikarColors.containerD, NepanikarColors.white,);
+    final textColor = customColorsBasedOnDarkMode(
+        context, NepanikarColors.white, Colors.black);
+
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -83,7 +89,7 @@ class _MoodRecordsScreenState<T extends MoodTrackDao>
             children: [
               const SizedBox(height: 15),
               Card(
-                color: NepanikarColors.containerD,
+                color: containerColor,
                 child: StreamBuilder<List<MoodTrack>>(
                   stream: _trackDao.allMoodTracksStream,
                   builder: (_, snapshot) {
@@ -97,7 +103,7 @@ class _MoodRecordsScreenState<T extends MoodTrackDao>
                           child: Text(
                             "Mood Chart",
                             style: NepanikarFonts.bodyBlack.copyWith(
-                                color: NepanikarColors.white, fontSize: 30),
+                                color: textColor, fontSize: 30),
                           ),
                         ),
                         Padding(
@@ -122,13 +128,12 @@ class _MoodRecordsScreenState<T extends MoodTrackDao>
                     alignment: Alignment.center,
                     child: Text(
                       "Mood Entries",
-                      style: NepanikarFonts.title2.copyWith(color: NepanikarColors.white),
+                      style: NepanikarFonts.title2.copyWith(color: textColor),
                     ),
                   ),
-                  // Position the search icon on the right end of the AppBar
                   Positioned(
                     right: 20,
-                    top: -8,// Adjust this value if you want the icon more to the left
+                    top: -8,
                     child: IconButton(
                       icon: Icon(Icons.search, size: 35,),
                       onPressed: () {
@@ -138,7 +143,6 @@ class _MoodRecordsScreenState<T extends MoodTrackDao>
                   ),
                 ],
               ),
-              const SizedBox(height: 10),
               StreamBuilder<List<MoodTrack>>(
                 stream: _trackDao.mostRecentMoodsTrackStream(_entryCount),
                 builder: (_, snapshot) {
@@ -150,7 +154,7 @@ class _MoodRecordsScreenState<T extends MoodTrackDao>
                     itemBuilder: (context, index) {
                       final moodEntry = moodEntries[index];
                       return Padding(
-                        padding: EdgeInsets.only(bottom: 10),
+                        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
                         child: MoodEntryCard(
                           dateTime: DateFormat('d. MMM yyyy, HH:mm')
                               .format(moodEntry.date),
@@ -172,8 +176,11 @@ class _MoodRecordsScreenState<T extends MoodTrackDao>
               ),
               FutureBuilder<int>(
                 future: _trackDao.getCountMoodTracks(),
-                // Assuming this method returns the total number of mood tracks
                 builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    // Show a loading indicator or some placeholder while waiting
+                    return CircularProgressIndicator(); // or some other widget
+                  }
                   if (snapshot.connectionState == ConnectionState.done &&
                       snapshot.hasData) {
                     final totalMoodCount = snapshot.data!;
@@ -192,8 +199,7 @@ class _MoodRecordsScreenState<T extends MoodTrackDao>
                       );
                     }
                   }
-                  return SizedBox
-                      .shrink();
+                  return Text("nothing");
                 },
               ),
               const SizedBox(height: 10,)
