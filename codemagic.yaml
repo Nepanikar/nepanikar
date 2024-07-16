@@ -3,7 +3,7 @@ definitions:
     max_build_duration: 60
   env_versions: &env_versions
     flutter: 3.7.1
-    xcode: 14.2
+    xcode: 15.0
     cocoapods: default
   artifacts: &artifacts
     - build/**/outputs/bundle/**/*.apk
