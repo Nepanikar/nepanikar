@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/helpers/contact_action_helpers.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar_contacts_gen/nepanikar_contacts_gen.dart';
@@ -32,11 +33,8 @@ class ChatContactTile extends StatelessWidget {
   }
 
   Widget _buildSubListContact(BuildContext context, ChatContactSubList contact) {
-
-    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
-    ThemeMode.dark : ThemeMode.light;
-    bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
-
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final textColor = textColorBasedOnDarkMode(context);
     final subContactsLength = contact.subChatContacts.length;
     final isSingleSubList = subContactsLength == 1;
     return GestureDetector(
@@ -47,10 +45,10 @@ class ChatContactTile extends StatelessWidget {
       child: LongTile(
         isDarkMode: isDarkMode,
         text: contact.title,
-        textTextStyle: _textTextStyle,
+        textTextStyle: _textTextStyle.copyWith(color: textColor),
         description: contact.subtitle,
-        descriptionTextStyle: _descriptionChatTextStyle,
-        image: ExcludeSemantics(child: Assets.illustrations.contacts.chat.svg()),
+        descriptionTextStyle: _descriptionChatTextStyle.copyWith(color: textColor),
+        image: ExcludeSemantics(child: Assets.illustrations.contacts.chat.svg(color: textColor)),
         trailing: const SizedBox.shrink(),
         onTap: null,
         subContent: Column(
@@ -77,7 +75,7 @@ class ChatContactTile extends StatelessWidget {
                         flex: 3,
                         child: Text(
                           _getShortUrlLink(subContact.url),
-                          style: _charUrlTextStyle,
+                          style: _charUrlTextStyle.copyWith(color: textColor),
                         ),
                       ),
                     ],

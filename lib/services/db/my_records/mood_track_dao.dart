@@ -34,7 +34,7 @@ class MoodTrackDao with CustomFilters {
 
   static const _storeKeyName = 'my_records_mood_track';
 
-  Future<void> saveMood(Mood mood, List<String>? emotions, String summary,
+  Future<void> saveMoodTrack(Mood mood, List<String>? emotions, String summary,
       String? description) async {
     final dateTimeToSave = DateTime.now();
     final date = DateTime.utc(
@@ -59,6 +59,55 @@ class MoodTrackDao with CustomFilters {
 
   Future<void> saveMoods(List<MoodTrack> items) async {
     await _store.addAll(_db, items.map((m) => m.toJson()).toList());
+  }
+
+  Future<void> saveSleepTrack(Mood mood) async {
+    final dateTimeToSave = DateTime.now();
+    final date = DateTime.utc(
+        dateTimeToSave.year, dateTimeToSave.month, dateTimeToSave.day);
+    final moodTrack = MoodTrack(mood: mood, date: date);
+    final json = moodTrack.toJson();
+    await _store
+        .findFirst(_db, finder: Finder(filter: getDateEqualsFilter(date)))
+        .then((record) async {
+      if (record == null) {
+        debugPrint(
+            'MoodTrackDao: Not found mood for today - adding new: $json');
+        await _store.add(_db, json);
+      } else {
+        debugPrint('MoodTrackDao: Found for today, updating to: $json');
+        await _store.record(record.key).put(_db, json);
+      }
+    });
+  }
+
+  Future<void> updateMoodTrack(DateTime date, String summary,
+      String description, List<String> emotions, Mood mood,) async {
+    try {
+      final dateString = date.toIso8601String();
+
+      final recordFinder = Finder(filter: Filter.equals('date', dateString));
+      final existingRecord = await _store.findFirst(_db, finder: recordFinder);
+
+      if (existingRecord != null) {
+        final updatedMoodTrack = MoodTrack(
+          mood: mood,
+          date: date,
+          emotions: emotions,
+          summary: summary,
+          description: description,
+        );
+        final json = updatedMoodTrack.toJson();
+
+        await _store.record(existingRecord.key).update(_db, json);
+        debugPrint('MoodTrackDao: Updated mood track: $json');
+      } else {
+        debugPrint('MoodTrackDao: No record found to update for date: $dateString');
+      }
+    } catch (e) {
+      debugPrint('Error updating mood track: $e');
+      rethrow;
+    }
   }
 
   Stream<List<MoodTrack>> get allMoodTracksStream => _store
@@ -124,59 +173,34 @@ class MoodTrackDao with CustomFilters {
     return moodTracks.length;
   }
 
-  Future<bool> addEmotion(String emotion) async {
-    final emotions = await getEmotions();
-    var mutableEmotionsList = List<String>.from(emotions.cast<String>());
-    if (!mutableEmotionsList.contains(emotion)) {
-      mutableEmotionsList.add(emotion);
-      await _store.record(emotionsKey).put(_db, {'emotions': mutableEmotionsList});
-      debugPrint('MoodTrackDao: Added new mood track: $emotion');
-      return true;
+  Future<List<MoodTrack>> searchMoodTracks(
+      String summary, List<String> emotions) async {
+    final filters = <Filter>[];
+
+    if (summary.isNotEmpty) {
+      filters.add(Filter.matches('summary', summary));
     }
-    return false;
-  }
 
-  Future<void> initEmotions() async {
-    final existingEmotions = await getEmotions();
-    if (existingEmotions.isEmpty) {
-      for (final String emotion in defaultEmotions) {
-        await addEmotion(emotion);
-      }
+    if (emotions.isNotEmpty) {
+      filters.add(
+        Filter.custom((record) {
+          final recordEmotions =
+              (record['emotions'] as List<dynamic>?)?.cast<String>() ?? [];
+          return emotions.every(recordEmotions.contains);
+        }),
+      );
     }
-  }
 
-  Future<List<String>> getEmotions() async {
-    final record = await _store.record(emotionsKey).get(_db);
-    if (record is Map<String, dynamic>) {
-      final emotionsList = record['emotions'];
-      if (emotionsList is List<dynamic>) {
-        return List<String>.from(emotionsList.cast<String>());
-      }
-    }
-    return [];
-  }
-
-  //TODO urobit odstranovanie a updatovanie emocii + case ked su emocie pouzivane
-  Future<void> deleteEmotion() async {
-    final record = await _store.record(emotionsKey).get(_db);
-    final emotionsList = await getEmotions();
-    var mutableEmotionsList = List<String>.from(emotionsList.cast<String>());
-    final emotion = "Ridiculous";
-
-    if (mutableEmotionsList.contains(emotion)) {
-      mutableEmotionsList.remove(emotion);
-      await _store
-          .record(emotionsKey)
-          .put(_db, {'emotions': mutableEmotionsList});
-    }
-  }
-
-  Future<void> deleteRecord(int key) async {
-    final finder = Finder(filter: Filter.byKey(key));
-    await _store.delete(
-      _db,
-      finder: finder,
+    final finder = Finder(
+      filter: filters.isNotEmpty ? Filter.and(filters) : null,
+      sortOrders: [SortOrder('date', false)],
     );
+
+    final snapshots = await _store.find(_db, finder: finder);
+
+    return snapshots
+        .map((snapshot) => MoodTrack.fromJson(snapshot.value))
+        .toList();
   }
 
   Future<void> doOldVersionMigration(
@@ -207,6 +231,22 @@ class MoodTrackDao with CustomFilters {
           .toList();
       await saveMoods(moodTracks);
     }
+  }
+
+  Future<void> deleteMoodTracksWithNoDescriptionOrSummary() async {
+    final filter = Filter.or([
+      Filter.isNull('description'),
+      Filter.isNull('summary'),
+    ]);
+
+    final finder = Finder(filter: filter);
+
+    await _store.delete(
+      _db,
+      finder: finder,
+    );
+
+    debugPrint('Deleted MoodTracks with null description or summary');
   }
 
   Future<void> deleteMoodTrackByDate(DateTime date) async {

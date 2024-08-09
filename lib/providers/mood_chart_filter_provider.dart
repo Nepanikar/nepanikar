@@ -141,21 +141,25 @@ class MoodChartFilterProvider extends ChangeNotifier {
 
 extension MoodChartFilterExt on Iterable<MoodTrack> {
   Map<DateTime, MoodTrack?> filterByDateRange(DateTimeRange dateRange) {
-    final allValuesMap = <DateTime, MoodTrack?>{
-      for (final moodTrack in this) moodTrack.date: moodTrack,
-    };
+    final startOfDay = DateTime(dateRange.start.year, dateRange.start.month, dateRange.start.day);
+    final endOfDay = DateTime(dateRange.end.year, dateRange.end.month, dateRange.end.day);
 
-    final start = dateRange.start.toUtcDate();
-    final end = dateRange.end.toUtcDate();
-    final dateRangeValues = List.generate(
-      end.difference(start).inDays + 1,
-      (i) => start.add(Duration(days: i)),
-    );
+    final moodTracks = map((moodTrack) {
+      var originalDate = moodTrack.date;
+      var normalizedDate = DateTime(originalDate.year, originalDate.month, originalDate.day);
+      // Assuming your MoodTrack class has a copyWith method
+      return moodTrack.copyWith(date: normalizedDate);
+    }).toList();
 
+    // Filter MoodTracks based on normalized date
     final filteredMap = <DateTime, MoodTrack?>{};
-    for (final date in dateRangeValues) {
-      final dayMoodTrack = allValuesMap[date];
-      filteredMap[date] = dayMoodTrack;
+    for (final moodTrack in moodTracks) {
+      final moodTrackDate = DateTime(moodTrack.date.year, moodTrack.date.month, moodTrack.date.day);
+      if (moodTrackDate.isAtSameMomentAs(startOfDay) ||
+          (moodTrackDate.isAfter(startOfDay) && moodTrackDate.isBefore(endOfDay)) ||
+          moodTrackDate.isAtSameMomentAs(endOfDay)) {
+        filteredMap[moodTrack.date] = moodTrack;
+      }
     }
 
     return filteredMap;

@@ -83,7 +83,6 @@ class NepanikarDropdown<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     const rightPadding = EdgeInsets.only(right: 16);
     final textColor = customColorsBasedOnDarkMode(context, NepanikarColors.white, _type.textColor);
     final dropDownColor = customColorsBasedOnDarkMode(context, NepanikarColors.dropdownMenuD, _type.bgColor);

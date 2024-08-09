@@ -6,7 +6,7 @@ import 'package:nepanikar/app/theme/dark_theme.dart';
 import 'package:nepanikar/app/theme/theme.dart';
 import 'package:nepanikar/helpers/localization_helpers.dart';
 import 'package:nepanikar/providers/mood_chart_filter_provider.dart';
-import 'package:nepanikar/providers/mood_entry_provider.dart';
+import 'package:nepanikar/providers/mood_heatmap_filter_provider.dart';
 import 'package:nepanikar/providers/mood_state_provider.dart';
 import 'package:nepanikar/services/db/my_records/emotions_dao.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_dao.dart';
@@ -20,9 +20,6 @@ import 'package:provider/provider.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await setup();
-
-  final userSettingsDao = registry.get<UserSettingsDao>();
-
   runApp(const Nepanikar());
 }
 
@@ -35,10 +32,8 @@ class Nepanikar extends StatelessWidget {
   GoRouter get _goRouter => registry.get<GoRouter>();
 
   UserSettingsDao get _userSettingsDao => registry.get<UserSettingsDao>();
-
   EmotionsDao get _emotionsDao => registry.get<EmotionsDao>();
-
-
+  MoodTrackDao get _trackDao => registry.get<MoodTrackDao>();
 
   @override
   Widget build(BuildContext context) {
@@ -47,20 +42,19 @@ class Nepanikar extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<MoodChartFilterProvider>(create: (_) => MoodChartFilterProvider()),
-        ChangeNotifierProvider<MoodState>(create: (_) => MoodState(_emotionsDao)),
-        ChangeNotifierProvider<MoodEntryProvider>(create: (_) => MoodEntryProvider()),
+        ChangeNotifierProvider<MoodState>(create: (_) => MoodState(_emotionsDao, _trackDao)),
+        ChangeNotifierProvider<MoodHeatmapFilterProvider>(create: (_) => MoodHeatmapFilterProvider()),
       ],
       child: StreamBuilder<Locale>(
         stream: _userSettingsDao.localeStream,
         builder: (_, snapshot) {
-
           final locale = snapshot.data;
               return StreamBuilder<ThemeMode>(
                 stream: _userSettingsDao.themeModeStream,
                 builder: (context, snapshot){
                   final themeMode = snapshot.data ?? ThemeMode.system;
-                  
                   return MaterialApp.router(
+                    debugShowCheckedModeBanner: false,
                     title: _getAppNameFromLocale(locale),
                     theme: NepanikarTheme.getThemeData(
                       fontFamily: locale?.languageCode == NepanikarLanguages.uk.languageCode

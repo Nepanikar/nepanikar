@@ -56,11 +56,9 @@ class _ChosenEmotionsWidgetState extends State<ChosenEmotionsWidget> {
             deleteIcon: const Icon(Icons.cancel),
             onDeleted: () => _removeEmotion(emotion),
             backgroundColor: Colors.purple,
-            // Customize as needed
             deleteIconColor: Colors.white,
-            // Customize as needed
             labelStyle:
-            const TextStyle(color: Colors.white), // Customize as needed
+            const TextStyle(color: Colors.white),
           ),
         )
             .toList(),
@@ -69,20 +67,18 @@ class _ChosenEmotionsWidgetState extends State<ChosenEmotionsWidget> {
     else {
       return Wrap(
         spacing: 8.0,
+        alignment: WrapAlignment.end,
         children:
-        selectedEmotions
+        selectedEmotions.take(9)
             .map(
               (emotion) => Chip(
             label: Text(emotion),
             backgroundColor: Colors.purple,
-            // Customize as needed
             deleteIconColor: Colors.white,
-            // Customize as needed
             labelStyle:
-            const TextStyle(color: Colors.white), // Customize as needed
+            const TextStyle(color: Colors.white),
           ),
-        )
-            .toList(),
+        ).toList(),
       );
     }
   }

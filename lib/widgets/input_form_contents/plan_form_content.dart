@@ -4,6 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/services/db/common/nepanikar_plan_form_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
@@ -71,6 +72,8 @@ class _PlanFormContentState<T extends NepanikarPlanFormDao> extends State<PlanFo
 
   @override
   Widget build(BuildContext context) {
+    final textColor = textColorBasedOnDarkMode(context);
+
     return GestureDetector(
       onTapDown: (_) => FocusScope.of(context).unfocus(),
       excludeFromSemantics: true,
@@ -107,6 +110,7 @@ class _PlanFormContentState<T extends NepanikarPlanFormDao> extends State<PlanFo
                             title,
                             style: NepanikarFonts.bodySmallMedium.copyWith(
                               fontWeight: FontWeight.w700,
+                              color: textColor
                             ),
                           ),
                           const SizedBox(height: 4),

@@ -42,6 +42,13 @@ class NepanikarColors {
     900: Color(0xff280446), //100%
   };
 
+  static const _heatMapColors = <int, Color>{
+    1: Color(0xffA72C2C),
+    2: Color(0xffC78B31),
+    3: Color(0xffDCC678),
+    4: Color(0xffA6AC5A),
+    5: Color(0xff49A3BF)
+  };
 
   //Dark mode colors
   static const primaryD = Color(0xff280446);

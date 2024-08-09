@@ -4,6 +4,8 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/widgets/tips_carousel_body.dart';
 
+import '../../../../helpers/color_helpers.dart';
+
 class EatingDisorderTipsRemorseAppRoute extends GoRouteData {
   const EatingDisorderTipsRemorseAppRoute();
 
@@ -16,6 +18,7 @@ class EatingDisorderTipsRemorseScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final strings = context.l10n.food_tips_text.split('\n');
+    final textColor = textColorBasedOnDarkMode(context);
 
     return Scaffold(
       appBar: AppBar(title: Text(context.l10n.food_remorse)),
@@ -31,6 +34,7 @@ class EatingDisorderTipsRemorseScreen extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: NepanikarFonts.title2.copyWith(
                         fontWeight: FontWeight.w900,
+                        color: textColor,
                       ),
                     ),
                   ),

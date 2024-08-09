@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/helpers/contact_action_helpers.dart';
 import 'package:nepanikar/helpers/semantics_helpers.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
@@ -32,13 +33,11 @@ class PhoneContactTile extends StatelessWidget {
   }
 
   Widget _buildSingleContact(BuildContext context, PhoneContactSingle contact) {
-
-    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
-                                  ThemeMode.dark : ThemeMode.light;
-    bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final textColorMode = textColorBasedOnDarkMode(context);
 
     final isPinned = contact.pinned;
-    final textColor = isPinned ? Colors.white : null;
+    final textColor = isPinned ? Colors.white : textColorMode;
     final isUrl = contact.tel.contains('http');
     return LongTile(
       isDarkMode: isDarkMode,
@@ -59,11 +58,8 @@ class PhoneContactTile extends StatelessWidget {
   }
 
   Widget _buildSubListContact(BuildContext context, PhoneContactSubList contact) {
-
-    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
-                                  ThemeMode.dark : ThemeMode.light;
-    bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
-
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final textColorMode = textColorBasedOnDarkMode(context);
     final subContactsLength = contact.subPhoneContacts.length;
     final isSingleSubList = subContactsLength == 1;
     return GestureDetector(
@@ -76,10 +72,10 @@ class PhoneContactTile extends StatelessWidget {
       child: LongTile(
         isDarkMode: isDarkMode,
         text: contact.title,
-        textTextStyle: _textTextStyle,
+        textTextStyle: _textTextStyle.copyWith(color: textColorMode),
         description: contact.subtitle,
-        descriptionTextStyle: _descriptionNumTextStyle,
-        image: ExcludeSemantics(child: Assets.illustrations.contacts.phones.svg()),
+        descriptionTextStyle: _descriptionNumTextStyle.copyWith(color: textColorMode),
+        image: ExcludeSemantics(child: Assets.illustrations.contacts.phones.svg(color: textColorMode)),
         trailing: const SizedBox.shrink(),
         onTap: null,
         subContent: Column(
@@ -97,7 +93,7 @@ class PhoneContactTile extends StatelessWidget {
                             : EdgeInsets.zero,
                         child: Text(
                           subContact.title,
-                          style: Theme.of(context).textTheme.bodyMedium,
+                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: textColorMode),
                         ),
                       ),
                     ),
@@ -105,7 +101,7 @@ class PhoneContactTile extends StatelessWidget {
                       child: Text(
                         subContact.tel,
                         semanticsLabel: isUrl ? null : subContact.tel.spellOutNumFormat,
-                        style: _phoneNumTextStyle,
+                        style: _phoneNumTextStyle.copyWith(color: textColorMode),
                       ),
                     ),
                   ],

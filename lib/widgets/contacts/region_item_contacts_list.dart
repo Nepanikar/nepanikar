@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:linkify/linkify.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/helpers/contact_action_helpers.dart';
 import 'package:nepanikar/helpers/semantics_helpers.dart';
 import 'package:nepanikar/utils/custom_linkifiers.dart';
@@ -16,11 +17,11 @@ class RegionItemContactsList extends StatelessWidget {
 
   final RegionItemContact regionItemContact;
 
-  Widget _buildUniversityHeader() {
+  Widget _buildUniversityHeader(Color? textColor) {
     return Text(
       regionItemContact.name,
       style: NepanikarFonts.title3.copyWith(
-        color: NepanikarColors.primary,
+        color: textColor,
         fontWeight: FontWeight.w700,
       ),
     );
@@ -28,8 +29,9 @@ class RegionItemContactsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textColor = textColorBasedOnDarkMode(context);
     final linkifiedTextStyle = NepanikarFonts.bodyBlack.copyWith(
-      color: NepanikarColors.primary,
+      color: textColor,
       decoration: TextDecoration.underline,
     );
     return SelectionArea(
@@ -37,7 +39,7 @@ class RegionItemContactsList extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          _buildUniversityHeader(),
+          _buildUniversityHeader(textColor),
           ...regionItemContact.contactAddresses.map((contact) {
             final linkifiedText = linkify(
               contact,

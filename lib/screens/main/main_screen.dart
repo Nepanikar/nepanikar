@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
+import 'package:nepanikar/providers/mood_state_provider.dart';
 import 'package:nepanikar/screens/home/my_records/my_records_screen.dart';
 import 'package:nepanikar/screens/main/contacts_screen.dart';
 import 'package:nepanikar/screens/main/home_screen.dart';
@@ -12,7 +14,7 @@ import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/utils/contacts_data_manager.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/bottom_navbar_item.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 
 class MainPageExtra {
@@ -61,6 +63,8 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     super.initState();
     FlutterNativeSplash.remove();
+    final moodState = Provider.of<MoodState>(context, listen: false);
+    moodState.init();
     setState(() {
       _selectedIndex = widget.extra?.initIndex ?? _selectedIndex;
     });
@@ -127,11 +131,7 @@ class _MainScreenState extends State<MainScreen> {
         currentIndex: _selectedIndex,
         showUnselectedLabels: true,
         type: BottomNavigationBarType.fixed,
-        //backgroundColor: const Color(0xAAFAF4FF),
-        backgroundColor: isDarkMode ? NepanikarColors.containerD : const Color(0xAAFAF4FF),
         elevation: 0,
-        //selectedItemColor: NepanikarColors.primarySwatch.shade800,
-        //unselectedItemColor: NepanikarColors.primarySwatch.shade700,
         onTap: _onItemTapped,
       ),
     );

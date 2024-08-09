@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/services/db/my_contacts/my_contact_crisis_message_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_button.dart';
@@ -79,6 +80,7 @@ class _CrisisMessageContentState extends State<CrisisMessageContent> {
     required String hintText,
     required int minLines,
     required VoidCallback? onSaved,
+    required BuildContext context,
     bool readyOnly = false,
     bool autoFocus = false,
     FocusNode? focusNode,
@@ -87,6 +89,7 @@ class _CrisisMessageContentState extends State<CrisisMessageContent> {
     textController
       ..text = initialValue
       ..selection = TextSelection.fromPosition(TextPosition(offset: initialValue.length));
+    final textColor = textColorBasedOnDarkMode(context);
     return Column(
       children: [
         Align(
@@ -95,6 +98,7 @@ class _CrisisMessageContentState extends State<CrisisMessageContent> {
             labelText,
             style: NepanikarFonts.bodySmallMedium.copyWith(
               fontWeight: FontWeight.w700,
+              color: textColor,
             ),
           ),
         ),
@@ -148,6 +152,7 @@ class _CrisisMessageContentState extends State<CrisisMessageContent> {
                 children: [
                   _buildForm(
                     textController: _addressEmailController,
+                    context: context,
                     initialValue: contactAddress,
                     labelText: context.l10n.my_contacts_numbers_example,
                     hintText: context.l10n.custom_write,
@@ -166,6 +171,7 @@ class _CrisisMessageContentState extends State<CrisisMessageContent> {
                   const SizedBox(height: 4),
                   _buildForm(
                     textController: _messageTextController,
+                    context: context,
                     focusNode: _messageFocusNode,
                     initialValue: message,
                     labelText: context.l10n.message_text,

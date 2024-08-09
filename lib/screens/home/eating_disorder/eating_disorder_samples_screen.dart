@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/screens/home/eating_disorder/meal_plan_screen.dart';
 import 'package:nepanikar/utils/meal_plan_config.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
@@ -21,14 +22,13 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
-    ThemeMode.dark : ThemeMode.light;
-    bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+    final svgColor = svgColorBasedOnDarkMode(context);
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     final modules = <Widget>[
       LongTile(
         text: context.l10n.food_breakfast,
-        image: Assets.illustrations.modules.eatingDisorder.svg(),
+        image: Assets.illustrations.modules.eatingDisorder.svg(color: svgColor),
         onTap: () => context.push(
           Uri(
             path: const MealPlanRoute().location,
@@ -42,7 +42,7 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
       ),
       LongTile(
         text: '${context.l10n.food_am_snack} ',
-        image: Assets.illustrations.modules.eatingDisorder.svg(),
+        image: Assets.illustrations.modules.eatingDisorder.svg(color: svgColor),
         onTap: () => context.push(
           Uri(
             path: const MealPlanRoute().location,
@@ -56,7 +56,7 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
       ),
       LongTile(
         text: '${context.l10n.food_lunch} ',
-        image: Assets.illustrations.modules.eatingDisorder.svg(),
+        image: Assets.illustrations.modules.eatingDisorder.svg(color: svgColor),
         onTap: () => context.push(
           Uri(
             path: const MealPlanRoute().location,
@@ -70,7 +70,7 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
       ),
       LongTile(
         text: context.l10n.food_pm_snack,
-        image: Assets.illustrations.modules.eatingDisorder.svg(),
+        image: Assets.illustrations.modules.eatingDisorder.svg(color: svgColor),
         onTap: () => context.push(
           Uri(
             path: const MealPlanRoute().location,
@@ -84,7 +84,7 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
       ),
       LongTile(
         text: context.l10n.food_dinner,
-        image: Assets.illustrations.modules.eatingDisorder.svg(),
+        image: Assets.illustrations.modules.eatingDisorder.svg(color: svgColor),
         onTap: () => context.push(
           Uri(
             path: const MealPlanRoute().location,

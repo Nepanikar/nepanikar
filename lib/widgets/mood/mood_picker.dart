@@ -2,13 +2,15 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
+import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/providers/mood_state_provider.dart';
 import 'package:nepanikar/screens/home/my_records/mood/mood_picker_screen.dart';
+import 'package:nepanikar/screens/home/my_records/mood/mood_records_screen.dart';
+import 'package:nepanikar/screens/home/my_records/my_records_sleep_track_screen.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
 import 'package:nepanikar/utils/lottie_cache_manager.dart';
 import 'package:nepanikar/utils/registry.dart';
@@ -85,12 +87,14 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final textStyleColor = customColorsBasedOnDarkMode(context, NepanikarColors.white, NepanikarColors.primaryD);
-    final bool isMoodPickerScreen = GoRouter.of(context).location == const MoodPickerRoute().location;
+    final location = GoRouter.of(context).location;
+    final bool shouldDisplayTitle =
+            GoRouter.of(context).location == const MoodPickerRoute().location;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if(!isMoodPickerScreen)
+        if(!shouldDisplayTitle)
           if (!widget.autoSizeTitle)
             Text(
               widget.header ?? context.l10n.mood_welcome_title,
@@ -114,15 +118,28 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
                 label: widget.showLabels ? null : mood.getSemanticsLabel(context),
                 child: InkWell(
                   onTap: () {
-                    Provider.of<MoodState>(context, listen: false).setActiveMood(mood);
-                    if(GoRouter.of(context).location != const MoodPickerRoute().location){
-                      context.push(const MoodPickerRoute().location);
-                    }
                     if (isPicked) {
                       _playLottieAnim(mood);
                       return;
                     }
-
+                    if(location == const MyRecordsSleepTrackRoute().location){
+                      _playLottieAnim(mood);
+                      analytics.logEvent(
+                        name: 'mood_picked',
+                        parameters: {
+                          'mood': mood.name,
+                        },
+                      );
+                      widget.onPick.call(mood);
+                    }
+                    else{
+                      Provider.of<MoodState>(context, listen: false).setActiveMood(mood);
+                      if(location != const MoodPickerRoute().location){
+                        Provider.of<MoodState>(context,listen: false).setEditing(false);
+                        context.push(const MoodPickerRoute().location);
+                      }
+                      return;
+                    }
                     setState(() => activeMood = mood);
 
                     _playLottieAnim(mood);
@@ -132,11 +149,10 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
                         'mood': mood.name,
                       },
                     );
-
                   },
                   borderRadius: BorderRadius.circular(12),
                   child: Opacity(
-                    opacity: activeMood != null && activeMood != mood && isMoodPickerScreen ? 0.4 : 1 ,
+                    opacity: activeMood != null && activeMood != mood && shouldDisplayTitle ? 0.4 : 1 ,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 4),
                       child: Column(

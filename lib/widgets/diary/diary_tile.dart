@@ -23,6 +23,7 @@ class DiaryTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final svgColor = svgColorBasedOnDarkMode(context);
     final longTileColor = customColorsBasedOnDarkMode(context, NepanikarColors.containerD, NepanikarColors.primarySwatch.shade700);
 
     const textStyle = NepanikarFonts.bodyHeavy;
@@ -30,7 +31,7 @@ class DiaryTile extends StatelessWidget {
 
     return LongTile(
       isDarkMode: isDarkMode,
-      image: Assets.illustrations.modules.myRecords.svg(),
+      image: Assets.illustrations.modules.myRecords.svg(color: svgColor),
       text: DateFormat.yMd(locale.languageCode).format(date),
       textTextStyle: textStyle.copyWith(
         fontSize: 12,

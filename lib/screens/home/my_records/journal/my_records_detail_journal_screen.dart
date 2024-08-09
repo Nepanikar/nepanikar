@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/helpers/semantics_helpers.dart';
 import 'package:nepanikar/services/db/my_records/journal/my_records_journal_dao.dart';
 import 'package:nepanikar/services/db/my_records/journal/my_records_journal_record_model.dart';
@@ -116,7 +117,8 @@ class _MyRecordsJournalDetailScreenState extends State<MyRecordsJournalDetailScr
 
   @override
   Widget build(BuildContext context) {
-    final labelTextStyle = NepanikarFonts.bodySmallHeavy.copyWith(fontWeight: FontWeight.w700);
+    final textColor = textColorBasedOnDarkMode(context);
+    final labelTextStyle = NepanikarFonts.bodySmallHeavy.copyWith(fontWeight: FontWeight.w700, color: textColor);
 
     return GestureDetector(
       onTapDown: (_) => FocusScope.of(context).unfocus(),
@@ -153,7 +155,7 @@ class _MyRecordsJournalDetailScreenState extends State<MyRecordsJournalDetailScr
                   },
                 ),
                 const SizedBox(height: 12),
-                _generateFields(),
+                _generateFields(textColor),
                 const SizedBox(height: 16),
                 NepanikarButton(
                   text: context.l10n.save,
@@ -196,8 +198,8 @@ class _MyRecordsJournalDetailScreenState extends State<MyRecordsJournalDetailScr
     );
   }
 
-  Widget _generateFields() {
-    final labelTextStyle = NepanikarFonts.bodySmallHeavy.copyWith(fontWeight: FontWeight.w700);
+  Widget _generateFields(Color? textColor) {
+    final labelTextStyle = NepanikarFonts.bodySmallHeavy.copyWith(fontWeight: FontWeight.w700, color: textColor);
     return Form(
       child: Column(
         children: [

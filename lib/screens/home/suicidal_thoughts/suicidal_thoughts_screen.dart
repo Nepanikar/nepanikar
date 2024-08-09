@@ -4,6 +4,7 @@ import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/games/breathing/breathing_exercises_screen.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/screens/home/suicidal_thoughts/suicidal_thoughts_plan_screen.dart';
 import 'package:nepanikar/screens/home/suicidal_thoughts/suicidal_thoughts_reasons_no_screen.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
@@ -21,27 +22,25 @@ class SuicidalThoughtsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
-    ThemeMode.dark : ThemeMode.light;
-    bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+    final svgColor = svgColorBasedOnDarkMode(context);
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     final modules = <Widget>[
       LongTile(
         text: context.l10n.plan,
-        image: Assets.illustrations.modules.emergencyPlan.svg(),
+        image: Assets.illustrations.modules.emergencyPlan.svg(color: svgColor),
         onTap: () => context.push(const SuicidalThoughtsPlanRoute().location),
         isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.reasons,
-        image: Assets.illustrations.modules.reaseonsWhyNot.svg(),
+        image: Assets.illustrations.modules.reaseonsWhyNot.svg(color: svgColor),
         onTap: () => context.push(const SuicidalThoughtsReasonsNoRoute().location),
         isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.breath,
-        image: Assets.illustrations.modules.breathing.svg(),
+        image: Assets.illustrations.modules.breathing.svg(color: svgColor),
         onTap: () => context.push(const BreathingExercisesRoute().location),
         isDarkMode: isDarkMode,
       ),

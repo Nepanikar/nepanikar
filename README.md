@@ -2,8 +2,6 @@
 
 First aid for psychological issues - Official mobile app for [nepanikar.eu](https://nepanikar.eu/)
 
-Original Qt version: https://github.com/ichlubna/mind
-
 ## Project specs & conventions
 
 - targeted platforms: iOS, Android
@@ -13,9 +11,10 @@ Original Qt version: https://github.com/ichlubna/mind
 - routing: [GoRouter](https://pub.dev/packages/go_router)
 - data persistence: [sembast](https://pub.dev/packages/sembast) (NoSQL)
 
-We are committing generated files (.g.dart, .freezed.dart) to VCS to save time in Continuous Integration.
-
 ## Project documentation
+
+###Running application
+Run command `flutter run` from root folder of application.
 
 ### Adding a new asset
 
@@ -53,13 +52,9 @@ Make there the necessary changes then simply run the script located in `./bin/ne
 to regenerate the JSON file.
 
 ### Commands
-
+- `flutter run` - run application
 - `flutter packages pub run build_runner build -d` - regenerate go_route/freezed/assets files
 - `flutter pub run build_runner watch -d` - watch and generate automatically changes when files are changed
 - `flutter gen-l10n` - recompile .arb language files
 - `flutter pub run flutter_native_splash:create` - regenerate splash screen
 
-### Credits
-We thank these tools and services for making better developer experience:
-- [Codemagic](https://codemagic.io/) - CI/CD for mobile apps (automatic builds, tests & publishing to stores)
-- [Localazy](https://localazy.com/) - localization management

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/widgets/tips_carousel_body.dart';
 
 class SelfHarmTipsRoute extends GoRouteData {
@@ -16,6 +17,7 @@ class SelfHarmTipsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final strings = context.l10n.self_harm_tips_13.split('\n');
+    final textColor = textColorBasedOnDarkMode(context);
 
     return Scaffold(
       appBar: AppBar(title: Text(context.l10n.depression_help)),
@@ -33,6 +35,7 @@ class SelfHarmTipsScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: NepanikarFonts.title2.copyWith(
                       fontWeight: FontWeight.w900,
+                      color: textColor,
                     ),
                   ),
                   const SizedBox(
@@ -41,7 +44,9 @@ class SelfHarmTipsScreen extends StatelessWidget {
                   Text(
                     strings.elementAt(index * 2 + 1),
                     textAlign: TextAlign.center,
-                    style: NepanikarFonts.bodyRoman,
+                    style: NepanikarFonts.bodyRoman.copyWith(
+                      color: textColor,
+                    ),
                   ),
                 ],
               ),

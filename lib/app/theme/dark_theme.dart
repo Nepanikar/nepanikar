@@ -12,14 +12,14 @@ class darkTheme {
   }) =>
       ThemeData(
         brightness: Brightness.dark,
+        primaryColor: NepanikarColors.primaryD,
+        scaffoldBackgroundColor: NepanikarColors.primaryD,
         pageTransitionsTheme: const PageTransitionsTheme(
           builders: <TargetPlatform, PageTransitionsBuilder>{
             TargetPlatform.android: CupertinoPageTransitionsBuilder(),
             TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
           },
         ),
-        primaryColor: NepanikarColors.primary,
-        scaffoldBackgroundColor: NepanikarColors.primaryD,
         fontFamily: fontFamily,
         colorScheme: const ColorScheme.dark().copyWith(
           primary: NepanikarColors.primary,
@@ -46,9 +46,9 @@ class darkTheme {
             backgroundColor: MaterialStateProperty.resolveWith<Color?>(
                   (states) {
                 if (states.contains(MaterialState.disabled)) {
-                  return NepanikarColors.primarySwatch.shade500;
+                  return NepanikarColors.primarySwatch.shade700;
                 }
-                return NepanikarColors.primary;
+                return NepanikarColors.primarySwatch.shade700;
               },
             ),
             foregroundColor: MaterialStateProperty.all<Color?>(Colors.white),
@@ -59,7 +59,7 @@ class darkTheme {
         ),
         outlinedButtonTheme: OutlinedButtonThemeData(
           style: _buttonStyle.copyWith(
-            backgroundColor: MaterialStateProperty.all<Color?>(Colors.white),
+            backgroundColor: MaterialStateProperty.all<Color?>(NepanikarColors.primarySwatch.shade700),
             foregroundColor: MaterialStateProperty.resolveWith<Color?>(
                   (states) {
                 if (states.contains(MaterialState.disabled)) {
@@ -70,14 +70,6 @@ class darkTheme {
             ),
             textStyle: MaterialStateProperty.all<TextStyle>(
               const TextStyle(color: NepanikarColors.primary, fontWeight: FontWeight.w900),
-            ),
-            side: MaterialStateProperty.resolveWith<BorderSide?>(
-                  (states) {
-                if (states.contains(MaterialState.disabled)) {
-                  return BorderSide(color: NepanikarColors.primarySwatch.shade500, width: 2.0);
-                }
-                return const BorderSide(color: NepanikarColors.primary, width: 2.0);
-              },
             ),
           ),
         ),
@@ -177,8 +169,9 @@ class darkTheme {
           selectedItemColor: Colors.white,
           unselectedItemColor: Colors.white,
         ),
-
-
+        textSelectionTheme: const TextSelectionThemeData(
+          cursorColor: NepanikarColors.white, // Set cursor color to white here
+        ),
       );
 }
 

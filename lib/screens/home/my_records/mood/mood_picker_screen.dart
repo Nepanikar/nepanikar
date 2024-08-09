@@ -3,19 +3,18 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
+import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/helpers/date_helpers.dart';
-import 'package:nepanikar/main.dart';
 import 'package:nepanikar/providers/mood_state_provider.dart';
+import 'package:nepanikar/screens/home/my_records/mood/mood_records_screen.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_dao.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
-import 'package:nepanikar/services/notifications/notifications_service.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/mood/chosen_emotions.dart';
 import 'package:nepanikar/widgets/mood/mood_picker.dart';
-import 'package:nepanikar/widgets/nepanikar_button.dart';
 import 'package:provider/provider.dart';
 
 class MoodPickerRoute extends GoRouteData {
@@ -30,9 +29,11 @@ class MoodPickerScreen<T extends MoodTrackDao> extends StatefulWidget {
   const MoodPickerScreen({
     super.key,
     this.showBottomNavbar = true,
+    this.isEditing = false,
   });
 
   final bool showBottomNavbar;
+  final bool isEditing;
 
   @override
   State<MoodPickerScreen<T>> createState() => _MoodPickerScreenState<T>();
@@ -52,41 +53,31 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
 
   String summary = '';
 
-  String? description = '';
+  String description = '';
+
+  MoodTrack? selectedMoodTrack;
+
+  Mood? currentMood;
 
   final TextEditingController _newEmotionController = TextEditingController();
 
-  void _showAddNewEmotionDialog() {
-    showDialog(
-      context: context,
-      builder: (ctx) {
-        return AlertDialog(
-          title: Text('Add a New Emotion'),
-          content: TextField(
-            controller: _newEmotionController,
-            decoration: InputDecoration(
-              hintText: 'Type a new emotion',
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: Text('Cancel'),
-              onPressed: () {
-                Navigator.of(ctx).pop();
-              },
-            ),
-            TextButton(
-              child: Text('Add'),
-              onPressed: () {
-                final updatedEmotions = _addNewEmotion();
-                _onEmotionsUpdated(updatedEmotions);
-                context.pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
+  @override
+  void initState() {
+    super.initState();
+    final moodState = Provider.of<MoodState>(context, listen: false);
+
+    if (moodState.editing && moodState.selectedMoodEntry != null) {
+      selectedMoodTrack = moodState.selectedMoodEntry;
+      summary = selectedMoodTrack!.summary ?? '';
+      description = selectedMoodTrack!.description ?? '';
+      selectedEmotions = List<String>.from(selectedMoodTrack!.emotions ?? []);
+      currentMood = selectedMoodTrack!.mood;
+    } else {
+      summary = '';
+      description = '';
+      selectedEmotions = [];
+      currentMood = null;
+    }
   }
 
   List<String> _addNewEmotion() {
@@ -118,22 +109,31 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
 
   @override
   Widget build(BuildContext context) {
-    emotions = Provider.of<MoodState>(context).emotions;
+    final moodState = Provider.of<MoodState>(context, listen: false);
+    emotions = moodState.emotions;
     final items = emotions
         .map((emotion) => MultiSelectItem<String>(emotion, emotion))
         .toList();
 
-    Mood? currentMood = Provider.of<MoodState>(context).activeMood;
+    String formattedDateForEditing = '';
 
-    const pageSidePadding = 24.0;
-    const pageHorizontalPadding =
-        EdgeInsets.symmetric(horizontal: pageSidePadding);
+    if (!moodState.editing) {
+      currentMood = Provider.of<MoodState>(context).activeMood;
+    } else {
+      formattedDateForEditing = DateFormat('d. MMM. yyyy   HH:mm')
+          .format(moodState.selectedMoodEntry!.date);
+    }
+
+    const pageHorizontalPadding = EdgeInsets.symmetric(horizontal: 24.0);
 
     final formattedDate = DateFormat('d. MMM. yyyy   HH:mm').format(_now);
 
     //Colors
     final textStyleColor = customColorsBasedOnDarkMode(
-        context, NepanikarColors.white, NepanikarColors.primaryD,);
+      context,
+      NepanikarColors.white,
+      NepanikarColors.primaryD,
+    );
     final containerColor = customColorsBasedOnDarkMode(
         context, NepanikarColors.containerD, NepanikarColors.white);
 
@@ -142,7 +142,7 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          formattedDate,
+          moodState.editing ? formattedDateForEditing : formattedDate,
           style: NepanikarFonts.title2.copyWith(color: NepanikarColors.white),
         ),
       ),
@@ -155,13 +155,11 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
                 child: StreamBuilder<MoodTrack?>(
                   stream: _trackDao.latestMoodTrackStream,
                   builder: (_, snapshot) {
-                    final latestMoodTrack = snapshot.data;
                     return MoodPicker(
                       activeMood: currentMood,
                       autoSizeTitle: false,
                       showLabels: false,
                       onPick: (mood) async {
-                        final l10n = context.l10n;
                         currentMood = mood;
                       },
                     );
@@ -174,11 +172,10 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
                 child: TextFormField(
                   initialValue: summary,
                   decoration: InputDecoration(
-                    labelText: 'Summary',
+                    labelText: context.l10n.title_entry_label,
                     labelStyle: TextStyle(
-                      color: NepanikarColors.primarySwatch.shade400,
-                      fontWeight: FontWeight.bold
-                    ),
+                        color: NepanikarColors.primarySwatch.shade400,
+                        fontWeight: FontWeight.bold),
                     fillColor: containerColor,
                     filled: true,
                     enabledBorder: OutlineInputBorder(
@@ -187,7 +184,7 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
                       ),
                       borderRadius: BorderRadius.circular(8.0),
                     ),
-                    hintText: 'Enter a short summary',
+                    hintText: context.l10n.enter_summary,
                     hintStyle: TextStyle(
                       color: NepanikarColors.primarySwatch.shade400,
                       fontWeight: FontWeight.bold,
@@ -212,28 +209,27 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
                         searchable: true,
                         items: items,
                         backgroundColor: containerColor,
-                        title: Text("Emotions"),
+                        title: Text(context.l10n.emotions),
                         decoration: BoxDecoration(
-                          color: containerColor,
-                          borderRadius: const BorderRadius.all(Radius.circular(40)),
-                          border: Border.all(
-                            color: NepanikarColors.containerD
-                          )
-                        ),
+                            color: containerColor,
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(40)),
+                            border:
+                                Border.all(color: NepanikarColors.containerD)),
                         selectedColor: textStyleColor,
-                        selectedItemsTextStyle:  TextStyle(
+                        selectedItemsTextStyle: TextStyle(
                           color: textStyleColor,
                         ),
                         unselectedColor: textStyleColor,
-                        itemsTextStyle:  TextStyle(
+                        itemsTextStyle: TextStyle(
                           color: textStyleColor,
                         ),
-                        buttonIcon:  Icon(
+                        buttonIcon: Icon(
                           Icons.arrow_drop_down,
                           color: textStyleColor,
                         ),
                         buttonText: Text(
-                          "Select Your Emotions",
+                          context.l10n.select_your_emotions,
                           style: TextStyle(
                             color: NepanikarColors.primarySwatch.shade400,
                             fontWeight: FontWeight.bold,
@@ -241,17 +237,24 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
                           ),
                         ),
                         onConfirm: (results) {
-                          _onEmotionsUpdated(results.cast<String>());
+                          if (results.length <= 9) {
+                            _onEmotionsUpdated(results.cast<String>());
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                    content: Text(
+                                        context.l10n.select_up_to_9_emotions)));
+                          }
                         },
                         cancelText: Text(
-                          "CANCEL",
+                          context.l10n.cancel,
                           style: TextStyle(
                             color: textStyleColor,
                             fontSize: 16,
                           ),
                         ),
                         confirmText: Text(
-                          "CONFIRM",
+                          context.l10n.submit,
                           style: TextStyle(
                             color: textStyleColor,
                             fontSize: 16,
@@ -259,15 +262,22 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
                         ),
                         initialValue: selectedEmotions,
                         chipDisplay: MultiSelectChipDisplay.none(),
+                        validator: (values) {
+                          if (values != null && values.length > 9) {
+                            return context.l10n.select_up_to_9_emotions;
+                          }
+                          return null;
+                        },
                       ),
                     ),
                     IconButton(
-                      icon:  Icon(
+                      icon: Icon(
                         Icons.add_circle_outline,
                         size: 30,
                         color: textStyleColor,
                       ),
-                      onPressed: _showAddNewEmotionDialog,
+                      onPressed: () =>
+                          _showAddNewEmotionDialog(containerColor!),
                     ),
                   ],
                 ),
@@ -286,26 +296,27 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
                   textAlignVertical: TextAlignVertical.top,
                   keyboardType: TextInputType.multiline,
                   decoration: InputDecoration(
-                      labelText: 'Summary of your moment',
-                      labelStyle: TextStyle(
-                        color: NepanikarColors.primarySwatch.shade400,
-                        fontWeight: FontWeight.bold,
+                    labelText: context.l10n.summary_of_your_moment,
+                    labelStyle: TextStyle(
+                      color: NepanikarColors.primarySwatch.shade400,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: NepanikarColors.containerD,
                       ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                            color: NepanikarColors.containerD,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      filled: true,
-                      fillColor: containerColor,
-                      alignLabelWithHint: true,
-                      hintText: 'Describe what happened...',
-                      hintStyle: TextStyle(
-                        color: NepanikarColors.primarySwatch.shade400,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      floatingLabelBehavior: FloatingLabelBehavior.never),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    filled: true,
+                    fillColor: containerColor,
+                    alignLabelWithHint: true,
+                    hintText: context.l10n.describe_what_happened,
+                    hintStyle: TextStyle(
+                      color: NepanikarColors.primarySwatch.shade400,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
+                  ),
                   onChanged: (value) {
                     setState(() {
                       description = value;
@@ -319,14 +330,26 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
                 width: 600,
                 child: ElevatedButton(
                   onPressed: () async {
-                    await _trackDao.saveMood(
-                      currentMood!,
-                      selectedEmotions,
-                      summary,
-                      description,
-                    );
+                    if (moodState.editing) {
+                      await Provider.of<MoodState>(context, listen: false)
+                          .updateMoodTrack(
+                        selectedMoodTrack!.date,
+                        summary,
+                        description,
+                        selectedEmotions,
+                        currentMood!,
+                      );
+                    } else {
+                      await Provider.of<MoodState>(context, listen: false)
+                          .saveMoodTrack(
+                        summary,
+                        description,
+                        selectedEmotions,
+                        currentMood!,
+                      );
+                    }
                     if (mounted) {
-                      context.pop();
+                      await context.push(const MoodRecordsRoute().location);
                     }
                   },
                   style: ElevatedButton.styleFrom(
@@ -336,19 +359,86 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
                     ),
                     padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                   ),
-                  child:  const Text(
-                    'Save',
-                    style:  TextStyle(
-                        color: Colors.white,
-                        fontSize: 25,
+                  child:  Text(
+                    context.l10n.save,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
                     ), // Text color
                   ),
                 ),
               ),
+              const SizedBox(
+                height: 15,
+              )
             ],
           ),
         ),
       ),
+    );
+  }
+
+  void _showAddNewEmotionDialog(Color containerColor) {
+    showDialog(
+      context: context,
+      builder: (ctx) {
+        return AlertDialog(
+          backgroundColor: containerColor,
+          title: Text(context.l10n.add_a_new_emotion),
+          content: TextField(
+            cursorColor: NepanikarColors.primarySwatch.shade600,
+            controller: _newEmotionController,
+            decoration: InputDecoration(
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                      color: NepanikarColors.primarySwatch.shade600,
+                  ),
+              ),
+              hintText: context.l10n.type_a_new_emotion,
+            ),
+            onChanged: (value) {
+              if (value.length > 12) {
+                setState(() {});
+              }
+            },
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text(
+                context.l10n.cancel,
+                style: TextStyle(
+                  color: customColorsBasedOnDarkMode(context, NepanikarColors.white, NepanikarColors.primary),
+                ),
+              ),
+              onPressed: () {
+                Navigator.of(ctx).pop();
+              },
+            ),
+            TextButton(
+              child: Text(
+                context.l10n.submit,
+                style: TextStyle(
+                  color: customColorsBasedOnDarkMode(context, NepanikarColors.white, NepanikarColors.primary),
+                ),
+              ),
+              onPressed: () {
+                if (_newEmotionController.text.length > 12) {
+                  ScaffoldMessenger.of(ctx).showSnackBar(
+                    SnackBar(
+                      content: Text(context.l10n.emotion_too_long),
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                } else {
+                  final updatedEmotions = _addNewEmotion();
+                  _onEmotionsUpdated(updatedEmotions);
+                  Navigator.of(ctx).pop();
+                }
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

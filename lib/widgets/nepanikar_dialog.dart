@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/widgets/nepanikar_button.dart';
 
 enum DialogDefaultAction {
@@ -52,7 +53,11 @@ class NepanikarDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final backgroundColor = longTileColorBasedOnDarkMode(context);
+    final textColor = textColorBasedOnDarkMode(context);
+
     return Dialog(
+      backgroundColor: backgroundColor,
       child: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -60,7 +65,7 @@ class NepanikarDialog extends StatelessWidget {
             if (title != null) ...[
               Text(
                 title!,
-                style: NepanikarFonts.dialogTitle,
+                style: NepanikarFonts.dialogTitle.copyWith(color: textColor),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 10),

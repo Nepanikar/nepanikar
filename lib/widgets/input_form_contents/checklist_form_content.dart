@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/sizes.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/helpers/platform_helpers.dart';
 import 'package:nepanikar/helpers/semantics_helpers.dart';
 import 'package:nepanikar/services/db/common/checklist_item_model.dart';
@@ -57,6 +58,9 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
 
   @override
   Widget build(BuildContext context) {
+    final checkedTextColor = customColorsBasedOnDarkMode(context, NepanikarColors.white, NepanikarColors.dark);
+
+
     return GestureDetector(
       onTapDown: (_) => FocusScope.of(context).unfocus(),
       excludeFromSemantics: true,
@@ -172,7 +176,7 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
                                       textInputAction: TextInputAction.newline,
                                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                                             color: checkFormState == true
-                                                ? NepanikarColors.dark
+                                                ? checkedTextColor
                                                 : NepanikarColors.primarySwatch.shade400,
                                           ),
                                       decoration: InputDecoration(

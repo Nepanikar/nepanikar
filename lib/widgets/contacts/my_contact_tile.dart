@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/helpers/contact_action_helpers.dart';
 import 'package:nepanikar/helpers/screen_resolution_helpers.dart';
 import 'package:nepanikar/helpers/semantics_helpers.dart';
@@ -58,6 +59,8 @@ class _MyContactTileState extends State<MyContactTile> {
 
   @override
   Widget build(BuildContext context) {
+    final tileColor = customColorsBasedOnDarkMode(context, NepanikarColors.containerD, null);
+    final textColor = textColorBasedOnDarkMode(context);
     final buttonStyle = TextButton.styleFrom(
       textStyle: const TextStyle(
         fontWeight: FontWeight.bold,
@@ -66,6 +69,7 @@ class _MyContactTileState extends State<MyContactTile> {
     );
 
     return Card(
+      color: tileColor,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
         child: Column(
@@ -76,7 +80,7 @@ class _MyContactTileState extends State<MyContactTile> {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 12),
-                  child: ExcludeSemantics(child: Assets.icons.userCircle.svg()),
+                  child: ExcludeSemantics(child: Assets.icons.userCircle.svg(color: textColor)),
                 ),
                 Expanded(
                   child: Column(
@@ -133,12 +137,22 @@ class _MyContactTileState extends State<MyContactTile> {
                     children: [
                       TextButton(
                         style: buttonStyle,
-                        child: Text(context.l10n.send_sms),
+                        child: Text(
+                          context.l10n.send_sms,
+                          style: TextStyle(
+                              color: textColor,
+                          ),
+                        ),
                         onPressed: () => launchSmsNum(_contactAddressController.text),
                       ),
                       TextButton(
                         style: buttonStyle,
-                        child: Text(context.l10n.make_call),
+                        child: Text(
+                          context.l10n.make_call,
+                          style: TextStyle(
+                            color: textColor,
+                          ),
+                        ),
                         onPressed: () => launchPhoneNum(_contactAddressController.text),
                       ),
                     ],

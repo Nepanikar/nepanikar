@@ -314,6 +314,7 @@ class DatabaseService {
       }
     }
 
+
     // Clear old config files so that this migration is not done somehow again.
     await _clearAndBackupOldAppConfigData(androidConfigFile: androidConfigFile);
   }
