@@ -5,6 +5,7 @@ import 'package:linkify/linkify.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/helpers/contact_action_helpers.dart';
 import 'package:nepanikar/helpers/semantics_helpers.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
@@ -44,8 +45,9 @@ class EatingDisorderContactsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textColor = customColorsBasedOnDarkMode(context, NepanikarColors.white, NepanikarColors.primary);
     final linkifiedTextStyle = NepanikarFonts.bodyBlack.copyWith(
-      color: NepanikarColors.primary,
+      color: textColor,
       decoration: TextDecoration.underline,
     );
 

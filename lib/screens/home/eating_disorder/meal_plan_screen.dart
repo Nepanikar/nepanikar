@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/utils/meal_plan_config.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
@@ -29,11 +31,12 @@ class MealPlanScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final meals = getMealsById(context, id ?? '');
+    final backgroundColor = customColorsBasedOnDarkMode(context, NepanikarColors.containerD, NepanikarColors.white);
     return NepanikarScreenWrapper(
       appBarTitle: title.toString(),
       children: [
         Material(
-          color: Colors.white,
+          color: backgroundColor,
           borderRadius: BorderRadius.circular(12),
           child: Padding(
             padding: const EdgeInsets.symmetric(
@@ -55,7 +58,7 @@ class MealPlanScreen extends StatelessWidget {
                         ),
                         Text(
                           '${meal.title?.trim()}',
-                          style: NepanikarFonts.title3,
+                          style: NepanikarFonts.title3.copyWith(color: textColorBasedOnDarkMode(context)),
                         ),
                         if (meal.description != null)
                           Padding(

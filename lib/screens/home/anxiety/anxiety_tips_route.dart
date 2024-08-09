@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/widgets/tips_carousel_body.dart';
 
 class AnxietyTipsAppRoute extends GoRouteData {
@@ -17,6 +18,7 @@ class AnxietyTipsAppScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final strings = context.l10n.panic_tips.split('\n');
+    final textColor = svgColorBasedOnDarkMode(context);
 
     return Scaffold(
       appBar: AppBar(title: Text(context.l10n.panic_tips_9)),
@@ -34,6 +36,7 @@ class AnxietyTipsAppScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: NepanikarFonts.title2.copyWith(
                       fontWeight: FontWeight.w900,
+                      color: textColor,
                     ),
                   ),
                   const SizedBox(
@@ -42,7 +45,9 @@ class AnxietyTipsAppScreen extends StatelessWidget {
                   Text(
                     strings.elementAt(index * 2 + 1),
                     textAlign: TextAlign.center,
-                    style: NepanikarFonts.bodyRoman,
+                    style: NepanikarFonts.bodyRoman.copyWith(
+                      color: textColor,
+                    ),
                   ),
                 ],
               ),

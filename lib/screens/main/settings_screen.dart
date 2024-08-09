@@ -8,12 +8,14 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/helpers/contact_action_helpers.dart';
 import 'package:nepanikar/screens/settings/about_app_screen.dart';
 import 'package:nepanikar/screens/settings/export_screen.dart';
 import 'package:nepanikar/screens/settings/languages_screen.dart';
 import 'package:nepanikar/screens/settings/sponsors_screen.dart';
 import 'package:nepanikar/services/db/database_service.dart';
+import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/services/notifications/notifications_service.dart';
 import 'package:nepanikar/utils/app_config.dart';
 import 'package:nepanikar/utils/extensions.dart';
@@ -23,6 +25,8 @@ import 'package:nepanikar/widgets/semantics/semantics_widget_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingsScreen extends StatefulWidget {
+  //final ThemeManager themeManager;
+
   const SettingsScreen({super.key});
 
   @override
@@ -34,10 +38,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   DatabaseService get _databaseService => registry.get<DatabaseService>();
 
-  NotificationsService get _notificationsService => registry.get<NotificationsService>();
+  NotificationsService get _notificationsService =>
+      registry.get<NotificationsService>();
 
   @override
   Widget build(BuildContext context) {
+    final userSettingsDao = registry.get<UserSettingsDao>();
+    final currentTheme = Theme.of(context);
+    bool isDarkMode = currentTheme.brightness == Brightness.dark;
+    final svgColor = svgColorBasedOnDarkMode(context);
+    final pdfColor = pdfColorBasedOnDarkMode(context);
+    final colorForDarkModeButton = customColorsBasedOnDarkMode(
+      context,
+      NepanikarColors.white,
+      NepanikarColors.primary,
+    );
+
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.settings,
       children: [
@@ -49,18 +65,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(16),
             child: Material(
-              color: Colors.white,
+              color: isDarkMode
+                  ? NepanikarColors.containerD
+                  : NepanikarColors.white,
               borderRadius: BorderRadius.circular(16),
               child: Column(
                 children: [
                   _SettingsMenuItem(
                     hideTopSeparator: true,
-                    leading: Assets.icons.notificationBell.svg(),
+                    leading: Assets.icons.notificationBell.svg(color: svgColor),
                     onTap: _notificationsService.checkPermission,
                     text: context.l10n.notifications,
                   ),
                   _SettingsMenuItem(
-                    leading: Assets.icons.deleteData.svg(),
+                    leading: Assets.icons.deleteData.svg(color: svgColor),
                     text: context.l10n.reset_inputs,
                     onTap: () {
                       context.showOkCancelNepanikarDialog(
@@ -72,12 +90,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           final l10n = context.l10n;
                           await _databaseService.clearAll();
                           await _databaseService.preloadDefaultData(l10n);
-                          await _notificationsService.cancelAllScheduledNotifications();
+                          await _notificationsService
+                              .cancelAllScheduledNotifications();
                           if (mounted) {
                             context.hideCurrentSnackBar();
                             context.showSuccessSnackbar(
                               text: context.l10n.delete_success,
-                              leading: Assets.icons.checkmarks.checkCircular.svg(),
+                              leading:
+                                  Assets.icons.checkmarks.checkCircular.svg(),
                             );
                           }
                         },
@@ -85,7 +105,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     },
                   ),
                   _SettingsMenuItem(
-                    leading: Assets.icons.heart.svg(),
+                    leading: Assets.icons.heart.svg(color: svgColor),
                     text: context.l10n.rate,
                     onTap: () async {
                       final uri = Uri.parse(
@@ -99,61 +119,79 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     },
                   ),
                   _SettingsMenuItem(
-                    leading: Assets.icons.donate.svg(),
+                    leading: Assets.icons.donate.svg(color: svgColor),
                     text: context.l10n.support_us,
-                    onTap: () async {
-                      final url = Uri.parse(
-                        'https://www.darujme.cz/projekt/1203622',
-                      );
-                      await launchUrl(url, mode: LaunchMode.externalApplication);
-                    },
+                    onTap: () => launchUrLink(AppConstants.nepanikarDonate)
                   ),
                   _SettingsMenuItem(
-                    leading: Assets.icons.exportData.svg(),
+                    leading: Assets.icons.exportData.svg(color: svgColor),
                     onTap: () {
                       context.push(const ExportRoute().location);
                     },
                     text: context.l10n.import_export,
                   ),
                   _SettingsMenuItem(
-                    leading: Assets.icons.aboutApp.svg(),
+                    leading: Assets.icons.aboutApp.svg(color: svgColor),
                     text: context.l10n.about_app,
                     onTap: () => context.push(const AboutAppRoute().location),
                   ),
                   _SettingsMenuItem(
-                    leading: Assets.icons.language.svg(),
+                    leading: Assets.icons.language.svg(color: svgColor),
                     text: context.l10n.language,
                     onTap: () => context.push(const LanguagesRoute().location),
                   ),
                   _SettingsMenuItem(
-                    leading: const Icon(
+                    leading: Icon(
+                      isDarkMode ? Icons.wb_sunny : Icons.brightness_3,
+                      color: colorForDarkModeButton,
+                    ),
+                    text: isDarkMode
+                        ? context.l10n.dark_mode_on : context.l10n.dark_mode_off,
+                    onTap: () async {
+                      final newThemeMode =
+                          isDarkMode ? ThemeMode.light : ThemeMode.dark;
+                      await userSettingsDao.saveThemeMode(newThemeMode);
+                      setState(() {
+                        isDarkMode = !isDarkMode;
+                      });
+                    },
+                  ),
+                  _SettingsMenuItem(
+                    leading: Icon(
                       Icons.shield_outlined,
-                      color: NepanikarColors.primary,
+                      color:
+                          isDarkMode ? Colors.white : NepanikarColors.primary,
                     ),
                     text: context.l10n.support,
                     onTap: () => context.push(const SponsorsRoute().location),
                   ),
                   Container(
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       border: Border(
-                        top: BorderSide(color: Color(0xffF2F2F5)),
+                        top: isDarkMode
+                            ? BorderSide(
+                                color: NepanikarColors.primarySwatch.shade700)
+                            : BorderSide(color: Color(0xffF2F2F5)),
                       ),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20.0, vertical: 16),
                       child: Row(
                         children: [
                           ExcludeSemantics(
                             child: Text(
                               context.l10n.follow_us,
-                              style: NepanikarFonts.bodySmallMedium.copyWith(fontSize: 15),
+                              style: NepanikarFonts.bodySmallMedium
+                                  .copyWith(fontSize: 15, color: svgColor),
                             ),
                           ),
                           const Spacer(),
                           SemanticsWidgetButton(
                             label: '${context.l10n.follow_us}: Web',
-                            onTap: () => launchUrLink(AppConstants.nepanikarWeb),
-                            child: Assets.icons.globe.svg(),
+                            onTap: () =>
+                                launchUrLink(AppConstants.nepanikarWeb),
+                            child: Assets.icons.globe.svg(color: svgColor),
                           ),
                           const SizedBox(width: 27),
                           SemanticsWidgetButton(
@@ -162,7 +200,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               AppConstants.nepanikarInstagram,
                               launchMode: LaunchMode.externalApplication,
                             ),
-                            child: Assets.icons.instagram.svg(),
+                            child: Assets.icons.instagram.svg(color: svgColor),
                           ),
                           const SizedBox(width: 27),
                           SemanticsWidgetButton(
@@ -171,7 +209,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               AppConstants.nepanikarFacebook,
                               launchMode: LaunchMode.externalApplication,
                             ),
-                            child: Assets.icons.facebook.svg(),
+                            child: Assets.icons.facebook.svg(color: svgColor),
                           ),
                         ],
                       ),
@@ -188,8 +226,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
             constraints: const BoxConstraints(maxWidth: 245),
             child: Column(
               children: [
-                Assets.sponsors.sponsorPpf.image(),
-                Assets.sponsors.sponsorCeskoDigitalSvg.svg(),
+                Assets.sponsors.sponsorPpf.image(color: pdfColor),
+                Assets.sponsors.sponsorCeskoDigitalSvg.svg(color: pdfColor),
               ],
             ),
           ),
@@ -205,20 +243,31 @@ class _SettingsMenuItem extends StatelessWidget {
     this.leading,
     required this.text,
     this.onTap,
+    this.trailing,
   });
 
   final bool hideTopSeparator;
   final Widget? leading;
-
+  final Widget? trailing;
   final String text;
   final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = Theme.of(context);
+    final isDarkMode = currentTheme.brightness == Brightness.dark;
+    final textColor = svgColorBasedOnDarkMode(context);
+
     return Container(
       decoration: BoxDecoration(
         border: Border(
-          top: hideTopSeparator ? BorderSide.none : const BorderSide(color: Color(0xffF2F2F5)),
+          top: isDarkMode
+              ? (hideTopSeparator
+                  ? BorderSide.none
+                  : BorderSide(color: NepanikarColors.primarySwatch.shade700))
+              : (hideTopSeparator
+                  ? BorderSide.none
+                  : const BorderSide(color: Color(0xffF2F2F5))),
         ),
       ),
       child: InkWell(
@@ -240,7 +289,8 @@ class _SettingsMenuItem extends StatelessWidget {
                     Flexible(
                       child: Text(
                         text,
-                        style: NepanikarFonts.bodySmallMedium.copyWith(fontSize: 15),
+                        style: NepanikarFonts.bodySmallMedium
+                            .copyWith(fontSize: 15, color: textColor),
                       ),
                     ),
                   ],
@@ -248,11 +298,12 @@ class _SettingsMenuItem extends StatelessWidget {
               ),
               Opacity(
                 opacity: onTap != null ? 1 : 0.5,
-                child: const Icon(
+                child: Icon(
                   Icons.chevron_right,
-                  color: Color(0xffCDD1D5),
+                  color: isDarkMode ? Colors.white : const Color(0xffCDD1D5),
                 ),
               ),
+              if (trailing != null) trailing!,
             ],
           ),
         ),

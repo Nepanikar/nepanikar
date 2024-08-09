@@ -23,9 +23,35 @@ class UserSettingsDao {
 
   Database get _db => _dbService.database;
 
+  static const _themeModeKey = 'theme_mode';
   static const _storeKeyName = 'user_settings';
   static const _languageKey = 'language';
   static const _notificationKeyPrefix = 'notification_type_';
+
+  Future<void> saveThemeMode(ThemeMode themeMode) async{
+    final themeModeStr = UserThemeMode.themeModeToString(themeMode);
+    final userThemeMode = UserThemeMode(themeMode: themeModeStr);
+    debugPrint('UserSettingsDao: Changing theme mode to: $themeModeStr');
+    await _store.record(_themeModeKey).put(_db, userThemeMode.toJson());
+  }
+
+  Future<ThemeMode> getThemeMode() async {
+    final json = await _store.record(_themeModeKey).get(_db);
+    if(json == null) return ThemeMode.system;
+    final userThemeMode = UserThemeMode.fromJson(json);
+    return userThemeMode.getThemeMode();
+  }
+
+  Stream<ThemeMode> get themeModeStream => _store
+      .record(_themeModeKey)
+      .onSnapshot(_db)
+      .map((snapshot){
+        final themeModeStr = snapshot?.value;
+        if(themeModeStr == null) return ThemeMode.system;
+        final userThemeMode = UserThemeMode.fromJson(themeModeStr);
+        return userThemeMode.getThemeMode();
+  })
+      .asBroadcastStream();
 
   String _getNotificationKey(NotificationType type) =>
       '$_notificationKeyPrefix${type.name.toLowerCase()}';

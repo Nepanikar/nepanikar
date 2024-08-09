@@ -24,6 +24,9 @@ mixin _$MoodTrack {
       throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: FilterKeys.date)
   DateTime get date => throw _privateConstructorUsedError;
+  List<String>? get emotions => throw _privateConstructorUsedError;
+  String? get summary => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +39,12 @@ abstract class $MoodTrackCopyWith<$Res> {
   factory $MoodTrackCopyWith(MoodTrack value, $Res Function(MoodTrack) then) =
       _$MoodTrackCopyWithImpl<$Res, MoodTrack>;
   @useResult
-  $Res call({Mood mood, @JsonKey(name: FilterKeys.date) DateTime date});
+  $Res call(
+      {Mood mood,
+      @JsonKey(name: FilterKeys.date) DateTime date,
+      List<String>? emotions,
+      String? summary,
+      String? description});
 }
 
 /// @nodoc
@@ -54,6 +62,9 @@ class _$MoodTrackCopyWithImpl<$Res, $Val extends MoodTrack>
   $Res call({
     Object? mood = null,
     Object? date = null,
+    Object? emotions = freezed,
+    Object? summary = freezed,
+    Object? description = freezed,
   }) {
     return _then(_value.copyWith(
       mood: null == mood
@@ -64,6 +75,18 @@ class _$MoodTrackCopyWithImpl<$Res, $Val extends MoodTrack>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      emotions: freezed == emotions
+          ? _value.emotions
+          : emotions // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      summary: freezed == summary
+          ? _value.summary
+          : summary // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -75,7 +98,12 @@ abstract class _$$_MoodTrackCopyWith<$Res> implements $MoodTrackCopyWith<$Res> {
       __$$_MoodTrackCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Mood mood, @JsonKey(name: FilterKeys.date) DateTime date});
+  $Res call(
+      {Mood mood,
+      @JsonKey(name: FilterKeys.date) DateTime date,
+      List<String>? emotions,
+      String? summary,
+      String? description});
 }
 
 /// @nodoc
@@ -91,6 +119,9 @@ class __$$_MoodTrackCopyWithImpl<$Res>
   $Res call({
     Object? mood = null,
     Object? date = null,
+    Object? emotions = freezed,
+    Object? summary = freezed,
+    Object? description = freezed,
   }) {
     return _then(_$_MoodTrack(
       mood: null == mood
@@ -101,6 +132,18 @@ class __$$_MoodTrackCopyWithImpl<$Res>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      emotions: freezed == emotions
+          ? _value._emotions
+          : emotions // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      summary: freezed == summary
+          ? _value.summary
+          : summary // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -109,8 +152,13 @@ class __$$_MoodTrackCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_MoodTrack extends _MoodTrack {
   const _$_MoodTrack(
-      {required this.mood, @JsonKey(name: FilterKeys.date) required this.date})
-      : super._();
+      {required this.mood,
+      @JsonKey(name: FilterKeys.date) required this.date,
+      final List<String>? emotions,
+      this.summary,
+      this.description})
+      : _emotions = emotions,
+        super._();
 
   factory _$_MoodTrack.fromJson(Map<String, dynamic> json) =>
       _$$_MoodTrackFromJson(json);
@@ -121,10 +169,24 @@ class _$_MoodTrack extends _MoodTrack {
   @override
   @JsonKey(name: FilterKeys.date)
   final DateTime date;
+  final List<String>? _emotions;
+  @override
+  List<String>? get emotions {
+    final value = _emotions;
+    if (value == null) return null;
+    if (_emotions is EqualUnmodifiableListView) return _emotions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  final String? summary;
+  @override
+  final String? description;
 
   @override
   String toString() {
-    return 'MoodTrack(mood: $mood, date: $date)';
+    return 'MoodTrack(mood: $mood, date: $date, emotions: $emotions, summary: $summary, description: $description)';
   }
 
   @override
@@ -133,12 +195,17 @@ class _$_MoodTrack extends _MoodTrack {
         (other.runtimeType == runtimeType &&
             other is _$_MoodTrack &&
             (identical(other.mood, mood) || other.mood == mood) &&
-            (identical(other.date, date) || other.date == date));
+            (identical(other.date, date) || other.date == date) &&
+            const DeepCollectionEquality().equals(other._emotions, _emotions) &&
+            (identical(other.summary, summary) || other.summary == summary) &&
+            (identical(other.description, description) ||
+                other.description == description));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, mood, date);
+  int get hashCode => Object.hash(runtimeType, mood, date,
+      const DeepCollectionEquality().hash(_emotions), summary, description);
 
   @JsonKey(ignore: true)
   @override
@@ -156,9 +223,11 @@ class _$_MoodTrack extends _MoodTrack {
 
 abstract class _MoodTrack extends MoodTrack {
   const factory _MoodTrack(
-          {required final Mood mood,
-          @JsonKey(name: FilterKeys.date) required final DateTime date}) =
-      _$_MoodTrack;
+      {required final Mood mood,
+      @JsonKey(name: FilterKeys.date) required final DateTime date,
+      final List<String>? emotions,
+      final String? summary,
+      final String? description}) = _$_MoodTrack;
   const _MoodTrack._() : super._();
 
   factory _MoodTrack.fromJson(Map<String, dynamic> json) =
@@ -169,6 +238,12 @@ abstract class _MoodTrack extends MoodTrack {
   @override // ignore: invalid_annotation_target
   @JsonKey(name: FilterKeys.date)
   DateTime get date;
+  @override
+  List<String>? get emotions;
+  @override
+  String? get summary;
+  @override
+  String? get description;
   @override
   @JsonKey(ignore: true)
   _$$_MoodTrackCopyWith<_$_MoodTrack> get copyWith =>

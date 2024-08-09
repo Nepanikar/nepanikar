@@ -84,6 +84,7 @@ class PlaygroundScreen extends StatelessWidget {
                               ? MoodTrack(
                                   date: d,
                                   mood: Mood.values[r.nextInt(Mood.values.length)],
+                                  summary: '',
                                 )
                               : null;
                         },

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_detail_screen.dart';
 import 'package:nepanikar/services/db/my_records/diary/diary_record_model.dart';
 import 'package:nepanikar/widgets/nepanikar_button.dart';
@@ -62,7 +63,11 @@ class _DiaryEditContentState extends State<DiaryEditContent> {
 
   @override
   Widget build(BuildContext context) {
-    final labelTextStyle = NepanikarFonts.bodySmallHeavy.copyWith(fontWeight: FontWeight.w700);
+    final textColor = textColorBasedOnDarkMode(context);
+    final labelTextStyle = NepanikarFonts.bodySmallHeavy.copyWith(
+      fontWeight: FontWeight.w700,
+      color: textColor,
+    );
 
     return GestureDetector(
       onTapDown: (_) => FocusScope.of(context).unfocus(),

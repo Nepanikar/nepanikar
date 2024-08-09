@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/anxiety_tip_item.dart';
 import 'package:nepanikar/widgets/nepanikar_button.dart';
@@ -27,12 +28,14 @@ class _TipsCarouselBodyState extends State<TipsCarouselBody> {
 
   @override
   Widget build(BuildContext context) {
+    final containerColor = customColorsBasedOnDarkMode(context, NepanikarColors.headerD, NepanikarColors.primary);
+
     return Stack(
       children: [
         Container(
           height: 150,
           width: double.infinity,
-          color: NepanikarColors.primary,
+          color: containerColor,
         ),
         ConstrainedBox(
           constraints: const BoxConstraints(maxHeight: 600),

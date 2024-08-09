@@ -7,6 +7,7 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/helpers/localization_helpers.dart';
 import 'package:nepanikar/screens/main/contacts_screen.dart';
 import 'package:nepanikar/services/db/self_harm/self_harm_timer_dao.dart';
@@ -32,7 +33,8 @@ class SelfHarmTimerScreen extends StatelessWidget {
 
   DateTime get _now => DateTime.now();
 
-  String _getMotivationTitle(BuildContext context, Duration diffFromStartDateTime) {
+  String _getMotivationTitle(BuildContext context,
+      Duration diffFromStartDateTime) {
     final l10n = context.l10n;
     if (diffFromStartDateTime.inMinutes < 60) {
       return l10n.self_harm_timer_begin;
@@ -56,8 +58,10 @@ class SelfHarmTimerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final analytics = registry.get<FirebaseAnalytics>();
+    final cardColor = customColorsBasedOnDarkMode(context, NepanikarColors.containerD, null);
+    final backgroundColor = customColorsBasedOnDarkMode(context, NepanikarColors.primaryD, NepanikarColors.primary);
     return Scaffold(
-      backgroundColor: NepanikarColors.primary,
+      backgroundColor: backgroundColor,
       appBar: AppBar(title: Text(context.l10n.self_harm_timer)),
       body: SafeArea(
         child: Padding(
@@ -66,19 +70,23 @@ class SelfHarmTimerScreen extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Card(
+                color: cardColor,
                 child: Padding(
                   padding: const EdgeInsets.all(24),
                   child: TimerBuilder.periodic(
                     const Duration(seconds: 30),
                     builder: (_) {
                       return StreamBuilder<DateTime?>(
-                        stream: _selfHarmTimerDao.selfHarmTimerStartDateTimeStream,
+                        stream: _selfHarmTimerDao
+                            .selfHarmTimerStartDateTimeStream,
                         builder: (_, snapshot) {
                           final startDateTime = snapshot.data;
                           final isTimerRunning = startDateTime != null;
                           bool showSecsTimer() {
                             final durationInSec =
-                                isTimerRunning ? _now.difference(startDateTime).inSeconds : null;
+                            isTimerRunning ? _now
+                                .difference(startDateTime)
+                                .inSeconds : null;
                             return durationInSec != null && durationInSec < 60;
                           }
 
@@ -87,7 +95,9 @@ class SelfHarmTimerScreen extends StatelessWidget {
                             children: [
                               if (isTimerRunning) ...[
                                 _buildCardTitle(
-                                  _getMotivationTitle(context, _now.difference(startDateTime)),
+                                  _getMotivationTitle(
+                                      context, _now.difference(startDateTime)),
+                                  context,
                                 ),
                                 const Padding(
                                   padding: EdgeInsets.symmetric(vertical: 16),
@@ -100,7 +110,9 @@ class SelfHarmTimerScreen extends StatelessWidget {
                                   return _buildTimeTextSection(
                                     context,
                                     dateTimeRange: isTimerRunning
-                                        ? DateTimeRange(start: startDateTime.toLocal(), end: _now)
+                                        ? DateTimeRange(
+                                        start: startDateTime.toLocal(),
+                                        end: _now)
                                         : null,
                                     showSeconds: showSecsTimer(),
                                   );
@@ -110,8 +122,10 @@ class SelfHarmTimerScreen extends StatelessWidget {
                               if (!isTimerRunning)
                                 NepanikarButton(
                                   onTap: () async {
-                                    await _selfHarmTimerDao.startSelfHarmTimer();
-                                    unawaited(analytics.logEvent(name: 'start_self_harm_timer'));
+                                    await _selfHarmTimerDao
+                                        .startSelfHarmTimer();
+                                    unawaited(analytics.logEvent(
+                                        name: 'start_self_harm_timer'));
                                   },
                                   expandToContentWidth: true,
                                   text: context.l10n.start,
@@ -124,24 +138,33 @@ class SelfHarmTimerScreen extends StatelessWidget {
                                       onPrimaryBtnTap: (context) async {
                                         final goRouter = GoRouter.of(context);
                                         final l10n = context.l10n;
-                                        await _selfHarmTimerDao.stopSelfHarmTimer();
-                                        await _selfHarmTimerDao.startSelfHarmTimer();
+                                        await _selfHarmTimerDao
+                                            .stopSelfHarmTimer();
+                                        await _selfHarmTimerDao
+                                            .startSelfHarmTimer();
                                         unawaited(
-                                          analytics.logEvent(name: 'restart_self_harm_timer'),
+                                          analytics.logEvent(
+                                              name: 'restart_self_harm_timer'),
                                         );
                                         if (context.mounted) {
                                           context.showOkCancelNepanikarDialog(
                                             text: l10n.need_help,
                                             onPrimaryBtnTap: (context) =>
-                                                goRouter.push(const ContactsRoute().location),
+                                                goRouter.push(
+                                                    const ContactsRoute()
+                                                        .location),
                                             primaryBtnLabel: l10n.mood_help_yes,
-                                            secondaryBtnLabel: l10n.mood_help_no,
-                                            defaultAction: DialogDefaultAction.both,
+                                            secondaryBtnLabel: l10n
+                                                .mood_help_no,
+                                            defaultAction: DialogDefaultAction
+                                                .both,
                                           );
                                         }
                                       },
-                                      primaryBtnLabel: context.l10n.mood_help_yes,
-                                      secondaryBtnLabel: context.l10n.mood_help_no,
+                                      primaryBtnLabel: context.l10n
+                                          .mood_help_yes,
+                                      secondaryBtnLabel: context.l10n
+                                          .mood_help_no,
                                     );
                                   },
                                   expandToContentWidth: true,
@@ -157,12 +180,16 @@ class SelfHarmTimerScreen extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               Card(
+                color: cardColor,
                 child: Padding(
                   padding: const EdgeInsets.all(24),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      _buildCardTitle(context.l10n.self_harm_record),
+                      _buildCardTitle(
+                        context.l10n.self_harm_record,
+                        context,
+                      ),
                       const Padding(
                         padding: EdgeInsets.symmetric(vertical: 16),
                         child: NepanikarHorizontalDivider(),
@@ -170,7 +197,8 @@ class SelfHarmTimerScreen extends StatelessWidget {
                       StreamBuilder<DateTimeRange?>(
                         stream: _selfHarmTimerDao.selfHarmTimerRecordStream,
                         builder: (_, snapshot) {
-                          return _buildTimeTextSection(context, dateTimeRange: snapshot.data);
+                          return _buildTimeTextSection(
+                              context, dateTimeRange: snapshot.data);
                         },
                       ),
                     ],
@@ -184,26 +212,28 @@ class SelfHarmTimerScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildCardTitle(String text) {
+  Widget _buildCardTitle(String text, BuildContext context) {
+    final textColor = customColorsBasedOnDarkMode(context, NepanikarColors.white, NepanikarColors.dark);
     return Align(
       child: Text(
         text,
         textAlign: TextAlign.center,
         style: NepanikarFonts.title3.copyWith(
           fontWeight: FontWeight.w900,
-          color: NepanikarColors.dark,
+          color: textColor,
         ),
       ),
     );
   }
 
-  Widget _buildTimeTextSection(
-    BuildContext context, {
+  Widget _buildTimeTextSection(BuildContext context, {
     DateTimeRange? dateTimeRange,
     bool showSeconds = false,
   }) {
-    final valueTextStyle = NepanikarFonts.title2.copyWith(color: NepanikarColors.primary);
-    final labelTextStyle = NepanikarFonts.bodyRoman.copyWith(color: NepanikarColors.primary);
+    final textColor = customColorsBasedOnDarkMode(
+        context, NepanikarColors.white, NepanikarColors.primary);
+    final valueTextStyle = NepanikarFonts.title2.copyWith(color: textColor);
+    final labelTextStyle = NepanikarFonts.bodyRoman.copyWith(color: textColor);
 
     Widget buildTextSpan({
       required String value,
@@ -216,7 +246,9 @@ class SelfHarmTimerScreen extends StatelessWidget {
             TextSpan(text: value, style: valueTextStyle),
             TextSpan(
               text: ' $label',
-              style: labelStyleSameAsValueStyle ? valueTextStyle : labelTextStyle,
+              style: labelStyleSameAsValueStyle
+                  ? valueTextStyle
+                  : labelTextStyle,
             ),
           ],
         ),

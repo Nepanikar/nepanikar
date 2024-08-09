@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/helpers/date_helpers.dart';
 import 'package:nepanikar/widgets/material_wrapper.dart';
 
@@ -34,12 +35,18 @@ class NepanikarDateRangePicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dateFormatLabelPattern = this.dateFormatLabelPattern ?? CustomDateFormats.datePickerLabel;
+    final backgroundColor = customColorsBasedOnDarkMode(
+        context,
+        NepanikarColors.dropdownMenuD,
+        NepanikarColors.filledContainer,);
+
+    final textColor = customColorsBasedOnDarkMode(context, NepanikarColors.white, NepanikarColors.dark);
     String formatDate(DateTime date) =>
         DateFormat(dateFormatLabelPattern, Localizations.localeOf(context).languageCode)
             .format(date);
 
     return MaterialWrapper(
-      color: NepanikarColors.filledContainer,
+      color: backgroundColor,
       onTap: () async {
         final pickedDateRange = await _showDateRangePicker(context);
         if (pickedDateRange != null) {
@@ -61,10 +68,10 @@ class NepanikarDateRangePicker extends StatelessWidget {
                     activeRange != null
                         ? '${formatDate(activeRange!.start)} - ${formatDate(activeRange!.end)}'
                         : '',
-                    style: NepanikarFonts.bodyRoman.copyWith(color: NepanikarColors.dark),
+                    style: NepanikarFonts.bodyRoman.copyWith(color: textColor),
                   ),
                   const Spacer(),
-                  ExcludeSemantics(child: Assets.icons.calendar.svg()),
+                  ExcludeSemantics(child: Assets.icons.calendar.svg(color: svgColorBasedOnDarkMode(context))),
                 ],
               ),
             ),

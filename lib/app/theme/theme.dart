@@ -10,14 +10,15 @@ class NepanikarTheme {
     required String? fontFamily,
   }) =>
       ThemeData(
+        primaryColor: NepanikarColors.primary,
+        scaffoldBackgroundColor: const Color(0xffFBF6FF),
+        brightness: Brightness.light,
         pageTransitionsTheme: const PageTransitionsTheme(
           builders: <TargetPlatform, PageTransitionsBuilder>{
             TargetPlatform.android: CupertinoPageTransitionsBuilder(),
             TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
           },
         ),
-        primaryColor: NepanikarColors.primary,
-        scaffoldBackgroundColor: const Color(0xffFBF6FF),
         fontFamily: fontFamily,
         colorScheme: const ColorScheme.light().copyWith(
           primary: NepanikarColors.primary,
@@ -169,6 +170,9 @@ class NepanikarTheme {
             }
             return null;
           }),
+        ),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor:  Color(0xAAFAF4FF),
         ),
       );
 }

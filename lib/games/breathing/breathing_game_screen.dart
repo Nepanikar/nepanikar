@@ -4,6 +4,7 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/games/breathing/shape_painter.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/helpers/semantics_helpers.dart';
 
 enum BreathingGameShape {
@@ -166,9 +167,10 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
   @override
   Widget build(BuildContext context) {
     final painterWidth = MediaQuery.of(context).size.width - 96;
+    final backgroundColor = customColorsBasedOnDarkMode(context, NepanikarColors.primaryD, NepanikarColors.primary);
     return Scaffold(
       appBar: AppBar(title: Text(context.l10n.breath)),
-      backgroundColor: NepanikarColors.primary,
+      backgroundColor: backgroundColor,
       body: SafeArea(
         child: Stack(
           children: [

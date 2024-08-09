@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 
 class DiaryTile extends StatelessWidget {
@@ -21,11 +22,16 @@ class DiaryTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final svgColor = svgColorBasedOnDarkMode(context);
+    final longTileColor = customColorsBasedOnDarkMode(context, NepanikarColors.containerD, NepanikarColors.primarySwatch.shade700);
+
     const textStyle = NepanikarFonts.bodyHeavy;
     final locale = Localizations.localeOf(context);
 
     return LongTile(
-      image: Assets.illustrations.modules.myRecords.svg(),
+      isDarkMode: isDarkMode,
+      image: Assets.illustrations.modules.myRecords.svg(color: svgColor),
       text: DateFormat.yMd(locale.languageCode).format(date),
       textTextStyle: textStyle.copyWith(
         fontSize: 12,

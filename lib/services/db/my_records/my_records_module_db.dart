@@ -8,6 +8,8 @@ import 'package:nepanikar/services/db/my_records/mood_track_dao.dart';
 import 'package:nepanikar/services/db/my_records/my_records_sleep_track_dao.dart';
 import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 
+import 'emotions_dao.dart';
+
 class MyRecordsModuleDb implements NepanikarModuleDb {
   MyRecordsModuleDb(this._dbService);
 
@@ -18,6 +20,7 @@ class MyRecordsModuleDb implements NepanikarModuleDb {
   late final MyRecordsDiaryDao _myRecordsDiaryDao;
   late final MyRecordsJournalDao _myRecordsJournalDao;
   late final MyRecordsFoodRecordDao _myRecordsFoodRecordDao;
+  late final EmotionsDao _emotionsDao;
 
   @override
   Future<MyRecordsModuleDb> initModuleDaos() async {
@@ -26,6 +29,7 @@ class MyRecordsModuleDb implements NepanikarModuleDb {
     _myRecordsDiaryDao = await MyRecordsDiaryDao(dbService: _dbService).init();
     _myRecordsJournalDao = await MyRecordsJournalDao(dbService: _dbService).init();
     _myRecordsFoodRecordDao = await MyRecordsFoodRecordDao(dbService: _dbService).init();
+    _emotionsDao = await EmotionsDao(dbService: _dbService).init();
     return this;
   }
 
@@ -36,6 +40,7 @@ class MyRecordsModuleDb implements NepanikarModuleDb {
     await _myRecordsDiaryDao.clear();
     await _myRecordsJournalDao.clear();
     await _myRecordsFoodRecordDao.clear();
+    await _emotionsDao.clear();
   }
 
   Future<void> doModuleOldVersionMigration(MyRecordsModuleDTO moduleConfig) async {
@@ -47,10 +52,10 @@ class MyRecordsModuleDb implements NepanikarModuleDb {
     final sleepTrackConfig = moduleConfig.sleepTrackConfig;
     if (sleepTrackConfig != null) {
       final sleepTrackValues = sleepTrackConfig.values;
-      if (sleepTrackValues != null) {
-        await _myRecordsSleepTrackDao
-            .doOldVersionMigration(MyRecordsMoodTrackDTO.fromValues(sleepTrackValues));
-      }
+      // if (sleepTrackValues != null) {
+      //   await _myRecordsSleepTrackDao
+      //       .doOldVersionMigration(MyRecordsMoodTrackDTO.fromValues(sleepTrackValues));
+      // }
     }
 
     final diaryConfig = moduleConfig.diaryConfig;

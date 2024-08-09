@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_fail.dart';
 import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_figure.dart';
 import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_general.dart';
@@ -24,36 +25,51 @@ class EatingDisorderTipsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final svgColor = svgColorBasedOnDarkMode(context);
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     final modules = <Widget>[
       LongTile(
         text: context.l10n.food_figure,
-        image: Assets.illustrations.modules.figure.svg(),
-        onTap: () => context.push(const EatingDisorderTipsFigureAppRoute().location),
+        image: Assets.illustrations.modules.figure.svg(color: svgColor),
+        onTap: () =>
+            context.push(const EatingDisorderTipsFigureAppRoute().location),
+        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_remorse,
-        image: Assets.illustrations.modules.eatingDisorder.svg(),
-        onTap: () => context.push(const EatingDisorderTipsRemorseAppRoute().location),
+        image: Assets.illustrations.modules.eatingDisorder.svg(color: svgColor),
+        onTap: () =>
+            context.push(const EatingDisorderTipsRemorseAppRoute().location),
+        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_overeat,
-        image: Assets.illustrations.modules.eatingDisorder.svg(),
-        onTap: () => context.push(const EatingDisorderTipsOvereatAppRoute().location),
+        image: Assets.illustrations.modules.eatingDisorder.svg(color: svgColor),
+        onTap: () =>
+            context.push(const EatingDisorderTipsOvereatAppRoute().location),
+        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_vomit,
-        image: Assets.illustrations.modules.eatingDisorder.svg(),
-        onTap: () => context.push(const EatingDisorderTipsVomitAppRoute().location),
+        image: Assets.illustrations.modules.eatingDisorder.svg(color: svgColor),
+        onTap: () =>
+            context.push(const EatingDisorderTipsVomitAppRoute().location),
+        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_fail,
-        image: Assets.illustrations.modules.eatingDisorder.svg(),
-        onTap: () => context.push(const EatingDisorderTipsFailAppRoute().location),
+        image: Assets.illustrations.modules.eatingDisorder.svg(color: svgColor),
+        onTap: () =>
+            context.push(const EatingDisorderTipsFailAppRoute().location),
+        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_misc,
-        image: Assets.illustrations.modules.eatingDisorder.svg(),
-        onTap: () => context.push(const EatingDisorderTipsGeneralAppRoute().location),
+        image: Assets.illustrations.modules.eatingDisorder.svg(color: svgColor),
+        onTap: () =>
+            context.push(const EatingDisorderTipsGeneralAppRoute().location),
+        isDarkMode: isDarkMode,
       ),
     ];
     return NepanikarScreenWrapper(

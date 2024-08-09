@@ -6,6 +6,7 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/helpers/contact_action_helpers.dart';
 import 'package:nepanikar/screens/contacts/chat_contacts_screen.dart';
 import 'package:nepanikar/screens/contacts/crisis_message_screen.dart';
@@ -46,6 +47,11 @@ class ContactsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final currentTheme = Theme.of(context);
+    final isDarkMode = currentTheme.brightness == Brightness.dark;
+    final svgColor = svgColorBasedOnDarkMode(context);
+
     final locale = Localizations.localeOf(context);
 
     final modules = <Widget>[
@@ -57,46 +63,53 @@ class ContactsScreen extends StatelessWidget {
         trailing:
             Assets.icons.navigation.arrowRight.svg(width: 16, height: 16, color: Colors.white),
         onTap: () => context.push(const CrisisMessageRoute().location),
+        isDarkMode: isDarkMode,
       ),
       if (countryContacts.phoneContacts != null)
         LongTile(
           text: context.l10n.phone,
-          image: Assets.illustrations.contacts.phones.svg(),
+          image: Assets.illustrations.contacts.phones.svg(color: svgColor),
           onTap: () => context.push(const PhoneContactsRoute().location),
+          isDarkMode: isDarkMode,
         ),
       if (countryContacts.crisisCenterContacts != null)
         LongTile(
           text: context.l10n.center,
-          image: Assets.illustrations.contacts.crisisCenters.svg(),
+          image: Assets.illustrations.contacts.crisisCenters.svg(color: svgColor),
           onTap: () => context.push(const CrisisCenterContactsRoute().location),
+          isDarkMode: isDarkMode,
         ),
       if (countryContacts.chatContacts != null)
         LongTile(
           text: context.l10n.chat,
-          image: Assets.illustrations.contacts.chat.svg(),
+          image: Assets.illustrations.contacts.chat.svg(color: svgColor),
           onTap: () => context.push(const ChatContactsRoute().location),
+          isDarkMode: isDarkMode,
         ),
       if (countryContacts.universityRegionContacts != null)
         LongTile(
           text: context.l10n.universities,
-          image: Assets.illustrations.contacts.universities.svg(),
+          image: Assets.illustrations.contacts.universities.svg(color: svgColor),
           onTap: () => context.push(const UniversityContactsRoute().location),
+          isDarkMode: isDarkMode,
         ),
       LongTile(
         text: context.l10n.my_contacts,
-        image: Assets.illustrations.contacts.myContacts.svg(),
+        image: Assets.illustrations.contacts.myContacts.svg(color: svgColor),
         onTap: () => context.push(const MyContactsRecordsRoute().location),
+        isDarkMode: isDarkMode,
       ),
       if ([NepanikarLanguages.cs.languageCode, NepanikarLanguages.sk.languageCode]
           .contains(locale.languageCode)) ...[
         LongTile(
           text: context.l10n.online_therapy,
-          image: Assets.illustrations.modules.onlineTherapy.svg(),
+          image: Assets.illustrations.modules.onlineTherapy.svg(color: svgColor),
           onTap: () => launchUrLink(AppConstants.nepanikarTherapyUrl),
+          isDarkMode: isDarkMode,
         ),
         LongTile(
           text: context.l10n.email_consultation,
-          image: Assets.illustrations.modules.emailHelp.svg(),
+          image: Assets.illustrations.modules.emailHelp.svg(color: svgColor),
           onTap: () => context.push(
             const EmailCounsellingRoute().location,
             extra: CrisisMessageRouteExtraData(
@@ -104,6 +117,7 @@ class ContactsScreen extends StatelessWidget {
               subjectMessage: context.l10n.counselling_email_subject,
             ),
           ),
+          isDarkMode: isDarkMode,
         ),
       ],
     ];

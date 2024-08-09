@@ -9,6 +9,8 @@ class NepanikarColors {
   static const secondary = Color(0xff4EA3AD);
   static const error = Color(0xffD86C66);
   static const success = Color(0xff6FD866);
+  static const deleteButton = Color(0xff964A4A);
+  static const baseButtonD = Color(0xff8654B0);
   static const info = Color(0xffFEC786);
   static const filledContainer = Color(0xffEDE8F3);
   static const white = Color(0xffffffff);
@@ -39,4 +41,18 @@ class NepanikarColors {
     800: primary, //90%
     900: Color(0xff280446), //100%
   };
+
+  static const _heatMapColors = <int, Color>{
+    1: Color(0xffA72C2C),
+    2: Color(0xffC78B31),
+    3: Color(0xffDCC678),
+    4: Color(0xffA6AC5A),
+    5: Color(0xff49A3BF)
+  };
+
+  //Dark mode colors
+  static const primaryD = Color(0xff280446);
+  static const containerD = Color(0xff491475);
+  static const headerD = Color(0xff18002D);
+  static const dropdownMenuD = Color(0xff8654B0);
 }

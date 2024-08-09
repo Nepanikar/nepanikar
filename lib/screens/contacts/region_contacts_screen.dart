@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/utils/contacts_data_manager.dart';
 import 'package:nepanikar/utils/registry.dart';
@@ -84,17 +85,19 @@ class _RegionContactsScreenState extends State<RegionContactsScreen> {
     }
   }
 
-  Widget _buildRegionHeader(String header) {
+  Widget _buildRegionHeader(String header, Color? textColor) {
     return Text(
       header,
       style: NepanikarFonts.title2.copyWith(
         fontWeight: FontWeight.w900,
+        color: textColor,
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    final textColor = textColorBasedOnDarkMode(context);
     return NepanikarScreenWrapper(
       appBarTitle: widget.appBarTitle,
       isModuleList: false,
@@ -104,7 +107,10 @@ class _RegionContactsScreenState extends State<RegionContactsScreen> {
         if (widget.regionContacts.length > 1) ...[
           Text(
             context.l10n.select_region_dropdown_label,
-            style: NepanikarFonts.bodySmallMedium.copyWith(fontWeight: FontWeight.w700),
+            style: NepanikarFonts.bodySmallMedium.copyWith(
+              fontWeight: FontWeight.w700,
+              color: textColor,
+            ),
           ),
           const SizedBox(height: 5),
           NepanikarDropdown<RegionContact>.outlined(
@@ -118,7 +124,10 @@ class _RegionContactsScreenState extends State<RegionContactsScreen> {
         if (_activeDropdownMenuItem != null) ...[
           if (widget.regionContacts.length > 1) ...[
             const SizedBox(height: 20),
-            _buildRegionHeader(_activeDropdownMenuItem!.region),
+            _buildRegionHeader(
+              _activeDropdownMenuItem!.region,
+              textColor,
+            ),
           ],
           ..._activeDropdownMenuItem!.contacts.map(
             (u) => Padding(

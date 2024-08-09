@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/helpers/screen_resolution_helpers.dart';
 import 'package:nepanikar/helpers/semantics_helpers.dart';
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_edit_screen.dart';
@@ -57,6 +58,7 @@ class MyRecordsDiaryDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textColor = textColorBasedOnDarkMode(context);
     final locale = Localizations.localeOf(context);
     final screenSize = context.screenSize;
     final analytics = registry.get<FirebaseAnalytics>();
@@ -76,15 +78,19 @@ class MyRecordsDiaryDetailScreen extends StatelessWidget {
               DateFormat.yMd(locale.languageCode).format(diaryRecord.dateTime),
               style: NepanikarFonts.bodySmallHeavy.copyWith(
                 fontWeight: FontWeight.w700,
+                color: textColor,
               ),
             ),
             const SizedBox(height: 16),
             Text(
               diaryRecord.title,
-              style: NepanikarFonts.title3.copyWith(fontWeight: FontWeight.w700),
+              style: NepanikarFonts.title3.copyWith(
+                fontWeight: FontWeight.w700,
+                color: textColor
+              ),
             ),
             const SizedBox(height: 16),
-            Text(diaryRecord.text, style: NepanikarFonts.bodyRoman),
+            Text(diaryRecord.text, style: NepanikarFonts.bodyRoman.copyWith(color: textColor)),
             SizedBox(height: screenSize.height * 0.2),
             NepanikarButton(
               text: context.l10n.edit,

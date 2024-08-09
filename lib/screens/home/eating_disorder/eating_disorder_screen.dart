@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/screens/contacts/eating_disorder_contacts_screen.dart';
 import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_distractions_screen.dart';
 import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_samples_screen.dart';
@@ -39,32 +40,40 @@ class EatingDisorderScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final svgColor = svgColorBasedOnDarkMode(context);
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     final modules = <Widget>[
       LongTile(
         text: context.l10n.food_tips,
-        image: Assets.illustrations.modules.eatingDisorder.svg(),
+        image: Assets.illustrations.modules.eatingDisorder.svg(color: svgColor),
         onTap: () => context.push(const EatingDisorderTipsRoute().location),
+        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_tasks,
-        image: Assets.illustrations.modules.homework.svg(),
+        image: Assets.illustrations.modules.homework.svg(color: svgColor),
         onTap: () => context.push(const EatingDisorderTasksRoute().location),
+        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_dishes,
-        image: Assets.illustrations.modules.eatingDisorder.svg(),
+        image: Assets.illustrations.modules.eatingDisorder.svg(color: svgColor),
         onTap: () => context.push(const EatingDisorderSamplesRoute().location),
+        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.distraction,
-        image: Assets.illustrations.games.math.math.svg(),
+        image: Assets.illustrations.games.math.math.svg(color: svgColor),
         onTap: () => context.push(const EatingDisorderDistractionsRoute().location),
+        isDarkMode: isDarkMode,
       ),
       if (shouldShowContactsTile)
         LongTile(
           text: context.l10n.food_contact,
-          image: Assets.illustrations.contacts.phones.svg(),
+          image: Assets.illustrations.contacts.phones.svg(color: svgColor),
           onTap: () => context.push(const EatingDisorderContactsRoute().location),
+          isDarkMode: isDarkMode,
         ),
     ];
     return NepanikarScreenWrapper(

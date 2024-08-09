@@ -355,3 +355,142 @@ abstract class _NotificationTypeSettings extends NotificationTypeSettings {
   _$$_NotificationTypeSettingsCopyWith<_$_NotificationTypeSettings>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+UserThemeMode _$UserThemeModeFromJson(Map<String, dynamic> json) {
+  return _UserThemeMode.fromJson(json);
+}
+
+/// @nodoc
+mixin _$UserThemeMode {
+  String get themeMode => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $UserThemeModeCopyWith<UserThemeMode> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UserThemeModeCopyWith<$Res> {
+  factory $UserThemeModeCopyWith(
+          UserThemeMode value, $Res Function(UserThemeMode) then) =
+      _$UserThemeModeCopyWithImpl<$Res, UserThemeMode>;
+  @useResult
+  $Res call({String themeMode});
+}
+
+/// @nodoc
+class _$UserThemeModeCopyWithImpl<$Res, $Val extends UserThemeMode>
+    implements $UserThemeModeCopyWith<$Res> {
+  _$UserThemeModeCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? themeMode = null,
+  }) {
+    return _then(_value.copyWith(
+      themeMode: null == themeMode
+          ? _value.themeMode
+          : themeMode // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_UserThemeModeCopyWith<$Res>
+    implements $UserThemeModeCopyWith<$Res> {
+  factory _$$_UserThemeModeCopyWith(
+          _$_UserThemeMode value, $Res Function(_$_UserThemeMode) then) =
+      __$$_UserThemeModeCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String themeMode});
+}
+
+/// @nodoc
+class __$$_UserThemeModeCopyWithImpl<$Res>
+    extends _$UserThemeModeCopyWithImpl<$Res, _$_UserThemeMode>
+    implements _$$_UserThemeModeCopyWith<$Res> {
+  __$$_UserThemeModeCopyWithImpl(
+      _$_UserThemeMode _value, $Res Function(_$_UserThemeMode) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? themeMode = null,
+  }) {
+    return _then(_$_UserThemeMode(
+      themeMode: null == themeMode
+          ? _value.themeMode
+          : themeMode // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_UserThemeMode extends _UserThemeMode {
+  const _$_UserThemeMode({this.themeMode = 'system'}) : super._();
+
+  factory _$_UserThemeMode.fromJson(Map<String, dynamic> json) =>
+      _$$_UserThemeModeFromJson(json);
+
+  @override
+  @JsonKey()
+  final String themeMode;
+
+  @override
+  String toString() {
+    return 'UserThemeMode(themeMode: $themeMode)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UserThemeMode &&
+            (identical(other.themeMode, themeMode) ||
+                other.themeMode == themeMode));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, themeMode);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_UserThemeModeCopyWith<_$_UserThemeMode> get copyWith =>
+      __$$_UserThemeModeCopyWithImpl<_$_UserThemeMode>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_UserThemeModeToJson(
+      this,
+    );
+  }
+}
+
+abstract class _UserThemeMode extends UserThemeMode {
+  const factory _UserThemeMode({final String themeMode}) = _$_UserThemeMode;
+  const _UserThemeMode._() : super._();
+
+  factory _UserThemeMode.fromJson(Map<String, dynamic> json) =
+      _$_UserThemeMode.fromJson;
+
+  @override
+  String get themeMode;
+  @override
+  @JsonKey(ignore: true)
+  _$$_UserThemeModeCopyWith<_$_UserThemeMode> get copyWith =>
+      throw _privateConstructorUsedError;
+}

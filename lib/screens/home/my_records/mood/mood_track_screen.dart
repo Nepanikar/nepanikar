@@ -5,11 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
+import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/helpers/date_helpers.dart';
 import 'package:nepanikar/helpers/semantics_helpers.dart';
 import 'package:nepanikar/providers/mood_chart_filter_provider.dart';
+import 'package:nepanikar/screens/home/my_records/my_records_sleep_track_screen.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_dao.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
 import 'package:nepanikar/services/notifications/notifications_service.dart';
@@ -71,6 +74,7 @@ class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScree
   Widget build(BuildContext context) {
     const pageSidePadding = 24.0;
     const pageHorizontalPadding = EdgeInsets.symmetric(horizontal: pageSidePadding);
+    final textColor = textColorBasedOnDarkMode(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -96,15 +100,15 @@ class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScree
                     final latestMoodTrack = snapshot.data;
                     return MoodPicker(
                       activeMood: latestMoodTrack?.mood,
-                      onPickMessage:
-                          widget.onTrackPickMessage ?? context.l10n.mood_tracked_success_snackbar,
                       header: widget.headerTitle,
                       autoSizeTitle: false,
                       showLabels: widget.showMoodLabels,
                       onPick: (mood) async {
                         final l10n = context.l10n;
-                        await _trackDao.saveMood(mood);
                         unawaited(_notificationsService.rescheduleNotifications(l10n));
+                        if(GoRouter.of(context).location == const MyRecordsSleepTrackRoute().location){
+                          await _trackDao.saveSleepTrack(mood);
+                        }
                       },
                     );
                   },
@@ -117,7 +121,7 @@ class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScree
                   alignment: Alignment.centerLeft,
                   child: Text(
                     context.l10n.statistics,
-                    style: NepanikarFonts.title2,
+                    style: NepanikarFonts.title2.copyWith(color: textColor),
                   ),
                 ),
               ),
@@ -128,12 +132,13 @@ class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScree
                   alignment: Alignment.centerLeft,
                   child: Text(
                     widget.chartDescription ?? context.l10n.mood_track_chart_guide,
-                    style: NepanikarFonts.bodyRoman.copyWith(color: NepanikarColors.primary),
+                    style: NepanikarFonts.bodyRoman.copyWith(color: textColor),
                   ),
                 ),
               ),
               const SizedBox(height: 20),
               Card(
+                color: customColorsBasedOnDarkMode(context, NepanikarColors.containerD, null),
                 child: StreamBuilder<List<MoodTrack>>(
                   stream: _trackDao.allMoodTracksStream,
                   builder: (_, snapshot) {
@@ -162,6 +167,20 @@ class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScree
     required List<MoodTrack> allMoodTrackData,
     required DateTime? firstMoodTrackDate,
   }) {
+    final containerColor = customColorsBasedOnDarkMode(
+      context,
+      NepanikarColors.containerD,
+      NepanikarColors.white,
+    );
+
+    final arrowCanShiftColor = customColorsBasedOnDarkMode(
+      context,
+      NepanikarColors.white,
+      null,
+    );
+
+    final svgColor = svgColorBasedOnDarkMode(context);
+
     return Consumer<MoodChartFilterProvider>(
       builder: (_, moodChartFilterProvider, __) {
         final activeFilter = moodChartFilterProvider.activeFilter;
@@ -203,7 +222,7 @@ class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScree
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                  icon: ExcludeSemantics(child: Assets.icons.navigation.arrowLeft.svg()),
+                  icon: ExcludeSemantics(child: Assets.icons.navigation.arrowLeft.svg(color: svgColor)),
                   tooltip: context.l10n.filter_previous_time_period,
                   onPressed: () => moodChartFilterProvider.shiftDateRange(DateRangeSwitch.previous),
                 ),
@@ -223,7 +242,7 @@ class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScree
                 IconButton(
                   icon: ExcludeSemantics(
                     child: Assets.icons.navigation.arrowRight.svg(
-                      color: !canShiftNextDateRange ? Colors.grey : null,
+                      color: !canShiftNextDateRange ? containerColor : arrowCanShiftColor,
                     ),
                   ),
                   tooltip: context.l10n.filter_next_time_period,

@@ -5,19 +5,25 @@ import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 
+import '../helpers/color_helpers.dart';
+
 enum ButtonType {
   primary,
   primaryAsync,
   secondary,
   secondaryAsync;
 
-  bool get isPrimary => this == ButtonType.primary || this == ButtonType.primaryAsync;
+  bool get isPrimary =>
+      this == ButtonType.primary || this == ButtonType.primaryAsync;
 
-  bool get isSecondary => this == ButtonType.secondary || this == ButtonType.secondaryAsync;
+  bool get isSecondary =>
+      this == ButtonType.secondary || this == ButtonType.secondaryAsync;
 
-  bool get isAsync => this == ButtonType.primaryAsync || this == ButtonType.secondaryAsync;
+  bool get isAsync =>
+      this == ButtonType.primaryAsync || this == ButtonType.secondaryAsync;
 
-  bool get isOutlined => this == ButtonType.secondary || this == ButtonType.secondaryAsync;
+  bool get isOutlined =>
+      this == ButtonType.secondary || this == ButtonType.secondaryAsync;
 }
 
 class NepanikarButton extends StatefulWidget {
@@ -78,7 +84,8 @@ class NepanikarButton extends StatefulWidget {
   State<NepanikarButton> createState() => _NepanikarButtonState();
 }
 
-class _NepanikarButtonState extends State<NepanikarButton> with SingleTickerProviderStateMixin {
+class _NepanikarButtonState extends State<NepanikarButton>
+    with SingleTickerProviderStateMixin {
   bool _isLoading = false;
 
   late final AnimationController _animController;
@@ -137,6 +144,7 @@ class _NepanikarButtonState extends State<NepanikarButton> with SingleTickerProv
         : _isButtonInteractive
             ? NepanikarColors.primary
             : NepanikarColors.primarySwatch.shade500;
+    final textColor = textColorBasedOnDarkMode(context);
 
     return _isLoading
         ? SizedBox(
@@ -145,26 +153,38 @@ class _NepanikarButtonState extends State<NepanikarButton> with SingleTickerProv
               turns: Tween(begin: 0.0, end: 1.0).animate(_animController),
               child: widget.buttonType.isPrimary
                   ? Assets.icons.spinner.svg(width: iconSize, color: iconColor)
-                  : Assets.icons.warningWavy.svg(width: iconSize, color: iconColor),
+                  : Assets.icons.warningWavy
+                      .svg(width: iconSize, color: iconColor),
             ),
           )
         : Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: widget.expandToContentWidth ? MainAxisSize.max : MainAxisSize.min,
+            mainAxisSize: widget.expandToContentWidth
+                ? MainAxisSize.max
+                : MainAxisSize.min,
             children: [
               if (widget.leadingIcon != null)
                 Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: ExcludeSemantics(
-                    child: widget.leadingIcon!.svg(width: iconSize / 3, color: iconColor),
+                    child: widget.leadingIcon!
+                        .svg(width: iconSize / 3, color: NepanikarColors.white),
                   ),
                 ),
-              Flexible(child: Text(widget.text)),
+              Flexible(
+                child: Text(
+                  widget.text,
+                  style: TextStyle(
+                    color: textColor,
+                  ),
+                ),
+              ),
               if (widget.trailingIcon != null)
                 Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: ExcludeSemantics(
-                    child: widget.trailingIcon!.svg(width: iconSize / 3, color: iconColor),
+                    child: widget.trailingIcon!
+                        .svg(width: iconSize / 3, color: iconColor),
                   ),
                 ),
             ],

@@ -43,6 +43,11 @@ class _ExportScreenState extends State<ExportScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
+    ThemeMode.dark : ThemeMode.light;
+    bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+
     return NepanikarScreenWrapper(
       key: const ValueKey('export_screen'),
       appBarTitle: context.l10n.import_export,
@@ -72,6 +77,7 @@ class _ExportScreenState extends State<ExportScreen> {
               });
             }
           },
+          isDarkMode: isDarkMode,
         ),
         LongTile(
           text: context.l10n.import_button,
@@ -97,6 +103,7 @@ class _ExportScreenState extends State<ExportScreen> {
               });
             }
           },
+          isDarkMode: isDarkMode,
         ),
         FutureBuilder<bool>(
           future: _oldAppConfigFileExistsFuture,
@@ -129,6 +136,7 @@ class _ExportScreenState extends State<ExportScreen> {
                     debugPrint('Could not launch $uri');
                   }
                 },
+                isDarkMode: isDarkMode,
               ),
             );
           },

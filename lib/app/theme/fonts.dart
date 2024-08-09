@@ -66,4 +66,6 @@ class NepanikarFonts {
     fontWeight: FontWeight.w500,
     color: NepanikarColors.dark,
   );
+
+
 }

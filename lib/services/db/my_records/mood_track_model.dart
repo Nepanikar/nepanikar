@@ -76,6 +76,23 @@ enum Mood {
     }
   }
 
+  int getMoodScore(Mood mood){
+    switch (mood) {
+      case Mood.sad:
+        return 1;
+      case Mood.bad:
+        return 2;
+      case Mood.okay:
+        return 3;
+      case Mood.good:
+        return 4;
+      case Mood.happy:
+        return 5;
+      default:
+        return 0; // Or throw an exception as appropriate
+    }
+  }
+
   static Mood? fromInteger(int value) => Mood.values.safeElementAtOrNull(value);
 }
 
@@ -85,6 +102,9 @@ class MoodTrack with _$MoodTrack {
     required Mood mood,
     // ignore: invalid_annotation_target
     @JsonKey(name: FilterKeys.date) required DateTime date,
+    List<String>? emotions,
+    String? summary,
+    String? description,
   }) = _MoodTrack;
 
   const MoodTrack._();
