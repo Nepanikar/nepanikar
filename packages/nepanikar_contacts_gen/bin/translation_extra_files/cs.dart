@@ -122,10 +122,10 @@ const _crisisCenterContacts = <RegionContact>[
         ],
       ),
       RegionItemContact(
-        name: 'Modré dveře - krizová pomoc (Hostivař)',
+        name: 'Modré dveře - krizová pomoc (Krč)',
         contactAddresses: [
           'Po-Pá 08:00-16:00',
-          'K Horkám 23/16, Praha 10 - Hostivař',
+          'Hornokrčská 707/7, Praha 4 - Krč',
           '725 515 934',
           'https://www.modredvere.cz/cz/praha-krizova-pomoc',
         ],
