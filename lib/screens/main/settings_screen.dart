@@ -118,6 +118,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       }
                     },
                   ),
+		if(!Platform.isIOS)
                   _SettingsMenuItem(
                     leading: Assets.icons.donate.svg(color: svgColor),
                     text: context.l10n.support_us,
