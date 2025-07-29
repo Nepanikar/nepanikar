@@ -17,18 +17,10 @@ buildscript {
 
 allprojects {
     repositories {
-	  exclusiveContent {
-            forRepository {
-                maven {
-                    url 'https://maven.scijava.org/content/repositories/public/'
-                }
-            }
-            filter {
-                includeGroup "me.carda"
-            }
-        }
         google()
         mavenCentral()
+	maven { url "https://jitpack.io/" }
+        maven { url "https://maven.scijava.org/content/repositories/public" }
     }
 }
 
