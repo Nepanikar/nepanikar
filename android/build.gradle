@@ -1,16 +1,6 @@
 buildscript {
     ext.kotlin_version = '1.7.20'
     repositories {
-	  exclusiveContent {
-            forRepository {
-                maven {
-                    url 'https://maven.scijava.org/content/repositories/public/'
-                }
-            }
-            filter {
-                includeGroup "me.carda"
-            }
-        }
         google()
         mavenCentral()
     }
