@@ -84,7 +84,7 @@ const _chatContacts = <ChatContact>[
     title: 'Nepanikař',
     subChatContacts: [
       SubChatContact(
-        title: '',
+        title: 'Po-Pá 16-22h',
         url: 'https://nepanikar.eu/poradna/',
       ),
     ],

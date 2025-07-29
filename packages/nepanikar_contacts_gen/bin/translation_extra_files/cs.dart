@@ -481,7 +481,7 @@ const _chatContacts = <ChatContact>[
     title: 'Nepanikař',
     subChatContacts: [
       SubChatContact(
-        title: 'Po-Pá 16-21h',
+        title: 'Po-Pá 16-22h',
         url: 'https://nepanikar.eu/poradna/',
       ),
     ],
