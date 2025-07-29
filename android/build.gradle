@@ -3,6 +3,16 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+	exclusiveContent {
+            filter {
+                includeGroup("me.carda")
+            }
+            forRepository {
+                maven {
+                    url = uri("https://maven.scijava.org/content/repositories/public/")
+                }
+            }
+        }
     }
 
     dependencies {
@@ -19,7 +29,16 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-	 maven { url "maven.scijava.org/content/repositories/public" }
+	exclusiveContent {
+            filter {
+                includeGroup("me.carda")
+            }
+            forRepository {
+                maven {
+                    url = uri("https://maven.scijava.org/content/repositories/public/")
+                }
+            }
+        }
     }
 }
 
