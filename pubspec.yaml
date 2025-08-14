@@ -7,7 +7,7 @@ environment:
   sdk: ">=2.19.0 <3.0.0"
 
 dependencies:
-  assets_audio_player: ^3.0.6
+  assets_audio_player: ^3.1.1
   auto_size_text: ^3.0.0
   awesome_notifications: ^0.7.5
   collection: ^1.17.0
