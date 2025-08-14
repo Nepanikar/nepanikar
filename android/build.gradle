@@ -34,18 +34,13 @@ allprojects {
 }
 
 rootProject.buildDir = '../build'
-subprojects {
-    project.buildDir = "${rootProject.buildDir}/${project.name}"
-}
-subprojects {
-    project.evaluationDependsOn(':app')
-}
 
-subprojects {
-    afterEvaluate { project ->
-        if (project.hasProperty("kotlinOptions")) {
-            project.kotlinOptions.jvmTarget = "1.8"
-        }
+subprojects { project ->
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+    project.evaluationDependsOn(':app')
+
+    project.plugins.withType(org.jetbrains.kotlin.gradle.plugin.KotlinBasePluginWrapper) {
+        project.kotlinOptions.jvmTarget = "1.8"
     }
 }
 
