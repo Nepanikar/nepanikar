@@ -41,6 +41,14 @@ subprojects {
     project.evaluationDependsOn(':app')
 }
 
+subprojects {
+    afterEvaluate { project ->
+        if (project.hasProperty("kotlinOptions")) {
+            project.kotlinOptions.jvmTarget = "1.8"
+        }
+    }
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
