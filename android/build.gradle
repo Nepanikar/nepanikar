@@ -44,6 +44,12 @@ subprojects { project ->
             jvmTarget = "1.8"
         }
     }
+
+    project.plugins.withId("org.jetbrains.kotlin.jvm") {
+        project.kotlin {
+            jvmToolchain(8)
+        }
+    }
 }
 task clean(type: Delete) {
     delete rootProject.buildDir
