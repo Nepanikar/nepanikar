@@ -39,11 +39,12 @@ subprojects { project ->
     project.buildDir = "${rootProject.buildDir}/${project.name}"
     project.evaluationDependsOn(':app')
 
-    project.plugins.withType(org.jetbrains.kotlin.gradle.plugin.KotlinBasePluginWrapper) {
-        project.kotlinOptions.jvmTarget = "1.8"
+    project.tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+        kotlinOptions {
+            jvmTarget = "1.8"
+        }
     }
 }
-
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
