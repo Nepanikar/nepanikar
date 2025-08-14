@@ -1,12 +1,12 @@
 buildscript {
-    ext.kotlin_version = '1.7.21'
+    ext.kotlin_version = '1.7.20'
     repositories {
         google()
         mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.2.2'
+        classpath 'com.android.tools.build:gradle:7.3.0'
         // START: FlutterFire Configuration
         classpath 'com.google.gms:google-services:4.3.14'
         classpath 'com.google.firebase:firebase-crashlytics-gradle:2.8.1'
@@ -17,40 +17,19 @@ buildscript {
 
 allprojects {
     repositories {
-	exclusiveContent {
-            filter {
-                includeGroup("me.carda")
-            }
-            forRepository {
-                maven {
-                    url = uri("https://maven.scijava.org/content/repositories/public/")
-                }
-            }
-        }
-
         google()
         mavenCentral()
     }
 }
 
 rootProject.buildDir = '../build'
-
-subprojects { project ->
+subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
-    project.evaluationDependsOn(':app')
-
-    project.tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
-        kotlinOptions {
-            jvmTarget = "1.8"
-        }
-    }
-
-    project.plugins.withId("org.jetbrains.kotlin.jvm") {
-        project.kotlin {
-            jvmToolchain(8)
-        }
-    }
 }
+subprojects {
+    project.evaluationDependsOn(':app')
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
