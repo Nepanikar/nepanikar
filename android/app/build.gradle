@@ -24,9 +24,10 @@ if (flutterVersionName == null) {
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id "dev.flutter.flutter-gradle-plugin"
     id 'com.google.gms.google-services' // FlutterFire: Google services
     id 'com.google.firebase.crashlytics' // FlutterFire: Crashlytics
-    id 'flutter.app' // Flutter plugin (declarative)
+
 }
 
 android {
