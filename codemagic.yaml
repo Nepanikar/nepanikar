@@ -27,6 +27,10 @@ definitions:
       name: Get Flutter packages
       script: |
         flutter pub get
+    - &generate_localization
+    name: Generate Flutter localization files
+    script: |
+      flutter gen-l10n
     - &build_android
       name: Build Android
       script: |
