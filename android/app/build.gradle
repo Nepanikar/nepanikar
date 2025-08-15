@@ -21,13 +21,13 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
-apply plugin: 'com.android.application'
-// START: FlutterFire Configuration
-apply plugin: 'com.google.gms.google-services'
-apply plugin: 'com.google.firebase.crashlytics'
-// END: FlutterFire Configuration
-apply plugin: 'kotlin-android'
-apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'com.google.gms.google-services' // FlutterFire: Google services
+    id 'com.google.firebase.crashlytics' // FlutterFire: Crashlytics
+    id 'flutter.app' // Flutter plugin (declarative)
+}
 
 android {
     compileSdkVersion 33
