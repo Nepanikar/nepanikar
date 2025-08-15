@@ -37,7 +37,7 @@ dependencies:
   native_shared_preferences:
     git:
       url: https://github.com/Nepanikar/native_shared_preferences.git
-      ref: 9116acd335a20f72f359891ff823fb74b8880199
+      ref: 9c85498974324f927bde0c0dd69bd45fafba71e9
   nepanikar_contacts_gen:
     path: ./packages/nepanikar_contacts_gen
   nepanikar_data_migration:
