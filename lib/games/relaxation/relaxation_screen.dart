@@ -14,7 +14,8 @@ enum RelaxationType {
   evening,
 }
 
-class RelaxationRoute extends GoRouteData {
+class RelaxationRoute extends GoRouteData with _$RelaxationRoute {
+
   const RelaxationRoute({
     required this.relaxationType,
   });

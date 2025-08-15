@@ -12,7 +12,7 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_horizontal_divider.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
-class NotificationSettingsRoute extends GoRouteData {
+class NotificationSettingsRoute extends GoRouteData with _$NotificationSettingsRoute {
   const NotificationSettingsRoute();
 
   @override

@@ -5,7 +5,8 @@ import 'package:nepanikar/helpers/localization_helpers.dart';
 import 'package:nepanikar/services/db/self_harm/self_harm_plan_dao.dart';
 import 'package:nepanikar/widgets/input_form_contents/plan_form_content.dart';
 
-class SelfHarmPlanRoute extends GoRouteData {
+class SelfHarmPlanRoute extends GoRouteData with _$SelfHarmPlanRoute {
+
   const SelfHarmPlanRoute();
 
   @override

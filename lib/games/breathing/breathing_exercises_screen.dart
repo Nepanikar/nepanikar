@@ -8,7 +8,8 @@ import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
-class BreathingExercisesRoute extends GoRouteData {
+class BreathingExercisesRoute extends GoRouteData with _$BreathingExercisesRoute {
+
   const BreathingExercisesRoute();
 
   @override

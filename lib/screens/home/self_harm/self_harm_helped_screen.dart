@@ -4,7 +4,8 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/services/db/self_harm/self_harm_helped_dao.dart';
 import 'package:nepanikar/widgets/input_form_contents/list_form_content.dart';
 
-class SelfHarmHelpedRoute extends GoRouteData {
+class SelfHarmHelpedRoute extends GoRouteData with _$SelfHarmHelpedRoute {
+
   const SelfHarmHelpedRoute();
 
   @override

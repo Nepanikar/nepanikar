@@ -5,7 +5,8 @@ import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/widgets/tips_carousel_body.dart';
 
-class AnxietyTipsAppRoute extends GoRouteData {
+class AnxietyTipsAppRoute extends GoRouteData with _$AnxietyTipsAppRoute {
+
   const AnxietyTipsAppRoute();
 
   @override

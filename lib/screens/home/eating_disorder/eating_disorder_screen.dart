@@ -15,7 +15,8 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
-class EatingDisorderRoute extends GoRouteData {
+class EatingDisorderRoute extends GoRouteData with _$EatingDisorderRoute {
+
   const EatingDisorderRoute();
 
   ContactsDataManager get _contactsManager => registry.get<ContactsDataManager>();

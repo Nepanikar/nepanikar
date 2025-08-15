@@ -9,7 +9,8 @@ import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
-class LanguagesRoute extends GoRouteData {
+class LanguagesRoute extends GoRouteData with _$LanguagesRoute {
+
   const LanguagesRoute();
 
   @override

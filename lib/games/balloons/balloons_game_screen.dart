@@ -14,7 +14,8 @@ import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/utils/lottie_cache_manager.dart';
 import 'package:nepanikar/utils/registry.dart';
 
-class BalloonsGameRoute extends GoRouteData {
+class BalloonsGameRoute extends GoRouteData with _$BalloonsGameRoute {
+
   const BalloonsGameRoute();
 
   @override

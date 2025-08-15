@@ -16,7 +16,8 @@ import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:provider/provider.dart';
 
-class MyRecordsRoute extends GoRouteData {
+class MyRecordsRoute extends GoRouteData with _$MyRecordsRoute {
+
   const MyRecordsRoute();
 
   @override

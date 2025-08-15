@@ -6,7 +6,8 @@ import 'package:nepanikar/widgets/tips_carousel_body.dart';
 
 import '../../../../helpers/color_helpers.dart';
 
-class EatingDisorderTipsRemorseAppRoute extends GoRouteData {
+class EatingDisorderTipsRemorseAppRoute extends GoRouteData with _$EatingDisorderTipsRemorseAppRoute {
+
   const EatingDisorderTipsRemorseAppRoute();
 
   @override

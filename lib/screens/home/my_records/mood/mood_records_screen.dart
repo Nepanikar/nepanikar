@@ -29,7 +29,8 @@ import 'package:nepanikar/widgets/nepanikar_date_range_picker.dart';
 import 'package:nepanikar/widgets/nepanikar_dropdown.dart';
 import 'package:provider/provider.dart';
 
-class MoodRecordsRoute extends GoRouteData {
+class MoodRecordsRoute extends GoRouteData with _$MoodRecordsRoute {
+
   const MoodRecordsRoute();
 
   @override

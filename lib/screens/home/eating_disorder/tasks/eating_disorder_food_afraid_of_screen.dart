@@ -4,7 +4,7 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/services/db/eating_disorder/eating_disorder_food_afraid_of_dao.dart';
 import 'package:nepanikar/widgets/input_form_contents/checklist_form_content.dart';
 
-class EatingDisorderFoodAfraidOfRoute extends GoRouteData {
+class EatingDisorderFoodAfraidOfRoute extends GoRouteData with _$EatingDisorderFoodAfraidOfRoute {
   const EatingDisorderFoodAfraidOfRoute();
 
   @override

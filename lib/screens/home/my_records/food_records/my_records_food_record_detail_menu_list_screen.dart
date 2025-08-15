@@ -20,7 +20,8 @@ import 'package:nepanikar/widgets/nepanikar_horizontal_divider.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 
-class MyRecordsFoodRecordsDetailMenuListRoute extends GoRouteData {
+class MyRecordsFoodRecordsDetailMenuListRoute extends GoRouteData with _$MyRecordsFoodRecordsDetailMenuListRoute {
+
   const MyRecordsFoodRecordsDetailMenuListRoute();
 
   @override

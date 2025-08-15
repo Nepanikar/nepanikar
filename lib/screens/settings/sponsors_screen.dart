@@ -5,7 +5,8 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/widgets/nepanikar_clean_screen_wrapper.dart';
 import 'package:nepanikar/widgets/sponsor_tile.dart';
 
-class SponsorsRoute extends GoRouteData {
+class SponsorsRoute extends GoRouteData with _$SponsorsRoute {
+
   const SponsorsRoute();
 
   @override

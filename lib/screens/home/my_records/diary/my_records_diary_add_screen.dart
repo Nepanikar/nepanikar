@@ -12,7 +12,8 @@ import 'package:nepanikar/services/db/my_records/diary/my_records_diary_dao.dart
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/diary/diary_edit_content.dart';
 
-class MyRecordsDiaryAddRoute extends GoRouteData {
+class MyRecordsDiaryAddRoute extends GoRouteData with _$MyRecordsDiaryAddRoute {
+
   const MyRecordsDiaryAddRoute();
 
   @override

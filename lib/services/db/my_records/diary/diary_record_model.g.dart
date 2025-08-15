@@ -6,14 +6,13 @@ part of 'diary_record_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_DiaryRecord _$$_DiaryRecordFromJson(Map<String, dynamic> json) =>
-    _$_DiaryRecord(
-      dateTime: DateTime.parse(json['dateWithTime'] as String),
-      title: json['title'] as String,
-      text: json['text'] as String,
-    );
+_DiaryRecord _$DiaryRecordFromJson(Map<String, dynamic> json) => _DiaryRecord(
+  dateTime: DateTime.parse(json['dateWithTime'] as String),
+  title: json['title'] as String,
+  text: json['text'] as String,
+);
 
-Map<String, dynamic> _$$_DiaryRecordToJson(_$_DiaryRecord instance) =>
+Map<String, dynamic> _$DiaryRecordToJson(_DiaryRecord instance) =>
     <String, dynamic>{
       'dateWithTime': instance.dateTime.toIso8601String(),
       'title': instance.title,

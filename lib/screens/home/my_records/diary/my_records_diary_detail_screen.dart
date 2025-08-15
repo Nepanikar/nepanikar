@@ -19,7 +19,8 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_button.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
-class MyRecordsDiaryDetailRoute extends GoRouteData {
+class MyRecordsDiaryDetailRoute extends GoRouteData with _$MyRecordsDiaryDetailRoute {
+
   const MyRecordsDiaryDetailRoute();
 
   @override

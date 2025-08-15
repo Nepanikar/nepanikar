@@ -17,7 +17,8 @@ import 'package:nepanikar/widgets/nepanikar_date_picker.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 
-class MyRecordsJournalDetailRoute extends GoRouteData {
+class MyRecordsJournalDetailRoute extends GoRouteData with _$MyRecordsJournalDetailRoute {
+
   const MyRecordsJournalDetailRoute();
 
   @override

@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,164 +9,272 @@ part of 'my_contacts_record_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-MyContactRecord _$MyContactRecordFromJson(Map<String, dynamic> json) {
-  return _MyContactRecord.fromJson(json);
-}
 
 /// @nodoc
 mixin _$MyContactRecord {
-  String get name => throw _privateConstructorUsedError;
-  String get contactAddress => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $MyContactRecordCopyWith<MyContactRecord> get copyWith =>
-      throw _privateConstructorUsedError;
+ String get name; String get contactAddress;
+/// Create a copy of MyContactRecord
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$MyContactRecordCopyWith<MyContactRecord> get copyWith => _$MyContactRecordCopyWithImpl<MyContactRecord>(this as MyContactRecord, _$identity);
+
+  /// Serializes this MyContactRecord to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MyContactRecord&&(identical(other.name, name) || other.name == name)&&(identical(other.contactAddress, contactAddress) || other.contactAddress == contactAddress));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,name,contactAddress);
+
+@override
+String toString() {
+  return 'MyContactRecord(name: $name, contactAddress: $contactAddress)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $MyContactRecordCopyWith<$Res> {
-  factory $MyContactRecordCopyWith(
-          MyContactRecord value, $Res Function(MyContactRecord) then) =
-      _$MyContactRecordCopyWithImpl<$Res, MyContactRecord>;
-  @useResult
-  $Res call({String name, String contactAddress});
-}
+abstract mixin class $MyContactRecordCopyWith<$Res>  {
+  factory $MyContactRecordCopyWith(MyContactRecord value, $Res Function(MyContactRecord) _then) = _$MyContactRecordCopyWithImpl;
+@useResult
+$Res call({
+ String name, String contactAddress
+});
 
+
+
+
+}
 /// @nodoc
-class _$MyContactRecordCopyWithImpl<$Res, $Val extends MyContactRecord>
+class _$MyContactRecordCopyWithImpl<$Res>
     implements $MyContactRecordCopyWith<$Res> {
-  _$MyContactRecordCopyWithImpl(this._value, this._then);
+  _$MyContactRecordCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final MyContactRecord _self;
+  final $Res Function(MyContactRecord) _then;
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? contactAddress = null,
-  }) {
-    return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      contactAddress: null == contactAddress
-          ? _value.contactAddress
-          : contactAddress // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
+/// Create a copy of MyContactRecord
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? contactAddress = null,}) {
+  return _then(_self.copyWith(
+name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,contactAddress: null == contactAddress ? _self.contactAddress : contactAddress // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-/// @nodoc
-abstract class _$$_MyContactRecordCopyWith<$Res>
-    implements $MyContactRecordCopyWith<$Res> {
-  factory _$$_MyContactRecordCopyWith(
-          _$_MyContactRecord value, $Res Function(_$_MyContactRecord) then) =
-      __$$_MyContactRecordCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String name, String contactAddress});
 }
 
-/// @nodoc
-class __$$_MyContactRecordCopyWithImpl<$Res>
-    extends _$MyContactRecordCopyWithImpl<$Res, _$_MyContactRecord>
-    implements _$$_MyContactRecordCopyWith<$Res> {
-  __$$_MyContactRecordCopyWithImpl(
-      _$_MyContactRecord _value, $Res Function(_$_MyContactRecord) _then)
-      : super(_value, _then);
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? contactAddress = null,
-  }) {
-    return _then(_$_MyContactRecord(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      contactAddress: null == contactAddress
-          ? _value.contactAddress
-          : contactAddress // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+/// Adds pattern-matching-related methods to [MyContactRecord].
+extension MyContactRecordPatterns on MyContactRecord {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _MyContactRecord value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _MyContactRecord() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _MyContactRecord value)  $default,){
+final _that = this;
+switch (_that) {
+case _MyContactRecord():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _MyContactRecord value)?  $default,){
+final _that = this;
+switch (_that) {
+case _MyContactRecord() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  String contactAddress)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _MyContactRecord() when $default != null:
+return $default(_that.name,_that.contactAddress);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  String contactAddress)  $default,) {final _that = this;
+switch (_that) {
+case _MyContactRecord():
+return $default(_that.name,_that.contactAddress);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  String contactAddress)?  $default,) {final _that = this;
+switch (_that) {
+case _MyContactRecord() when $default != null:
+return $default(_that.name,_that.contactAddress);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_MyContactRecord extends _MyContactRecord {
-  const _$_MyContactRecord({required this.name, required this.contactAddress})
-      : super._();
 
-  factory _$_MyContactRecord.fromJson(Map<String, dynamic> json) =>
-      _$$_MyContactRecordFromJson(json);
+class _MyContactRecord extends MyContactRecord {
+  const _MyContactRecord({required this.name, required this.contactAddress}): super._();
+  factory _MyContactRecord.fromJson(Map<String, dynamic> json) => _$MyContactRecordFromJson(json);
 
-  @override
-  final String name;
-  @override
-  final String contactAddress;
+@override final  String name;
+@override final  String contactAddress;
 
-  @override
-  String toString() {
-    return 'MyContactRecord(name: $name, contactAddress: $contactAddress)';
-  }
+/// Create a copy of MyContactRecord
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$MyContactRecordCopyWith<_MyContactRecord> get copyWith => __$MyContactRecordCopyWithImpl<_MyContactRecord>(this, _$identity);
 
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_MyContactRecord &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.contactAddress, contactAddress) ||
-                other.contactAddress == contactAddress));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, name, contactAddress);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_MyContactRecordCopyWith<_$_MyContactRecord> get copyWith =>
-      __$$_MyContactRecordCopyWithImpl<_$_MyContactRecord>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_MyContactRecordToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$MyContactRecordToJson(this, );
 }
 
-abstract class _MyContactRecord extends MyContactRecord {
-  const factory _MyContactRecord(
-      {required final String name,
-      required final String contactAddress}) = _$_MyContactRecord;
-  const _MyContactRecord._() : super._();
-
-  factory _MyContactRecord.fromJson(Map<String, dynamic> json) =
-      _$_MyContactRecord.fromJson;
-
-  @override
-  String get name;
-  @override
-  String get contactAddress;
-  @override
-  @JsonKey(ignore: true)
-  _$$_MyContactRecordCopyWith<_$_MyContactRecord> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MyContactRecord&&(identical(other.name, name) || other.name == name)&&(identical(other.contactAddress, contactAddress) || other.contactAddress == contactAddress));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,name,contactAddress);
+
+@override
+String toString() {
+  return 'MyContactRecord(name: $name, contactAddress: $contactAddress)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$MyContactRecordCopyWith<$Res> implements $MyContactRecordCopyWith<$Res> {
+  factory _$MyContactRecordCopyWith(_MyContactRecord value, $Res Function(_MyContactRecord) _then) = __$MyContactRecordCopyWithImpl;
+@override @useResult
+$Res call({
+ String name, String contactAddress
+});
+
+
+
+
+}
+/// @nodoc
+class __$MyContactRecordCopyWithImpl<$Res>
+    implements _$MyContactRecordCopyWith<$Res> {
+  __$MyContactRecordCopyWithImpl(this._self, this._then);
+
+  final _MyContactRecord _self;
+  final $Res Function(_MyContactRecord) _then;
+
+/// Create a copy of MyContactRecord
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? contactAddress = null,}) {
+  return _then(_MyContactRecord(
+name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,contactAddress: null == contactAddress ? _self.contactAddress : contactAddress // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+// dart format on

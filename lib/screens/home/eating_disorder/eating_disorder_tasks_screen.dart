@@ -13,7 +13,8 @@ import 'package:nepanikar/screens/home/eating_disorder/tasks/eating_disorder_lik
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
-class EatingDisorderTasksRoute extends GoRouteData {
+class EatingDisorderTasksRoute extends GoRouteData with _$EatingDisorderTasksRoute {
+
   const EatingDisorderTasksRoute();
 
   @override

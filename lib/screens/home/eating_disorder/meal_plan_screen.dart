@@ -6,7 +6,8 @@ import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/utils/meal_plan_config.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
-class MealPlanRoute extends GoRouteData {
+class MealPlanRoute extends GoRouteData with _$MealPlanRoute {
+
   const MealPlanRoute();
 
   @override

@@ -24,7 +24,8 @@ import 'package:nepanikar/widgets/nepanikar_date_range_picker.dart';
 import 'package:nepanikar/widgets/nepanikar_dropdown.dart';
 import 'package:provider/provider.dart';
 
-class MoodTrackRoute extends GoRouteData {
+class MoodTrackRoute extends GoRouteData with _$MoodTrackRoute {
+
   const MoodTrackRoute();
 
   @override

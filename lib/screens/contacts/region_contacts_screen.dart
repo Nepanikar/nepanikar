@@ -12,7 +12,8 @@ import 'package:nepanikar/widgets/nepanikar_dropdown.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:nepanikar_contacts_gen/nepanikar_contacts_gen.dart';
 
-class UniversityContactsRoute extends GoRouteData {
+class UniversityContactsRoute extends GoRouteData with _$UniversityContactsRoute {
+
   const UniversityContactsRoute();
 
   ContactsDataManager get _contactsManager => registry.get<ContactsDataManager>();
@@ -32,7 +33,8 @@ class UniversityContactsRoute extends GoRouteData {
   }
 }
 
-class CrisisCenterContactsRoute extends GoRouteData {
+class CrisisCenterContactsRoute extends GoRouteData with _$CrisisCenterContactsRoute {
+
   const CrisisCenterContactsRoute();
 
   ContactsDataManager get _contactsManager => registry.get<ContactsDataManager>();

@@ -8,7 +8,8 @@ import 'package:nepanikar/widgets/contacts/phone_contact_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:nepanikar_contacts_gen/nepanikar_contacts_gen.dart';
 
-class PhoneContactsRoute extends GoRouteData {
+class PhoneContactsRoute extends GoRouteData with _$PhoneContactsRoute {
+
   const PhoneContactsRoute();
 
   ContactsDataManager get _contactsManager => registry.get<ContactsDataManager>();

@@ -6,17 +6,14 @@ part of 'app_notification_data_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_AppNotificationData _$$_AppNotificationDataFromJson(
-        Map<String, dynamic> json) =>
-    _$_AppNotificationData(
+_AppNotificationData _$AppNotificationDataFromJson(Map<String, dynamic> json) =>
+    _AppNotificationData(
       type: $enumDecode(_$NotificationTypeEnumMap, json['type']),
     );
 
-Map<String, dynamic> _$$_AppNotificationDataToJson(
-        _$_AppNotificationData instance) =>
-    <String, dynamic>{
-      'type': _$NotificationTypeEnumMap[instance.type]!,
-    };
+Map<String, dynamic> _$AppNotificationDataToJson(
+  _AppNotificationData instance,
+) => <String, dynamic>{'type': _$NotificationTypeEnumMap[instance.type]!};
 
 const _$NotificationTypeEnumMap = {
   NotificationType.moodReminder: 'moodReminder',

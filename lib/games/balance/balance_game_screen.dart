@@ -8,7 +8,8 @@ import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 
-class BalanceGameRoute extends GoRouteData {
+class BalanceGameRoute extends GoRouteData with _$BalanceGameRoute {
+
   const BalanceGameRoute();
 
   @override

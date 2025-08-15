@@ -6,20 +6,22 @@ part of 'my_records_food_record_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_FoodQuestionTextAnswer _$$_FoodQuestionTextAnswerFromJson(
-        Map<String, dynamic> json) =>
-    _$_FoodQuestionTextAnswer(
-      foodQuestionText:
-          $enumDecode(_$FoodQuestionTextEnumMap, json['foodQuestionText']),
-      answer: json['answer'] as String,
-    );
+_FoodQuestionTextAnswer _$FoodQuestionTextAnswerFromJson(
+  Map<String, dynamic> json,
+) => _FoodQuestionTextAnswer(
+  foodQuestionText: $enumDecode(
+    _$FoodQuestionTextEnumMap,
+    json['foodQuestionText'],
+  ),
+  answer: json['answer'] as String,
+);
 
-Map<String, dynamic> _$$_FoodQuestionTextAnswerToJson(
-        _$_FoodQuestionTextAnswer instance) =>
-    <String, dynamic>{
-      'foodQuestionText': _$FoodQuestionTextEnumMap[instance.foodQuestionText]!,
-      'answer': instance.answer,
-    };
+Map<String, dynamic> _$FoodQuestionTextAnswerToJson(
+  _FoodQuestionTextAnswer instance,
+) => <String, dynamic>{
+  'foodQuestionText': _$FoodQuestionTextEnumMap[instance.foodQuestionText]!,
+  'answer': instance.answer,
+};
 
 const _$FoodQuestionTextEnumMap = {
   FoodQuestionText.when: 'when',
@@ -28,40 +30,45 @@ const _$FoodQuestionTextEnumMap = {
   FoodQuestionText.what: 'what',
 };
 
-_$_DailyFoodRecordAnswer _$$_DailyFoodRecordAnswerFromJson(
-        Map<String, dynamic> json) =>
-    _$_DailyFoodRecordAnswer(
-      foodType: $enumDecode(_$FoodTypeEnumMap, json['foodType']),
-      isTaken: json['isTaken'] as bool? ?? false,
-      questionTextAnswers: (json['questionTextAnswers'] as List<dynamic>?)
-              ?.map((e) =>
-                  FoodQuestionTextAnswer.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
-      tickedQuestionFeels: (json['tickedQuestionFeels'] as List<dynamic>?)
-              ?.map((e) => $enumDecode(_$FoodQuestionFeelEnumMap, e))
-              .toList() ??
-          const [],
-      tickedQuestionProblems: (json['tickedQuestionProblems'] as List<dynamic>?)
-              ?.map((e) => $enumDecode(_$FoodQuestionProblemEnumMap, e))
-              .toList() ??
-          const [],
-    );
+_DailyFoodRecordAnswer _$DailyFoodRecordAnswerFromJson(
+  Map<String, dynamic> json,
+) => _DailyFoodRecordAnswer(
+  foodType: $enumDecode(_$FoodTypeEnumMap, json['foodType']),
+  isTaken: json['isTaken'] as bool? ?? false,
+  questionTextAnswers:
+      (json['questionTextAnswers'] as List<dynamic>?)
+          ?.map(
+            (e) => FoodQuestionTextAnswer.fromJson(e as Map<String, dynamic>),
+          )
+          .toList() ??
+      const [],
+  tickedQuestionFeels:
+      (json['tickedQuestionFeels'] as List<dynamic>?)
+          ?.map((e) => $enumDecode(_$FoodQuestionFeelEnumMap, e))
+          .toList() ??
+      const [],
+  tickedQuestionProblems:
+      (json['tickedQuestionProblems'] as List<dynamic>?)
+          ?.map((e) => $enumDecode(_$FoodQuestionProblemEnumMap, e))
+          .toList() ??
+      const [],
+);
 
-Map<String, dynamic> _$$_DailyFoodRecordAnswerToJson(
-        _$_DailyFoodRecordAnswer instance) =>
-    <String, dynamic>{
-      'foodType': _$FoodTypeEnumMap[instance.foodType]!,
-      'isTaken': instance.isTaken,
-      'questionTextAnswers':
-          instance.questionTextAnswers.map((e) => e.toJson()).toList(),
-      'tickedQuestionFeels': instance.tickedQuestionFeels
-          .map((e) => _$FoodQuestionFeelEnumMap[e]!)
-          .toList(),
-      'tickedQuestionProblems': instance.tickedQuestionProblems
-          .map((e) => _$FoodQuestionProblemEnumMap[e]!)
-          .toList(),
-    };
+Map<String, dynamic> _$DailyFoodRecordAnswerToJson(
+  _DailyFoodRecordAnswer instance,
+) => <String, dynamic>{
+  'foodType': _$FoodTypeEnumMap[instance.foodType]!,
+  'isTaken': instance.isTaken,
+  'questionTextAnswers': instance.questionTextAnswers
+      .map((e) => e.toJson())
+      .toList(),
+  'tickedQuestionFeels': instance.tickedQuestionFeels
+      .map((e) => _$FoodQuestionFeelEnumMap[e]!)
+      .toList(),
+  'tickedQuestionProblems': instance.tickedQuestionProblems
+      .map((e) => _$FoodQuestionProblemEnumMap[e]!)
+      .toList(),
+};
 
 const _$FoodTypeEnumMap = {
   FoodType.breakfast: 'breakfast',
@@ -93,15 +100,15 @@ const _$FoodQuestionProblemEnumMap = {
   FoodQuestionProblem.anxietyAttack: 'anxietyAttack',
 };
 
-_$_DailyFoodRecord _$$_DailyFoodRecordFromJson(Map<String, dynamic> json) =>
-    _$_DailyFoodRecord(
+_DailyFoodRecord _$DailyFoodRecordFromJson(Map<String, dynamic> json) =>
+    _DailyFoodRecord(
       dateTime: DateTime.parse(json['dateWithTime'] as String),
       answers: (json['answers'] as List<dynamic>)
           .map((e) => DailyFoodRecordAnswer.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$_DailyFoodRecordToJson(_$_DailyFoodRecord instance) =>
+Map<String, dynamic> _$DailyFoodRecordToJson(_DailyFoodRecord instance) =>
     <String, dynamic>{
       'dateWithTime': instance.dateTime.toIso8601String(),
       'answers': instance.answers.map((e) => e.toJson()).toList(),

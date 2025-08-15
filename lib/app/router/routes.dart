@@ -95,7 +95,7 @@ part 'routes.g.dart';
     ..._homeRoutes,
   ],
 )
-class MainRoute extends GoRouteData {
+class MainRoute extends GoRouteData with _$MainRoute {
   const MainRoute();
 
   @override

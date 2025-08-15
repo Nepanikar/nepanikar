@@ -11,7 +11,8 @@ import 'package:nepanikar/screens/home/depression/depression_tips_screen.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
-class DepressionRoute extends GoRouteData {
+class DepressionRoute extends GoRouteData with _$DepressionRoute {
+
   const DepressionRoute();
 
   @override

@@ -13,7 +13,8 @@ import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ExportRoute extends GoRouteData {
+class ExportRoute extends GoRouteData with _$ExportRoute {
+
   const ExportRoute();
 
   @override

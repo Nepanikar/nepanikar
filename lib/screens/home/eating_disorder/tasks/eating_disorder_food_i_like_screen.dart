@@ -4,7 +4,7 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/services/db/eating_disorder/eating_disorder_food_i_like_dao.dart';
 import 'package:nepanikar/widgets/input_form_contents/list_form_content.dart';
 
-class EatingDisorderFoodILikeRoute extends GoRouteData {
+class EatingDisorderFoodILikeRoute extends GoRouteData with _$EatingDisorderFoodILikeRoute {
   const EatingDisorderFoodILikeRoute();
 
   @override

@@ -17,7 +17,8 @@ import 'package:nepanikar/widgets/empty_records_state_widget.dart';
 import 'package:nepanikar/widgets/food_records/food_record_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
-class MyRecordsFoodRecordsListRoute extends GoRouteData {
+class MyRecordsFoodRecordsListRoute extends GoRouteData with _$MyRecordsFoodRecordsListRoute {
+
   const MyRecordsFoodRecordsListRoute();
 
   @override

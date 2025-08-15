@@ -16,7 +16,8 @@ import 'package:nepanikar/widgets/mood/chosen_emotions.dart';
 import 'package:nepanikar/widgets/mood/mood_entry_card.dart';
 import 'package:provider/provider.dart';
 
-class SearchMoodEntryRoute extends GoRouteData {
+class SearchMoodEntryRoute extends GoRouteData with _$SearchMoodEntryRoute {
+
   const SearchMoodEntryRoute();
 
   @override

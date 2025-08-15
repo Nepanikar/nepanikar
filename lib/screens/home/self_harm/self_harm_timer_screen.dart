@@ -19,7 +19,8 @@ import 'package:nepanikar/widgets/nepanikar_horizontal_divider.dart';
 import 'package:time_machine/time_machine.dart';
 import 'package:timer_builder/timer_builder.dart';
 
-class SelfHarmTimerRoute extends GoRouteData {
+class SelfHarmTimerRoute extends GoRouteData with _$SelfHarmTimerRoute {
+
   const SelfHarmTimerRoute();
 
   @override

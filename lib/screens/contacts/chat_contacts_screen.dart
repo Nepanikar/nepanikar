@@ -9,7 +9,8 @@ import 'package:nepanikar/widgets/contacts/chat_contact_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:nepanikar_contacts_gen/nepanikar_contacts_gen.dart';
 
-class ChatContactsRoute extends GoRouteData {
+class ChatContactsRoute extends GoRouteData with _$ChatContactsRoute {
+
   const ChatContactsRoute();
 
   ContactsDataManager get _contactsManager => registry.get<ContactsDataManager>();

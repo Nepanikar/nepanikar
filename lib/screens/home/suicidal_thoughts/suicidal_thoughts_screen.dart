@@ -10,7 +10,8 @@ import 'package:nepanikar/screens/home/suicidal_thoughts/suicidal_thoughts_reaso
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
-class SuicidalThoughtsRoute extends GoRouteData {
+class SuicidalThoughtsRoute extends GoRouteData with _$SuicidalThoughtsRoute {
+
   const SuicidalThoughtsRoute();
 
   @override

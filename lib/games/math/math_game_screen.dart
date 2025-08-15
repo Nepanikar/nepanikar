@@ -15,7 +15,8 @@ import 'package:nepanikar/utils/lottie_cache_manager.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_button.dart';
 
-class MathGameRoute extends GoRouteData {
+class MathGameRoute extends GoRouteData with _$MathGameRoute {
+
   const MathGameRoute();
 
   @override

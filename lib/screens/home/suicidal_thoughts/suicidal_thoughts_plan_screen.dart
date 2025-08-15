@@ -4,7 +4,8 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/services/db/suicidal_thoughts/suicidal_thoughts_plan_dao.dart';
 import 'package:nepanikar/widgets/input_form_contents/plan_form_content.dart';
 
-class SuicidalThoughtsPlanRoute extends GoRouteData {
+class SuicidalThoughtsPlanRoute extends GoRouteData with _$SuicidalThoughtsPlanRoute {
+
   const SuicidalThoughtsPlanRoute();
 
   @override

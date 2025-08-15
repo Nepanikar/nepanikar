@@ -6,19 +6,18 @@ part of 'my_records_journal_record_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_JournalRecordAnswer _$$_JournalRecordAnswerFromJson(
-        Map<String, dynamic> json) =>
-    _$_JournalRecordAnswer(
+_JournalRecordAnswer _$JournalRecordAnswerFromJson(Map<String, dynamic> json) =>
+    _JournalRecordAnswer(
       question: $enumDecode(_$JournalQuestionEnumMap, json['question']),
       answer: json['answer'] as String,
     );
 
-Map<String, dynamic> _$$_JournalRecordAnswerToJson(
-        _$_JournalRecordAnswer instance) =>
-    <String, dynamic>{
-      'question': _$JournalQuestionEnumMap[instance.question]!,
-      'answer': instance.answer,
-    };
+Map<String, dynamic> _$JournalRecordAnswerToJson(
+  _JournalRecordAnswer instance,
+) => <String, dynamic>{
+  'question': _$JournalQuestionEnumMap[instance.question]!,
+  'answer': instance.answer,
+};
 
 const _$JournalQuestionEnumMap = {
   JournalQuestion.grateful: 'grateful',
@@ -28,15 +27,15 @@ const _$JournalQuestionEnumMap = {
   JournalQuestion.improve: 'improve',
 };
 
-_$_JournalRecord _$$_JournalRecordFromJson(Map<String, dynamic> json) =>
-    _$_JournalRecord(
+_JournalRecord _$JournalRecordFromJson(Map<String, dynamic> json) =>
+    _JournalRecord(
       dateTime: DateTime.parse(json['dateWithTime'] as String),
       answers: (json['answers'] as List<dynamic>)
           .map((e) => JournalRecordAnswer.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$_JournalRecordToJson(_$_JournalRecord instance) =>
+Map<String, dynamic> _$JournalRecordToJson(_JournalRecord instance) =>
     <String, dynamic>{
       'dateWithTime': instance.dateTime.toIso8601String(),
       'answers': instance.answers.map((e) => e.toJson()).toList(),

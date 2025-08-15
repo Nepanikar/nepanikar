@@ -11,7 +11,8 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:tuple/tuple.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class CrisisMessageRoute extends GoRouteData {
+class CrisisMessageRoute extends GoRouteData with _$CrisisMessageRoute {
+
   const CrisisMessageRoute();
 
   @override

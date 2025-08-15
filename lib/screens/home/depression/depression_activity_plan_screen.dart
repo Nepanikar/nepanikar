@@ -4,7 +4,8 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/services/db/depression/depression_activity_plan_dao.dart';
 import 'package:nepanikar/widgets/input_form_contents/checklist_form_content.dart';
 
-class DepressionActivityPlanRoute extends GoRouteData {
+class DepressionActivityPlanRoute extends GoRouteData with _$DepressionActivityPlanRoute {
+
   const DepressionActivityPlanRoute();
 
   @override

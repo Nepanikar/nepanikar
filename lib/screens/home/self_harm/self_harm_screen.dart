@@ -12,7 +12,8 @@ import 'package:nepanikar/screens/home/self_harm/self_harm_tips_screen.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
-class SelfHarmRoute extends GoRouteData {
+class SelfHarmRoute extends GoRouteData with _$SelfHarmRoute {
+
   const SelfHarmRoute();
 
   @override

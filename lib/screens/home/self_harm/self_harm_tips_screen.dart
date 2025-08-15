@@ -5,7 +5,8 @@ import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/widgets/tips_carousel_body.dart';
 
-class SelfHarmTipsRoute extends GoRouteData {
+class SelfHarmTipsRoute extends GoRouteData with _$SelfHarmTipsRoute {
+
   const SelfHarmTipsRoute();
 
   @override

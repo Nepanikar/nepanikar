@@ -15,7 +15,8 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
-class AnxietyAppRoute extends GoRouteData {
+class AnxietyAppRoute extends GoRouteData with _$AnxietyAppRoute {
+
   const AnxietyAppRoute();
 
   @override

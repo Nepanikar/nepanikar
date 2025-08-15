@@ -6,17 +6,17 @@ part of 'mood_track_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_MoodTrack _$$_MoodTrackFromJson(Map<String, dynamic> json) => _$_MoodTrack(
-      mood: $enumDecode(_$MoodEnumMap, json['mood']),
-      date: DateTime.parse(json['date'] as String),
-      emotions: (json['emotions'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
-      summary: json['summary'] as String?,
-      description: json['description'] as String?,
-    );
+_MoodTrack _$MoodTrackFromJson(Map<String, dynamic> json) => _MoodTrack(
+  mood: $enumDecode(_$MoodEnumMap, json['mood']),
+  date: DateTime.parse(json['date'] as String),
+  emotions: (json['emotions'] as List<dynamic>?)
+      ?.map((e) => e as String)
+      .toList(),
+  summary: json['summary'] as String?,
+  description: json['description'] as String?,
+);
 
-Map<String, dynamic> _$$_MoodTrackToJson(_$_MoodTrack instance) =>
+Map<String, dynamic> _$MoodTrackToJson(_MoodTrack instance) =>
     <String, dynamic>{
       'mood': _$MoodEnumMap[instance.mood]!,
       'date': instance.date.toIso8601String(),

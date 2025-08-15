@@ -4,7 +4,8 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/services/db/depression/depression_praise_my_achievements_dao.dart';
 import 'package:nepanikar/widgets/input_form_contents/list_form_content.dart';
 
-class DepressionPraiseMyAchievementsRoute extends GoRouteData {
+class DepressionPraiseMyAchievementsRoute extends GoRouteData with _$DepressionPraiseMyAchievementsRoute {
+
   const DepressionPraiseMyAchievementsRoute();
 
   @override

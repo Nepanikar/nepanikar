@@ -14,7 +14,8 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
-class EatingDisorderDistractionsRoute extends GoRouteData {
+class EatingDisorderDistractionsRoute extends GoRouteData with _$EatingDisorderDistractionsRoute {
+
   const EatingDisorderDistractionsRoute();
 
   @override

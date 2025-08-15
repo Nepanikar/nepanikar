@@ -9,7 +9,8 @@ import 'package:nepanikar/utils/meal_plan_config.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
-class EatingDisorderSamplesRoute extends GoRouteData {
+class EatingDisorderSamplesRoute extends GoRouteData with _$EatingDisorderSamplesRoute {
+
   const EatingDisorderSamplesRoute();
 
   @override

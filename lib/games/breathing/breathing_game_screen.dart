@@ -13,7 +13,8 @@ enum BreathingGameShape {
   triangle,
 }
 
-class BreathingGameRoute extends GoRouteData {
+class BreathingGameRoute extends GoRouteData with _$BreathingGameRoute {
+
   const BreathingGameRoute({
     required this.shape,
   });

@@ -17,7 +17,8 @@ import 'package:nepanikar/widgets/mood/chosen_emotions.dart';
 import 'package:nepanikar/widgets/mood/mood_picker.dart';
 import 'package:provider/provider.dart';
 
-class MoodPickerRoute extends GoRouteData {
+class MoodPickerRoute extends GoRouteData with _$MoodPickerRoute {
+
   const MoodPickerRoute();
 
   @override

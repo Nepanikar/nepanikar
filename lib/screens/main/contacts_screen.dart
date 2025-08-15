@@ -21,7 +21,8 @@ import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:nepanikar_contacts_gen/nepanikar_contacts_gen.dart';
 
-class ContactsRoute extends GoRouteData {
+class ContactsRoute extends GoRouteData with _$ContactsRoute {
+
   const ContactsRoute();
 
   ContactsDataManager get _contactsDataManager => registry.get<ContactsDataManager>();

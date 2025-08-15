@@ -13,7 +13,8 @@ import 'package:nepanikar/widgets/contacts/my_contact_tile.dart';
 import 'package:nepanikar/widgets/empty_records_state_widget.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
-class MyContactsRecordsRoute extends GoRouteData {
+class MyContactsRecordsRoute extends GoRouteData with _$MyContactsRecordsRoute {
+
   const MyContactsRecordsRoute();
 
   @override

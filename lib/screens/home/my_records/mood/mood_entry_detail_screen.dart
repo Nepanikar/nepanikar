@@ -14,7 +14,8 @@ import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
 import 'package:nepanikar/widgets/mood/chosen_emotions.dart';
 import 'package:provider/provider.dart';
 
-class MoodEntryDetailRoute extends GoRouteData {
+class MoodEntryDetailRoute extends GoRouteData with _$MoodEntryDetailRoute {
+
   const MoodEntryDetailRoute();
 
   @override
