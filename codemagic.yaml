@@ -2,7 +2,7 @@ definitions:
   instance: &instance
     max_build_duration: 60
   env_versions: &env_versions
-    flutter: 3.19.6
+    flutter: 3.29.3
     xcode: 16.0
     cocoapods: default
   artifacts: &artifacts
