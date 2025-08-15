@@ -89,6 +89,7 @@ workflows:
     scripts:
       - *local_properties
       - *get_packages
+      - *generate_localization
       - *build_android
       - *setup_ios
       - *build_ios
@@ -127,6 +128,7 @@ workflows:
     scripts:
       - *local_properties
       - *get_packages
+      - *generate_localization
       - *build_android
       - *setup_ios
       - *build_ios
