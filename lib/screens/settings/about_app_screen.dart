@@ -51,7 +51,12 @@ class AboutAppScreen extends StatelessWidget {
                 const SizedBox(
                   height: 16,
                 ),
-                Text(context.l10n.about_app_text),
+                Text(
+                    context.l10n.about_app_text,
+                    style: NepanikarFonts.bodySmallHeavy.copyWith(
+                      color: NepanikarColors.primarySwatch.shade800,
+                  ),
+                ),
                 const SizedBox(
                   height: 48,
                 ),
