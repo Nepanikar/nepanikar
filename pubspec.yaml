@@ -17,7 +17,7 @@ dependencies:
   firebase_analytics: ^12.0.0
   firebase_core: ^4.0.0
   firebase_crashlytics: ^5.0.0
-  fl_chart: 0.63.0
+  fl_chart: ^1.0.0
   flutter:
     sdk: flutter
   flutter_animate: ^4.5.2

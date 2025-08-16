@@ -29,7 +29,7 @@ class MoodChart extends StatelessWidget {
   Widget _leftTitleIcons(double value, TitleMeta meta) {
     final mood = Mood.fromInteger(value.toInt());
     return SideTitleWidget(
-      axisSide: meta.axisSide,
+      meta: meta,
       child: mood?.icon.svg(width: 32, height: 32) ?? const SizedBox.shrink(),
     );
   }
@@ -123,7 +123,7 @@ class MoodChart extends StatelessWidget {
           }).toList();
         },
         touchTooltipData: LineTouchTooltipData(
-          tooltipBgColor: NepanikarColors.primary,
+          getTooltipColor: (LineBarSpot touchedSpot) => NepanikarColors.primary,
           getTooltipItems: (touchedSpots) {
             return touchedSpots.map((barSpot) {
               final flSpot = barSpot;

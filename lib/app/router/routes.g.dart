@@ -10,349 +10,280 @@ List<RouteBase> get $appRoutes => [$mainRoute];
 
 RouteBase get $mainRoute => GoRouteData.$route(
   path: '/',
-
   factory: _$MainRoute._fromState,
   routes: [
     GoRouteData.$route(
       path: 'settings/notification-settings',
-
       factory: _$NotificationSettingsRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'settings/sponsors',
-
       factory: _$SponsorsRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'settings/about-app',
-
       factory: _$AboutAppRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'settings/export',
-
       factory: _$ExportRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'settings/language',
-
       factory: _$LanguagesRoute._fromState,
     ),
     GoRouteData.$route(path: 'games/math', factory: _$MathGameRoute._fromState),
     GoRouteData.$route(
       path: 'games/breathing-list',
-
       factory: _$BreathingExercisesRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'games/breathing/:shape',
-
       factory: _$BreathingGameRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'games/balance',
-
       factory: _$BalanceGameRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'games/balloons',
-
       factory: _$BalloonsGameRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'games/relaxation/:relaxationType',
-
       factory: _$RelaxationRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'games/relaxation-list',
-
       factory: _$RelaxationsListRoute._fromState,
     ),
     GoRouteData.$route(path: 'contacts', factory: _$ContactsRoute._fromState),
     GoRouteData.$route(
       path: 'contacts/crisis-message',
-
       factory: _$CrisisMessageRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'contacts/phones',
-
       factory: _$PhoneContactsRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'contacts/crisis-center',
-
       factory: _$CrisisCenterContactsRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'contacts/chat',
-
       factory: _$ChatContactsRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'contacts/universities',
-
       factory: _$UniversityContactsRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'contacts/my-contacts-records',
-
       factory: _$MyContactsRecordsRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'contacts/email-counselling',
-
       factory: _$EmailCounsellingRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/depression',
-
       factory: _$DepressionRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/depression/tips',
-
       factory: _$DepressionTipsAppRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/depression/activity-plan',
-
       factory: _$DepressionActivityPlanRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/depression/nice-made-happy',
-
       factory: _$DepressionNiceMadeHappyRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/depression/praise-my-achievements',
-
       factory: _$DepressionPraiseMyAchievementsRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/anxiety',
-
       factory: _$AnxietyAppRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/anxiety/tips',
-
       factory: _$AnxietyTipsAppRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/self-harm',
-
       factory: _$SelfHarmRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/self-harm/tips',
-
       factory: _$SelfHarmTipsRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/self-harm/helped',
-
       factory: _$SelfHarmHelpedRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/self-harm/plan',
-
       factory: _$SelfHarmPlanRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/self-harm/timer',
-
       factory: _$SelfHarmTimerRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/my-records',
-
       factory: _$MyRecordsRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/my-records/mood-track',
-
       factory: _$MoodTrackRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/my-records/mood-picker',
-
       factory: _$MoodPickerRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/my-records/mood-records',
-
       factory: _$MoodRecordsRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/my-records/search-mood-entry',
-
       factory: _$SearchMoodEntryRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/my-records/mood-records/mood-entry',
-
       factory: _$MoodEntryDetailRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/my-records/sleep-track',
-
       factory: _$MyRecordsSleepTrackRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/my-records/diary',
-
       factory: _$MyRecordsDiaryRecordsRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/my-records/diary/add',
-
       factory: _$MyRecordsDiaryAddRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/my-records/diary/detail',
-
       factory: _$MyRecordsDiaryDetailRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/my-records/diary/edit',
-
       factory: _$MyRecordsDiaryEditRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/my-records/journal',
-
       factory: _$MyRecordsJournalRecordsRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/my-records/journal-detail',
-
       factory: _$MyRecordsJournalDetailRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/my-records/food-records',
-
       factory: _$MyRecordsFoodRecordsListRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/my-records/food-records/detail',
-
       factory: _$MyRecordsFoodRecordsDetailMenuListRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/my-records/food-records/detail/menu-detail',
-
       factory: _$MyRecordsFoodRecordsDetailMenuDetailRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/suicidal-thoughts',
-
       factory: _$SuicidalThoughtsRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/suicidal-thoughts/plan',
-
       factory: _$SuicidalThoughtsPlanRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/suicidal-thoughts/reasons-no',
-
       factory: _$SuicidalThoughtsReasonsNoRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/eating-disorder',
-
       factory: _$EatingDisorderRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/eating-disorder/tips',
-
       factory: _$EatingDisorderTipsRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/eating-disorder/tips/figure',
-
       factory: _$EatingDisorderTipsFigureAppRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/eating-disorder/tips/remorse',
-
       factory: _$EatingDisorderTipsRemorseAppRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/eating-disorder/tips/overeat',
-
       factory: _$EatingDisorderTipsOvereatAppRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/eating-disorder/tips/vomit',
-
       factory: _$EatingDisorderTipsVomitAppRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/eating-disorder/tips/fail',
-
       factory: _$EatingDisorderTipsFailAppRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/eating-disorder/tips/general',
-
       factory: _$EatingDisorderTipsGeneralAppRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/eating-disorder/tasks',
-
       factory: _$EatingDisorderTasksRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/eating-disorder/tasks/food-creative',
-
       factory: _$EatingDisorderFoodCreativeRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/eating-disorder/tasks/food-motivation',
-
       factory: _$EatingDisorderFoodMotivationRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/eating-disorder/tasks/food-challenges',
-
       factory: _$EatingDisorderFoodChallengesRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/eating-disorder/tasks/like-on-myself',
-
       factory: _$EatingDisorderLikeOnMyselfRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/eating-disorder/tasks/food-i-like',
-
       factory: _$EatingDisorderFoodILikeRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/eating-disorder/tasks/food-afraid-of',
-
       factory: _$EatingDisorderFoodAfraidOfRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/eating-disorder/samples',
-
       factory: _$EatingDisorderSamplesRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/eating-disorder/distraction',
-
       factory: _$EatingDisorderDistractionsRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/eating-disorder/meal-plan',
-
       factory: _$MealPlanRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'home/eating-disorder/contacts',
-
       factory: _$EatingDisorderContactsRoute._fromState,
     ),
   ],

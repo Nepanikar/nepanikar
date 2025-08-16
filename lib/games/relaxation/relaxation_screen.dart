@@ -10,7 +10,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 part 'relaxation_screen.g.dart';
 
-
 enum RelaxationType {
   general,
   morning,
@@ -18,7 +17,7 @@ enum RelaxationType {
 }
 
 @TypedGoRoute<RelaxationRoute>(
-  path: '/games/relaxation/',
+  path: '/games/relaxation/:relaxationType',
 )
 
 class RelaxationRoute extends GoRouteData with _$RelaxationRoute {
