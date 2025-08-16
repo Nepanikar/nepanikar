@@ -3,9 +3,8 @@ import 'dart:math' as math;
 
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
-import 'package:nepanikar/app/router/routes.dart';
+import 'package:nepanikar/app/l10n/app_localizations.dart';
 import 'package:nepanikar/helpers/date_helpers.dart';
 import 'package:nepanikar/screens/settings/notification_settings_screen.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';

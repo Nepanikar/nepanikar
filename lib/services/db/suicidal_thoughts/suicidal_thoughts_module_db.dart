@@ -1,4 +1,4 @@
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nepanikar/app/l10n/app_localizations.dart';
 import 'package:nepanikar/helpers/localization_helpers.dart';
 import 'package:nepanikar/services/db/common/nepanikar_module_db.dart';
 import 'package:nepanikar/services/db/database_service.dart';

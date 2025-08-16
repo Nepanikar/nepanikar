@@ -145,8 +145,8 @@ extension MoodChartFilterExt on Iterable<MoodTrack> {
     final endOfDay = DateTime(dateRange.end.year, dateRange.end.month, dateRange.end.day);
 
     final moodTracks = map((moodTrack) {
-      var originalDate = moodTrack.date;
-      var normalizedDate = DateTime(originalDate.year, originalDate.month, originalDate.day);
+      final originalDate = moodTrack.date;
+      final normalizedDate = DateTime(originalDate.year, originalDate.month, originalDate.day);
       // Assuming your MoodTrack class has a copyWith method
       return moodTrack.copyWith(date: normalizedDate);
     }).toList();

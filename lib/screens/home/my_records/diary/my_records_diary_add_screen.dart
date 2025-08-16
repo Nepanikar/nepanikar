@@ -4,13 +4,16 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
-import 'package:nepanikar/app/router/routes.dart';
-import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/helpers/semantics_helpers.dart';
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_detail_screen.dart';
 import 'package:nepanikar/services/db/my_records/diary/my_records_diary_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/diary/diary_edit_content.dart';
+part 'my_records_diary_add_screen.g.dart';
+
+@TypedGoRoute<MyRecordsDiaryAddRoute>(
+  path: '/home/my-records/diary/add',
+)
 
 class MyRecordsDiaryAddRoute extends GoRouteData with _$MyRecordsDiaryAddRoute {
 

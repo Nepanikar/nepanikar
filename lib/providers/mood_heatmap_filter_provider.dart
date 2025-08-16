@@ -39,13 +39,11 @@ enum HeatmapFilter{
       // Initialization logic for the current period
       switch (this) {
         case HeatmapFilter.month:
-          start = DateTime(now.year, now.month, 1);
+          start = DateTime(now.year, now.month);
           end = DateTime(now.year, now.month + 1, 0);
-          break;
         case HeatmapFilter.year:
-          start = DateTime(now.year, 1, 1);
+          start = DateTime(now.year);
           end = DateTime(now.year, 12, 31);
-          break;
         default:
           start = now;
           end = now;

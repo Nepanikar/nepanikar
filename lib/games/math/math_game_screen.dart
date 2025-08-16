@@ -14,6 +14,11 @@ import 'package:nepanikar/helpers/semantics_helpers.dart';
 import 'package:nepanikar/utils/lottie_cache_manager.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_button.dart';
+part 'math_game_screen.g.dart';
+
+@TypedGoRoute<MathGameRoute>(
+  path: '/games/math/',
+)
 
 class MathGameRoute extends GoRouteData with _$MathGameRoute {
 

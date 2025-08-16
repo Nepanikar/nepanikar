@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
-import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
@@ -16,7 +15,11 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/mood/chosen_emotions.dart';
 import 'package:nepanikar/widgets/mood/mood_picker.dart';
 import 'package:provider/provider.dart';
+part 'mood_picker_screen.g.dart';
 
+@TypedGoRoute<MoodPickerRoute>(
+  path: '/home/my-records/mood-picker',
+)
 class MoodPickerRoute extends GoRouteData with _$MoodPickerRoute {
 
   const MoodPickerRoute();
@@ -358,11 +361,11 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(18.0),
                     ),
-                    padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                   ),
                   child:  Text(
                     context.l10n.save,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 25,
                     ), // Text color
@@ -427,7 +430,7 @@ class _MoodPickerScreenState<T extends MoodTrackDao>
                   ScaffoldMessenger.of(ctx).showSnackBar(
                     SnackBar(
                       content: Text(context.l10n.emotion_too_long),
-                      duration: Duration(seconds: 2),
+                      duration: const Duration(seconds: 2),
                     ),
                   );
                 } else {

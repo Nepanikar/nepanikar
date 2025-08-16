@@ -12,6 +12,11 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:url_launcher/url_launcher.dart';
+part 'export_screen.g.dart';
+
+@TypedGoRoute<ExportRoute>(
+  path: '/settings/export',
+)
 
 class ExportRoute extends GoRouteData with _$ExportRoute {
 
@@ -45,9 +50,9 @@ class _ExportScreenState extends State<ExportScreen> {
   @override
   Widget build(BuildContext context) {
 
-    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
+    final ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
     ThemeMode.dark : ThemeMode.light;
-    bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+    final bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
 
     return NepanikarScreenWrapper(
       key: const ValueKey('export_screen'),

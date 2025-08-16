@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
-import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/screens/home/depression/depression_activity_plan_screen.dart';
 import 'package:nepanikar/screens/home/depression/depression_nice_made_happy_screen.dart';
@@ -10,6 +9,11 @@ import 'package:nepanikar/screens/home/depression/depression_praise_my_achieveme
 import 'package:nepanikar/screens/home/depression/depression_tips_screen.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
+part 'depression_screen.g.dart';
+
+@TypedGoRoute<DepressionRoute>(
+  path: '/home/depression',
+)
 
 class DepressionRoute extends GoRouteData with _$DepressionRoute {
 

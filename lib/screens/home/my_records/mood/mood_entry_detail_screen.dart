@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
-import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
@@ -13,7 +12,11 @@ import 'package:nepanikar/services/db/my_records/mood_track_dao.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
 import 'package:nepanikar/widgets/mood/chosen_emotions.dart';
 import 'package:provider/provider.dart';
+part 'mood_entry_detail_screen.g.dart';
 
+@TypedGoRoute<MoodEntryDetailRoute>(
+  path: '/home/my-records/mood-records/mood-entry',
+)
 class MoodEntryDetailRoute extends GoRouteData with _$MoodEntryDetailRoute {
 
   const MoodEntryDetailRoute();
@@ -92,7 +95,7 @@ class _MoodEntryDetailState<T extends MoodTrackDao>
       body: SafeArea(
         child: Column(
           children: [
-            Container(
+            SizedBox(
               height: 320,
               width: double.infinity,
               child: Stack(
@@ -127,7 +130,7 @@ class _MoodEntryDetailState<T extends MoodTrackDao>
                   Positioned(
                     top: 110,
                     right: 10,
-                    child: Container(
+                    child: SizedBox(
                       width: 220,
                       child: ChosenEmotionsWidget(
                         initialEmotions: moodEntry.emotions ?? [],

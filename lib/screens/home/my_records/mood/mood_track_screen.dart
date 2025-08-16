@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
-import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
@@ -24,6 +23,11 @@ import 'package:nepanikar/widgets/nepanikar_date_range_picker.dart';
 import 'package:nepanikar/widgets/nepanikar_dropdown.dart';
 import 'package:provider/provider.dart';
 
+part 'mood_track_screen.g.dart';
+
+@TypedGoRoute<MoodTrackRoute>(
+  path: '/home/my-records/mood-track',
+)
 class MoodTrackRoute extends GoRouteData with _$MoodTrackRoute {
 
   const MoodTrackRoute();
@@ -107,7 +111,7 @@ class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScree
                       onPick: (mood) async {
                         final l10n = context.l10n;
                         unawaited(_notificationsService.rescheduleNotifications(l10n));
-                        if(GoRouter.of(context).location == const MyRecordsSleepTrackRoute().location){
+                        if(GoRouter.of(context).state.uri.toString() == const MyRecordsSleepTrackRoute().location){
                           await _trackDao.saveSleepTrack(mood);
                         }
                       },

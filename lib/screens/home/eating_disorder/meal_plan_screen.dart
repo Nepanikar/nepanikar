@@ -5,6 +5,11 @@ import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/utils/meal_plan_config.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
+part 'meal_plan_screen.g.dart';
+
+@TypedGoRoute<MealPlanRoute>(
+  path: '/home/eating-disorder/meal-plan',
+)
 
 class MealPlanRoute extends GoRouteData with _$MealPlanRoute {
 
@@ -13,8 +18,8 @@ class MealPlanRoute extends GoRouteData with _$MealPlanRoute {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return MealPlanScreen(
-      id: state.queryParams['id'],
-      title: state.queryParams['title'],
+      id: state.uri.queryParameters['id'],
+      title: state.uri.queryParameters['title'],
     );
   }
 }

@@ -100,7 +100,7 @@ class MainRoute extends GoRouteData with _$MainRoute {
 
   @override
   Widget build(BuildContext context, _) => MainScreen(
-        extra: _.extra as MainPageExtra?,
+        extra: GoRouterState.of(context).extra as MainPageExtra?,
       );
 }
 

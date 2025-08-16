@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
-import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/semantics_helpers.dart';
@@ -19,6 +18,11 @@ import 'package:nepanikar/widgets/nepanikar_date_picker.dart';
 import 'package:nepanikar/widgets/nepanikar_horizontal_divider.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
+part 'my_records_food_record_detail_menu_list_screen.g.dart';
+
+@TypedGoRoute<MyRecordsFoodRecordsDetailMenuListRoute>(
+  path: '/home/my-records/food-records/detail',
+)
 
 class MyRecordsFoodRecordsDetailMenuListRoute extends GoRouteData with _$MyRecordsFoodRecordsDetailMenuListRoute {
 

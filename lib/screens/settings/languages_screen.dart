@@ -1,13 +1,19 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/l10n/app_localizations.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
+
+part 'languages_screen.g.dart';
+
+@TypedGoRoute<LanguagesRoute>(
+  path: '/settings/language',
+)
 
 class LanguagesRoute extends GoRouteData with _$LanguagesRoute {
 

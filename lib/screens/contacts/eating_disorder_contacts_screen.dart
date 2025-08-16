@@ -1,7 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:linkify/linkify.dart';
+import 'package:linkify/linkify.dart' hide PhoneNumberElement, PhoneNumberLinkifier;
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
@@ -13,6 +13,11 @@ import 'package:nepanikar/utils/contacts_data_manager.dart';
 import 'package:nepanikar/utils/custom_linkifiers.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
+part 'eating_disorder_contacts_screen.g.dart';
+
+@TypedGoRoute<EatingDisorderContactsRoute>(
+  path: 'home/eating-disorder/contacts',
+)
 
 class EatingDisorderContactsRoute extends GoRouteData with _$EatingDisorderContactsRoute {
 

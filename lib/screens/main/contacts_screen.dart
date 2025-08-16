@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/app_constants.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
-import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
@@ -20,6 +19,11 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:nepanikar_contacts_gen/nepanikar_contacts_gen.dart';
+part 'contacts_screen.g.dart';
+
+@TypedGoRoute<ContactsRoute>(
+  path: '/contacts',
+)
 
 class ContactsRoute extends GoRouteData with _$ContactsRoute {
 

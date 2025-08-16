@@ -3,13 +3,11 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
-import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/providers/mood_state_provider.dart';
 import 'package:nepanikar/screens/home/my_records/mood/mood_picker_screen.dart';
-import 'package:nepanikar/screens/home/my_records/mood/mood_records_screen.dart';
 import 'package:nepanikar/screens/home/my_records/my_records_sleep_track_screen.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
 import 'package:nepanikar/utils/lottie_cache_manager.dart';
@@ -87,9 +85,9 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final textStyleColor = customColorsBasedOnDarkMode(context, NepanikarColors.white, NepanikarColors.primaryD);
-    final location = GoRouter.of(context).location;
+    final location = GoRouter.of(context).state.uri.toString();
     final bool shouldDisplayTitle =
-            GoRouter.of(context).location == const MoodPickerRoute().location;
+              GoRouter.of(context).state.uri.toString() == const MoodPickerRoute().location;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

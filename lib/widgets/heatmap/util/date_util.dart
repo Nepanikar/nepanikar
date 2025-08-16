@@ -46,7 +46,7 @@ class DateUtil {
 
   /// Get start day of month.
   static DateTime startDayOfMonth(final DateTime referenceDate) =>
-      DateTime(referenceDate.year, referenceDate.month, 1);
+      DateTime(referenceDate.year, referenceDate.month);
 
   /// Get last day of month.
   static DateTime endDayOfMonth(final DateTime referenceDate) =>
@@ -59,22 +59,22 @@ class DateUtil {
   /// Separate [referenceDate]'s month to List of every weeks.
   static List<Map<DateTime, DateTime>> separatedMonth(
       final DateTime referenceDate) {
-    DateTime _startDate = startDayOfMonth(referenceDate);
-    DateTime _endDate = DateTime(_startDate.year, _startDate.month,
-        _startDate.day + DAYS_IN_WEEK - _startDate.weekday % DAYS_IN_WEEK - 1);
-    DateTime _finalDate = endDayOfMonth(referenceDate);
-    List<Map<DateTime, DateTime>> _savedMonth = [];
+    DateTime startDate = startDayOfMonth(referenceDate);
+    DateTime endDate = DateTime(startDate.year, startDate.month,
+        startDate.day + DAYS_IN_WEEK - startDate.weekday % DAYS_IN_WEEK - 1);
+    final DateTime finalDate = endDayOfMonth(referenceDate);
+    final List<Map<DateTime, DateTime>> savedMonth = [];
 
-    while (_startDate.isBefore(_finalDate) || _startDate == _finalDate) {
-      _savedMonth.add({_startDate: _endDate});
-      _startDate = changeDay(_endDate, 1);
-      _endDate = changeDay(
-          _endDate,
-          endDayOfMonth(_endDate).day - _startDate.day >= DAYS_IN_WEEK
+    while (startDate.isBefore(finalDate) || startDate == finalDate) {
+      savedMonth.add({startDate: endDate});
+      startDate = changeDay(endDate, 1);
+      endDate = changeDay(
+          endDate,
+          endDayOfMonth(endDate).day - startDate.day >= DAYS_IN_WEEK
               ? DAYS_IN_WEEK
-              : endDayOfMonth(_endDate).day - _startDate.day + 1);
+              : endDayOfMonth(endDate).day - startDate.day + 1);
     }
-    return _savedMonth;
+    return savedMonth;
   }
 
   /// Change day of [referenceDate].

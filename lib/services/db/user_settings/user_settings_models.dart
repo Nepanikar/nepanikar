@@ -8,7 +8,7 @@ part 'user_settings_models.freezed.dart';
 part 'user_settings_models.g.dart';
 
 @freezed
-class UserLanguage with _$UserLanguage {
+abstract class UserLanguage with _$UserLanguage {
   const factory UserLanguage({
     required String languageCode,
     required String? countryCode,
@@ -27,7 +27,7 @@ class UserLanguage with _$UserLanguage {
 }
 
 @freezed
-class NotificationTypeSettings with _$NotificationTypeSettings {
+abstract class NotificationTypeSettings with _$NotificationTypeSettings {
   const factory NotificationTypeSettings({
     required NotificationType type,
     required int scheduledHour,
@@ -41,7 +41,7 @@ class NotificationTypeSettings with _$NotificationTypeSettings {
 }
 
 @freezed
-class UserThemeMode with _$UserThemeMode {
+abstract class UserThemeMode with _$UserThemeMode {
   const factory UserThemeMode({
     @Default('system') String themeMode,
   }) = _UserThemeMode;

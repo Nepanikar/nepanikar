@@ -1,8 +1,8 @@
 import 'package:collection/collection.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/l10n/app_localizations.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_models.dart';
@@ -11,6 +11,12 @@ import 'package:nepanikar/services/notifications/notifications_service.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_horizontal_divider.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
+
+part 'notification_settings_screen.g.dart';
+
+@TypedGoRoute<NotificationSettingsRoute>(
+  path: '/settings/notification-settings',
+)
 
 class NotificationSettingsRoute extends GoRouteData with _$NotificationSettingsRoute {
   const NotificationSettingsRoute();

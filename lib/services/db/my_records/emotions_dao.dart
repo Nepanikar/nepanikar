@@ -56,7 +56,7 @@ class EmotionsDao {
     final records = await _store.find(_db, finder: finder);
 
     return records
-        .map((record) => record.value['emotion'] as String)
+        .map((record) => record.value['emotion']! as String)
         .whereType<String>()
         .toList();
   }

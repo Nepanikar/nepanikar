@@ -24,18 +24,36 @@ class GoRouterObserver extends NavigatorObserver {
   @override
   void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
     super.didPush(route, previousRoute);
-    analytics.setCurrentScreen(screenName: route.settings.name);
+    final screenName = route.settings.name;
+    if (screenName != null) {
+      analytics.logScreenView(
+        screenName: screenName,
+        screenClass: screenName,
+      );
+    }
   }
 
   @override
   void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
     super.didPop(route, previousRoute);
-    analytics.setCurrentScreen(screenName: previousRoute?.settings.name);
+    final screenName = previousRoute?.settings.name;
+    if (screenName != null) {
+      analytics.logScreenView(
+        screenName: screenName,
+        screenClass: screenName,
+      );
+    }
   }
 
   @override
   void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute}) {
     super.didReplace(newRoute: newRoute, oldRoute: oldRoute);
-    analytics.setCurrentScreen(screenName: newRoute?.settings.name);
+    final screenName = newRoute?.settings.name;
+    if (screenName != null) {
+      analytics.logScreenView(
+        screenName: screenName,
+        screenClass: screenName,
+      );
+    }
   }
 }

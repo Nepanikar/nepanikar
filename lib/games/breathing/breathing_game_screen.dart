@@ -6,12 +6,17 @@ import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/games/breathing/shape_painter.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/helpers/semantics_helpers.dart';
-
+part 'breathing_game_screen.g.dart';
 enum BreathingGameShape {
   circle,
   square,
   triangle,
 }
+
+
+@TypedGoRoute<BreathingGameRoute>(
+  path: '/games/breathing/:shape',
+)
 
 class BreathingGameRoute extends GoRouteData with _$BreathingGameRoute {
 
@@ -61,7 +66,6 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
             context.l10n.breathe_out,
           ];
         });
-        break;
       case BreathingGameShape.square:
         setState(() {
           steps = [
@@ -71,7 +75,6 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
             context.l10n.breathe_hold,
           ];
         });
-        break;
       case BreathingGameShape.triangle:
         setState(() {
           steps = [
@@ -80,7 +83,6 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
             context.l10n.breathe_out,
           ];
         });
-        break;
     }
   }
 

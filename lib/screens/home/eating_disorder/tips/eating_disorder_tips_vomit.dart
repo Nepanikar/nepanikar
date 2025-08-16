@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/widgets/tips_carousel_body.dart';
 
-import '../../../../helpers/color_helpers.dart';
+part 'eating_disorder_tips_vomit.g.dart';
+
+@TypedGoRoute<EatingDisorderTipsVomitAppRoute>(
+  path: '/home/eating-disorder/tips/vomit',
+)
 
 class EatingDisorderTipsVomitAppRoute extends GoRouteData with _$EatingDisorderTipsVomitAppRoute {
 

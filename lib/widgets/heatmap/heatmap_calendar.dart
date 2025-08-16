@@ -7,6 +7,30 @@ import 'package:nepanikar/widgets/heatmap/widget/heatmap_calendar_page.dart';
 import 'package:nepanikar/widgets/heatmap/widget/heatmap_color_tip.dart';
 
 class HeatMapCalendar extends StatefulWidget {
+
+  const HeatMapCalendar({
+    super.key,
+    required this.colorsets,
+    this.colorMode = ColorMode.opacity,
+    this.defaultColor,
+    this.datasets,
+    this.initDate,
+    this.size = 42,
+    this.fontSize,
+    this.monthFontSize,
+    this.textColor,
+    this.weekFontSize,
+    this.weekTextColor,
+    this.borderRadius,
+    this.flexible = false,
+    this.margin,
+    this.onClick,
+    this.onMonthChange,
+    this.showColorTip = true,
+    this.colorTipHelper,
+    this.colorTipCount,
+    this.colorTipSize,
+  });
   /// The datasets which fill blocks based on its value.
   final Map<DateTime, int>? datasets;
 
@@ -88,30 +112,6 @@ class HeatMapCalendar extends StatefulWidget {
   /// The double value of [HeatMapColorTip]'s tip container's size.
   final double? colorTipSize;
 
-  const HeatMapCalendar({
-    Key? key,
-    required this.colorsets,
-    this.colorMode = ColorMode.opacity,
-    this.defaultColor,
-    this.datasets,
-    this.initDate,
-    this.size = 42,
-    this.fontSize,
-    this.monthFontSize,
-    this.textColor,
-    this.weekFontSize,
-    this.weekTextColor,
-    this.borderRadius,
-    this.flexible = false,
-    this.margin,
-    this.onClick,
-    this.onMonthChange,
-    this.showColorTip = true,
-    this.colorTipHelper,
-    this.colorTipCount,
-    this.colorTipSize,
-  }) : super(key: key);
-
   @override
   State<StatefulWidget> createState() => _HeatMapCalendar();
 }
@@ -155,9 +155,7 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
 
         // Text which shows the current year and month
         Text(
-          DateUtil.MONTH_LABEL[_currentDate?.month ?? 0] +
-              ' ' +
-              (_currentDate?.year).toString(),
+          '${DateUtil.MONTH_LABEL[_currentDate?.month ?? 0]} ${_currentDate?.year}',
           style: TextStyle(
             fontSize: widget.monthFontSize ?? 12,
             fontWeight: FontWeight.bold
@@ -180,7 +178,7 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        for (String label in DateUtil.WEEK_LABEL.skip(1))
+        for (final String label in DateUtil.WEEK_LABEL.skip(1))
           WidgetUtil.flexibleContainer(
             widget.flexible ?? false,
             false,

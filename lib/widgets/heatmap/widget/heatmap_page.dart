@@ -2,15 +2,30 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:nepanikar/widgets/heatmap/widget/heatmap_month2.dart';
-import 'heatmap_month_text.dart';
-import './heatmap_column.dart';
-import '../data/heatmap_color_mode.dart';
-import '../util/datasets_util.dart';
-import '../util/date_util.dart';
-import 'heatmap_week_text.dart';
+import 'package:nepanikar/widgets/heatmap/data/heatmap_color_mode.dart';
+import 'package:nepanikar/widgets/heatmap/util/datasets_util.dart';
+import 'package:nepanikar/widgets/heatmap/util/date_util.dart';
+import 'package:nepanikar/widgets/heatmap/widget/heatmap_column.dart';
 
 class HeatMapPage extends StatelessWidget {
+
+  HeatMapPage({
+    super.key,
+    required this.colorMode,
+    required this.startDate,
+    required this.endDate,
+    this.size,
+    this.fontSize,
+    this.datasets,
+    this.defaultColor,
+    this.textColor,
+    this.colorsets,
+    this.borderRadius,
+    this.onClick,
+    this.margin,
+    this.showText,
+  })  : _dateDifferent = endDate.difference(startDate).inDays,
+        maxValue = DatasetsUtil.getMaxValue(datasets);
   /// List value of every sunday's month information.
   ///
   /// From 1: January to 12: December.
@@ -77,45 +92,26 @@ class HeatMapPage extends StatelessWidget {
 
   final bool? showText;
 
-  HeatMapPage({
-    Key? key,
-    required this.colorMode,
-    required this.startDate,
-    required this.endDate,
-    this.size,
-    this.fontSize,
-    this.datasets,
-    this.defaultColor,
-    this.textColor,
-    this.colorsets,
-    this.borderRadius,
-    this.onClick,
-    this.margin,
-    this.showText,
-  })  : _dateDifferent = endDate.difference(startDate).inDays,
-        maxValue = DatasetsUtil.getMaxValue(datasets),
-        super(key: key);
-
   /// Get [HeatMapColumn] from [startDate] to [endDate].
   List<Widget> _heatmapColumnList(int specificMonth) {
-    List<Widget> columns = [];
-    int year = startDate.year;
+    final List<Widget> columns = [];
+    final int year = startDate.year;
     final dateTime = DateTime(year, specificMonth);
     final lastDay = DateUtil.endDayOfMonth(dateTime);
-    int daysInMonth = lastDay.day;
+    final int daysInMonth = lastDay.day;
 
     // Process each week in the month
     for (int day = 1; day <= daysInMonth; day += 7) {
-      DateTime weekStart = DateTime(year, specificMonth, day);
-      DateTime weekEnd =
+      final DateTime weekStart = DateTime(year, specificMonth, day);
+      final DateTime weekEnd =
           DateTime(year, specificMonth, min(day + 6, daysInMonth));
 
       // Filter datasets for the days in this week only
-      Map<DateTime, int> weeklyData = {};
+      final Map<DateTime, int> weeklyData = {};
       if (datasets != null) {
-        for (var entry in datasets!.entries) {
-          if (entry.key.isAfter(weekStart.subtract(Duration(days: 1))) &&
-              (entry.key.isBefore(weekEnd.add(Duration(days: 1))) ||
+        for (final entry in datasets!.entries) {
+          if (entry.key.isAfter(weekStart.subtract(const Duration(days: 1))) &&
+              (entry.key.isBefore(weekEnd.add(const Duration(days: 1))) ||
                   entry.key.isAtSameMomentAs(weekEnd))) {
             weeklyData[entry.key] = entry.value;
           }
@@ -146,21 +142,21 @@ class HeatMapPage extends StatelessWidget {
   }
 
   Widget _buildYearlyHeatmap() {
-    List<Widget> monthlyColumns = [];
+    final List<Widget> monthlyColumns = [];
     // Iterate over each month and create a HeatMapColumn for that month
     for (int month = 1; month <= 12; month++) {
-      int year = startDate.year;
-      DateTime firstDayOfMonth = DateUtil.startDayOfMonth(DateTime(year, month));
-      DateTime lastDayOfMonth = DateUtil.endDayOfMonth(DateTime(year, month));
+      final int year = startDate.year;
+      final DateTime firstDayOfMonth = DateUtil.startDayOfMonth(DateTime(year, month));
+      final DateTime lastDayOfMonth = DateUtil.endDayOfMonth(DateTime(year, month));
 
-      Map<DateTime, int> monthlyData = Map<DateTime, int>.fromEntries(
+      final Map<DateTime, int> monthlyData = Map<DateTime, int>.fromEntries(
           datasets?.entries.where(
                   (entry) => entry.key.month == month && entry.key.year == year
           ) ?? const Iterable.empty()
       );
 
       // Create a HeatMapColumn for the entire month
-      Widget heatmapColumn = HeatMapColumn(
+      final Widget heatmapColumn = HeatMapColumn(
         startDate: firstDayOfMonth,
         endDate: lastDayOfMonth,
         colorMode: colorMode,
@@ -180,7 +176,7 @@ class HeatMapPage extends StatelessWidget {
 
       monthlyColumns.add(
         Padding(
-          padding: EdgeInsets.only(right: 2),
+          padding: const EdgeInsets.only(right: 2),
           child: SizedBox(
             width: 21,
             height: 675,

@@ -6,7 +6,6 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
-import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
@@ -28,7 +27,11 @@ import 'package:nepanikar/widgets/mood/mood_picker.dart';
 import 'package:nepanikar/widgets/nepanikar_date_range_picker.dart';
 import 'package:nepanikar/widgets/nepanikar_dropdown.dart';
 import 'package:provider/provider.dart';
+part 'mood_records_screen.g.dart';
 
+@TypedGoRoute<MoodRecordsRoute>(
+  path: '/home/my-records/mood-records',
+)
 class MoodRecordsRoute extends GoRouteData with _$MoodRecordsRoute {
 
   const MoodRecordsRoute();
@@ -202,7 +205,6 @@ class _MoodRecordsScreenState<T extends MoodTrackDao>
                                   .selectMoodEntry(moodEntry);
                               context.push(const MoodEntryDetailRoute().location);
                             },
-                            moodColor: null,
                           ),
                         );
                       },
@@ -223,14 +225,14 @@ class _MoodRecordsScreenState<T extends MoodTrackDao>
                             });
                           },
                           style: ElevatedButton.styleFrom(
-                            shape: StadiumBorder(),
+                            shape: const StadiumBorder(),
                           ),
                           child: const Icon(Icons.more_horiz, size: 40),
                         ),
                       );
                     } else {
                       // You can return an empty Container or SizedBox if there's nothing to show
-                      return SizedBox();
+                      return const SizedBox();
                     }
                   },
                 )
@@ -254,14 +256,14 @@ class _MoodRecordsScreenState<T extends MoodTrackDao>
             style: NepanikarFonts.title2.copyWith(color: NepanikarColors.white),
           ),
           leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             onPressed: () {
               context.push(const MyRecordsRoute().location);
             },
           ),
           actions: [
             IconButton(
-              icon: Icon(Icons.arrow_forward_ios),
+              icon: const Icon(Icons.arrow_forward_ios),
               tooltip: context.l10n.notifications,
               onPressed: () {
                 setState(() {
@@ -423,7 +425,6 @@ class _MoodRecordsScreenState<T extends MoodTrackDao>
       final dateRange = provider.activeDateRange;
       final averageScoreForDay = calculateAverageMoodScores(moodTracks);
       return Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Align(
             alignment: Alignment.centerLeft,
@@ -435,7 +436,7 @@ class _MoodRecordsScreenState<T extends MoodTrackDao>
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
             child: MoodHeatmap(
               heatmapType: activeFilter,
               dateRange: dateRange,

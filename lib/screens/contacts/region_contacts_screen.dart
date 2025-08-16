@@ -11,6 +11,11 @@ import 'package:nepanikar/widgets/contacts/region_item_contacts_list.dart';
 import 'package:nepanikar/widgets/nepanikar_dropdown.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:nepanikar_contacts_gen/nepanikar_contacts_gen.dart';
+part 'region_contacts_screen.g.dart';
+
+@TypedGoRoute<UniversityContactsRoute>(
+  path: '/contacts/universities',
+)
 
 class UniversityContactsRoute extends GoRouteData with _$UniversityContactsRoute {
 
@@ -32,6 +37,11 @@ class UniversityContactsRoute extends GoRouteData with _$UniversityContactsRoute
     );
   }
 }
+
+
+@TypedGoRoute<CrisisCenterContactsRoute>(
+  path: '/contacts/crisis-center',
+)
 
 class CrisisCenterContactsRoute extends GoRouteData with _$CrisisCenterContactsRoute {
 

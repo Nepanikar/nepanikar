@@ -3,6 +3,11 @@ import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/services/db/self_harm/self_harm_helped_dao.dart';
 import 'package:nepanikar/widgets/input_form_contents/list_form_content.dart';
+part 'self_harm_helped_screen.g.dart';
+
+@TypedGoRoute<SelfHarmHelpedRoute>(
+  path: '/home/self-harm/helped',
+)
 
 class SelfHarmHelpedRoute extends GoRouteData with _$SelfHarmHelpedRoute {
 

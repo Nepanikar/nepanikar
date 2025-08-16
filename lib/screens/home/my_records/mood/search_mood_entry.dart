@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
-import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
@@ -15,6 +14,11 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/mood/chosen_emotions.dart';
 import 'package:nepanikar/widgets/mood/mood_entry_card.dart';
 import 'package:provider/provider.dart';
+part 'search_mood_entry.g.dart';
+
+@TypedGoRoute<SearchMoodEntryRoute>(
+  path: '/home/my-records/search-mood-entry',
+)
 
 class SearchMoodEntryRoute extends GoRouteData with _$SearchMoodEntryRoute {
 
@@ -56,7 +60,7 @@ class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntr
     });
   }
 
-  void _search() async {
+  Future<void> _search() async {
     final results = await _trackDao.searchMoodTracks(_summaryToSearch, _selectedEmotions);
     setState(() {
       _searchResults = results;
@@ -79,7 +83,7 @@ class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntr
 
     const pageHorizontalPadding = EdgeInsets.symmetric(horizontal: 24.0, vertical: 12);
 
-    ValueKey<int> uniqueKey = ValueKey<int>(_selectedEmotions.length);
+    final ValueKey<int> uniqueKey = ValueKey<int>(_selectedEmotions.length);
 
 
     final textStyleColor = customColorsBasedOnDarkMode(
@@ -223,7 +227,7 @@ class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntr
                         ),
                         child: Text(
                           context.l10n.search,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 14,
                           ), // Text color
@@ -271,12 +275,12 @@ class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntr
                     ),
                     ListView.builder(
                       shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       itemCount: _searchResults.length, // Use the length of the search results list
                       itemBuilder: (context, index) {
                         final moodEntry = _searchResults[index]; // Access the search result item
                         return Padding(
-                          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
                           child: MoodEntryCard(
                             dateTime: DateFormat('d. MMM yyyy, HH:mm').format(moodEntry.date),
                             moodIcon: moodEntry.mood.icon,
@@ -285,7 +289,6 @@ class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntr
                               Provider.of<MoodState>(context, listen: false).selectMoodEntry(moodEntry);
                               context.push(const MoodEntryDetailRoute().location);
                             },
-                            moodColor: null,
                           ),
                         );
                       },

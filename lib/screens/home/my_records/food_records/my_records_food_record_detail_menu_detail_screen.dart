@@ -9,6 +9,11 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_button.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
+part 'my_records_food_record_detail_menu_detail_screen.g.dart';
+
+@TypedGoRoute<MyRecordsFoodRecordsDetailMenuDetailRoute>(
+  path: '/home/my-records/food-records/detail/menu-detail',
+)
 
 class MyRecordsFoodRecordsDetailMenuDetailRoute extends GoRouteData with _$MyRecordsFoodRecordsDetailMenuDetailRoute {
 

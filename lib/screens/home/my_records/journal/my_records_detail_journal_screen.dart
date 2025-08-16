@@ -16,6 +16,11 @@ import 'package:nepanikar/widgets/nepanikar_button.dart';
 import 'package:nepanikar/widgets/nepanikar_date_picker.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
+part 'my_records_detail_journal_screen.g.dart';
+
+@TypedGoRoute<MyRecordsJournalDetailRoute>(
+  path: '/home/my-records/journal-detail',
+)
 
 class MyRecordsJournalDetailRoute extends GoRouteData with _$MyRecordsJournalDetailRoute {
 

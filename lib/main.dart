@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/fonts.gen.dart';
+import 'package:nepanikar/app/l10n/app_localizations.dart';
 import 'package:nepanikar/app/theme/dark_theme.dart';
 import 'package:nepanikar/app/theme/theme.dart';
 import 'package:nepanikar/helpers/localization_helpers.dart';
@@ -78,7 +78,7 @@ class Nepanikar extends StatelessWidget {
                         child: MediaQuery(
                           // To not influence app's font size by the system font size.
                           // TODO: Should be resolved, accessibility is important.
-                          data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                          data: MediaQuery.of(context).copyWith(textScaler: const TextScaler.linear(1.0)),
                           child: child,
                         ),
                       )

@@ -61,8 +61,8 @@ class MoodChart extends StatelessWidget {
             show: true,
             getDotPainter: (_, __, ___, ____) => FlDotCirclePainter(
               radius: 2.8,
-              color: lineColor,
-              strokeColor: lineColor,
+              color: lineColor ?? Colors.black,
+              strokeColor: lineColor ?? Colors.black,
             ),
           ),
           color: lineColor,
@@ -95,7 +95,6 @@ class MoodChart extends StatelessWidget {
           ),
         ),
         leftTitles: AxisTitles(
-          drawBehindEverything: true,
           sideTitles: SideTitles(
             interval: 1,
             showTitles: true,
@@ -115,10 +114,10 @@ class MoodChart extends StatelessWidget {
         getTouchedSpotIndicator: (_, spotIndexes) {
           return spotIndexes.map((spotIndex) {
             return TouchedSpotIndicatorData(
-              FlLine(color: lineColor, strokeWidth: 3),
+              FlLine(color: lineColor  ?? Colors.black, strokeWidth: 3),
               FlDotData(
                 getDotPainter: (_, __, ___, ____) =>
-                    FlDotCirclePainter(radius: 8, color: lineColor, strokeWidth: 0),
+                    FlDotCirclePainter(radius: 8, color: lineColor  ?? Colors.black, strokeWidth: 0),
               ),
             );
           }).toList();

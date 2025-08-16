@@ -3,7 +3,6 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
-import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/providers/mood_state_provider.dart';
 import 'package:nepanikar/screens/home/my_records/my_records_screen.dart';
 import 'package:nepanikar/screens/main/contacts_screen.dart';

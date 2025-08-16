@@ -28,9 +28,9 @@ class FoodRecordTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
+    final ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
     ThemeMode.dark : ThemeMode.light;
-    bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+    final bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
 
     const textStyle = NepanikarFonts.bodyHeavy;
     final locale = Localizations.localeOf(context);

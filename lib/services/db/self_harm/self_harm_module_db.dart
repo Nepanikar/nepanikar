@@ -1,4 +1,4 @@
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nepanikar/app/l10n/app_localizations.dart';
 import 'package:nepanikar/services/db/common/nepanikar_module_db.dart';
 import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/services/db/self_harm/self_harm_helped_dao.dart';

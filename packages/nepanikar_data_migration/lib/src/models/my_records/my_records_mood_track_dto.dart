@@ -20,7 +20,8 @@ class MyRecordsMoodTrackDTO extends Equatable {
 
     if (confValues != null) {
       for (final item in confValues) {
-        String? description, summary;
+        String? description;
+        String? summary;
         int? value;
 
         if (item.length == 2) {
@@ -71,7 +72,8 @@ class MyRecordsMoodTrackDTO extends Equatable {
 
     if (moodValuesSize != null) {
       for (var i = 1; i <= moodValuesSize; i++) {
-        String? description, summary;
+        String? description;
+        String? summary;
         List<String> emotions = [];
         int? value;
 

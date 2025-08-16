@@ -1,17 +1,7 @@
 import 'package:flutter/material.dart';
-import '../data/heatmap_color.dart';
+import 'package:nepanikar/widgets/heatmap/data/heatmap_color.dart';
 
 class HeatMapContainer extends StatelessWidget {
-  final DateTime date;
-  final double? size;
-  final double? fontSize;
-  final double? borderRadius;
-  final Color? backgroundColor;
-  final Color? selectedColor;
-  final Color? textColor;
-  final EdgeInsets? margin;
-  final bool? showText;
-  final Function(DateTime dateTime)? onClick;
 
   const HeatMapContainer({
     super.key,
@@ -26,6 +16,16 @@ class HeatMapContainer extends StatelessWidget {
     this.onClick,
     this.showText,
   });
+  final DateTime date;
+  final double? size;
+  final double? fontSize;
+  final double? borderRadius;
+  final Color? backgroundColor;
+  final Color? selectedColor;
+  final Color? textColor;
+  final EdgeInsets? margin;
+  final bool? showText;
+  final Function(DateTime dateTime)? onClick;
 
   @override
   Widget build(BuildContext context) {

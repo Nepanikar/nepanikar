@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 
-import '../helpers/color_helpers.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 
 enum ButtonType {
   primary,

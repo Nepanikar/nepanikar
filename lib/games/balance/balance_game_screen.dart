@@ -7,6 +7,11 @@ import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
+part 'balance_game_screen.g.dart';
+
+@TypedGoRoute<BalanceGameRoute>(
+  path: '/games/balance/',
+)
 
 class BalanceGameRoute extends GoRouteData with _$BalanceGameRoute {
 

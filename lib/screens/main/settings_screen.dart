@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/app_constants.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
-import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
@@ -172,7 +171,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         top: isDarkMode
                             ? BorderSide(
                                 color: NepanikarColors.primarySwatch.shade700)
-                            : BorderSide(color: Color(0xffF2F2F5)),
+                            : const BorderSide(color: Color(0xffF2F2F5)),
                       ),
                     ),
                     child: Padding(
@@ -244,12 +243,11 @@ class _SettingsMenuItem extends StatelessWidget {
     this.leading,
     required this.text,
     this.onTap,
-    this.trailing,
   });
 
   final bool hideTopSeparator;
   final Widget? leading;
-  final Widget? trailing;
+  final Widget? trailing = null;
   final String text;
   final VoidCallback? onTap;
 

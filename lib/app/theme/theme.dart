@@ -33,7 +33,7 @@ class NepanikarTheme {
           centerTitle: true,
           titleTextStyle: NepanikarFonts.title3.copyWith(color: Colors.white),
         ),
-        cardTheme: const CardTheme().copyWith(
+        cardTheme: const CardThemeData().copyWith(
           margin: const EdgeInsets.symmetric(horizontal: 24),
           elevation: 0,
           shape: RoundedRectangleBorder(
@@ -42,37 +42,37 @@ class NepanikarTheme {
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: _buttonStyle.copyWith(
-            backgroundColor: MaterialStateProperty.resolveWith<Color?>(
+            backgroundColor: WidgetStateProperty.resolveWith<Color?>(
               (states) {
-                if (states.contains(MaterialState.disabled)) {
+                if (states.contains(WidgetState.disabled)) {
                   return NepanikarColors.primarySwatch.shade500;
                 }
                 return NepanikarColors.primary;
               },
             ),
-            foregroundColor: MaterialStateProperty.all<Color?>(Colors.white),
-            textStyle: MaterialStateProperty.all<TextStyle>(
+            foregroundColor: WidgetStateProperty.all<Color?>(Colors.white),
+            textStyle: WidgetStateProperty.all<TextStyle>(
               const TextStyle(color: Colors.white, fontWeight: FontWeight.w900),
             ),
           ),
         ),
         outlinedButtonTheme: OutlinedButtonThemeData(
           style: _buttonStyle.copyWith(
-            backgroundColor: MaterialStateProperty.all<Color?>(Colors.white),
-            foregroundColor: MaterialStateProperty.resolveWith<Color?>(
+            backgroundColor: WidgetStateProperty.all<Color?>(Colors.white),
+            foregroundColor: WidgetStateProperty.resolveWith<Color?>(
               (states) {
-                if (states.contains(MaterialState.disabled)) {
+                if (states.contains(WidgetState.disabled)) {
                   return NepanikarColors.primarySwatch.shade500;
                 }
                 return NepanikarColors.primary;
               },
             ),
-            textStyle: MaterialStateProperty.all<TextStyle>(
+            textStyle: WidgetStateProperty.all<TextStyle>(
               const TextStyle(color: NepanikarColors.primary, fontWeight: FontWeight.w900),
             ),
-            side: MaterialStateProperty.resolveWith<BorderSide?>(
+            side: WidgetStateProperty.resolveWith<BorderSide?>(
               (states) {
-                if (states.contains(MaterialState.disabled)) {
+                if (states.contains(WidgetState.disabled)) {
                   return BorderSide(color: NepanikarColors.primarySwatch.shade500, width: 2.0);
                 }
                 return const BorderSide(color: NepanikarColors.primary, width: 2.0);
@@ -142,30 +142,30 @@ class NepanikarTheme {
           horizontalTitleGap: 16,
         ),
         checkboxTheme: CheckboxThemeData(
-          fillColor: MaterialStateProperty.resolveWith<Color?>((states) {
-            if (states.contains(MaterialState.selected)) {
+          fillColor: WidgetStateProperty.resolveWith<Color?>((states) {
+            if (states.contains(WidgetState.selected)) {
               return NepanikarColors.primary;
             }
             return null;
           }),
         ),
         radioTheme: RadioThemeData(
-          fillColor: MaterialStateProperty.resolveWith<Color?>((states) {
-            if (states.contains(MaterialState.selected)) {
+          fillColor: WidgetStateProperty.resolveWith<Color?>((states) {
+            if (states.contains(WidgetState.selected)) {
               return NepanikarColors.primary;
             }
             return null;
           }),
         ),
         switchTheme: SwitchThemeData(
-          thumbColor: MaterialStateProperty.resolveWith<Color?>((states) {
-            if (states.contains(MaterialState.selected)) {
+          thumbColor: WidgetStateProperty.resolveWith<Color?>((states) {
+            if (states.contains(WidgetState.selected)) {
               return NepanikarColors.primary;
             }
             return null;
           }),
-          trackColor: MaterialStateProperty.resolveWith<Color?>((states) {
-            if (states.contains(MaterialState.selected)) {
+          trackColor: WidgetStateProperty.resolveWith<Color?>((states) {
+            if (states.contains(WidgetState.selected)) {
               return NepanikarColors.primary;
             }
             return null;
@@ -178,9 +178,9 @@ class NepanikarTheme {
 }
 
 final _buttonStyle = ButtonStyle(
-  minimumSize: MaterialStateProperty.all<Size>(NepanikarSizes.buttonSize),
-  elevation: MaterialStateProperty.all<double>(0),
-  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+  minimumSize: WidgetStateProperty.all<Size>(NepanikarSizes.buttonSize),
+  elevation: WidgetStateProperty.all<double>(0),
+  shape: WidgetStateProperty.all<RoundedRectangleBorder>(
     RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
   ),
 );

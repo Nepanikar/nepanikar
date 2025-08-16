@@ -1,4 +1,4 @@
-import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:assets_audio_player_updated/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
@@ -8,11 +8,18 @@ import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+part 'relaxation_screen.g.dart';
+
+
 enum RelaxationType {
   general,
   morning,
   evening,
 }
+
+@TypedGoRoute<RelaxationRoute>(
+  path: '/games/relaxation/',
+)
 
 class RelaxationRoute extends GoRouteData with _$RelaxationRoute {
 
@@ -76,19 +83,16 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
         /// Not translated, bcs this module is only used in CS and SK lang
         title = 'Relaxace';
         asset = Assets.audio.relaxCS;
-        break;
       case RelaxationType.morning:
         title = 'Ranní zastavení';
         asset = Assets.audio.morningCS;
         description = 'Audionahrávku relaxace namluvili Odpověď uvnitř';
         url = 'https://www.odpoveduvnitr.cz/';
-        break;
       case RelaxationType.evening:
         title = 'Večerní zastavení';
         asset = Assets.audio.eveningCS;
         description = 'Audionahrávku relaxace namluvili Odpověď uvnitř';
         url = 'https://www.odpoveduvnitr.cz/';
-        break;
     }
 
     player.open(

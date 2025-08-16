@@ -13,6 +13,11 @@ import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/utils/lottie_cache_manager.dart';
 import 'package:nepanikar/utils/registry.dart';
+part 'balloons_game_screen.g.dart';
+
+@TypedGoRoute<BalloonsGameRoute>(
+  path: '/games/balloons/',
+)
 
 class BalloonsGameRoute extends GoRouteData with _$BalloonsGameRoute {
 

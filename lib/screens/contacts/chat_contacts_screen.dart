@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
@@ -8,7 +7,11 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/contacts/chat_contact_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:nepanikar_contacts_gen/nepanikar_contacts_gen.dart';
+part 'chat_contacts_screen.g.dart';
 
+@TypedGoRoute<ChatContactsRoute>(
+  path: '/contacts/chat',
+)
 class ChatContactsRoute extends GoRouteData with _$ChatContactsRoute {
 
   const ChatContactsRoute();

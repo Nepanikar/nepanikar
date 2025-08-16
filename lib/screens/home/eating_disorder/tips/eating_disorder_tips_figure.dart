@@ -4,6 +4,11 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/widgets/tips_carousel_body.dart';
+part 'eating_disorder_tips_figure.g.dart';
+
+@TypedGoRoute<EatingDisorderTipsFigureAppRoute>(
+  path: '/home/eating-disorder/tips/figure',
+)
 
 class EatingDisorderTipsFigureAppRoute extends GoRouteData with _$EatingDisorderTipsFigureAppRoute {
 
