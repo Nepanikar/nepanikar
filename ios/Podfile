@@ -1,3 +1,5 @@
+platform :ios, '13.0'
+
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
 
 project 'Runner', {
@@ -28,6 +30,8 @@ target 'Runner' do
   use_modular_headers!
 
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
+  
+  pod 'assets_audio_player_plus', :path => '../.symlinks/plugins/assets_audio_player_plus/ios/assets_audio_player.podspec'
 end
 
 post_install do |installer|
