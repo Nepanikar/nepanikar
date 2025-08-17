@@ -1,6 +1,6 @@
-import 'package:assets_audio_player_plus/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
@@ -32,7 +32,7 @@ class RelaxationScreen extends StatefulWidget {
 }
 
 class _RelaxationScreenState extends State<RelaxationScreen> {
-  final player = AssetsAudioPlayerPlus();
+  final player = AudioPlayer();
 
   Duration songDuration = Duration.zero;
   Duration sliderPosition = Duration.zero;
@@ -82,21 +82,18 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
         url = 'https://www.odpoveduvnitr.cz/';
     }
 
-    player.open(Audio(asset), autoStart: false);
-
-    player.current.listen((playingAudio) {
-      if (playingAudio?.audio != null) {
-        if (mounted) {
-          setState(() {
-            songDuration = playingAudio!.audio.duration;
-          });
-        }
-      }
-    });
-    player.currentPosition.listen((currPosition) {
+    final duration = player.setAsset(asset);
+    player.durationStream.listen((duration) {
       if (mounted) {
         setState(() {
-          sliderPosition = currPosition;
+          songDuration = duration ?? Duration.zero;
+        });
+      }
+    });
+    player.positionStream.listen((position) {
+      if (mounted) {
+        setState(() {
+          sliderPosition = position;
         });
       }
     });
@@ -135,13 +132,18 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
             ),
           Align(
             child: StreamBuilder(
-              stream: player.isPlaying,
+              stream: player.playingStream,
               builder: (context, asyncSnapshot) {
                 final bool isPlaying = asyncSnapshot.data ?? false;
                 return Semantics(
                   button: true,
                   child: GestureDetector(
-                    onTap: () => player.playOrPause(),
+                    onTap: () {
+                    if (isPlaying) {
+                    player.pause();
+                    } else {
+                    player.play();
+                    }},
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
                       child: Container(

@@ -7,7 +7,6 @@ environment:
   sdk: ">=3.8.0 <4.0.0"
 
 dependencies:
-  assets_audio_player_plus: ^3.1.2
   auto_size_text: ^3.0.0
   awesome_notifications: ^0.10.1
   collection: ^1.17.0
@@ -31,6 +30,7 @@ dependencies:
   go_router: ^16.0.0
   intl: ^0.20.2
   json_annotation: ^4.9.0
+  just_audio: ^0.10.4
   linkify: ^5.0.0
   lottie: ^3.3.0
   multi_select_flutter: ^4.1.3
