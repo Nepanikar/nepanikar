@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
-import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/games/breathing/breathing_exercises_screen.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_helped_screen.dart';
@@ -11,8 +10,10 @@ import 'package:nepanikar/screens/home/self_harm/self_harm_timer_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_tips_screen.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
+part 'self_harm_screen.g.dart';
 
-class SelfHarmRoute extends GoRouteData {
+@TypedGoRoute<SelfHarmRoute>(path: '/home/self-harm')
+class SelfHarmRoute extends GoRouteData with _$SelfHarmRoute {
   const SelfHarmRoute();
 
   @override

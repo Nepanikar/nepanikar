@@ -84,21 +84,17 @@ class _NepanikarScreenWrapperState extends State<NepanikarScreenWrapper> {
           primary: false,
           shrinkWrap: true,
           padding: const EdgeInsets.fromLTRB(24, 16, 24, 16),
-          children: widget.children.mapIndexed(
-            (i, e) {
-              final isFirst = i == 0;
-              return Padding(
-                padding: EdgeInsets.fromLTRB(0, isFirst ? 0 : 6, 0, 6),
-                child: e,
-              );
-            },
-          ).toList(),
+          children: widget.children.mapIndexed((i, e) {
+            final isFirst = i == 0;
+            return Padding(padding: EdgeInsets.fromLTRB(0, isFirst ? 0 : 6, 0, 6), child: e);
+          }).toList(),
         );
       } else {
         return Column(
           mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment:
-              widget.isCardStackLayout ? CrossAxisAlignment.start : CrossAxisAlignment.center,
+          crossAxisAlignment: widget.isCardStackLayout
+              ? CrossAxisAlignment.start
+              : CrossAxisAlignment.center,
           children: widget.children,
         );
       }
@@ -110,9 +106,7 @@ class _NepanikarScreenWrapperState extends State<NepanikarScreenWrapper> {
       floatingActionButton: widget.floatingActionButton == null
           ? null
           : Padding(
-              padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom,
-              ),
+              padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
               child: widget.floatingActionButton,
             ),
       bottomNavigationBar: widget.showBottomNavbar
@@ -226,7 +220,11 @@ class AppBarOverflowContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final pageSidePadding = NepanikarSizes.screenContentPadding.left;
-    final containerColor = customColorsBasedOnDarkMode(context, NepanikarColors.headerD, NepanikarColors.primary);
+    final containerColor = customColorsBasedOnDarkMode(
+      context,
+      NepanikarColors.headerD,
+      NepanikarColors.primary,
+    );
 
     return Container(
       color: containerColor,

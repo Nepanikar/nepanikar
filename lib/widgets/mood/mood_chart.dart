@@ -7,35 +7,30 @@ import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
 
 class MoodChart extends StatelessWidget {
-  const MoodChart({
-    super.key,
-    required this.moodTrackData,
-    required this.moodLabelBuilder,
-  });
+  const MoodChart({super.key, required this.moodTrackData, required this.moodLabelBuilder});
 
   final Map<DateTime, MoodTrack?> moodTrackData;
   final String Function(Mood m) moodLabelBuilder;
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1.70,
-      child: LineChart(
-        _buildLineChartData(context),
-      ),
-    );
+    return AspectRatio(aspectRatio: 1.70, child: LineChart(_buildLineChartData(context)));
   }
 
   Widget _leftTitleIcons(double value, TitleMeta meta) {
     final mood = Mood.fromInteger(value.toInt());
     return SideTitleWidget(
-      axisSide: meta.axisSide,
+      meta: meta,
       child: mood?.icon.svg(width: 32, height: 32) ?? const SizedBox.shrink(),
     );
   }
 
   LineChartData _buildLineChartData(BuildContext context) {
-    final lineColor = customColorsBasedOnDarkMode(context, NepanikarColors.white, NepanikarColors.primary);
+    final lineColor = customColorsBasedOnDarkMode(
+      context,
+      NepanikarColors.white,
+      NepanikarColors.primary,
+    );
     final locale = Localizations.localeOf(context).languageCode;
     return LineChartData(
       borderData: FlBorderData(show: false),
@@ -61,8 +56,8 @@ class MoodChart extends StatelessWidget {
             show: true,
             getDotPainter: (_, __, ___, ____) => FlDotCirclePainter(
               radius: 2.8,
-              color: lineColor,
-              strokeColor: lineColor,
+              color: lineColor ?? Colors.black,
+              strokeColor: lineColor ?? Colors.black,
             ),
           ),
           color: lineColor,
@@ -89,13 +84,8 @@ class MoodChart extends StatelessWidget {
       ),
       titlesData: FlTitlesData(
         show: true,
-        bottomTitles: AxisTitles(
-          sideTitles: SideTitles(
-            showTitles: false,
-          ),
-        ),
+        bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
         leftTitles: AxisTitles(
-          drawBehindEverything: true,
           sideTitles: SideTitles(
             interval: 1,
             showTitles: true,
@@ -103,35 +93,33 @@ class MoodChart extends StatelessWidget {
             reservedSize: 40,
           ),
         ),
-        rightTitles: AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
-        topTitles: AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
+        rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+        topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
       ),
       lineTouchData: LineTouchData(
         getTouchLineEnd: (_, __) => double.infinity,
         getTouchedSpotIndicator: (_, spotIndexes) {
           return spotIndexes.map((spotIndex) {
             return TouchedSpotIndicatorData(
-              FlLine(color: lineColor, strokeWidth: 3),
+              FlLine(color: lineColor ?? Colors.black, strokeWidth: 3),
               FlDotData(
                 getDotPainter: (_, __, ___, ____) =>
-                    FlDotCirclePainter(radius: 8, color: lineColor, strokeWidth: 0),
+                    FlDotCirclePainter(radius: 8, color: lineColor ?? Colors.black, strokeWidth: 0),
               ),
             );
           }).toList();
         },
         touchTooltipData: LineTouchTooltipData(
-          tooltipBgColor: NepanikarColors.primary,
+          getTooltipColor: (LineBarSpot touchedSpot) => NepanikarColors.primary,
           getTooltipItems: (touchedSpots) {
             return touchedSpots.map((barSpot) {
               final flSpot = barSpot;
               final moodTrack = moodTrackData.entries.elementAt(flSpot.x.toInt()).value;
               if (moodTrack == null) return null;
-              final formattedDate =
-                  DateFormat(DateFormat.ABBR_MONTH_DAY, locale).format(moodTrack.date);
+              final formattedDate = DateFormat(
+                DateFormat.ABBR_MONTH_DAY,
+                locale,
+              ).format(moodTrack.date);
               return LineTooltipItem(
                 '$formattedDate\n${moodLabelBuilder.call(moodTrack.mood)}',
                 const TextStyle(color: Colors.white),

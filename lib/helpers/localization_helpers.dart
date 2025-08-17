@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
+import 'package:nepanikar/app/l10n/app_localizations.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 
 String platformLocale = Platform.localeName.split('_').firstOrNull ?? 'en';
@@ -12,10 +12,7 @@ final initialLocale = Locale(
   AppLocalizations.supportedLocales.contains(Locale(platformLocale)) ? platformLocale : 'en',
 );
 
-String pluralYears(
-  BuildContext context, {
-  required int value,
-}) {
+String pluralYears(BuildContext context, {required int value}) {
   return Intl.plural(
     value,
     one: context.l10n.plural_year_one,
@@ -25,10 +22,7 @@ String pluralYears(
   );
 }
 
-String pluralMonths(
-  BuildContext context, {
-  required int value,
-}) {
+String pluralMonths(BuildContext context, {required int value}) {
   return Intl.plural(
     value,
     one: context.l10n.plural_month_one,
@@ -38,10 +32,7 @@ String pluralMonths(
   );
 }
 
-String pluralDays(
-  BuildContext context, {
-  required int value,
-}) {
+String pluralDays(BuildContext context, {required int value}) {
   return Intl.plural(
     value,
     one: context.l10n.plural_day_one,
@@ -51,10 +42,7 @@ String pluralDays(
   );
 }
 
-String pluralHours(
-  BuildContext context, {
-  required int value,
-}) {
+String pluralHours(BuildContext context, {required int value}) {
   return Intl.plural(
     value,
     one: context.l10n.plural_hour_one,
@@ -64,10 +52,7 @@ String pluralHours(
   );
 }
 
-String pluralMinutes(
-  BuildContext context, {
-  required int value,
-}) {
+String pluralMinutes(BuildContext context, {required int value}) {
   return Intl.plural(
     value,
     one: context.l10n.plural_minutes_one,
@@ -77,10 +62,7 @@ String pluralMinutes(
   );
 }
 
-String pluralSeconds(
-  BuildContext context, {
-  required int value,
-}) {
+String pluralSeconds(BuildContext context, {required int value}) {
   return Intl.plural(
     value,
     one: context.l10n.plural_second_one,

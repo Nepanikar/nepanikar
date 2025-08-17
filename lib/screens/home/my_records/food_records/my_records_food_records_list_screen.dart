@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
-import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/sizes.dart';
 import 'package:nepanikar/helpers/platform_helpers.dart';
 import 'package:nepanikar/screens/home/my_records/food_records/my_records_food_record_detail_menu_detail_screen.dart';
@@ -16,8 +15,10 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/empty_records_state_widget.dart';
 import 'package:nepanikar/widgets/food_records/food_record_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
+part 'my_records_food_records_list_screen.g.dart';
 
-class MyRecordsFoodRecordsListRoute extends GoRouteData {
+@TypedGoRoute<MyRecordsFoodRecordsListRoute>(path: '/home/my-records/food-records')
+class MyRecordsFoodRecordsListRoute extends GoRouteData with _$MyRecordsFoodRecordsListRoute {
   const MyRecordsFoodRecordsListRoute();
 
   @override

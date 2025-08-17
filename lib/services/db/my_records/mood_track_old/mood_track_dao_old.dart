@@ -8,11 +8,9 @@ import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 import 'package:sembast/sembast.dart';
 
 class MoodTrackDao with CustomFilters {
-  MoodTrackDao({
-    required DatabaseService dbService,
-    String? storeKeyName,
-  })  : _dbService = dbService,
-        _store = intMapStoreFactory.store(storeKeyName ?? _storeKeyName);
+  MoodTrackDao({required DatabaseService dbService, String? storeKeyName})
+    : _dbService = dbService,
+      _store = intMapStoreFactory.store(storeKeyName ?? _storeKeyName);
 
   Future<MoodTrackDao> init() async {
     registry.registerSingleton<MoodTrackDao>(this);
@@ -31,9 +29,9 @@ class MoodTrackDao with CustomFilters {
     final date = DateTime.utc(dateTimeToSave.year, dateTimeToSave.month, dateTimeToSave.day);
     final moodTrack = MoodTrack(mood: mood, date: date, summary: '');
     final json = moodTrack.toJson();
-    await _store
-        .findFirst(_db, finder: Finder(filter: getDateEqualsFilter(date)))
-        .then((record) async {
+    await _store.findFirst(_db, finder: Finder(filter: getDateEqualsFilter(date))).then((
+      record,
+    ) async {
       if (record == null) {
         debugPrint('MoodTrackDao: Not found mood for today - adding new: $json');
         await _store.add(_db, json);
@@ -54,9 +52,9 @@ class MoodTrackDao with CustomFilters {
       .map((snapshots) => snapshots.map((snapshot) => MoodTrack.fromJson(snapshot.value)).toList());
 
   Stream<MoodTrack?> get latestMoodTrackStream => _store
-          .query(finder: Finder(filter: getDateEqualsFilter(getNowDateUtc())))
-          .onSnapshot(_db)
-          .map((snapshot) {
+      .query(finder: Finder(filter: getDateEqualsFilter(getNowDateUtc())))
+      .onSnapshot(_db)
+      .map((snapshot) {
         final json = snapshot?.value;
         if (json == null) return null;
         try {

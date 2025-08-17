@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class ChosenEmotionsWidget extends StatefulWidget {
   const ChosenEmotionsWidget({
@@ -45,40 +44,37 @@ class _ChosenEmotionsWidgetState extends State<ChosenEmotionsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if(widget.deleteEmotionEnabled){
+    if (widget.deleteEmotionEnabled) {
       return Wrap(
         spacing: 8.0,
-        children:
-        selectedEmotions
+        children: selectedEmotions
             .map(
               (emotion) => Chip(
-            label: Text(emotion),
-            deleteIcon: const Icon(Icons.cancel),
-            onDeleted: () => _removeEmotion(emotion),
-            backgroundColor: Colors.purple,
-            deleteIconColor: Colors.white,
-            labelStyle:
-            const TextStyle(color: Colors.white),
-          ),
-        )
+                label: Text(emotion),
+                deleteIcon: const Icon(Icons.cancel),
+                onDeleted: () => _removeEmotion(emotion),
+                backgroundColor: Colors.purple,
+                deleteIconColor: Colors.white,
+                labelStyle: const TextStyle(color: Colors.white),
+              ),
+            )
             .toList(),
       );
-    }
-    else {
+    } else {
       return Wrap(
         spacing: 8.0,
         alignment: WrapAlignment.end,
-        children:
-        selectedEmotions.take(9)
+        children: selectedEmotions
+            .take(9)
             .map(
               (emotion) => Chip(
-            label: Text(emotion),
-            backgroundColor: Colors.purple,
-            deleteIconColor: Colors.white,
-            labelStyle:
-            const TextStyle(color: Colors.white),
-          ),
-        ).toList(),
+                label: Text(emotion),
+                backgroundColor: Colors.purple,
+                deleteIconColor: Colors.white,
+                labelStyle: const TextStyle(color: Colors.white),
+              ),
+            )
+            .toList(),
       );
     }
   }

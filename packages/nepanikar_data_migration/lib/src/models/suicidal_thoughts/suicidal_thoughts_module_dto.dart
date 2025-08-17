@@ -46,7 +46,6 @@ class SuicidalThoughtsModuleDTO extends Equatable {
     );
   }
 
-
   final NepanikarListFormDTO? suicidalThoughtsPlanConfig;
   final NepanikarListFormDTO? suicidalThoughtsReasonsNoConfig;
 

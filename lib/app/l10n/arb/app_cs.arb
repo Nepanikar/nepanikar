@@ -328,5 +328,10 @@
   "dark_mode_off": "Tmavý režim je VYPNUT",
   "description": "Popis",
   "confirm_delete": "Jste si jisti, že chcete tento záznam nálady smazat?",
-  "enter_summary": "Zadejte krátké shrnutí"
+  "enter_summary": "Zadejte krátké shrnutí",
+  "emotion_angry": "Rozzlobený",
+  "emotion_excited": "Nadšený",
+  "emotion_happy": "Šťastný",
+  "emotion_relaxed": "Uvolněný",
+  "emotion_sad": "Smutný"
 }

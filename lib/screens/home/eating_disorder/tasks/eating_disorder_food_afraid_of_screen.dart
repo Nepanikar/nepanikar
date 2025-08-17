@@ -3,8 +3,10 @@ import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/services/db/eating_disorder/eating_disorder_food_afraid_of_dao.dart';
 import 'package:nepanikar/widgets/input_form_contents/checklist_form_content.dart';
+part 'eating_disorder_food_afraid_of_screen.g.dart';
 
-class EatingDisorderFoodAfraidOfRoute extends GoRouteData {
+@TypedGoRoute<EatingDisorderFoodAfraidOfRoute>(path: '/home/eating-disorder/tasks/food-afraid-of')
+class EatingDisorderFoodAfraidOfRoute extends GoRouteData with _$EatingDisorderFoodAfraidOfRoute {
   const EatingDisorderFoodAfraidOfRoute();
 
   @override

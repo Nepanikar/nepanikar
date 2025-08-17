@@ -10,7 +10,11 @@ class TipItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final boxColor = customColorsBasedOnDarkMode(context, NepanikarColors.containerD, NepanikarColors.white);
+    final boxColor = customColorsBasedOnDarkMode(
+      context,
+      NepanikarColors.containerD,
+      NepanikarColors.white,
+    );
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 122.0),

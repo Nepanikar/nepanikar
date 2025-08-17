@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
-import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/screens/home/eating_disorder/tasks/eating_disorder_food_afraid_of_screen.dart';
 import 'package:nepanikar/screens/home/eating_disorder/tasks/eating_disorder_food_challenges_screen.dart';
@@ -12,8 +11,10 @@ import 'package:nepanikar/screens/home/eating_disorder/tasks/eating_disorder_foo
 import 'package:nepanikar/screens/home/eating_disorder/tasks/eating_disorder_like_on_myself_screen.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
+part 'eating_disorder_tasks_screen.g.dart';
 
-class EatingDisorderTasksRoute extends GoRouteData {
+@TypedGoRoute<EatingDisorderTasksRoute>(path: '/home/eating-disorder/tasks')
+class EatingDisorderTasksRoute extends GoRouteData with _$EatingDisorderTasksRoute {
   const EatingDisorderTasksRoute();
 
   @override

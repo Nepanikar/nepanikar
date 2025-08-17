@@ -3,9 +3,7 @@ import 'package:ini/ini.dart';
 import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 
 class MyRecordsMoodTrackDTO extends Equatable {
-  const MyRecordsMoodTrackDTO._({
-    required this.values,
-  });
+  const MyRecordsMoodTrackDTO._({required this.values});
 
   factory MyRecordsMoodTrackDTO.getAndroidData(Config config, {String sectionName = 'moods'}) {
     final convertedValues = <DateTime, int>{};
@@ -30,9 +28,7 @@ class MyRecordsMoodTrackDTO extends Equatable {
         }
       }
     }
-    return MyRecordsMoodTrackDTO._(
-      values: convertedValues.isEmpty ? null : convertedValues,
-    );
+    return MyRecordsMoodTrackDTO._(values: convertedValues.isEmpty ? null : convertedValues);
   }
 
   factory MyRecordsMoodTrackDTO.getIosData(
@@ -58,9 +54,7 @@ class MyRecordsMoodTrackDTO extends Equatable {
         }
       }
     }
-    return MyRecordsMoodTrackDTO._(
-      values: convertedValues.isEmpty ? null : convertedValues,
-    );
+    return MyRecordsMoodTrackDTO._(values: convertedValues.isEmpty ? null : convertedValues);
   }
 
   factory MyRecordsMoodTrackDTO.fromValues(Map<DateTime, int> values) =>

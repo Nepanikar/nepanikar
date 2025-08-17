@@ -10,7 +10,7 @@ part 'my_records_food_record_model.freezed.dart';
 part 'my_records_food_record_model.g.dart';
 
 @freezed
-class FoodQuestionTextAnswer with _$FoodQuestionTextAnswer {
+abstract class FoodQuestionTextAnswer with _$FoodQuestionTextAnswer {
   const factory FoodQuestionTextAnswer({
     required FoodQuestionText foodQuestionText,
     required String answer,
@@ -23,7 +23,7 @@ class FoodQuestionTextAnswer with _$FoodQuestionTextAnswer {
 }
 
 @freezed
-class DailyFoodRecordAnswer with _$DailyFoodRecordAnswer {
+abstract class DailyFoodRecordAnswer with _$DailyFoodRecordAnswer {
   const factory DailyFoodRecordAnswer({
     required FoodType foodType,
     @Default(false) bool isTaken,
@@ -39,7 +39,7 @@ class DailyFoodRecordAnswer with _$DailyFoodRecordAnswer {
 }
 
 @freezed
-class DailyFoodRecord with _$DailyFoodRecord {
+abstract class DailyFoodRecord with _$DailyFoodRecord {
   const factory DailyFoodRecord({
     // ignore: invalid_annotation_target
     @JsonKey(name: FilterKeys.dateWithTime) required DateTime dateTime,
@@ -51,18 +51,14 @@ class DailyFoodRecord with _$DailyFoodRecord {
   factory DailyFoodRecord.fromJson(Map<String, Object?> json) => _$DailyFoodRecordFromJson(json);
 }
 
-DailyFoodRecord getEmptyDailyFoodRecord() => DailyFoodRecord(
-      dateTime: DateTime.now(),
-      answers: [],
-    );
+DailyFoodRecord getEmptyDailyFoodRecord() => DailyFoodRecord(dateTime: DateTime.now(), answers: []);
 
 DailyFoodRecordAnswer getEmptyDailyFoodRecordAnswer(FoodType foodType) => DailyFoodRecordAnswer(
-      foodType: foodType,
-      isTaken: false,
-      questionTextAnswers: [],
-      tickedQuestionFeels: [],
-      tickedQuestionProblems: [],
-    );
+  foodType: foodType,
+  questionTextAnswers: [],
+  tickedQuestionFeels: [],
+  tickedQuestionProblems: [],
+);
 
 extension DailyFoodRecordExt on DailyFoodRecord {
   bool getIsFoodTaken(FoodType foodType) {

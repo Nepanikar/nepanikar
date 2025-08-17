@@ -5,11 +5,9 @@ import 'package:sembast/sembast.dart';
 typedef PlanFormItem = String;
 
 abstract class NepanikarPlanFormDao {
-  NepanikarPlanFormDao({
-    required DatabaseService dbService,
-    required String storeKeyName,
-  })  : _dbService = dbService,
-        _store = StoreRef(storeKeyName);
+  NepanikarPlanFormDao({required DatabaseService dbService, required String storeKeyName})
+    : _dbService = dbService,
+      _store = StoreRef(storeKeyName);
 
   // TODO: use @mustBeOverridden annotation, will be available in Dart 2.19
   Future<NepanikarPlanFormDao> init() async => this;

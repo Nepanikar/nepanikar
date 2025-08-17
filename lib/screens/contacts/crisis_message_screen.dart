@@ -10,8 +10,10 @@ import 'package:nepanikar/widgets/nepanikar_button.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:tuple/tuple.dart';
 import 'package:url_launcher/url_launcher.dart';
+part 'crisis_message_screen.g.dart';
 
-class CrisisMessageRoute extends GoRouteData {
+@TypedGoRoute<CrisisMessageRoute>(path: '/contacts/crisis-message')
+class CrisisMessageRoute extends GoRouteData with _$CrisisMessageRoute {
   const CrisisMessageRoute();
 
   @override
@@ -19,10 +21,7 @@ class CrisisMessageRoute extends GoRouteData {
 }
 
 class CrisisMessageRouteExtraData extends Equatable {
-  const CrisisMessageRouteExtraData({
-    this.contactAddress,
-    this.subjectMessage,
-  });
+  const CrisisMessageRouteExtraData({this.contactAddress, this.subjectMessage});
 
   final String? contactAddress;
   final String? subjectMessage;
@@ -32,11 +31,7 @@ class CrisisMessageRouteExtraData extends Equatable {
 }
 
 class CrisisMessageContent extends StatefulWidget {
-  const CrisisMessageContent({
-    super.key,
-    this.contactAddress,
-    this.subjectMessage,
-  });
+  const CrisisMessageContent({super.key, this.contactAddress, this.subjectMessage});
 
   final String? contactAddress;
   final String? subjectMessage;
@@ -118,9 +113,7 @@ class _CrisisMessageContentState extends State<CrisisMessageContent> {
             maxLines: null,
             autofocus: autoFocus,
             textInputAction: textInputAction,
-            decoration: InputDecoration(
-              hintText: hintText,
-            ),
+            decoration: InputDecoration(hintText: hintText),
           ),
         ),
       ],
@@ -134,8 +127,9 @@ class _CrisisMessageContentState extends State<CrisisMessageContent> {
       excludeFromSemantics: true,
       child: NepanikarScreenWrapper(
         appBarTitle: context.l10n.contacts_message,
-        appBarDescription:
-            _hasInitialValues ? context.l10n.email_counselling_screen_description : '',
+        appBarDescription: _hasInitialValues
+            ? context.l10n.email_counselling_screen_description
+            : '',
         expandToMaxScreenHeight: true,
         isCardStackLayout: true,
         isModuleList: false,
@@ -143,10 +137,12 @@ class _CrisisMessageContentState extends State<CrisisMessageContent> {
           StreamBuilder<Tuple2<String, String>>(
             stream: _contactAddressAndMessageStream,
             builder: (_, snapshot) {
-              final contactAddress =
-                  _hasInitialValues ? widget.contactAddress! : snapshot.data?.item1 ?? '';
-              final message =
-                  _hasInitialValues ? _messageTextController.text : snapshot.data?.item2 ?? '';
+              final contactAddress = _hasInitialValues
+                  ? widget.contactAddress!
+                  : snapshot.data?.item1 ?? '';
+              final message = _hasInitialValues
+                  ? _messageTextController.text
+                  : snapshot.data?.item2 ?? '';
 
               return Column(
                 children: [

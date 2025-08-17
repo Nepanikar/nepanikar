@@ -15,22 +15,19 @@ _$ChatContactSubList _$$ChatContactSubListFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$ChatContactSubListToJson(
-        _$ChatContactSubList instance) =>
+Map<String, dynamic> _$$ChatContactSubListToJson(_$ChatContactSubList instance) =>
     <String, dynamic>{
       'title': instance.title,
       'subtitle': instance.subtitle,
       'subChatContacts': instance.subChatContacts,
     };
 
-_$_SubChatContact _$$_SubChatContactFromJson(Map<String, dynamic> json) =>
-    _$_SubChatContact(
+_$_SubChatContact _$$_SubChatContactFromJson(Map<String, dynamic> json) => _$_SubChatContact(
       title: json['title'] as String,
       url: json['url'] as String,
     );
 
-Map<String, dynamic> _$$_SubChatContactToJson(_$_SubChatContact instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$$_SubChatContactToJson(_$_SubChatContact instance) => <String, dynamic>{
       'title': instance.title,
       'url': instance.url,
     };

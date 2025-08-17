@@ -1,14 +1,13 @@
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nepanikar/app/l10n/app_localizations.dart';
 import 'package:nepanikar/services/db/common/nepanikar_module_db.dart';
 import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/services/db/my_records/diary/my_records_diary_dao.dart';
+import 'package:nepanikar/services/db/my_records/emotions_dao.dart';
 import 'package:nepanikar/services/db/my_records/food/my_records_food_record_dao.dart';
 import 'package:nepanikar/services/db/my_records/journal/my_records_journal_dao.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_dao.dart';
 import 'package:nepanikar/services/db/my_records/my_records_sleep_track_dao.dart';
 import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
-
-import 'emotions_dao.dart';
 
 class MyRecordsModuleDb implements NepanikarModuleDb {
   MyRecordsModuleDb(this._dbService);

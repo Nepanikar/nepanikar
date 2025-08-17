@@ -93,59 +93,53 @@ class _PlanFormContentState<T extends NepanikarPlanFormDao> extends State<PlanFo
                 shrinkWrap: true,
                 primary: false,
                 padding: EdgeInsets.zero,
-                children: widget.planItems.entries.mapIndexed(
-                  (formIndex, entry) {
-                    final title = entry.key;
-                    final hintText = entry.value;
-                    final textController = _textControllersMap[formIndex];
-                    final isLastForm = formIndex == planItemsTitles.length - 1;
+                children: widget.planItems.entries.mapIndexed((formIndex, entry) {
+                  final title = entry.key;
+                  final hintText = entry.value;
+                  final textController = _textControllersMap[formIndex];
+                  final isLastForm = formIndex == planItemsTitles.length - 1;
 
-                    return Padding(
-                      padding: EdgeInsets.only(bottom: isLastForm ? 0 : 16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            title,
-                            style: NepanikarFonts.bodySmallMedium.copyWith(
-                              fontWeight: FontWeight.w700,
-                              color: textColor
-                            ),
+                  return Padding(
+                    padding: EdgeInsets.only(bottom: isLastForm ? 0 : 16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          title,
+                          style: NepanikarFonts.bodySmallMedium.copyWith(
+                            fontWeight: FontWeight.w700,
+                            color: textColor,
                           ),
-                          const SizedBox(height: 4),
-                          Focus(
-                            onFocusChange: (hasFocus) async {
-                              if (!hasFocus) {
-                                await _planFormDao.saveFormText(
-                                  formIndex,
-                                  text: textController?.text,
-                                );
-                                unawaited(
-                                  analytics.logEvent(
-                                    name: 'input_focused',
-                                    parameters: {
-                                      'form_index': formIndex,
-                                    },
-                                  ),
-                                );
-                              }
-                            },
-                            child: TextField(
-                              controller: textController,
-                              minLines: 4,
-                              maxLines: null,
-                              textInputAction: TextInputAction.newline,
-                              decoration: InputDecoration(
-                                hintText: hintText,
-                              ),
-                            ),
+                        ),
+                        const SizedBox(height: 4),
+                        Focus(
+                          onFocusChange: (hasFocus) async {
+                            if (!hasFocus) {
+                              await _planFormDao.saveFormText(
+                                formIndex,
+                                text: textController?.text,
+                              );
+                              unawaited(
+                                analytics.logEvent(
+                                  name: 'input_focused',
+                                  parameters: {'form_index': formIndex},
+                                ),
+                              );
+                            }
+                          },
+                          child: TextField(
+                            controller: textController,
+                            minLines: 4,
+                            maxLines: null,
+                            textInputAction: TextInputAction.newline,
+                            decoration: InputDecoration(hintText: hintText),
                           ),
-                        ],
-                      ),
-                    );
-                  },
-                ).toList(),
+                        ),
+                      ],
+                    ),
+                  );
+                }).toList(),
               );
             },
           ),

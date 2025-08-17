@@ -18,10 +18,7 @@ class SemanticsWidgetButton extends StatelessWidget {
       button: true,
       enabled: true,
       label: label,
-      child: GestureDetector(
-        onTap: onTap,
-        child: child,
-      ),
+      child: GestureDetector(onTap: onTap, child: child),
     );
   }
 }

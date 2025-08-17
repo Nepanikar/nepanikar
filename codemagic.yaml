@@ -2,8 +2,8 @@ definitions:
   instance: &instance
     max_build_duration: 60
   env_versions: &env_versions
-    flutter: 3.7.1
-    xcode: 16.0
+    flutter: 3.35.1
+    xcode: 26.0
     cocoapods: default
   artifacts: &artifacts
     - build/**/outputs/bundle/**/*.apk
@@ -27,6 +27,14 @@ definitions:
       name: Get Flutter packages
       script: |
         flutter pub get
+    - &run_build_runner
+      name: Generate code with build_runner
+      script: |
+        flutter pub run build_runner build --delete-conflicting-outputs
+    - &generate_localization
+      name: Generate Flutter localization files
+      script: |
+        flutter gen-l10n
     - &build_android
       name: Build Android
       script: |
@@ -85,6 +93,8 @@ workflows:
     scripts:
       - *local_properties
       - *get_packages
+      - *run_build_runner
+      - *generate_localization
       - *build_android
       - *setup_ios
       - *build_ios
@@ -123,6 +133,8 @@ workflows:
     scripts:
       - *local_properties
       - *get_packages
+      - *run_build_runner
+      - *generate_localization
       - *build_android
       - *setup_ios
       - *build_ios

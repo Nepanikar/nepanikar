@@ -6,10 +6,9 @@ import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 import 'package:sembast/sembast.dart';
 
 class MyRecordsFoodRecordDao {
-  MyRecordsFoodRecordDao({
-    required DatabaseService dbService,
-  })  : _dbService = dbService,
-        _store = stringMapStoreFactory.store(_storeKeyName);
+  MyRecordsFoodRecordDao({required DatabaseService dbService})
+    : _dbService = dbService,
+      _store = stringMapStoreFactory.store(_storeKeyName);
 
   Future<MyRecordsFoodRecordDao> init() async {
     registry.registerSingleton<MyRecordsFoodRecordDao>(this);
@@ -27,20 +26,12 @@ class MyRecordsFoodRecordDao {
     return _store.add(_db, getEmptyDailyFoodRecord().toJson());
   }
 
-  Future<void> updateRecordDate(
-    String id,
-    DailyFoodRecord record,
-    DateTime newDate,
-  ) async {
+  Future<void> updateRecordDate(String id, DailyFoodRecord record, DateTime newDate) async {
     final updatedRecord = record.copyWith(dateTime: newDate);
     await _store.record(id).update(_db, updatedRecord.toJson());
   }
 
-  Future<void> updateMenuTakenState(
-    String id,
-    DailyFoodRecord record,
-    FoodType foodType,
-  ) async {
+  Future<void> updateMenuTakenState(String id, DailyFoodRecord record, FoodType foodType) async {
     final updatedRecord = record.getUpdatedIsTakenByFoodType(foodType);
     await _store.record(id).update(_db, updatedRecord.toJson());
   }
@@ -71,9 +62,9 @@ class MyRecordsFoodRecordDao {
       });
 
   Stream<Map<String, DailyFoodRecord>> get allRecordsStream => _store
-          .query(finder: Finder(sortOrders: [SortOrder(FilterKeys.dateWithTime, false)]))
-          .onSnapshots(_db)
-          .map((event) {
+      .query(finder: Finder(sortOrders: [SortOrder(FilterKeys.dateWithTime, false)]))
+      .onSnapshots(_db)
+      .map((event) {
         final entries = event
             .map((e) {
               final value = e.value;
@@ -100,10 +91,8 @@ class MyRecordsFoodRecordDao {
                       isTaken: a.isTaken,
                       questionTextAnswers: a.textQuestionAnswers
                           .map(
-                            (e) => FoodQuestionTextAnswer(
-                              foodQuestionText: e.item1,
-                              answer: e.item2,
-                            ),
+                            (e) =>
+                                FoodQuestionTextAnswer(foodQuestionText: e.item1, answer: e.item2),
                           )
                           .toList(),
                       tickedQuestionFeels: a.feelTickedAnswers,

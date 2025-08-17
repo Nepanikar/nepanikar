@@ -47,7 +47,7 @@ List<Meal> getMealsById(BuildContext context, String id) {
         title: context.l10n.food_dishes_dinner.split('\n').elementAt(index),
         image: 'assets/meals/dinner$index.jpg',
       ),
-    ).toList()
+    ).toList(),
   };
   return meals[id] ?? [];
 }

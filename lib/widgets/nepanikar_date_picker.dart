@@ -6,11 +6,7 @@ import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/widgets/material_wrapper.dart';
 
 class NepanikarDatePicker extends StatelessWidget {
-  const NepanikarDatePicker({
-    super.key,
-    this.initialDate,
-    required this.onPick,
-  });
+  const NepanikarDatePicker({super.key, this.initialDate, required this.onPick});
 
   final DateTime? initialDate;
   final ValueChanged<DateTime> onPick;

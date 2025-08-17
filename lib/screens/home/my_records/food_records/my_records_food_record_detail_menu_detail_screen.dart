@@ -9,8 +9,13 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_button.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
+part 'my_records_food_record_detail_menu_detail_screen.g.dart';
 
-class MyRecordsFoodRecordsDetailMenuDetailRoute extends GoRouteData {
+@TypedGoRoute<MyRecordsFoodRecordsDetailMenuDetailRoute>(
+  path: '/home/my-records/food-records/detail/menu-detail',
+)
+class MyRecordsFoodRecordsDetailMenuDetailRoute extends GoRouteData
+    with _$MyRecordsFoodRecordsDetailMenuDetailRoute {
   const MyRecordsFoodRecordsDetailMenuDetailRoute();
 
   @override
@@ -27,11 +32,7 @@ class MyRecordsFoodRecordsDetailMenuDetailRoute extends GoRouteData {
 }
 
 class FoodRecordRouteExtraData extends Equatable {
-  const FoodRecordRouteExtraData({
-    required this.id,
-    required this.dailyFoodRecord,
-    this.foodType,
-  });
+  const FoodRecordRouteExtraData({required this.id, required this.dailyFoodRecord, this.foodType});
 
   final String id;
   final DailyFoodRecord dailyFoodRecord;
@@ -63,8 +64,8 @@ class _MyRecordsFoodRecordsDetailMenuDetailScreenState
   final Map<FoodQuestionText, TextEditingController> _textEditingControllersMap = {};
 
   Map<FoodQuestionText, String> get _answers => {
-        for (final entry in _textEditingControllersMap.entries) entry.key: entry.value.text,
-      };
+    for (final entry in _textEditingControllersMap.entries) entry.key: entry.value.text,
+  };
 
   final _tickedFeels = <FoodQuestionFeel>{};
   final _tickedProblems = <FoodQuestionProblem>{};
@@ -197,10 +198,7 @@ class _MyRecordsFoodRecordsDetailMenuDetailScreenState
                 const SizedBox(height: 12),
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: Text(
-                    questionText.getLabel(context),
-                    style: labelTextStyle,
-                  ),
+                  child: Text(questionText.getLabel(context), style: labelTextStyle),
                 ),
                 const SizedBox(height: 8),
                 TextFormField(

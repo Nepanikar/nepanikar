@@ -7,8 +7,10 @@ import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
+part 'balance_game_screen.g.dart';
 
-class BalanceGameRoute extends GoRouteData {
+@TypedGoRoute<BalanceGameRoute>(path: '/games/balance/')
+class BalanceGameRoute extends GoRouteData with _$BalanceGameRoute {
   const BalanceGameRoute();
 
   @override
@@ -83,9 +85,11 @@ class _BalanceGameScreenState extends State<BalanceGameScreen> {
   @override
   Widget build(BuildContext context) {
     final screen = MediaQuery.of(context).size;
-    final backgroundColor = customColorsBasedOnDarkMode(context,
+    final backgroundColor = customColorsBasedOnDarkMode(
+      context,
       NepanikarColors.containerD,
-      NepanikarColors.primary,);
+      NepanikarColors.primary,
+    );
     final buttonColor = svgColorBasedOnDarkMode(context);
 
     return Scaffold(
@@ -96,8 +100,10 @@ class _BalanceGameScreenState extends State<BalanceGameScreen> {
           Positioned(
             top: screen.height * 0.2,
             left: 1 + (screen.width / 2) - (screen.width * 0.6) / 2,
-            child: Assets.illustrations.games.swing.balanceStand
-                .image(width: screen.width * 0.6, alignment: Alignment.topCenter),
+            child: Assets.illustrations.games.swing.balanceStand.image(
+              width: screen.width * 0.6,
+              alignment: Alignment.topCenter,
+            ),
           ),
           Positioned(
             // calculate position from top, based on asset width/height size ratio (6.88)
@@ -127,10 +133,7 @@ class _BalanceGameScreenState extends State<BalanceGameScreen> {
                     leftButtonActive = false;
                   });
                 },
-                child: const SizedBox(
-                  width: 70,
-                  height: 70,
-                ),
+                child: const SizedBox(width: 70, height: 70),
               ),
             ),
           ),
@@ -153,10 +156,7 @@ class _BalanceGameScreenState extends State<BalanceGameScreen> {
                     rightButtonActive = false;
                   });
                 },
-                child: const SizedBox(
-                  width: 70,
-                  height: 70,
-                ),
+                child: const SizedBox(width: 70, height: 70),
               ),
             ),
           ),

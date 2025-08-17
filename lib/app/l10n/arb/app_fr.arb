@@ -328,5 +328,10 @@
   "dark_mode_off": "Le mode sombre est DÉSACTIVÉ",
   "description": "Description",
   "confirm_delete": "Êtes-vous sûr de vouloir supprimer cette entrée de l'humeur ?",
-  "enter_summary": "Entrez un bref résumé"
+  "enter_summary": "Entrez un bref résumé",
+  "emotion_angry": "En colère",
+  "emotion_excited": "Excité",
+  "emotion_happy": "Heureux",
+  "emotion_relaxed": "Détendu",
+  "emotion_sad": "Triste"
 }

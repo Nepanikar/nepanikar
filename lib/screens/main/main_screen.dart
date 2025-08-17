@@ -3,7 +3,6 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
-import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/providers/mood_state_provider.dart';
 import 'package:nepanikar/screens/home/my_records/my_records_screen.dart';
 import 'package:nepanikar/screens/main/contacts_screen.dart';
@@ -16,11 +15,8 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/bottom_navbar_item.dart';
 import 'package:provider/provider.dart';
 
-
 class MainPageExtra {
-  MainPageExtra({
-    required this.initIndex,
-  });
+  MainPageExtra({required this.initIndex});
   int initIndex;
 }
 
@@ -32,9 +28,6 @@ class MainScreen extends StatefulWidget {
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
-
-
-
 
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
@@ -51,11 +44,9 @@ class _MainScreenState extends State<MainScreen> {
     final countryContacts = _contactsDataManager.getContactsFromLocale(locale);
     return <Widget>[
       const HomeScreen(),
-      const MyRecordsScreen(
-        showBottomNavbar: false,
-      ),
+      const MyRecordsScreen(showBottomNavbar: false),
       ContactsScreen(countryContacts: countryContacts),
-      const SettingsScreen()
+      const SettingsScreen(),
     ];
   }
 
@@ -86,14 +77,7 @@ class _MainScreenState extends State<MainScreen> {
     });
   }
 
-  List<SvgPicture> bottomNavigationIcons =[
-    SvgPicture.asset(
-      Assets.icons.home.path,
-
-    ),
-  ];
-
-
+  List<SvgPicture> bottomNavigationIcons = [SvgPicture.asset(Assets.icons.home.path)];
 
   @override
   Widget build(BuildContext context) {

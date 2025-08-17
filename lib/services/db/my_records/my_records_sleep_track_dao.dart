@@ -1,12 +1,8 @@
 import 'package:nepanikar/services/db/my_records/mood_track_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 
-import 'mood_track_model.dart';
-
 class MyRecordsSleepTrackDao extends MoodTrackDao {
-  MyRecordsSleepTrackDao({
-    required super.dbService,
-  }) : super(storeKeyName: _storeKeyName);
+  MyRecordsSleepTrackDao({required super.dbService}) : super(storeKeyName: _storeKeyName);
 
   @override
   Future<MyRecordsSleepTrackDao> init() async {

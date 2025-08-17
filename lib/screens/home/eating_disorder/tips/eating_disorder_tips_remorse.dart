@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/widgets/tips_carousel_body.dart';
 
-import '../../../../helpers/color_helpers.dart';
+part 'eating_disorder_tips_remorse.g.dart';
 
-class EatingDisorderTipsRemorseAppRoute extends GoRouteData {
+@TypedGoRoute<EatingDisorderTipsRemorseAppRoute>(path: '/home/eating-disorder/tips/remorse')
+class EatingDisorderTipsRemorseAppRoute extends GoRouteData
+    with _$EatingDisorderTipsRemorseAppRoute {
   const EatingDisorderTipsRemorseAppRoute();
 
   @override

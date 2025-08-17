@@ -4,8 +4,10 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/widgets/tips_carousel_body.dart';
+part 'anxiety_tips_route.g.dart';
 
-class AnxietyTipsAppRoute extends GoRouteData {
+@TypedGoRoute<AnxietyTipsAppRoute>(path: '/home/anxiety/tips')
+class AnxietyTipsAppRoute extends GoRouteData with _$AnxietyTipsAppRoute {
   const AnxietyTipsAppRoute();
 
   @override
@@ -39,15 +41,11 @@ class AnxietyTipsAppScreen extends StatelessWidget {
                       color: textColor,
                     ),
                   ),
-                  const SizedBox(
-                    height: 16,
-                  ),
+                  const SizedBox(height: 16),
                   Text(
                     strings.elementAt(index * 2 + 1),
                     textAlign: TextAlign.center,
-                    style: NepanikarFonts.bodyRoman.copyWith(
-                      color: textColor,
-                    ),
+                    style: NepanikarFonts.bodyRoman.copyWith(color: textColor),
                   ),
                 ],
               ),

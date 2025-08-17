@@ -29,9 +29,7 @@ Future<void> setup() async {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FlutterError.onError = (errorDetails) {
     FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
   };
@@ -59,9 +57,7 @@ Future<void> setup() async {
   await registry.get<SaveDirectories>().init();
 
   registry.registerSingleton<DatabaseService>(
-    DatabaseService(
-      saveDirectories: registry.get<SaveDirectories>(),
-    ),
+    DatabaseService(saveDirectories: registry.get<SaveDirectories>()),
   );
   await registry.get<DatabaseService>().init();
 
@@ -74,11 +70,7 @@ Future<void> setup() async {
   );
   await registry.get<NotificationsService>().init();
 
-  registry.registerSingleton(
-    ExportService(
-      databaseService: registry.get<DatabaseService>(),
-    ),
-  );
+  registry.registerSingleton(ExportService(databaseService: registry.get<DatabaseService>()));
 
   // utils
   final appInfo = await PackageInfo.fromPlatform();

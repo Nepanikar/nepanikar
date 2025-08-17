@@ -58,8 +58,11 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
 
   @override
   Widget build(BuildContext context) {
-    final checkedTextColor = customColorsBasedOnDarkMode(context, NepanikarColors.white, NepanikarColors.dark);
-
+    final checkedTextColor = customColorsBasedOnDarkMode(
+      context,
+      NepanikarColors.white,
+      NepanikarColors.dark,
+    );
 
     return GestureDetector(
       onTapDown: (_) => FocusScope.of(context).unfocus(),
@@ -103,9 +106,8 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
                 itemCount: savedListItems.length,
                 shrinkWrap: true,
                 primary: false,
-                separatorBuilder: (_, __) => NepanikarHorizontalDivider(
-                  color: NepanikarColors.primarySwatch.shade100,
-                ),
+                separatorBuilder: (_, __) =>
+                    NepanikarHorizontalDivider(color: NepanikarColors.primarySwatch.shade100),
                 itemBuilder: (_, i) {
                   final record = savedListItems.entries.elementAt(i);
                   final checkFormKey = record.key;
@@ -115,8 +117,9 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
                   final isLastItem = i == savedListItemsLength - 1;
 
                   return Padding(
-                    padding:
-                        EdgeInsets.only(bottom: isLastItem ? NepanikarSizes.fabBottomPadding : 0),
+                    padding: EdgeInsets.only(
+                      bottom: isLastItem ? NepanikarSizes.fabBottomPadding : 0,
+                    ),
                     child: ListTile(
                       key: Key(checkFormKey),
                       minLeadingWidth: 0,
@@ -132,9 +135,7 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
                                 child: Checkbox(
                                   value: checkFormState,
                                   shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(4.0),
-                                    ),
+                                    borderRadius: BorderRadius.all(Radius.circular(4.0)),
                                   ),
                                   visualDensity: const VisualDensity(
                                     vertical: VisualDensity.minimumDensity,
@@ -175,10 +176,10 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
                                       maxLines: null,
                                       textInputAction: TextInputAction.newline,
                                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                            color: checkFormState == true
-                                                ? checkedTextColor
-                                                : NepanikarColors.primarySwatch.shade400,
-                                          ),
+                                        color: checkFormState == true
+                                            ? checkedTextColor
+                                            : NepanikarColors.primarySwatch.shade400,
+                                      ),
                                       decoration: InputDecoration(
                                         hintText: context.l10n.activity_hint_text,
                                         border: InputBorder.none,
@@ -199,9 +200,7 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
                                             WidgetsBinding.instance.addPostFrameCallback((_) async {
                                               _idTextMap.remove(checkFormKey);
                                               await _listFormDao.deleteFormItem(checkFormKey);
-                                              await analytics.logEvent(
-                                                name: 'delete_activity',
-                                              );
+                                              await analytics.logEvent(name: 'delete_activity');
                                             });
                                           },
                                           icon: Icon(

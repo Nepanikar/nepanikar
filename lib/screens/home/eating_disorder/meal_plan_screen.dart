@@ -5,25 +5,23 @@ import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/utils/meal_plan_config.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
+part 'meal_plan_screen.g.dart';
 
-class MealPlanRoute extends GoRouteData {
+@TypedGoRoute<MealPlanRoute>(path: '/home/eating-disorder/meal-plan')
+class MealPlanRoute extends GoRouteData with _$MealPlanRoute {
   const MealPlanRoute();
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return MealPlanScreen(
-      id: state.queryParams['id'],
-      title: state.queryParams['title'],
+      id: state.uri.queryParameters['id'],
+      title: state.uri.queryParameters['title'],
     );
   }
 }
 
 class MealPlanScreen extends StatelessWidget {
-  const MealPlanScreen({
-    super.key,
-    required this.id,
-    required this.title,
-  });
+  const MealPlanScreen({super.key, required this.id, required this.title});
 
   final String? id;
   final String? title;
@@ -31,7 +29,11 @@ class MealPlanScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final meals = getMealsById(context, id ?? '');
-    final backgroundColor = customColorsBasedOnDarkMode(context, NepanikarColors.containerD, NepanikarColors.white);
+    final backgroundColor = customColorsBasedOnDarkMode(
+      context,
+      NepanikarColors.containerD,
+      NepanikarColors.white,
+    );
     return NepanikarScreenWrapper(
       appBarTitle: title.toString(),
       children: [
@@ -39,10 +41,7 @@ class MealPlanScreen extends StatelessWidget {
           color: backgroundColor,
           borderRadius: BorderRadius.circular(12),
           child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20.0,
-              vertical: 24.0,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 24.0),
             child: Column(
               children: meals
                   .map(
@@ -53,12 +52,12 @@ class MealPlanScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(9.0),
                           child: Image.asset('${meal.image}'),
                         ),
-                        const SizedBox(
-                          height: 12,
-                        ),
+                        const SizedBox(height: 12),
                         Text(
                           '${meal.title?.trim()}',
-                          style: NepanikarFonts.title3.copyWith(color: textColorBasedOnDarkMode(context)),
+                          style: NepanikarFonts.title3.copyWith(
+                            color: textColorBasedOnDarkMode(context),
+                          ),
                         ),
                         if (meal.description != null)
                           Padding(
@@ -69,19 +68,15 @@ class MealPlanScreen extends StatelessWidget {
                             ),
                           )
                         else
-                          const SizedBox(
-                            height: 32,
-                          ),
-                        const SizedBox(
-                          height: 16,
-                        ),
+                          const SizedBox(height: 32),
+                        const SizedBox(height: 16),
                       ],
                     ),
                   )
                   .toList(),
             ),
           ),
-        )
+        ),
       ],
     );
   }

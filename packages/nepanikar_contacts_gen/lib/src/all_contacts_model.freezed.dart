@@ -20,19 +20,16 @@ AllContacts _$AllContactsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AllContacts {
-  List<CountryContacts> get countryContacts =>
-      throw _privateConstructorUsedError;
+  List<CountryContacts> get countryContacts => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AllContactsCopyWith<AllContacts> get copyWith =>
-      throw _privateConstructorUsedError;
+  $AllContactsCopyWith<AllContacts> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $AllContactsCopyWith<$Res> {
-  factory $AllContactsCopyWith(
-          AllContacts value, $Res Function(AllContacts) then) =
+  factory $AllContactsCopyWith(AllContacts value, $Res Function(AllContacts) then) =
       _$AllContactsCopyWithImpl<$Res, AllContacts>;
   @useResult
   $Res call({List<CountryContacts> countryContacts});
@@ -63,10 +60,8 @@ class _$AllContactsCopyWithImpl<$Res, $Val extends AllContacts>
 }
 
 /// @nodoc
-abstract class _$$_AllContactsCopyWith<$Res>
-    implements $AllContactsCopyWith<$Res> {
-  factory _$$_AllContactsCopyWith(
-          _$_AllContacts value, $Res Function(_$_AllContacts) then) =
+abstract class _$$_AllContactsCopyWith<$Res> implements $AllContactsCopyWith<$Res> {
+  factory _$$_AllContactsCopyWith(_$_AllContacts value, $Res Function(_$_AllContacts) then) =
       __$$_AllContactsCopyWithImpl<$Res>;
   @override
   @useResult
@@ -74,11 +69,9 @@ abstract class _$$_AllContactsCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_AllContactsCopyWithImpl<$Res>
-    extends _$AllContactsCopyWithImpl<$Res, _$_AllContacts>
+class __$$_AllContactsCopyWithImpl<$Res> extends _$AllContactsCopyWithImpl<$Res, _$_AllContacts>
     implements _$$_AllContactsCopyWith<$Res> {
-  __$$_AllContactsCopyWithImpl(
-      _$_AllContacts _value, $Res Function(_$_AllContacts) _then)
+  __$$_AllContactsCopyWithImpl(_$_AllContacts _value, $Res Function(_$_AllContacts) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -102,8 +95,7 @@ class _$_AllContacts extends _AllContacts {
       : _countryContacts = countryContacts,
         super._();
 
-  factory _$_AllContacts.fromJson(Map<String, dynamic> json) =>
-      _$$_AllContactsFromJson(json);
+  factory _$_AllContacts.fromJson(Map<String, dynamic> json) => _$$_AllContactsFromJson(json);
 
   final List<CountryContacts> _countryContacts;
   @override
@@ -123,14 +115,13 @@ class _$_AllContacts extends _AllContacts {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AllContacts &&
-            const DeepCollectionEquality()
-                .equals(other._countryContacts, _countryContacts));
+            const DeepCollectionEquality().equals(other._countryContacts, _countryContacts));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_countryContacts));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_countryContacts));
 
   @JsonKey(ignore: true)
   @override
@@ -147,17 +138,15 @@ class _$_AllContacts extends _AllContacts {
 }
 
 abstract class _AllContacts extends AllContacts {
-  const factory _AllContacts(
-      {required final List<CountryContacts> countryContacts}) = _$_AllContacts;
+  const factory _AllContacts({required final List<CountryContacts> countryContacts}) =
+      _$_AllContacts;
   const _AllContacts._() : super._();
 
-  factory _AllContacts.fromJson(Map<String, dynamic> json) =
-      _$_AllContacts.fromJson;
+  factory _AllContacts.fromJson(Map<String, dynamic> json) = _$_AllContacts.fromJson;
 
   @override
   List<CountryContacts> get countryContacts;
   @override
   @JsonKey(ignore: true)
-  _$$_AllContactsCopyWith<_$_AllContacts> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_AllContactsCopyWith<_$_AllContacts> get copyWith => throw _privateConstructorUsedError;
 }

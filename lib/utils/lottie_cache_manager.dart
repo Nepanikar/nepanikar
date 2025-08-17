@@ -26,10 +26,7 @@ class LottieCacheManager {
   final Map<String, LottieComposition> _compositions = {};
 
   Future<void> init() async {
-    await Future.forEach<String>(
-      _lottiePathsToCache,
-      (path) => _addToCache(path),
-    );
+    await Future.forEach<String>(_lottiePathsToCache, (path) => _addToCache(path));
   }
 
   Future<void> _addToCache(String path) async {

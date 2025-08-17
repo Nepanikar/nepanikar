@@ -6,7 +6,6 @@ import 'package:nepanikar/services/db/filters.dart';
 import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 
 part 'mood_track_model.freezed.dart';
-
 part 'mood_track_model.g.dart';
 
 enum Mood {
@@ -76,7 +75,7 @@ enum Mood {
     }
   }
 
-  int getMoodScore(Mood mood){
+  int getMoodScore(Mood mood) {
     switch (mood) {
       case Mood.sad:
         return 1;
@@ -97,7 +96,7 @@ enum Mood {
 }
 
 @freezed
-class MoodTrack with _$MoodTrack {
+abstract class MoodTrack with _$MoodTrack {
   const factory MoodTrack({
     required Mood mood,
     // ignore: invalid_annotation_target

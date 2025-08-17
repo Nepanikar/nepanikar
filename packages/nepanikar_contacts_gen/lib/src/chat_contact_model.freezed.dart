@@ -22,27 +22,22 @@ ChatContact _$ChatContactFromJson(Map<String, dynamic> json) {
 mixin _$ChatContact {
   String get title => throw _privateConstructorUsedError;
   String? get subtitle => throw _privateConstructorUsedError;
-  List<SubChatContact> get subChatContacts =>
-      throw _privateConstructorUsedError;
+  List<SubChatContact> get subChatContacts => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String title, String? subtitle,
-            List<SubChatContact> subChatContacts)
+    required TResult Function(String title, String? subtitle, List<SubChatContact> subChatContacts)
         subList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String title, String? subtitle,
-            List<SubChatContact> subChatContacts)?
+    TResult? Function(String title, String? subtitle, List<SubChatContact> subChatContacts)?
         subList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String title, String? subtitle,
-            List<SubChatContact> subChatContacts)?
-        subList,
+    TResult Function(String title, String? subtitle, List<SubChatContact> subChatContacts)? subList,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -64,18 +59,15 @@ mixin _$ChatContact {
       throw _privateConstructorUsedError;
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ChatContactCopyWith<ChatContact> get copyWith =>
-      throw _privateConstructorUsedError;
+  $ChatContactCopyWith<ChatContact> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $ChatContactCopyWith<$Res> {
-  factory $ChatContactCopyWith(
-          ChatContact value, $Res Function(ChatContact) then) =
+  factory $ChatContactCopyWith(ChatContact value, $Res Function(ChatContact) then) =
       _$ChatContactCopyWithImpl<$Res, ChatContact>;
   @useResult
-  $Res call(
-      {String title, String? subtitle, List<SubChatContact> subChatContacts});
+  $Res call({String title, String? subtitle, List<SubChatContact> subChatContacts});
 }
 
 /// @nodoc
@@ -113,15 +105,13 @@ class _$ChatContactCopyWithImpl<$Res, $Val extends ChatContact>
 }
 
 /// @nodoc
-abstract class _$$ChatContactSubListCopyWith<$Res>
-    implements $ChatContactCopyWith<$Res> {
-  factory _$$ChatContactSubListCopyWith(_$ChatContactSubList value,
-          $Res Function(_$ChatContactSubList) then) =
+abstract class _$$ChatContactSubListCopyWith<$Res> implements $ChatContactCopyWith<$Res> {
+  factory _$$ChatContactSubListCopyWith(
+          _$ChatContactSubList value, $Res Function(_$ChatContactSubList) then) =
       __$$ChatContactSubListCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String title, String? subtitle, List<SubChatContact> subChatContacts});
+  $Res call({String title, String? subtitle, List<SubChatContact> subChatContacts});
 }
 
 /// @nodoc
@@ -160,9 +150,7 @@ class __$$ChatContactSubListCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ChatContactSubList extends ChatContactSubList {
   const _$ChatContactSubList(
-      {required this.title,
-      this.subtitle,
-      required final List<SubChatContact> subChatContacts})
+      {required this.title, this.subtitle, required final List<SubChatContact> subChatContacts})
       : _subChatContacts = subChatContacts,
         super._();
 
@@ -192,29 +180,25 @@ class _$ChatContactSubList extends ChatContactSubList {
         (other.runtimeType == runtimeType &&
             other is _$ChatContactSubList &&
             (identical(other.title, title) || other.title == title) &&
-            (identical(other.subtitle, subtitle) ||
-                other.subtitle == subtitle) &&
-            const DeepCollectionEquality()
-                .equals(other._subChatContacts, _subChatContacts));
+            (identical(other.subtitle, subtitle) || other.subtitle == subtitle) &&
+            const DeepCollectionEquality().equals(other._subChatContacts, _subChatContacts));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, title, subtitle,
-      const DeepCollectionEquality().hash(_subChatContacts));
+  int get hashCode => Object.hash(
+      runtimeType, title, subtitle, const DeepCollectionEquality().hash(_subChatContacts));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ChatContactSubListCopyWith<_$ChatContactSubList> get copyWith =>
-      __$$ChatContactSubListCopyWithImpl<_$ChatContactSubList>(
-          this, _$identity);
+      __$$ChatContactSubListCopyWithImpl<_$ChatContactSubList>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String title, String? subtitle,
-            List<SubChatContact> subChatContacts)
+    required TResult Function(String title, String? subtitle, List<SubChatContact> subChatContacts)
         subList,
   }) {
     return subList(title, subtitle, subChatContacts);
@@ -223,8 +207,7 @@ class _$ChatContactSubList extends ChatContactSubList {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String title, String? subtitle,
-            List<SubChatContact> subChatContacts)?
+    TResult? Function(String title, String? subtitle, List<SubChatContact> subChatContacts)?
         subList,
   }) {
     return subList?.call(title, subtitle, subChatContacts);
@@ -233,9 +216,7 @@ class _$ChatContactSubList extends ChatContactSubList {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String title, String? subtitle,
-            List<SubChatContact> subChatContacts)?
-        subList,
+    TResult Function(String title, String? subtitle, List<SubChatContact> subChatContacts)? subList,
     required TResult orElse(),
   }) {
     if (subList != null) {
@@ -282,14 +263,12 @@ class _$ChatContactSubList extends ChatContactSubList {
 
 abstract class ChatContactSubList extends ChatContact {
   const factory ChatContactSubList(
-          {required final String title,
-          final String? subtitle,
-          required final List<SubChatContact> subChatContacts}) =
-      _$ChatContactSubList;
+      {required final String title,
+      final String? subtitle,
+      required final List<SubChatContact> subChatContacts}) = _$ChatContactSubList;
   const ChatContactSubList._() : super._();
 
-  factory ChatContactSubList.fromJson(Map<String, dynamic> json) =
-      _$ChatContactSubList.fromJson;
+  factory ChatContactSubList.fromJson(Map<String, dynamic> json) = _$ChatContactSubList.fromJson;
 
   @override
   String get title;
@@ -314,14 +293,12 @@ mixin _$SubChatContact {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SubChatContactCopyWith<SubChatContact> get copyWith =>
-      throw _privateConstructorUsedError;
+  $SubChatContactCopyWith<SubChatContact> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $SubChatContactCopyWith<$Res> {
-  factory $SubChatContactCopyWith(
-          SubChatContact value, $Res Function(SubChatContact) then) =
+  factory $SubChatContactCopyWith(SubChatContact value, $Res Function(SubChatContact) then) =
       _$SubChatContactCopyWithImpl<$Res, SubChatContact>;
   @useResult
   $Res call({String title, String url});
@@ -357,8 +334,7 @@ class _$SubChatContactCopyWithImpl<$Res, $Val extends SubChatContact>
 }
 
 /// @nodoc
-abstract class _$$_SubChatContactCopyWith<$Res>
-    implements $SubChatContactCopyWith<$Res> {
+abstract class _$$_SubChatContactCopyWith<$Res> implements $SubChatContactCopyWith<$Res> {
   factory _$$_SubChatContactCopyWith(
           _$_SubChatContact value, $Res Function(_$_SubChatContact) then) =
       __$$_SubChatContactCopyWithImpl<$Res>;
@@ -371,8 +347,7 @@ abstract class _$$_SubChatContactCopyWith<$Res>
 class __$$_SubChatContactCopyWithImpl<$Res>
     extends _$SubChatContactCopyWithImpl<$Res, _$_SubChatContact>
     implements _$$_SubChatContactCopyWith<$Res> {
-  __$$_SubChatContactCopyWithImpl(
-      _$_SubChatContact _value, $Res Function(_$_SubChatContact) _then)
+  __$$_SubChatContactCopyWithImpl(_$_SubChatContact _value, $Res Function(_$_SubChatContact) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -399,8 +374,7 @@ class __$$_SubChatContactCopyWithImpl<$Res>
 class _$_SubChatContact extends _SubChatContact {
   const _$_SubChatContact({required this.title, required this.url}) : super._();
 
-  factory _$_SubChatContact.fromJson(Map<String, dynamic> json) =>
-      _$$_SubChatContactFromJson(json);
+  factory _$_SubChatContact.fromJson(Map<String, dynamic> json) => _$$_SubChatContactFromJson(json);
 
   @override
   final String title;
@@ -440,13 +414,11 @@ class _$_SubChatContact extends _SubChatContact {
 }
 
 abstract class _SubChatContact extends SubChatContact {
-  const factory _SubChatContact(
-      {required final String title,
-      required final String url}) = _$_SubChatContact;
+  const factory _SubChatContact({required final String title, required final String url}) =
+      _$_SubChatContact;
   const _SubChatContact._() : super._();
 
-  factory _SubChatContact.fromJson(Map<String, dynamic> json) =
-      _$_SubChatContact.fromJson;
+  factory _SubChatContact.fromJson(Map<String, dynamic> json) = _$_SubChatContact.fromJson;
 
   @override
   String get title;
@@ -454,6 +426,5 @@ abstract class _SubChatContact extends SubChatContact {
   String get url;
   @override
   @JsonKey(ignore: true)
-  _$$_SubChatContactCopyWith<_$_SubChatContact> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_SubChatContactCopyWith<_$_SubChatContact> get copyWith => throw _privateConstructorUsedError;
 }

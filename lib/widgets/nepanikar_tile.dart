@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 
 class NepanikarTile extends StatelessWidget {
-  const NepanikarTile({
-    super.key,
-    required this.child,
-  });
+  const NepanikarTile({super.key, required this.child});
 
   final Widget child;
 

@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/app_constants.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
-import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
@@ -38,8 +37,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   DatabaseService get _databaseService => registry.get<DatabaseService>();
 
-  NotificationsService get _notificationsService =>
-      registry.get<NotificationsService>();
+  NotificationsService get _notificationsService => registry.get<NotificationsService>();
 
   @override
   Widget build(BuildContext context) {
@@ -65,9 +63,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(16),
             child: Material(
-              color: isDarkMode
-                  ? NepanikarColors.containerD
-                  : NepanikarColors.white,
+              color: isDarkMode ? NepanikarColors.containerD : NepanikarColors.white,
               borderRadius: BorderRadius.circular(16),
               child: Column(
                 children: [
@@ -90,14 +86,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           final l10n = context.l10n;
                           await _databaseService.clearAll();
                           await _databaseService.preloadDefaultData(l10n);
-                          await _notificationsService
-                              .cancelAllScheduledNotifications();
+                          await _notificationsService.cancelAllScheduledNotifications();
                           if (mounted) {
                             context.hideCurrentSnackBar();
                             context.showSuccessSnackbar(
                               text: context.l10n.delete_success,
-                              leading:
-                                  Assets.icons.checkmarks.checkCircular.svg(),
+                              leading: Assets.icons.checkmarks.checkCircular.svg(),
                             );
                           }
                         },
@@ -118,12 +112,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       }
                     },
                   ),
-		if(!Platform.isIOS)
-                  _SettingsMenuItem(
-                    leading: Assets.icons.donate.svg(color: svgColor),
-                    text: context.l10n.support_us,
-                    onTap: () => launchUrLink(AppConstants.nepanikarDonate)
-                  ),
+                  if (!Platform.isIOS)
+                    _SettingsMenuItem(
+                      leading: Assets.icons.donate.svg(color: svgColor),
+                      text: context.l10n.support_us,
+                      onTap: () => launchUrLink(AppConstants.nepanikarDonate),
+                    ),
                   _SettingsMenuItem(
                     leading: Assets.icons.exportData.svg(color: svgColor),
                     onTap: () {
@@ -146,11 +140,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       isDarkMode ? Icons.wb_sunny : Icons.brightness_3,
                       color: colorForDarkModeButton,
                     ),
-                    text: isDarkMode
-                        ? context.l10n.dark_mode_on : context.l10n.dark_mode_off,
+                    text: isDarkMode ? context.l10n.dark_mode_on : context.l10n.dark_mode_off,
                     onTap: () async {
-                      final newThemeMode =
-                          isDarkMode ? ThemeMode.light : ThemeMode.dark;
+                      final newThemeMode = isDarkMode ? ThemeMode.light : ThemeMode.dark;
                       await userSettingsDao.saveThemeMode(newThemeMode);
                       setState(() {
                         isDarkMode = !isDarkMode;
@@ -160,8 +152,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   _SettingsMenuItem(
                     leading: Icon(
                       Icons.shield_outlined,
-                      color:
-                          isDarkMode ? Colors.white : NepanikarColors.primary,
+                      color: isDarkMode ? Colors.white : NepanikarColors.primary,
                     ),
                     text: context.l10n.support,
                     onTap: () => context.push(const SponsorsRoute().location),
@@ -170,28 +161,27 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     decoration: BoxDecoration(
                       border: Border(
                         top: isDarkMode
-                            ? BorderSide(
-                                color: NepanikarColors.primarySwatch.shade700)
-                            : BorderSide(color: Color(0xffF2F2F5)),
+                            ? BorderSide(color: NepanikarColors.primarySwatch.shade700)
+                            : const BorderSide(color: Color(0xffF2F2F5)),
                       ),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20.0, vertical: 16),
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16),
                       child: Row(
                         children: [
                           ExcludeSemantics(
                             child: Text(
                               context.l10n.follow_us,
-                              style: NepanikarFonts.bodySmallMedium
-                                  .copyWith(fontSize: 15, color: svgColor),
+                              style: NepanikarFonts.bodySmallMedium.copyWith(
+                                fontSize: 15,
+                                color: svgColor,
+                              ),
                             ),
                           ),
                           const Spacer(),
                           SemanticsWidgetButton(
                             label: '${context.l10n.follow_us}: Web',
-                            onTap: () =>
-                                launchUrLink(AppConstants.nepanikarWeb),
+                            onTap: () => launchUrLink(AppConstants.nepanikarWeb),
                             child: Assets.icons.globe.svg(color: svgColor),
                           ),
                           const SizedBox(width: 27),
@@ -215,7 +205,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ],
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -244,12 +234,11 @@ class _SettingsMenuItem extends StatelessWidget {
     this.leading,
     required this.text,
     this.onTap,
-    this.trailing,
   });
 
   final bool hideTopSeparator;
   final Widget? leading;
-  final Widget? trailing;
+  final Widget? trailing = null;
   final String text;
   final VoidCallback? onTap;
 
@@ -264,11 +253,9 @@ class _SettingsMenuItem extends StatelessWidget {
         border: Border(
           top: isDarkMode
               ? (hideTopSeparator
-                  ? BorderSide.none
-                  : BorderSide(color: NepanikarColors.primarySwatch.shade700))
-              : (hideTopSeparator
-                  ? BorderSide.none
-                  : const BorderSide(color: Color(0xffF2F2F5))),
+                    ? BorderSide.none
+                    : BorderSide(color: NepanikarColors.primarySwatch.shade700))
+              : (hideTopSeparator ? BorderSide.none : const BorderSide(color: Color(0xffF2F2F5))),
         ),
       ),
       child: InkWell(
@@ -281,17 +268,14 @@ class _SettingsMenuItem extends StatelessWidget {
               Flexible(
                 child: Row(
                   children: [
-                    if (leading != null) ...[
-                      leading!,
-                      const SizedBox(
-                        width: 16,
-                      ),
-                    ],
+                    if (leading != null) ...[leading!, const SizedBox(width: 16)],
                     Flexible(
                       child: Text(
                         text,
-                        style: NepanikarFonts.bodySmallMedium
-                            .copyWith(fontSize: 15, color: textColor),
+                        style: NepanikarFonts.bodySmallMedium.copyWith(
+                          fontSize: 15,
+                          color: textColor,
+                        ),
                       ),
                     ),
                   ],

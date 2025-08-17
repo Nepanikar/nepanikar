@@ -20,32 +20,28 @@ class TipsCarouselBody extends StatefulWidget {
 }
 
 class _TipsCarouselBodyState extends State<TipsCarouselBody> {
-  final PageController controller = PageController(
-    viewportFraction: 0.8,
-  );
+  final PageController controller = PageController(viewportFraction: 0.8);
   double activeIndex = 0;
   final analytics = registry.get<FirebaseAnalytics>();
 
   @override
   Widget build(BuildContext context) {
-    final containerColor = customColorsBasedOnDarkMode(context, NepanikarColors.headerD, NepanikarColors.primary);
+    final containerColor = customColorsBasedOnDarkMode(
+      context,
+      NepanikarColors.headerD,
+      NepanikarColors.primary,
+    );
 
     return Stack(
       children: [
-        Container(
-          height: 150,
-          width: double.infinity,
-          color: containerColor,
-        ),
+        Container(height: 150, width: double.infinity, color: containerColor),
         ConstrainedBox(
           constraints: const BoxConstraints(maxHeight: 600),
           child: Stack(
             children: [
               Column(
                 children: [
-                  const SizedBox(
-                    height: 18,
-                  ),
+                  const SizedBox(height: 18),
                   Flexible(
                     child: NotificationListener<ScrollNotification>(
                       onNotification: (ScrollNotification notification) {
@@ -61,12 +57,7 @@ class _TipsCarouselBodyState extends State<TipsCarouselBody> {
                         itemCount: widget.pages.length,
                         onPageChanged: (index) {
                           unawaited(
-                            analytics.logEvent(
-                              name: 'slide',
-                              parameters: {
-                                'tip': index + 1,
-                              },
-                            ),
+                            analytics.logEvent(name: 'slide', parameters: {'tip': index + 1}),
                           );
                         },
                         itemBuilder: (context, index) {
@@ -112,17 +103,13 @@ class _TipsCarouselBodyState extends State<TipsCarouselBody> {
                               padding: EdgeInsets.symmetric(
                                 horizontal: (148 / (widget.pages.length)) / 2,
                               ),
-                              child: const SizedBox(
-                                height: 6,
-                              ),
+                              child: const SizedBox(height: 6),
                             ),
                           ),
-                        )
+                        ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 24,
-                    ),
+                    const SizedBox(height: 24),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24.0),
                       child: Row(
@@ -139,9 +126,7 @@ class _TipsCarouselBodyState extends State<TipsCarouselBody> {
                               leadingIcon: Assets.icons.navigation.chevronLeft,
                             ),
                           ),
-                          const SizedBox(
-                            width: 24,
-                          ),
+                          const SizedBox(width: 24),
                           Flexible(
                             child: NepanikarButton(
                               onTap: () => controller.nextPage(
@@ -156,12 +141,10 @@ class _TipsCarouselBodyState extends State<TipsCarouselBody> {
                         ],
                       ),
                     ),
-                    const SizedBox(
-                      height: 16,
-                    ),
+                    const SizedBox(height: 16),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),

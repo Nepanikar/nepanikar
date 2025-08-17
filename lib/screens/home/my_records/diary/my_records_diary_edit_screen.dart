@@ -10,8 +10,10 @@ import 'package:nepanikar/services/db/my_records/diary/my_records_diary_dao.dart
 import 'package:nepanikar/utils/extensions.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/diary/diary_edit_content.dart';
+part 'my_records_diary_edit_screen.g.dart';
 
-class MyRecordsDiaryEditRoute extends GoRouteData {
+@TypedGoRoute<MyRecordsDiaryEditRoute>(path: '/home/my-records/diary/edit')
+class MyRecordsDiaryEditRoute extends GoRouteData with _$MyRecordsDiaryEditRoute {
   const MyRecordsDiaryEditRoute();
 
   @override
@@ -24,10 +26,7 @@ class MyRecordsDiaryEditRoute extends GoRouteData {
 }
 
 class MyRecordsDiaryEditScreen extends StatelessWidget {
-  const MyRecordsDiaryEditScreen({
-    super.key,
-    required this.diaryRecordRouteExtraData,
-  });
+  const MyRecordsDiaryEditScreen({super.key, required this.diaryRecordRouteExtraData});
 
   final DiaryRecordRouteExtraData diaryRecordRouteExtraData;
 

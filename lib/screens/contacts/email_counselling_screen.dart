@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/screens/contacts/crisis_message_screen.dart';
+part 'email_counselling_screen.g.dart';
 
-class EmailCounsellingRoute extends GoRouteData {
+@TypedGoRoute<EmailCounsellingRoute>(path: '/contacts/email-counselling')
+class EmailCounsellingRoute extends GoRouteData with _$EmailCounsellingRoute {
   const EmailCounsellingRoute();
 
   @override

@@ -24,7 +24,11 @@ class DiaryTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final svgColor = svgColorBasedOnDarkMode(context);
-    final longTileColor = customColorsBasedOnDarkMode(context, NepanikarColors.containerD, NepanikarColors.primarySwatch.shade700);
+    final longTileColor = customColorsBasedOnDarkMode(
+      context,
+      NepanikarColors.containerD,
+      NepanikarColors.primarySwatch.shade700,
+    );
 
     const textStyle = NepanikarFonts.bodyHeavy;
     final locale = Localizations.localeOf(context);

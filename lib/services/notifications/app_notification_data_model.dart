@@ -12,10 +12,8 @@ part 'app_notification_data_model.g.dart';
 /// Based on the [type] we can decide what to do when the notification is tapped
 /// (e.g. open a specific screen).
 @freezed
-class AppNotificationData with _$AppNotificationData {
-  const factory AppNotificationData({
-    required NotificationType type,
-  }) = _AppNotificationData;
+abstract class AppNotificationData with _$AppNotificationData {
+  const factory AppNotificationData({required NotificationType type}) = _AppNotificationData;
 
   const AppNotificationData._();
 

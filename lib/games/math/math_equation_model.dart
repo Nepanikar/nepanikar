@@ -25,12 +25,7 @@ class MathEquation {
       b = temp;
     }
     final correctResult = operation.calculate(a, b);
-    return MathEquation._(
-      a: a,
-      b: b,
-      operation: operation,
-      correctResult: correctResult,
-    );
+    return MathEquation._(a: a, b: b, operation: operation, correctResult: correctResult);
   }
 
   final int a;

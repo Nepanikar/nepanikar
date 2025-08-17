@@ -1,6 +1,6 @@
-import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
@@ -8,23 +8,18 @@ import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-enum RelaxationType {
-  general,
-  morning,
-  evening,
-}
+part 'relaxation_screen.g.dart';
 
-class RelaxationRoute extends GoRouteData {
-  const RelaxationRoute({
-    required this.relaxationType,
-  });
+enum RelaxationType { general, morning, evening }
+
+@TypedGoRoute<RelaxationRoute>(path: '/games/relaxation/:relaxationType')
+class RelaxationRoute extends GoRouteData with _$RelaxationRoute {
+  const RelaxationRoute({required this.relaxationType});
 
   final RelaxationType relaxationType;
 
   @override
-  Widget build(BuildContext context, _) => RelaxationScreen(
-        relaxationType: relaxationType,
-      );
+  Widget build(BuildContext context, _) => RelaxationScreen(relaxationType: relaxationType);
 }
 
 class RelaxationScreen extends StatefulWidget {
@@ -37,7 +32,7 @@ class RelaxationScreen extends StatefulWidget {
 }
 
 class _RelaxationScreenState extends State<RelaxationScreen> {
-  final player = AssetsAudioPlayer();
+  final player = AudioPlayer();
 
   Duration songDuration = Duration.zero;
   Duration sliderPosition = Duration.zero;
@@ -75,39 +70,30 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
         /// Not translated, bcs this module is only used in CS and SK lang
         title = 'Relaxace';
         asset = Assets.audio.relaxCS;
-        break;
       case RelaxationType.morning:
         title = 'Ranní zastavení';
         asset = Assets.audio.morningCS;
         description = 'Audionahrávku relaxace namluvili Odpověď uvnitř';
         url = 'https://www.odpoveduvnitr.cz/';
-        break;
       case RelaxationType.evening:
         title = 'Večerní zastavení';
         asset = Assets.audio.eveningCS;
         description = 'Audionahrávku relaxace namluvili Odpověď uvnitř';
         url = 'https://www.odpoveduvnitr.cz/';
-        break;
     }
 
-    player.open(
-      Audio(asset),
-      autoStart: false,
-    );
-
-    player.current.listen((playingAudio) {
-      if (playingAudio?.audio != null) {
-        if (mounted) {
-          setState(() {
-            songDuration = playingAudio!.audio.duration;
-          });
-        }
-      }
-    });
-    player.currentPosition.listen((currPosition) {
+    final duration = player.setAsset(asset);
+    player.durationStream.listen((duration) {
       if (mounted) {
         setState(() {
-          sliderPosition = currPosition;
+          songDuration = duration ?? Duration.zero;
+        });
+      }
+    });
+    player.positionStream.listen((position) {
+      if (mounted) {
+        setState(() {
+          sliderPosition = position;
         });
       }
     });
@@ -126,9 +112,7 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
 
     return Scaffold(
       backgroundColor: backgroundColor,
-      appBar: AppBar(
-        title: Text(title),
-      ),
+      appBar: AppBar(title: Text(title)),
       body: Stack(
         children: [
           if (description != null)
@@ -148,13 +132,18 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
             ),
           Align(
             child: StreamBuilder(
-              stream: player.isPlaying,
+              stream: player.playingStream,
               builder: (context, asyncSnapshot) {
                 final bool isPlaying = asyncSnapshot.data ?? false;
                 return Semantics(
                   button: true,
                   child: GestureDetector(
-                    onTap: () => player.playOrPause(),
+                    onTap: () {
+                    if (isPlaying) {
+                    player.pause();
+                    } else {
+                    player.play();
+                    }},
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
                       child: Container(
@@ -197,16 +186,10 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
                       onChanged: (double value) {
                         if (mounted) {
                           setState(() {
-                            sliderPosition = Duration(
-                              milliseconds: value.toInt(),
-                            );
+                            sliderPosition = Duration(milliseconds: value.toInt());
                           });
                         }
-                        player.seek(
-                          Duration(
-                            milliseconds: value.toInt(),
-                          ),
-                        );
+                        player.seek(Duration(milliseconds: value.toInt()));
                       },
                     ),
                   ),

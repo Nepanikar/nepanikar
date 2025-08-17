@@ -6,7 +6,6 @@ import 'package:nepanikar/widgets/heatmap/data/heatmap_color.dart';
 import 'package:nepanikar/widgets/heatmap/data/heatmap_color_mode.dart';
 
 class MyKey implements Comparable<MyKey> {
-
   MyKey(this.value);
   final int value;
 
@@ -17,16 +16,16 @@ class MyKey implements Comparable<MyKey> {
 }
 
 class HeatMapColorTip extends StatelessWidget {
-
   const HeatMapColorTip({
-    Key? key,
+    super.key,
     required this.colorMode,
     this.colorsets,
     this.leftWidget,
     this.rightWidget,
     this.containerCount,
     this.size,
-  }) : super(key: key);
+  });
+
   /// Default length of [containerCount].
   final int _defaultLength = 7;
 
@@ -61,20 +60,21 @@ class HeatMapColorTip extends StatelessWidget {
   ///
   /// If [ColorMode.color], call [_heatmapListColor]
   /// If [ColorMode.opacity], call [_heatmapListOpacity]
-  List<Widget> _heatmapList() => colorMode == ColorMode.color
-      ? _heatmapListColor()
-      : _heatmapListOpacity();
+  List<Widget> _heatmapList() =>
+      colorMode == ColorMode.color ? _heatmapListColor() : _heatmapListOpacity();
 
   /// Evenly show every colors from lowest to highest.
   List<Widget> _heatmapListColor() {
-    List<Widget> children = [];
-    SplayTreeMap<int, Color> sortedColorset =
-        SplayTreeMap<int, Color>.from(colorsets ?? {}, (a, b) => a.compareTo(b));
+    final List<Widget> children = [];
+    final SplayTreeMap<int, Color> sortedColorset = SplayTreeMap<int, Color>.from(
+      colorsets ?? {},
+      (a, b) => a.compareTo(b),
+    );
 
     for (int i = 0; i < (containerCount ?? _defaultLength); i++) {
       // Correctly calculate index within bounds and use elements
-      int index = ((sortedColorset.length / (containerCount ?? _defaultLength)) * i).floor();
-      Color color = sortedColorset.values.elementAt(index);
+      final int index = ((sortedColorset.length / (containerCount ?? _defaultLength)) * i).floor();
+      final Color color = sortedColorset.values.elementAt(index);
       children.add(_tipContainer(color));
     }
 
@@ -83,25 +83,24 @@ class HeatMapColorTip extends StatelessWidget {
 
   /// Evenly show every colors from transparent to non-transparent.
   List<Widget> _heatmapListOpacity() {
-    List<Widget> children = [];
+    final List<Widget> children = [];
 
     for (int i = 0; i < (containerCount ?? _defaultLength); i++) {
-      children.add(_tipContainer(colorsets?.values.first
-              .withOpacity(i / (containerCount ?? _defaultLength)) ??
-          Colors.white));
+      children.add(
+        _tipContainer(
+          colorsets?.values.first.withOpacity(i / (containerCount ?? _defaultLength)) ??
+              Colors.white,
+        ),
+      );
     }
     return children;
   }
 
   /// Container which is colored by [color].
   Widget _tipContainer(Color color) {
-    return Container(
+    return ColoredBox(
       color: HeatMapColor.defaultColor,
-      child: Container(
-        width: size ?? 10,
-        height: size ?? 10,
-        color: color,
-      ),
+      child: Container(width: size ?? 10, height: size ?? 10, color: color),
     );
   }
 

@@ -94,9 +94,7 @@ class _DiaryEditContentState extends State<DiaryEditContent> {
           TextField(
             controller: _titleEditingController,
             textInputAction: TextInputAction.next,
-            decoration: InputDecoration(
-              hintText: context.l10n.title_entry_hint_text,
-            ),
+            decoration: InputDecoration(hintText: context.l10n.title_entry_hint_text),
           ),
           const SizedBox(height: 12),
           Text(context.l10n.text_of_entry_label, style: labelTextStyle),

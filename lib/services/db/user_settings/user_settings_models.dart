@@ -8,26 +8,22 @@ part 'user_settings_models.freezed.dart';
 part 'user_settings_models.g.dart';
 
 @freezed
-class UserLanguage with _$UserLanguage {
-  const factory UserLanguage({
-    required String languageCode,
-    required String? countryCode,
-  }) = _UserLanguage;
+abstract class UserLanguage with _$UserLanguage {
+  const factory UserLanguage({required String languageCode, required String? countryCode}) =
+      _UserLanguage;
 
   const UserLanguage._();
 
   factory UserLanguage.fromJson(Map<String, Object?> json) => _$UserLanguageFromJson(json);
 
-  static UserLanguage fromLocale(Locale locale) => UserLanguage(
-        languageCode: locale.languageCode,
-        countryCode: locale.countryCode,
-      );
+  static UserLanguage fromLocale(Locale locale) =>
+      UserLanguage(languageCode: locale.languageCode, countryCode: locale.countryCode);
 
   Locale toLocale() => Locale(languageCode, countryCode);
 }
 
 @freezed
-class NotificationTypeSettings with _$NotificationTypeSettings {
+abstract class NotificationTypeSettings with _$NotificationTypeSettings {
   const factory NotificationTypeSettings({
     required NotificationType type,
     required int scheduledHour,
@@ -41,17 +37,15 @@ class NotificationTypeSettings with _$NotificationTypeSettings {
 }
 
 @freezed
-class UserThemeMode with _$UserThemeMode {
-  const factory UserThemeMode({
-    @Default('system') String themeMode,
-  }) = _UserThemeMode;
+abstract class UserThemeMode with _$UserThemeMode {
+  const factory UserThemeMode({@Default('system') String themeMode}) = _UserThemeMode;
 
   const UserThemeMode._();
 
   factory UserThemeMode.fromJson(Map<String, Object?> json) => _$UserThemeModeFromJson(json);
 
-  ThemeMode getThemeMode(){
-    switch (themeMode){
+  ThemeMode getThemeMode() {
+    switch (themeMode) {
       case 'dark':
         return ThemeMode.dark;
       case 'light':
@@ -61,7 +55,7 @@ class UserThemeMode with _$UserThemeMode {
     }
   }
 
-  static String themeModeToString(ThemeMode themeMode){
+  static String themeModeToString(ThemeMode themeMode) {
     return themeMode.toString().split('.').last;
   }
 }

@@ -3,11 +3,9 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:sembast/sembast.dart';
 
 class EmotionsDao {
-  EmotionsDao({
-    required DatabaseService dbService,
-    String? storeKeyName,
-  })  : _dbService = dbService,
-        _store = stringMapStoreFactory.store(storeKeyName ?? _storeKeyName);
+  EmotionsDao({required DatabaseService dbService, String? storeKeyName})
+    : _dbService = dbService,
+      _store = stringMapStoreFactory.store(storeKeyName ?? _storeKeyName);
 
   Future<EmotionsDao> init() async {
     registry.registerSingleton<EmotionsDao>(this);
@@ -21,13 +19,7 @@ class EmotionsDao {
 
   Database get _db => _dbService.database;
 
-  static final List<String> defaultEmotions = [
-    'Happy',
-    'Sad',
-    'Excited',
-    'Relaxed',
-    'Angry'
-  ];
+  static final List<String> defaultEmotions = ['Happy', 'Sad', 'Excited', 'Relaxed', 'Angry'];
 
   Future<void> initEmotions() async {
     final existingEmotions = await getEmotions();
@@ -55,10 +47,7 @@ class EmotionsDao {
     final finder = Finder(sortOrders: [SortOrder(Field.key)]);
     final records = await _store.find(_db, finder: finder);
 
-    return records
-        .map((record) => record.value['emotion'] as String)
-        .whereType<String>()
-        .toList();
+    return records.map((record) => record.value['emotion']! as String).whereType<String>().toList();
   }
 
   //TODO urobit odstranovanie a updatovanie emocii + case ked su emocie pouzivane
@@ -66,7 +55,7 @@ class EmotionsDao {
     final key = emotion.toLowerCase();
 
     final existingRecord = await _store.record(key).get(_db);
-    if(existingRecord != null){
+    if (existingRecord != null) {
       await _store.record(key).delete(_db);
       return true;
     }

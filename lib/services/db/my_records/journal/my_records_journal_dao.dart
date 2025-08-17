@@ -6,10 +6,9 @@ import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 import 'package:sembast/sembast.dart';
 
 class MyRecordsJournalDao {
-  MyRecordsJournalDao({
-    required DatabaseService dbService,
-  })  : _dbService = dbService,
-        _store = stringMapStoreFactory.store(_storeKeyName);
+  MyRecordsJournalDao({required DatabaseService dbService})
+    : _dbService = dbService,
+      _store = stringMapStoreFactory.store(_storeKeyName);
 
   Future<MyRecordsJournalDao> init() async {
     registry.registerSingleton<MyRecordsJournalDao>(this);
@@ -33,10 +32,7 @@ class MyRecordsJournalDao {
     await _store.addAll(_db, serializedItems);
   }
 
-  Future<void> updateRecord(
-    String key, {
-    required JournalRecord updatedJournalRecord,
-  }) async {
+  Future<void> updateRecord(String key, {required JournalRecord updatedJournalRecord}) async {
     final updatedItem = updatedJournalRecord.toJson();
     await _store.record(key).put(_db, updatedItem);
   }
@@ -53,9 +49,9 @@ class MyRecordsJournalDao {
       });
 
   Stream<Map<String, JournalRecord>> get allRecordsStream => _store
-          .query(finder: Finder(sortOrders: [SortOrder(FilterKeys.dateWithTime, false)]))
-          .onSnapshots(_db)
-          .map((event) {
+      .query(finder: Finder(sortOrders: [SortOrder(FilterKeys.dateWithTime, false)]))
+      .onSnapshots(_db)
+      .map((event) {
         final entries = event
             .map((e) {
               final value = e.value;

@@ -22,8 +22,8 @@ PhoneContact _$PhoneContactFromJson(Map<String, dynamic> json) {
       return PhoneContactSubList.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(json, 'runtimeType', 'PhoneContact',
-          'Invalid union type "${json['runtimeType']}"!');
+      throw CheckedFromJsonException(
+          json, 'runtimeType', 'PhoneContact', 'Invalid union type "${json['runtimeType']}"!');
   }
 }
 
@@ -33,28 +33,23 @@ mixin _$PhoneContact {
   String? get subtitle => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(bool pinned, String title, String tel, String? subtitle)
-        $default, {
-    required TResult Function(String title, String? subtitle,
-            List<SubPhoneContact> subPhoneContacts)
+    TResult Function(bool pinned, String title, String tel, String? subtitle) $default, {
+    required TResult Function(
+            String title, String? subtitle, List<SubPhoneContact> subPhoneContacts)
         subList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(bool pinned, String title, String tel, String? subtitle)?
-        $default, {
-    TResult? Function(String title, String? subtitle,
-            List<SubPhoneContact> subPhoneContacts)?
+    TResult? Function(bool pinned, String title, String tel, String? subtitle)? $default, {
+    TResult? Function(String title, String? subtitle, List<SubPhoneContact> subPhoneContacts)?
         subList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(bool pinned, String title, String tel, String? subtitle)?
-        $default, {
-    TResult Function(String title, String? subtitle,
-            List<SubPhoneContact> subPhoneContacts)?
+    TResult Function(bool pinned, String title, String tel, String? subtitle)? $default, {
+    TResult Function(String title, String? subtitle, List<SubPhoneContact> subPhoneContacts)?
         subList,
     required TResult orElse(),
   }) =>
@@ -80,14 +75,12 @@ mixin _$PhoneContact {
       throw _privateConstructorUsedError;
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PhoneContactCopyWith<PhoneContact> get copyWith =>
-      throw _privateConstructorUsedError;
+  $PhoneContactCopyWith<PhoneContact> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $PhoneContactCopyWith<$Res> {
-  factory $PhoneContactCopyWith(
-          PhoneContact value, $Res Function(PhoneContact) then) =
+  factory $PhoneContactCopyWith(PhoneContact value, $Res Function(PhoneContact) then) =
       _$PhoneContactCopyWithImpl<$Res, PhoneContact>;
   @useResult
   $Res call({String title, String? subtitle});
@@ -123,10 +116,9 @@ class _$PhoneContactCopyWithImpl<$Res, $Val extends PhoneContact>
 }
 
 /// @nodoc
-abstract class _$$PhoneContactSingleCopyWith<$Res>
-    implements $PhoneContactCopyWith<$Res> {
-  factory _$$PhoneContactSingleCopyWith(_$PhoneContactSingle value,
-          $Res Function(_$PhoneContactSingle) then) =
+abstract class _$$PhoneContactSingleCopyWith<$Res> implements $PhoneContactCopyWith<$Res> {
+  factory _$$PhoneContactSingleCopyWith(
+          _$PhoneContactSingle value, $Res Function(_$PhoneContactSingle) then) =
       __$$PhoneContactSingleCopyWithImpl<$Res>;
   @override
   @useResult
@@ -211,8 +203,7 @@ class _$PhoneContactSingle extends PhoneContactSingle {
             (identical(other.pinned, pinned) || other.pinned == pinned) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.tel, tel) || other.tel == tel) &&
-            (identical(other.subtitle, subtitle) ||
-                other.subtitle == subtitle));
+            (identical(other.subtitle, subtitle) || other.subtitle == subtitle));
   }
 
   @JsonKey(ignore: true)
@@ -223,16 +214,14 @@ class _$PhoneContactSingle extends PhoneContactSingle {
   @override
   @pragma('vm:prefer-inline')
   _$$PhoneContactSingleCopyWith<_$PhoneContactSingle> get copyWith =>
-      __$$PhoneContactSingleCopyWithImpl<_$PhoneContactSingle>(
-          this, _$identity);
+      __$$PhoneContactSingleCopyWithImpl<_$PhoneContactSingle>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(bool pinned, String title, String tel, String? subtitle)
-        $default, {
-    required TResult Function(String title, String? subtitle,
-            List<SubPhoneContact> subPhoneContacts)
+    TResult Function(bool pinned, String title, String tel, String? subtitle) $default, {
+    required TResult Function(
+            String title, String? subtitle, List<SubPhoneContact> subPhoneContacts)
         subList,
   }) {
     return $default(pinned, title, tel, subtitle);
@@ -241,10 +230,8 @@ class _$PhoneContactSingle extends PhoneContactSingle {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(bool pinned, String title, String tel, String? subtitle)?
-        $default, {
-    TResult? Function(String title, String? subtitle,
-            List<SubPhoneContact> subPhoneContacts)?
+    TResult? Function(bool pinned, String title, String tel, String? subtitle)? $default, {
+    TResult? Function(String title, String? subtitle, List<SubPhoneContact> subPhoneContacts)?
         subList,
   }) {
     return $default?.call(pinned, title, tel, subtitle);
@@ -253,10 +240,8 @@ class _$PhoneContactSingle extends PhoneContactSingle {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(bool pinned, String title, String tel, String? subtitle)?
-        $default, {
-    TResult Function(String title, String? subtitle,
-            List<SubPhoneContact> subPhoneContacts)?
+    TResult Function(bool pinned, String title, String tel, String? subtitle)? $default, {
+    TResult Function(String title, String? subtitle, List<SubPhoneContact> subPhoneContacts)?
         subList,
     required TResult orElse(),
   }) {
@@ -313,8 +298,7 @@ abstract class PhoneContactSingle extends PhoneContact {
       final String? subtitle}) = _$PhoneContactSingle;
   const PhoneContactSingle._() : super._();
 
-  factory PhoneContactSingle.fromJson(Map<String, dynamic> json) =
-      _$PhoneContactSingle.fromJson;
+  factory PhoneContactSingle.fromJson(Map<String, dynamic> json) = _$PhoneContactSingle.fromJson;
 
   bool get pinned;
   @override
@@ -329,15 +313,13 @@ abstract class PhoneContactSingle extends PhoneContact {
 }
 
 /// @nodoc
-abstract class _$$PhoneContactSubListCopyWith<$Res>
-    implements $PhoneContactCopyWith<$Res> {
-  factory _$$PhoneContactSubListCopyWith(_$PhoneContactSubList value,
-          $Res Function(_$PhoneContactSubList) then) =
+abstract class _$$PhoneContactSubListCopyWith<$Res> implements $PhoneContactCopyWith<$Res> {
+  factory _$$PhoneContactSubListCopyWith(
+          _$PhoneContactSubList value, $Res Function(_$PhoneContactSubList) then) =
       __$$PhoneContactSubListCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String title, String? subtitle, List<SubPhoneContact> subPhoneContacts});
+  $Res call({String title, String? subtitle, List<SubPhoneContact> subPhoneContacts});
 }
 
 /// @nodoc
@@ -394,8 +376,7 @@ class _$PhoneContactSubList extends PhoneContactSubList {
   final List<SubPhoneContact> _subPhoneContacts;
   @override
   List<SubPhoneContact> get subPhoneContacts {
-    if (_subPhoneContacts is EqualUnmodifiableListView)
-      return _subPhoneContacts;
+    if (_subPhoneContacts is EqualUnmodifiableListView) return _subPhoneContacts;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_subPhoneContacts);
   }
@@ -414,31 +395,27 @@ class _$PhoneContactSubList extends PhoneContactSubList {
         (other.runtimeType == runtimeType &&
             other is _$PhoneContactSubList &&
             (identical(other.title, title) || other.title == title) &&
-            (identical(other.subtitle, subtitle) ||
-                other.subtitle == subtitle) &&
-            const DeepCollectionEquality()
-                .equals(other._subPhoneContacts, _subPhoneContacts));
+            (identical(other.subtitle, subtitle) || other.subtitle == subtitle) &&
+            const DeepCollectionEquality().equals(other._subPhoneContacts, _subPhoneContacts));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, title, subtitle,
-      const DeepCollectionEquality().hash(_subPhoneContacts));
+  int get hashCode => Object.hash(
+      runtimeType, title, subtitle, const DeepCollectionEquality().hash(_subPhoneContacts));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$PhoneContactSubListCopyWith<_$PhoneContactSubList> get copyWith =>
-      __$$PhoneContactSubListCopyWithImpl<_$PhoneContactSubList>(
-          this, _$identity);
+      __$$PhoneContactSubListCopyWithImpl<_$PhoneContactSubList>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(bool pinned, String title, String tel, String? subtitle)
-        $default, {
-    required TResult Function(String title, String? subtitle,
-            List<SubPhoneContact> subPhoneContacts)
+    TResult Function(bool pinned, String title, String tel, String? subtitle) $default, {
+    required TResult Function(
+            String title, String? subtitle, List<SubPhoneContact> subPhoneContacts)
         subList,
   }) {
     return subList(title, subtitle, subPhoneContacts);
@@ -447,10 +424,8 @@ class _$PhoneContactSubList extends PhoneContactSubList {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(bool pinned, String title, String tel, String? subtitle)?
-        $default, {
-    TResult? Function(String title, String? subtitle,
-            List<SubPhoneContact> subPhoneContacts)?
+    TResult? Function(bool pinned, String title, String tel, String? subtitle)? $default, {
+    TResult? Function(String title, String? subtitle, List<SubPhoneContact> subPhoneContacts)?
         subList,
   }) {
     return subList?.call(title, subtitle, subPhoneContacts);
@@ -459,10 +434,8 @@ class _$PhoneContactSubList extends PhoneContactSubList {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(bool pinned, String title, String tel, String? subtitle)?
-        $default, {
-    TResult Function(String title, String? subtitle,
-            List<SubPhoneContact> subPhoneContacts)?
+    TResult Function(bool pinned, String title, String tel, String? subtitle)? $default, {
+    TResult Function(String title, String? subtitle, List<SubPhoneContact> subPhoneContacts)?
         subList,
     required TResult orElse(),
   }) {
@@ -513,14 +486,12 @@ class _$PhoneContactSubList extends PhoneContactSubList {
 
 abstract class PhoneContactSubList extends PhoneContact {
   const factory PhoneContactSubList(
-          {required final String title,
-          final String? subtitle,
-          required final List<SubPhoneContact> subPhoneContacts}) =
-      _$PhoneContactSubList;
+      {required final String title,
+      final String? subtitle,
+      required final List<SubPhoneContact> subPhoneContacts}) = _$PhoneContactSubList;
   const PhoneContactSubList._() : super._();
 
-  factory PhoneContactSubList.fromJson(Map<String, dynamic> json) =
-      _$PhoneContactSubList.fromJson;
+  factory PhoneContactSubList.fromJson(Map<String, dynamic> json) = _$PhoneContactSubList.fromJson;
 
   @override
   String get title;
@@ -544,14 +515,12 @@ mixin _$SubPhoneContact {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SubPhoneContactCopyWith<SubPhoneContact> get copyWith =>
-      throw _privateConstructorUsedError;
+  $SubPhoneContactCopyWith<SubPhoneContact> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $SubPhoneContactCopyWith<$Res> {
-  factory $SubPhoneContactCopyWith(
-          SubPhoneContact value, $Res Function(SubPhoneContact) then) =
+  factory $SubPhoneContactCopyWith(SubPhoneContact value, $Res Function(SubPhoneContact) then) =
       _$SubPhoneContactCopyWithImpl<$Res, SubPhoneContact>;
   @useResult
   $Res call({String title, String tel});
@@ -587,8 +556,7 @@ class _$SubPhoneContactCopyWithImpl<$Res, $Val extends SubPhoneContact>
 }
 
 /// @nodoc
-abstract class _$$_SubPhoneContactCopyWith<$Res>
-    implements $SubPhoneContactCopyWith<$Res> {
+abstract class _$$_SubPhoneContactCopyWith<$Res> implements $SubPhoneContactCopyWith<$Res> {
   factory _$$_SubPhoneContactCopyWith(
           _$_SubPhoneContact value, $Res Function(_$_SubPhoneContact) then) =
       __$$_SubPhoneContactCopyWithImpl<$Res>;
@@ -627,8 +595,7 @@ class __$$_SubPhoneContactCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_SubPhoneContact extends _SubPhoneContact {
-  const _$_SubPhoneContact({required this.title, required this.tel})
-      : super._();
+  const _$_SubPhoneContact({required this.title, required this.tel}) : super._();
 
   factory _$_SubPhoneContact.fromJson(Map<String, dynamic> json) =>
       _$$_SubPhoneContactFromJson(json);
@@ -671,13 +638,11 @@ class _$_SubPhoneContact extends _SubPhoneContact {
 }
 
 abstract class _SubPhoneContact extends SubPhoneContact {
-  const factory _SubPhoneContact(
-      {required final String title,
-      required final String tel}) = _$_SubPhoneContact;
+  const factory _SubPhoneContact({required final String title, required final String tel}) =
+      _$_SubPhoneContact;
   const _SubPhoneContact._() : super._();
 
-  factory _SubPhoneContact.fromJson(Map<String, dynamic> json) =
-      _$_SubPhoneContact.fromJson;
+  factory _SubPhoneContact.fromJson(Map<String, dynamic> json) = _$_SubPhoneContact.fromJson;
 
   @override
   String get title;

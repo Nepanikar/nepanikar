@@ -1,6 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:linkify/linkify.dart';
+import 'package:linkify/linkify.dart' hide PhoneNumberElement, PhoneNumberLinkifier;
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
@@ -10,20 +10,14 @@ import 'package:nepanikar/utils/custom_linkifiers.dart';
 import 'package:nepanikar_contacts_gen/nepanikar_contacts_gen.dart';
 
 class RegionItemContactsList extends StatelessWidget {
-  const RegionItemContactsList({
-    super.key,
-    required this.regionItemContact,
-  });
+  const RegionItemContactsList({super.key, required this.regionItemContact});
 
   final RegionItemContact regionItemContact;
 
   Widget _buildUniversityHeader(Color? textColor) {
     return Text(
       regionItemContact.name,
-      style: NepanikarFonts.title3.copyWith(
-        color: textColor,
-        fontWeight: FontWeight.w700,
-      ),
+      style: NepanikarFonts.title3.copyWith(color: textColor, fontWeight: FontWeight.w700),
     );
   }
 
@@ -51,35 +45,33 @@ class RegionItemContactsList extends StatelessWidget {
               padding: const EdgeInsets.only(top: 12),
               child: Text.rich(
                 TextSpan(
-                  children: linkifiedText.map(
-                    (e) {
-                      if (e is LinkableElement) {
-                        final displayText = e.text;
-                        final fullLink = e.url;
-                        final displayUrlLink = Uri.tryParse(fullLink)?.host ?? displayText;
-                        final isEmail = EmailValidator.validate(displayText);
-                        return WidgetSpan(
-                          child: GestureDetector(
-                            onTap: () async => launchLinkableContact(e),
-                            onLongPress: () async => copyContact(context, displayText),
-                            child: Text(
-                              isEmail || e is PhoneNumberElement ? displayText : displayUrlLink,
-                              semanticsLabel: e is PhoneNumberElement
-                                  ? displayText.spellOutNumFormat
-                                  : isEmail
-                                      ? 'email: $displayText'
-                                      : 'web: $displayUrlLink',
-                              style: linkifiedTextStyle,
-                            ),
+                  children: linkifiedText.map((e) {
+                    if (e is LinkableElement) {
+                      final displayText = e.text;
+                      final fullLink = e.url;
+                      final displayUrlLink = Uri.tryParse(fullLink)?.host ?? displayText;
+                      final isEmail = EmailValidator.validate(displayText);
+                      return WidgetSpan(
+                        child: GestureDetector(
+                          onTap: () async => launchLinkableContact(e),
+                          onLongPress: () async => copyContact(context, displayText),
+                          child: Text(
+                            isEmail || e is PhoneNumberElement ? displayText : displayUrlLink,
+                            semanticsLabel: e is PhoneNumberElement
+                                ? displayText.spellOutNumFormat
+                                : isEmail
+                                ? 'email: $displayText'
+                                : 'web: $displayUrlLink',
+                            style: linkifiedTextStyle,
                           ),
-                        );
-                      }
-                      return TextSpan(
-                        text: e.text,
-                        style: linkifiedTextStyle.copyWith(decoration: TextDecoration.none),
+                        ),
                       );
-                    },
-                  ).toList(),
+                    }
+                    return TextSpan(
+                      text: e.text,
+                      style: linkifiedTextStyle.copyWith(decoration: TextDecoration.none),
+                    );
+                  }).toList(),
                 ),
                 style: linkifiedTextStyle,
               ),

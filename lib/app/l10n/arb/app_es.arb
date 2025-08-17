@@ -328,5 +328,10 @@
   "dark_mode_off": "El modo oscuro está DESACTIVADO",
   "description": "Descripción",
   "confirm_delete": "¿Estás seguro de que quieres eliminar esta entrada de estado de ánimo?",
-  "enter_summary": "Introduce un breve resumen"
+  "enter_summary": "Introduce un breve resumen",
+  "emotion_angry": "Enojado",
+  "emotion_excited": "Emocionado",
+  "emotion_happy": "Feliz",
+  "emotion_relaxed": "Relajado",
+  "emotion_sad": "Triste"
 }

@@ -328,5 +328,10 @@
   "dark_mode_off": "Тёмный режим ВЫКЛ",
   "description": "Описание",
   "confirm_delete": "Вы уверены, что хотите удалить эту запись настроения?",
-  "enter_summary": "Введите короткое описание"
+  "enter_summary": "Введите короткое описание",
+  "emotion_angry": "Злой",
+  "emotion_excited": "Взволнован",
+  "emotion_happy": "Счастливый",
+  "emotion_relaxed": "Расслабленный",
+  "emotion_sad": "Грустный"
 }

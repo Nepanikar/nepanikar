@@ -14,8 +14,10 @@ import 'package:nepanikar/helpers/semantics_helpers.dart';
 import 'package:nepanikar/utils/lottie_cache_manager.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_button.dart';
+part 'math_game_screen.g.dart';
 
-class MathGameRoute extends GoRouteData {
+@TypedGoRoute<MathGameRoute>(path: '/games/math/')
+class MathGameRoute extends GoRouteData with _$MathGameRoute {
   const MathGameRoute();
 
   @override
@@ -104,17 +106,14 @@ class _MathGameScreenState extends State<MathGameScreen> {
     final backgroundColor = backgroundColorsBasedOnDarkMode(context);
 
     final textColor = customColorsBasedOnDarkMode(
-        context,
-        NepanikarColors.white,
-        NepanikarColors.primary,);
+      context,
+      NepanikarColors.white,
+      NepanikarColors.primary,
+    );
 
     final cardColor = longTileColorBasedOnDarkMode(context);
 
-    final textStyle = TextStyle(
-      fontSize: 56,
-      fontWeight: FontWeight.w900,
-      color: textColor,
-    );
+    final textStyle = TextStyle(fontSize: 56, fontWeight: FontWeight.w900, color: textColor);
 
     return GestureDetector(
       onTapDown: (_) => _focusNode.unfocus(),
@@ -209,9 +208,7 @@ class _MathGameScreenState extends State<MathGameScreen> {
                         ),
                       ),
                     ),
-                  Positioned(
-                    child: _answerResultState.icon,
-                  ),
+                  Positioned(child: _answerResultState.icon),
                 ],
               ],
             ),

@@ -1,3 +1,5 @@
+// dart format width=100
+
 /// GENERATED CODE - DO NOT MODIFY BY HAND
 /// *****************************************************
 ///  FlutterGen
@@ -5,12 +7,13 @@
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
+// ignore_for_file: deprecated_member_use,directives_ordering,implicit_dynamic_list_literal,unnecessary_import
 
-import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
-import 'package:lottie/lottie.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart' as _svg;
+import 'package:lottie/lottie.dart' as _lottie;
+import 'package:vector_graphics/vector_graphics.dart' as _vg;
 
 class $AssetsAnimatedIllustrationsGen {
   const $AssetsAnimatedIllustrationsGen();
@@ -19,6 +22,7 @@ class $AssetsAnimatedIllustrationsGen {
   LottieGenImage get confetti =>
       const LottieGenImage('assets/animated_illustrations/confetti.json');
 
+  /// Directory path: assets/animated_illustrations/moods
   $AssetsAnimatedIllustrationsMoodsGen get moods => const $AssetsAnimatedIllustrationsMoodsGen();
 
   /// List of all assets
@@ -63,6 +67,7 @@ class $AssetsIconsGen {
   /// File path: assets/icons/calendar_event.svg
   SvgGenImage get calendarEvent => const SvgGenImage('assets/icons/calendar_event.svg');
 
+  /// Directory path: assets/icons/checkmarks
   $AssetsIconsCheckmarksGen get checkmarks => const $AssetsIconsCheckmarksGen();
 
   /// File path: assets/icons/delete_data.svg
@@ -104,6 +109,7 @@ class $AssetsIconsGen {
   /// File path: assets/icons/marker.svg
   SvgGenImage get marker => const SvgGenImage('assets/icons/marker.svg');
 
+  /// Directory path: assets/icons/navigation
   $AssetsIconsNavigationGen get navigation => const $AssetsIconsNavigationGen();
 
   /// File path: assets/icons/notification_bell.svg
@@ -126,37 +132,44 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [
-        aboutApp,
-        calendar,
-        calendarEvent,
-        deleteData,
-        donate,
-        export,
-        exportData,
-        facebook,
-        globe,
-        heart,
-        home,
-        import,
-        instagram,
-        language,
-        logo,
-        marker,
-        notificationBell,
-        phone,
-        settings,
-        spinner,
-        userCircle,
-        warningWavy
-      ];
+    aboutApp,
+    calendar,
+    calendarEvent,
+    deleteData,
+    donate,
+    export,
+    exportData,
+    facebook,
+    globe,
+    heart,
+    home,
+    import,
+    instagram,
+    language,
+    logo,
+    marker,
+    notificationBell,
+    phone,
+    settings,
+    spinner,
+    userCircle,
+    warningWavy,
+  ];
 }
 
 class $AssetsIllustrationsGen {
   const $AssetsIllustrationsGen();
 
+  /// Directory path: assets/illustrations/contacts
   $AssetsIllustrationsContactsGen get contacts => const $AssetsIllustrationsContactsGen();
+
+  /// Directory path: assets/illustrations/games
   $AssetsIllustrationsGamesGen get games => const $AssetsIllustrationsGamesGen();
+
+  /// Directory path: assets/illustrations/modules
   $AssetsIllustrationsModulesGen get modules => const $AssetsIllustrationsModulesGen();
+
+  /// Directory path: assets/illustrations/moods
   $AssetsIllustrationsMoodsGen get moods => const $AssetsIllustrationsMoodsGen();
 }
 
@@ -234,30 +247,30 @@ class $AssetsMealsGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
-        amSnack0,
-        amSnack1,
-        breakfast0,
-        breakfast1,
-        breakfast2,
-        dinner0,
-        dinner1,
-        dinner2,
-        dinner3,
-        dinner4,
-        dinner5,
-        dinner6,
-        dinner7,
-        lunch0,
-        lunch1,
-        lunch2,
-        lunch3,
-        lunch4,
-        lunch5,
-        pmSnack0,
-        pmSnack1,
-        pmSnack2,
-        pmSnack3
-      ];
+    amSnack0,
+    amSnack1,
+    breakfast0,
+    breakfast1,
+    breakfast2,
+    dinner0,
+    dinner1,
+    dinner2,
+    dinner3,
+    dinner4,
+    dinner5,
+    dinner6,
+    dinner7,
+    lunch0,
+    lunch1,
+    lunch2,
+    lunch3,
+    lunch4,
+    lunch5,
+    pmSnack0,
+    pmSnack1,
+    pmSnack2,
+    pmSnack3,
+  ];
 }
 
 class $AssetsSponsorsGen {
@@ -290,14 +303,14 @@ class $AssetsSponsorsGen {
 
   /// List of all assets
   List<dynamic> get values => [
-        sponsorCeskoDigitalPng,
-        sponsorCeskoDigitalSvg,
-        sponsorKofi,
-        sponsorLivechatoo,
-        sponsorPpf,
-        sponsorRodinyOrlickych,
-        sponsorUniqa
-      ];
+    sponsorCeskoDigitalPng,
+    sponsorCeskoDigitalSvg,
+    sponsorKofi,
+    sponsorLivechatoo,
+    sponsorPpf,
+    sponsorRodinyOrlickych,
+    sponsorUniqa,
+  ];
 }
 
 class $AssetsAnimatedIllustrationsMoodsGen {
@@ -399,8 +412,13 @@ class $AssetsIllustrationsContactsGen {
 class $AssetsIllustrationsGamesGen {
   const $AssetsIllustrationsGamesGen();
 
+  /// Directory path: assets/illustrations/games/balloons
   $AssetsIllustrationsGamesBalloonsGen get balloons => const $AssetsIllustrationsGamesBalloonsGen();
+
+  /// Directory path: assets/illustrations/games/math
   $AssetsIllustrationsGamesMathGen get math => const $AssetsIllustrationsGamesMathGen();
+
+  /// Directory path: assets/illustrations/games/swing
   $AssetsIllustrationsGamesSwingGen get swing => const $AssetsIllustrationsGamesSwingGen();
 }
 
@@ -512,36 +530,36 @@ class $AssetsIllustrationsModulesGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [
-        activityPlanning,
-        anxietyPanic,
-        breathing,
-        breathingCircle,
-        breathingSquare,
-        breathingTriangle,
-        depression,
-        diary,
-        eatingDisorder,
-        emailHelp,
-        emergencyPlan,
-        figure,
-        foodTracker,
-        homework,
-        journal,
-        moodTracker,
-        myRecords,
-        mySuccess,
-        onlineTherapy,
-        reaseonsWhyNot,
-        relaxation,
-        selfHarm,
-        sleepTracker,
-        successTracker,
-        suicidalThoughts,
-        whatCanHelpMe,
-        whatHelpedMe,
-        whatPleasedMe,
-        whatToDoAnxiety
-      ];
+    activityPlanning,
+    anxietyPanic,
+    breathing,
+    breathingCircle,
+    breathingSquare,
+    breathingTriangle,
+    depression,
+    diary,
+    eatingDisorder,
+    emailHelp,
+    emergencyPlan,
+    figure,
+    foodTracker,
+    homework,
+    journal,
+    moodTracker,
+    myRecords,
+    mySuccess,
+    onlineTherapy,
+    reaseonsWhyNot,
+    relaxation,
+    selfHarm,
+    sleepTracker,
+    successTracker,
+    suicidalThoughts,
+    whatCanHelpMe,
+    whatHelpedMe,
+    whatPleasedMe,
+    whatToDoAnxiety,
+  ];
 }
 
 class $AssetsIllustrationsMoodsGen {
@@ -589,8 +607,13 @@ class $AssetsIllustrationsGamesBalloonsGen {
       const SvgGenImage('assets/illustrations/games/balloons/touch_gesture.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values =>
-      [balloonUnwanted1, balloonUnwanted2, balloonWanted, baloons, touchGesture];
+  List<SvgGenImage> get values => [
+    balloonUnwanted1,
+    balloonUnwanted2,
+    balloonWanted,
+    baloons,
+    touchGesture,
+  ];
 }
 
 class $AssetsIllustrationsGamesMathGen {
@@ -630,7 +653,7 @@ class $AssetsIllustrationsGamesSwingGen {
 }
 
 class Assets {
-  Assets._();
+  const Assets._();
 
   static const $AssetsAnimatedIllustrationsGen animatedIllustrations =
       $AssetsAnimatedIllustrationsGen();
@@ -643,9 +666,13 @@ class Assets {
 }
 
 class AssetGenImage {
-  const AssetGenImage(this._assetName);
+  const AssetGenImage(this._assetName, {this.size, this.flavors = const {}, this.animation});
 
   final String _assetName;
+
+  final Size? size;
+  final Set<String> flavors;
+  final AssetGenImageAnimation? animation;
 
   Image image({
     Key? key,
@@ -665,10 +692,10 @@ class AssetGenImage {
     ImageRepeat repeat = ImageRepeat.noRepeat,
     Rect? centerSlice,
     bool matchTextDirection = false,
-    bool gaplessPlayback = false,
+    bool gaplessPlayback = true,
     bool isAntiAlias = false,
     String? package,
-    FilterQuality filterQuality = FilterQuality.low,
+    FilterQuality filterQuality = FilterQuality.medium,
     int? cacheWidth,
     int? cacheHeight,
   }) {
@@ -700,15 +727,8 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider({
-    AssetBundle? bundle,
-    String? package,
-  }) {
-    return AssetImage(
-      _assetName,
-      bundle: bundle,
-      package: package,
-    );
+  ImageProvider provider({AssetBundle? bundle, String? package}) {
+    return AssetImage(_assetName, bundle: bundle, package: package);
   }
 
   String get path => _assetName;
@@ -716,12 +736,30 @@ class AssetGenImage {
   String get keyName => _assetName;
 }
 
+class AssetGenImageAnimation {
+  const AssetGenImageAnimation({
+    required this.isAnimation,
+    required this.duration,
+    required this.frames,
+  });
+
+  final bool isAnimation;
+  final Duration duration;
+  final int frames;
+}
+
 class SvgGenImage {
-  const SvgGenImage(this._assetName);
+  const SvgGenImage(this._assetName, {this.size, this.flavors = const {}}) : _isVecFormat = false;
+
+  const SvgGenImage.vec(this._assetName, {this.size, this.flavors = const {}})
+    : _isVecFormat = true;
 
   final String _assetName;
+  final Size? size;
+  final Set<String> flavors;
+  final bool _isVecFormat;
 
-  SvgPicture svg({
+  _svg.SvgPicture svg({
     Key? key,
     bool matchTextDirection = false,
     AssetBundle? bundle,
@@ -734,19 +772,30 @@ class SvgGenImage {
     WidgetBuilder? placeholderBuilder,
     String? semanticsLabel,
     bool excludeFromSemantics = false,
-    SvgTheme theme = const SvgTheme(),
+    _svg.SvgTheme? theme,
+    _svg.ColorMapper? colorMapper,
     ColorFilter? colorFilter,
     Clip clipBehavior = Clip.hardEdge,
     @deprecated Color? color,
     @deprecated BlendMode colorBlendMode = BlendMode.srcIn,
     @deprecated bool cacheColorFilter = false,
   }) {
-    return SvgPicture.asset(
-      _assetName,
+    final _svg.BytesLoader loader;
+    if (_isVecFormat) {
+      loader = _vg.AssetBytesLoader(_assetName, assetBundle: bundle, packageName: package);
+    } else {
+      loader = _svg.SvgAssetLoader(
+        _assetName,
+        assetBundle: bundle,
+        packageName: package,
+        theme: theme,
+        colorMapper: colorMapper,
+      );
+    }
+    return _svg.SvgPicture(
+      loader,
       key: key,
       matchTextDirection: matchTextDirection,
-      bundle: bundle,
-      package: package,
       width: width,
       height: height,
       fit: fit,
@@ -755,9 +804,7 @@ class SvgGenImage {
       placeholderBuilder: placeholderBuilder,
       semanticsLabel: semanticsLabel,
       excludeFromSemantics: excludeFromSemantics,
-      theme: theme,
-      color: color,
-      colorBlendMode: colorBlendMode,
+      colorFilter: colorFilter ?? (color == null ? null : ColorFilter.mode(color, colorBlendMode)),
       clipBehavior: clipBehavior,
       cacheColorFilter: cacheColorFilter,
     );
@@ -769,23 +816,24 @@ class SvgGenImage {
 }
 
 class LottieGenImage {
-  const LottieGenImage(this._assetName);
+  const LottieGenImage(this._assetName, {this.flavors = const {}});
 
   final String _assetName;
+  final Set<String> flavors;
 
-  LottieBuilder lottie({
+  _lottie.LottieBuilder lottie({
     Animation<double>? controller,
     bool? animate,
-    FrameRate? frameRate,
+    _lottie.FrameRate? frameRate,
     bool? repeat,
     bool? reverse,
-    LottieDelegates? delegates,
-    LottieOptions? options,
-    void Function(LottieComposition)? onLoaded,
-    LottieImageProviderFactory? imageProviderFactory,
+    _lottie.LottieDelegates? delegates,
+    _lottie.LottieOptions? options,
+    void Function(_lottie.LottieComposition)? onLoaded,
+    _lottie.LottieImageProviderFactory? imageProviderFactory,
     Key? key,
     AssetBundle? bundle,
-    Widget Function(BuildContext, Widget, LottieComposition?)? frameBuilder,
+    Widget Function(BuildContext, Widget, _lottie.LottieComposition?)? frameBuilder,
     ImageErrorWidgetBuilder? errorBuilder,
     double? width,
     double? height,
@@ -795,8 +843,11 @@ class LottieGenImage {
     bool? addRepaintBoundary,
     FilterQuality? filterQuality,
     void Function(String)? onWarning,
+    _lottie.LottieDecoder? decoder,
+    _lottie.RenderCache? renderCache,
+    bool? backgroundLoading,
   }) {
-    return Lottie.asset(
+    return _lottie.Lottie.asset(
       _assetName,
       controller: controller,
       animate: animate,
@@ -819,6 +870,9 @@ class LottieGenImage {
       addRepaintBoundary: addRepaintBoundary,
       filterQuality: filterQuality,
       onWarning: onWarning,
+      decoder: decoder,
+      renderCache: renderCache,
+      backgroundLoading: backgroundLoading,
     );
   }
 

@@ -5,6 +5,23 @@ import 'package:nepanikar/widgets/heatmap/util/date_util.dart';
 import 'package:nepanikar/widgets/heatmap/widget/heatmap_calendar_row.dart';
 
 class HeatMapCalendarPage extends StatelessWidget {
+  HeatMapCalendarPage({
+    super.key,
+    required this.baseDate,
+    required this.colorMode,
+    this.flexible,
+    this.size,
+    this.fontSize,
+    this.defaultColor,
+    this.textColor,
+    this.margin,
+    this.datasets,
+    this.colorsets,
+    this.borderRadius,
+    this.onClick,
+  }) : separatedDate = DateUtil.separatedMonth(baseDate),
+       maxValue = DatasetsUtil.getMaxValue(DatasetsUtil.filterMonth(datasets, baseDate));
+
   /// The DateTime value which contains the current calendar's date value.
   final DateTime baseDate;
 
@@ -61,31 +78,12 @@ class HeatMapCalendarPage extends StatelessWidget {
   /// Paratmeter gives clicked [DateTime] value.
   final Function(DateTime)? onClick;
 
-  HeatMapCalendarPage({
-    Key? key,
-    required this.baseDate,
-    required this.colorMode,
-    this.flexible,
-    this.size,
-    this.fontSize,
-    this.defaultColor,
-    this.textColor,
-    this.margin,
-    this.datasets,
-    this.colorsets,
-    this.borderRadius,
-    this.onClick,
-  })  : separatedDate = DateUtil.separatedMonth(baseDate),
-        maxValue = DatasetsUtil.getMaxValue(
-            DatasetsUtil.filterMonth(datasets, baseDate)),
-        super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        for (var date in separatedDate)
+        for (final date in separatedDate)
           HeatMapCalendarRow(
             startDate: date.keys.first,
             endDate: date.values.first,
@@ -102,10 +100,10 @@ class HeatMapCalendarPage extends StatelessWidget {
             onClick: onClick,
             datasets: Map.from(datasets ?? {})
               ..removeWhere(
-                (key, value) => !(key.isAfter(date.keys.first) &&
-                        key.isBefore(date.values.first) ||
-                    key == date.keys.first ||
-                    key == date.values.first),
+                (key, value) =>
+                    !(key.isAfter(date.keys.first) && key.isBefore(date.values.first) ||
+                        key == date.keys.first ||
+                        key == date.values.first),
               ),
           ),
       ],

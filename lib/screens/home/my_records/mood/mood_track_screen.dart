@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
-import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
@@ -24,7 +23,10 @@ import 'package:nepanikar/widgets/nepanikar_date_range_picker.dart';
 import 'package:nepanikar/widgets/nepanikar_dropdown.dart';
 import 'package:provider/provider.dart';
 
-class MoodTrackRoute extends GoRouteData {
+part 'mood_track_screen.g.dart';
+
+@TypedGoRoute<MoodTrackRoute>(path: '/home/my-records/mood-track')
+class MoodTrackRoute extends GoRouteData with _$MoodTrackRoute {
   const MoodTrackRoute();
 
   @override
@@ -106,7 +108,8 @@ class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScree
                       onPick: (mood) async {
                         final l10n = context.l10n;
                         unawaited(_notificationsService.rescheduleNotifications(l10n));
-                        if(GoRouter.of(context).location == const MyRecordsSleepTrackRoute().location){
+                        if (GoRouter.of(context).state.uri.toString() ==
+                            const MyRecordsSleepTrackRoute().location) {
                           await _trackDao.saveSleepTrack(mood);
                         }
                       },
@@ -173,11 +176,7 @@ class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScree
       NepanikarColors.white,
     );
 
-    final arrowCanShiftColor = customColorsBasedOnDarkMode(
-      context,
-      NepanikarColors.white,
-      null,
-    );
+    final arrowCanShiftColor = customColorsBasedOnDarkMode(context, NepanikarColors.white, null);
 
     final svgColor = svgColorBasedOnDarkMode(context);
 
@@ -222,7 +221,9 @@ class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScree
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                  icon: ExcludeSemantics(child: Assets.icons.navigation.arrowLeft.svg(color: svgColor)),
+                  icon: ExcludeSemantics(
+                    child: Assets.icons.navigation.arrowLeft.svg(color: svgColor),
+                  ),
                   tooltip: context.l10n.filter_previous_time_period,
                   onPressed: () => moodChartFilterProvider.shiftDateRange(DateRangeSwitch.previous),
                 ),
@@ -231,9 +232,9 @@ class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScree
                     firstDate: firstMoodTrackDate == null
                         ? currDateRangeStart ?? DateTime(_now.year, _now.month - 1)
                         : currDateRangeStart != null &&
-                                firstMoodTrackDate.isBefore(currDateRangeStart)
-                            ? firstMoodTrackDate
-                            : currDateRangeStart ?? DateTime(_now.year, _now.month - 1),
+                              firstMoodTrackDate.isBefore(currDateRangeStart)
+                        ? firstMoodTrackDate
+                        : currDateRangeStart ?? DateTime(_now.year, _now.month - 1),
                     lastDate: getNowDateTimeLocal(),
                     activeRange: moodChartFilterProvider.customDateRange,
                     onPick: moodChartFilterProvider.setCustomDateRange,

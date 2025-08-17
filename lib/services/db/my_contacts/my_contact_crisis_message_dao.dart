@@ -6,10 +6,9 @@ import 'package:sembast/sembast.dart';
 import 'package:tuple/tuple.dart';
 
 class MyContactsCrisisMessageDao {
-  MyContactsCrisisMessageDao({
-    required DatabaseService dbService,
-  })  : _dbService = dbService,
-        _store = StoreRef(_storeKeyName);
+  MyContactsCrisisMessageDao({required DatabaseService dbService})
+    : _dbService = dbService,
+      _store = StoreRef(_storeKeyName);
 
   Future<MyContactsCrisisMessageDao> init() async {
     registry.registerSingleton<MyContactsCrisisMessageDao>(this);
@@ -36,10 +35,10 @@ class MyContactsCrisisMessageDao {
 
   /// Returns a tuple of the contact address and the body message.
   Stream<Tuple2<String, String>> get contactAddressAndMessageStream => Rx.combineLatest2(
-        _store.record(_contactAddressKey).onSnapshot(_db).map((snapshot) => snapshot?.value ?? ''),
-        _store.record(_bodyMessageKey).onSnapshot(_db).map((snapshot) => snapshot?.value ?? ''),
-        Tuple2.new,
-      );
+    _store.record(_contactAddressKey).onSnapshot(_db).map((snapshot) => snapshot?.value ?? ''),
+    _store.record(_bodyMessageKey).onSnapshot(_db).map((snapshot) => snapshot?.value ?? ''),
+    Tuple2.new,
+  );
 
   Future<void> doOldVersionMigration(MyContactsCrisisMessageDTO crisisMessageConfig) async {
     final contactAddress = crisisMessageConfig.contactMessageAddress;

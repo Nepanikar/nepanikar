@@ -12,8 +12,10 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/contacts/my_contact_tile.dart';
 import 'package:nepanikar/widgets/empty_records_state_widget.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
+part 'my_contacts_screen.g.dart';
 
-class MyContactsRecordsRoute extends GoRouteData {
+@TypedGoRoute<MyContactsRecordsRoute>(path: '/contacts/my-contacts-records')
+class MyContactsRecordsRoute extends GoRouteData with _$MyContactsRecordsRoute {
   const MyContactsRecordsRoute();
 
   @override
@@ -66,10 +68,7 @@ class MyContactsRecordsScreen extends StatelessWidget {
             final data = snapshot.data ?? const {};
             return Stack(
               children: [
-                const AppBarOverflowContent(
-                  appBarDescription: '',
-                  isCardStackLayout: false,
-                ),
+                const AppBarOverflowContent(appBarDescription: '', isCardStackLayout: false),
                 if (data.isEmpty)
                   Padding(
                     padding: EdgeInsets.only(bottom: context.screenHeight * 0.3),

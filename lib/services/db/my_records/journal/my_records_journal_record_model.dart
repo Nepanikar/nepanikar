@@ -27,11 +27,9 @@ extension JournalQuestionExt on JournalQuestion {
 }
 
 @freezed
-class JournalRecordAnswer with _$JournalRecordAnswer {
-  const factory JournalRecordAnswer({
-    required JournalQuestion question,
-    required String answer,
-  }) = _JournalRecordAnswer;
+abstract class JournalRecordAnswer with _$JournalRecordAnswer {
+  const factory JournalRecordAnswer({required JournalQuestion question, required String answer}) =
+      _JournalRecordAnswer;
 
   const JournalRecordAnswer._();
 
@@ -40,7 +38,7 @@ class JournalRecordAnswer with _$JournalRecordAnswer {
 }
 
 @freezed
-class JournalRecord with _$JournalRecord {
+abstract class JournalRecord with _$JournalRecord {
   const factory JournalRecord({
     // ignore: invalid_annotation_target
     @JsonKey(name: FilterKeys.dateWithTime) required DateTime dateTime,
@@ -52,7 +50,4 @@ class JournalRecord with _$JournalRecord {
   factory JournalRecord.fromJson(Map<String, Object?> json) => _$JournalRecordFromJson(json);
 }
 
-JournalRecord getEmptyJournalRecord() => JournalRecord(
-      dateTime: DateTime.now(),
-      answers: [],
-    );
+JournalRecord getEmptyJournalRecord() => JournalRecord(dateTime: DateTime.now(), answers: []);

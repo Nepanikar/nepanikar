@@ -4,8 +4,10 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/widgets/tips_carousel_body.dart';
+part 'depression_tips_screen.g.dart';
 
-class DepressionTipsAppRoute extends GoRouteData {
+@TypedGoRoute<DepressionTipsAppRoute>(path: '/home/depression/tips')
+class DepressionTipsAppRoute extends GoRouteData with _$DepressionTipsAppRoute {
   const DepressionTipsAppRoute();
 
   @override
@@ -19,7 +21,6 @@ class DepressionTipsAppScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final strings = context.l10n.depression_tips.split('\n');
     final textColor = svgColorBasedOnDarkMode(context);
-
 
     return Scaffold(
       appBar: AppBar(title: Text(context.l10n.depression_help)),
@@ -40,15 +41,11 @@ class DepressionTipsAppScreen extends StatelessWidget {
                       color: textColor,
                     ),
                   ),
-                  const SizedBox(
-                    height: 16,
-                  ),
+                  const SizedBox(height: 16),
                   Text(
                     strings.elementAt(index * 2 + 1),
                     textAlign: TextAlign.center,
-                    style: NepanikarFonts.bodyRoman.copyWith(
-                      color: textColor,
-                    ),
+                    style: NepanikarFonts.bodyRoman.copyWith(color: textColor),
                   ),
                 ],
               ),

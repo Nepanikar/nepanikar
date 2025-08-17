@@ -3,13 +3,12 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:native_shared_preferences/native_shared_preferences.dart';
+import 'package:nepanikar/app/l10n/app_localizations.dart';
 import 'package:nepanikar/services/db/depression/depression_module_db.dart';
 import 'package:nepanikar/services/db/eating_disorder/eating_disorder_module_db.dart';
 import 'package:nepanikar/services/db/my_contacts/my_contacts_module_db.dart';
 import 'package:nepanikar/services/db/my_records/emotions_dao.dart';
-import 'package:nepanikar/services/db/my_records/mood_track_dao.dart';
 import 'package:nepanikar/services/db/my_records/my_records_module_db.dart';
 import 'package:nepanikar/services/db/self_harm/self_harm_module_db.dart';
 import 'package:nepanikar/services/db/suicidal_thoughts/suicidal_thoughts_module_db.dart';
@@ -18,13 +17,10 @@ import 'package:nepanikar/services/save_directories.dart';
 import 'package:nepanikar/utils/crashlytics_utils.dart';
 import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 import 'package:path/path.dart';
-import 'package:sembast/sembast.dart';
 import 'package:sembast/sembast_io.dart';
 
 class DatabaseService {
-  DatabaseService({
-    required SaveDirectories saveDirectories,
-  }) : _saveDirectories = saveDirectories;
+  DatabaseService({required SaveDirectories saveDirectories}) : _saveDirectories = saveDirectories;
 
   Future<void> init() async {
     mainStore = StoreRef.main();
@@ -160,9 +156,7 @@ class DatabaseService {
     return {};
   }
 
-  Future<void> _clearAndBackupOldAppConfigData({
-    required File? androidConfigFile,
-  }) async {
+  Future<void> _clearAndBackupOldAppConfigData({required File? androidConfigFile}) async {
     if (Platform.isAndroid) {
       if (androidConfigFile == null) return;
       await _backupOldAndroidConfigFile(androidConfigFile);
@@ -313,7 +307,6 @@ class DatabaseService {
         );
       }
     }
-
 
     // Clear old config files so that this migration is not done somehow again.
     await _clearAndBackupOldAppConfigData(androidConfigFile: androidConfigFile);

@@ -32,9 +32,7 @@ abstract class NotificationController {
     debugPrint('NOTIFICATION_CONTROLLER: Notification dismissed: ${notificationData?.type.name}');
     await FirebaseAnalytics.instance.logEvent(
       name: 'notification_dismissed',
-      parameters: {
-        'notification_type': notificationData?.type.name,
-      },
+      parameters: {'notification_type': notificationData?.type.name ?? ''},
     );
   }
 
@@ -45,9 +43,7 @@ abstract class NotificationController {
     debugPrint('NOTIFICATION_CONTROLLER: Notification tapped: ${notificationData?.type.name}');
     await FirebaseAnalytics.instance.logEvent(
       name: 'notification_tapped',
-      parameters: {
-        'notification_type': notificationData?.type.name,
-      },
+      parameters: {'notification_type': notificationData?.type.name ?? ''},
     );
 
     final routeDestination = notificationData?.type.routeDestination;
@@ -55,7 +51,7 @@ abstract class NotificationController {
       debugPrint('NOTIFICATION_CONTROLLER: Navigating to $routeDestination from notification');
       final goRouter = registry.get<GoRouter>();
       // Check if the current route is the same as the destination route.
-      if (goRouter.location != routeDestination) {
+      if (goRouter.state.uri.toString() != routeDestination) {
         goRouter.go(routeDestination);
       }
     }

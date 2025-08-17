@@ -3,10 +3,7 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/helpers/date_helpers.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
 
-enum DateRangeSwitch {
-  previous,
-  next;
-}
+enum DateRangeSwitch { previous, next }
 
 enum ChartFilter {
   lastWeek,
@@ -93,8 +90,8 @@ enum ChartFilter {
 
 class MoodChartFilterProvider extends ChangeNotifier {
   MoodChartFilterProvider()
-      : _activeFilter = ChartFilter.initial,
-        _customDateRange = ChartFilter.initial.getDateTimeRange();
+    : _activeFilter = ChartFilter.initial,
+      _customDateRange = ChartFilter.initial.getDateTimeRange();
 
   ChartFilter _activeFilter;
 
@@ -145,8 +142,8 @@ extension MoodChartFilterExt on Iterable<MoodTrack> {
     final endOfDay = DateTime(dateRange.end.year, dateRange.end.month, dateRange.end.day);
 
     final moodTracks = map((moodTrack) {
-      var originalDate = moodTrack.date;
-      var normalizedDate = DateTime(originalDate.year, originalDate.month, originalDate.day);
+      final originalDate = moodTrack.date;
+      final normalizedDate = DateTime(originalDate.year, originalDate.month, originalDate.day);
       // Assuming your MoodTrack class has a copyWith method
       return moodTrack.copyWith(date: normalizedDate);
     }).toList();

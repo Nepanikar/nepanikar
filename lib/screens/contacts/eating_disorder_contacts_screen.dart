@@ -1,7 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:linkify/linkify.dart';
+import 'package:linkify/linkify.dart' hide PhoneNumberElement, PhoneNumberLinkifier;
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
@@ -13,8 +13,10 @@ import 'package:nepanikar/utils/contacts_data_manager.dart';
 import 'package:nepanikar/utils/custom_linkifiers.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
+part 'eating_disorder_contacts_screen.g.dart';
 
-class EatingDisorderContactsRoute extends GoRouteData {
+@TypedGoRoute<EatingDisorderContactsRoute>(path: 'home/eating-disorder/contacts')
+class EatingDisorderContactsRoute extends GoRouteData with _$EatingDisorderContactsRoute {
   const EatingDisorderContactsRoute();
 
   ContactsDataManager get _contactsManager => registry.get<ContactsDataManager>();
@@ -24,8 +26,9 @@ class EatingDisorderContactsRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, _) {
     final locale = _userSettingsDao.locale;
-    final eatingDisorderContacts =
-        _contactsManager.getContactsFromLocale(locale).eatingDisorderContacts;
+    final eatingDisorderContacts = _contactsManager
+        .getContactsFromLocale(locale)
+        .eatingDisorderContacts;
     return EatingDisorderContactsScreen(
       appBarTitle: context.l10n.universities,
       eatingDisorderContacts: eatingDisorderContacts ?? [],
@@ -45,7 +48,11 @@ class EatingDisorderContactsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textColor = customColorsBasedOnDarkMode(context, NepanikarColors.white, NepanikarColors.primary);
+    final textColor = customColorsBasedOnDarkMode(
+      context,
+      NepanikarColors.white,
+      NepanikarColors.primary,
+    );
     final linkifiedTextStyle = NepanikarFonts.bodyBlack.copyWith(
       color: textColor,
       decoration: TextDecoration.underline,
@@ -69,35 +76,33 @@ class EatingDisorderContactsScreen extends StatelessWidget {
               padding: const EdgeInsets.only(top: 12),
               child: Text.rich(
                 TextSpan(
-                  children: linkifiedText.map(
-                    (e) {
-                      if (e is LinkableElement) {
-                        final displayText = e.text;
-                        final fullLink = e.url;
-                        final displayUrlLink = Uri.tryParse(fullLink)?.host ?? displayText;
-                        final isEmail = EmailValidator.validate(displayText);
-                        return WidgetSpan(
-                          child: GestureDetector(
-                            onTap: () async => launchLinkableContact(e),
-                            onLongPress: () async => copyContact(context, displayText),
-                            child: Text(
-                              isEmail || e is PhoneNumberElement ? displayText : displayUrlLink,
-                              semanticsLabel: e is PhoneNumberElement
-                                  ? displayText.spellOutNumFormat
-                                  : isEmail
-                                      ? 'email: $displayText'
-                                      : 'web: $displayUrlLink',
-                              style: linkifiedTextStyle,
-                            ),
+                  children: linkifiedText.map((e) {
+                    if (e is LinkableElement) {
+                      final displayText = e.text;
+                      final fullLink = e.url;
+                      final displayUrlLink = Uri.tryParse(fullLink)?.host ?? displayText;
+                      final isEmail = EmailValidator.validate(displayText);
+                      return WidgetSpan(
+                        child: GestureDetector(
+                          onTap: () async => launchLinkableContact(e),
+                          onLongPress: () async => copyContact(context, displayText),
+                          child: Text(
+                            isEmail || e is PhoneNumberElement ? displayText : displayUrlLink,
+                            semanticsLabel: e is PhoneNumberElement
+                                ? displayText.spellOutNumFormat
+                                : isEmail
+                                ? 'email: $displayText'
+                                : 'web: $displayUrlLink',
+                            style: linkifiedTextStyle,
                           ),
-                        );
-                      }
-                      return TextSpan(
-                        text: e.text,
-                        style: linkifiedTextStyle.copyWith(decoration: TextDecoration.none),
+                        ),
                       );
-                    },
-                  ).toList(),
+                    }
+                    return TextSpan(
+                      text: e.text,
+                      style: linkifiedTextStyle.copyWith(decoration: TextDecoration.none),
+                    );
+                  }).toList(),
                 ),
                 style: linkifiedTextStyle,
               ),

@@ -4,11 +4,9 @@ part 'my_contacts_record_model.freezed.dart';
 part 'my_contacts_record_model.g.dart';
 
 @freezed
-class MyContactRecord with _$MyContactRecord {
-  const factory MyContactRecord({
-    required String name,
-    required String contactAddress,
-  }) = _MyContactRecord;
+abstract class MyContactRecord with _$MyContactRecord {
+  const factory MyContactRecord({required String name, required String contactAddress}) =
+      _MyContactRecord;
 
   const MyContactRecord._();
 

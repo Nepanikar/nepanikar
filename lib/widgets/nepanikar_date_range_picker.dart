@@ -36,14 +36,20 @@ class NepanikarDateRangePicker extends StatelessWidget {
   Widget build(BuildContext context) {
     final dateFormatLabelPattern = this.dateFormatLabelPattern ?? CustomDateFormats.datePickerLabel;
     final backgroundColor = customColorsBasedOnDarkMode(
-        context,
-        NepanikarColors.dropdownMenuD,
-        NepanikarColors.filledContainer,);
+      context,
+      NepanikarColors.dropdownMenuD,
+      NepanikarColors.filledContainer,
+    );
 
-    final textColor = customColorsBasedOnDarkMode(context, NepanikarColors.white, NepanikarColors.dark);
-    String formatDate(DateTime date) =>
-        DateFormat(dateFormatLabelPattern, Localizations.localeOf(context).languageCode)
-            .format(date);
+    final textColor = customColorsBasedOnDarkMode(
+      context,
+      NepanikarColors.white,
+      NepanikarColors.dark,
+    );
+    String formatDate(DateTime date) => DateFormat(
+      dateFormatLabelPattern,
+      Localizations.localeOf(context).languageCode,
+    ).format(date);
 
     return MaterialWrapper(
       color: backgroundColor,
@@ -71,7 +77,9 @@ class NepanikarDateRangePicker extends StatelessWidget {
                     style: NepanikarFonts.bodyRoman.copyWith(color: textColor),
                   ),
                   const Spacer(),
-                  ExcludeSemantics(child: Assets.icons.calendar.svg(color: svgColorBasedOnDarkMode(context))),
+                  ExcludeSemantics(
+                    child: Assets.icons.calendar.svg(color: svgColorBasedOnDarkMode(context)),
+                  ),
                 ],
               ),
             ),
