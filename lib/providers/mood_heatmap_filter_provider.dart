@@ -42,9 +42,6 @@ enum HeatmapFilter {
         case HeatmapFilter.year:
           start = DateTime(now.year);
           end = DateTime(now.year, 12, 31);
-        default:
-          start = now;
-          end = now;
       }
     } else if (customDateRange != null) {
       // Use the custom date range if provided
@@ -72,8 +69,6 @@ enum HeatmapFilter {
         } else {
           return shiftMonths(end, 12); // Shift 12 months forward for next
         }
-      default:
-        return DateTimeRange(start: start, end: end);
     }
   }
 }

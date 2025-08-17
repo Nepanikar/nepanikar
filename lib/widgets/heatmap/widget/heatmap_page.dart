@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:nepanikar/widgets/heatmap/data/heatmap_color_mode.dart';
@@ -23,8 +21,8 @@ class HeatMapPage extends StatelessWidget {
     this.onClick,
     this.margin,
     this.showText,
-  })// : _dateDifferent = endDate.difference(startDate).inDays,
-     :  maxValue = DatasetsUtil.getMaxValue(datasets);
+  }) // : _dateDifferent = endDate.difference(startDate).inDays,
+  : maxValue = DatasetsUtil.getMaxValue(datasets);
 
   /// List value of every sunday's month information.
   ///

@@ -87,8 +87,6 @@ enum Mood {
         return 4;
       case Mood.happy:
         return 5;
-      default:
-        return 0; // Or throw an exception as appropriate
     }
   }
 
