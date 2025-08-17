@@ -2,6 +2,7 @@
 # installed without overriding the original app.
 
 sed -i -e "s#package=\"org.dontpanic\"#package=\"org.dontpanic.dev\"#" android/app/src/main/AndroidManifest.xml
+sed -i -e "s#\"package_name\": \"org.dontpanic\"#\"package_name\": \"org.dontpanic.dev\"#" android/app/google-services.json
 sed -i -e "s#android:label=\"Nepanikař\"#android:label=\"Nepanikař v2 [dev]\"#" android/app/src/main/AndroidManifest.xml
 sed -i -e "s#applicationId \"org.dontpanic\"#applicationId \"org.dontpanic.dev\"#" android/app/build.gradle
 sed -i -e "s#namespace \"org.dontpanic\"#namespace \"org.dontpanic.dev\"#" android/app/build.gradle

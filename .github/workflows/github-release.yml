@@ -33,6 +33,9 @@ jobs:
       - name: Generate code
         run: flutter pub run build_runner build --delete-conflicting-outputs
 
+      - name: Generate translations
+        run: flutter gen-l10n
+
       - name: Gradle cache
         uses: gradle/gradle-build-action@v2
 

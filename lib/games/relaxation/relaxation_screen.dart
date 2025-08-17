@@ -82,7 +82,7 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
         url = 'https://www.odpoveduvnitr.cz/';
     }
 
-    final duration = player.setAsset(asset);
+    player.setAsset(asset);
     player.durationStream.listen((duration) {
       if (mounted) {
         setState(() {

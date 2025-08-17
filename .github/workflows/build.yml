@@ -13,10 +13,11 @@ env:
   CM_KEY_ALIAS: 'androiddebugkey'
   CM_KEY_PASSWORD: 'android'
 
-
 jobs:
   android:
     runs-on: ubuntu-latest
+    env:
+      GRADLE_OPTS: "-Xmx4g -Dfile.encoding=UTF-8"
     steps:
       - uses: actions/checkout@v3
 
@@ -33,6 +34,9 @@ jobs:
 
       - name: Generate code
         run: flutter pub run build_runner build --delete-conflicting-outputs
+
+      - name: Generate translations
+        run: flutter gen-l10n
 
       - name: Gradle cache
         uses: gradle/gradle-build-action@v2

@@ -48,15 +48,6 @@ class MyRecordsModuleDb implements NepanikarModuleDb {
       await _moodTrackDao.doOldVersionMigration(moodTrackConfig);
     }
 
-    final sleepTrackConfig = moduleConfig.sleepTrackConfig;
-    if (sleepTrackConfig != null) {
-      final sleepTrackValues = sleepTrackConfig.values;
-      // if (sleepTrackValues != null) {
-      //   await _myRecordsSleepTrackDao
-      //       .doOldVersionMigration(MyRecordsMoodTrackDTO.fromValues(sleepTrackValues));
-      // }
-    }
-
     final diaryConfig = moduleConfig.diaryConfig;
     if (diaryConfig != null) {
       await _myRecordsDiaryDao.doOldVersionMigration(diaryConfig);

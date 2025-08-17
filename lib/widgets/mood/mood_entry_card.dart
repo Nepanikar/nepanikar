@@ -29,7 +29,6 @@ class MoodEntryCard extends StatelessWidget {
       NepanikarColors.containerD,
       NepanikarColors.white,
     );
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return GestureDetector(
       onTap: onTap,

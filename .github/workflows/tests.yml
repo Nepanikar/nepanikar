@@ -28,5 +28,28 @@ jobs:
       - name: Generate code
         run: flutter pub run build_runner build --delete-conflicting-outputs
 
+      - name: Generate translations
+        run: flutter gen-l10n
+
       - name: Run tests
         run: flutter test
+
+# Disabled since the packages were not updated yet
+#  packages:
+#    runs-on: ubuntu-latest
+#    defaults:
+#      run:
+#        working-directory: packages/nepanikar_contacts_gen
+#    steps:
+#      - uses: actions/checkout@v3
+#
+#      - name: Setup Dart
+#        uses: dart-lang/setup-dart@v1
+#        with:
+#          sdk: ${{ env.dart_version }}
+#
+#      - name: Install dependencies
+#        run: dart pub get
+#
+#      - name: Run tests
+#        run: dart test

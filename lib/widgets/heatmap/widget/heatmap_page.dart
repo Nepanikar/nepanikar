@@ -23,16 +23,16 @@ class HeatMapPage extends StatelessWidget {
     this.onClick,
     this.margin,
     this.showText,
-  }) : _dateDifferent = endDate.difference(startDate).inDays,
-       maxValue = DatasetsUtil.getMaxValue(datasets);
+  })// : _dateDifferent = endDate.difference(startDate).inDays,
+     :  maxValue = DatasetsUtil.getMaxValue(datasets);
 
   /// List value of every sunday's month information.
   ///
   /// From 1: January to 12: December.
-  final List<int> _firstDayInfos = [];
+  // final List<int> _firstDayInfos = [];
 
   /// The number of days between [startDate] and [endDate].
-  final int _dateDifferent;
+  // final int _dateDifferent;
 
   /// The Date value of start day of heatmap.
   ///
@@ -92,6 +92,7 @@ class HeatMapPage extends StatelessWidget {
 
   final bool? showText;
 
+  /*
   /// Get [HeatMapColumn] from [startDate] to [endDate].
   List<Widget> _heatmapColumnList(int specificMonth) {
     final List<Widget> columns = [];
@@ -141,6 +142,7 @@ class HeatMapPage extends StatelessWidget {
 
     return columns;
   }
+  */
 
   Widget _buildYearlyHeatmap() {
     final List<Widget> monthlyColumns = [];

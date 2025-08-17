@@ -63,7 +63,6 @@ class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsS
       NepanikarColors.white,
     );
     final textColor = customColorsBasedOnDarkMode(context, NepanikarColors.white, Colors.black);
-    final arrowCanShiftColor = customColorsBasedOnDarkMode(context, NepanikarColors.white, null);
 
     return Scaffold(
       appBar: _appBarForPageIndex(_currentPageIndex),
