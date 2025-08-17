@@ -16,8 +16,6 @@ env:
 jobs:
   android:
     runs-on: ubuntu-latest
-    env:
-      GRADLE_OPTS: "-Xmx4g -Dfile.encoding=UTF-8"
     steps:
       - uses: actions/checkout@v3
 

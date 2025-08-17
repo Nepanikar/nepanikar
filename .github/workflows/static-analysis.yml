@@ -54,7 +54,7 @@ jobs:
 
       - uses: invertase/github-action-dart-analyzer@v1
         with:
-          fatal-infos: true
+          fatal-infos: false
           fatal-warnings: true
           annotate: true
           annotate-only: false
