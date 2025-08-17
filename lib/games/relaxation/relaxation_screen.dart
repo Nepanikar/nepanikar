@@ -1,4 +1,4 @@
-import 'package:assets_audio_player_updated/assets_audio_player.dart';
+import 'package:assets_audio_player_plus/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
@@ -32,7 +32,7 @@ class RelaxationScreen extends StatefulWidget {
 }
 
 class _RelaxationScreenState extends State<RelaxationScreen> {
-  final player = AssetsAudioPlayer();
+  final player = AssetsAudioPlayerPlus();
 
   Duration songDuration = Duration.zero;
   Duration sliderPosition = Duration.zero;
