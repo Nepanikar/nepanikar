@@ -14,12 +14,8 @@ import 'package:nepanikar/widgets/empty_records_state_widget.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 part 'my_records_diary_records_screen.g.dart';
 
-@TypedGoRoute<MyRecordsDiaryRecordsRoute>(
-  path: '/home/my-records/diary',
-)
-
+@TypedGoRoute<MyRecordsDiaryRecordsRoute>(path: '/home/my-records/diary')
 class MyRecordsDiaryRecordsRoute extends GoRouteData with _$MyRecordsDiaryRecordsRoute {
-
   const MyRecordsDiaryRecordsRoute();
 
   @override

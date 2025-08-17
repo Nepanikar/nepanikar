@@ -5,7 +5,6 @@ import 'package:nepanikar/widgets/heatmap/widget/heatmap_color_tip.dart';
 import 'package:nepanikar/widgets/heatmap/widget/heatmap_page.dart';
 
 class HeatMap extends StatefulWidget {
-
   const HeatMap({
     super.key,
     required this.colorsets,
@@ -27,6 +26,7 @@ class HeatMap extends StatefulWidget {
     this.colorTipCount,
     this.colorTipSize,
   });
+
   /// The Date value of start day of heatmap.
   ///
   /// HeatMap shows the start day of [startDate]'s week.
@@ -116,12 +116,7 @@ class HeatMap extends StatefulWidget {
 class _HeatMap extends State<HeatMap> {
   /// Put child into [SingleChildScrollView] so that user can scroll the widet horizontally.
   Widget _scrollableHeatMap(Widget child) {
-    return widget.scrollable
-        ? SingleChildScrollView(
-            reverse: true,
-            child: child,
-          )
-        : child;
+    return widget.scrollable ? SingleChildScrollView(reverse: true, child: child) : child;
   }
 
   @override
@@ -130,22 +125,23 @@ class _HeatMap extends State<HeatMap> {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         // Heatmap Widget.
-        _scrollableHeatMap(HeatMapPage(
-          endDate: widget.endDate ?? DateTime.now(),
-          startDate: widget.startDate ??
-              DateUtil.oneYearBefore(widget.endDate ?? DateTime.now()),
-          colorMode: widget.colorMode,
-          size: widget.size,
-          fontSize: widget.fontSize,
-          datasets: widget.datasets,
-          defaultColor: widget.defaultColor,
-          textColor: widget.textColor,
-          colorsets: widget.colorsets,
-          borderRadius: widget.borderRadius,
-          onClick: widget.onClick,
-          margin: widget.margin,
-          showText: widget.showText,
-        )),
+        _scrollableHeatMap(
+          HeatMapPage(
+            endDate: widget.endDate ?? DateTime.now(),
+            startDate: widget.startDate ?? DateUtil.oneYearBefore(widget.endDate ?? DateTime.now()),
+            colorMode: widget.colorMode,
+            size: widget.size,
+            fontSize: widget.fontSize,
+            datasets: widget.datasets,
+            defaultColor: widget.defaultColor,
+            textColor: widget.textColor,
+            colorsets: widget.colorsets,
+            borderRadius: widget.borderRadius,
+            onClick: widget.onClick,
+            margin: widget.margin,
+            showText: widget.showText,
+          ),
+        ),
 
         // Show HeatMapColorTip if showColorTip is true.
         if (widget.showColorTip == true)

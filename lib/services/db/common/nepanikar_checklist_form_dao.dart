@@ -4,11 +4,9 @@ import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 import 'package:sembast/sembast.dart';
 
 abstract class NepanikarCheckListFormDao {
-  NepanikarCheckListFormDao({
-    required DatabaseService dbService,
-    required String storeKeyName,
-  })  : _dbService = dbService,
-        _store = stringMapStoreFactory.store(storeKeyName);
+  NepanikarCheckListFormDao({required DatabaseService dbService, required String storeKeyName})
+    : _dbService = dbService,
+      _store = stringMapStoreFactory.store(storeKeyName);
 
   // TODO: use @mustBeOverridden annotation, will be available in Dart 2.19
   Future<NepanikarCheckListFormDao> init() async => this;

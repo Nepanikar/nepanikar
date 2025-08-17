@@ -21,12 +21,8 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:nepanikar_contacts_gen/nepanikar_contacts_gen.dart';
 part 'contacts_screen.g.dart';
 
-@TypedGoRoute<ContactsRoute>(
-  path: '/contacts',
-)
-
+@TypedGoRoute<ContactsRoute>(path: '/contacts')
 class ContactsRoute extends GoRouteData with _$ContactsRoute {
-
   const ContactsRoute();
 
   ContactsDataManager get _contactsDataManager => registry.get<ContactsDataManager>();
@@ -36,23 +32,17 @@ class ContactsRoute extends GoRouteData with _$ContactsRoute {
   @override
   Widget build(BuildContext context, _) {
     final locale = _userSettingsDao.locale;
-    return ContactsScreen(
-      countryContacts: _contactsDataManager.getContactsFromLocale(locale),
-    );
+    return ContactsScreen(countryContacts: _contactsDataManager.getContactsFromLocale(locale));
   }
 }
 
 class ContactsScreen extends StatelessWidget {
-  const ContactsScreen({
-    super.key,
-    required this.countryContacts,
-  });
+  const ContactsScreen({super.key, required this.countryContacts});
 
   final CountryContacts countryContacts;
 
   @override
   Widget build(BuildContext context) {
-
     final currentTheme = Theme.of(context);
     final isDarkMode = currentTheme.brightness == Brightness.dark;
     final svgColor = svgColorBasedOnDarkMode(context);
@@ -65,8 +55,11 @@ class ContactsScreen extends StatelessWidget {
         image: Assets.illustrations.contacts.phones.svg(color: Colors.white),
         textTextStyle: NepanikarFonts.bodyHeavy.copyWith(color: Colors.white),
         backgroundColor: NepanikarColors.secondary,
-        trailing:
-            Assets.icons.navigation.arrowRight.svg(width: 16, height: 16, color: Colors.white),
+        trailing: Assets.icons.navigation.arrowRight.svg(
+          width: 16,
+          height: 16,
+          color: Colors.white,
+        ),
         onTap: () => context.push(const CrisisMessageRoute().location),
         isDarkMode: isDarkMode,
       ),
@@ -104,8 +97,10 @@ class ContactsScreen extends StatelessWidget {
         onTap: () => context.push(const MyContactsRecordsRoute().location),
         isDarkMode: isDarkMode,
       ),
-      if ([NepanikarLanguages.cs.languageCode, NepanikarLanguages.sk.languageCode]
-          .contains(locale.languageCode)) ...[
+      if ([
+        NepanikarLanguages.cs.languageCode,
+        NepanikarLanguages.sk.languageCode,
+      ].contains(locale.languageCode)) ...[
         LongTile(
           text: context.l10n.online_therapy,
           image: Assets.illustrations.modules.onlineTherapy.svg(color: svgColor),
@@ -127,9 +122,6 @@ class ContactsScreen extends StatelessWidget {
       ],
     ];
 
-    return NepanikarScreenWrapper(
-      appBarTitle: context.l10n.contacts,
-      children: modules,
-    );
+    return NepanikarScreenWrapper(appBarTitle: context.l10n.contacts, children: modules);
   }
 }

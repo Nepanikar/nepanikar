@@ -13,12 +13,8 @@ import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 part 'eating_disorder_tips_screen.g.dart';
 
-@TypedGoRoute<EatingDisorderTipsRoute>(
-  path: '/home/eating-disorder/tips',
-)
-
+@TypedGoRoute<EatingDisorderTipsRoute>(path: '/home/eating-disorder/tips')
 class EatingDisorderTipsRoute extends GoRouteData with _$EatingDisorderTipsRoute {
-
   const EatingDisorderTipsRoute();
 
   @override
@@ -37,43 +33,37 @@ class EatingDisorderTipsScreen extends StatelessWidget {
       LongTile(
         text: context.l10n.food_figure,
         image: Assets.illustrations.modules.figure.svg(color: svgColor),
-        onTap: () =>
-            context.push(const EatingDisorderTipsFigureAppRoute().location),
+        onTap: () => context.push(const EatingDisorderTipsFigureAppRoute().location),
         isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_remorse,
         image: Assets.illustrations.modules.eatingDisorder.svg(color: svgColor),
-        onTap: () =>
-            context.push(const EatingDisorderTipsRemorseAppRoute().location),
+        onTap: () => context.push(const EatingDisorderTipsRemorseAppRoute().location),
         isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_overeat,
         image: Assets.illustrations.modules.eatingDisorder.svg(color: svgColor),
-        onTap: () =>
-            context.push(const EatingDisorderTipsOvereatAppRoute().location),
+        onTap: () => context.push(const EatingDisorderTipsOvereatAppRoute().location),
         isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_vomit,
         image: Assets.illustrations.modules.eatingDisorder.svg(color: svgColor),
-        onTap: () =>
-            context.push(const EatingDisorderTipsVomitAppRoute().location),
+        onTap: () => context.push(const EatingDisorderTipsVomitAppRoute().location),
         isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_fail,
         image: Assets.illustrations.modules.eatingDisorder.svg(color: svgColor),
-        onTap: () =>
-            context.push(const EatingDisorderTipsFailAppRoute().location),
+        onTap: () => context.push(const EatingDisorderTipsFailAppRoute().location),
         isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_misc,
         image: Assets.illustrations.modules.eatingDisorder.svg(color: svgColor),
-        onTap: () =>
-            context.push(const EatingDisorderTipsGeneralAppRoute().location),
+        onTap: () => context.push(const EatingDisorderTipsGeneralAppRoute().location),
         isDarkMode: isDarkMode,
       ),
     ];

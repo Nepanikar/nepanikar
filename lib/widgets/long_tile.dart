@@ -6,8 +6,6 @@ import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/widgets/nepanikar_horizontal_divider.dart';
 
 class LongTile extends StatelessWidget {
-
-
   const LongTile({
     super.key,
     required this.text,
@@ -47,7 +45,7 @@ class LongTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color? longTileColor = longTileColorBasedOnDarkMode(context);
-    if(backgroundColor != null){
+    if (backgroundColor != null) {
       longTileColor = backgroundColor;
     }
 
@@ -72,8 +70,9 @@ class LongTile extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
                   child: Row(
-                    crossAxisAlignment:
-                        image == null ? CrossAxisAlignment.start : CrossAxisAlignment.center,
+                    crossAxisAlignment: image == null
+                        ? CrossAxisAlignment.start
+                        : CrossAxisAlignment.center,
                     children: [
                       if (image != null) ...[
                         ConstrainedBox(
@@ -89,7 +88,9 @@ class LongTile extends StatelessWidget {
                             Text(
                               text,
                               //style: textTextStyle,
-                              style: isDarkMode ? textTextStyle.copyWith(color: Colors.white) : textTextStyle,
+                              style: isDarkMode
+                                  ? textTextStyle.copyWith(color: Colors.white)
+                                  : textTextStyle,
                             ),
                             if (description != null)
                               ExcludeSemantics(
@@ -98,8 +99,9 @@ class LongTile extends StatelessWidget {
                                   description!,
                                   style: descriptionTextStyle,
                                   maxLines: descriptionMaxLines,
-                                  overflow:
-                                      descriptionMaxLines != null ? TextOverflow.ellipsis : null,
+                                  overflow: descriptionMaxLines != null
+                                      ? TextOverflow.ellipsis
+                                      : null,
                                 ),
                               ),
                           ],
@@ -107,10 +109,16 @@ class LongTile extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 12.0),
-                        child: trailing ??
+                        child:
+                            trailing ??
                             ExcludeSemantics(
-                              child: isDarkMode ? Assets.icons.navigation.arrowRight.svg(width: 16, height: 16, color: Colors.white)
-                                                : Assets.icons.navigation.arrowRight.svg(width: 16, height: 16),
+                              child: isDarkMode
+                                  ? Assets.icons.navigation.arrowRight.svg(
+                                      width: 16,
+                                      height: 16,
+                                      color: Colors.white,
+                                    )
+                                  : Assets.icons.navigation.arrowRight.svg(width: 16, height: 16),
                             ),
                       ),
                     ],

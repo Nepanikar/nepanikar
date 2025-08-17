@@ -14,11 +14,7 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:sembast/sembast.dart';
 
 class ListFormContent<T extends NepanikarListFormDao> extends StatefulWidget {
-  const ListFormContent({
-    super.key,
-    required this.appBarTitle,
-    required this.appBarDescription,
-  });
+  const ListFormContent({super.key, required this.appBarTitle, required this.appBarDescription});
 
   final String appBarTitle;
   final String appBarDescription;
@@ -97,9 +93,8 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
                 itemCount: savedListItems.length,
                 shrinkWrap: true,
                 primary: false,
-                separatorBuilder: (_, __) => NepanikarHorizontalDivider(
-                  color: NepanikarColors.primarySwatch.shade100,
-                ),
+                separatorBuilder: (_, __) =>
+                    NepanikarHorizontalDivider(color: NepanikarColors.primarySwatch.shade100),
                 itemBuilder: (_, i) {
                   final record = savedListItems[i];
                   final formKey = record.key;
@@ -107,8 +102,9 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
                   final isLastItem = i == savedListItemsLength - 1;
 
                   return Padding(
-                    padding:
-                        EdgeInsets.only(bottom: isLastItem ? NepanikarSizes.fabBottomPadding : 0),
+                    padding: EdgeInsets.only(
+                      bottom: isLastItem ? NepanikarSizes.fabBottomPadding : 0,
+                    ),
                     child: ListTile(
                       key: Key(formKey),
                       minLeadingWidth: 0,
@@ -146,9 +142,7 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
                                 WidgetsBinding.instance.addPostFrameCallback((_) async {
                                   _idTextMap.remove(formKey);
                                   await _listFormDao.deleteFormItem(formKey);
-                                  await analytics.logEvent(
-                                    name: 'delete_item',
-                                  );
+                                  await analytics.logEvent(name: 'delete_item');
                                 });
                               },
                               icon: Icon(

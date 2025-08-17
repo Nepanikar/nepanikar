@@ -75,7 +75,7 @@ enum Mood {
     }
   }
 
-  int getMoodScore(Mood mood){
+  int getMoodScore(Mood mood) {
     switch (mood) {
       case Mood.sad:
         return 1;

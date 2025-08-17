@@ -5,10 +5,8 @@ part 'my_contacts_record_model.g.dart';
 
 @freezed
 abstract class MyContactRecord with _$MyContactRecord {
-  const factory MyContactRecord({
-    required String name,
-    required String contactAddress,
-  }) = _MyContactRecord;
+  const factory MyContactRecord({required String name, required String contactAddress}) =
+      _MyContactRecord;
 
   const MyContactRecord._();
 

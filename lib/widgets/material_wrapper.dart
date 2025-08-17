@@ -22,10 +22,7 @@ class MaterialWrapper extends StatelessWidget {
       color: color,
       clipBehavior: Clip.antiAlias,
       borderRadius: borderRadius,
-      child: InkWell(
-        onTap: onTap,
-        child: child,
-      ),
+      child: InkWell(onTap: onTap, child: child),
     );
   }
 }

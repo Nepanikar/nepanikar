@@ -6,24 +6,15 @@ import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/screen_resolution_helpers.dart';
 
 class HomeTile extends StatelessWidget {
-  const HomeTile({
-    super.key,
-    required this.text,
-    required this.image,
-    required this.location,
-  });
+  const HomeTile({super.key, required this.text, required this.image, required this.location});
 
   final String text;
   final Widget image;
   final String location;
 
-
-
   @override
   Widget build(BuildContext context) {
-
-
-    final isDarkMode =  Theme.of(context).brightness  == Brightness.dark;
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return Semantics(
       button: true,
@@ -58,12 +49,12 @@ class HomeTile extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SizedBox(
-                          height: context.isSmallScreen ? 30 : 40,
-                          child: image,
+                        SizedBox(height: context.isSmallScreen ? 30 : 40, child: image),
+                        Assets.icons.navigation.arrowRight.svg(
+                          width: 16,
+                          height: 16,
+                          color: isDarkMode ? Colors.white : NepanikarColors.primaryD,
                         ),
-                        Assets.icons.navigation.arrowRight.svg(width: 16, height: 16,
-                             color: isDarkMode ? Colors.white : NepanikarColors.primaryD,)
                       ],
                     ),
                   ),

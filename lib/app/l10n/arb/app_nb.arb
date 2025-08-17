@@ -328,5 +328,10 @@
   "dark_mode_off": "Mørk modus er AV",
   "description": "Beskrivelse",
   "confirm_delete": "Er du sikker på at du vil slette denne stemningsoppføringen?",
-  "enter_summary": "Skriv inn en kort oppsummering"
+  "enter_summary": "Skriv inn en kort oppsummering",
+  "emotion_angry": "Sint",
+  "emotion_excited": "Spent",
+  "emotion_happy": "Glad",
+  "emotion_relaxed": "Avslappet",
+  "emotion_sad": "Trist"
 }

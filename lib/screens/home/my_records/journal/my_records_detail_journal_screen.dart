@@ -18,29 +18,20 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 part 'my_records_detail_journal_screen.g.dart';
 
-@TypedGoRoute<MyRecordsJournalDetailRoute>(
-  path: '/home/my-records/journal-detail',
-)
-
+@TypedGoRoute<MyRecordsJournalDetailRoute>(path: '/home/my-records/journal-detail')
 class MyRecordsJournalDetailRoute extends GoRouteData with _$MyRecordsJournalDetailRoute {
-
   const MyRecordsJournalDetailRoute();
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
     // TODO: Unsafe cast.
     final extra = state.extra! as JournalRecordRouteExtraData;
-    return MyRecordsJournalDetailScreen(
-      journalId: extra.journalRecordId,
-    );
+    return MyRecordsJournalDetailScreen(journalId: extra.journalRecordId);
   }
 }
 
 class JournalRecordRouteExtraData extends Equatable {
-  const JournalRecordRouteExtraData({
-    required this.journalRecordId,
-    required this.journalRecord,
-  });
+  const JournalRecordRouteExtraData({required this.journalRecordId, required this.journalRecord});
 
   final String journalRecordId;
   final JournalRecord journalRecord;
@@ -50,10 +41,7 @@ class JournalRecordRouteExtraData extends Equatable {
 }
 
 class MyRecordsJournalDetailScreen extends StatefulWidget {
-  const MyRecordsJournalDetailScreen({
-    super.key,
-    required this.journalId,
-  });
+  const MyRecordsJournalDetailScreen({super.key, required this.journalId});
 
   final String journalId;
 
@@ -67,8 +55,8 @@ class _MyRecordsJournalDetailScreenState extends State<MyRecordsJournalDetailScr
   final analytics = registry.get<FirebaseAnalytics>();
 
   Map<JournalQuestion, String> get _answers => {
-        for (final entry in _textEditingControllersMap.entries) entry.key: entry.value.text,
-      };
+    for (final entry in _textEditingControllersMap.entries) entry.key: entry.value.text,
+  };
 
   late final Stream<JournalRecord?> _journalRecordStream;
 
@@ -100,9 +88,7 @@ class _MyRecordsJournalDetailScreenState extends State<MyRecordsJournalDetailScr
     return JournalRecord(
       dateTime: dateTime,
       answers: _answers.entries
-          .map(
-            (e) => JournalRecordAnswer(question: e.key, answer: e.value),
-          )
+          .map((e) => JournalRecordAnswer(question: e.key, answer: e.value))
           .toList(),
     );
   }
@@ -124,7 +110,10 @@ class _MyRecordsJournalDetailScreenState extends State<MyRecordsJournalDetailScr
   @override
   Widget build(BuildContext context) {
     final textColor = textColorBasedOnDarkMode(context);
-    final labelTextStyle = NepanikarFonts.bodySmallHeavy.copyWith(fontWeight: FontWeight.w700, color: textColor);
+    final labelTextStyle = NepanikarFonts.bodySmallHeavy.copyWith(
+      fontWeight: FontWeight.w700,
+      color: textColor,
+    );
 
     return GestureDetector(
       onTapDown: (_) => FocusScope.of(context).unfocus(),
@@ -205,7 +194,10 @@ class _MyRecordsJournalDetailScreenState extends State<MyRecordsJournalDetailScr
   }
 
   Widget _generateFields(Color? textColor) {
-    final labelTextStyle = NepanikarFonts.bodySmallHeavy.copyWith(fontWeight: FontWeight.w700, color: textColor);
+    final labelTextStyle = NepanikarFonts.bodySmallHeavy.copyWith(
+      fontWeight: FontWeight.w700,
+      color: textColor,
+    );
     return Form(
       child: Column(
         children: [
@@ -215,10 +207,7 @@ class _MyRecordsJournalDetailScreenState extends State<MyRecordsJournalDetailScr
                 const SizedBox(height: 12),
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: Text(
-                    question.getQuestionLabel(context),
-                    style: labelTextStyle,
-                  ),
+                  child: Text(question.getQuestionLabel(context), style: labelTextStyle),
                 ),
                 const SizedBox(height: 8),
                 TextFormField(

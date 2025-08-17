@@ -13,9 +13,7 @@ part 'app_notification_data_model.g.dart';
 /// (e.g. open a specific screen).
 @freezed
 abstract class AppNotificationData with _$AppNotificationData {
-  const factory AppNotificationData({
-    required NotificationType type,
-  }) = _AppNotificationData;
+  const factory AppNotificationData({required NotificationType type}) = _AppNotificationData;
 
   const AppNotificationData._();
 

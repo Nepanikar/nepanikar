@@ -16,12 +16,8 @@ import 'package:nepanikar/widgets/empty_records_state_widget.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 part 'my_records_journal_records_screen.g.dart';
 
-@TypedGoRoute<MyRecordsJournalRecordsRoute>(
-  path: '/home/my-records/journal',
-)
-
+@TypedGoRoute<MyRecordsJournalRecordsRoute>(path: '/home/my-records/journal')
 class MyRecordsJournalRecordsRoute extends GoRouteData with _$MyRecordsJournalRecordsRoute {
-
   const MyRecordsJournalRecordsRoute();
 
   @override

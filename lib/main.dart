@@ -24,9 +24,6 @@ Future<void> main() async {
 }
 
 class Nepanikar extends StatelessWidget {
-
-
-
   const Nepanikar({super.key});
 
   GoRouter get _goRouter => registry.get<GoRouter>();
@@ -37,57 +34,59 @@ class Nepanikar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<MoodChartFilterProvider>(create: (_) => MoodChartFilterProvider()),
         ChangeNotifierProvider<MoodState>(create: (_) => MoodState(_emotionsDao, _trackDao)),
-        ChangeNotifierProvider<MoodHeatmapFilterProvider>(create: (_) => MoodHeatmapFilterProvider()),
+        ChangeNotifierProvider<MoodHeatmapFilterProvider>(
+          create: (_) => MoodHeatmapFilterProvider(),
+        ),
       ],
       child: StreamBuilder<Locale>(
         stream: _userSettingsDao.localeStream,
         builder: (_, snapshot) {
           final locale = snapshot.data;
-              return StreamBuilder<ThemeMode>(
-                stream: _userSettingsDao.themeModeStream,
-                builder: (context, snapshot){
-                  final themeMode = snapshot.data ?? ThemeMode.system;
-                  return MaterialApp.router(
-                    debugShowCheckedModeBanner: false,
-                    title: _getAppNameFromLocale(locale),
-                    theme: NepanikarTheme.getThemeData(
-                      fontFamily: locale?.languageCode == NepanikarLanguages.uk.languageCode
-                          ? null
-                          : FontFamily.satoshi,
-                    ),
-                    darkTheme: darkTheme.getThemeData(
-                      fontFamily: locale?.languageCode == NepanikarLanguages.uk.languageCode
-                          ? null
-                          : FontFamily.satoshi,
-                    ),
-                    themeMode: themeMode,
-                    localizationsDelegates: AppLocalizations.localizationsDelegates,
-                    supportedLocales: AppLocalizations.supportedLocales,
-                    locale: locale,
-                    routerConfig: _goRouter,
-                    builder: (context, child) {
-                      return child != null
-                          ? ScrollConfiguration(
-                        behavior: NepanikarScrollBehavior(),
-                        child: MediaQuery(
-                          // To not influence app's font size by the system font size.
-                          // TODO: Should be resolved, accessibility is important.
-                          data: MediaQuery.of(context).copyWith(textScaler: const TextScaler.linear(1.0)),
-                          child: child,
-                        ),
-                      )
-                          : const SizedBox.shrink();
-                    },
-                  );
+          return StreamBuilder<ThemeMode>(
+            stream: _userSettingsDao.themeModeStream,
+            builder: (context, snapshot) {
+              final themeMode = snapshot.data ?? ThemeMode.system;
+              return MaterialApp.router(
+                debugShowCheckedModeBanner: false,
+                title: _getAppNameFromLocale(locale),
+                theme: NepanikarTheme.getThemeData(
+                  fontFamily: locale?.languageCode == NepanikarLanguages.uk.languageCode
+                      ? null
+                      : FontFamily.satoshi,
+                ),
+                darkTheme: darkTheme.getThemeData(
+                  fontFamily: locale?.languageCode == NepanikarLanguages.uk.languageCode
+                      ? null
+                      : FontFamily.satoshi,
+                ),
+                themeMode: themeMode,
+                localizationsDelegates: AppLocalizations.localizationsDelegates,
+                supportedLocales: AppLocalizations.supportedLocales,
+                locale: locale,
+                routerConfig: _goRouter,
+                builder: (context, child) {
+                  return child != null
+                      ? ScrollConfiguration(
+                          behavior: NepanikarScrollBehavior(),
+                          child: MediaQuery(
+                            // To not influence app's font size by the system font size.
+                            // TODO: Should be resolved, accessibility is important.
+                            data: MediaQuery.of(
+                              context,
+                            ).copyWith(textScaler: const TextScaler.linear(1.0)),
+                            child: child,
+                          ),
+                        )
+                      : const SizedBox.shrink();
                 },
               );
             },
+          );
+        },
       ),
     );
   }

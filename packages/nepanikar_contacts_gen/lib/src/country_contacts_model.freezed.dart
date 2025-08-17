@@ -22,24 +22,19 @@ CountryContacts _$CountryContactsFromJson(Map<String, dynamic> json) {
 mixin _$CountryContacts {
   String get languageCode => throw _privateConstructorUsedError;
   List<PhoneContact>? get phoneContacts => throw _privateConstructorUsedError;
-  List<RegionContact>? get crisisCenterContacts =>
-      throw _privateConstructorUsedError;
+  List<RegionContact>? get crisisCenterContacts => throw _privateConstructorUsedError;
   List<ChatContact>? get chatContacts => throw _privateConstructorUsedError;
-  List<RegionContact>? get universityRegionContacts =>
-      throw _privateConstructorUsedError;
-  List<String>? get eatingDisorderContacts =>
-      throw _privateConstructorUsedError;
+  List<RegionContact>? get universityRegionContacts => throw _privateConstructorUsedError;
+  List<String>? get eatingDisorderContacts => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $CountryContactsCopyWith<CountryContacts> get copyWith =>
-      throw _privateConstructorUsedError;
+  $CountryContactsCopyWith<CountryContacts> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $CountryContactsCopyWith<$Res> {
-  factory $CountryContactsCopyWith(
-          CountryContacts value, $Res Function(CountryContacts) then) =
+  factory $CountryContactsCopyWith(CountryContacts value, $Res Function(CountryContacts) then) =
       _$CountryContactsCopyWithImpl<$Res, CountryContacts>;
   @useResult
   $Res call(
@@ -101,8 +96,7 @@ class _$CountryContactsCopyWithImpl<$Res, $Val extends CountryContacts>
 }
 
 /// @nodoc
-abstract class _$$_CountryContactsCopyWith<$Res>
-    implements $CountryContactsCopyWith<$Res> {
+abstract class _$$_CountryContactsCopyWith<$Res> implements $CountryContactsCopyWith<$Res> {
   factory _$$_CountryContactsCopyWith(
           _$_CountryContacts value, $Res Function(_$_CountryContacts) then) =
       __$$_CountryContactsCopyWithImpl<$Res>;
@@ -201,8 +195,7 @@ class _$_CountryContacts extends _CountryContacts {
   List<RegionContact>? get crisisCenterContacts {
     final value = _crisisCenterContacts;
     if (value == null) return null;
-    if (_crisisCenterContacts is EqualUnmodifiableListView)
-      return _crisisCenterContacts;
+    if (_crisisCenterContacts is EqualUnmodifiableListView) return _crisisCenterContacts;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -222,8 +215,7 @@ class _$_CountryContacts extends _CountryContacts {
   List<RegionContact>? get universityRegionContacts {
     final value = _universityRegionContacts;
     if (value == null) return null;
-    if (_universityRegionContacts is EqualUnmodifiableListView)
-      return _universityRegionContacts;
+    if (_universityRegionContacts is EqualUnmodifiableListView) return _universityRegionContacts;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -233,8 +225,7 @@ class _$_CountryContacts extends _CountryContacts {
   List<String>? get eatingDisorderContacts {
     final value = _eatingDisorderContacts;
     if (value == null) return null;
-    if (_eatingDisorderContacts is EqualUnmodifiableListView)
-      return _eatingDisorderContacts;
+    if (_eatingDisorderContacts is EqualUnmodifiableListView) return _eatingDisorderContacts;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -249,18 +240,15 @@ class _$_CountryContacts extends _CountryContacts {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CountryContacts &&
-            (identical(other.languageCode, languageCode) ||
-                other.languageCode == languageCode) &&
-            const DeepCollectionEquality()
-                .equals(other._phoneContacts, _phoneContacts) &&
+            (identical(other.languageCode, languageCode) || other.languageCode == languageCode) &&
+            const DeepCollectionEquality().equals(other._phoneContacts, _phoneContacts) &&
             const DeepCollectionEquality()
                 .equals(other._crisisCenterContacts, _crisisCenterContacts) &&
+            const DeepCollectionEquality().equals(other._chatContacts, _chatContacts) &&
             const DeepCollectionEquality()
-                .equals(other._chatContacts, _chatContacts) &&
-            const DeepCollectionEquality().equals(
-                other._universityRegionContacts, _universityRegionContacts) &&
-            const DeepCollectionEquality().equals(
-                other._eatingDisorderContacts, _eatingDisorderContacts));
+                .equals(other._universityRegionContacts, _universityRegionContacts) &&
+            const DeepCollectionEquality()
+                .equals(other._eatingDisorderContacts, _eatingDisorderContacts));
   }
 
   @JsonKey(ignore: true)
@@ -298,8 +286,7 @@ abstract class _CountryContacts extends CountryContacts {
       final List<String>? eatingDisorderContacts}) = _$_CountryContacts;
   const _CountryContacts._() : super._();
 
-  factory _CountryContacts.fromJson(Map<String, dynamic> json) =
-      _$_CountryContacts.fromJson;
+  factory _CountryContacts.fromJson(Map<String, dynamic> json) = _$_CountryContacts.fromJson;
 
   @override
   String get languageCode;

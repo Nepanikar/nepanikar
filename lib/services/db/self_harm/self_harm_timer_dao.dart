@@ -7,10 +7,9 @@ import 'package:sembast/sembast.dart';
 import 'package:sembast/timestamp.dart';
 
 class SelfHarmTimerDao {
-  SelfHarmTimerDao({
-    required DatabaseService dbService,
-  })  : _dbService = dbService,
-        _store = StoreRef(_storeKeyName);
+  SelfHarmTimerDao({required DatabaseService dbService})
+    : _dbService = dbService,
+      _store = StoreRef(_storeKeyName);
 
   Future<SelfHarmTimerDao> init() async {
     registry.registerSingleton<SelfHarmTimerDao>(this);
@@ -29,8 +28,9 @@ class SelfHarmTimerDao {
   static const _selfHarmTimerRecordEndTimestampKey = 'self_harm_timer_record_end_timestamp';
 
   Future<void> startSelfHarmTimer([DateTime? startDateTime]) async {
-    final timestampNow =
-        startDateTime != null ? Timestamp.fromDateTime(startDateTime.toUtc()) : Timestamp.now();
+    final timestampNow = startDateTime != null
+        ? Timestamp.fromDateTime(startDateTime.toUtc())
+        : Timestamp.now();
     await _store.record(_selfHarmTimerCurrentTimestampKey).put(_db, timestampNow);
   }
 
@@ -66,8 +66,9 @@ class SelfHarmTimerDao {
   }
 
   Future<DateTimeRange?> getBestTimerRecordDateTimeRange() async {
-    final startRecordTimestamp =
-        await _store.record(_selfHarmTimerRecordStartTimestampKey).get(_db);
+    final startRecordTimestamp = await _store
+        .record(_selfHarmTimerRecordStartTimestampKey)
+        .get(_db);
     final endRecordTimestamp = await _store.record(_selfHarmTimerRecordEndTimestampKey).get(_db);
     if (startRecordTimestamp != null && endRecordTimestamp != null) {
       return DateTimeRange(
@@ -84,21 +85,21 @@ class SelfHarmTimerDao {
       .map((snapshot) => snapshot?.value?.toDateTime(isUtc: true).toLocal());
 
   Stream<DateTimeRange?> get selfHarmTimerRecordStream => Rx.combineLatest2(
-        _store.record(_selfHarmTimerRecordStartTimestampKey).onSnapshot(_db),
-        _store.record(_selfHarmTimerRecordEndTimestampKey).onSnapshot(_db),
-        (a, b) {
-          final aVal = a?.value;
-          final bVal = b?.value;
-          debugPrint('selfHarmTimerRecordStream: start: $aVal, end: $bVal');
-          if (aVal != null && bVal != null) {
-            return DateTimeRange(
-              start: aVal.toDateTime(isUtc: true).toLocal(),
-              end: bVal.toDateTime(isUtc: true).toLocal(),
-            );
-          }
-          return null;
-        },
-      );
+    _store.record(_selfHarmTimerRecordStartTimestampKey).onSnapshot(_db),
+    _store.record(_selfHarmTimerRecordEndTimestampKey).onSnapshot(_db),
+    (a, b) {
+      final aVal = a?.value;
+      final bVal = b?.value;
+      debugPrint('selfHarmTimerRecordStream: start: $aVal, end: $bVal');
+      if (aVal != null && bVal != null) {
+        return DateTimeRange(
+          start: aVal.toDateTime(isUtc: true).toLocal(),
+          end: bVal.toDateTime(isUtc: true).toLocal(),
+        );
+      }
+      return null;
+    },
+  );
 
   Future<void> doOldVersionMigration(SelfHarmTimerDTO timerConfig) async {
     if (timerConfig.currSelfHarmTimerStartDateTime != null) {

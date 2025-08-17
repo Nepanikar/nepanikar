@@ -11,12 +11,8 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/diary/diary_edit_content.dart';
 part 'my_records_diary_add_screen.g.dart';
 
-@TypedGoRoute<MyRecordsDiaryAddRoute>(
-  path: '/home/my-records/diary/add',
-)
-
+@TypedGoRoute<MyRecordsDiaryAddRoute>(path: '/home/my-records/diary/add')
 class MyRecordsDiaryAddRoute extends GoRouteData with _$MyRecordsDiaryAddRoute {
-
   const MyRecordsDiaryAddRoute();
 
   @override
@@ -45,10 +41,7 @@ class MyRecordsDiaryAddScreen extends StatelessWidget {
         goRouter.pop();
         goRouter.push(
           const MyRecordsDiaryDetailRoute().location,
-          extra: DiaryRecordRouteExtraData(
-            diaryRecordId: id,
-            diaryRecord: diaryRecord,
-          ),
+          extra: DiaryRecordRouteExtraData(diaryRecordId: id, diaryRecord: diaryRecord),
         );
       },
       secondaryButtonText: context.l10n.cancel,

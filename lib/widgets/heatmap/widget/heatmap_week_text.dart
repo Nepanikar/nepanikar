@@ -2,14 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:nepanikar/widgets/heatmap/util/date_util.dart';
 
 class HeatMapWeekText extends StatelessWidget {
+  const HeatMapWeekText({super.key, this.margin, this.fontSize, this.size, this.fontColor});
 
-  const HeatMapWeekText({
-    super.key,
-    this.margin,
-    this.fontSize,
-    this.size,
-    this.fontColor,
-  });
   /// The margin value for correctly space between labels.
   final EdgeInsets? margin;
 
@@ -28,16 +22,13 @@ class HeatMapWeekText extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         for (final String label in DateUtil.WEEK_LABEL)
-          if(label.isNotEmpty) ... [
+          if (label.isNotEmpty) ...[
             Container(
               height: size ?? 20,
               margin: margin ?? const EdgeInsets.all(2.0),
               child: Text(
                 label,
-                style: TextStyle(
-                  fontSize: fontSize ?? 12,
-                  color: fontColor,
-                ),
+                style: TextStyle(fontSize: fontSize ?? 12, color: fontColor),
               ),
             ),
           ],

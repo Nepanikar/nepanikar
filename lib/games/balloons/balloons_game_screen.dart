@@ -15,12 +15,8 @@ import 'package:nepanikar/utils/lottie_cache_manager.dart';
 import 'package:nepanikar/utils/registry.dart';
 part 'balloons_game_screen.g.dart';
 
-@TypedGoRoute<BalloonsGameRoute>(
-  path: '/games/balloons/',
-)
-
+@TypedGoRoute<BalloonsGameRoute>(path: '/games/balloons/')
 class BalloonsGameRoute extends GoRouteData with _$BalloonsGameRoute {
-
   const BalloonsGameRoute();
 
   @override
@@ -112,10 +108,7 @@ class _BalloonsGameScreenState extends State<BalloonsGameScreen> with TickerProv
     });
 
     // N fps game loop using timer
-    gameLoop = Timer.periodic(
-      Duration(milliseconds: (1000 / fps).round()),
-      (timer) => runFrame(),
-    );
+    gameLoop = Timer.periodic(Duration(milliseconds: (1000 / fps).round()), (timer) => runFrame());
   }
 
   @override
@@ -127,9 +120,11 @@ class _BalloonsGameScreenState extends State<BalloonsGameScreen> with TickerProv
 
   @override
   Widget build(BuildContext context) {
-    final backgroundColor = customColorsBasedOnDarkMode(context,
+    final backgroundColor = customColorsBasedOnDarkMode(
+      context,
       NepanikarColors.primaryD,
-      NepanikarColors.primary,);
+      NepanikarColors.primary,
+    );
 
     return Scaffold(
       backgroundColor: backgroundColor,
@@ -204,17 +199,15 @@ class _BalloonsGameScreenState extends State<BalloonsGameScreen> with TickerProv
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Assets.illustrations.games.balloons.touchGesture.svg(),
-                    const SizedBox(
-                      height: 12,
-                    ),
+                    const SizedBox(height: 12),
                     Text(
                       context.l10n.balloons_game_tip,
-                      style: NepanikarFonts.bodySmallMedium
-                          .copyWith(color: Colors.white, fontSize: 14),
+                      style: NepanikarFonts.bodySmallMedium.copyWith(
+                        color: Colors.white,
+                        fontSize: 14,
+                      ),
                     ),
-                    const SizedBox(
-                      height: 20,
-                    )
+                    const SizedBox(height: 20),
                   ],
                 ),
               ),
@@ -231,7 +224,7 @@ class _BalloonsGameScreenState extends State<BalloonsGameScreen> with TickerProv
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

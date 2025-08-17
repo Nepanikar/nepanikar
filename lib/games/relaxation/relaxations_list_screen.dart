@@ -8,12 +8,8 @@ import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 part 'relaxations_list_screen.g.dart';
 
-@TypedGoRoute<RelaxationsListRoute>(
-  path: '/games/relaxation-list',
-)
-
+@TypedGoRoute<RelaxationsListRoute>(path: '/games/relaxation-list')
 class RelaxationsListRoute extends GoRouteData with _$RelaxationsListRoute {
-
   const RelaxationsListRoute();
 
   @override
@@ -34,31 +30,22 @@ class RelaxationsListScreen extends StatelessWidget {
         LongTile(
           text: 'Relaxace',
           image: Assets.illustrations.modules.relaxation.svg(color: svgColor),
-          onTap: () => context.push(
-            const RelaxationRoute(
-              relaxationType: RelaxationType.general,
-            ).location,
-          ),
+          onTap: () =>
+              context.push(const RelaxationRoute(relaxationType: RelaxationType.general).location),
           isDarkMode: isDarkMode,
         ),
         LongTile(
           text: 'Ranní zastavení',
           image: Assets.illustrations.modules.relaxation.svg(color: svgColor),
-          onTap: () => context.push(
-            const RelaxationRoute(
-              relaxationType: RelaxationType.morning,
-            ).location,
-          ),
+          onTap: () =>
+              context.push(const RelaxationRoute(relaxationType: RelaxationType.morning).location),
           isDarkMode: isDarkMode,
         ),
         LongTile(
           text: 'Večerní zastavení',
           image: Assets.illustrations.modules.relaxation.svg(color: svgColor),
-          onTap: () => context.push(
-            const RelaxationRoute(
-              relaxationType: RelaxationType.evening,
-            ).location,
-          ),
+          onTap: () =>
+              context.push(const RelaxationRoute(relaxationType: RelaxationType.evening).location),
           isDarkMode: isDarkMode,
         ),
       ],

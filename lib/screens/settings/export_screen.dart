@@ -14,12 +14,8 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:url_launcher/url_launcher.dart';
 part 'export_screen.g.dart';
 
-@TypedGoRoute<ExportRoute>(
-  path: '/settings/export',
-)
-
+@TypedGoRoute<ExportRoute>(path: '/settings/export')
 class ExportRoute extends GoRouteData with _$ExportRoute {
-
   const ExportRoute();
 
   @override
@@ -49,9 +45,9 @@ class _ExportScreenState extends State<ExportScreen> {
 
   @override
   Widget build(BuildContext context) {
-
-    final ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
-    ThemeMode.dark : ThemeMode.light;
+    final ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark
+        ? ThemeMode.dark
+        : ThemeMode.light;
     final bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
 
     return NepanikarScreenWrapper(
@@ -72,9 +68,7 @@ class _ExportScreenState extends State<ExportScreen> {
                 context.showSuccessSnackbar(text: context.l10n.export_successful);
               },
               onError: () {
-                context.showErrorSnackbar(
-                  text: context.l10n.export_failed,
-                );
+                context.showErrorSnackbar(text: context.l10n.export_failed);
               },
             );
             if (mounted) {
@@ -98,9 +92,7 @@ class _ExportScreenState extends State<ExportScreen> {
                 context.showSuccessSnackbar(text: context.l10n.import_successful);
               },
               onError: () {
-                context.showErrorSnackbar(
-                  text: context.l10n.import_failed,
-                );
+                context.showErrorSnackbar(text: context.l10n.import_failed);
               },
             );
             if (mounted) {
@@ -127,8 +119,9 @@ class _ExportScreenState extends State<ExportScreen> {
                 image: null,
                 onTap: () async {
                   final l10n = context.l10n;
-                  final fileContent =
-                      await File(_saveDirectories.oldAppDataConfigFileBackupPath).readAsString();
+                  final fileContent = await File(
+                    _saveDirectories.oldAppDataConfigFileBackupPath,
+                  ).readAsString();
                   final uri = Uri(
                     scheme: 'mailto',
                     path: AppConstants.nepanikarContactEmail,
@@ -165,10 +158,8 @@ class _SpinnerState extends State<_Spinner> with SingleTickerProviderStateMixin 
   @override
   void initState() {
     super.initState();
-    _animController = AnimationController(
-      duration: const Duration(seconds: 1),
-      vsync: this,
-    )..repeat();
+    _animController = AnimationController(duration: const Duration(seconds: 1), vsync: this)
+      ..repeat();
   }
 
   @override

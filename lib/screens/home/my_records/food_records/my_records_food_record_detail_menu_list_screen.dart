@@ -20,29 +20,21 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 part 'my_records_food_record_detail_menu_list_screen.g.dart';
 
-@TypedGoRoute<MyRecordsFoodRecordsDetailMenuListRoute>(
-  path: '/home/my-records/food-records/detail',
-)
-
-class MyRecordsFoodRecordsDetailMenuListRoute extends GoRouteData with _$MyRecordsFoodRecordsDetailMenuListRoute {
-
+@TypedGoRoute<MyRecordsFoodRecordsDetailMenuListRoute>(path: '/home/my-records/food-records/detail')
+class MyRecordsFoodRecordsDetailMenuListRoute extends GoRouteData
+    with _$MyRecordsFoodRecordsDetailMenuListRoute {
   const MyRecordsFoodRecordsDetailMenuListRoute();
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
     // TODO: Unsafe cast.
     final extra = state.extra! as FoodRecordRouteExtraData;
-    return MyRecordsFoodRecordsDetailMenuListScreen(
-      id: extra.id,
-    );
+    return MyRecordsFoodRecordsDetailMenuListScreen(id: extra.id);
   }
 }
 
 class MyRecordsFoodRecordsDetailMenuListScreen extends StatefulWidget {
-  const MyRecordsFoodRecordsDetailMenuListScreen({
-    super.key,
-    required this.id,
-  });
+  const MyRecordsFoodRecordsDetailMenuListScreen({super.key, required this.id});
 
   final String id;
 

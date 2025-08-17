@@ -77,18 +77,16 @@ class PlaygroundScreen extends StatelessWidget {
                   );
                   final r = Random();
                   final moodTracks = dateRangeValues
-                      .map(
-                        (d) {
-                          final randomNum = r.nextInt(4);
-                          return randomNum <= 1
-                              ? MoodTrack(
-                                  date: d,
-                                  mood: Mood.values[r.nextInt(Mood.values.length)],
-                                  summary: '',
-                                )
-                              : null;
-                        },
-                      )
+                      .map((d) {
+                        final randomNum = r.nextInt(4);
+                        return randomNum <= 1
+                            ? MoodTrack(
+                                date: d,
+                                mood: Mood.values[r.nextInt(Mood.values.length)],
+                                summary: '',
+                              )
+                            : null;
+                      })
                       .whereType<MoodTrack>()
                       .toList();
                   await _moodTrackDao.saveMoods(moodTracks);
@@ -96,31 +94,13 @@ class PlaygroundScreen extends StatelessWidget {
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: _fonts
-                    .map(
-                      (e) => Text(
-                        context.l10n.app_name,
-                        style: e,
-                      ),
-                    )
-                    .toList(),
+                children: _fonts.map((e) => Text(context.l10n.app_name, style: e)).toList(),
               ),
-              const SizedBox(
-                height: 4,
-              ),
+              const SizedBox(height: 4),
+              const TextField(decoration: InputDecoration(hintText: 'placeholder')),
+              const SizedBox(height: 4),
               const TextField(
-                decoration: InputDecoration(
-                  hintText: 'placeholder',
-                ),
-              ),
-              const SizedBox(
-                height: 4,
-              ),
-              const TextField(
-                decoration: InputDecoration(
-                  hintText: 'placeholder',
-                  errorText: 'error',
-                ),
+                decoration: InputDecoration(hintText: 'placeholder', errorText: 'error'),
                 style: TextStyle(color: NepanikarColors.error),
               ),
               Row(
@@ -128,23 +108,19 @@ class PlaygroundScreen extends StatelessWidget {
                   Checkbox(
                     value: true,
                     shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(4.0),
-                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(4.0)),
                     ),
                     onChanged: (bool? value) {},
                   ),
                   Checkbox(
                     value: false,
                     shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(4.0),
-                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(4.0)),
                     ),
                     onChanged: (bool? value) {},
                   ),
                   Radio(value: true, groupValue: true, onChanged: (val) {}),
-                  Radio(value: false, groupValue: true, onChanged: (val) {})
+                  Radio(value: false, groupValue: true, onChanged: (val) {}),
                 ],
               ),
               const SizedBox(height: 20),
@@ -238,37 +214,20 @@ class PlaygroundScreen extends StatelessWidget {
           onPressed: () => context.showSuccessSnackbar(
             text: 'Succcess',
             leading: const Icon(Icons.info_outline),
-            trailing: Text(
-              'Zpět'.toUpperCase(),
-              style: NepanikarFonts.bodyHeavy,
-            ),
+            trailing: Text('Zpět'.toUpperCase(), style: NepanikarFonts.bodyHeavy),
           ),
-          child: const Text(
-            'success',
-            style: TextStyle(color: NepanikarColors.success),
-          ),
+          child: const Text('success', style: TextStyle(color: NepanikarColors.success)),
         ),
         TextButton(
-          onPressed: () => context.showInfoSnackbar(
-            text: 'info snackbar',
-          ),
-          child: const Text(
-            'info',
-            style: TextStyle(color: NepanikarColors.info),
-          ),
+          onPressed: () => context.showInfoSnackbar(text: 'info snackbar'),
+          child: const Text('info', style: TextStyle(color: NepanikarColors.info)),
         ),
         TextButton(
           onPressed: () => context.showErrorSnackbar(
             text: 'error',
-            leading: const Icon(
-              Icons.warning_amber,
-              color: Colors.white,
-            ),
+            leading: const Icon(Icons.warning_amber, color: Colors.white),
           ),
-          child: const Text(
-            'error',
-            style: TextStyle(color: NepanikarColors.error),
-          ),
+          child: const Text('error', style: TextStyle(color: NepanikarColors.error)),
         ),
         TextButton(
           onPressed: () => context.showPurpleSnackbar(
@@ -279,10 +238,7 @@ class PlaygroundScreen extends StatelessWidget {
               style: NepanikarFonts.bodyHeavy.copyWith(color: Colors.white),
             ),
           ),
-          child: const Text(
-            'purple',
-            style: TextStyle(color: NepanikarColors.primary),
-          ),
+          child: const Text('purple', style: TextStyle(color: NepanikarColors.primary)),
         ),
       ],
     );

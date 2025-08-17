@@ -4,10 +4,7 @@ import 'package:nepanikar/services/db/my_records/mood_track_dao.dart'; // Adjust
 import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
 
 class MoodState with ChangeNotifier {
-  MoodState(
-    this._emotionsDao,
-    this._trackDao,
-  ) {
+  MoodState(this._emotionsDao, this._trackDao) {
     _loadEmotions();
   }
 
@@ -48,15 +45,16 @@ class MoodState with ChangeNotifier {
     fetchMoodEntries();
   }
 
-  List<MoodTrack> fetchMoodTracksInRange(DateTime start, DateTime end)  {
-    return _moodEntries.where((entry) => entry.date.isAfter(start) && entry.date.isBefore(end)).toList();
+  List<MoodTrack> fetchMoodTracksInRange(DateTime start, DateTime end) {
+    return _moodEntries
+        .where((entry) => entry.date.isAfter(start) && entry.date.isBefore(end))
+        .toList();
   }
 
-  void setEditing(bool value){
+  void setEditing(bool value) {
     _editing = value;
     notifyListeners();
   }
-
 
   Future<void> _loadEmotions() async {
     _emotions = await _emotionsDao.getEmotions();
@@ -69,17 +67,23 @@ class MoodState with ChangeNotifier {
     return succeed;
   }
 
-  Future<void> saveMoodTrack(String summary, String description, List<String> emotions, Mood mood) async {
-     await _trackDao.saveMoodTrack(
-      mood,
-      emotions,
-      summary,
-      description,
-    );
-     await fetchMoodEntries();
+  Future<void> saveMoodTrack(
+    String summary,
+    String description,
+    List<String> emotions,
+    Mood mood,
+  ) async {
+    await _trackDao.saveMoodTrack(mood, emotions, summary, description);
+    await fetchMoodEntries();
   }
 
-  Future<void> updateMoodTrack(DateTime date, String summary, String description, List<String> emotions, Mood mood) async {
+  Future<void> updateMoodTrack(
+    DateTime date,
+    String summary,
+    String description,
+    List<String> emotions,
+    Mood mood,
+  ) async {
     await _trackDao.updateMoodTrack(date, summary, description, emotions, mood);
     await fetchMoodEntries();
   }
@@ -93,7 +97,7 @@ class MoodState with ChangeNotifier {
     await _emotionsDao.deleteEmotion(emotion);
   }
 
-  Future<void> deleteMoodTrack(MoodTrack moodTrack) async{
+  Future<void> deleteMoodTrack(MoodTrack moodTrack) async {
     await _trackDao.deleteMoodTrackByDate(moodTrack.date);
     _moodEntries.remove(moodTrack);
     notifyListeners();

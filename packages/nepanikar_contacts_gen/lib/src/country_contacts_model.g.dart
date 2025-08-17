@@ -6,8 +6,7 @@ part of 'country_contacts_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_CountryContacts _$$_CountryContactsFromJson(Map<String, dynamic> json) =>
-    _$_CountryContacts(
+_$_CountryContacts _$$_CountryContactsFromJson(Map<String, dynamic> json) => _$_CountryContacts(
       languageCode: json['languageCode'] as String,
       phoneContacts: (json['phoneContacts'] as List<dynamic>?)
           ?.map((e) => PhoneContact.fromJson(e as Map<String, dynamic>))
@@ -18,17 +17,14 @@ _$_CountryContacts _$$_CountryContactsFromJson(Map<String, dynamic> json) =>
       chatContacts: (json['chatContacts'] as List<dynamic>?)
           ?.map((e) => ChatContact.fromJson(e as Map<String, dynamic>))
           .toList(),
-      universityRegionContacts:
-          (json['universityRegionContacts'] as List<dynamic>?)
-              ?.map((e) => RegionContact.fromJson(e as Map<String, dynamic>))
-              .toList(),
-      eatingDisorderContacts: (json['eatingDisorderContacts'] as List<dynamic>?)
-          ?.map((e) => e as String)
+      universityRegionContacts: (json['universityRegionContacts'] as List<dynamic>?)
+          ?.map((e) => RegionContact.fromJson(e as Map<String, dynamic>))
           .toList(),
+      eatingDisorderContacts:
+          (json['eatingDisorderContacts'] as List<dynamic>?)?.map((e) => e as String).toList(),
     );
 
-Map<String, dynamic> _$$_CountryContactsToJson(_$_CountryContacts instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$$_CountryContactsToJson(_$_CountryContacts instance) => <String, dynamic>{
       'languageCode': instance.languageCode,
       'phoneContacts': instance.phoneContacts,
       'crisisCenterContacts': instance.crisisCenterContacts,

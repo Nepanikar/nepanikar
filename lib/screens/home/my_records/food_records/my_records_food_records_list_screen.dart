@@ -17,12 +17,8 @@ import 'package:nepanikar/widgets/food_records/food_record_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 part 'my_records_food_records_list_screen.g.dart';
 
-@TypedGoRoute<MyRecordsFoodRecordsListRoute>(
-  path: '/home/my-records/food-records',
-)
-
+@TypedGoRoute<MyRecordsFoodRecordsListRoute>(path: '/home/my-records/food-records')
 class MyRecordsFoodRecordsListRoute extends GoRouteData with _$MyRecordsFoodRecordsListRoute {
-
   const MyRecordsFoodRecordsListRoute();
 
   @override

@@ -15,12 +15,8 @@ import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 part 'anxiety_screen.g.dart';
 
-@TypedGoRoute<AnxietyAppRoute>(
-  path: '/home/anxiety',
-)
-
+@TypedGoRoute<AnxietyAppRoute>(path: '/home/anxiety')
 class AnxietyAppRoute extends GoRouteData with _$AnxietyAppRoute {
-
   const AnxietyAppRoute();
 
   @override

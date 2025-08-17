@@ -17,8 +17,9 @@ class SuicidalThoughtsModuleDb implements NepanikarModuleDb {
   @override
   Future<SuicidalThoughtsModuleDb> initModuleDaos() async {
     _suicidalThoughtsPlanDao = await SuicidalThoughtsPlanDao(dbService: _dbService).init();
-    _suicidalThoughtsReasonsNoDao =
-        await SuicidalThoughtsReasonsNoDao(dbService: _dbService).init();
+    _suicidalThoughtsReasonsNoDao = await SuicidalThoughtsReasonsNoDao(
+      dbService: _dbService,
+    ).init();
     return this;
   }
 

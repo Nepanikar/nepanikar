@@ -20,9 +20,7 @@ import 'package:path/path.dart';
 import 'package:sembast/sembast_io.dart';
 
 class DatabaseService {
-  DatabaseService({
-    required SaveDirectories saveDirectories,
-  }) : _saveDirectories = saveDirectories;
+  DatabaseService({required SaveDirectories saveDirectories}) : _saveDirectories = saveDirectories;
 
   Future<void> init() async {
     mainStore = StoreRef.main();
@@ -158,9 +156,7 @@ class DatabaseService {
     return {};
   }
 
-  Future<void> _clearAndBackupOldAppConfigData({
-    required File? androidConfigFile,
-  }) async {
+  Future<void> _clearAndBackupOldAppConfigData({required File? androidConfigFile}) async {
     if (Platform.isAndroid) {
       if (androidConfigFile == null) return;
       await _backupOldAndroidConfigFile(androidConfigFile);
@@ -311,7 +307,6 @@ class DatabaseService {
         );
       }
     }
-
 
     // Clear old config files so that this migration is not done somehow again.
     await _clearAndBackupOldAppConfigData(androidConfigFile: androidConfigFile);

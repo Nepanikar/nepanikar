@@ -14,76 +14,63 @@ import 'package:nepanikar/widgets/mood/chosen_emotions.dart';
 import 'package:provider/provider.dart';
 part 'mood_entry_detail_screen.g.dart';
 
-@TypedGoRoute<MoodEntryDetailRoute>(
-  path: '/home/my-records/mood-records/mood-entry',
-)
+@TypedGoRoute<MoodEntryDetailRoute>(path: '/home/my-records/mood-records/mood-entry')
 class MoodEntryDetailRoute extends GoRouteData with _$MoodEntryDetailRoute {
-
   const MoodEntryDetailRoute();
 
   @override
-  Widget build(BuildContext context, _) =>
-      const MoodEntryDetailScreen<MoodTrackDao>();
+  Widget build(BuildContext context, _) => const MoodEntryDetailScreen<MoodTrackDao>();
 }
 
 class MoodEntryDetailScreen<T extends MoodTrackDao> extends StatefulWidget {
-  const MoodEntryDetailScreen({
-    super.key,
-  });
+  const MoodEntryDetailScreen({super.key});
 
   @override
   State<MoodEntryDetailScreen<T>> createState() => _MoodEntryDetailState();
 }
 
-class _MoodEntryDetailState<T extends MoodTrackDao>
-    extends State<MoodEntryDetailScreen<T>> {
-
+class _MoodEntryDetailState<T extends MoodTrackDao> extends State<MoodEntryDetailScreen<T>> {
   Future<bool> _deleteMoodEntry(BuildContext context, MoodTrack moodEntry) async {
-    final bool confirmDelete = await showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: NepanikarColors.containerD,
-          title:  Text(context.l10n.submit),
-          content: Text(context.l10n.confirm_delete),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(false),
-              child: Text(
-                context.l10n.cancel,
-                style: const TextStyle(
-                  color: NepanikarColors.white,
-                ) ,
-              ),
-            ),
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(true),
-              child:  Text(
-                context.l10n.delete_record,
-                style: const TextStyle(
-                    color: NepanikarColors.white,
-                ) ,
-              ),
-            ),
-          ],
-        );
-      },
-    ) ?? false; // The dialog returns null if dismissed
+    final bool confirmDelete =
+        await showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              backgroundColor: NepanikarColors.containerD,
+              title: Text(context.l10n.submit),
+              content: Text(context.l10n.confirm_delete),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(false),
+                  child: Text(
+                    context.l10n.cancel,
+                    style: const TextStyle(color: NepanikarColors.white),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(true),
+                  child: Text(
+                    context.l10n.delete_record,
+                    style: const TextStyle(color: NepanikarColors.white),
+                  ),
+                ),
+              ],
+            );
+          },
+        ) ??
+        false; // The dialog returns null if dismissed
     return confirmDelete;
   }
 
   @override
   Widget build(BuildContext context) {
-    final moodEntry =
-        Provider.of<MoodState>(context).selectedMoodEntry!;
+    final moodEntry = Provider.of<MoodState>(context).selectedMoodEntry!;
     final textStyleColor = customColorsBasedOnDarkMode(
       context,
       NepanikarColors.white,
       NepanikarColors.primary,
     );
-    final formattedDate =
-        DateFormat('d. MMM. yyyy   HH:mm').format(moodEntry.date);
-
+    final formattedDate = DateFormat('d. MMM. yyyy   HH:mm').format(moodEntry.date);
 
     return Scaffold(
       appBar: AppBar(
@@ -105,11 +92,7 @@ class _MoodEntryDetailState<T extends MoodTrackDao>
                     left: -70,
                     child: Opacity(
                       opacity: 0.1,
-                      child: SvgPicture.asset(
-                        moodEntry.mood.icon.path,
-                        width: 250,
-                        height: 250,
-                      ),
+                      child: SvgPicture.asset(moodEntry.mood.icon.path, width: 250, height: 250),
                     ),
                   ),
                   Positioned(
@@ -136,7 +119,7 @@ class _MoodEntryDetailState<T extends MoodTrackDao>
                         initialEmotions: moodEntry.emotions ?? [],
                         deleteEmotionEnabled: false,
                       ),
-                    )
+                    ),
                   ),
                   Positioned(
                     right: 3,
@@ -213,9 +196,8 @@ class _MoodEntryDetailState<T extends MoodTrackDao>
                     ),
                   ],
                 ),
-              )
+              ),
             ],
-
           ],
         ),
       ),
@@ -228,29 +210,25 @@ class _MoodEntryDetailState<T extends MoodTrackDao>
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               SizedBox(
-                width: 130,  // Set the width of the SizedBox to define the size of the button
-                height: 60,  // Set the height of the SizedBox to define the size of the button
+                width: 130, // Set the width of the SizedBox to define the size of the button
+                height: 60, // Set the height of the SizedBox to define the size of the button
                 child: ElevatedButton(
                   onPressed: () async {
                     final success = await _deleteMoodEntry(context, moodEntry);
-                    if(success){
-                      if(mounted){
-                        await Provider.of<MoodState>(context, listen: false).deleteMoodTrack(moodEntry);
+                    if (success) {
+                      if (mounted) {
+                        await Provider.of<MoodState>(
+                          context,
+                          listen: false,
+                        ).deleteMoodTrack(moodEntry);
                       }
                     }
-                    if(mounted){
+                    if (mounted) {
                       Navigator.of(context).pop();
                     }
                   },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: NepanikarColors.deleteButton,
-
-                  ),
-                  child: const Icon(
-                    Icons.delete,
-                    color: Colors.white,
-                    size: 30,
-                  ),
+                  style: ElevatedButton.styleFrom(backgroundColor: NepanikarColors.deleteButton),
+                  child: const Icon(Icons.delete, color: Colors.white, size: 30),
                 ),
               ),
               SizedBox(
@@ -261,14 +239,8 @@ class _MoodEntryDetailState<T extends MoodTrackDao>
                     Provider.of<MoodState>(context, listen: false).setEditing(true);
                     context.push(const MoodPickerRoute().location);
                   },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: NepanikarColors.baseButtonD,
-                  ),
-                  child: const Icon(
-                    Icons.edit,
-                    color: Colors.white,
-                    size: 30,
-                  ),
+                  style: ElevatedButton.styleFrom(backgroundColor: NepanikarColors.baseButtonD),
+                  child: const Icon(Icons.edit, color: Colors.white, size: 30),
                 ),
               ),
             ],

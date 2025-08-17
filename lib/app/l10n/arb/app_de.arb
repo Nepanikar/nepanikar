@@ -328,5 +328,10 @@
   "dark_mode_off": "Dunkler Modus ist DEAKTIVIERT",
   "description": "Beschreibung",
   "confirm_delete": "Sind Sie sicher, dass Sie diesen Stimmungseintrag löschen möchten?",
-  "enter_summary": "Geben Sie eine kurze Zusammenfassung ein"
+  "enter_summary": "Geben Sie eine kurze Zusammenfassung ein",
+  "emotion_angry": "Wütend",
+  "emotion_excited": "Aufgeregt",
+  "emotion_happy": "Glücklich",
+  "emotion_relaxed": "Entspannt",
+  "emotion_sad": "Traurig"
 }

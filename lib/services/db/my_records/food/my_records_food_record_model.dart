@@ -51,17 +51,14 @@ abstract class DailyFoodRecord with _$DailyFoodRecord {
   factory DailyFoodRecord.fromJson(Map<String, Object?> json) => _$DailyFoodRecordFromJson(json);
 }
 
-DailyFoodRecord getEmptyDailyFoodRecord() => DailyFoodRecord(
-      dateTime: DateTime.now(),
-      answers: [],
-    );
+DailyFoodRecord getEmptyDailyFoodRecord() => DailyFoodRecord(dateTime: DateTime.now(), answers: []);
 
 DailyFoodRecordAnswer getEmptyDailyFoodRecordAnswer(FoodType foodType) => DailyFoodRecordAnswer(
-      foodType: foodType,
-      questionTextAnswers: [],
-      tickedQuestionFeels: [],
-      tickedQuestionProblems: [],
-    );
+  foodType: foodType,
+  questionTextAnswers: [],
+  tickedQuestionFeels: [],
+  tickedQuestionProblems: [],
+);
 
 extension DailyFoodRecordExt on DailyFoodRecord {
   bool getIsFoodTaken(FoodType foodType) {

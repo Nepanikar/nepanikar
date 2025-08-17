@@ -7,29 +7,17 @@ import 'package:nepanikar/games/breathing/shape_painter.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/helpers/semantics_helpers.dart';
 part 'breathing_game_screen.g.dart';
-enum BreathingGameShape {
-  circle,
-  square,
-  triangle,
-}
 
+enum BreathingGameShape { circle, square, triangle }
 
-@TypedGoRoute<BreathingGameRoute>(
-  path: '/games/breathing/:shape',
-)
-
+@TypedGoRoute<BreathingGameRoute>(path: '/games/breathing/:shape')
 class BreathingGameRoute extends GoRouteData with _$BreathingGameRoute {
-
-  const BreathingGameRoute({
-    required this.shape,
-  });
+  const BreathingGameRoute({required this.shape});
 
   final BreathingGameShape shape;
 
   @override
-  Widget build(BuildContext context, _) => BreathingGameScreen(
-        shape: shape,
-      );
+  Widget build(BuildContext context, _) => BreathingGameScreen(shape: shape);
 }
 
 class BreathingGameScreen extends StatefulWidget {
@@ -50,10 +38,7 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
   final _indexNotifier = ValueNotifier<int>(0);
   final _countDownNotifier = ValueNotifier<int>(0);
   late final _scaleAnimation = ValueNotifier(
-    AnimationController(
-      duration: const Duration(seconds: 1),
-      vsync: this,
-    ),
+    AnimationController(duration: const Duration(seconds: 1), vsync: this),
   );
   List<String> steps = [];
 
@@ -61,10 +46,7 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
     switch (widget.shape) {
       case BreathingGameShape.circle:
         setState(() {
-          steps = [
-            context.l10n.breathe_in,
-            context.l10n.breathe_out,
-          ];
+          steps = [context.l10n.breathe_in, context.l10n.breathe_out];
         });
       case BreathingGameShape.square:
         setState(() {
@@ -77,11 +59,7 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
         });
       case BreathingGameShape.triangle:
         setState(() {
-          steps = [
-            context.l10n.breathe_in,
-            context.l10n.breathe_hold,
-            context.l10n.breathe_out,
-          ];
+          steps = [context.l10n.breathe_in, context.l10n.breathe_hold, context.l10n.breathe_out];
         });
     }
   }
@@ -138,10 +116,7 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
   void initState() {
     super.initState();
 
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 10),
-    );
+    _controller = AnimationController(vsync: this, duration: const Duration(seconds: 10));
 
     _controller.addListener(progressListener);
     _controller.repeat();
@@ -170,7 +145,11 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
   @override
   Widget build(BuildContext context) {
     final painterWidth = MediaQuery.of(context).size.width - 96;
-    final backgroundColor = customColorsBasedOnDarkMode(context, NepanikarColors.primaryD, NepanikarColors.primary);
+    final backgroundColor = customColorsBasedOnDarkMode(
+      context,
+      NepanikarColors.primaryD,
+      NepanikarColors.primary,
+    );
     return Scaffold(
       appBar: AppBar(title: Text(context.l10n.breath)),
       backgroundColor: backgroundColor,
@@ -201,31 +180,23 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
                   bottom: widget.shape == BreathingGameShape.triangle ? 120.0 : 0,
                 ),
                 child: CustomPaint(
-                  painter: BorderPainter(
-                    animation: _controller,
-                    shape: widget.shape,
-                  ),
-                  child: SizedBox(
-                    width: painterWidth,
-                    height: painterWidth,
-                  ),
+                  painter: BorderPainter(animation: _controller, shape: widget.shape),
+                  child: SizedBox(width: painterWidth, height: painterWidth),
                 ),
               ),
             ),
             if (steps.isNotEmpty)
               Padding(
-                padding:
-                    EdgeInsets.only(bottom: widget.shape == BreathingGameShape.triangle ? 64.0 : 0),
+                padding: EdgeInsets.only(
+                  bottom: widget.shape == BreathingGameShape.triangle ? 64.0 : 0,
+                ),
                 child: Center(
                   child: ValueListenableBuilder(
                     valueListenable: _indexNotifier,
                     builder: (context, value, _) {
                       return Text(
                         steps.elementAt(value),
-                        style: NepanikarFonts.bodyHeavy.copyWith(
-                          color: Colors.white,
-                          fontSize: 26,
-                        ),
+                        style: NepanikarFonts.bodyHeavy.copyWith(color: Colors.white, fontSize: 26),
                       );
                     },
                   ),
@@ -233,18 +204,13 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
               ),
             Column(
               children: [
-                const SizedBox(
-                  height: 8,
-                ),
+                const SizedBox(height: 8),
                 Center(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 28.0),
                     child: Text(
                       context.l10n.breathing_exercise_tip,
-                      style: TextStyle(
-                        color: NepanikarColors.primarySwatch.shade300,
-                        fontSize: 15,
-                      ),
+                      style: TextStyle(color: NepanikarColors.primarySwatch.shade300, fontSize: 15),
                     ),
                   ),
                 ),
@@ -257,9 +223,7 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
                   context.l10n.breath_speed,
                   style: NepanikarFonts.bodyBlack.copyWith(color: Colors.white),
                 ),
-                const SizedBox(
-                  height: 23,
-                ),
+                const SizedBox(height: 23),
                 Slider(
                   value: _currentSliderValue,
                   min: _sliderMinValue,
@@ -271,9 +235,7 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
                   inactiveColor: NepanikarColors.primarySwatch.shade500,
                   onChanged: _onSliderChange,
                 ),
-                const SizedBox(
-                  height: 38,
-                )
+                const SizedBox(height: 38),
               ],
             ),
           ],

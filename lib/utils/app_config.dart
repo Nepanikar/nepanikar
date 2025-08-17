@@ -5,10 +5,10 @@ class AppConfig {
     required PackageInfo packageInfo,
     required this.googlePlayAppId,
     required this.appStoreAppId,
-  })  : appId = packageInfo.packageName,
-        appName = packageInfo.appName,
-        appVersion = packageInfo.version,
-        buildNumber = packageInfo.buildNumber;
+  }) : appId = packageInfo.packageName,
+       appName = packageInfo.appName,
+       appVersion = packageInfo.version,
+       buildNumber = packageInfo.buildNumber;
 
   final String appId;
   final String appName;

@@ -13,17 +13,13 @@ enum ButtonType {
   secondary,
   secondaryAsync;
 
-  bool get isPrimary =>
-      this == ButtonType.primary || this == ButtonType.primaryAsync;
+  bool get isPrimary => this == ButtonType.primary || this == ButtonType.primaryAsync;
 
-  bool get isSecondary =>
-      this == ButtonType.secondary || this == ButtonType.secondaryAsync;
+  bool get isSecondary => this == ButtonType.secondary || this == ButtonType.secondaryAsync;
 
-  bool get isAsync =>
-      this == ButtonType.primaryAsync || this == ButtonType.secondaryAsync;
+  bool get isAsync => this == ButtonType.primaryAsync || this == ButtonType.secondaryAsync;
 
-  bool get isOutlined =>
-      this == ButtonType.secondary || this == ButtonType.secondaryAsync;
+  bool get isOutlined => this == ButtonType.secondary || this == ButtonType.secondaryAsync;
 }
 
 class NepanikarButton extends StatefulWidget {
@@ -35,8 +31,8 @@ class NepanikarButton extends StatefulWidget {
     this.leadingIcon,
     this.trailingIcon,
     this.expandToContentWidth = false,
-  })  : buttonType = ButtonType.primary,
-        onTapAsync = null;
+  }) : buttonType = ButtonType.primary,
+       onTapAsync = null;
 
   const NepanikarButton.async({
     super.key,
@@ -46,8 +42,8 @@ class NepanikarButton extends StatefulWidget {
     this.leadingIcon,
     this.trailingIcon,
     this.expandToContentWidth = false,
-  })  : buttonType = ButtonType.primaryAsync,
-        onTap = null;
+  }) : buttonType = ButtonType.primaryAsync,
+       onTap = null;
 
   const NepanikarButton.secondary({
     super.key,
@@ -57,8 +53,8 @@ class NepanikarButton extends StatefulWidget {
     this.leadingIcon,
     this.trailingIcon,
     this.expandToContentWidth = false,
-  })  : buttonType = ButtonType.secondary,
-        onTapAsync = null;
+  }) : buttonType = ButtonType.secondary,
+       onTapAsync = null;
 
   const NepanikarButton.secondaryAsync({
     super.key,
@@ -68,8 +64,8 @@ class NepanikarButton extends StatefulWidget {
     this.leadingIcon,
     this.trailingIcon,
     this.expandToContentWidth = false,
-  })  : buttonType = ButtonType.secondaryAsync,
-        onTap = null;
+  }) : buttonType = ButtonType.secondaryAsync,
+       onTap = null;
 
   final AsyncCallback? onTapAsync;
   final VoidCallback? onTap;
@@ -84,8 +80,7 @@ class NepanikarButton extends StatefulWidget {
   State<NepanikarButton> createState() => _NepanikarButtonState();
 }
 
-class _NepanikarButtonState extends State<NepanikarButton>
-    with SingleTickerProviderStateMixin {
+class _NepanikarButtonState extends State<NepanikarButton> with SingleTickerProviderStateMixin {
   bool _isLoading = false;
 
   late final AnimationController _animController;
@@ -111,10 +106,7 @@ class _NepanikarButtonState extends State<NepanikarButton>
   @override
   void initState() {
     super.initState();
-    _animController = AnimationController(
-      duration: const Duration(seconds: 1),
-      vsync: this,
-    );
+    _animController = AnimationController(duration: const Duration(seconds: 1), vsync: this);
   }
 
   @override
@@ -127,14 +119,8 @@ class _NepanikarButtonState extends State<NepanikarButton>
   Widget build(BuildContext context) {
     final onPressed = _isButtonInteractive ? _onTap : null;
     return widget.buttonType.isPrimary
-        ? ElevatedButton(
-            onPressed: onPressed,
-            child: _buildButtonContent(),
-          )
-        : OutlinedButton(
-            onPressed: onPressed,
-            child: _buildButtonContent(),
-          );
+        ? ElevatedButton(onPressed: onPressed, child: _buildButtonContent())
+        : OutlinedButton(onPressed: onPressed, child: _buildButtonContent());
   }
 
   Widget _buildButtonContent() {
@@ -142,8 +128,8 @@ class _NepanikarButtonState extends State<NepanikarButton>
     final iconColor = widget.buttonType.isPrimary
         ? Colors.white
         : _isButtonInteractive
-            ? NepanikarColors.primary
-            : NepanikarColors.primarySwatch.shade500;
+        ? NepanikarColors.primary
+        : NepanikarColors.primarySwatch.shade500;
     final textColor = textColorBasedOnDarkMode(context);
 
     return _isLoading
@@ -153,38 +139,31 @@ class _NepanikarButtonState extends State<NepanikarButton>
               turns: Tween(begin: 0.0, end: 1.0).animate(_animController),
               child: widget.buttonType.isPrimary
                   ? Assets.icons.spinner.svg(width: iconSize, color: iconColor)
-                  : Assets.icons.warningWavy
-                      .svg(width: iconSize, color: iconColor),
+                  : Assets.icons.warningWavy.svg(width: iconSize, color: iconColor),
             ),
           )
         : Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: widget.expandToContentWidth
-                ? MainAxisSize.max
-                : MainAxisSize.min,
+            mainAxisSize: widget.expandToContentWidth ? MainAxisSize.max : MainAxisSize.min,
             children: [
               if (widget.leadingIcon != null)
                 Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: ExcludeSemantics(
-                    child: widget.leadingIcon!
-                        .svg(width: iconSize / 3, color: NepanikarColors.white),
+                    child: widget.leadingIcon!.svg(
+                      width: iconSize / 3,
+                      color: NepanikarColors.white,
+                    ),
                   ),
                 ),
               Flexible(
-                child: Text(
-                  widget.text,
-                  style: TextStyle(
-                    color: textColor,
-                  ),
-                ),
+                child: Text(widget.text, style: TextStyle(color: textColor)),
               ),
               if (widget.trailingIcon != null)
                 Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: ExcludeSemantics(
-                    child: widget.trailingIcon!
-                        .svg(width: iconSize / 3, color: iconColor),
+                    child: widget.trailingIcon!.svg(width: iconSize / 3, color: iconColor),
                   ),
                 ),
             ],

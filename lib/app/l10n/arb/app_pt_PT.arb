@@ -328,5 +328,10 @@
   "dark_mode_off": "Dark Mode is OFF",
   "description": "Description",
   "confirm_delete": "Are you sure you want to delete this mood entry?",
-  "enter_summary": "Enter a short summary"
+  "enter_summary": "Enter a short summary",
+  "emotion_angry": "Irritado",
+  "emotion_excited": "Entusiasmado",
+  "emotion_happy": "Feliz",
+  "emotion_relaxed": "Relaxado",
+  "emotion_sad": "Triste"
 }

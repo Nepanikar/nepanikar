@@ -8,10 +8,9 @@ import 'package:rxdart/rxdart.dart';
 import 'package:sembast/sembast.dart';
 
 class UserSettingsDao {
-  UserSettingsDao({
-    required DatabaseService dbService,
-  })  : _dbService = dbService,
-        _store = StoreRef(_storeKeyName);
+  UserSettingsDao({required DatabaseService dbService})
+    : _dbService = dbService,
+      _store = StoreRef(_storeKeyName);
 
   Future<UserSettingsDao> init() async {
     registry.registerSingleton<UserSettingsDao>(this);
@@ -28,7 +27,7 @@ class UserSettingsDao {
   static const _languageKey = 'language';
   static const _notificationKeyPrefix = 'notification_type_';
 
-  Future<void> saveThemeMode(ThemeMode themeMode) async{
+  Future<void> saveThemeMode(ThemeMode themeMode) async {
     final themeModeStr = UserThemeMode.themeModeToString(themeMode);
     final userThemeMode = UserThemeMode(themeMode: themeModeStr);
     debugPrint('UserSettingsDao: Changing theme mode to: $themeModeStr');
@@ -37,21 +36,18 @@ class UserSettingsDao {
 
   Future<ThemeMode> getThemeMode() async {
     final json = await _store.record(_themeModeKey).get(_db);
-    if(json == null) return ThemeMode.system;
+    if (json == null) return ThemeMode.system;
     final userThemeMode = UserThemeMode.fromJson(json);
     return userThemeMode.getThemeMode();
   }
 
-  Stream<ThemeMode> get themeModeStream => _store
-      .record(_themeModeKey)
-      .onSnapshot(_db)
-      .map((snapshot){
+  Stream<ThemeMode> get themeModeStream =>
+      _store.record(_themeModeKey).onSnapshot(_db).map((snapshot) {
         final themeModeStr = snapshot?.value;
-        if(themeModeStr == null) return ThemeMode.system;
+        if (themeModeStr == null) return ThemeMode.system;
         final userThemeMode = UserThemeMode.fromJson(themeModeStr);
         return userThemeMode.getThemeMode();
-  })
-      .asBroadcastStream();
+      }).asBroadcastStream();
 
   String _getNotificationKey(NotificationType type) =>
       '$_notificationKeyPrefix${type.name.toLowerCase()}';
@@ -73,18 +69,19 @@ class UserSettingsDao {
     return userLanguage.toLocale();
   }
 
-  Stream<Locale> get localeStream => _store
-      .record(_languageKey)
-      .onSnapshot(_db)
-      .mapNotNull((snapshot) {
-        final json = snapshot?.value;
-        if (json == null) return null;
-        final userLanguage = UserLanguage.fromJson(json);
-        return userLanguage.toLocale();
-      })
-      .startWith(initialLocale)
-      .asBroadcastStream()
-    ..listen((event) => _locale = event);
+  Stream<Locale> get localeStream =>
+      _store
+          .record(_languageKey)
+          .onSnapshot(_db)
+          .mapNotNull((snapshot) {
+            final json = snapshot?.value;
+            if (json == null) return null;
+            final userLanguage = UserLanguage.fromJson(json);
+            return userLanguage.toLocale();
+          })
+          .startWith(initialLocale)
+          .asBroadcastStream()
+        ..listen((event) => _locale = event);
 
   Future<void> updateNotificationTypeSettings(NotificationType type, TimeOfDay timeOfDay) async {
     final notifSettings = NotificationTypeSettings(

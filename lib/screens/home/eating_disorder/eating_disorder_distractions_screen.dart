@@ -14,12 +14,8 @@ import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 part 'eating_disorder_distractions_screen.g.dart';
 
-@TypedGoRoute<EatingDisorderDistractionsRoute>(
-  path: '/home/eating-disorder/distraction',
-)
-
+@TypedGoRoute<EatingDisorderDistractionsRoute>(path: '/home/eating-disorder/distraction')
 class EatingDisorderDistractionsRoute extends GoRouteData with _$EatingDisorderDistractionsRoute {
-
   const EatingDisorderDistractionsRoute();
 
   @override
@@ -33,7 +29,6 @@ class EatingDisorderDistractionsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final svgColor = svgColorBasedOnDarkMode(context);
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 

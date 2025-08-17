@@ -8,8 +8,8 @@ part 'eating_disorder_food_challenges_screen.g.dart';
 @TypedGoRoute<EatingDisorderFoodChallengesRoute>(
   path: '/home/eating-disorder/tasks/food-challenges',
 )
-
-class EatingDisorderFoodChallengesRoute extends GoRouteData with _$EatingDisorderFoodChallengesRoute {
+class EatingDisorderFoodChallengesRoute extends GoRouteData
+    with _$EatingDisorderFoodChallengesRoute {
   const EatingDisorderFoodChallengesRoute();
 
   @override

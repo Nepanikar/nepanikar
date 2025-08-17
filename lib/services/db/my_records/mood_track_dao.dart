@@ -8,11 +8,9 @@ import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 import 'package:sembast/sembast.dart';
 
 class MoodTrackDao with CustomFilters {
-  MoodTrackDao({
-    required DatabaseService dbService,
-    String? storeKeyName,
-  })  : _dbService = dbService,
-        _store = intMapStoreFactory.store(storeKeyName ?? _storeKeyName);
+  MoodTrackDao({required DatabaseService dbService, String? storeKeyName})
+    : _dbService = dbService,
+      _store = intMapStoreFactory.store(storeKeyName ?? _storeKeyName);
 
   Future<MoodTrackDao> init() async {
     registry.registerSingleton<MoodTrackDao>(this);
@@ -21,21 +19,19 @@ class MoodTrackDao with CustomFilters {
 
   final DatabaseService _dbService;
   final StoreRef<int, Map<String, Object?>> _store;
-  static final List<String> defaultEmotions = [
-    'Happy',
-    'Sad',
-    'Excited',
-    'Relaxed',
-    'Angry'
-  ];
+  static final List<String> defaultEmotions = ['Happy', 'Sad', 'Excited', 'Relaxed', 'Angry'];
   static const emotionsKey = 100;
 
   Database get _db => _dbService.database;
 
   static const _storeKeyName = 'my_records_mood_track';
 
-  Future<void> saveMoodTrack(Mood mood, List<String>? emotions, String summary,
-      String? description) async {
+  Future<void> saveMoodTrack(
+    Mood mood,
+    List<String>? emotions,
+    String summary,
+    String? description,
+  ) async {
     final dateTimeToSave = DateTime.now();
     final date = DateTime.utc(
       dateTimeToSave.year,
@@ -63,16 +59,14 @@ class MoodTrackDao with CustomFilters {
 
   Future<void> saveSleepTrack(Mood mood) async {
     final dateTimeToSave = DateTime.now();
-    final date = DateTime.utc(
-        dateTimeToSave.year, dateTimeToSave.month, dateTimeToSave.day);
+    final date = DateTime.utc(dateTimeToSave.year, dateTimeToSave.month, dateTimeToSave.day);
     final moodTrack = MoodTrack(mood: mood, date: date);
     final json = moodTrack.toJson();
-    await _store
-        .findFirst(_db, finder: Finder(filter: getDateEqualsFilter(date)))
-        .then((record) async {
+    await _store.findFirst(_db, finder: Finder(filter: getDateEqualsFilter(date))).then((
+      record,
+    ) async {
       if (record == null) {
-        debugPrint(
-            'MoodTrackDao: Not found mood for today - adding new: $json');
+        debugPrint('MoodTrackDao: Not found mood for today - adding new: $json');
         await _store.add(_db, json);
       } else {
         debugPrint('MoodTrackDao: Found for today, updating to: $json');
@@ -81,8 +75,13 @@ class MoodTrackDao with CustomFilters {
     });
   }
 
-  Future<void> updateMoodTrack(DateTime date, String summary,
-      String description, List<String> emotions, Mood mood,) async {
+  Future<void> updateMoodTrack(
+    DateTime date,
+    String summary,
+    String description,
+    List<String> emotions,
+    Mood mood,
+  ) async {
     try {
       final dateString = date.toIso8601String();
 
@@ -113,14 +112,12 @@ class MoodTrackDao with CustomFilters {
   Stream<List<MoodTrack>> get allMoodTracksStream => _store
       .query(finder: Finder(sortOrders: [SortOrder(FilterKeys.date)]))
       .onSnapshots(_db)
-      .map((snapshots) => snapshots
-          .map((snapshot) => MoodTrack.fromJson(snapshot.value))
-          .toList());
+      .map((snapshots) => snapshots.map((snapshot) => MoodTrack.fromJson(snapshot.value)).toList());
 
   Stream<MoodTrack?> get latestMoodTrackStream => _store
-          .query(finder: Finder(filter: getDateEqualsFilter(getNowDateUtc())))
-          .onSnapshot(_db)
-          .map((snapshot) {
+      .query(finder: Finder(filter: getDateEqualsFilter(getNowDateUtc())))
+      .onSnapshot(_db)
+      .map((snapshot) {
         final json = snapshot?.value;
         if (json == null) return null;
         try {
@@ -132,39 +129,38 @@ class MoodTrackDao with CustomFilters {
       });
 
   Stream<List<MoodTrack>> mostRecentMoodsTrackStream(int count) {
-    final finder = Finder(
-      sortOrders: [SortOrder('date', false)],
-      limit: count,
-    );
+    final finder = Finder(sortOrders: [SortOrder('date', false)], limit: count);
 
-    return _store.query(finder: finder).onSnapshots(_db).map(
-          (snapshotList) => snapshotList // Ensure the snapshot has data
-              .map((snapshot) {
-                final value = snapshot.value;
-                if (value.isNotEmpty) {
-                  return MoodTrack.fromJson(value);
-                }
-                return null; // Or handle the case where value is not as expected
-              })
-              .whereType<
-                  MoodTrack>() // Ensure that only non-null MoodTrack objects are included
-              .toList(),
+    return _store
+        .query(finder: finder)
+        .onSnapshots(_db)
+        .map(
+          (snapshotList) =>
+              snapshotList // Ensure the snapshot has data
+                  .map((snapshot) {
+                    final value = snapshot.value;
+                    if (value.isNotEmpty) {
+                      return MoodTrack.fromJson(value);
+                    }
+                    return null; // Or handle the case where value is not as expected
+                  })
+                  .whereType<
+                    MoodTrack
+                  >() // Ensure that only non-null MoodTrack objects are included
+                  .toList(),
         );
   }
 
   Future<List<MoodTrack>> getAllMoodTracks() async {
     final finder = Finder(sortOrders: [SortOrder(FilterKeys.date)]);
     final snapshots = await _store.find(_db, finder: finder);
-    final moodTracks = snapshots
-        .map((snapshot) => MoodTrack.fromJson(snapshot.value))
-        .toList();
+    final moodTracks = snapshots.map((snapshot) => MoodTrack.fromJson(snapshot.value)).toList();
     return moodTracks;
   }
 
   Future<bool> isTodayTracked() async {
     final now = getNowDateUtc();
-    final record = await _store.findFirst(_db,
-        finder: Finder(filter: getDateEqualsFilter(now)));
+    final record = await _store.findFirst(_db, finder: Finder(filter: getDateEqualsFilter(now)));
     return record != null;
   }
 
@@ -173,8 +169,7 @@ class MoodTrackDao with CustomFilters {
     return moodTracks.length;
   }
 
-  Future<List<MoodTrack>> searchMoodTracks(
-      String summary, List<String> emotions) async {
+  Future<List<MoodTrack>> searchMoodTracks(String summary, List<String> emotions) async {
     final filters = <Filter>[];
 
     if (summary.isNotEmpty) {
@@ -184,8 +179,7 @@ class MoodTrackDao with CustomFilters {
     if (emotions.isNotEmpty) {
       filters.add(
         Filter.custom((record) {
-          final recordEmotions =
-              (record['emotions'] as List<dynamic>?)?.cast<String>() ?? [];
+          final recordEmotions = (record['emotions'] as List<dynamic>?)?.cast<String>() ?? [];
           return emotions.every(recordEmotions.contains);
         }),
       );
@@ -198,13 +192,10 @@ class MoodTrackDao with CustomFilters {
 
     final snapshots = await _store.find(_db, finder: finder);
 
-    return snapshots
-        .map((snapshot) => MoodTrack.fromJson(snapshot.value))
-        .toList();
+    return snapshots.map((snapshot) => MoodTrack.fromJson(snapshot.value)).toList();
   }
 
-  Future<void> doOldVersionMigration(
-      MyRecordsMoodTrackDTO moodTrackConfig) async {
+  Future<void> doOldVersionMigration(MyRecordsMoodTrackDTO moodTrackConfig) async {
     final valuesMap = moodTrackConfig.values;
     final summariesMap = moodTrackConfig.summaries;
     final descriptionsMap = moodTrackConfig.descriptions;
@@ -220,12 +211,7 @@ class MoodTrackDao with CustomFilters {
 
             return mood == null
                 ? null
-                : MoodTrack(
-                    date: date,
-                    mood: mood,
-                    summary: summary,
-                    description: description,
-                  );
+                : MoodTrack(date: date, mood: mood, summary: summary, description: description);
           })
           .whereType<MoodTrack>()
           .toList();
@@ -234,30 +220,19 @@ class MoodTrackDao with CustomFilters {
   }
 
   Future<void> deleteMoodTracksWithNoDescriptionOrSummary() async {
-    final filter = Filter.or([
-      Filter.isNull('description'),
-      Filter.isNull('summary'),
-    ]);
+    final filter = Filter.or([Filter.isNull('description'), Filter.isNull('summary')]);
 
     final finder = Finder(filter: filter);
 
-    await _store.delete(
-      _db,
-      finder: finder,
-    );
+    await _store.delete(_db, finder: finder);
 
     debugPrint('Deleted MoodTracks with null description or summary');
   }
 
   Future<void> deleteMoodTrackByDate(DateTime date) async {
-    final finder =
-        Finder(filter: Filter.equals('date', date.toIso8601String()));
-    await _store.delete(
-      _db,
-      finder: finder,
-    );
-    debugPrint(
-        'MoodTrackDao: Deleted mood track with date: ${date.toIso8601String()}');
+    final finder = Finder(filter: Filter.equals('date', date.toIso8601String()));
+    await _store.delete(_db, finder: finder);
+    debugPrint('MoodTrackDao: Deleted mood track with date: ${date.toIso8601String()}');
   }
 
   Future<void> clear() async {

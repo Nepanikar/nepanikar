@@ -8,12 +8,8 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 part 'about_app_screen.g.dart';
 
-@TypedGoRoute<AboutAppRoute>(
-  path: '/settings/about-app',
-)
-
+@TypedGoRoute<AboutAppRoute>(path: '/settings/about-app')
 class AboutAppRoute extends GoRouteData with _$AboutAppRoute {
-
   const AboutAppRoute();
 
   @override
@@ -40,26 +36,15 @@ class AboutAppScreen extends StatelessWidget {
             padding: const EdgeInsets.all(24.0),
             child: Column(
               children: [
-                Row(
-                  children: [
-                    Text(
-                      context.l10n.about_app,
-                      style: NepanikarFonts.title3,
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
+                Row(children: [Text(context.l10n.about_app, style: NepanikarFonts.title3)]),
+                const SizedBox(height: 16),
                 Text(
-                    context.l10n.about_app_text,
-                    style: NepanikarFonts.bodySmallHeavy.copyWith(
-                      color: NepanikarColors.primarySwatch.shade800,
+                  context.l10n.about_app_text,
+                  style: NepanikarFonts.bodySmallHeavy.copyWith(
+                    color: NepanikarColors.primarySwatch.shade800,
                   ),
                 ),
-                const SizedBox(
-                  height: 48,
-                ),
+                const SizedBox(height: 48),
                 Text(
                   'v${_appConfig.appVersion}',
                   style: NepanikarFonts.bodySmallHeavy.copyWith(

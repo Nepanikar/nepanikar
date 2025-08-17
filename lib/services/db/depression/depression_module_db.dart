@@ -20,8 +20,9 @@ class DepressionModuleDb implements NepanikarModuleDb {
   Future<DepressionModuleDb> initModuleDaos() async {
     _depressionActivityPlanDao = await DepressionActivityPlanDao(dbService: _dbService).init();
     _depressionNiceMadeHappyDao = await DepressionNiceMadeHappyDao(dbService: _dbService).init();
-    _depressionPraiseMyAchievementsDao =
-        await DepressionPraiseMyAchievementsDao(dbService: _dbService).init();
+    _depressionPraiseMyAchievementsDao = await DepressionPraiseMyAchievementsDao(
+      dbService: _dbService,
+    ).init();
     return this;
   }
 
@@ -53,7 +54,8 @@ class DepressionModuleDb implements NepanikarModuleDb {
   Future<void> preloadDefaultModuleData(AppLocalizations l10n) async {
     await _depressionActivityPlanDao.preloadDefaultData(l10n.plan_example.extractToItems());
     await _depressionNiceMadeHappyDao.preloadDefaultData(l10n.nice_example.extractToItems());
-    await _depressionPraiseMyAchievementsDao
-        .preloadDefaultData(l10n.praise_example.extractToItems());
+    await _depressionPraiseMyAchievementsDao.preloadDefaultData(
+      l10n.praise_example.extractToItems(),
+    );
   }
 }

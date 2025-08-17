@@ -8,10 +8,7 @@ import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar_contacts_gen/nepanikar_contacts_gen.dart';
 
 class ChatContactTile extends StatelessWidget {
-  const ChatContactTile({
-    super.key,
-    required this.chatContact,
-  });
+  const ChatContactTile({super.key, required this.chatContact});
 
   final ChatContact chatContact;
 
@@ -19,17 +16,14 @@ class ChatContactTile extends StatelessWidget {
 
   TextStyle get _descriptionChatTextStyle => NepanikarFonts.bodyRoman;
 
-  TextStyle get _charUrlTextStyle => NepanikarFonts.bodyBlack.copyWith(
-        color: NepanikarColors.primary,
-      );
+  TextStyle get _charUrlTextStyle =>
+      NepanikarFonts.bodyBlack.copyWith(color: NepanikarColors.primary);
 
   String _getShortUrlLink(String fullUrl) => Uri.tryParse(fullUrl)?.host ?? fullUrl;
 
   @override
   Widget build(BuildContext context) {
-    return chatContact.map(
-      subList: (c) => _buildSubListContact(context, c),
-    );
+    return chatContact.map(subList: (c) => _buildSubListContact(context, c));
   }
 
   Widget _buildSubListContact(BuildContext context, ChatContactSubList contact) {

@@ -8,7 +8,6 @@ import 'package:nepanikar/widgets/heatmap/util/date_util.dart';
 import 'package:nepanikar/widgets/heatmap/widget/heatmap_column.dart';
 
 class HeatMapPage extends StatelessWidget {
-
   HeatMapPage({
     super.key,
     required this.colorMode,
@@ -24,8 +23,9 @@ class HeatMapPage extends StatelessWidget {
     this.onClick,
     this.margin,
     this.showText,
-  })  : _dateDifferent = endDate.difference(startDate).inDays,
-        maxValue = DatasetsUtil.getMaxValue(datasets);
+  }) : _dateDifferent = endDate.difference(startDate).inDays,
+       maxValue = DatasetsUtil.getMaxValue(datasets);
+
   /// List value of every sunday's month information.
   ///
   /// From 1: January to 12: December.
@@ -103,8 +103,7 @@ class HeatMapPage extends StatelessWidget {
     // Process each week in the month
     for (int day = 1; day <= daysInMonth; day += 7) {
       final DateTime weekStart = DateTime(year, specificMonth, day);
-      final DateTime weekEnd =
-          DateTime(year, specificMonth, min(day + 6, daysInMonth));
+      final DateTime weekEnd = DateTime(year, specificMonth, min(day + 6, daysInMonth));
 
       // Filter datasets for the days in this week only
       final Map<DateTime, int> weeklyData = {};
@@ -119,23 +118,25 @@ class HeatMapPage extends StatelessWidget {
       }
 
       // Create a HeatMapColumn for the current week
-      columns.add(HeatMapColumn(
-        startDate: weekStart,
-        endDate: weekEnd,
-        colorMode: colorMode,
-        numDays: weekEnd.difference(weekStart).inDays + 1,
-        size: size,
-        fontSize: fontSize,
-        defaultColor: defaultColor,
-        colorsets: colorsets,
-        textColor: textColor,
-        borderRadius: borderRadius,
-        margin: margin,
-        maxValue: maxValue,
-        onClick: onClick,
-        datasets: weeklyData,
-        showText: showText,
-      ));
+      columns.add(
+        HeatMapColumn(
+          startDate: weekStart,
+          endDate: weekEnd,
+          colorMode: colorMode,
+          numDays: weekEnd.difference(weekStart).inDays + 1,
+          size: size,
+          fontSize: fontSize,
+          defaultColor: defaultColor,
+          colorsets: colorsets,
+          textColor: textColor,
+          borderRadius: borderRadius,
+          margin: margin,
+          maxValue: maxValue,
+          onClick: onClick,
+          datasets: weeklyData,
+          showText: showText,
+        ),
+      );
     }
 
     return columns;
@@ -150,9 +151,8 @@ class HeatMapPage extends StatelessWidget {
       final DateTime lastDayOfMonth = DateUtil.endDayOfMonth(DateTime(year, month));
 
       final Map<DateTime, int> monthlyData = Map<DateTime, int>.fromEntries(
-          datasets?.entries.where(
-                  (entry) => entry.key.month == month && entry.key.year == year
-          ) ?? const Iterable.empty()
+        datasets?.entries.where((entry) => entry.key.month == month && entry.key.year == year) ??
+            const Iterable.empty(),
       );
 
       // Create a HeatMapColumn for the entire month
@@ -182,22 +182,27 @@ class HeatMapPage extends StatelessWidget {
             height: 675,
             child: Column(
               children: [
-                Text( // You can also use the first letter of the month here as per your requirement
-                  DateFormat('MMM').format(firstDayOfMonth), // 'MMM' formats to a three-letter month name
-                  style: TextStyle(fontSize: fontSize, color: textColor, fontWeight: FontWeight.bold),
+                Text(
+                  // You can also use the first letter of the month here as per your requirement
+                  DateFormat(
+                    'MMM',
+                  ).format(firstDayOfMonth), // 'MMM' formats to a three-letter month name
+                  style: TextStyle(
+                    fontSize: fontSize,
+                    color: textColor,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 heatmapColumn,
               ],
             ),
           ),
-        )
+        ),
       );
     }
 
     // Return a Row that contains all the monthly columns
-    return SingleChildScrollView(
-      child: Row(children: monthlyColumns),
-    );
+    return SingleChildScrollView(child: Row(children: monthlyColumns));
   }
 
   @override

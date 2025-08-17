@@ -17,9 +17,9 @@ class NotificationsService {
     required AwesomeNotifications awesomeNotifications,
     required GoRouter router,
     required UserSettingsDao userSettingsDao,
-  })  : _awesomeNotifications = awesomeNotifications,
-        _router = router,
-        _userSettingsDao = userSettingsDao;
+  }) : _awesomeNotifications = awesomeNotifications,
+       _router = router,
+       _userSettingsDao = userSettingsDao;
 
   final GoRouter _router;
   final AwesomeNotifications _awesomeNotifications;

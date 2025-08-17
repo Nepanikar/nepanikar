@@ -9,11 +9,7 @@ final goRouterConfig = GoRouter(
   initialLocation: const MainRoute().location,
   debugLogDiagnostics: kDebugMode,
   routes: $appRoutes,
-  observers: [
-    GoRouterObserver(
-      analytics: registry.get<FirebaseAnalytics>(),
-    ),
-  ],
+  observers: [GoRouterObserver(analytics: registry.get<FirebaseAnalytics>())],
 );
 
 class GoRouterObserver extends NavigatorObserver {
@@ -26,10 +22,7 @@ class GoRouterObserver extends NavigatorObserver {
     super.didPush(route, previousRoute);
     final screenName = route.settings.name;
     if (screenName != null) {
-      analytics.logScreenView(
-        screenName: screenName,
-        screenClass: screenName,
-      );
+      analytics.logScreenView(screenName: screenName, screenClass: screenName);
     }
   }
 
@@ -38,10 +31,7 @@ class GoRouterObserver extends NavigatorObserver {
     super.didPop(route, previousRoute);
     final screenName = previousRoute?.settings.name;
     if (screenName != null) {
-      analytics.logScreenView(
-        screenName: screenName,
-        screenClass: screenName,
-      );
+      analytics.logScreenView(screenName: screenName, screenClass: screenName);
     }
   }
 
@@ -50,10 +40,7 @@ class GoRouterObserver extends NavigatorObserver {
     super.didReplace(newRoute: newRoute, oldRoute: oldRoute);
     final screenName = newRoute?.settings.name;
     if (screenName != null) {
-      analytics.logScreenView(
-        screenName: screenName,
-        screenClass: screenName,
-      );
+      analytics.logScreenView(screenName: screenName, screenClass: screenName);
     }
   }
 }

@@ -5,12 +5,9 @@ import 'package:nepanikar/services/db/depression/depression_praise_my_achievemen
 import 'package:nepanikar/widgets/input_form_contents/list_form_content.dart';
 part 'depression_praise_my_achievements_screen.g.dart';
 
-@TypedGoRoute<DepressionPraiseMyAchievementsRoute>(
-  path: '/home/depression/praise-my-achievements',
-)
-
-class DepressionPraiseMyAchievementsRoute extends GoRouteData with _$DepressionPraiseMyAchievementsRoute {
-
+@TypedGoRoute<DepressionPraiseMyAchievementsRoute>(path: '/home/depression/praise-my-achievements')
+class DepressionPraiseMyAchievementsRoute extends GoRouteData
+    with _$DepressionPraiseMyAchievementsRoute {
   const DepressionPraiseMyAchievementsRoute();
 
   @override

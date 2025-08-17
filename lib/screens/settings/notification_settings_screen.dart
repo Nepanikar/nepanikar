@@ -14,10 +14,7 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
 part 'notification_settings_screen.g.dart';
 
-@TypedGoRoute<NotificationSettingsRoute>(
-  path: '/settings/notification-settings',
-)
-
+@TypedGoRoute<NotificationSettingsRoute>(path: '/settings/notification-settings')
 class NotificationSettingsRoute extends GoRouteData with _$NotificationSettingsRoute {
   const NotificationSettingsRoute();
 
@@ -45,10 +42,7 @@ class NotificationSettingsScreen extends StatelessWidget {
         name: 'notification_settings_type_enabled',
         parameters: {'notification_type': notificationType.name},
       );
-      await _userSettingsDao.updateNotificationTypeSettings(
-        notificationType,
-        reminderTime,
-      );
+      await _userSettingsDao.updateNotificationTypeSettings(notificationType, reminderTime);
     } else {
       await _analytics.logEvent(
         name: 'notification_settings_type_disabled',
@@ -65,10 +59,7 @@ class NotificationSettingsScreen extends StatelessWidget {
     TimeOfDay reminderTime,
   ) async {
     final l10n = context.l10n;
-    final newReminderTime = await showTimePicker(
-      context: context,
-      initialTime: reminderTime,
-    );
+    final newReminderTime = await showTimePicker(context: context, initialTime: reminderTime);
 
     if (newReminderTime != null) {
       await _analytics.logEvent(
@@ -78,10 +69,7 @@ class NotificationSettingsScreen extends StatelessWidget {
           'new_reminder_time': '${newReminderTime.hour}h:${newReminderTime.minute}m',
         },
       );
-      await _userSettingsDao.updateNotificationTypeSettings(
-        notificationType,
-        newReminderTime,
-      );
+      await _userSettingsDao.updateNotificationTypeSettings(notificationType, newReminderTime);
       await _notificationsService.rescheduleNotifications(l10n);
     }
   }
@@ -165,10 +153,7 @@ class NotificationSettingsScreen extends StatelessWidget {
               : const SizedBox.shrink(),
         ),
         if (!isLast)
-          const Padding(
-            padding: EdgeInsets.only(top: 8),
-            child: NepanikarHorizontalDivider(),
-          ),
+          const Padding(padding: EdgeInsets.only(top: 8), child: NepanikarHorizontalDivider()),
       ],
     );
   }

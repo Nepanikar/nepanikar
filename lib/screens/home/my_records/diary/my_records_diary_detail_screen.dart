@@ -19,12 +19,8 @@ import 'package:nepanikar/widgets/nepanikar_button.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 part 'my_records_diary_detail_screen.g.dart';
 
-@TypedGoRoute<MyRecordsDiaryDetailRoute>(
-  path: '/home/my-records/diary/detail',
-)
-
+@TypedGoRoute<MyRecordsDiaryDetailRoute>(path: '/home/my-records/diary/detail')
 class MyRecordsDiaryDetailRoute extends GoRouteData with _$MyRecordsDiaryDetailRoute {
-
   const MyRecordsDiaryDetailRoute();
 
   @override
@@ -37,10 +33,7 @@ class MyRecordsDiaryDetailRoute extends GoRouteData with _$MyRecordsDiaryDetailR
 }
 
 class DiaryRecordRouteExtraData extends Equatable {
-  const DiaryRecordRouteExtraData({
-    required this.diaryRecordId,
-    required this.diaryRecord,
-  });
+  const DiaryRecordRouteExtraData({required this.diaryRecordId, required this.diaryRecord});
 
   final String diaryRecordId;
   final DiaryRecord diaryRecord;
@@ -50,10 +43,7 @@ class DiaryRecordRouteExtraData extends Equatable {
 }
 
 class MyRecordsDiaryDetailScreen extends StatelessWidget {
-  const MyRecordsDiaryDetailScreen({
-    super.key,
-    required this.diaryRecordRouteExtraData,
-  });
+  const MyRecordsDiaryDetailScreen({super.key, required this.diaryRecordRouteExtraData});
 
   final DiaryRecordRouteExtraData diaryRecordRouteExtraData;
 
@@ -89,10 +79,7 @@ class MyRecordsDiaryDetailScreen extends StatelessWidget {
             const SizedBox(height: 16),
             Text(
               diaryRecord.title,
-              style: NepanikarFonts.title3.copyWith(
-                fontWeight: FontWeight.w700,
-                color: textColor
-              ),
+              style: NepanikarFonts.title3.copyWith(fontWeight: FontWeight.w700, color: textColor),
             ),
             const SizedBox(height: 16),
             Text(diaryRecord.text, style: NepanikarFonts.bodyRoman.copyWith(color: textColor)),

@@ -12,9 +12,8 @@ _DiaryRecord _$DiaryRecordFromJson(Map<String, dynamic> json) => _DiaryRecord(
   text: json['text'] as String,
 );
 
-Map<String, dynamic> _$DiaryRecordToJson(_DiaryRecord instance) =>
-    <String, dynamic>{
-      'dateWithTime': instance.dateTime.toIso8601String(),
-      'title': instance.title,
-      'text': instance.text,
-    };
+Map<String, dynamic> _$DiaryRecordToJson(_DiaryRecord instance) => <String, dynamic>{
+  'dateWithTime': instance.dateTime.toIso8601String(),
+  'title': instance.title,
+  'text': instance.text,
+};

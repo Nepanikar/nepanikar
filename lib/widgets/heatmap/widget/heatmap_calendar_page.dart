@@ -5,7 +5,6 @@ import 'package:nepanikar/widgets/heatmap/util/date_util.dart';
 import 'package:nepanikar/widgets/heatmap/widget/heatmap_calendar_row.dart';
 
 class HeatMapCalendarPage extends StatelessWidget {
-
   HeatMapCalendarPage({
     super.key,
     required this.baseDate,
@@ -20,9 +19,9 @@ class HeatMapCalendarPage extends StatelessWidget {
     this.colorsets,
     this.borderRadius,
     this.onClick,
-  })  : separatedDate = DateUtil.separatedMonth(baseDate),
-        maxValue = DatasetsUtil.getMaxValue(
-            DatasetsUtil.filterMonth(datasets, baseDate));
+  }) : separatedDate = DateUtil.separatedMonth(baseDate),
+       maxValue = DatasetsUtil.getMaxValue(DatasetsUtil.filterMonth(datasets, baseDate));
+
   /// The DateTime value which contains the current calendar's date value.
   final DateTime baseDate;
 
@@ -101,10 +100,10 @@ class HeatMapCalendarPage extends StatelessWidget {
             onClick: onClick,
             datasets: Map.from(datasets ?? {})
               ..removeWhere(
-                (key, value) => !(key.isAfter(date.keys.first) &&
-                        key.isBefore(date.values.first) ||
-                    key == date.keys.first ||
-                    key == date.values.first),
+                (key, value) =>
+                    !(key.isAfter(date.keys.first) && key.isBefore(date.values.first) ||
+                        key == date.keys.first ||
+                        key == date.values.first),
               ),
           ),
       ],

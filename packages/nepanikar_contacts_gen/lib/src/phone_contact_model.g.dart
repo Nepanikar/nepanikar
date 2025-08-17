@@ -15,8 +15,7 @@ _$PhoneContactSingle _$$PhoneContactSingleFromJson(Map<String, dynamic> json) =>
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$PhoneContactSingleToJson(
-        _$PhoneContactSingle instance) =>
+Map<String, dynamic> _$$PhoneContactSingleToJson(_$PhoneContactSingle instance) =>
     <String, dynamic>{
       'pinned': instance.pinned,
       'title': instance.title,
@@ -25,8 +24,7 @@ Map<String, dynamic> _$$PhoneContactSingleToJson(
       'runtimeType': instance.$type,
     };
 
-_$PhoneContactSubList _$$PhoneContactSubListFromJson(
-        Map<String, dynamic> json) =>
+_$PhoneContactSubList _$$PhoneContactSubListFromJson(Map<String, dynamic> json) =>
     _$PhoneContactSubList(
       title: json['title'] as String,
       subtitle: json['subtitle'] as String?,
@@ -36,8 +34,7 @@ _$PhoneContactSubList _$$PhoneContactSubListFromJson(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$PhoneContactSubListToJson(
-        _$PhoneContactSubList instance) =>
+Map<String, dynamic> _$$PhoneContactSubListToJson(_$PhoneContactSubList instance) =>
     <String, dynamic>{
       'title': instance.title,
       'subtitle': instance.subtitle,
@@ -45,14 +42,12 @@ Map<String, dynamic> _$$PhoneContactSubListToJson(
       'runtimeType': instance.$type,
     };
 
-_$_SubPhoneContact _$$_SubPhoneContactFromJson(Map<String, dynamic> json) =>
-    _$_SubPhoneContact(
+_$_SubPhoneContact _$$_SubPhoneContactFromJson(Map<String, dynamic> json) => _$_SubPhoneContact(
       title: json['title'] as String,
       tel: json['tel'] as String,
     );
 
-Map<String, dynamic> _$$_SubPhoneContactToJson(_$_SubPhoneContact instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$$_SubPhoneContactToJson(_$_SubPhoneContact instance) => <String, dynamic>{
       'title': instance.title,
       'tel': instance.tel,
     };

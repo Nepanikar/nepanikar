@@ -5,10 +5,8 @@ part 'checklist_item_model.g.dart';
 
 @freezed
 abstract class ChecklistItem with _$ChecklistItem {
-  const factory ChecklistItem({
-    required String text,
-    @Default(false) bool isChecked,
-  }) = _ChecklistItem;
+  const factory ChecklistItem({required String text, @Default(false) bool isChecked}) =
+      _ChecklistItem;
 
   const ChecklistItem._();
 

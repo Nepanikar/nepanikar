@@ -328,5 +328,10 @@
   "dark_mode_off": "Темний режим ВИМКНЕНО",
   "description": "Опис",
   "confirm_delete": "Ви впевнені, що хочете видалити цей запис настрою?",
-  "enter_summary": "Введіть короткий опис"
+  "enter_summary": "Введіть короткий опис",
+  "emotion_angry": "Злий",
+  "emotion_excited": "Захоплений",
+  "emotion_happy": "Щасливий",
+  "emotion_relaxed": "Розслаблений",
+  "emotion_sad": "Сумний"
 }

@@ -9,12 +9,8 @@ import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 part 'eating_disorder_samples_screen.g.dart';
 
-@TypedGoRoute<EatingDisorderSamplesRoute>(
-  path: '/home/eating-disorder/samples',
-)
-
+@TypedGoRoute<EatingDisorderSamplesRoute>(path: '/home/eating-disorder/samples')
 class EatingDisorderSamplesRoute extends GoRouteData with _$EatingDisorderSamplesRoute {
-
   const EatingDisorderSamplesRoute();
 
   @override
@@ -26,7 +22,6 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final svgColor = svgColorBasedOnDarkMode(context);
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
@@ -37,10 +32,7 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
         onTap: () => context.push(
           Uri(
             path: const MealPlanRoute().location,
-            queryParameters: {
-              'id': MealType.breakfast.name,
-              'title': context.l10n.food_breakfast,
-            },
+            queryParameters: {'id': MealType.breakfast.name, 'title': context.l10n.food_breakfast},
           ).toString(),
         ),
         isDarkMode: isDarkMode,
@@ -51,10 +43,7 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
         onTap: () => context.push(
           Uri(
             path: const MealPlanRoute().location,
-            queryParameters: {
-              'id': MealType.amSnack.name,
-              'title': context.l10n.food_am_snack,
-            },
+            queryParameters: {'id': MealType.amSnack.name, 'title': context.l10n.food_am_snack},
           ).toString(),
         ),
         isDarkMode: isDarkMode,
@@ -65,10 +54,7 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
         onTap: () => context.push(
           Uri(
             path: const MealPlanRoute().location,
-            queryParameters: {
-              'id': MealType.lunch.name,
-              'title': context.l10n.food_lunch,
-            },
+            queryParameters: {'id': MealType.lunch.name, 'title': context.l10n.food_lunch},
           ).toString(),
         ),
         isDarkMode: isDarkMode,
@@ -79,10 +65,7 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
         onTap: () => context.push(
           Uri(
             path: const MealPlanRoute().location,
-            queryParameters: {
-              'id': MealType.pmSnack.name,
-              'title': context.l10n.food_pm_snack,
-            },
+            queryParameters: {'id': MealType.pmSnack.name, 'title': context.l10n.food_pm_snack},
           ).toString(),
         ),
         isDarkMode: isDarkMode,
@@ -93,10 +76,7 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
         onTap: () => context.push(
           Uri(
             path: const MealPlanRoute().location,
-            queryParameters: {
-              'id': MealType.dinner.name,
-              'title': context.l10n.food_dinner,
-            },
+            queryParameters: {'id': MealType.dinner.name, 'title': context.l10n.food_dinner},
           ).toString(),
         ),
         isDarkMode: isDarkMode,

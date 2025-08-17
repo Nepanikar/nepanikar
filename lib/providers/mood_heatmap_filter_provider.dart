@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
-
 import 'package:nepanikar/providers/mood_chart_filter_provider.dart';
 
-
-
-enum HeatmapFilter{
+enum HeatmapFilter {
   month,
   year;
 
@@ -20,19 +17,20 @@ enum HeatmapFilter{
     }
   }
 
-  DateTimeRange getDateTimeRange({DateRangeSwitch? dateRangeSwitch, DateTimeRange? customDateRange}) {
+  DateTimeRange getDateTimeRange({
+    DateRangeSwitch? dateRangeSwitch,
+    DateTimeRange? customDateRange,
+  }) {
     final now = DateTime.now();
     DateTime start;
     DateTime end;
 
     DateTimeRange shiftMonths(DateTime startDate, int months) {
       final adjustedStart = DateTime(startDate.year, startDate.month + months);
-      final endOfMonth = DateTime(adjustedStart.year, adjustedStart.month + 1, 0); // Correctly finds the end of the target month
+      // Correctly finds the end of the target month
+      final endOfMonth = DateTime(adjustedStart.year, adjustedStart.month + 1, 0);
 
-      return DateTimeRange(
-        start: adjustedStart,
-        end: endOfMonth,
-      );
+      return DateTimeRange(start: adjustedStart, end: endOfMonth);
     }
 
     if (customDateRange == null && dateRangeSwitch == null) {
@@ -53,30 +51,25 @@ enum HeatmapFilter{
       start = customDateRange.start;
       end = customDateRange.end;
     } else {
-
       start = now;
       end = now;
     }
 
     switch (this) {
       case HeatmapFilter.month:
-        if ( dateRangeSwitch == DateRangeSwitch.previous) {
+        if (dateRangeSwitch == DateRangeSwitch.previous) {
           return shiftMonths(start, -1); // Shift 1 month back for previous or initialize
-        }
-        else if(dateRangeSwitch == null){
+        } else if (dateRangeSwitch == null) {
           return DateTimeRange(start: start, end: end);
-        }
-        else {
+        } else {
           return shiftMonths(end, 1); // Shift 1 month forward for next
         }
       case HeatmapFilter.year:
         if (dateRangeSwitch == DateRangeSwitch.previous) {
           return shiftMonths(start, -12); // Shift 12 months back for previous or initialize
-        }
-        else if(dateRangeSwitch == null){
+        } else if (dateRangeSwitch == null) {
           return DateTimeRange(start: start, end: end);
-        }
-        else {
+        } else {
           return shiftMonths(end, 12); // Shift 12 months forward for next
         }
       default:
@@ -85,10 +78,10 @@ enum HeatmapFilter{
   }
 }
 
-class MoodHeatmapFilterProvider extends ChangeNotifier{
+class MoodHeatmapFilterProvider extends ChangeNotifier {
   MoodHeatmapFilterProvider()
-      : _activeFilter = HeatmapFilter.initial,
-        _activeDateRange = HeatmapFilter.initial.getDateTimeRange();
+    : _activeFilter = HeatmapFilter.initial,
+      _activeDateRange = HeatmapFilter.initial.getDateTimeRange();
 
   HeatmapFilter _activeFilter;
   HeatmapFilter get activeFilter => _activeFilter;
@@ -108,14 +101,19 @@ class MoodHeatmapFilterProvider extends ChangeNotifier{
   }
 
   void shiftDateRange(DateRangeSwitch direction) {
-    _activeDateRange = _activeFilter.getDateTimeRange(dateRangeSwitch: direction, customDateRange: _activeDateRange);
+    _activeDateRange = _activeFilter.getDateTimeRange(
+      dateRangeSwitch: direction,
+      customDateRange: _activeDateRange,
+    );
     notifyListeners();
   }
 
   bool get canShiftDateRangeNext {
     final now = DateTime.now();
-    final nextRange = _activeFilter.getDateTimeRange(dateRangeSwitch: DateRangeSwitch.next, customDateRange: _activeDateRange);
+    final nextRange = _activeFilter.getDateTimeRange(
+      dateRangeSwitch: DateRangeSwitch.next,
+      customDateRange: _activeDateRange,
+    );
     return nextRange.start.isBefore(now) || nextRange.start.isAtSameMomentAs(now);
   }
 }
-

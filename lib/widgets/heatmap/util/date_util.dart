@@ -33,16 +33,7 @@ class DateUtil {
     'Dec',
   ];
 
-  static const List<String> WEEK_LABEL = [
-    '',
-    'Sun',
-    'Mon',
-    'Tue',
-    'Wed',
-    'Thu',
-    'Fri',
-    'Sat',
-  ];
+  static const List<String> WEEK_LABEL = ['', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   /// Get start day of month.
   static DateTime startDayOfMonth(final DateTime referenceDate) =>
@@ -57,11 +48,13 @@ class DateUtil {
       DateTime(referenceDate.year - 1, referenceDate.month, referenceDate.day);
 
   /// Separate [referenceDate]'s month to List of every weeks.
-  static List<Map<DateTime, DateTime>> separatedMonth(
-      final DateTime referenceDate) {
+  static List<Map<DateTime, DateTime>> separatedMonth(final DateTime referenceDate) {
     DateTime startDate = startDayOfMonth(referenceDate);
-    DateTime endDate = DateTime(startDate.year, startDate.month,
-        startDate.day + DAYS_IN_WEEK - startDate.weekday % DAYS_IN_WEEK - 1);
+    DateTime endDate = DateTime(
+      startDate.year,
+      startDate.month,
+      startDate.day + DAYS_IN_WEEK - startDate.weekday % DAYS_IN_WEEK - 1,
+    );
     final DateTime finalDate = endDayOfMonth(referenceDate);
     final List<Map<DateTime, DateTime>> savedMonth = [];
 
@@ -69,23 +62,22 @@ class DateUtil {
       savedMonth.add({startDate: endDate});
       startDate = changeDay(endDate, 1);
       endDate = changeDay(
-          endDate,
-          endDayOfMonth(endDate).day - startDate.day >= DAYS_IN_WEEK
-              ? DAYS_IN_WEEK
-              : endDayOfMonth(endDate).day - startDate.day + 1);
+        endDate,
+        endDayOfMonth(endDate).day - startDate.day >= DAYS_IN_WEEK
+            ? DAYS_IN_WEEK
+            : endDayOfMonth(endDate).day - startDate.day + 1,
+      );
     }
     return savedMonth;
   }
 
   /// Change day of [referenceDate].
   static DateTime changeDay(final DateTime referenceDate, final int dayCount) =>
-      DateTime(referenceDate.year, referenceDate.month,
-          referenceDate.day + dayCount);
+      DateTime(referenceDate.year, referenceDate.month, referenceDate.day + dayCount);
 
   /// Change month of [referenceDate].
   static DateTime changeMonth(final DateTime referenceDate, int monthCount) =>
-      DateTime(referenceDate.year, referenceDate.month + monthCount,
-          referenceDate.day);
+      DateTime(referenceDate.year, referenceDate.month + monthCount, referenceDate.day);
 
   //#region unused methods.
 

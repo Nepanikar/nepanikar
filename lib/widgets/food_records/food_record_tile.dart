@@ -9,11 +9,7 @@ import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 
 class FoodRecordTile extends StatelessWidget {
-  const FoodRecordTile({
-    super.key,
-    required this.dailyFoodRecord,
-    required this.onTap,
-  });
+  const FoodRecordTile({super.key, required this.dailyFoodRecord, required this.onTap});
 
   final DailyFoodRecord dailyFoodRecord;
   final VoidCallback? onTap;
@@ -27,9 +23,9 @@ class FoodRecordTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    final ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark ?
-    ThemeMode.dark : ThemeMode.light;
+    final ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark
+        ? ThemeMode.dark
+        : ThemeMode.light;
     final bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
 
     const textStyle = NepanikarFonts.bodyHeavy;
@@ -41,10 +37,7 @@ class FoodRecordTile extends StatelessWidget {
         image: null,
         isDarkMode: isDarkMode,
         text: DateFormat.yMd(locale.languageCode).format(dailyFoodRecord.dateTime),
-        textTextStyle: textStyle.copyWith(
-          fontSize: 12,
-          fontWeight: FontWeight.w700,
-        ),
+        textTextStyle: textStyle.copyWith(fontSize: 12, fontWeight: FontWeight.w700),
         onTap: null,
         showSubContentSeparator: false,
         subContent: Padding(

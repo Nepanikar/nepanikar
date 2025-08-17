@@ -7,7 +7,6 @@ import 'package:nepanikar/widgets/heatmap/widget/heatmap_calendar_page.dart';
 import 'package:nepanikar/widgets/heatmap/widget/heatmap_color_tip.dart';
 
 class HeatMapCalendar extends StatefulWidget {
-
   const HeatMapCalendar({
     super.key,
     required this.colorsets,
@@ -31,6 +30,7 @@ class HeatMapCalendar extends StatefulWidget {
     this.colorTipCount,
     this.colorTipSize,
   });
+
   /// The datasets which fill blocks based on its value.
   final Map<DateTime, int>? datasets;
 
@@ -126,15 +126,13 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
     setState(() {
       // Set _currentDate value to first day of initialized date or
       // today's month if widget.initDate is null.
-      _currentDate =
-          DateUtil.startDayOfMonth(widget.initDate ?? DateTime.now());
+      _currentDate = DateUtil.startDayOfMonth(widget.initDate ?? DateTime.now());
     });
   }
 
   void changeMonth(int direction) {
     setState(() {
-      _currentDate =
-          DateUtil.changeMonth(_currentDate ?? DateTime.now(), direction);
+      _currentDate = DateUtil.changeMonth(_currentDate ?? DateTime.now(), direction);
     });
     if (widget.onMonthChange != null) widget.onMonthChange!(_currentDate!);
   }
@@ -146,28 +144,19 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
       children: <Widget>[
         // Previous month button.
         IconButton(
-          icon: const Icon(
-            Icons.arrow_back_ios,
-            size: 14,
-          ),
+          icon: const Icon(Icons.arrow_back_ios, size: 14),
           onPressed: () => changeMonth(-1),
         ),
 
         // Text which shows the current year and month
         Text(
           '${DateUtil.MONTH_LABEL[_currentDate?.month ?? 0]} ${_currentDate?.year}',
-          style: TextStyle(
-            fontSize: widget.monthFontSize ?? 12,
-            fontWeight: FontWeight.bold
-          ),
+          style: TextStyle(fontSize: widget.monthFontSize ?? 12, fontWeight: FontWeight.bold),
         ),
 
         // Next month button.
         IconButton(
-          icon: const Icon(
-            Icons.arrow_forward_ios,
-            size: 14,
-          ),
+          icon: const Icon(Icons.arrow_forward_ios, size: 14),
           onPressed: () => changeMonth(1),
         ),
       ],
@@ -184,8 +173,9 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
             false,
             Container(
               margin: EdgeInsets.only(
-                  left: widget.margin?.left ?? 2,
-                  right: widget.margin?.right ?? 2),
+                left: widget.margin?.left ?? 2,
+                right: widget.margin?.right ?? 2,
+              ),
               width: widget.size ?? 42,
               alignment: Alignment.center,
               child: Text(
@@ -193,7 +183,7 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
                 style: TextStyle(
                   fontSize: widget.weekFontSize ?? 12,
                   color: NepanikarColors.white,
-                  fontWeight: FontWeight.bold
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
@@ -203,9 +193,7 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
   }
 
   /// Expand width dynamically if [flexible] is true.
-  Widget _intrinsicWidth({
-    required Widget child,
-  }) =>
+  Widget _intrinsicWidth({required Widget child}) =>
       (widget.flexible ?? false) ? child : IntrinsicWidth(child: child);
 
   @override

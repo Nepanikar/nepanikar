@@ -23,38 +23,33 @@ class HeatMapColumn extends StatelessWidget {
     this.onClick,
     this.maxValue,
     this.showText,
-  }) :
-        // Init list.
-        dayContainers = List.generate(
-          numDays,
-              (i) {
-            final currentDate = DateUtil.changeDay(startDate, i);
-            final isSelected = datasets?.keys.contains(currentDate) ?? false;
+  }) : // Init list.
+       dayContainers = List.generate(numDays, (i) {
+         final currentDate = DateUtil.changeDay(startDate, i);
+         final isSelected = datasets?.keys.contains(currentDate) ?? false;
 
-            // Determine selected color based on the color mode and dataset value
-            final selectedColor = isSelected
-                ? (colorMode == ColorMode.opacity
-                ? colorsets?.values.first.withOpacity(
-              (datasets?[currentDate]?.toDouble() ?? 0) /
-                  (maxValue?.toDouble() ?? 1),
-            )
-                : DatasetsUtil.getColor(colorsets, datasets?[currentDate]))
-                : null;
+         // Determine selected color based on the color mode and dataset value
+         final selectedColor = isSelected
+             ? (colorMode == ColorMode.opacity
+                   ? colorsets?.values.first.withOpacity(
+                       (datasets?[currentDate]?.toDouble() ?? 0) / (maxValue?.toDouble() ?? 1),
+                     )
+                   : DatasetsUtil.getColor(colorsets, datasets?[currentDate]))
+             : null;
 
-            return HeatMapContainer(
-              date: currentDate,
-              backgroundColor: defaultColor,
-              size: size,
-              fontSize: fontSize,
-              textColor: textColor,
-              borderRadius: borderRadius,
-              margin: margin,
-              onClick: onClick,
-              showText: showText,
-              selectedColor: selectedColor,
-            );
-          },
-        );
+         return HeatMapContainer(
+           date: currentDate,
+           backgroundColor: defaultColor,
+           size: size,
+           fontSize: fontSize,
+           textColor: textColor,
+           borderRadius: borderRadius,
+           margin: margin,
+           onClick: onClick,
+           showText: showText,
+           selectedColor: selectedColor,
+         );
+       });
 
   /// The List widgets of [HeatMapContainer].
   ///
@@ -125,8 +120,6 @@ class HeatMapColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[...dayContainers],
-    );
+    return Column(children: <Widget>[...dayContainers]);
   }
 }

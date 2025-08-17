@@ -328,5 +328,10 @@
   "dark_mode_off": "Tryb ciemny jest WYŁĄCZONY",
   "description": "Opis",
   "confirm_delete": "Czy na pewno chcesz usunąć ten wpis nastroju?",
-  "enter_summary": "Wprowadź krótkie podsumowanie"
+  "enter_summary": "Wprowadź krótkie podsumowanie",
+  "emotion_angry": "Zły",
+  "emotion_excited": "Podekscytowany",
+  "emotion_happy": "Szczęśliwy",
+  "emotion_relaxed": "Zrelaksowany",
+  "emotion_sad": "Smutny"
 }

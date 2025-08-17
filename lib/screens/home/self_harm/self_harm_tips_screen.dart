@@ -6,12 +6,8 @@ import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/widgets/tips_carousel_body.dart';
 part 'self_harm_tips_screen.g.dart';
 
-@TypedGoRoute<SelfHarmTipsRoute>(
-  path: '/home/self-harm/tips',
-)
-
+@TypedGoRoute<SelfHarmTipsRoute>(path: '/home/self-harm/tips')
 class SelfHarmTipsRoute extends GoRouteData with _$SelfHarmTipsRoute {
-
   const SelfHarmTipsRoute();
 
   @override
@@ -44,15 +40,11 @@ class SelfHarmTipsScreen extends StatelessWidget {
                       color: textColor,
                     ),
                   ),
-                  const SizedBox(
-                    height: 16,
-                  ),
+                  const SizedBox(height: 16),
                   Text(
                     strings.elementAt(index * 2 + 1),
                     textAlign: TextAlign.center,
-                    style: NepanikarFonts.bodyRoman.copyWith(
-                      color: textColor,
-                    ),
+                    style: NepanikarFonts.bodyRoman.copyWith(color: textColor),
                   ),
                 ],
               ),

@@ -26,7 +26,6 @@ import 'package:nepanikar/widgets/mood/mood_picker.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-
   MoodTrackDao get _moodTrackDao => registry.get<MoodTrackDao>();
 
   NotificationsService get _notificationsService => registry.get<NotificationsService>();
@@ -95,8 +94,8 @@ class HomeScreen extends StatelessWidget {
                             Text(
                               context.l10n.app_name,
                               style: NepanikarFonts.title3.copyWith(
-                                  fontSize: 18.6,
-                                  color: svgColor,
+                                fontSize: 18.6,
+                                color: svgColor,
                               ),
                             ),
                           ],
@@ -134,7 +133,9 @@ class HomeScreen extends StatelessWidget {
                   child: AutoSizeText(
                     context.l10n.homepage_subtitle,
                     maxLines: 1,
-                    style: NepanikarFonts.title2.copyWith(color: isDarkMode ? Colors.white : NepanikarColors.primaryD),
+                    style: NepanikarFonts.title2.copyWith(
+                      color: isDarkMode ? Colors.white : NepanikarColors.primaryD,
+                    ),
                   ),
                 ),
               ),

@@ -12,9 +12,7 @@ import 'package:sembast/utils/database_utils.dart';
 import 'package:sembast/utils/sembast_import_export.dart';
 
 class ExportService {
-  ExportService({
-    required this.databaseService,
-  });
+  ExportService({required this.databaseService});
 
   final DatabaseService databaseService;
 
@@ -22,10 +20,7 @@ class ExportService {
     await databaseService.clearAll();
   }
 
-  Future<void> export({
-    VoidCallback? onSuccess,
-    VoidCallback? onError,
-  }) async {
+  Future<void> export({VoidCallback? onSuccess, VoidCallback? onError}) async {
     try {
       final data = await exportDatabase(databaseService.database);
       final tempDirectory = await getTemporaryDirectory();
@@ -41,21 +36,12 @@ class ExportService {
       }
     } catch (e, s) {
       onError?.call();
-      await logExceptionToCrashlytics(
-        e,
-        s,
-        logMessage: 'EXPORT_SERVICE: Cannot export data',
-      );
+      await logExceptionToCrashlytics(e, s, logMessage: 'EXPORT_SERVICE: Cannot export data');
     }
   }
 
-  Future<void> import({
-    VoidCallback? onSuccess,
-    VoidCallback? onError,
-  }) async {
-    const params = OpenFileDialogParams(
-      fileExtensionsFilter: ['json'],
-    );
+  Future<void> import({VoidCallback? onSuccess, VoidCallback? onError}) async {
+    const params = OpenFileDialogParams(fileExtensionsFilter: ['json']);
     try {
       final filePath = await FlutterFileDialog.pickFile(params: params);
 
@@ -77,11 +63,7 @@ class ExportService {
       }
     } catch (e, s) {
       onError?.call();
-      await logExceptionToCrashlytics(
-        e,
-        s,
-        logMessage: 'EXPORT_SERVICE: Cannot import data',
-      );
+      await logExceptionToCrashlytics(e, s, logMessage: 'EXPORT_SERVICE: Cannot import data');
     }
   }
 }

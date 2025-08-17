@@ -7,12 +7,8 @@ import 'package:nepanikar/widgets/tips_carousel_body.dart';
 
 part 'eating_disorder_tips_vomit.g.dart';
 
-@TypedGoRoute<EatingDisorderTipsVomitAppRoute>(
-  path: '/home/eating-disorder/tips/vomit',
-)
-
+@TypedGoRoute<EatingDisorderTipsVomitAppRoute>(path: '/home/eating-disorder/tips/vomit')
 class EatingDisorderTipsVomitAppRoute extends GoRouteData with _$EatingDisorderTipsVomitAppRoute {
-
   const EatingDisorderTipsVomitAppRoute();
 
   @override

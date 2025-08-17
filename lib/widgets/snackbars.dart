@@ -23,11 +23,7 @@ SnackBar nepanikarSnackbar({
     content: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (leading != null)
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: leading,
-          ),
+        if (leading != null) Padding(padding: const EdgeInsets.only(right: 8.0), child: leading),
         Expanded(
           child: Text(
             text,
@@ -38,11 +34,7 @@ SnackBar nepanikarSnackbar({
             ),
           ),
         ),
-        if (trailing != null)
-          Padding(
-            padding: const EdgeInsets.only(left: 12.0),
-            child: trailing,
-          ),
+        if (trailing != null) Padding(padding: const EdgeInsets.only(left: 12.0), child: trailing),
       ],
     ),
     margin: const EdgeInsets.all(20),

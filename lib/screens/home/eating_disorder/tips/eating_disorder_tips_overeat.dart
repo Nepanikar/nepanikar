@@ -7,12 +7,9 @@ import 'package:nepanikar/widgets/tips_carousel_body.dart';
 
 part 'eating_disorder_tips_overeat.g.dart';
 
-@TypedGoRoute<EatingDisorderTipsOvereatAppRoute>(
-  path: '/home/eating-disorder/tips/overeat',
-)
-
-class EatingDisorderTipsOvereatAppRoute extends GoRouteData with _$EatingDisorderTipsOvereatAppRoute {
-
+@TypedGoRoute<EatingDisorderTipsOvereatAppRoute>(path: '/home/eating-disorder/tips/overeat')
+class EatingDisorderTipsOvereatAppRoute extends GoRouteData
+    with _$EatingDisorderTipsOvereatAppRoute {
   const EatingDisorderTipsOvereatAppRoute();
 
   @override
@@ -39,7 +36,7 @@ class EatingDisorderTipsOvereatScreen extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: NepanikarFonts.title2.copyWith(
                         fontWeight: FontWeight.w900,
-                        color: textColor
+                        color: textColor,
                       ),
                     ),
                   ),

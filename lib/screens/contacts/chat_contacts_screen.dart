@@ -9,11 +9,8 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:nepanikar_contacts_gen/nepanikar_contacts_gen.dart';
 part 'chat_contacts_screen.g.dart';
 
-@TypedGoRoute<ChatContactsRoute>(
-  path: '/contacts/chat',
-)
+@TypedGoRoute<ChatContactsRoute>(path: '/contacts/chat')
 class ChatContactsRoute extends GoRouteData with _$ChatContactsRoute {
-
   const ChatContactsRoute();
 
   ContactsDataManager get _contactsManager => registry.get<ContactsDataManager>();
@@ -24,17 +21,12 @@ class ChatContactsRoute extends GoRouteData with _$ChatContactsRoute {
   Widget build(BuildContext context, _) {
     final locale = _userSettingsDao.locale;
     final chatContacts = _contactsManager.getContactsFromLocale(locale).chatContacts;
-    return ChatContactsScreen(
-      chatContacts: chatContacts ?? [],
-    );
+    return ChatContactsScreen(chatContacts: chatContacts ?? []);
   }
 }
 
 class ChatContactsScreen extends StatelessWidget {
-  const ChatContactsScreen({
-    super.key,
-    required this.chatContacts,
-  });
+  const ChatContactsScreen({super.key, required this.chatContacts});
 
   final List<ChatContact> chatContacts;
 

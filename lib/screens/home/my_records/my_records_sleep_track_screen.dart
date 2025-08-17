@@ -5,11 +5,8 @@ import 'package:nepanikar/screens/home/my_records/mood/mood_track_screen.dart';
 import 'package:nepanikar/services/db/my_records/my_records_sleep_track_dao.dart';
 part 'my_records_sleep_track_screen.g.dart';
 
-@TypedGoRoute<MyRecordsSleepTrackRoute>(
-  path: '/home/my-records/sleep-track',
-)
+@TypedGoRoute<MyRecordsSleepTrackRoute>(path: '/home/my-records/sleep-track')
 class MyRecordsSleepTrackRoute extends GoRouteData with _$MyRecordsSleepTrackRoute {
-
   const MyRecordsSleepTrackRoute();
 
   @override

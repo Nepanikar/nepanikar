@@ -13,12 +13,9 @@ import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:provider/provider.dart';
 part 'my_records_screen.g.dart';
-@TypedGoRoute<MyRecordsRoute>(
-  path: '/home/my-records',
-)
 
+@TypedGoRoute<MyRecordsRoute>(path: '/home/my-records')
 class MyRecordsRoute extends GoRouteData with _$MyRecordsRoute {
-
   const MyRecordsRoute();
 
   @override
@@ -30,12 +27,10 @@ class MyRecordsScreen extends StatelessWidget {
 
   final bool showBottomNavbar;
 
-
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final svgColor = svgColorBasedOnDarkMode(context);
-
 
     final modules = <Widget>[
       LongTile(
@@ -43,7 +38,10 @@ class MyRecordsScreen extends StatelessWidget {
         image: Assets.illustrations.modules.moodTracker.svg(color: svgColor),
         // onTap: () => context.push(const MoodTrackRoute().location),
         onTap: () {
-          Provider.of<MoodHeatmapFilterProvider>(context, listen: false).setFilter(HeatmapFilter.initial);
+          Provider.of<MoodHeatmapFilterProvider>(
+            context,
+            listen: false,
+          ).setFilter(HeatmapFilter.initial);
           context.push(const MoodRecordsRoute().location);
         },
         isDarkMode: isDarkMode,
@@ -80,6 +78,4 @@ class MyRecordsScreen extends StatelessWidget {
       children: modules,
     );
   }
-
-
 }

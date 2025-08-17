@@ -24,17 +24,22 @@ class EatingDisorderModuleDb implements NepanikarModuleDb {
 
   @override
   Future<EatingDisorderModuleDb> initModuleDaos() async {
-    _eatingDisorderFoodCreativeDao =
-        await EatingDisorderFoodCreativeDao(dbService: _dbService).init();
-    _eatingDisorderFoodMotivationDao =
-        await EatingDisorderFoodMotivationDao(dbService: _dbService).init();
-    _eatingDisorderFoodChallengesDao =
-        await EatingDisorderFoodChallengesDao(dbService: _dbService).init();
-    _eatingDisorderLikeOnMyselfDao =
-        await EatingDisorderLikeOnMyselfDao(dbService: _dbService).init();
+    _eatingDisorderFoodCreativeDao = await EatingDisorderFoodCreativeDao(
+      dbService: _dbService,
+    ).init();
+    _eatingDisorderFoodMotivationDao = await EatingDisorderFoodMotivationDao(
+      dbService: _dbService,
+    ).init();
+    _eatingDisorderFoodChallengesDao = await EatingDisorderFoodChallengesDao(
+      dbService: _dbService,
+    ).init();
+    _eatingDisorderLikeOnMyselfDao = await EatingDisorderLikeOnMyselfDao(
+      dbService: _dbService,
+    ).init();
     _eatingDisorderFoodILikeDao = await EatingDisorderFoodILikeDao(dbService: _dbService).init();
-    _eatingDisorderFoodAfraidOfDao =
-        await EatingDisorderFoodAfraidOfDao(dbService: _dbService).init();
+    _eatingDisorderFoodAfraidOfDao = await EatingDisorderFoodAfraidOfDao(
+      dbService: _dbService,
+    ).init();
     return this;
   }
 
@@ -82,9 +87,11 @@ class EatingDisorderModuleDb implements NepanikarModuleDb {
 
   @override
   Future<void> preloadDefaultModuleData(AppLocalizations l10n) async {
-    await _eatingDisorderFoodCreativeDao
-        .preloadDefaultData(l10n.food_creative_text.extractToItems());
-    await _eatingDisorderFoodChallengesDao
-        .preloadDefaultData(l10n.food_challenge_text.extractToItems());
+    await _eatingDisorderFoodCreativeDao.preloadDefaultData(
+      l10n.food_creative_text.extractToItems(),
+    );
+    await _eatingDisorderFoodChallengesDao.preloadDefaultData(
+      l10n.food_challenge_text.extractToItems(),
+    );
   }
 }

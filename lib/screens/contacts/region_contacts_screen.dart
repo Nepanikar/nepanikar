@@ -13,12 +13,8 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:nepanikar_contacts_gen/nepanikar_contacts_gen.dart';
 part 'region_contacts_screen.g.dart';
 
-@TypedGoRoute<UniversityContactsRoute>(
-  path: '/contacts/universities',
-)
-
+@TypedGoRoute<UniversityContactsRoute>(path: '/contacts/universities')
 class UniversityContactsRoute extends GoRouteData with _$UniversityContactsRoute {
-
   const UniversityContactsRoute();
 
   ContactsDataManager get _contactsManager => registry.get<ContactsDataManager>();
@@ -28,8 +24,9 @@ class UniversityContactsRoute extends GoRouteData with _$UniversityContactsRoute
   @override
   Widget build(BuildContext context, _) {
     final locale = _userSettingsDao.locale;
-    final universityRegionContacts =
-        _contactsManager.getContactsFromLocale(locale).universityRegionContacts;
+    final universityRegionContacts = _contactsManager
+        .getContactsFromLocale(locale)
+        .universityRegionContacts;
     return RegionContactsScreen(
       appBarTitle: context.l10n.universities,
       appBarDescription: context.l10n.university_contacts_description,
@@ -38,13 +35,8 @@ class UniversityContactsRoute extends GoRouteData with _$UniversityContactsRoute
   }
 }
 
-
-@TypedGoRoute<CrisisCenterContactsRoute>(
-  path: '/contacts/crisis-center',
-)
-
+@TypedGoRoute<CrisisCenterContactsRoute>(path: '/contacts/crisis-center')
 class CrisisCenterContactsRoute extends GoRouteData with _$CrisisCenterContactsRoute {
-
   const CrisisCenterContactsRoute();
 
   ContactsDataManager get _contactsManager => registry.get<ContactsDataManager>();
@@ -54,8 +46,9 @@ class CrisisCenterContactsRoute extends GoRouteData with _$CrisisCenterContactsR
   @override
   Widget build(BuildContext context, _) {
     final locale = _userSettingsDao.locale;
-    final crisisCenterRegionContacts =
-        _contactsManager.getContactsFromLocale(locale).crisisCenterContacts;
+    final crisisCenterRegionContacts = _contactsManager
+        .getContactsFromLocale(locale)
+        .crisisCenterContacts;
     return RegionContactsScreen(
       appBarTitle: context.l10n.center,
       appBarDescription: context.l10n.crisis_centers_description,
@@ -100,10 +93,7 @@ class _RegionContactsScreenState extends State<RegionContactsScreen> {
   Widget _buildRegionHeader(String header, Color? textColor) {
     return Text(
       header,
-      style: NepanikarFonts.title2.copyWith(
-        fontWeight: FontWeight.w900,
-        color: textColor,
-      ),
+      style: NepanikarFonts.title2.copyWith(fontWeight: FontWeight.w900, color: textColor),
     );
   }
 
@@ -136,10 +126,7 @@ class _RegionContactsScreenState extends State<RegionContactsScreen> {
         if (_activeDropdownMenuItem != null) ...[
           if (widget.regionContacts.length > 1) ...[
             const SizedBox(height: 20),
-            _buildRegionHeader(
-              _activeDropdownMenuItem!.region,
-              textColor,
-            ),
+            _buildRegionHeader(_activeDropdownMenuItem!.region, textColor),
           ],
           ..._activeDropdownMenuItem!.contacts.map(
             (u) => Padding(

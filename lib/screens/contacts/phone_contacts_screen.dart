@@ -9,12 +9,8 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:nepanikar_contacts_gen/nepanikar_contacts_gen.dart';
 part 'phone_contacts_screen.g.dart';
 
-@TypedGoRoute<PhoneContactsRoute>(
-  path: '/contacts/phones',
-)
-
+@TypedGoRoute<PhoneContactsRoute>(path: '/contacts/phones')
 class PhoneContactsRoute extends GoRouteData with _$PhoneContactsRoute {
-
   const PhoneContactsRoute();
 
   ContactsDataManager get _contactsManager => registry.get<ContactsDataManager>();
@@ -30,10 +26,7 @@ class PhoneContactsRoute extends GoRouteData with _$PhoneContactsRoute {
 }
 
 class PhoneContactsScreen extends StatelessWidget {
-  const PhoneContactsScreen({
-    super.key,
-    required this.phoneContacts,
-  });
+  const PhoneContactsScreen({super.key, required this.phoneContacts});
 
   final Iterable<PhoneContact> phoneContacts;
 

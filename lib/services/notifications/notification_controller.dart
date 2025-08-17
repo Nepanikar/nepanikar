@@ -32,9 +32,7 @@ abstract class NotificationController {
     debugPrint('NOTIFICATION_CONTROLLER: Notification dismissed: ${notificationData?.type.name}');
     await FirebaseAnalytics.instance.logEvent(
       name: 'notification_dismissed',
-      parameters: {
-        'notification_type': notificationData?.type.name ?? '',
-      },
+      parameters: {'notification_type': notificationData?.type.name ?? ''},
     );
   }
 
@@ -45,9 +43,7 @@ abstract class NotificationController {
     debugPrint('NOTIFICATION_CONTROLLER: Notification tapped: ${notificationData?.type.name}');
     await FirebaseAnalytics.instance.logEvent(
       name: 'notification_tapped',
-      parameters: {
-        'notification_type': notificationData?.type.name ?? '',
-      },
+      parameters: {'notification_type': notificationData?.type.name ?? ''},
     );
 
     final routeDestination = notificationData?.type.routeDestination;

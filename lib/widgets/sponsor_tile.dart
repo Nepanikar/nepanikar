@@ -6,12 +6,7 @@ import 'package:nepanikar/widgets/nepanikar_tile.dart';
 enum SponsorType { primary, secondary }
 
 class SponsorTile extends StatelessWidget {
-  const SponsorTile({
-    super.key,
-    required this.title,
-    required this.type,
-    required this.logoPaths,
-  });
+  const SponsorTile({super.key, required this.title, required this.type, required this.logoPaths});
 
   final String title;
   final SponsorType type;
@@ -22,22 +17,13 @@ class SponsorTile extends StatelessWidget {
     return NepanikarTile(
       child: Column(
         children: [
-          Text(
-            title,
-            style: NepanikarFonts.title3,
-          ),
+          Text(title, style: NepanikarFonts.title3),
           const SizedBox(height: 15),
-          const Divider(
-            height: 0,
-            thickness: 1,
-            color: NepanikarColors.purple200,
-          ),
+          const Divider(height: 0, thickness: 1, color: NepanikarColors.purple200),
           if (type == SponsorType.primary)
             Container(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 45),
-              child: Column(
-                children: logoPaths.map((path) => Image.asset(path)).toList(),
-              ),
+              child: Column(children: logoPaths.map((path) => Image.asset(path)).toList()),
             ),
           if (type == SponsorType.secondary)
             GridView.count(

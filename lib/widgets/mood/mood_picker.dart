@@ -84,15 +84,19 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final textStyleColor = customColorsBasedOnDarkMode(context, NepanikarColors.white, NepanikarColors.primaryD);
+    final textStyleColor = customColorsBasedOnDarkMode(
+      context,
+      NepanikarColors.white,
+      NepanikarColors.primaryD,
+    );
     final location = GoRouter.of(context).state.uri.toString();
     final bool shouldDisplayTitle =
-              GoRouter.of(context).state.uri.toString() == const MoodPickerRoute().location;
+        GoRouter.of(context).state.uri.toString() == const MoodPickerRoute().location;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if(!shouldDisplayTitle)
+        if (!shouldDisplayTitle)
           if (!widget.autoSizeTitle)
             Text(
               widget.header ?? context.l10n.mood_welcome_title,
@@ -107,78 +111,65 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
         const SizedBox(height: 14),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: Mood.values.reversed.map(
-            (mood) {
-              final isPicked = activeMood == mood;
-              return Semantics(
-                button: true,
-                selected: isPicked,
-                label: widget.showLabels ? null : mood.getSemanticsLabel(context),
-                child: InkWell(
-                  onTap: () {
-                    if (isPicked) {
-                      _playLottieAnim(mood);
-                      return;
-                    }
-                    if(location == const MyRecordsSleepTrackRoute().location){
-                      _playLottieAnim(mood);
-                      analytics.logEvent(
-                        name: 'mood_picked',
-                        parameters: {
-                          'mood': mood.name,
-                        },
-                      );
-                      widget.onPick.call(mood);
-                    }
-                    else{
-                      Provider.of<MoodState>(context, listen: false).setActiveMood(mood);
-                      if(location != const MoodPickerRoute().location){
-                        Provider.of<MoodState>(context,listen: false).setEditing(false);
-                        context.push(const MoodPickerRoute().location);
-                      }
-                      return;
-                    }
-                    setState(() => activeMood = mood);
-
+          children: Mood.values.reversed.map((mood) {
+            final isPicked = activeMood == mood;
+            return Semantics(
+              button: true,
+              selected: isPicked,
+              label: widget.showLabels ? null : mood.getSemanticsLabel(context),
+              child: InkWell(
+                onTap: () {
+                  if (isPicked) {
                     _playLottieAnim(mood);
-                    analytics.logEvent(
-                      name: 'mood_picked',
-                      parameters: {
-                        'mood': mood.name,
-                      },
-                    );
-                  },
-                  borderRadius: BorderRadius.circular(12),
-                  child: Opacity(
-                    opacity: activeMood != null && activeMood != mood && shouldDisplayTitle ? 0.4 : 1 ,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 4),
-                      child: Column(
-                        children: [
-                          _lottieCacheManager.loadFromCache(
-                            mood.animatedIcon,
-                            controller: _getLottieAnimController(mood),
-                            width: 50,
-                            height: 50,
-                            repeat: false,
-                            animate: false,
+                    return;
+                  }
+                  if (location == const MyRecordsSleepTrackRoute().location) {
+                    _playLottieAnim(mood);
+                    analytics.logEvent(name: 'mood_picked', parameters: {'mood': mood.name});
+                    widget.onPick.call(mood);
+                  } else {
+                    Provider.of<MoodState>(context, listen: false).setActiveMood(mood);
+                    if (location != const MoodPickerRoute().location) {
+                      Provider.of<MoodState>(context, listen: false).setEditing(false);
+                      context.push(const MoodPickerRoute().location);
+                    }
+                    return;
+                  }
+                  setState(() => activeMood = mood);
+
+                  _playLottieAnim(mood);
+                  analytics.logEvent(name: 'mood_picked', parameters: {'mood': mood.name});
+                },
+                borderRadius: BorderRadius.circular(12),
+                child: Opacity(
+                  opacity: activeMood != null && activeMood != mood && shouldDisplayTitle ? 0.4 : 1,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 4),
+                    child: Column(
+                      children: [
+                        _lottieCacheManager.loadFromCache(
+                          mood.animatedIcon,
+                          controller: _getLottieAnimController(mood),
+                          width: 50,
+                          height: 50,
+                          repeat: false,
+                          animate: false,
+                        ),
+                        if (widget.showLabels) ...[
+                          const SizedBox(height: 4),
+                          Text(
+                            mood.getLabel(context),
+                            style: NepanikarFonts.bodySmallHeavy.copyWith(color: textStyleColor),
                           ),
-                          if (widget.showLabels) ...[
-                            const SizedBox(height: 4),
-                            Text(
-                              mood.getLabel(context),
-                              style: NepanikarFonts.bodySmallHeavy.copyWith(color: textStyleColor),
-                            ),
-                          ],
                         ],
-                      ),
+                      ],
                     ),
                   ),
                 ),
-              );
-            },
-          ).toList(),
-        )
+              ),
+            );
+          }).toList(),
+        ),
       ],
     );
   }

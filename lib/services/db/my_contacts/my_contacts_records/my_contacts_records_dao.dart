@@ -5,10 +5,9 @@ import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 import 'package:sembast/sembast.dart';
 
 class MyContactsRecordsDao {
-  MyContactsRecordsDao({
-    required DatabaseService dbService,
-  })  : _dbService = dbService,
-        _store = stringMapStoreFactory.store(_storeKeyName);
+  MyContactsRecordsDao({required DatabaseService dbService})
+    : _dbService = dbService,
+      _store = stringMapStoreFactory.store(_storeKeyName);
 
   Future<MyContactsRecordsDao> init() async {
     registry.registerSingleton<MyContactsRecordsDao>(this);

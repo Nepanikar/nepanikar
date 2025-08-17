@@ -38,14 +38,14 @@ class NepanikarDropdown<T> extends StatelessWidget {
     required ValueChanged<T> onPick,
     bool expand = false,
   }) : this._(
-          key: key,
-          activeItem: activeItem,
-          items: items,
-          labelBuilder: labelBuilder,
-          onPick: onPick,
-          expand: expand,
-          type: NepanikarDropdownType.filled,
-        );
+         key: key,
+         activeItem: activeItem,
+         items: items,
+         labelBuilder: labelBuilder,
+         onPick: onPick,
+         expand: expand,
+         type: NepanikarDropdownType.filled,
+       );
 
   const NepanikarDropdown.outlined({
     Key? key,
@@ -55,14 +55,14 @@ class NepanikarDropdown<T> extends StatelessWidget {
     required ValueChanged<T> onPick,
     bool expand = false,
   }) : this._(
-          key: key,
-          activeItem: activeItem,
-          items: items,
-          labelBuilder: labelBuilder,
-          onPick: onPick,
-          expand: expand,
-          type: NepanikarDropdownType.outlined,
-        );
+         key: key,
+         activeItem: activeItem,
+         items: items,
+         labelBuilder: labelBuilder,
+         onPick: onPick,
+         expand: expand,
+         type: NepanikarDropdownType.outlined,
+       );
 
   const NepanikarDropdown._({
     super.key,
@@ -85,7 +85,11 @@ class NepanikarDropdown<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     const rightPadding = EdgeInsets.only(right: 16);
     final textColor = customColorsBasedOnDarkMode(context, NepanikarColors.white, _type.textColor);
-    final dropDownColor = customColorsBasedOnDarkMode(context, NepanikarColors.dropdownMenuD, _type.bgColor);
+    final dropDownColor = customColorsBasedOnDarkMode(
+      context,
+      NepanikarColors.dropdownMenuD,
+      _type.bgColor,
+    );
     final svgColor = svgColorBasedOnDarkMode(context);
 
     return MaterialWrapper(
@@ -100,28 +104,28 @@ class NepanikarDropdown<T> extends StatelessWidget {
             isExpanded: expand,
             icon: Padding(
               padding: rightPadding,
-              child: ExcludeSemantics(child: Assets.icons.navigation.chevronDown.svg(color: svgColor)),
+              child: ExcludeSemantics(
+                child: Assets.icons.navigation.chevronDown.svg(color: svgColor),
+              ),
             ),
             underline: const SizedBox.shrink(),
             dropdownColor: dropDownColor,
-            items: items.map<DropdownMenuItem<T>>(
-              (T item) {
-                final isSelected = item == activeItem;
-                return DropdownMenuItem<T>(
-                  value: item,
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding: rightPadding,
-                    child: Text(
-                      labelBuilder(item),
-                      style: isSelected
-                          ? NepanikarFonts.bodyBlack.copyWith(color: textColor)
-                          : NepanikarFonts.bodyRoman.copyWith(color: textColor),
-                    ),
+            items: items.map<DropdownMenuItem<T>>((T item) {
+              final isSelected = item == activeItem;
+              return DropdownMenuItem<T>(
+                value: item,
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: rightPadding,
+                  child: Text(
+                    labelBuilder(item),
+                    style: isSelected
+                        ? NepanikarFonts.bodyBlack.copyWith(color: textColor)
+                        : NepanikarFonts.bodyRoman.copyWith(color: textColor),
                   ),
-                );
-              },
-            ).toList(),
+                ),
+              );
+            }).toList(),
             onChanged: (T? val) {
               if (val != null) {
                 onPick.call(val);

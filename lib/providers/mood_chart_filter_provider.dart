@@ -3,10 +3,7 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/helpers/date_helpers.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
 
-enum DateRangeSwitch {
-  previous,
-  next;
-}
+enum DateRangeSwitch { previous, next }
 
 enum ChartFilter {
   lastWeek,
@@ -93,8 +90,8 @@ enum ChartFilter {
 
 class MoodChartFilterProvider extends ChangeNotifier {
   MoodChartFilterProvider()
-      : _activeFilter = ChartFilter.initial,
-        _customDateRange = ChartFilter.initial.getDateTimeRange();
+    : _activeFilter = ChartFilter.initial,
+      _customDateRange = ChartFilter.initial.getDateTimeRange();
 
   ChartFilter _activeFilter;
 

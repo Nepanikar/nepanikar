@@ -13,11 +13,7 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_horizontal_divider.dart';
 
 class MyContactTile extends StatefulWidget {
-  const MyContactTile({
-    super.key,
-    required this.id,
-    required this.record,
-  });
+  const MyContactTile({super.key, required this.id, required this.record});
 
   final String id;
   final MyContactRecord record;
@@ -62,10 +58,7 @@ class _MyContactTileState extends State<MyContactTile> {
     final tileColor = customColorsBasedOnDarkMode(context, NepanikarColors.containerD, null);
     final textColor = textColorBasedOnDarkMode(context);
     final buttonStyle = TextButton.styleFrom(
-      textStyle: const TextStyle(
-        fontWeight: FontWeight.bold,
-        fontSize: 15,
-      ),
+      textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
     );
 
     return Card(
@@ -137,22 +130,12 @@ class _MyContactTileState extends State<MyContactTile> {
                     children: [
                       TextButton(
                         style: buttonStyle,
-                        child: Text(
-                          context.l10n.send_sms,
-                          style: TextStyle(
-                              color: textColor,
-                          ),
-                        ),
+                        child: Text(context.l10n.send_sms, style: TextStyle(color: textColor)),
                         onPressed: () => launchSmsNum(_contactAddressController.text),
                       ),
                       TextButton(
                         style: buttonStyle,
-                        child: Text(
-                          context.l10n.make_call,
-                          style: TextStyle(
-                            color: textColor,
-                          ),
-                        ),
+                        child: Text(context.l10n.make_call, style: TextStyle(color: textColor)),
                         onPressed: () => launchPhoneNum(_contactAddressController.text),
                       ),
                     ],

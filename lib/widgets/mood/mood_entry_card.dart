@@ -25,7 +25,10 @@ class MoodEntryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final backgroundColor = customColorsBasedOnDarkMode(
-        context, NepanikarColors.containerD, NepanikarColors.white);
+      context,
+      NepanikarColors.containerD,
+      NepanikarColors.white,
+    );
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return GestureDetector(
@@ -47,28 +50,19 @@ class MoodEntryCard extends StatelessWidget {
                   children: [
                     Text(
                       dateTime,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
+                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                     ),
                     const SizedBox(height: 10),
                     Text(
                       moodDescription,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                          fontSize: 16,
-                      ),
+                      style: const TextStyle(fontSize: 16),
                     ),
                   ],
                 ),
               ),
-              SvgPicture.asset(
-                moodIcon.path,
-                width: 45,
-                height: 45,
-              ),
-              const SizedBox(width: 10)
+              SvgPicture.asset(moodIcon.path, width: 45, height: 45),
+              const SizedBox(width: 10),
             ],
           ),
         ),

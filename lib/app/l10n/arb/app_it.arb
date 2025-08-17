@@ -328,5 +328,10 @@
   "dark_mode_off": "Modalità scura DISATTIVA",
   "description": "Descrizione",
   "confirm_delete": "Sei sicuro di voler eliminare questa voce di umore?",
-  "enter_summary": "Inserisci un breve riassunto"
+  "enter_summary": "Inserisci un breve riassunto",
+  "emotion_angry": "Arrabbiato",
+  "emotion_excited": "Eccitato",
+  "emotion_happy": "Felice",
+  "emotion_relaxed": "Rilassato",
+  "emotion_sad": "Triste"
 }

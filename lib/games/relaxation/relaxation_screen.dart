@@ -10,28 +10,16 @@ import 'package:url_launcher/url_launcher.dart';
 
 part 'relaxation_screen.g.dart';
 
-enum RelaxationType {
-  general,
-  morning,
-  evening,
-}
+enum RelaxationType { general, morning, evening }
 
-@TypedGoRoute<RelaxationRoute>(
-  path: '/games/relaxation/:relaxationType',
-)
-
+@TypedGoRoute<RelaxationRoute>(path: '/games/relaxation/:relaxationType')
 class RelaxationRoute extends GoRouteData with _$RelaxationRoute {
-
-  const RelaxationRoute({
-    required this.relaxationType,
-  });
+  const RelaxationRoute({required this.relaxationType});
 
   final RelaxationType relaxationType;
 
   @override
-  Widget build(BuildContext context, _) => RelaxationScreen(
-        relaxationType: relaxationType,
-      );
+  Widget build(BuildContext context, _) => RelaxationScreen(relaxationType: relaxationType);
 }
 
 class RelaxationScreen extends StatefulWidget {
@@ -94,10 +82,7 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
         url = 'https://www.odpoveduvnitr.cz/';
     }
 
-    player.open(
-      Audio(asset),
-      autoStart: false,
-    );
+    player.open(Audio(asset), autoStart: false);
 
     player.current.listen((playingAudio) {
       if (playingAudio?.audio != null) {
@@ -130,9 +115,7 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
 
     return Scaffold(
       backgroundColor: backgroundColor,
-      appBar: AppBar(
-        title: Text(title),
-      ),
+      appBar: AppBar(title: Text(title)),
       body: Stack(
         children: [
           if (description != null)
@@ -201,16 +184,10 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
                       onChanged: (double value) {
                         if (mounted) {
                           setState(() {
-                            sliderPosition = Duration(
-                              milliseconds: value.toInt(),
-                            );
+                            sliderPosition = Duration(milliseconds: value.toInt());
                           });
                         }
-                        player.seek(
-                          Duration(
-                            milliseconds: value.toInt(),
-                          ),
-                        );
+                        player.seek(Duration(milliseconds: value.toInt()));
                       },
                     ),
                   ),

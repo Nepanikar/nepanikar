@@ -88,20 +88,14 @@ part 'routes.g.dart';
 /// More info in the package docs: https://pub.dev/packages/go_router.
 @TypedGoRoute<MainRoute>(
   path: '/',
-  routes: [
-    ..._settingsRoutes,
-    ..._gameRoutes,
-    ..._contactRoutes,
-    ..._homeRoutes,
-  ],
+  routes: [..._settingsRoutes, ..._gameRoutes, ..._contactRoutes, ..._homeRoutes],
 )
 class MainRoute extends GoRouteData with _$MainRoute {
   const MainRoute();
 
   @override
-  Widget build(BuildContext context, _) => MainScreen(
-        extra: GoRouterState.of(context).extra as MainPageExtra?,
-      );
+  Widget build(BuildContext context, _) =>
+      MainScreen(extra: GoRouterState.of(context).extra as MainPageExtra?);
 }
 
 const _settingsRoutes = <TypedGoRoute<GoRouteData>>[
@@ -192,9 +186,7 @@ const _eatingDisorderTasksRoutes = <TypedGoRoute<GoRouteData>>[
 const _eatingDisorderTipsRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<EatingDisorderTipsRoute>(path: 'home/eating-disorder/tips'),
   TypedGoRoute<EatingDisorderTipsFigureAppRoute>(path: 'home/eating-disorder/tips/figure'),
-  TypedGoRoute<EatingDisorderTipsRemorseAppRoute>(
-    path: 'home/eating-disorder/tips/remorse',
-  ),
+  TypedGoRoute<EatingDisorderTipsRemorseAppRoute>(path: 'home/eating-disorder/tips/remorse'),
   TypedGoRoute<EatingDisorderTipsOvereatAppRoute>(path: 'home/eating-disorder/tips/overeat'),
   TypedGoRoute<EatingDisorderTipsVomitAppRoute>(path: 'home/eating-disorder/tips/vomit'),
   TypedGoRoute<EatingDisorderTipsFailAppRoute>(path: 'home/eating-disorder/tips/fail'),

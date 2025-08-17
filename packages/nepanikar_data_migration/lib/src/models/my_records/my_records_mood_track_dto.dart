@@ -17,7 +17,6 @@ class MyRecordsMoodTrackDTO extends Equatable {
     final convertedEmotions = <DateTime, List<String>>{};
     final confValues = config.items(sectionName);
 
-
     if (confValues != null) {
       for (final item in confValues) {
         String? description;
@@ -30,14 +29,15 @@ class MyRecordsMoodTrackDTO extends Equatable {
           if (key != null && keyValues != null && key.contains('value')) {
             final split = keyValues.split('|');
             final dateTime = split[0].getIniDateTimeValue();
-            if(split.length > 1) {
+            if (split.length > 1) {
               value = split[1].getIniIntValue();
             }
-            final emotions = split.length > 2 ? split[2].split(',').cast<String>() : [].cast<String>();
-            if(split.length > 3){
+            final emotions =
+                split.length > 2 ? split[2].split(',').cast<String>() : [].cast<String>();
+            if (split.length > 3) {
               summary = split[3].getIniStrValue();
             }
-            if(split.length > 4) {
+            if (split.length > 4) {
               description = split[4].getIniStrValue();
             }
             if (dateTime != null && value != null) {
@@ -105,16 +105,18 @@ class MyRecordsMoodTrackDTO extends Equatable {
       values: convertedValues.isEmpty ? null : convertedValues,
       summaries: convertedSummaries.isEmpty ? null : convertedSummaries,
       descriptions: convertedDescriptions.isEmpty ? null : convertedDescriptions,
-      emotions:  convertedEmotions.isEmpty ? null : convertedEmotions,
+      emotions: convertedEmotions.isEmpty ? null : convertedEmotions,
     );
   }
 
   factory MyRecordsMoodTrackDTO.fromValues(
-      Map<DateTime, int> values,
-      Map<DateTime, String> summaries,
-      Map<DateTime, String> descriptions,
-      Map<DateTime, List<String>> emotions,
-      ) => MyRecordsMoodTrackDTO._(values: values, summaries: summaries, descriptions: descriptions, emotions: emotions);
+    Map<DateTime, int> values,
+    Map<DateTime, String> summaries,
+    Map<DateTime, String> descriptions,
+    Map<DateTime, List<String>> emotions,
+  ) =>
+      MyRecordsMoodTrackDTO._(
+          values: values, summaries: summaries, descriptions: descriptions, emotions: emotions);
 
   /// The map of mood track values.
   ///

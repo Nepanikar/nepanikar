@@ -47,7 +47,7 @@ class NepanikarColors {
     2: Color(0xffC78B31),
     3: Color(0xffDCC678),
     4: Color(0xffA6AC5A),
-    5: Color(0xff49A3BF)
+    5: Color(0xff49A3BF),
   };
 
   //Dark mode colors

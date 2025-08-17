@@ -9,10 +9,7 @@ import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar_contacts_gen/nepanikar_contacts_gen.dart';
 
 class PhoneContactTile extends StatelessWidget {
-  const PhoneContactTile({
-    super.key,
-    required this.phoneContact,
-  });
+  const PhoneContactTile({super.key, required this.phoneContact});
 
   final PhoneContact phoneContact;
 
@@ -20,9 +17,8 @@ class PhoneContactTile extends StatelessWidget {
 
   TextStyle get _descriptionNumTextStyle => NepanikarFonts.bodyRoman;
 
-  TextStyle get _phoneNumTextStyle => NepanikarFonts.bodyBlack.copyWith(
-        color: NepanikarColors.primary,
-      );
+  TextStyle get _phoneNumTextStyle =>
+      NepanikarFonts.bodyBlack.copyWith(color: NepanikarColors.primary);
 
   @override
   Widget build(BuildContext context) {
@@ -75,44 +71,45 @@ class PhoneContactTile extends StatelessWidget {
         textTextStyle: _textTextStyle.copyWith(color: textColorMode),
         description: contact.subtitle,
         descriptionTextStyle: _descriptionNumTextStyle.copyWith(color: textColorMode),
-        image: ExcludeSemantics(child: Assets.illustrations.contacts.phones.svg(color: textColorMode)),
+        image: ExcludeSemantics(
+          child: Assets.illustrations.contacts.phones.svg(color: textColorMode),
+        ),
         trailing: const SizedBox.shrink(),
         onTap: null,
         subContent: Column(
-          children: contact.subPhoneContacts.map(
-            (subContact) {
-              final isUrl = subContact.tel.contains('http');
-              return ListTile(
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Flexible(
-                      child: Padding(
-                        padding: isSingleSubList
-                            ? const EdgeInsets.symmetric(vertical: 12)
-                            : EdgeInsets.zero,
-                        child: Text(
-                          subContact.title,
-                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: textColorMode),
-                        ),
-                      ),
-                    ),
-                    Flexible(
+          children: contact.subPhoneContacts.map((subContact) {
+            final isUrl = subContact.tel.contains('http');
+            return ListTile(
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Flexible(
+                    child: Padding(
+                      padding: isSingleSubList
+                          ? const EdgeInsets.symmetric(vertical: 12)
+                          : EdgeInsets.zero,
                       child: Text(
-                        subContact.tel,
-                        semanticsLabel: isUrl ? null : subContact.tel.spellOutNumFormat,
-                        style: _phoneNumTextStyle.copyWith(color: textColorMode),
+                        subContact.title,
+                        style: Theme.of(
+                          context,
+                        ).textTheme.bodyMedium!.copyWith(color: textColorMode),
                       ),
                     ),
-                  ],
-                ),
-                onTap: () async => isUrl
-                    ? launchUrLink(subContact.tel)
-                    : launchPhoneNum(subContact.unformattedTel),
-                onLongPress: () async => copyContact(context, subContact.unformattedTel),
-              );
-            },
-          ).toList(),
+                  ),
+                  Flexible(
+                    child: Text(
+                      subContact.tel,
+                      semanticsLabel: isUrl ? null : subContact.tel.spellOutNumFormat,
+                      style: _phoneNumTextStyle.copyWith(color: textColorMode),
+                    ),
+                  ),
+                ],
+              ),
+              onTap: () async =>
+                  isUrl ? launchUrLink(subContact.tel) : launchPhoneNum(subContact.unformattedTel),
+              onLongPress: () async => copyContact(context, subContact.unformattedTel),
+            );
+          }).toList(),
         ),
       ),
     );

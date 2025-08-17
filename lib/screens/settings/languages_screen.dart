@@ -11,12 +11,8 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
 part 'languages_screen.g.dart';
 
-@TypedGoRoute<LanguagesRoute>(
-  path: '/settings/language',
-)
-
+@TypedGoRoute<LanguagesRoute>(path: '/settings/language')
 class LanguagesRoute extends GoRouteData with _$LanguagesRoute {
-
   const LanguagesRoute();
 
   @override
@@ -85,16 +81,9 @@ class _LanguageItem extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                text.toUpperCase(),
-                style: NepanikarFonts.bodyHeavy,
-              ),
+              Text(text.toUpperCase(), style: NepanikarFonts.bodyHeavy),
               if (selected)
-                const Icon(
-                  Icons.check_outlined,
-                  color: NepanikarColors.success,
-                  size: 20,
-                )
+                const Icon(Icons.check_outlined, color: NepanikarColors.success, size: 20),
             ],
           ),
         ),

@@ -5,12 +5,8 @@ import 'package:nepanikar/services/db/depression/depression_nice_made_happy_dao.
 import 'package:nepanikar/widgets/input_form_contents/list_form_content.dart';
 part 'depression_nice_made_happy_screen.g.dart';
 
-@TypedGoRoute<DepressionNiceMadeHappyRoute>(
-  path: '/home/depression/nice-made-happy',
-)
-
+@TypedGoRoute<DepressionNiceMadeHappyRoute>(path: '/home/depression/nice-made-happy')
 class DepressionNiceMadeHappyRoute extends GoRouteData with _$DepressionNiceMadeHappyRoute {
-
   const DepressionNiceMadeHappyRoute();
 
   @override

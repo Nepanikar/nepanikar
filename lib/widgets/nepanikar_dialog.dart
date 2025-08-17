@@ -3,12 +3,7 @@ import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/widgets/nepanikar_button.dart';
 
-enum DialogDefaultAction {
-  primary,
-  secondary,
-  both,
-  neither;
-}
+enum DialogDefaultAction { primary, secondary, both, neither }
 
 typedef DialogButtonHandler = void Function(BuildContext dialogContext);
 
@@ -39,16 +34,10 @@ class NepanikarDialog extends StatelessWidget {
     required DialogButtonHandler onTap,
   }) {
     if (isPrimaryAction) {
-      return NepanikarButton(
-        onTap: () => onTap.call(context),
-        text: label,
-      );
+      return NepanikarButton(onTap: () => onTap.call(context), text: label);
     }
 
-    return NepanikarButton.secondary(
-      onTap: () => onTap.call(context),
-      text: label,
-    );
+    return NepanikarButton.secondary(onTap: () => onTap.call(context), text: label);
   }
 
   @override
@@ -70,11 +59,7 @@ class NepanikarDialog extends StatelessWidget {
               ),
               const SizedBox(height: 10),
             ],
-            Text(
-              text,
-              textAlign: TextAlign.center,
-              style: NepanikarFonts.bodyRoman,
-            ),
+            Text(text, textAlign: TextAlign.center, style: NepanikarFonts.bodyRoman),
             SizedBox(height: text.isEmpty ? 10 : 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -82,7 +67,8 @@ class NepanikarDialog extends StatelessWidget {
                 Flexible(
                   child: _buildButton(
                     context,
-                    isPrimaryAction: defaultAction == DialogDefaultAction.secondary ||
+                    isPrimaryAction:
+                        defaultAction == DialogDefaultAction.secondary ||
                         defaultAction == DialogDefaultAction.both,
                     onTap: onSecondaryBtnTap,
                     label: secondaryBtnLabel,
@@ -92,7 +78,8 @@ class NepanikarDialog extends StatelessWidget {
                 Flexible(
                   child: _buildButton(
                     context,
-                    isPrimaryAction: defaultAction == DialogDefaultAction.primary ||
+                    isPrimaryAction:
+                        defaultAction == DialogDefaultAction.primary ||
                         defaultAction == DialogDefaultAction.both,
                     onTap: onPrimaryBtnTap,
                     label: primaryBtnLabel,

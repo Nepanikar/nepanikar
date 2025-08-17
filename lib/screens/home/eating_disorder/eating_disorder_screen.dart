@@ -15,12 +15,8 @@ import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 part 'eating_disorder_screen.g.dart';
 
-@TypedGoRoute<EatingDisorderRoute>(
-  path: '/home/eating-disorder',
-)
-
+@TypedGoRoute<EatingDisorderRoute>(path: '/home/eating-disorder')
 class EatingDisorderRoute extends GoRouteData with _$EatingDisorderRoute {
-
   const EatingDisorderRoute();
 
   ContactsDataManager get _contactsManager => registry.get<ContactsDataManager>();
@@ -30,11 +26,10 @@ class EatingDisorderRoute extends GoRouteData with _$EatingDisorderRoute {
   @override
   Widget build(BuildContext context, _) {
     final locale = _userSettingsDao.locale;
-    final eatingDisorderContacts =
-        _contactsManager.getContactsFromLocale(locale).eatingDisorderContacts;
-    return EatingDisorderScreen(
-      shouldShowContactsTile: eatingDisorderContacts != null,
-    );
+    final eatingDisorderContacts = _contactsManager
+        .getContactsFromLocale(locale)
+        .eatingDisorderContacts;
+    return EatingDisorderScreen(shouldShowContactsTile: eatingDisorderContacts != null);
   }
 }
 

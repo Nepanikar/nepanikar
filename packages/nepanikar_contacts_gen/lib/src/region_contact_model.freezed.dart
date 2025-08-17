@@ -25,14 +25,12 @@ mixin _$RegionContact {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $RegionContactCopyWith<RegionContact> get copyWith =>
-      throw _privateConstructorUsedError;
+  $RegionContactCopyWith<RegionContact> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $RegionContactCopyWith<$Res> {
-  factory $RegionContactCopyWith(
-          RegionContact value, $Res Function(RegionContact) then) =
+  factory $RegionContactCopyWith(RegionContact value, $Res Function(RegionContact) then) =
       _$RegionContactCopyWithImpl<$Res, RegionContact>;
   @useResult
   $Res call({String region, List<RegionItemContact> contacts});
@@ -68,10 +66,8 @@ class _$RegionContactCopyWithImpl<$Res, $Val extends RegionContact>
 }
 
 /// @nodoc
-abstract class _$$_RegionContactCopyWith<$Res>
-    implements $RegionContactCopyWith<$Res> {
-  factory _$$_RegionContactCopyWith(
-          _$_RegionContact value, $Res Function(_$_RegionContact) then) =
+abstract class _$$_RegionContactCopyWith<$Res> implements $RegionContactCopyWith<$Res> {
+  factory _$$_RegionContactCopyWith(_$_RegionContact value, $Res Function(_$_RegionContact) then) =
       __$$_RegionContactCopyWithImpl<$Res>;
   @override
   @useResult
@@ -82,8 +78,7 @@ abstract class _$$_RegionContactCopyWith<$Res>
 class __$$_RegionContactCopyWithImpl<$Res>
     extends _$RegionContactCopyWithImpl<$Res, _$_RegionContact>
     implements _$$_RegionContactCopyWith<$Res> {
-  __$$_RegionContactCopyWithImpl(
-      _$_RegionContact _value, $Res Function(_$_RegionContact) _then)
+  __$$_RegionContactCopyWithImpl(_$_RegionContact _value, $Res Function(_$_RegionContact) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -108,12 +103,10 @@ class __$$_RegionContactCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_RegionContact implements _RegionContact {
-  const _$_RegionContact(
-      {required this.region, required final List<RegionItemContact> contacts})
+  const _$_RegionContact({required this.region, required final List<RegionItemContact> contacts})
       : _contacts = contacts;
 
-  factory _$_RegionContact.fromJson(Map<String, dynamic> json) =>
-      _$$_RegionContactFromJson(json);
+  factory _$_RegionContact.fromJson(Map<String, dynamic> json) => _$$_RegionContactFromJson(json);
 
   @override
   final String region;
@@ -141,8 +134,8 @@ class _$_RegionContact implements _RegionContact {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, region, const DeepCollectionEquality().hash(_contacts));
+  int get hashCode =>
+      Object.hash(runtimeType, region, const DeepCollectionEquality().hash(_contacts));
 
   @JsonKey(ignore: true)
   @override
@@ -163,8 +156,7 @@ abstract class _RegionContact implements RegionContact {
       {required final String region,
       required final List<RegionItemContact> contacts}) = _$_RegionContact;
 
-  factory _RegionContact.fromJson(Map<String, dynamic> json) =
-      _$_RegionContact.fromJson;
+  factory _RegionContact.fromJson(Map<String, dynamic> json) = _$_RegionContact.fromJson;
 
   @override
   String get region;
@@ -172,8 +164,7 @@ abstract class _RegionContact implements RegionContact {
   List<RegionItemContact> get contacts;
   @override
   @JsonKey(ignore: true)
-  _$$_RegionContactCopyWith<_$_RegionContact> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_RegionContactCopyWith<_$_RegionContact> get copyWith => throw _privateConstructorUsedError;
 }
 
 RegionItemContact _$RegionItemContactFromJson(Map<String, dynamic> json) {
@@ -187,8 +178,7 @@ mixin _$RegionItemContact {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $RegionItemContactCopyWith<RegionItemContact> get copyWith =>
-      throw _privateConstructorUsedError;
+  $RegionItemContactCopyWith<RegionItemContact> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -230,10 +220,9 @@ class _$RegionItemContactCopyWithImpl<$Res, $Val extends RegionItemContact>
 }
 
 /// @nodoc
-abstract class _$$_RegionItemContactCopyWith<$Res>
-    implements $RegionItemContactCopyWith<$Res> {
-  factory _$$_RegionItemContactCopyWith(_$_RegionItemContact value,
-          $Res Function(_$_RegionItemContact) then) =
+abstract class _$$_RegionItemContactCopyWith<$Res> implements $RegionItemContactCopyWith<$Res> {
+  factory _$$_RegionItemContactCopyWith(
+          _$_RegionItemContact value, $Res Function(_$_RegionItemContact) then) =
       __$$_RegionItemContactCopyWithImpl<$Res>;
   @override
   @useResult
@@ -270,8 +259,7 @@ class __$$_RegionItemContactCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_RegionItemContact implements _RegionItemContact {
-  const _$_RegionItemContact(
-      {required this.name, required final List<String> contactAddresses})
+  const _$_RegionItemContact({required this.name, required final List<String> contactAddresses})
       : _contactAddresses = contactAddresses;
 
   factory _$_RegionItemContact.fromJson(Map<String, dynamic> json) =>
@@ -282,8 +270,7 @@ class _$_RegionItemContact implements _RegionItemContact {
   final List<String> _contactAddresses;
   @override
   List<String> get contactAddresses {
-    if (_contactAddresses is EqualUnmodifiableListView)
-      return _contactAddresses;
+    if (_contactAddresses is EqualUnmodifiableListView) return _contactAddresses;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_contactAddresses);
   }
@@ -299,21 +286,19 @@ class _$_RegionItemContact implements _RegionItemContact {
         (other.runtimeType == runtimeType &&
             other is _$_RegionItemContact &&
             (identical(other.name, name) || other.name == name) &&
-            const DeepCollectionEquality()
-                .equals(other._contactAddresses, _contactAddresses));
+            const DeepCollectionEquality().equals(other._contactAddresses, _contactAddresses));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name,
-      const DeepCollectionEquality().hash(_contactAddresses));
+  int get hashCode =>
+      Object.hash(runtimeType, name, const DeepCollectionEquality().hash(_contactAddresses));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$_RegionItemContactCopyWith<_$_RegionItemContact> get copyWith =>
-      __$$_RegionItemContactCopyWithImpl<_$_RegionItemContact>(
-          this, _$identity);
+      __$$_RegionItemContactCopyWithImpl<_$_RegionItemContact>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -328,8 +313,7 @@ abstract class _RegionItemContact implements RegionItemContact {
       {required final String name,
       required final List<String> contactAddresses}) = _$_RegionItemContact;
 
-  factory _RegionItemContact.fromJson(Map<String, dynamic> json) =
-      _$_RegionItemContact.fromJson;
+  factory _RegionItemContact.fromJson(Map<String, dynamic> json) = _$_RegionItemContact.fromJson;
 
   @override
   String get name;
