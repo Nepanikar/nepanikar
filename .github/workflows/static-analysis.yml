@@ -24,6 +24,9 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Generate code
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+
       - name: Verify formatting dart
         run: sh ./bin/ci_workflow_scripts/verify_formatting.sh
 
@@ -42,6 +45,9 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
+
+      - name: Generate code
+        run: flutter pub run build_runner build --delete-conflicting-outputs
 
       - uses: invertase/github-action-dart-analyzer@v1
         with:

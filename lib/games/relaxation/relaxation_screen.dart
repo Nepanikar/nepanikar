@@ -139,11 +139,12 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
                   button: true,
                   child: GestureDetector(
                     onTap: () {
-                    if (isPlaying) {
-                    player.pause();
-                    } else {
-                    player.play();
-                    }},
+                      if (isPlaying) {
+                        player.pause();
+                      } else {
+                        player.play();
+                      }
+                    },
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
                       child: Container(

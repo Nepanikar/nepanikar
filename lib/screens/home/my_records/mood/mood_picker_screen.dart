@@ -100,8 +100,7 @@ class _MoodPickerScreenState<T extends MoodTrackDao> extends State<MoodPickerScr
     });
   }
 
-  List<String> translateEmotions(List<String> originalEmotions)
-  {
+  List<String> translateEmotions(List<String> originalEmotions) {
     final List<String> translated = [];
     for (final emotion in originalEmotions) {
       if (emotion case "Angry") {
@@ -116,7 +115,8 @@ class _MoodPickerScreenState<T extends MoodTrackDao> extends State<MoodPickerScr
         translated.add(context.l10n.emotion_sad);
       } else {
         translated.add(emotion);
-      }}
+      }
+    }
     return translated;
   }
 
