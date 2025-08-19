@@ -13,7 +13,7 @@ First aid for psychological issues - Official mobile app for [nepanikar.eu](http
 
 ## Project documentation
 
-###Running application
+### Running application
 Run command `flutter run` from root folder of application.
 
 ### Adding a new asset

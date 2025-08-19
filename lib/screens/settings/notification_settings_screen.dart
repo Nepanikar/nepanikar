@@ -128,6 +128,7 @@ class NotificationSettingsScreen extends StatelessWidget {
             style: Theme.of(context).textTheme.titleLarge,
           ),
           trailing: Switch(
+            activeTrackColor: Theme.of(context).highlightColor,
             value: notificationTypeSettings != null,
             onChanged: (v) => _onSwitchChanged(l10n, notificationType, v, reminderTime),
           ),
