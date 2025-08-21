@@ -174,7 +174,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ExcludeSemantics(
                             child: Text(
                               context.l10n.follow_us,
-                              style: NepanikarFonts.bodySmallMedium.copyWith(fontSize: 15, color: Theme.of(context).hintColor),
+                              style: NepanikarFonts.bodySmallMedium.copyWith(
+                                fontSize: 15,
+                                color: Theme.of(context).hintColor,
+                              ),
                             ),
                           ),
                           const Spacer(),
