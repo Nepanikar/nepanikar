@@ -225,7 +225,7 @@ class _MoodPickerScreenState<T extends MoodTrackDao> extends State<MoodPickerScr
                         searchable: true,
                         items: items,
                         checkColor: Theme.of(context).brightness == Brightness.dark
-                            ? Theme.of(context).hintColor
+                            ? Theme.of(context).primaryColor
                             : Colors.white,
                         backgroundColor: containerColor,
                         title: Text(context.l10n.emotions),

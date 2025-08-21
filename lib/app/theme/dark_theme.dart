@@ -142,7 +142,9 @@ class darkTheme {
       unselectedItemColor: Colors.white,
     ),
     textSelectionTheme: const TextSelectionThemeData(
-      cursorColor: NepanikarColors.white, // Set cursor color to white here
+      selectionColor: NepanikarColors.baseButtonD,
+      cursorColor: NepanikarColors.baseButtonD,
+      selectionHandleColor: NepanikarColors.baseButtonD,
     ),
   );
 }
