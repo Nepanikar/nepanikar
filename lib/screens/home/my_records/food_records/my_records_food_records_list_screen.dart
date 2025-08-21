@@ -48,7 +48,7 @@ class MyRecordsFoodRecordsListScreen extends StatelessWidget {
               final goRouter = GoRouter.of(context);
               final id = await _myRecordsFoodRecordDao.createRecord();
               unawaited(analytics.logEvent(name: 'food_record_created'));
-              goRouter.push(
+              await goRouter.push(
                 const MyRecordsFoodRecordsDetailMenuListRoute().location,
                 extra: FoodRecordRouteExtraData(id: id, dailyFoodRecord: getEmptyDailyFoodRecord()),
               );
@@ -64,7 +64,7 @@ class MyRecordsFoodRecordsListScreen extends StatelessWidget {
             final goRouter = GoRouter.of(context);
             final id = await _myRecordsFoodRecordDao.createRecord();
             unawaited(analytics.logEvent(name: 'food_record_created'));
-            goRouter.push(
+            await goRouter.push(
               const MyRecordsFoodRecordsDetailMenuListRoute().location,
               extra: FoodRecordRouteExtraData(id: id, dailyFoodRecord: getEmptyDailyFoodRecord()),
             );

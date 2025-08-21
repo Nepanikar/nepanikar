@@ -75,9 +75,7 @@ class Nepanikar extends StatelessWidget {
                           child: MediaQuery(
                             // To not influence app's font size by the system font size.
                             // TODO: Should be resolved, accessibility is important.
-                            data: MediaQuery.of(
-                              context,
-                            ).copyWith(textScaler: const TextScaler.linear(1.0)),
+                            data: MediaQuery.of(context).copyWith(textScaler: TextScaler.noScaling),
                             child: child,
                           ),
                         )

@@ -134,7 +134,7 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
     setState(() {
       _currentDate = DateUtil.changeMonth(_currentDate ?? DateTime.now(), direction);
     });
-    if (widget.onMonthChange != null) widget.onMonthChange!(_currentDate!);
+    widget.onMonthChange!(_currentDate!);
   }
 
   /// Header widget which shows left, right buttons and year/month text.

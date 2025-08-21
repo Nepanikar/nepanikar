@@ -48,7 +48,7 @@ class MyContactsRecordsScreen extends StatelessWidget {
               IconButton(
                 icon: const Icon(CupertinoIcons.add),
                 tooltip: context.l10n.add_item,
-                onPressed: () async => _onItemAdd(context),
+                onPressed: () => _onItemAdd(context),
               ),
             ],
             android: () => null,
@@ -57,7 +57,7 @@ class MyContactsRecordsScreen extends StatelessWidget {
         floatingActionButton: platformMapper<Widget?>(
           ios: () => null,
           android: () => FloatingActionButton(
-            onPressed: () async => _onItemAdd(context),
+            onPressed: () => _onItemAdd(context),
             tooltip: context.l10n.add_item,
             child: const Icon(Icons.add),
           ),

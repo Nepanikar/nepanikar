@@ -152,7 +152,7 @@ class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsS
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: MoodPicker(
-                    onPick: (mood) async {
+                    onPick: (mood) {
                       final l10n = context.l10n;
                       unawaited(_notificationsService.rescheduleNotifications(l10n));
                     },
@@ -197,7 +197,7 @@ class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsS
                         height: 40,
                         width: 70,
                         child: ElevatedButton(
-                          onPressed: () async {
+                          onPressed: () {
                             setState(() {
                               _entryCount += 5;
                             });
@@ -249,7 +249,11 @@ class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsS
               },
             ),
             IconButton(
-              icon: ExcludeSemantics(child: Assets.icons.notificationBell.svg(color: Colors.white)),
+              icon: ExcludeSemantics(
+                child: Assets.icons.notificationBell.svg(
+                  colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                ),
+              ),
               tooltip: context.l10n.notifications,
               onPressed: _notificationsService.checkPermission,
             ),
@@ -303,8 +307,9 @@ class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsS
     final arrowCanShiftColor = customColorsBasedOnDarkMode(context, NepanikarColors.white, null);
 
     return Consumer<MoodChartFilterProvider>(
-      builder: (_, moodChartFilterProvider, __) {
+      builder: (_, moodChartFilterProvider, _) {
         final svgColor = svgColorBasedOnDarkMode(context);
+        final colorFilter = svgColor != null ? ColorFilter.mode(svgColor, BlendMode.srcIn) : null;
         final activeFilter = moodChartFilterProvider.activeFilter;
         final dateRange = moodChartFilterProvider.customDateRange;
         final canShiftNextDateRange = moodChartFilterProvider.canShiftDateRangeNext;
@@ -337,7 +342,7 @@ class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsS
               children: [
                 IconButton(
                   icon: ExcludeSemantics(
-                    child: Assets.icons.navigation.arrowLeft.svg(color: svgColor),
+                    child: Assets.icons.navigation.arrowLeft.svg(colorFilter: colorFilter),
                   ),
                   tooltip: context.l10n.filter_previous_time_period,
                   onPressed: () => moodChartFilterProvider.shiftDateRange(DateRangeSwitch.previous),
@@ -359,7 +364,9 @@ class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsS
                   icon: ExcludeSemantics(
                     child: Assets.icons.navigation.arrowRight.svg(
                       // color: !canShiftNextDateRange ? Colors.grey : null,
-                      color: !canShiftNextDateRange ? containerColor : arrowCanShiftColor,
+                      colorFilter: !canShiftNextDateRange
+                          ? ColorFilter.mode(containerColor!, BlendMode.srcIn)
+                          : ColorFilter.mode(arrowCanShiftColor!, BlendMode.srcIn),
                     ),
                   ),
                   tooltip: context.l10n.filter_next_time_period,
@@ -379,7 +386,7 @@ class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsS
   /////////////////////////////Build Heat Map Function //////////////////////////////
   Widget _createHeatMap(BuildContext context, {required List<MoodTrack> moodTracks}) {
     return Consumer<MoodHeatmapFilterProvider>(
-      builder: (_, provider, __) {
+      builder: (_, provider, _) {
         final activeFilter = provider.activeFilter;
         final dateRange = provider.activeDateRange;
         final averageScoreForDay = calculateAverageMoodScores(moodTracks);

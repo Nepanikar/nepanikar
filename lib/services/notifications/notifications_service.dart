@@ -60,7 +60,7 @@ class NotificationsService {
     }
 
     // Allowed, go to next screen.
-    _router.push(const NotificationSettingsRoute().location);
+    await _router.push(const NotificationSettingsRoute().location);
   }
 
   // Cancel all scheduled notifications.

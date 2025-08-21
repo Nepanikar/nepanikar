@@ -15,6 +15,10 @@ class HomeTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final colorFilter = ColorFilter.mode(
+      isDarkMode ? Colors.white : NepanikarColors.primaryD,
+      BlendMode.srcIn,
+    );
 
     return Semantics(
       button: true,
@@ -23,12 +27,12 @@ class HomeTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xff2C0B4A).withOpacity(0.04),
+              color: const Color(0xff2C0B4A).withValues(alpha: 0.04),
               blurRadius: 4,
               offset: const Offset(0, 2), // changes position of shadow
             ),
             BoxShadow(
-              color: NepanikarColors.dark.withOpacity(0.12),
+              color: NepanikarColors.dark.withValues(alpha: 0.12),
               blurRadius: 48,
               offset: const Offset(0, 16), // changes position of shadow
             ),
@@ -53,7 +57,7 @@ class HomeTile extends StatelessWidget {
                         Assets.icons.navigation.arrowRight.svg(
                           width: 16,
                           height: 16,
-                          color: isDarkMode ? Colors.white : NepanikarColors.primaryD,
+                          colorFilter: colorFilter,
                         ),
                       ],
                     ),

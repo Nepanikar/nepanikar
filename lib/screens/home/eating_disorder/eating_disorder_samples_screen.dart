@@ -24,11 +24,12 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final svgColor = svgColorBasedOnDarkMode(context);
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final colorFilter = svgColor != null ? ColorFilter.mode(svgColor, BlendMode.srcIn) : null;
 
     final modules = <Widget>[
       LongTile(
         text: context.l10n.food_breakfast,
-        image: Assets.illustrations.modules.eatingDisorder.svg(color: svgColor),
+        image: Assets.illustrations.modules.eatingDisorder.svg(colorFilter: colorFilter),
         onTap: () => context.push(
           Uri(
             path: const MealPlanRoute().location,
@@ -39,7 +40,7 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
       ),
       LongTile(
         text: '${context.l10n.food_am_snack} ',
-        image: Assets.illustrations.modules.eatingDisorder.svg(color: svgColor),
+        image: Assets.illustrations.modules.eatingDisorder.svg(colorFilter: colorFilter),
         onTap: () => context.push(
           Uri(
             path: const MealPlanRoute().location,
@@ -50,7 +51,7 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
       ),
       LongTile(
         text: '${context.l10n.food_lunch} ',
-        image: Assets.illustrations.modules.eatingDisorder.svg(color: svgColor),
+        image: Assets.illustrations.modules.eatingDisorder.svg(colorFilter: colorFilter),
         onTap: () => context.push(
           Uri(
             path: const MealPlanRoute().location,
@@ -61,7 +62,7 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
       ),
       LongTile(
         text: context.l10n.food_pm_snack,
-        image: Assets.illustrations.modules.eatingDisorder.svg(color: svgColor),
+        image: Assets.illustrations.modules.eatingDisorder.svg(colorFilter: colorFilter),
         onTap: () => context.push(
           Uri(
             path: const MealPlanRoute().location,
@@ -72,7 +73,7 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
       ),
       LongTile(
         text: context.l10n.food_dinner,
-        image: Assets.illustrations.modules.eatingDisorder.svg(color: svgColor),
+        image: Assets.illustrations.modules.eatingDisorder.svg(colorFilter: colorFilter),
         onTap: () => context.push(
           Uri(
             path: const MealPlanRoute().location,

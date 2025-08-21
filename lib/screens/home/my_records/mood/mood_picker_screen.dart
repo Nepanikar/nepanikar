@@ -15,6 +15,7 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/mood/chosen_emotions.dart';
 import 'package:nepanikar/widgets/mood/mood_picker.dart';
 import 'package:provider/provider.dart';
+
 part 'mood_picker_screen.g.dart';
 
 @TypedGoRoute<MoodPickerRoute>(path: '/home/my-records/mood-picker')
@@ -103,15 +104,15 @@ class _MoodPickerScreenState<T extends MoodTrackDao> extends State<MoodPickerScr
   List<String> translateEmotions(List<String> originalEmotions) {
     final List<String> translated = [];
     for (final emotion in originalEmotions) {
-      if (emotion case "Angry") {
+      if (emotion case 'Angry') {
         translated.add(context.l10n.emotion_angry);
-      } else if (emotion case "Excited") {
+      } else if (emotion case 'Excited') {
         translated.add(context.l10n.emotion_excited);
-      } else if (emotion case "Happy") {
+      } else if (emotion case 'Happy') {
         translated.add(context.l10n.emotion_happy);
-      } else if (emotion case "Relaxed") {
+      } else if (emotion case 'Relaxed') {
         translated.add(context.l10n.emotion_relaxed);
-      } else if (emotion case "Sad") {
+      } else if (emotion case 'Sad') {
         translated.add(context.l10n.emotion_sad);
       } else {
         translated.add(emotion);
@@ -175,7 +176,7 @@ class _MoodPickerScreenState<T extends MoodTrackDao> extends State<MoodPickerScr
                       activeMood: currentMood,
                       autoSizeTitle: false,
                       showLabels: false,
-                      onPick: (mood) async {
+                      onPick: (mood) {
                         currentMood = mood;
                       },
                     );
@@ -223,6 +224,9 @@ class _MoodPickerScreenState<T extends MoodTrackDao> extends State<MoodPickerScr
                         key: multiSelectKey,
                         searchable: true,
                         items: items,
+                        checkColor: Theme.of(context).brightness == Brightness.dark
+                            ? Theme.of(context).hintColor
+                            : Colors.white,
                         backgroundColor: containerColor,
                         title: Text(context.l10n.emotions),
                         decoration: BoxDecoration(
@@ -337,7 +341,7 @@ class _MoodPickerScreenState<T extends MoodTrackDao> extends State<MoodPickerScr
                         listen: false,
                       ).saveMoodTrack(summary, description, selectedEmotions, currentMood!);
                     }
-                    if (mounted) {
+                    if (mounted && context.mounted) {
                       await context.push(const MoodRecordsRoute().location);
                     }
                   },

@@ -172,7 +172,7 @@ class _MathGameScreenState extends State<MathGameScreen> {
                             const SizedBox(height: 18),
                             ValueListenableBuilder<TextEditingValue>(
                               valueListenable: _textEditingController,
-                              builder: (_, textEditingValue, __) {
+                              builder: (_, textEditingValue, _) {
                                 final textInput = textEditingValue.text;
                                 return Visibility(
                                   maintainState: true,
@@ -180,8 +180,10 @@ class _MathGameScreenState extends State<MathGameScreen> {
                                   maintainSize: true,
                                   visible: !_answerResultState.isCorrect,
                                   child: NepanikarButton.async(
-                                    onTapAsync: () async =>
-                                        _evaluateEquation(textInput, isInputActionFromButton: true),
+                                    onTapAsync: () async => await _evaluateEquation(
+                                      textInput,
+                                      isInputActionFromButton: true,
+                                    ),
                                     trailingIcon: Assets.icons.navigation.chevronRight,
                                     enabled: textInput.isNotEmpty,
                                     text: context.l10n.submit,

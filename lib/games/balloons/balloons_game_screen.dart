@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:math' as math;
-import 'dart:ui';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -82,7 +81,7 @@ class _BalloonsGameScreenState extends State<BalloonsGameScreen> with TickerProv
   void initState() {
     super.initState();
 
-    final size = window.physicalSize / window.devicePixelRatio;
+    final size = View.of(context).physicalSize / View.of(context).devicePixelRatio;
     _controller = AnimationController(vsync: this);
 
     setState(() {

@@ -188,7 +188,10 @@ class _MyRecordsFoodRecordsDetailMenuDetailScreenState
   }
 
   Widget _generateFields() {
-    final labelTextStyle = NepanikarFonts.bodySmallHeavy.copyWith(fontWeight: FontWeight.w700);
+    final labelTextStyle = NepanikarFonts.bodySmallHeavy.copyWith(
+      fontWeight: FontWeight.w700,
+      color: Theme.of(context).hintColor,
+    );
     return Form(
       child: Column(
         children: [
@@ -221,7 +224,10 @@ class _MyRecordsFoodRecordsDetailMenuDetailScreenState
     required String Function(T value) getItemLabel,
     required void Function(bool value, T item) onItemChanged,
   }) {
-    final labelTextStyle = NepanikarFonts.bodySmallHeavy.copyWith(fontWeight: FontWeight.w700);
+    final labelTextStyle = NepanikarFonts.bodySmallHeavy.copyWith(
+      fontWeight: FontWeight.w700,
+      color: Theme.of(context).hintColor,
+    );
     return Column(
       children: [
         Align(
@@ -238,13 +244,24 @@ class _MyRecordsFoodRecordsDetailMenuDetailScreenState
                 (item) => Row(
                   children: [
                     Checkbox(
+                      checkColor: Theme.of(context).brightness == Brightness.dark
+                          ? Theme.of(context).hintColor
+                          : Colors.white,
                       value: activeValues.contains(item),
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(4.0)),
                       ),
                       onChanged: (value) => onItemChanged(value ?? false, item),
                     ),
-                    Flexible(child: Text(getItemLabel(item), style: NepanikarFonts.bodyRoman)),
+                    Flexible(
+                      child: Text(
+                        getItemLabel(item),
+                        style: NepanikarFonts.bodyRoman.copyWith(
+                          fontWeight: FontWeight.w700,
+                          color: Theme.of(context).hintColor,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               )

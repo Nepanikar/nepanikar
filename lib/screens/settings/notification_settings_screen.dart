@@ -59,7 +59,20 @@ class NotificationSettingsScreen extends StatelessWidget {
     TimeOfDay reminderTime,
   ) async {
     final l10n = context.l10n;
-    final newReminderTime = await showTimePicker(context: context, initialTime: reminderTime);
+    final newReminderTime = await showTimePicker(
+      context: context,
+      initialTime: reminderTime,
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(foregroundColor: Theme.of(context).colorScheme.onSurface),
+            ),
+          ),
+          child: child!,
+        );
+      },
+    );
 
     if (newReminderTime != null) {
       await _analytics.logEvent(
@@ -149,7 +162,7 @@ class NotificationSettingsScreen extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                   ),
-                  onTap: () async => _onTimeChanged(context, notificationType, reminderTime),
+                  onTap: () async => await _onTimeChanged(context, notificationType, reminderTime),
                 )
               : const SizedBox.shrink(),
         ),

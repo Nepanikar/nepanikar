@@ -31,11 +31,12 @@ class MyRecordsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final svgColor = svgColorBasedOnDarkMode(context);
+    final colorFilter = svgColor != null ? ColorFilter.mode(svgColor, BlendMode.srcIn) : null;
 
     final modules = <Widget>[
       LongTile(
         text: context.l10n.depression_mood,
-        image: Assets.illustrations.modules.moodTracker.svg(color: svgColor),
+        image: Assets.illustrations.modules.moodTracker.svg(colorFilter: colorFilter),
         // onTap: () => context.push(const MoodTrackRoute().location),
         onTap: () {
           Provider.of<MoodHeatmapFilterProvider>(
@@ -48,25 +49,25 @@ class MyRecordsScreen extends StatelessWidget {
       ),
       LongTile(
         text: context.l10n.sleep_title,
-        image: Assets.illustrations.modules.sleepTracker.svg(color: svgColor),
+        image: Assets.illustrations.modules.sleepTracker.svg(colorFilter: colorFilter),
         onTap: () => context.push(const MyRecordsSleepTrackRoute().location),
         isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.diary,
-        image: Assets.illustrations.modules.diary.svg(color: svgColor),
+        image: Assets.illustrations.modules.diary.svg(colorFilter: colorFilter),
         onTap: () => context.push(const MyRecordsDiaryRecordsRoute().location),
         isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.journal,
-        image: Assets.illustrations.modules.journal.svg(color: svgColor),
+        image: Assets.illustrations.modules.journal.svg(colorFilter: colorFilter),
         onTap: () => context.push(const MyRecordsJournalRecordsRoute().location),
         isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_records,
-        image: Assets.illustrations.modules.foodTracker.svg(color: svgColor),
+        image: Assets.illustrations.modules.foodTracker.svg(colorFilter: colorFilter),
         onTap: () => context.push(const MyRecordsFoodRecordsListRoute().location),
         isDarkMode: isDarkMode,
       ),

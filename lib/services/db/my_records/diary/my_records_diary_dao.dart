@@ -24,7 +24,7 @@ class MyRecordsDiaryDao {
 
   Future<String> createRecord(DiaryRecord diaryRecord) async {
     final item = diaryRecord.toJson();
-    return _store.add(_db, item);
+    return await _store.add(_db, item);
   }
 
   Future<void> _addRecords(List<DiaryRecord> items) async {

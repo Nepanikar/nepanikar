@@ -35,6 +35,7 @@ class HomeScreen extends StatelessWidget {
     final currentTheme = Theme.of(context);
     final isDarkMode = currentTheme.brightness == Brightness.dark;
     final svgColor = svgColorBasedOnDarkMode(context);
+    final colorFilter = svgColor != null ? ColorFilter.mode(svgColor, BlendMode.srcIn) : null;
 
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
@@ -42,32 +43,32 @@ class HomeScreen extends StatelessWidget {
     final modules = <HomeTile>[
       HomeTile(
         text: context.l10n.depression,
-        image: Assets.illustrations.modules.depression.svg(color: svgColor),
+        image: Assets.illustrations.modules.depression.svg(colorFilter: colorFilter),
         location: const DepressionRoute().location,
       ),
       HomeTile(
         text: context.l10n.anxiety_panic,
-        image: Assets.illustrations.modules.anxietyPanic.svg(color: svgColor),
+        image: Assets.illustrations.modules.anxietyPanic.svg(colorFilter: colorFilter),
         location: const AnxietyAppRoute().location,
       ),
       HomeTile(
         text: context.l10n.self_harm,
-        image: Assets.illustrations.modules.selfHarm.svg(color: svgColor),
+        image: Assets.illustrations.modules.selfHarm.svg(colorFilter: colorFilter),
         location: const SelfHarmRoute().location,
       ),
       HomeTile(
         text: context.l10n.suicidal_thoughts,
-        image: Assets.illustrations.modules.suicidalThoughts.svg(color: svgColor),
+        image: Assets.illustrations.modules.suicidalThoughts.svg(colorFilter: colorFilter),
         location: const SuicidalThoughtsRoute().location,
       ),
       HomeTile(
         text: context.l10n.food,
-        image: Assets.illustrations.modules.eatingDisorder.svg(color: svgColor),
+        image: Assets.illustrations.modules.eatingDisorder.svg(colorFilter: colorFilter),
         location: const EatingDisorderRoute().location,
       ),
       HomeTile(
         text: context.l10n.my_records,
-        image: Assets.illustrations.modules.myRecords.svg(color: svgColor),
+        image: Assets.illustrations.modules.myRecords.svg(colorFilter: colorFilter),
         location: const MyRecordsRoute().location,
       ),
     ];
@@ -89,7 +90,7 @@ class HomeScreen extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             const SizedBox(width: 6),
-                            Assets.icons.logo.svg(color: svgColor),
+                            Assets.icons.logo.svg(colorFilter: colorFilter),
                             const SizedBox(width: 10),
                             Text(
                               context.l10n.app_name,
@@ -113,7 +114,7 @@ class HomeScreen extends StatelessWidget {
                   stream: _moodTrackDao.latestMoodTrackStream,
                   builder: (_, snapshot) {
                     return MoodPicker(
-                      onPick: (mood) async {
+                      onPick: (mood) {
                         final l10n = context.l10n;
                         unawaited(_notificationsService.rescheduleNotifications(l10n));
                       },

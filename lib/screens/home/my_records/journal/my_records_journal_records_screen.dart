@@ -48,7 +48,7 @@ class MyRecordsJournalRecordsScreen extends StatelessWidget {
               final goRouter = GoRouter.of(context);
               final id = await _myRecordsJournalDao.createRecord(getEmptyJournalRecord());
               unawaited(analytics.logEvent(name: 'journal_record_created'));
-              goRouter.push(
+              await goRouter.push(
                 const MyRecordsJournalDetailRoute().location,
                 extra: JournalRecordRouteExtraData(
                   journalRecordId: id,
@@ -67,7 +67,7 @@ class MyRecordsJournalRecordsScreen extends StatelessWidget {
             final goRouter = GoRouter.of(context);
             final id = await _myRecordsJournalDao.createRecord(getEmptyJournalRecord());
             unawaited(analytics.logEvent(name: 'journal_record_created'));
-            goRouter.push(
+            await goRouter.push(
               const MyRecordsJournalDetailRoute().location,
               extra: JournalRecordRouteExtraData(
                 journalRecordId: id,

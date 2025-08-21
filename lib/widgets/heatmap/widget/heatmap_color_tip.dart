@@ -27,7 +27,7 @@ class HeatMapColorTip extends StatelessWidget {
   });
 
   /// Default length of [containerCount].
-  final int _defaultLength = 7;
+  static const int _defaultLength = 7;
 
   /// The colorsets which give the color value for its thresholds key value.
   ///
@@ -88,7 +88,7 @@ class HeatMapColorTip extends StatelessWidget {
     for (int i = 0; i < (containerCount ?? _defaultLength); i++) {
       children.add(
         _tipContainer(
-          colorsets?.values.first.withOpacity(i / (containerCount ?? _defaultLength)) ??
+          colorsets?.values.first.withValues(alpha: i / (containerCount ?? _defaultLength)) ??
               Colors.white,
         ),
       );

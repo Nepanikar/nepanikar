@@ -22,9 +22,9 @@ enum NotificationType {
   Future<bool> isTodayAlreadyTracked() async {
     switch (this) {
       case NotificationType.moodReminder:
-        return registry.get<MoodTrackDao>().isTodayTracked();
+        return await registry.get<MoodTrackDao>().isTodayTracked();
       case NotificationType.sleepRateReminder:
-        return registry.get<MyRecordsSleepTrackDao>().isTodayTracked();
+        return await registry.get<MyRecordsSleepTrackDao>().isTodayTracked();
     }
   }
 

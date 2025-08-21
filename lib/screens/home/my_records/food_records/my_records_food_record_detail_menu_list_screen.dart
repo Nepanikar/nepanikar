@@ -68,12 +68,18 @@ class _MyRecordsFoodRecordsDetailMenuListScreenState
       leading: Checkbox(
         value: foodRecord.getIsFoodTaken(foodType),
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(4.0))),
-        onChanged: (_) async =>
+        checkColor: Theme.of(context).brightness == Brightness.dark
+            ? Theme.of(context).hintColor
+            : NepanikarColors.white,
+        onChanged: (_) =>
             _myRecordsFoodRecordDao.updateMenuTakenState(widget.id, foodRecord, foodType),
       ),
       title: Text(
         foodType.getLabel(context),
-        style: NepanikarFonts.bodyHeavy.copyWith(fontWeight: FontWeight.w700),
+        style: NepanikarFonts.bodyHeavy.copyWith(
+          fontWeight: FontWeight.w700,
+          color: Theme.of(context).hintColor,
+        ),
       ),
       trailing: TextButton(
         onPressed: onTap,
@@ -82,14 +88,14 @@ class _MyRecordsFoodRecordsDetailMenuListScreenState
           children: [
             Text(
               context.l10n.note_detail,
-              style: NepanikarFonts.bodySmallMedium.copyWith(color: NepanikarColors.primary),
+              style: NepanikarFonts.bodySmallMedium.copyWith(color: Theme.of(context).hintColor),
             ),
             const SizedBox(width: 4),
             ExcludeSemantics(
               child: Assets.icons.navigation.arrowRight.svg(
                 width: 16,
                 height: 16,
-                color: NepanikarColors.primary,
+                colorFilter: const ColorFilter.mode(NepanikarColors.primary, BlendMode.srcIn),
               ),
             ),
           ],
@@ -100,7 +106,10 @@ class _MyRecordsFoodRecordsDetailMenuListScreenState
 
   @override
   Widget build(BuildContext context) {
-    final labelTextStyle = NepanikarFonts.bodySmallHeavy.copyWith(fontWeight: FontWeight.w700);
+    final labelTextStyle = NepanikarFonts.bodySmallHeavy.copyWith(
+      fontWeight: FontWeight.w700,
+      color: Theme.of(context).hintColor,
+    );
 
     return StreamBuilder<DailyFoodRecord?>(
       stream: _dailyFoodRecordStream,
@@ -118,7 +127,7 @@ class _MyRecordsFoodRecordsDetailMenuListScreenState
             const SizedBox(height: 8),
             NepanikarDatePicker(
               initialDate: dailyFoodRecord.dateTime,
-              onPick: (date) async =>
+              onPick: (date) =>
                   _myRecordsFoodRecordDao.updateRecordDate(widget.id, dailyFoodRecord, date),
             ),
             const SizedBox(height: 24),

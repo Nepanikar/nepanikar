@@ -131,6 +131,7 @@ class _NepanikarButtonState extends State<NepanikarButton> with SingleTickerProv
         ? NepanikarColors.primary
         : NepanikarColors.primarySwatch.shade500;
     final textColor = textColorBasedOnDarkMode(context);
+    final colorFilter = ColorFilter.mode(iconColor, BlendMode.srcIn);
 
     return _isLoading
         ? SizedBox(
@@ -138,8 +139,8 @@ class _NepanikarButtonState extends State<NepanikarButton> with SingleTickerProv
             child: RotationTransition(
               turns: Tween(begin: 0.0, end: 1.0).animate(_animController),
               child: widget.buttonType.isPrimary
-                  ? Assets.icons.spinner.svg(width: iconSize, color: iconColor)
-                  : Assets.icons.warningWavy.svg(width: iconSize, color: iconColor),
+                  ? Assets.icons.spinner.svg(width: iconSize, colorFilter: colorFilter)
+                  : Assets.icons.warningWavy.svg(width: iconSize, colorFilter: colorFilter),
             ),
           )
         : Row(
@@ -152,7 +153,7 @@ class _NepanikarButtonState extends State<NepanikarButton> with SingleTickerProv
                   child: ExcludeSemantics(
                     child: widget.leadingIcon!.svg(
                       width: iconSize / 3,
-                      color: NepanikarColors.white,
+                      colorFilter: const ColorFilter.mode(NepanikarColors.white, BlendMode.srcIn),
                     ),
                   ),
                 ),
@@ -163,7 +164,7 @@ class _NepanikarButtonState extends State<NepanikarButton> with SingleTickerProv
                 Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: ExcludeSemantics(
-                    child: widget.trailingIcon!.svg(width: iconSize / 3, color: iconColor),
+                    child: widget.trailingIcon!.svg(width: iconSize / 3, colorFilter: colorFilter),
                   ),
                 ),
             ],

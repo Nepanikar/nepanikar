@@ -23,27 +23,28 @@ class RelaxationsListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final svgColor = svgColorBasedOnDarkMode(context);
     final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final colorFilter = svgColor != null ? ColorFilter.mode(svgColor, BlendMode.srcIn) : null;
 
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.relaxation,
       children: [
         LongTile(
           text: 'Relaxace',
-          image: Assets.illustrations.modules.relaxation.svg(color: svgColor),
+          image: Assets.illustrations.modules.relaxation.svg(colorFilter: colorFilter),
           onTap: () =>
               context.push(const RelaxationRoute(relaxationType: RelaxationType.general).location),
           isDarkMode: isDarkMode,
         ),
         LongTile(
           text: 'Ranní zastavení',
-          image: Assets.illustrations.modules.relaxation.svg(color: svgColor),
+          image: Assets.illustrations.modules.relaxation.svg(colorFilter: colorFilter),
           onTap: () =>
               context.push(const RelaxationRoute(relaxationType: RelaxationType.morning).location),
           isDarkMode: isDarkMode,
         ),
         LongTile(
           text: 'Večerní zastavení',
-          image: Assets.illustrations.modules.relaxation.svg(color: svgColor),
+          image: Assets.illustrations.modules.relaxation.svg(colorFilter: colorFilter),
           onTap: () =>
               context.push(const RelaxationRoute(relaxationType: RelaxationType.evening).location),
           isDarkMode: isDarkMode,

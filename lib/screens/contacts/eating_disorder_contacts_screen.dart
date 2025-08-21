@@ -15,7 +15,7 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 part 'eating_disorder_contacts_screen.g.dart';
 
-@TypedGoRoute<EatingDisorderContactsRoute>(path: 'home/eating-disorder/contacts')
+@TypedGoRoute<EatingDisorderContactsRoute>(path: '/home/eating-disorder/contacts')
 class EatingDisorderContactsRoute extends GoRouteData with _$EatingDisorderContactsRoute {
   const EatingDisorderContactsRoute();
 
@@ -84,8 +84,8 @@ class EatingDisorderContactsScreen extends StatelessWidget {
                       final isEmail = EmailValidator.validate(displayText);
                       return WidgetSpan(
                         child: GestureDetector(
-                          onTap: () async => launchLinkableContact(e),
-                          onLongPress: () async => copyContact(context, displayText),
+                          onTap: () => launchLinkableContact(e),
+                          onLongPress: () => copyContact(context, displayText),
                           child: Text(
                             isEmail || e is PhoneNumberElement ? displayText : displayUrlLink,
                             semanticsLabel: e is PhoneNumberElement

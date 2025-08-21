@@ -83,7 +83,11 @@ class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScree
         title: Text(widget.appBarTitle ?? context.l10n.depression_mood),
         actions: [
           IconButton(
-            icon: ExcludeSemantics(child: Assets.icons.notificationBell.svg(color: Colors.white)),
+            icon: ExcludeSemantics(
+              child: Assets.icons.notificationBell.svg(
+                colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+              ),
+            ),
             tooltip: context.l10n.notifications,
             onPressed: _notificationsService.checkPermission,
           ),
@@ -179,9 +183,10 @@ class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScree
     final arrowCanShiftColor = customColorsBasedOnDarkMode(context, NepanikarColors.white, null);
 
     final svgColor = svgColorBasedOnDarkMode(context);
+    final colorFilter = svgColor != null ? ColorFilter.mode(svgColor, BlendMode.srcIn) : null;
 
     return Consumer<MoodChartFilterProvider>(
-      builder: (_, moodChartFilterProvider, __) {
+      builder: (_, moodChartFilterProvider, _) {
         final activeFilter = moodChartFilterProvider.activeFilter;
         final dateRange = moodChartFilterProvider.customDateRange;
         final canShiftNextDateRange = moodChartFilterProvider.canShiftDateRangeNext;
@@ -222,7 +227,7 @@ class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScree
               children: [
                 IconButton(
                   icon: ExcludeSemantics(
-                    child: Assets.icons.navigation.arrowLeft.svg(color: svgColor),
+                    child: Assets.icons.navigation.arrowLeft.svg(colorFilter: colorFilter),
                   ),
                   tooltip: context.l10n.filter_previous_time_period,
                   onPressed: () => moodChartFilterProvider.shiftDateRange(DateRangeSwitch.previous),
@@ -243,7 +248,9 @@ class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScree
                 IconButton(
                   icon: ExcludeSemantics(
                     child: Assets.icons.navigation.arrowRight.svg(
-                      color: !canShiftNextDateRange ? containerColor : arrowCanShiftColor,
+                      colorFilter: !canShiftNextDateRange
+                          ? ColorFilter.mode(containerColor!, BlendMode.srcIn)
+                          : ColorFilter.mode(arrowCanShiftColor!, BlendMode.srcIn),
                     ),
                   ),
                   tooltip: context.l10n.filter_next_time_period,

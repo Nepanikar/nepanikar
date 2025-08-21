@@ -39,7 +39,7 @@ class MyRecordsDiaryAddScreen extends StatelessWidget {
         final id = await _myRecordsDiaryDao.createRecord(diaryRecord);
         unawaited(analytics.logEvent(name: 'diary_record_created'));
         goRouter.pop();
-        goRouter.push(
+        await goRouter.push(
           const MyRecordsDiaryDetailRoute().location,
           extra: DiaryRecordRouteExtraData(diaryRecordId: id, diaryRecord: diaryRecord),
         );

@@ -106,7 +106,7 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
                 itemCount: savedListItems.length,
                 shrinkWrap: true,
                 primary: false,
-                separatorBuilder: (_, __) =>
+                separatorBuilder: (_, _) =>
                     NepanikarHorizontalDivider(color: NepanikarColors.primarySwatch.shade100),
                 itemBuilder: (_, i) {
                   final record = savedListItems.entries.elementAt(i);
@@ -190,7 +190,7 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
                                         focusedErrorBorder: InputBorder.none,
                                         contentPadding: const EdgeInsets.only(top: 15, bottom: 8),
                                         suffixIcon: IconButton(
-                                          onPressed: () async {
+                                          onPressed: () {
                                             if (FocusScope.of(context).hasFocus) {
                                               FocusScope.of(context).unfocus();
                                             }

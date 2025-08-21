@@ -31,8 +31,9 @@ class HeatMapColumn extends StatelessWidget {
          // Determine selected color based on the color mode and dataset value
          final selectedColor = isSelected
              ? (colorMode == ColorMode.opacity
-                   ? colorsets?.values.first.withOpacity(
-                       (datasets?[currentDate]?.toDouble() ?? 0) / (maxValue?.toDouble() ?? 1),
+                   ? colorsets?.values.first.withValues(
+                       alpha:
+                           (datasets?[currentDate]?.toDouble() ?? 0) / (maxValue?.toDouble() ?? 1),
                      )
                    : DatasetsUtil.getColor(colorsets, datasets?[currentDate]))
              : null;

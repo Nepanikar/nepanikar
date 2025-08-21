@@ -99,7 +99,7 @@ class _CrisisMessageContentState extends State<CrisisMessageContent> {
         ),
         const SizedBox(height: 4),
         Focus(
-          onFocusChange: (hasFocus) async {
+          onFocusChange: (hasFocus) {
             if (!hasFocus) {
               onSaved?.call();
             }
@@ -186,7 +186,7 @@ class _CrisisMessageContentState extends State<CrisisMessageContent> {
                   const SizedBox(height: 16),
                   ValueListenableBuilder<TextEditingValue>(
                     valueListenable: _addressEmailController,
-                    builder: (_, addressVal, __) {
+                    builder: (_, addressVal, _) {
                       final address = addressVal.text;
 
                       return NepanikarButton(

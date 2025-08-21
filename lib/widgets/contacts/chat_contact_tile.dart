@@ -31,10 +31,13 @@ class ChatContactTile extends StatelessWidget {
     final textColor = textColorBasedOnDarkMode(context);
     final subContactsLength = contact.subChatContacts.length;
     final isSingleSubList = subContactsLength == 1;
+    final colorFilter = textColor != null ? ColorFilter.mode(textColor, BlendMode.srcIn) : null;
     return GestureDetector(
-      onTap: isSingleSubList ? () async => launchUrLink(contact.subChatContacts.first.url) : null,
+      onTap: isSingleSubList
+          ? () async => await launchUrLink(contact.subChatContacts.first.url)
+          : null,
       onLongPress: isSingleSubList
-          ? () async => copyContact(context, contact.subChatContacts.first.url)
+          ? () async => await copyContact(context, contact.subChatContacts.first.url)
           : null,
       child: LongTile(
         isDarkMode: isDarkMode,
@@ -42,7 +45,9 @@ class ChatContactTile extends StatelessWidget {
         textTextStyle: _textTextStyle.copyWith(color: textColor),
         description: contact.subtitle,
         descriptionTextStyle: _descriptionChatTextStyle.copyWith(color: textColor),
-        image: ExcludeSemantics(child: Assets.illustrations.contacts.chat.svg(color: textColor)),
+        image: ExcludeSemantics(
+          child: Assets.illustrations.contacts.chat.svg(colorFilter: colorFilter),
+        ),
         trailing: const SizedBox.shrink(),
         onTap: null,
         subContent: Column(
@@ -74,8 +79,8 @@ class ChatContactTile extends StatelessWidget {
                       ),
                     ],
                   ),
-                  onTap: () async => launchUrLink(subContact.url),
-                  onLongPress: () async => copyContact(context, subContact.url),
+                  onTap: () async => await launchUrLink(subContact.url),
+                  onLongPress: () async => await copyContact(context, subContact.url),
                 ),
               )
               .toList(),

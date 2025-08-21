@@ -57,6 +57,7 @@ class _MyContactTileState extends State<MyContactTile> {
   Widget build(BuildContext context) {
     final tileColor = customColorsBasedOnDarkMode(context, NepanikarColors.containerD, null);
     final textColor = textColorBasedOnDarkMode(context);
+    final colorFilter = textColor != null ? ColorFilter.mode(textColor, BlendMode.srcIn) : null;
     final buttonStyle = TextButton.styleFrom(
       textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
     );
@@ -73,7 +74,9 @@ class _MyContactTileState extends State<MyContactTile> {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 12),
-                  child: ExcludeSemantics(child: Assets.icons.userCircle.svg(color: textColor)),
+                  child: ExcludeSemantics(
+                    child: Assets.icons.userCircle.svg(colorFilter: colorFilter),
+                  ),
                 ),
                 Expanded(
                   child: Column(
@@ -83,16 +86,13 @@ class _MyContactTileState extends State<MyContactTile> {
                         hintText: context.l10n.my_contacts_names_example,
                         controller: _nameController,
                         onChanged: (value) async =>
-                            _myContactsRecordsDao.updateName(widget.id, widget.record, value),
+                            await _myContactsRecordsDao.updateName(widget.id, widget.record, value),
                       ),
                       _buildTextField(
                         hintText: context.l10n.phone,
                         controller: _contactAddressController,
-                        onChanged: (value) async => _myContactsRecordsDao.updateContactAddress(
-                          widget.id,
-                          widget.record,
-                          value,
-                        ),
+                        onChanged: (value) async => await _myContactsRecordsDao
+                            .updateContactAddress(widget.id, widget.record, value),
                       ),
                     ],
                   ),

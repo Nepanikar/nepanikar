@@ -30,7 +30,11 @@ class QuickHelpButton extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ExcludeSemantics(
-                        child: Assets.icons.phone.svg(width: 20, height: 20, color: Colors.white),
+                        child: Assets.icons.phone.svg(
+                          width: 20,
+                          height: 20,
+                          colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                        ),
                       ),
                       const SizedBox(width: 8),
                       Flexible(

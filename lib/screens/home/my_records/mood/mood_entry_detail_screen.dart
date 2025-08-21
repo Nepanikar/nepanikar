@@ -215,6 +215,7 @@ class _MoodEntryDetailState<T extends MoodTrackDao> extends State<MoodEntryDetai
                 child: ElevatedButton(
                   onPressed: () async {
                     final success = await _deleteMoodEntry(context, moodEntry);
+                    if (!context.mounted) return;
                     if (success) {
                       if (mounted) {
                         await Provider.of<MoodState>(
@@ -223,7 +224,7 @@ class _MoodEntryDetailState<T extends MoodTrackDao> extends State<MoodEntryDetai
                         ).deleteMoodTrack(moodEntry);
                       }
                     }
-                    if (mounted) {
+                    if (mounted && context.mounted) {
                       Navigator.of(context).pop();
                     }
                   },

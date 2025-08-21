@@ -36,19 +36,19 @@ class DateUtil {
   static const List<String> WEEK_LABEL = ['', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   /// Get start day of month.
-  static DateTime startDayOfMonth(final DateTime referenceDate) =>
+  static DateTime startDayOfMonth(DateTime referenceDate) =>
       DateTime(referenceDate.year, referenceDate.month);
 
   /// Get last day of month.
-  static DateTime endDayOfMonth(final DateTime referenceDate) =>
+  static DateTime endDayOfMonth(DateTime referenceDate) =>
       DateTime(referenceDate.year, referenceDate.month + 1, 0);
 
   /// Get exactly one year before of [referenceDate].
-  static DateTime oneYearBefore(final DateTime referenceDate) =>
+  static DateTime oneYearBefore(DateTime referenceDate) =>
       DateTime(referenceDate.year - 1, referenceDate.month, referenceDate.day);
 
   /// Separate [referenceDate]'s month to List of every weeks.
-  static List<Map<DateTime, DateTime>> separatedMonth(final DateTime referenceDate) {
+  static List<Map<DateTime, DateTime>> separatedMonth(DateTime referenceDate) {
     DateTime startDate = startDayOfMonth(referenceDate);
     DateTime endDate = DateTime(
       startDate.year,
@@ -72,11 +72,11 @@ class DateUtil {
   }
 
   /// Change day of [referenceDate].
-  static DateTime changeDay(final DateTime referenceDate, final int dayCount) =>
+  static DateTime changeDay(DateTime referenceDate, int dayCount) =>
       DateTime(referenceDate.year, referenceDate.month, referenceDate.day + dayCount);
 
   /// Change month of [referenceDate].
-  static DateTime changeMonth(final DateTime referenceDate, int monthCount) =>
+  static DateTime changeMonth(DateTime referenceDate, int monthCount) =>
       DateTime(referenceDate.year, referenceDate.month + monthCount, referenceDate.day);
 
   //#region unused methods.

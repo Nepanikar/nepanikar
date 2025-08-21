@@ -28,41 +28,42 @@ class EatingDisorderTasksScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final svgColor = svgColorBasedOnDarkMode(context);
+    final colorFilter = svgColor != null ? ColorFilter.mode(svgColor, BlendMode.srcIn) : null;
 
     final modules = <Widget>[
       LongTile(
         text: context.l10n.food_tasks_creative,
-        image: Assets.illustrations.modules.eatingDisorder.svg(color: svgColor),
+        image: Assets.illustrations.modules.eatingDisorder.svg(colorFilter: colorFilter),
         onTap: () => context.push(const EatingDisorderFoodCreativeRoute().location),
         isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_tasks_motivation,
-        image: Assets.illustrations.modules.eatingDisorder.svg(color: svgColor),
+        image: Assets.illustrations.modules.eatingDisorder.svg(colorFilter: colorFilter),
         onTap: () => context.push(const EatingDisorderFoodMotivationRoute().location),
         isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_tasks_challenge,
-        image: Assets.illustrations.modules.eatingDisorder.svg(color: svgColor),
+        image: Assets.illustrations.modules.eatingDisorder.svg(colorFilter: colorFilter),
         onTap: () => context.push(const EatingDisorderFoodChallengesRoute().location),
         isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_tasks_like,
-        image: Assets.illustrations.modules.eatingDisorder.svg(color: svgColor),
+        image: Assets.illustrations.modules.eatingDisorder.svg(colorFilter: colorFilter),
         onTap: () => context.push(const EatingDisorderLikeOnMyselfRoute().location),
         isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_tasks_food_like,
-        image: Assets.illustrations.modules.eatingDisorder.svg(color: svgColor),
+        image: Assets.illustrations.modules.eatingDisorder.svg(colorFilter: colorFilter),
         onTap: () => context.push(const EatingDisorderFoodILikeRoute().location),
         isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_tasks_afraid,
-        image: Assets.illustrations.modules.eatingDisorder.svg(color: svgColor),
+        image: Assets.illustrations.modules.eatingDisorder.svg(colorFilter: colorFilter),
         onTap: () => context.push(const EatingDisorderFoodAfraidOfRoute().location),
         isDarkMode: isDarkMode,
       ),

@@ -32,42 +32,43 @@ class AnxietyAppScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final svgColor = svgColorBasedOnDarkMode(context);
+    final colorFilter = svgColor != null ? ColorFilter.mode(svgColor, BlendMode.srcIn) : null;
 
     final modules = <Widget>[
       LongTile(
         text: context.l10n.panic_tips_9,
-        image: Assets.illustrations.modules.depression.svg(color: svgColor),
+        image: Assets.illustrations.modules.depression.svg(colorFilter: colorFilter),
         onTap: () => context.push(const AnxietyTipsAppRoute().location),
         isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.breath,
-        image: Assets.illustrations.modules.anxietyPanic.svg(color: svgColor),
+        image: Assets.illustrations.modules.anxietyPanic.svg(colorFilter: colorFilter),
         onTap: () => context.push(const BreathingExercisesRoute().location),
         isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.math,
-        image: Assets.illustrations.games.math.math.svg(color: svgColor),
+        image: Assets.illustrations.games.math.math.svg(colorFilter: colorFilter),
         onTap: () => context.push(const MathGameRoute().location),
         isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.game_balls,
-        image: Assets.illustrations.games.balloons.baloons.svg(color: svgColor),
+        image: Assets.illustrations.games.balloons.baloons.svg(colorFilter: colorFilter),
         onTap: () => context.push(const BalloonsGameRoute().location),
         isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.game_balance,
-        image: Assets.illustrations.games.swing.swing.svg(color: svgColor),
+        image: Assets.illustrations.games.swing.swing.svg(colorFilter: colorFilter),
         onTap: () => context.push(const BalanceGameRoute().location),
         isDarkMode: isDarkMode,
       ),
       if (['cs', 'sk'].contains(_userSettingsDao.locale.languageCode))
         LongTile(
           text: context.l10n.relaxation,
-          image: Assets.illustrations.modules.relaxation.svg(color: svgColor),
+          image: Assets.illustrations.modules.relaxation.svg(colorFilter: colorFilter),
           onTap: () => context.push(const RelaxationsListRoute().location),
           isDarkMode: isDarkMode,
         ),

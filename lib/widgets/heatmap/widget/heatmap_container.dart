@@ -60,7 +60,7 @@ class HeatMapContainer extends StatelessWidget {
           ),
         ),
         onTap: () {
-          onClick != null ? onClick!(date) : null;
+          onClick?.call(date);
         },
       ),
     );

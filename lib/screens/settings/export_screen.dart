@@ -48,7 +48,7 @@ class _ExportScreenState extends State<ExportScreen> {
     final ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark
         ? ThemeMode.dark
         : ThemeMode.light;
-    final bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+    final bool isDarkMode = currentThemeMode == ThemeMode.dark;
 
     return NepanikarScreenWrapper(
       key: const ValueKey('export_screen'),
@@ -172,7 +172,10 @@ class _SpinnerState extends State<_Spinner> with SingleTickerProviderStateMixin 
   Widget build(BuildContext context) {
     return RotationTransition(
       turns: Tween(begin: 0.0, end: 1.0).animate(_animController),
-      child: Assets.icons.spinner.svg(width: 20, color: Colors.black),
+      child: Assets.icons.spinner.svg(
+        width: 20,
+        colorFilter: const ColorFilter.mode(Colors.black, BlendMode.srcIn),
+      ),
     );
   }
 }

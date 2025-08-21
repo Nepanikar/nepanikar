@@ -27,7 +27,7 @@ class TipItem extends StatelessWidget {
               color: boxColor,
               boxShadow: [
                 BoxShadow(
-                  color: const Color(0xff2B2D41).withOpacity(0.12),
+                  color: const Color(0xff2B2D41).withValues(alpha: 0.12),
                   blurRadius: 64,
                   offset: const Offset(32, 32), // changes position of shadow
                 ),

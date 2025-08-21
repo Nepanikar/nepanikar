@@ -49,12 +49,9 @@ class MoodChart extends StatelessWidget {
               })
               .whereType<FlSpot>()
               .toList(),
-          isCurved: false,
-          barWidth: 2,
           isStrokeCapRound: true,
           dotData: FlDotData(
-            show: true,
-            getDotPainter: (_, __, ___, ____) => FlDotCirclePainter(
+            getDotPainter: (_, _, _, _) => FlDotCirclePainter(
               radius: 2.8,
               color: lineColor ?? Colors.black,
               strokeColor: lineColor ?? Colors.black,
@@ -69,22 +66,14 @@ class MoodChart extends StatelessWidget {
             .mapIndexed(
               (i, _) => HorizontalLine(
                 y: i.toDouble(),
-                color: lineColor?.withOpacity(0.2),
+                color: lineColor?.withValues(alpha: 0.2),
                 strokeWidth: 1,
                 dashArray: [5],
               ),
             )
             .toList(),
       ),
-      gridData: FlGridData(
-        show: true,
-        drawVerticalLine: false,
-        drawHorizontalLine: false,
-        verticalInterval: 1,
-      ),
       titlesData: FlTitlesData(
-        show: true,
-        bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
         leftTitles: AxisTitles(
           sideTitles: SideTitles(
             interval: 1,
@@ -93,18 +82,16 @@ class MoodChart extends StatelessWidget {
             reservedSize: 40,
           ),
         ),
-        rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-        topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
       ),
       lineTouchData: LineTouchData(
-        getTouchLineEnd: (_, __) => double.infinity,
+        getTouchLineEnd: (_, _) => double.infinity,
         getTouchedSpotIndicator: (_, spotIndexes) {
           return spotIndexes.map((spotIndex) {
             return TouchedSpotIndicatorData(
               FlLine(color: lineColor ?? Colors.black, strokeWidth: 3),
               FlDotData(
-                getDotPainter: (_, __, ___, ____) =>
-                    FlDotCirclePainter(radius: 8, color: lineColor ?? Colors.black, strokeWidth: 0),
+                getDotPainter: (_, _, _, _) =>
+                    FlDotCirclePainter(radius: 8, color: lineColor ?? Colors.black),
               ),
             );
           }).toList();

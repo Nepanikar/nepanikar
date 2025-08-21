@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class NepanikarColors {
   NepanikarColors._();
 
-  static final MaterialColor primarySwatch = MaterialColor(primary.value, _primarySwatch);
+  static final MaterialColor primarySwatch = MaterialColor(primary.toARGB32(), _primarySwatch);
   static const dark = Color(0xff280446);
   static const primary = Color(0xff491475);
   static const secondary = Color(0xff4EA3AD);
@@ -18,12 +18,12 @@ class NepanikarColors {
 
   static final cardShadow = [
     BoxShadow(
-      color: const Color(0xff280446).withOpacity(0.08),
+      color: const Color(0xff280446).withValues(alpha: 0.08),
       blurRadius: 32,
       offset: const Offset(0, 8), // changes position of shadow
     ),
     BoxShadow(
-      color: const Color(0xff2C0B4A).withOpacity(0.04),
+      color: const Color(0xff2C0B4A).withValues(alpha: 0.04),
       blurRadius: 4,
       offset: const Offset(0, 2), // changes position of shadow
     ),

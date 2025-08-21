@@ -116,7 +116,10 @@ class LongTile extends StatelessWidget {
                                   ? Assets.icons.navigation.arrowRight.svg(
                                       width: 16,
                                       height: 16,
-                                      color: Colors.white,
+                                      colorFilter: const ColorFilter.mode(
+                                        Colors.white,
+                                        BlendMode.srcIn,
+                                      ),
                                     )
                                   : Assets.icons.navigation.arrowRight.svg(width: 16, height: 16),
                             ),

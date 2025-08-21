@@ -16,18 +16,24 @@ BottomNavigationBarItem buildBottomNavigationBarItem({
           padding: const EdgeInsets.only(bottom: 6),
           child: SvgPicture.asset(
             Assets.icons.marker.path,
-            color: isDarkMode
-                ? (isSelected ? Colors.white : Colors.transparent)
-                : (isSelected ? NepanikarColors.primarySwatch.shade800 : Colors.transparent),
+            colorFilter: isDarkMode
+                ? (isSelected
+                      ? const ColorFilter.mode(Colors.white, BlendMode.srcIn)
+                      : const ColorFilter.mode(Colors.transparent, BlendMode.srcIn))
+                : (isSelected
+                      ? ColorFilter.mode(NepanikarColors.primarySwatch.shade800, BlendMode.srcIn)
+                      : const ColorFilter.mode(Colors.transparent, BlendMode.srcIn)),
           ),
         ),
         SvgPicture.asset(
           svgIconPath,
-          color: isDarkMode
-              ? (isSelected ? Colors.white : NepanikarColors.primarySwatch.shade400)
+          colorFilter: isDarkMode
+              ? (isSelected
+                    ? const ColorFilter.mode(Colors.white, BlendMode.srcIn)
+                    : ColorFilter.mode(NepanikarColors.primarySwatch.shade400, BlendMode.srcIn))
               : (isSelected
-                    ? NepanikarColors.primarySwatch.shade800
-                    : NepanikarColors.primarySwatch.shade700),
+                    ? ColorFilter.mode(NepanikarColors.primarySwatch.shade800, BlendMode.srcIn)
+                    : ColorFilter.mode(NepanikarColors.primarySwatch.shade700, BlendMode.srcIn)),
         ),
       ],
     ),

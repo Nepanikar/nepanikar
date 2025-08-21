@@ -65,7 +65,7 @@ class DatabaseService {
 
   /// https://github.com/tekartik/sembast.dart/blob/master/sembast/doc/open.md#preloading-data
   Future<Database> _initDb() async {
-    final db = databaseFactoryIo.openDatabase(
+    final db = await databaseFactoryIo.openDatabase(
       join(_saveDirectories.dbDirPath, _dbFileName),
       version: 1,
       onVersionChanged: (db, oldVersion, newVersion) async {

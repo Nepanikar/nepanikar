@@ -34,6 +34,7 @@ class PhoneContactTile extends StatelessWidget {
 
     final isPinned = contact.pinned;
     final textColor = isPinned ? Colors.white : textColorMode;
+    final colorFilter = textColor != null ? ColorFilter.mode(textColor, BlendMode.srcIn) : null;
     final isUrl = contact.tel.contains('http');
     return LongTile(
       isDarkMode: isDarkMode,
@@ -41,29 +42,34 @@ class PhoneContactTile extends StatelessWidget {
       textTextStyle: _textTextStyle.copyWith(color: textColor),
       description: contact.subtitle,
       descriptionTextStyle: _descriptionNumTextStyle.copyWith(color: textColor),
-      image: ExcludeSemantics(child: Assets.illustrations.contacts.phones.svg(color: textColor)),
+      image: ExcludeSemantics(
+        child: Assets.illustrations.contacts.phones.svg(colorFilter: colorFilter),
+      ),
       trailing: Text(
         contact.tel,
         semanticsLabel: isUrl ? null : contact.tel.spellOutNumFormat,
         style: _phoneNumTextStyle.copyWith(color: textColor),
       ),
       backgroundColor: isPinned ? NepanikarColors.secondary : null,
-      onTap: () async => isUrl ? launchUrLink(contact.tel) : launchPhoneNum(contact.unformattedTel),
-      onLongPress: () async => copyContact(context, contact.unformattedTel),
+      onTap: () => isUrl ? launchUrLink(contact.tel) : launchPhoneNum(contact.unformattedTel),
+      onLongPress: () async => await copyContact(context, contact.unformattedTel),
     );
   }
 
   Widget _buildSubListContact(BuildContext context, PhoneContactSubList contact) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final textColorMode = textColorBasedOnDarkMode(context);
+    final colorFilter = textColorMode != null
+        ? ColorFilter.mode(textColorMode, BlendMode.srcIn)
+        : null;
     final subContactsLength = contact.subPhoneContacts.length;
     final isSingleSubList = subContactsLength == 1;
     return GestureDetector(
       onTap: isSingleSubList
-          ? () async => launchPhoneNum(contact.subPhoneContacts.first.unformattedTel)
+          ? () async => await launchPhoneNum(contact.subPhoneContacts.first.unformattedTel)
           : null,
       onLongPress: isSingleSubList
-          ? () async => copyContact(context, contact.subPhoneContacts.first.unformattedTel)
+          ? () async => await copyContact(context, contact.subPhoneContacts.first.unformattedTel)
           : null,
       child: LongTile(
         isDarkMode: isDarkMode,
@@ -72,7 +78,7 @@ class PhoneContactTile extends StatelessWidget {
         description: contact.subtitle,
         descriptionTextStyle: _descriptionNumTextStyle.copyWith(color: textColorMode),
         image: ExcludeSemantics(
-          child: Assets.illustrations.contacts.phones.svg(color: textColorMode),
+          child: Assets.illustrations.contacts.phones.svg(colorFilter: colorFilter),
         ),
         trailing: const SizedBox.shrink(),
         onTap: null,
@@ -105,9 +111,9 @@ class PhoneContactTile extends StatelessWidget {
                   ),
                 ],
               ),
-              onTap: () async =>
+              onTap: () =>
                   isUrl ? launchUrLink(subContact.tel) : launchPhoneNum(subContact.unformattedTel),
-              onLongPress: () async => copyContact(context, subContact.unformattedTel),
+              onLongPress: () => copyContact(context, subContact.unformattedTel),
             );
           }).toList(),
         ),

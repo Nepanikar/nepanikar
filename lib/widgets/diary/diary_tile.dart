@@ -24,13 +24,14 @@ class DiaryTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final svgColor = svgColorBasedOnDarkMode(context);
+    final colorFilter = svgColor != null ? ColorFilter.mode(svgColor, BlendMode.srcIn) : null;
 
     const textStyle = NepanikarFonts.bodyHeavy;
     final locale = Localizations.localeOf(context);
 
     return LongTile(
       isDarkMode: isDarkMode,
-      image: Assets.illustrations.modules.myRecords.svg(color: svgColor),
+      image: Assets.illustrations.modules.myRecords.svg(colorFilter: colorFilter),
       text: DateFormat.yMd(locale.languageCode).format(date),
       textTextStyle: textStyle.copyWith(
         fontSize: 12,
@@ -41,6 +42,7 @@ class DiaryTile extends StatelessWidget {
       descriptionSemanticsEnabled: isTitle,
       descriptionTextStyle: textStyle.copyWith(
         fontWeight: isTitle ? FontWeight.w500 : FontWeight.w300,
+        color: Theme.of(context).hintColor,
       ),
       descriptionMaxLines: 1,
       onTap: onTap,

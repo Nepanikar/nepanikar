@@ -26,7 +26,11 @@ class FoodRecordTile extends StatelessWidget {
     final ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark
         ? ThemeMode.dark
         : ThemeMode.light;
-    final bool isDarkMode = currentThemeMode == ThemeMode.dark ? true : false;
+    final bool isDarkMode = currentThemeMode == ThemeMode.dark;
+    final colorFilter = ColorFilter.mode(
+      isDarkMode ? NepanikarColors.white : NepanikarColors.primary,
+      BlendMode.srcIn,
+    );
 
     const textStyle = NepanikarFonts.bodyHeavy;
     final locale = Localizations.localeOf(context);
@@ -57,13 +61,16 @@ class FoodRecordTile extends StatelessWidget {
                               Assets.icons.checkmarks.success.svg(
                                 width: 14,
                                 height: 14,
-                                color: NepanikarColors.primary,
+                                colorFilter: colorFilter,
                               )
                             else
                               Assets.icons.checkmarks.checkCircularUnchecked.svg(
                                 width: 14,
                                 height: 14,
-                                color: NepanikarColors.primarySwatch.shade400,
+                                colorFilter: ColorFilter.mode(
+                                  NepanikarColors.primarySwatch.shade400,
+                                  BlendMode.srcIn,
+                                ),
                               ),
                             const SizedBox(width: 5),
                             Flexible(
@@ -74,7 +81,7 @@ class FoodRecordTile extends StatelessWidget {
                                   fontSize: 12,
                                   fontWeight: FontWeight.w700,
                                   color: _getIsFoodTypeTaken(foodType)
-                                      ? NepanikarColors.dark
+                                      ? (isDarkMode ? NepanikarColors.white : NepanikarColors.dark)
                                       : NepanikarColors.primarySwatch.shade400,
                                 ),
                               ),

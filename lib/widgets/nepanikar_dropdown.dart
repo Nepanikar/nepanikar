@@ -91,6 +91,7 @@ class NepanikarDropdown<T> extends StatelessWidget {
       _type.bgColor,
     );
     final svgColor = svgColorBasedOnDarkMode(context);
+    final colorFilter = svgColor != null ? ColorFilter.mode(svgColor, BlendMode.srcIn) : null;
 
     return MaterialWrapper(
       color: dropDownColor,
@@ -105,7 +106,7 @@ class NepanikarDropdown<T> extends StatelessWidget {
             icon: Padding(
               padding: rightPadding,
               child: ExcludeSemantics(
-                child: Assets.icons.navigation.chevronDown.svg(color: svgColor),
+                child: Assets.icons.navigation.chevronDown.svg(colorFilter: colorFilter),
               ),
             ),
             underline: const SizedBox.shrink(),

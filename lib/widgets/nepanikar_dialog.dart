@@ -59,7 +59,11 @@ class NepanikarDialog extends StatelessWidget {
               ),
               const SizedBox(height: 10),
             ],
-            Text(text, textAlign: TextAlign.center, style: NepanikarFonts.bodyRoman),
+            Text(
+              text,
+              textAlign: TextAlign.center,
+              style: NepanikarFonts.bodyRoman.copyWith(color: textColor),
+            ),
             SizedBox(height: text.isEmpty ? 10 : 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

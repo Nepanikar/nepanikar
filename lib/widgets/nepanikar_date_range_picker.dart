@@ -40,6 +40,8 @@ class NepanikarDateRangePicker extends StatelessWidget {
       NepanikarColors.dropdownMenuD,
       NepanikarColors.filledContainer,
     );
+    final svgColor = svgColorBasedOnDarkMode(context);
+    final colorFilter = svgColor != null ? ColorFilter.mode(svgColor, BlendMode.srcIn) : null;
 
     final textColor = customColorsBasedOnDarkMode(
       context,
@@ -77,9 +79,7 @@ class NepanikarDateRangePicker extends StatelessWidget {
                     style: NepanikarFonts.bodyRoman.copyWith(color: textColor),
                   ),
                   const Spacer(),
-                  ExcludeSemantics(
-                    child: Assets.icons.calendar.svg(color: svgColorBasedOnDarkMode(context)),
-                  ),
+                  ExcludeSemantics(child: Assets.icons.calendar.svg(colorFilter: colorFilter)),
                 ],
               ),
             ),

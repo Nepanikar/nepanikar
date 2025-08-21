@@ -52,8 +52,8 @@ class RegionItemContactsList extends StatelessWidget {
                       final isEmail = EmailValidator.validate(displayText);
                       return WidgetSpan(
                         child: GestureDetector(
-                          onTap: () async => launchLinkableContact(e),
-                          onLongPress: () async => copyContact(context, displayText),
+                          onTap: () async => await launchLinkableContact(e),
+                          onLongPress: () async => await copyContact(context, displayText),
                           child: Text(
                             isEmail || e is PhoneNumberElement ? displayText : displayUrlLink,
                             semanticsLabel: e is PhoneNumberElement

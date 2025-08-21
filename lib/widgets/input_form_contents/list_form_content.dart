@@ -93,7 +93,7 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
                 itemCount: savedListItems.length,
                 shrinkWrap: true,
                 primary: false,
-                separatorBuilder: (_, __) =>
+                separatorBuilder: (_, _) =>
                     NepanikarHorizontalDivider(color: NepanikarColors.primarySwatch.shade100),
                 itemBuilder: (_, i) {
                   final record = savedListItems[i];
@@ -134,7 +134,7 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
                             focusedErrorBorder: InputBorder.none,
                             contentPadding: const EdgeInsets.only(top: 12, left: 14),
                             suffixIcon: IconButton(
-                              onPressed: () async {
+                              onPressed: () {
                                 if (FocusScope.of(context).hasFocus) {
                                   FocusScope.of(context).unfocus();
                                 }

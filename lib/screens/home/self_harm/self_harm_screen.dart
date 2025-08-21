@@ -27,35 +27,36 @@ class SelfHarmScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final svgColor = svgColorBasedOnDarkMode(context);
+    final colorFilter = svgColor != null ? ColorFilter.mode(svgColor, BlendMode.srcIn) : null;
 
     final modules = <Widget>[
       LongTile(
         text: context.l10n.self_harm_tips,
-        image: Assets.illustrations.modules.whatCanHelpMe.svg(color: svgColor),
+        image: Assets.illustrations.modules.whatCanHelpMe.svg(colorFilter: colorFilter),
         onTap: () => context.push(const SelfHarmTipsRoute().location),
         isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.self_harm_helped,
-        image: Assets.illustrations.modules.whatHelpedMe.svg(color: svgColor),
+        image: Assets.illustrations.modules.whatHelpedMe.svg(colorFilter: colorFilter),
         onTap: () => context.push(const SelfHarmHelpedRoute().location),
         isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.plan,
-        image: Assets.illustrations.modules.emergencyPlan.svg(color: svgColor),
+        image: Assets.illustrations.modules.emergencyPlan.svg(colorFilter: colorFilter),
         onTap: () => context.push(const SelfHarmPlanRoute().location),
         isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.self_harm_timer,
-        image: Assets.illustrations.modules.successTracker.svg(color: svgColor),
+        image: Assets.illustrations.modules.successTracker.svg(colorFilter: colorFilter),
         onTap: () => context.push(const SelfHarmTimerRoute().location),
         isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.breath,
-        image: Assets.illustrations.modules.breathing.svg(color: svgColor),
+        image: Assets.illustrations.modules.breathing.svg(colorFilter: colorFilter),
         onTap: () => context.push(const BreathingExercisesRoute().location),
         isDarkMode: isDarkMode,
       ),

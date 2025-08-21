@@ -23,7 +23,7 @@ class MyRecordsFoodRecordDao {
   static const _storeKeyName = 'my_records_food_records';
 
   Future<String> createRecord() async {
-    return _store.add(_db, getEmptyDailyFoodRecord().toJson());
+    return await _store.add(_db, getEmptyDailyFoodRecord().toJson());
   }
 
   Future<void> updateRecordDate(String id, DailyFoodRecord record, DateTime newDate) async {

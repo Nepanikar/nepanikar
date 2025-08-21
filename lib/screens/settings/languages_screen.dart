@@ -33,7 +33,9 @@ class LanguagesScreen extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             boxShadow: NepanikarColors.cardShadow,
-            color: Colors.white,
+            color: Theme.of(context).brightness == Brightness.dark
+                ? NepanikarColors.containerD
+                : NepanikarColors.filledContainer,
           ),
           child: Column(
             children: AppLocalizations.supportedLocales
@@ -81,7 +83,10 @@ class _LanguageItem extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(text.toUpperCase(), style: NepanikarFonts.bodyHeavy),
+              Text(
+                text.toUpperCase(),
+                style: NepanikarFonts.bodyHeavy.copyWith(color: Theme.of(context).hintColor),
+              ),
               if (selected)
                 const Icon(Icons.check_outlined, color: NepanikarColors.success, size: 20),
             ],
