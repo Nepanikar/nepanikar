@@ -70,6 +70,9 @@ class $AssetsIconsGen {
   /// Directory path: assets/icons/checkmarks
   $AssetsIconsCheckmarksGen get checkmarks => const $AssetsIconsCheckmarksGen();
 
+  /// File path: assets/icons/color.svg
+  SvgGenImage get color => const SvgGenImage('assets/icons/color.svg');
+
   /// File path: assets/icons/delete_data.svg
   SvgGenImage get deleteData => const SvgGenImage('assets/icons/delete_data.svg');
 
@@ -93,6 +96,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/home.svg
   SvgGenImage get home => const SvgGenImage('assets/icons/home.svg');
+
+  /// File path: assets/icons/hue.svg
+  SvgGenImage get hue => const SvgGenImage('assets/icons/hue.svg');
 
   /// File path: assets/icons/import.svg
   SvgGenImage get import => const SvgGenImage('assets/icons/import.svg');
@@ -135,6 +141,7 @@ class $AssetsIconsGen {
     aboutApp,
     calendar,
     calendarEvent,
+    color,
     deleteData,
     donate,
     export,
@@ -143,6 +150,7 @@ class $AssetsIconsGen {
     globe,
     heart,
     home,
+    hue,
     import,
     instagram,
     language,

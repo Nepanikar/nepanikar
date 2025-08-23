@@ -87,7 +87,7 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
     final textStyleColor = customColorsBasedOnDarkMode(
       context,
       NepanikarColors.white,
-      NepanikarColors.primaryD,
+      NepanikarColors.primary(context),
     );
     final location = GoRouter.of(context).state.uri.toString();
     final bool shouldDisplayTitle =

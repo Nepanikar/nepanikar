@@ -121,8 +121,8 @@ class _BalloonsGameScreenState extends State<BalloonsGameScreen> with TickerProv
   Widget build(BuildContext context) {
     final backgroundColor = customColorsBasedOnDarkMode(
       context,
-      NepanikarColors.primaryD,
-      NepanikarColors.primary,
+      NepanikarColors.primary(context),
+      NepanikarColors.primary(context),
     );
 
     return Scaffold(

@@ -59,7 +59,7 @@ class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsS
     //Colors
     final containerColor = customColorsBasedOnDarkMode(
       context,
-      NepanikarColors.containerD,
+      NepanikarColors.container(context),
       NepanikarColors.white,
     );
     final textColor = customColorsBasedOnDarkMode(context, NepanikarColors.white, Colors.black);
@@ -300,7 +300,7 @@ class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsS
   }) {
     final containerColor = customColorsBasedOnDarkMode(
       context,
-      NepanikarColors.containerD,
+      NepanikarColors.container(context),
       NepanikarColors.white,
     );
 

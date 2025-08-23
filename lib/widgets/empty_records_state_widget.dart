@@ -20,7 +20,7 @@ class EmptyRecordsStateWidget extends StatelessWidget {
         ExcludeSemantics(
           child: Assets.illustrations.modules.myRecords.svg(
             width: context.screenWidth * 0.205,
-            colorFilter: ColorFilter.mode(NepanikarColors.primarySwatch.shade400, BlendMode.srcIn),
+            colorFilter: ColorFilter.mode(NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade400, BlendMode.srcIn),
           ),
         ),
         const SizedBox(height: 26),
@@ -29,7 +29,7 @@ class EmptyRecordsStateWidget extends StatelessWidget {
           textAlign: TextAlign.center,
           style: NepanikarFonts.title3.copyWith(
             fontWeight: FontWeight.w500,
-            color: NepanikarColors.primarySwatch.shade400,
+            color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade400,
           ),
         ),
       ],

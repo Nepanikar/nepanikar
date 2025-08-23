@@ -36,7 +36,7 @@ class _MoodEntryDetailState<T extends MoodTrackDao> extends State<MoodEntryDetai
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              backgroundColor: NepanikarColors.containerD,
+              backgroundColor: NepanikarColors.container(context),
               title: Text(context.l10n.submit),
               content: Text(context.l10n.confirm_delete),
               actions: <Widget>[
@@ -68,7 +68,7 @@ class _MoodEntryDetailState<T extends MoodTrackDao> extends State<MoodEntryDetai
     final textStyleColor = customColorsBasedOnDarkMode(
       context,
       NepanikarColors.white,
-      NepanikarColors.primary,
+      NepanikarColors.primary(context),
     );
     final formattedDate = DateFormat('d. MMM. yyyy   HH:mm').format(moodEntry.date);
 
@@ -146,7 +146,7 @@ class _MoodEntryDetailState<T extends MoodTrackDao> extends State<MoodEntryDetai
                       child: Text(
                         moodEntry.summary!,
                         style: TextStyle(
-                          color: NepanikarColors.primarySwatch.shade700,
+                          color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade700,
                           fontSize: 25,
                           fontWeight: FontWeight.bold,
                         ),
@@ -187,7 +187,7 @@ class _MoodEntryDetailState<T extends MoodTrackDao> extends State<MoodEntryDetai
                       child: Text(
                         moodEntry.description!,
                         style: TextStyle(
-                          color: NepanikarColors.primarySwatch.shade700,
+                          color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade700,
                           fontSize: 15,
                           fontWeight: FontWeight.w500,
                         ),

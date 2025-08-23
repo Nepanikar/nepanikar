@@ -17,7 +17,7 @@ class ChatContactTile extends StatelessWidget {
   TextStyle get _descriptionChatTextStyle => NepanikarFonts.bodyRoman;
 
   TextStyle get _charUrlTextStyle =>
-      NepanikarFonts.bodyBlack.copyWith(color: NepanikarColors.primary);
+      NepanikarFonts.bodyBlack.copyWith(color: NepanikarColors.defaultPrimary);
 
   String _getShortUrlLink(String fullUrl) => Uri.tryParse(fullUrl)?.host ?? fullUrl;
 

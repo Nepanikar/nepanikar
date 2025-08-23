@@ -14,11 +14,11 @@ Color? textColorBasedOnDarkMode(BuildContext context) {
 }
 
 Color? pdfColorBasedOnDarkMode(BuildContext context) {
-  return isDarkmode(context) ? NepanikarColors.primarySwatch.shade700 : null;
+  return isDarkmode(context) ? NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade700 : null;
 }
 
 Color? longTileColorBasedOnDarkMode(BuildContext context) {
-  return isDarkmode(context) ? NepanikarColors.containerD : null;
+  return isDarkmode(context) ? NepanikarColors.container(context) : null;
 }
 
 Color? customColorsBasedOnDarkMode(
@@ -30,5 +30,5 @@ Color? customColorsBasedOnDarkMode(
 }
 
 Color? backgroundColorsBasedOnDarkMode(BuildContext context) {
-  return customColorsBasedOnDarkMode(context, NepanikarColors.primaryD, NepanikarColors.primary);
+  return customColorsBasedOnDarkMode(context, NepanikarColors.primary(context), NepanikarColors.primary(context));
 }

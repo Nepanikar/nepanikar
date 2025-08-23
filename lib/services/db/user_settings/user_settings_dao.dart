@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/helpers/localization_helpers.dart';
 import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_models.dart';
@@ -23,6 +24,7 @@ class UserSettingsDao {
   Database get _db => _dbService.database;
 
   static const _themeModeKey = 'theme_mode';
+  static const _mainColorKey = 'main_color';
   static const _storeKeyName = 'user_settings';
   static const _languageKey = 'language';
   static const _notificationKeyPrefix = 'notification_type_';
@@ -48,6 +50,26 @@ class UserSettingsDao {
         final userThemeMode = UserThemeMode.fromJson(themeModeStr);
         return userThemeMode.getThemeMode();
       }).asBroadcastStream();
+
+  Future<void> saveMainColor(Color mainColor) async {
+    final mainColorInt = mainColor.toARGB32();
+    debugPrint('UserSettingsDao: Changing primary color to: $mainColorInt');
+    await _store.record(_mainColorKey).put(_db, <String, dynamic>{'color': mainColorInt});
+  }
+
+  Future<Color> getMainColor() async {
+    final json = await _store.record(_mainColorKey).get(_db);
+    if (json == null) return NepanikarColors.defaultPrimary;
+    return Color(json['color'] as int);
+  }
+
+  Stream<Color> get mainColorStream =>
+      _store.record(_mainColorKey).onSnapshot(_db).map((snapshot) {
+        final value = snapshot?.value;
+        if (value == null) return NepanikarColors.defaultPrimary;
+        return Color(value['color'] as int);
+      }).asBroadcastStream();
+
 
   String _getNotificationKey(NotificationType type) =>
       '$_notificationKeyPrefix${type.name.toLowerCase()}';

@@ -6,7 +6,7 @@ enum SnackbarType {
   success(NepanikarColors.success),
   error(NepanikarColors.error),
   info(NepanikarColors.info),
-  purple(NepanikarColors.primary);
+  purple(NepanikarColors.defaultPrimary);
 
   const SnackbarType(this.color);
 

@@ -18,7 +18,7 @@ class PhoneContactTile extends StatelessWidget {
   TextStyle get _descriptionNumTextStyle => NepanikarFonts.bodyRoman;
 
   TextStyle get _phoneNumTextStyle =>
-      NepanikarFonts.bodyBlack.copyWith(color: NepanikarColors.primary);
+      NepanikarFonts.bodyBlack.copyWith(color: NepanikarColors.defaultPrimary);
 
   @override
   Widget build(BuildContext context) {

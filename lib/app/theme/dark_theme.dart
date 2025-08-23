@@ -7,10 +7,10 @@ import 'package:nepanikar/app/theme/sizes.dart';
 class darkTheme {
   darkTheme._();
 
-  static ThemeData getThemeData({required String? fontFamily}) => ThemeData(
+  static ThemeData getThemeData({required String? fontFamily, required Color? mainColor}) => ThemeData(
     brightness: Brightness.dark,
-    primaryColor: NepanikarColors.primaryD,
-    scaffoldBackgroundColor: NepanikarColors.primaryD,
+    primaryColor: mainColor,
+    scaffoldBackgroundColor: mainColor,
     pageTransitionsTheme: const PageTransitionsTheme(
       builders: <TargetPlatform, PageTransitionsBuilder>{
         TargetPlatform.android: CupertinoPageTransitionsBuilder(),
@@ -19,14 +19,14 @@ class darkTheme {
     ),
     fontFamily: fontFamily,
     colorScheme: const ColorScheme.dark().copyWith(
-      primary: NepanikarColors.primary,
+      primary: mainColor,
       secondary: NepanikarColors.secondary,
       onSecondary: Colors.white,
       error: NepanikarColors.error,
     ),
-    primarySwatch: NepanikarColors.primarySwatch,
+    primarySwatch: NepanikarColors.primarySwatch(mainColor!),
     appBarTheme: AppBarTheme(
-      backgroundColor: NepanikarColors.headerD,
+      backgroundColor: NepanikarColors.headerColor(mainColor),
       elevation: 0,
       centerTitle: true,
       titleTextStyle: NepanikarFonts.title3.copyWith(color: Colors.white),
@@ -40,9 +40,9 @@ class darkTheme {
       style: _buttonStyle.copyWith(
         backgroundColor: WidgetStateProperty.resolveWith<Color?>((states) {
           if (states.contains(WidgetState.disabled)) {
-            return NepanikarColors.primarySwatch.shade700;
+            return NepanikarColors.primarySwatch(mainColor).shade700;
           }
-          return NepanikarColors.primarySwatch.shade700;
+          return NepanikarColors.primarySwatch(mainColor).shade700;
         }),
         foregroundColor: WidgetStateProperty.all<Color?>(Colors.white),
         textStyle: WidgetStateProperty.all<TextStyle>(
@@ -52,15 +52,15 @@ class darkTheme {
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: _buttonStyle.copyWith(
-        backgroundColor: WidgetStateProperty.all<Color?>(NepanikarColors.primarySwatch.shade700),
+        backgroundColor: WidgetStateProperty.all<Color?>(NepanikarColors.primarySwatch(mainColor).shade700),
         foregroundColor: WidgetStateProperty.resolveWith<Color?>((states) {
           if (states.contains(WidgetState.disabled)) {
-            return NepanikarColors.primarySwatch.shade500;
+            return NepanikarColors.primarySwatch(mainColor).shade500;
           }
-          return NepanikarColors.primary;
+          return mainColor;
         }),
         textStyle: WidgetStateProperty.all<TextStyle>(
-          const TextStyle(color: NepanikarColors.primary, fontWeight: FontWeight.w900),
+           TextStyle(color: mainColor, fontWeight: FontWeight.w900),
         ),
       ),
     ),
@@ -68,7 +68,7 @@ class darkTheme {
     inputDecorationTheme: InputDecorationTheme(
       contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       hintStyle: TextStyle(
-        color: NepanikarColors.primarySwatch.shade400,
+        color: NepanikarColors.primarySwatch(mainColor).shade400,
         fontSize: 15,
         fontWeight: FontWeight.w500,
       ),
@@ -81,7 +81,7 @@ class darkTheme {
       ),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: const BorderSide(color: NepanikarColors.primary),
+        borderSide:  BorderSide(color: mainColor),
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
@@ -89,15 +89,15 @@ class darkTheme {
       ),
       disabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(color: NepanikarColors.primarySwatch.shade500),
+        borderSide: BorderSide(color: NepanikarColors.primarySwatch(mainColor).shade500),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(color: NepanikarColors.primarySwatch.shade500),
+        borderSide: BorderSide(color: NepanikarColors.primarySwatch(mainColor).shade500),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: const BorderSide(color: NepanikarColors.primary),
+        borderSide:  BorderSide(color: mainColor),
       ),
     ),
     snackBarTheme: const SnackBarThemeData(
@@ -109,7 +109,7 @@ class darkTheme {
     checkboxTheme: CheckboxThemeData(
       fillColor: WidgetStateProperty.resolveWith<Color?>((states) {
         if (states.contains(WidgetState.selected)) {
-          return NepanikarColors.primary;
+          return mainColor;
         }
         return null;
       }),
@@ -117,7 +117,7 @@ class darkTheme {
     radioTheme: RadioThemeData(
       fillColor: WidgetStateProperty.resolveWith<Color?>((states) {
         if (states.contains(WidgetState.selected)) {
-          return NepanikarColors.primary;
+          return mainColor;
         }
         return null;
       }),
@@ -125,19 +125,19 @@ class darkTheme {
     switchTheme: SwitchThemeData(
       thumbColor: WidgetStateProperty.resolveWith<Color?>((states) {
         if (states.contains(WidgetState.selected)) {
-          return NepanikarColors.primary;
+          return mainColor;
         }
         return null;
       }),
       trackColor: WidgetStateProperty.resolveWith<Color?>((states) {
         if (states.contains(WidgetState.selected)) {
-          return NepanikarColors.primary;
+          return mainColor;
         }
         return null;
       }),
     ),
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      backgroundColor: NepanikarColors.containerD,
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: NepanikarColors.containerColor(mainColor),
       selectedItemColor: Colors.white,
       unselectedItemColor: Colors.white,
     ),

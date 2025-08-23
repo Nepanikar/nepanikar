@@ -135,7 +135,7 @@ class HomeScreen extends StatelessWidget {
                     context.l10n.homepage_subtitle,
                     maxLines: 1,
                     style: NepanikarFonts.title2.copyWith(
-                      color: isDarkMode ? Colors.white : NepanikarColors.primaryD,
+                      color: isDarkMode ? Colors.white : NepanikarColors.primary(context),
                     ),
                   ),
                 ),

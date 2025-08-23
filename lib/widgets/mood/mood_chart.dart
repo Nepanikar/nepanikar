@@ -29,7 +29,7 @@ class MoodChart extends StatelessWidget {
     final lineColor = customColorsBasedOnDarkMode(
       context,
       NepanikarColors.white,
-      NepanikarColors.primary,
+      NepanikarColors.primary(context),
     );
     final locale = Localizations.localeOf(context).languageCode;
     return LineChartData(
@@ -97,7 +97,7 @@ class MoodChart extends StatelessWidget {
           }).toList();
         },
         touchTooltipData: LineTouchTooltipData(
-          getTooltipColor: (LineBarSpot touchedSpot) => NepanikarColors.primary,
+          getTooltipColor: (LineBarSpot touchedSpot) => NepanikarColors.primary(context),
           getTooltipItems: (touchedSpots) {
             return touchedSpots.map((barSpot) {
               final flSpot = barSpot;

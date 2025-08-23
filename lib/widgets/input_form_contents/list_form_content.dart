@@ -94,7 +94,7 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
                 shrinkWrap: true,
                 primary: false,
                 separatorBuilder: (_, _) =>
-                    NepanikarHorizontalDivider(color: NepanikarColors.primarySwatch.shade100),
+                    NepanikarHorizontalDivider(color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade100),
                 itemBuilder: (_, i) {
                   final record = savedListItems[i];
                   final formKey = record.key;

@@ -3,9 +3,65 @@ import 'package:flutter/material.dart';
 class NepanikarColors {
   NepanikarColors._();
 
-  static final MaterialColor primarySwatch = MaterialColor(primary.toARGB32(), _primarySwatch);
+  static Color primary(BuildContext context)
+  {
+     if(Theme.of(context).brightness == Brightness.light) {
+       return Theme.of(context).primaryColor;
+     } else {
+       //primaryD
+       return Theme.of(context).primaryColor;
+     }
+  }
+
+  static Color lightness(Color color, double amount)
+  {
+    final hsl = HSLColor.fromColor(color);
+    return hsl.withLightness((hsl.lightness + amount).clamp(0.0, 1.0)).toColor();
+  }
+
+  static Color container(BuildContext context)
+  {
+    if(Theme.of(context).brightness == Brightness.light) {
+      return const Color(0xffEDE8F3);
+    } else {
+      return lightness(Theme.of(context).primaryColor, 0.1);
+    }
+  }
+
+  static Color containerColor(Color mainColor)
+  {
+     return lightness(mainColor, 0.1);
+  }
+
+  static Color headerColor(Color mainColor)
+  {
+     return lightness(mainColor, -0.1);
+  }
+
+  static Color header(BuildContext context)
+  {
+    return lightness(Theme.of(context).primaryColor, -0.1);
+  }
+
+  static MaterialColor primarySwatch(Color color) {
+    final hsl = HSLColor.fromColor(color);
+    final Map<int, Color> swatch = {
+      50:  lightness(color, 0.45),
+      100: lightness(color, 0.35),
+      200: lightness(color, 0.25),
+      300: lightness(color, 0.15),
+      400: lightness(color, 0.05),
+      500: color, // base color
+      600: lightness(color, -0.05),
+      700: lightness(color, -0.15),
+      800: lightness(color, -0.25),
+      900: lightness(color, -0.35),
+    };
+
+    return MaterialColor(color.toARGB32(), swatch);
+  }
   static const dark = Color(0xff280446);
-  static const primary = Color(0xff491475);
+  static const defaultPrimary = Color(0xff491475);
   static const secondary = Color(0xff4EA3AD);
   static const error = Color(0xffD86C66);
   static const success = Color(0xff6FD866);
@@ -28,7 +84,7 @@ class NepanikarColors {
       offset: const Offset(0, 2), // changes position of shadow
     ),
   ];
-
+/*
   static const _primarySwatch = <int, Color>{
     50: Color(0xffFAF4FF), //10%
     100: Color(0xffFAF4FF), //20%
@@ -40,7 +96,7 @@ class NepanikarColors {
     700: Color(0xff955EB6), //80%
     800: primary, //90%
     900: Color(0xff280446), //100%
-  };
+  };*/
 
   static const heatMapColors = <int, Color>{
     1: Color(0xffA72C2C),
