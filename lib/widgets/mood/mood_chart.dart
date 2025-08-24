@@ -17,11 +17,17 @@ class MoodChart extends StatelessWidget {
     return AspectRatio(aspectRatio: 1.70, child: LineChart(_buildLineChartData(context)));
   }
 
-  Widget _leftTitleIcons(double value, TitleMeta meta) {
+  Widget _leftTitleIcons(double value, TitleMeta meta, BuildContext context) {
     final mood = Mood.fromInteger(value.toInt());
     return SideTitleWidget(
       meta: meta,
-      child: mood?.icon.svg(width: 32, height: 32) ?? const SizedBox.shrink(),
+      child:
+          mood?.icon.svg(
+            width: 32,
+            height: 32,
+            colorFilter: svgColorFilterBasedOnDarkMode(context),
+          ) ??
+          const SizedBox.shrink(),
     );
   }
 
@@ -78,7 +84,9 @@ class MoodChart extends StatelessWidget {
           sideTitles: SideTitles(
             interval: 1,
             showTitles: true,
-            getTitlesWidget: _leftTitleIcons,
+            getTitlesWidget: (value, meta) {
+              return _leftTitleIcons(value, meta, context);
+            },
             reservedSize: 40,
           ),
         ),

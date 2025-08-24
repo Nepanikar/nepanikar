@@ -21,9 +21,8 @@ class RelaxationsListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final svgColor = svgColorBasedOnDarkMode(context);
     final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    final colorFilter = svgColor != null ? ColorFilter.mode(svgColor, BlendMode.srcIn) : null;
+    final colorFilter = svgColorFilterBasedOnDarkMode(context);
 
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.relaxation,

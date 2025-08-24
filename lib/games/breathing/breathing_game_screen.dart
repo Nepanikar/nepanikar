@@ -210,7 +210,12 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
                     padding: const EdgeInsets.symmetric(horizontal: 28.0),
                     child: Text(
                       context.l10n.breathing_exercise_tip,
-                      style: TextStyle(color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade300, fontSize: 15),
+                      style: TextStyle(
+                        color: NepanikarColors.primarySwatch(
+                          Theme.of(context).primaryColor,
+                        ).shade300,
+                        fontSize: 15,
+                      ),
                     ),
                   ),
                 ),
@@ -232,7 +237,9 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
                   label: (_currentSliderValue.round() - 5).toString(),
                   thumbColor: Colors.white,
                   activeColor: Colors.white,
-                  inactiveColor: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade500,
+                  inactiveColor: NepanikarColors.primarySwatch(
+                    Theme.of(context).primaryColor,
+                  ).shade500,
                   onChanged: _onSliderChange,
                 ),
                 const SizedBox(height: 38),

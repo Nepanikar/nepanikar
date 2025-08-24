@@ -148,7 +148,9 @@ class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntr
                     buttonText: Text(
                       context.l10n.search_by_emotions,
                       style: TextStyle(
-                        color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade400,
+                        color: NepanikarColors.primarySwatch(
+                          Theme.of(context).primaryColor,
+                        ).shade400,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),

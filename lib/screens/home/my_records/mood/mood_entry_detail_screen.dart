@@ -146,7 +146,9 @@ class _MoodEntryDetailState<T extends MoodTrackDao> extends State<MoodEntryDetai
                       child: Text(
                         moodEntry.summary!,
                         style: TextStyle(
-                          color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade700,
+                          color: NepanikarColors.primarySwatch(
+                            Theme.of(context).primaryColor,
+                          ).shade700,
                           fontSize: 25,
                           fontWeight: FontWeight.bold,
                         ),
@@ -187,7 +189,9 @@ class _MoodEntryDetailState<T extends MoodTrackDao> extends State<MoodEntryDetai
                       child: Text(
                         moodEntry.description!,
                         style: TextStyle(
-                          color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade700,
+                          color: NepanikarColors.primarySwatch(
+                            Theme.of(context).primaryColor,
+                          ).shade700,
                           fontSize: 15,
                           fontWeight: FontWeight.w500,
                         ),
@@ -240,7 +244,11 @@ class _MoodEntryDetailState<T extends MoodTrackDao> extends State<MoodEntryDetai
                     Provider.of<MoodState>(context, listen: false).setEditing(true);
                     context.push(const MoodPickerRoute().location);
                   },
-                  style: ElevatedButton.styleFrom(backgroundColor: NepanikarColors.baseButtonD),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: NepanikarColors.primarySwatch(
+                      Theme.of(context).primaryColor,
+                    ).shade100,
+                  ),
                   child: const Icon(Icons.edit, color: Colors.white, size: 30),
                 ),
               ),

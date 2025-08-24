@@ -244,7 +244,7 @@ class AppBarOverflowContent extends StatelessWidget {
                   isCardStackLayout ? '${appBarDescription!}\n' : appBarDescription!,
                   textAlign: TextAlign.center,
                   style: NepanikarFonts.bodyRoman.copyWith(
-                    color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade400,
+                    color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade100,
                   ),
                 ),
               ),

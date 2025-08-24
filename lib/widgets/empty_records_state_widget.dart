@@ -20,7 +20,10 @@ class EmptyRecordsStateWidget extends StatelessWidget {
         ExcludeSemantics(
           child: Assets.illustrations.modules.myRecords.svg(
             width: context.screenWidth * 0.205,
-            colorFilter: ColorFilter.mode(NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade400, BlendMode.srcIn),
+            colorFilter: ColorFilter.mode(
+              NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade400,
+              BlendMode.srcIn,
+            ),
           ),
         ),
         const SizedBox(height: 26),

@@ -68,7 +68,9 @@ class FoodRecordTile extends StatelessWidget {
                                 width: 14,
                                 height: 14,
                                 colorFilter: ColorFilter.mode(
-                                  NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade400,
+                                  NepanikarColors.primarySwatch(
+                                    Theme.of(context).primaryColor,
+                                  ).shade400,
                                   BlendMode.srcIn,
                                 ),
                               ),
@@ -82,7 +84,9 @@ class FoodRecordTile extends StatelessWidget {
                                   fontWeight: FontWeight.w700,
                                   color: _getIsFoodTypeTaken(foodType)
                                       ? (isDarkMode ? NepanikarColors.white : NepanikarColors.dark)
-                                      : NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade400,
+                                      : NepanikarColors.primarySwatch(
+                                          Theme.of(context).primaryColor,
+                                        ).shade400,
                                 ),
                               ),
                             ),

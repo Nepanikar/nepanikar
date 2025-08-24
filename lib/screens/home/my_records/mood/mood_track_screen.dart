@@ -145,7 +145,11 @@ class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScree
               ),
               const SizedBox(height: 20),
               Card(
-                color: customColorsBasedOnDarkMode(context, NepanikarColors.container(context), null),
+                color: customColorsBasedOnDarkMode(
+                  context,
+                  NepanikarColors.container(context),
+                  null,
+                ),
                 child: StreamBuilder<List<MoodTrack>>(
                   stream: _trackDao.allMoodTracksStream,
                   builder: (_, snapshot) {
@@ -182,8 +186,8 @@ class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScree
 
     final arrowCanShiftColor = customColorsBasedOnDarkMode(context, NepanikarColors.white, null);
 
-    final svgColor = svgColorBasedOnDarkMode(context);
-    final colorFilter = svgColor != null ? ColorFilter.mode(svgColor, BlendMode.srcIn) : null;
+    svgColorBasedOnDarkMode(context);
+    final colorFilter = svgColorFilterBasedOnDarkMode(context);
 
     return Consumer<MoodChartFilterProvider>(
       builder: (_, moodChartFilterProvider, _) {

@@ -45,8 +45,8 @@ class ContactsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final currentTheme = Theme.of(context);
     final isDarkMode = currentTheme.brightness == Brightness.dark;
-    final svgColor = svgColorBasedOnDarkMode(context);
-    final colorFilter = svgColor != null ? ColorFilter.mode(svgColor, BlendMode.srcIn) : null;
+    svgColorBasedOnDarkMode(context);
+    final colorFilter = svgColorFilterBasedOnDarkMode(context);
 
     final locale = Localizations.localeOf(context);
 

@@ -58,7 +58,11 @@ class SelfHarmTimerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final analytics = registry.get<FirebaseAnalytics>();
-    final cardColor = customColorsBasedOnDarkMode(context, NepanikarColors.container(context), null);
+    final cardColor = customColorsBasedOnDarkMode(
+      context,
+      NepanikarColors.container(context),
+      null,
+    );
     final backgroundColor = customColorsBasedOnDarkMode(
       context,
       NepanikarColors.primary(context),

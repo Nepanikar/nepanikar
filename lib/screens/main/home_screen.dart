@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget {
     final currentTheme = Theme.of(context);
     final isDarkMode = currentTheme.brightness == Brightness.dark;
     final svgColor = svgColorBasedOnDarkMode(context);
-    final colorFilter = svgColor != null ? ColorFilter.mode(svgColor, BlendMode.srcIn) : null;
+    final colorFilter = svgColorFilterBasedOnDarkMode(context);
 
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarBrightness: Brightness.light),

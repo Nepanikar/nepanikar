@@ -59,6 +59,7 @@ class MyContactsRecordsScreen extends StatelessWidget {
           android: () => FloatingActionButton(
             onPressed: () => _onItemAdd(context),
             tooltip: context.l10n.add_item,
+            backgroundColor: Theme.of(context).primaryColor,
             child: const Icon(Icons.add),
           ),
         ),

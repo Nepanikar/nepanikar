@@ -51,49 +51,47 @@ class Nepanikar extends StatelessWidget {
             builder: (context, snapshot) {
               final themeMode = snapshot.data ?? ThemeMode.system;
               return StreamBuilder<Color>(
-              stream: _userSettingsDao.mainColorStream,
-              builder: (context, snapshot)
-              {
-                final inputMainColor = snapshot.data ?? Theme.of(context).primaryColor;
-                return MaterialApp.router(
-                  debugShowCheckedModeBanner: false,
-                  title: _getAppNameFromLocale(locale),
-                  theme: NepanikarTheme.getThemeData(
-                    fontFamily: locale?.languageCode ==
-                        NepanikarLanguages.uk.languageCode
-                        ? null
-                        : FontFamily.satoshi,
-                        mainColor: inputMainColor,
-                  ),
-                  darkTheme: darkTheme.getThemeData(
-                    fontFamily: locale?.languageCode ==
-                        NepanikarLanguages.uk.languageCode
-                        ? null
-                        : FontFamily.satoshi,
-                        mainColor: inputMainColor,
-                  ),
-                  themeMode: themeMode,
-                  localizationsDelegates: AppLocalizations
-                      .localizationsDelegates,
-                  supportedLocales: AppLocalizations.supportedLocales,
-                  locale: locale,
-                  routerConfig: _goRouter,
-                  builder: (context, child) {
-                    return child != null
-                        ? ScrollConfiguration(
-                      behavior: NepanikarScrollBehavior(),
-                      child: MediaQuery(
-                        // To not influence app's font size by the system font size.
-                        // TODO: Should be resolved, accessibility is important.
-                        data: MediaQuery.of(context).copyWith(
-                            textScaler: TextScaler.noScaling),
-                        child: child,
-                      ),
-                    )
-                        : const SizedBox.shrink();
-                  },
-                );
-              },);
+                stream: _userSettingsDao.mainColorStream,
+                builder: (context, snapshot) {
+                  final inputMainColor = snapshot.data ?? Theme.of(context).primaryColor;
+                  return MaterialApp.router(
+                    debugShowCheckedModeBanner: false,
+                    title: _getAppNameFromLocale(locale),
+                    theme: NepanikarTheme.getThemeData(
+                      fontFamily: locale?.languageCode == NepanikarLanguages.uk.languageCode
+                          ? null
+                          : FontFamily.satoshi,
+                      mainColor: inputMainColor,
+                    ),
+                    darkTheme: darkTheme.getThemeData(
+                      fontFamily: locale?.languageCode == NepanikarLanguages.uk.languageCode
+                          ? null
+                          : FontFamily.satoshi,
+                      mainColor: inputMainColor,
+                    ),
+                    themeMode: themeMode,
+                    localizationsDelegates: AppLocalizations.localizationsDelegates,
+                    supportedLocales: AppLocalizations.supportedLocales,
+                    locale: locale,
+                    routerConfig: _goRouter,
+                    builder: (context, child) {
+                      return child != null
+                          ? ScrollConfiguration(
+                              behavior: NepanikarScrollBehavior(),
+                              child: MediaQuery(
+                                // To not influence app's font size by the system font size.
+                                // TODO: Should be resolved, accessibility is important.
+                                data: MediaQuery.of(
+                                  context,
+                                ).copyWith(textScaler: TextScaler.noScaling),
+                                child: child,
+                              ),
+                            )
+                          : const SizedBox.shrink();
+                    },
+                  );
+                },
+              );
             },
           );
         },

@@ -75,6 +75,7 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
           android: () => FloatingActionButton(
             onPressed: _onItemAdd,
             tooltip: context.l10n.add_item,
+            backgroundColor: Theme.of(context).primaryColor,
             child: const Icon(Icons.add),
           ),
         ),
@@ -93,8 +94,9 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
                 itemCount: savedListItems.length,
                 shrinkWrap: true,
                 primary: false,
-                separatorBuilder: (_, _) =>
-                    NepanikarHorizontalDivider(color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade100),
+                separatorBuilder: (_, _) => NepanikarHorizontalDivider(
+                  color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade100,
+                ),
                 itemBuilder: (_, i) {
                   final record = savedListItems[i];
                   final formKey = record.key;

@@ -308,8 +308,8 @@ class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsS
 
     return Consumer<MoodChartFilterProvider>(
       builder: (_, moodChartFilterProvider, _) {
-        final svgColor = svgColorBasedOnDarkMode(context);
-        final colorFilter = svgColor != null ? ColorFilter.mode(svgColor, BlendMode.srcIn) : null;
+        svgColorBasedOnDarkMode(context);
+        final colorFilter = svgColorFilterBasedOnDarkMode(context);
         final activeFilter = moodChartFilterProvider.activeFilter;
         final dateRange = moodChartFilterProvider.customDateRange;
         final canShiftNextDateRange = moodChartFilterProvider.canShiftDateRangeNext;

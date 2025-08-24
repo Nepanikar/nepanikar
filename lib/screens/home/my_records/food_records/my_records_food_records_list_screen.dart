@@ -70,6 +70,7 @@ class MyRecordsFoodRecordsListScreen extends StatelessWidget {
             );
           },
           tooltip: context.l10n.add_item,
+          backgroundColor: Theme.of(context).primaryColor,
           child: const Icon(Icons.add),
         ),
       ),

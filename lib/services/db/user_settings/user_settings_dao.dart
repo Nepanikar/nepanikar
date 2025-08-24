@@ -63,13 +63,11 @@ class UserSettingsDao {
     return Color(json['color'] as int);
   }
 
-  Stream<Color> get mainColorStream =>
-      _store.record(_mainColorKey).onSnapshot(_db).map((snapshot) {
-        final value = snapshot?.value;
-        if (value == null) return NepanikarColors.defaultPrimary;
-        return Color(value['color'] as int);
-      }).asBroadcastStream();
-
+  Stream<Color> get mainColorStream => _store.record(_mainColorKey).onSnapshot(_db).map((snapshot) {
+    final value = snapshot?.value;
+    if (value == null) return NepanikarColors.defaultPrimary;
+    return Color(value['color'] as int);
+  }).asBroadcastStream();
 
   String _getNotificationKey(NotificationType type) =>
       '$_notificationKeyPrefix${type.name.toLowerCase()}';

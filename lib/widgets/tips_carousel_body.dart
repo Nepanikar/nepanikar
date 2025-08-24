@@ -88,7 +88,9 @@ class _TipsCarouselBodyState extends State<TipsCarouselBody> {
                           width: 148,
                           height: 6,
                           decoration: BoxDecoration(
-                            color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade300,
+                            color: NepanikarColors.primarySwatch(
+                              Theme.of(context).primaryColor,
+                            ).shade300,
                             borderRadius: BorderRadius.circular(3),
                           ),
                         ),

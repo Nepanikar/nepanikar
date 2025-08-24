@@ -3,50 +3,43 @@ import 'package:flutter/material.dart';
 class NepanikarColors {
   NepanikarColors._();
 
-  static Color primary(BuildContext context)
-  {
-     if(Theme.of(context).brightness == Brightness.light) {
-       return Theme.of(context).primaryColor;
-     } else {
-       //primaryD
-       return Theme.of(context).primaryColor;
-     }
+  static Color primary(BuildContext context) {
+    if (Theme.of(context).brightness == Brightness.light) {
+      return Theme.of(context).primaryColor;
+    } else {
+      //primaryD
+      return Theme.of(context).primaryColor;
+    }
   }
 
-  static Color lightness(Color color, double amount)
-  {
+  static Color lightness(Color color, double amount) {
     final hsl = HSLColor.fromColor(color);
     return hsl.withLightness((hsl.lightness + amount).clamp(0.0, 1.0)).toColor();
   }
 
-  static Color container(BuildContext context)
-  {
-    if(Theme.of(context).brightness == Brightness.light) {
+  static Color container(BuildContext context) {
+    if (Theme.of(context).brightness == Brightness.light) {
       return const Color(0xffEDE8F3);
     } else {
       return lightness(Theme.of(context).primaryColor, 0.1);
     }
   }
 
-  static Color containerColor(Color mainColor)
-  {
-     return lightness(mainColor, 0.1);
+  static Color containerColor(Color mainColor) {
+    return lightness(mainColor, 0.1);
   }
 
-  static Color headerColor(Color mainColor)
-  {
-     return lightness(mainColor, -0.1);
+  static Color headerColor(Color mainColor) {
+    return lightness(mainColor, -0.1);
   }
 
-  static Color header(BuildContext context)
-  {
+  static Color header(BuildContext context) {
     return lightness(Theme.of(context).primaryColor, -0.1);
   }
 
   static MaterialColor primarySwatch(Color color) {
-    final hsl = HSLColor.fromColor(color);
     final Map<int, Color> swatch = {
-      50:  lightness(color, 0.45),
+      50: lightness(color, 0.45),
       100: lightness(color, 0.35),
       200: lightness(color, 0.25),
       300: lightness(color, 0.15),
@@ -57,16 +50,21 @@ class NepanikarColors {
       800: lightness(color, -0.25),
       900: lightness(color, -0.35),
     };
-
     return MaterialColor(color.toARGB32(), swatch);
   }
+
+  static Color primaryColorShade(BuildContext context, double shade) {
+    return Theme.of(context).brightness == Brightness.light
+        ? lightness(Theme.of(context).primaryColor, shade)
+        : lightness(Theme.of(context).primaryColor, shade - 0.2);
+  }
+
   static const dark = Color(0xff280446);
   static const defaultPrimary = Color(0xff491475);
   static const secondary = Color(0xff4EA3AD);
   static const error = Color(0xffD86C66);
   static const success = Color(0xff6FD866);
   static const deleteButton = Color(0xff964A4A);
-  static const baseButtonD = Color(0xff8654B0);
   static const info = Color(0xffFEC786);
   static const filledContainer = Color(0xffEDE8F3);
   static const white = Color(0xffffffff);
@@ -84,7 +82,7 @@ class NepanikarColors {
       offset: const Offset(0, 2), // changes position of shadow
     ),
   ];
-/*
+  /*
   static const _primarySwatch = <int, Color>{
     50: Color(0xffFAF4FF), //10%
     100: Color(0xffFAF4FF), //20%
@@ -105,10 +103,4 @@ class NepanikarColors {
     4: Color(0xffA6AC5A),
     5: Color(0xff49A3BF),
   };
-
-  //Dark mode colors
-  static const primaryD = Color(0xff280446);
-  static const containerD = Color(0xff491475);
-  static const headerD = Color(0xff18002D);
-  static const dropdownMenuD = Color(0xff8654B0);
 }

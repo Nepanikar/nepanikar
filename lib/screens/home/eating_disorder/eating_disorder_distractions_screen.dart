@@ -29,9 +29,8 @@ class EatingDisorderDistractionsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final svgColor = svgColorBasedOnDarkMode(context);
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    final colorFilter = svgColor != null ? ColorFilter.mode(svgColor, BlendMode.srcIn) : null;
+    final colorFilter = svgColorFilterBasedOnDarkMode(context);
 
     final modules = <Widget>[
       LongTile(

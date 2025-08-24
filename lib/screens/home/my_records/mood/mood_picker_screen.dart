@@ -242,7 +242,9 @@ class _MoodPickerScreenState<T extends MoodTrackDao> extends State<MoodPickerScr
                         buttonText: Text(
                           context.l10n.select_your_emotions,
                           style: TextStyle(
-                            color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade400,
+                            color: NepanikarColors.primarySwatch(
+                              Theme.of(context).primaryColor,
+                            ).shade400,
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
                           ),
@@ -376,7 +378,9 @@ class _MoodPickerScreenState<T extends MoodTrackDao> extends State<MoodPickerScr
             controller: _newEmotionController,
             decoration: InputDecoration(
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade600),
+                borderSide: BorderSide(
+                  color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade600,
+                ),
               ),
               hintText: context.l10n.type_a_new_emotion,
             ),
