@@ -71,7 +71,7 @@ class darkTheme {
         inputDecorationTheme: InputDecorationTheme(
           contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           hintStyle: TextStyle(
-            color: NepanikarColors.primarySwatch(mainColor).shade400,
+            color: NepanikarColors.primarySwatch(mainColor).shade100,
             fontSize: 15,
             fontWeight: FontWeight.w500,
           ),
@@ -84,7 +84,7 @@ class darkTheme {
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: mainColor),
+            borderSide: BorderSide(color: NepanikarColors.primarySwatch(mainColor).shade200),
           ),
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
@@ -92,15 +92,15 @@ class darkTheme {
           ),
           disabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: NepanikarColors.primarySwatch(mainColor).shade500),
+            borderSide: BorderSide(color: NepanikarColors.primarySwatch(mainColor).shade200),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: NepanikarColors.primarySwatch(mainColor).shade500),
+            borderSide: BorderSide(color: NepanikarColors.primarySwatch(mainColor).shade200),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: mainColor),
+            borderSide: BorderSide(color: NepanikarColors.primarySwatch(mainColor).shade100),
           ),
         ),
         snackBarTheme: const SnackBarThemeData(

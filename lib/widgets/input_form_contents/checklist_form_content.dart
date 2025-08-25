@@ -89,7 +89,7 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
             onPressed: _onItemAdd,
             tooltip: context.l10n.add_item,
             backgroundColor: Theme.of(context).primaryColor,
-            child: const Icon(Icons.add),
+            child: const Icon(Icons.add, color: Colors.white),
           ),
         ),
         children: [
@@ -180,7 +180,7 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
                                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                                         color: checkFormState == true
                                             ? checkedTextColor
-                                            : NepanikarColors.primarySwatch(
+                                            : isDarkmode(context) ? Colors.white54 : NepanikarColors.primarySwatch(
                                                 Theme.of(context).primaryColor,
                                               ).shade400,
                                       ),

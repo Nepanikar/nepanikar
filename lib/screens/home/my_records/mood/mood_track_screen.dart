@@ -185,8 +185,6 @@ class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScree
     );
 
     final arrowCanShiftColor = customColorsBasedOnDarkMode(context, NepanikarColors.white, null);
-
-    svgColorBasedOnDarkMode(context);
     final colorFilter = svgColorFilterBasedOnDarkMode(context);
 
     return Consumer<MoodChartFilterProvider>(

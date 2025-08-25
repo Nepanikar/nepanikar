@@ -32,6 +32,13 @@ class FoodRecordTile extends StatelessWidget {
       BlendMode.srcIn,
     );
 
+    final colorFilterUnchecked = ColorFilter.mode(
+      isDarkMode ? Colors.white38 : NepanikarColors.primarySwatch(
+        Theme.of(context).primaryColor,
+      ).shade400,
+      BlendMode.srcIn,
+    );
+
     const textStyle = NepanikarFonts.bodyHeavy;
     final locale = Localizations.localeOf(context);
 
@@ -67,12 +74,7 @@ class FoodRecordTile extends StatelessWidget {
                               Assets.icons.checkmarks.checkCircularUnchecked.svg(
                                 width: 14,
                                 height: 14,
-                                colorFilter: ColorFilter.mode(
-                                  NepanikarColors.primarySwatch(
-                                    Theme.of(context).primaryColor,
-                                  ).shade400,
-                                  BlendMode.srcIn,
-                                ),
+                                colorFilter: colorFilterUnchecked,
                               ),
                             const SizedBox(width: 5),
                             Flexible(
@@ -84,9 +86,9 @@ class FoodRecordTile extends StatelessWidget {
                                   fontWeight: FontWeight.w700,
                                   color: _getIsFoodTypeTaken(foodType)
                                       ? (isDarkMode ? NepanikarColors.white : NepanikarColors.dark)
-                                      : NepanikarColors.primarySwatch(
+                                      : (isDarkMode ? Colors.white30 : NepanikarColors.primarySwatch(
                                           Theme.of(context).primaryColor,
-                                        ).shade400,
+                                        ).shade400),
                                 ),
                               ),
                             ),

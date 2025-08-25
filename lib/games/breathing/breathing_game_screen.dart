@@ -213,7 +213,7 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
                       style: TextStyle(
                         color: NepanikarColors.primarySwatch(
                           Theme.of(context).primaryColor,
-                        ).shade300,
+                        ).shade50,
                         fontSize: 15,
                       ),
                     ),

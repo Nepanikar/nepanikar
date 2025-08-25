@@ -126,7 +126,7 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
                     description!,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade300,
+                      color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade50,
                     ),
                   ),
                 ),

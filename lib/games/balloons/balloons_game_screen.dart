@@ -80,8 +80,8 @@ class _BalloonsGameScreenState extends State<BalloonsGameScreen> with TickerProv
   @override
   void initState() {
     super.initState();
-
-    final size = View.of(context).physicalSize / View.of(context).devicePixelRatio;
+    final view = WidgetsBinding.instance.platformDispatcher.views.first;
+    final size = view.physicalSize / view.devicePixelRatio;
     _controller = AnimationController(vsync: this);
 
     setState(() {
@@ -141,8 +141,8 @@ class _BalloonsGameScreenState extends State<BalloonsGameScreen> with TickerProv
                     else
                       IgnorePointer(
                         child: e.lightVariant
-                            ? Assets.illustrations.games.balloons.balloonUnwanted1.svg(width: 100)
-                            : Assets.illustrations.games.balloons.balloonUnwanted2.svg(width: 100),
+                            ? Assets.illustrations.games.balloons.balloonUnwanted1.svg(width: 100, colorFilter: ColorFilter.mode(NepanikarColors.primaryColorShade(context, 0.45), BlendMode.srcIn))
+                            : Assets.illustrations.games.balloons.balloonUnwanted2.svg(width: 100, colorFilter: ColorFilter.mode(NepanikarColors.primaryColorShade(context, 0.25), BlendMode.srcIn)),
                       ),
                     IgnorePointer(
                       ignoring: !e.wanted,

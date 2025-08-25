@@ -118,7 +118,7 @@ class _TipsCarouselBodyState extends State<TipsCarouselBody> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Flexible(
-                            child: NepanikarButton.secondary(
+                            child: NepanikarButton(
                               onTap: () => controller.previousPage(
                                 duration: const Duration(milliseconds: 400),
                                 curve: Curves.easeInOut,

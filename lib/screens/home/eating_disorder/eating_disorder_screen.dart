@@ -8,6 +8,7 @@ import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_distracti
 import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_samples_screen.dart';
 import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_tasks_screen.dart';
 import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_tips_screen.dart';
+import 'package:nepanikar/screens/home/my_records/food_records/my_records_food_records_list_screen.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/utils/contacts_data_manager.dart';
 import 'package:nepanikar/utils/registry.dart';
@@ -76,6 +77,12 @@ class EatingDisorderScreen extends StatelessWidget {
           onTap: () => context.push(const EatingDisorderContactsRoute().location),
           isDarkMode: isDarkMode,
         ),
+      LongTile(
+        text: context.l10n.food_records,
+        image: Assets.illustrations.modules.foodTracker.svg(colorFilter: colorFilter),
+        onTap: () => context.push(const MyRecordsFoodRecordsListRoute().location),
+        isDarkMode: isDarkMode,
+      ),
     ];
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.food,

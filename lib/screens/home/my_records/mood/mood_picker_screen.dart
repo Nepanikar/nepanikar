@@ -190,10 +190,6 @@ class _MoodPickerScreenState<T extends MoodTrackDao> extends State<MoodPickerScr
                   initialValue: summary,
                   decoration: InputDecoration(
                     labelText: context.l10n.title_entry_label,
-                    labelStyle: TextStyle(
-                      color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade400,
-                      fontWeight: FontWeight.bold,
-                    ),
                     fillColor: containerColor,
                     filled: true,
                     enabledBorder: OutlineInputBorder(
@@ -201,10 +197,6 @@ class _MoodPickerScreenState<T extends MoodTrackDao> extends State<MoodPickerScr
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     hintText: context.l10n.enter_summary,
-                    hintStyle: TextStyle(
-                      color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade400,
-                      fontWeight: FontWeight.bold,
-                    ),
                     floatingLabelBehavior: FloatingLabelBehavior.never,
                   ),
                   onChanged: (value) {
@@ -242,9 +234,7 @@ class _MoodPickerScreenState<T extends MoodTrackDao> extends State<MoodPickerScr
                         buttonText: Text(
                           context.l10n.select_your_emotions,
                           style: TextStyle(
-                            color: NepanikarColors.primarySwatch(
-                              Theme.of(context).primaryColor,
-                            ).shade400,
+                            color: textStyleColor,
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
                           ),
@@ -298,10 +288,6 @@ class _MoodPickerScreenState<T extends MoodTrackDao> extends State<MoodPickerScr
                   keyboardType: TextInputType.multiline,
                   decoration: InputDecoration(
                     labelText: context.l10n.summary_of_your_moment,
-                    labelStyle: TextStyle(
-                      color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade400,
-                      fontWeight: FontWeight.bold,
-                    ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: NepanikarColors.container(context)),
                       borderRadius: BorderRadius.circular(8.0),
@@ -310,10 +296,6 @@ class _MoodPickerScreenState<T extends MoodTrackDao> extends State<MoodPickerScr
                     fillColor: containerColor,
                     alignLabelWithHint: true,
                     hintText: context.l10n.describe_what_happened,
-                    hintStyle: TextStyle(
-                      color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade400,
-                      fontWeight: FontWeight.bold,
-                    ),
                     floatingLabelBehavior: FloatingLabelBehavior.never,
                   ),
                   onChanged: (value) {

@@ -130,7 +130,7 @@ class _NepanikarButtonState extends State<NepanikarButton> with SingleTickerProv
         : _isButtonInteractive
         ? NepanikarColors.primary(context)
         : NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade500;
-    final textColor = textColorBasedOnDarkMode(context);
+    final textColor = widget.buttonType.isPrimary ? Colors.white : Theme.of(context).brightness == Brightness.dark ? NepanikarColors.primaryColorShade(context, 0.55) : NepanikarColors.primary(context);
     final colorFilter = ColorFilter.mode(iconColor, BlendMode.srcIn);
 
     return _isLoading
