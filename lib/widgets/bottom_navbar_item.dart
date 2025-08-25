@@ -35,7 +35,7 @@ BottomNavigationBarItem buildBottomNavigationBarItem({
               ? (isSelected
                     ? const ColorFilter.mode(Colors.white, BlendMode.srcIn)
                     : ColorFilter.mode(
-                        NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade400,
+                        NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade50,
                         BlendMode.srcIn,
                       ))
               : (isSelected
@@ -44,7 +44,7 @@ BottomNavigationBarItem buildBottomNavigationBarItem({
                         BlendMode.srcIn,
                       )
                     : ColorFilter.mode(
-                        NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade700,
+                        NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade200,
                         BlendMode.srcIn,
                       )),
         ),

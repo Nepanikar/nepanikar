@@ -5,8 +5,7 @@ import 'package:nepanikar/app/theme/fonts.dart';
 enum SnackbarType {
   success(NepanikarColors.success),
   error(NepanikarColors.error),
-  info(NepanikarColors.info),
-  purple(NepanikarColors.defaultPrimary);
+  info(NepanikarColors.info);
 
   const SnackbarType(this.color);
 

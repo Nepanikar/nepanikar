@@ -30,6 +30,7 @@ class NepanikarTheme {
           elevation: 0,
           centerTitle: true,
           titleTextStyle: NepanikarFonts.title3.copyWith(color: Colors.white),
+          iconTheme: const IconThemeData(color: Colors.white),
         ),
         cardTheme: const CardThemeData().copyWith(
           margin: const EdgeInsets.symmetric(horizontal: 24),

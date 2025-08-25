@@ -42,17 +42,6 @@ extension CustomSnackBar on BuildContext {
       ),
     );
   }
-
-  void showPurpleSnackbar({required String text, Widget? leading, Widget? trailing}) {
-    ScaffoldMessenger.of(this).showSnackBar(
-      nepanikarSnackbar(
-        text: text,
-        snackbarType: SnackbarType.purple,
-        leading: ExcludeSemantics(child: leading),
-        trailing: trailing,
-      ),
-    );
-  }
 }
 
 extension NepanikarDialogExtension on BuildContext {

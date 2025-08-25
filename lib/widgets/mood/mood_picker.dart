@@ -148,7 +148,9 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
                     child: Column(
                       children: [
                         ColorFiltered(
-                          colorFilter: ColorFilter.matrix(svgColorMatrixBasedOnDarkMode(context)),
+                          colorFilter: ColorFilter.matrix(
+                            svgColorMatrixBasedOnDarkMode(context, lighter: true),
+                          ),
                           child: _lottieCacheManager.loadFromCache(
                             mood.animatedIcon,
                             controller: _getLottieAnimController(mood),

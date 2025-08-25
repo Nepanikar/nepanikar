@@ -176,7 +176,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         onHorizontalDragUpdate: (details) async {
                           await updateColor(innerContext, details.localPosition, userSettingsDao);
                         },
-                        child: Assets.icons.hue.svg(width: double.infinity, height: 40),
+                        child: Padding(
+                          padding: const EdgeInsets.all(3),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: Assets.icons.hue.svg(width: double.infinity, height: 40),
+                          ),
+                        ),
                       );
                     },
                   ),

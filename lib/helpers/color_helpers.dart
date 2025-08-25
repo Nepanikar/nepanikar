@@ -9,8 +9,7 @@ Color? svgColorBasedOnDarkMode(BuildContext context) {
   return isDarkmode(context) ? NepanikarColors.white : Theme.of(context).primaryColor;
 }
 
-List<double> svgColorMatrixBasedOnDarkMode(BuildContext context) {
-  final tintColor = NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade50;
+List<double> colorMatrixBasedOnColor(Color tintColor) {
   final double r = tintColor.r;
   final double g = tintColor.g;
   final double b = tintColor.b;
@@ -37,6 +36,14 @@ List<double> svgColorMatrixBasedOnDarkMode(BuildContext context) {
     1,
     0,
   ];
+}
+
+List<double> svgColorMatrixBasedOnDarkMode(BuildContext context, {bool lighter = false}) {
+  var tintColor = NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade100;
+  if (lighter) {
+    tintColor = NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade50;
+  }
+  return colorMatrixBasedOnColor(tintColor);
 }
 
 ColorFilter svgColorFilterBasedOnDarkMode(BuildContext context) {

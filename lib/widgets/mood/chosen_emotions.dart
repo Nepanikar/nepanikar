@@ -53,7 +53,7 @@ class _ChosenEmotionsWidgetState extends State<ChosenEmotionsWidget> {
                 label: Text(emotion),
                 deleteIcon: const Icon(Icons.cancel),
                 onDeleted: () => _removeEmotion(emotion),
-                backgroundColor: Colors.purple,
+                backgroundColor: Theme.of(context).primaryColor,
                 deleteIconColor: Colors.white,
                 labelStyle: const TextStyle(color: Colors.white),
               ),
@@ -69,7 +69,7 @@ class _ChosenEmotionsWidgetState extends State<ChosenEmotionsWidget> {
             .map(
               (emotion) => Chip(
                 label: Text(emotion),
-                backgroundColor: Colors.purple,
+                backgroundColor: Theme.of(context).primaryColor,
                 deleteIconColor: Colors.white,
                 labelStyle: const TextStyle(color: Colors.white),
               ),
