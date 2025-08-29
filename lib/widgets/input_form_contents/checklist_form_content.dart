@@ -180,7 +180,9 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
                                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                                         color: checkFormState == true
                                             ? checkedTextColor
-                                            : isDarkmode(context) ? Colors.white54 : NepanikarColors.primarySwatch(
+                                            : isDarkmode(context)
+                                            ? Colors.white54
+                                            : NepanikarColors.primarySwatch(
                                                 Theme.of(context).primaryColor,
                                               ).shade400,
                                       ),

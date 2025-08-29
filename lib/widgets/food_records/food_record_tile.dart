@@ -33,9 +33,9 @@ class FoodRecordTile extends StatelessWidget {
     );
 
     final colorFilterUnchecked = ColorFilter.mode(
-      isDarkMode ? Colors.white38 : NepanikarColors.primarySwatch(
-        Theme.of(context).primaryColor,
-      ).shade400,
+      isDarkMode
+          ? Colors.white38
+          : NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade400,
       BlendMode.srcIn,
     );
 
@@ -86,9 +86,11 @@ class FoodRecordTile extends StatelessWidget {
                                   fontWeight: FontWeight.w700,
                                   color: _getIsFoodTypeTaken(foodType)
                                       ? (isDarkMode ? NepanikarColors.white : NepanikarColors.dark)
-                                      : (isDarkMode ? Colors.white30 : NepanikarColors.primarySwatch(
-                                          Theme.of(context).primaryColor,
-                                        ).shade400),
+                                      : (isDarkMode
+                                            ? Colors.white30
+                                            : NepanikarColors.primarySwatch(
+                                                Theme.of(context).primaryColor,
+                                              ).shade400),
                                 ),
                               ),
                             ),

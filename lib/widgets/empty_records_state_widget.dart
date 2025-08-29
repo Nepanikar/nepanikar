@@ -21,8 +21,10 @@ class EmptyRecordsStateWidget extends StatelessWidget {
         ExcludeSemantics(
           child: Assets.illustrations.modules.myRecords.svg(
             width: context.screenWidth * 0.205,
-            colorFilter: ColorFilter.mode(isDarkmode(context) ? Colors.white :
-              NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade400,
+            colorFilter: ColorFilter.mode(
+              isDarkmode(context)
+                  ? Colors.white
+                  : NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade400,
               BlendMode.srcIn,
             ),
           ),
@@ -33,8 +35,9 @@ class EmptyRecordsStateWidget extends StatelessWidget {
           textAlign: TextAlign.center,
           style: NepanikarFonts.title3.copyWith(
             fontWeight: FontWeight.w500,
-            color: isDarkmode(context) ? Colors.white :
-            NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade400,
+            color: isDarkmode(context)
+                ? Colors.white
+                : NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade400,
           ),
         ),
       ],

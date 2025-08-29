@@ -48,7 +48,7 @@ dependencies:
   path_provider: ^2.0.12
   polygon: ^0.1.0
   provider: ^6.0.5
-  rxdart: ^0.27.7
+  rxdart: ^0.28.0
   sembast: ^3.4.0+6
   shared_preferences: ^2.0.6
   time_machine: ^0.9.17

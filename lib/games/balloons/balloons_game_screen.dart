@@ -141,8 +141,20 @@ class _BalloonsGameScreenState extends State<BalloonsGameScreen> with TickerProv
                     else
                       IgnorePointer(
                         child: e.lightVariant
-                            ? Assets.illustrations.games.balloons.balloonUnwanted1.svg(width: 100, colorFilter: ColorFilter.mode(NepanikarColors.primaryColorShade(context, 0.45), BlendMode.srcIn))
-                            : Assets.illustrations.games.balloons.balloonUnwanted2.svg(width: 100, colorFilter: ColorFilter.mode(NepanikarColors.primaryColorShade(context, 0.25), BlendMode.srcIn)),
+                            ? Assets.illustrations.games.balloons.balloonUnwanted1.svg(
+                                width: 100,
+                                colorFilter: ColorFilter.mode(
+                                  NepanikarColors.primaryColorShade(context, 0.45),
+                                  BlendMode.srcIn,
+                                ),
+                              )
+                            : Assets.illustrations.games.balloons.balloonUnwanted2.svg(
+                                width: 100,
+                                colorFilter: ColorFilter.mode(
+                                  NepanikarColors.primaryColorShade(context, 0.25),
+                                  BlendMode.srcIn,
+                                ),
+                              ),
                       ),
                     IgnorePointer(
                       ignoring: !e.wanted,

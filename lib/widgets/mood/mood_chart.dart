@@ -25,9 +25,7 @@ class MoodChart extends StatelessWidget {
           mood?.icon.svg(
             width: 32,
             height: 32,
-            colorFilter: ColorFilter.matrix(
-              svgColorMatrixBasedOnDarkMode(context, lighter: true),
-            ),
+            colorFilter: ColorFilter.matrix(svgColorMatrixBasedOnDarkMode(context, lighter: true)),
           ) ??
           const SizedBox.shrink(),
     );

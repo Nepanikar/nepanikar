@@ -105,7 +105,7 @@ class _MyContactTileState extends State<MyContactTile> {
                   icon: Icon(
                     Icons.close,
                     semanticLabel: context.l10n.delete_record,
-                    color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade500,
+                    color: textColor,
                     size: 20,
                   ),
                   onPressed: () async {

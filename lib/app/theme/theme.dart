@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/app/theme/sizes.dart';
-import 'package:nepanikar/helpers/color_helpers.dart';
 
 class NepanikarTheme {
   NepanikarTheme._();
