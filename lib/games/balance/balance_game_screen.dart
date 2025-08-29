@@ -87,10 +87,10 @@ class _BalanceGameScreenState extends State<BalanceGameScreen> {
     final screen = MediaQuery.of(context).size;
     final backgroundColor = customColorsBasedOnDarkMode(
       context,
-      NepanikarColors.containerD,
-      NepanikarColors.primary,
+      NepanikarColors.container(context),
+      NepanikarColors.primary(context),
     );
-    final buttonColor = svgColorBasedOnDarkMode(context);
+    final buttonColor = NepanikarColors.primaryColorShade(context, 0.25);
 
     return Scaffold(
       backgroundColor: backgroundColor,

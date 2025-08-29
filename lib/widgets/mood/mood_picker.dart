@@ -87,7 +87,7 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
     final textStyleColor = customColorsBasedOnDarkMode(
       context,
       NepanikarColors.white,
-      NepanikarColors.primaryD,
+      NepanikarColors.primary(context),
     );
     final location = GoRouter.of(context).state.uri.toString();
     final bool shouldDisplayTitle =
@@ -147,13 +147,18 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
                     padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 4),
                     child: Column(
                       children: [
-                        _lottieCacheManager.loadFromCache(
-                          mood.animatedIcon,
-                          controller: _getLottieAnimController(mood),
-                          width: 50,
-                          height: 50,
-                          repeat: false,
-                          animate: false,
+                        ColorFiltered(
+                          colorFilter: ColorFilter.matrix(
+                            svgColorMatrixBasedOnDarkMode(context, lighter: true),
+                          ),
+                          child: _lottieCacheManager.loadFromCache(
+                            mood.animatedIcon,
+                            controller: _getLottieAnimController(mood),
+                            width: 50,
+                            height: 50,
+                            repeat: false,
+                            animate: false,
+                          ),
                         ),
                         if (widget.showLabels) ...[
                           const SizedBox(height: 4),

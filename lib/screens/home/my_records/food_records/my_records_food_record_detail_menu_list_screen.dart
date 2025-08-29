@@ -95,7 +95,7 @@ class _MyRecordsFoodRecordsDetailMenuListScreenState
               child: Assets.icons.navigation.arrowRight.svg(
                 width: 16,
                 height: 16,
-                colorFilter: const ColorFilter.mode(NepanikarColors.primary, BlendMode.srcIn),
+                colorFilter: ColorFilter.mode(NepanikarColors.primary(context), BlendMode.srcIn),
               ),
             ),
           ],

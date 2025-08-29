@@ -108,7 +108,7 @@ class _MathGameScreenState extends State<MathGameScreen> {
     final textColor = customColorsBasedOnDarkMode(
       context,
       NepanikarColors.white,
-      NepanikarColors.primary,
+      NepanikarColors.primary(context),
     );
 
     final cardColor = longTileColorBasedOnDarkMode(context);

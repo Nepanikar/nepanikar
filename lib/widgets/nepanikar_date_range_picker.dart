@@ -35,13 +35,9 @@ class NepanikarDateRangePicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dateFormatLabelPattern = this.dateFormatLabelPattern ?? CustomDateFormats.datePickerLabel;
-    final backgroundColor = customColorsBasedOnDarkMode(
-      context,
-      NepanikarColors.dropdownMenuD,
-      NepanikarColors.filledContainer,
-    );
-    final svgColor = svgColorBasedOnDarkMode(context);
-    final colorFilter = svgColor != null ? ColorFilter.mode(svgColor, BlendMode.srcIn) : null;
+    final backgroundColor = NepanikarColors.primaryColorShade(context, 0.6);
+    svgColorBasedOnDarkMode(context);
+    final colorFilter = svgColorFilterBasedOnDarkMode(context);
 
     final textColor = customColorsBasedOnDarkMode(
       context,

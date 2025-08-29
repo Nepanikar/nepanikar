@@ -76,11 +76,11 @@ class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntr
     final textStyleColor = customColorsBasedOnDarkMode(
       context,
       NepanikarColors.white,
-      NepanikarColors.primaryD,
+      NepanikarColors.primary(context),
     );
     final containerColor = customColorsBasedOnDarkMode(
       context,
-      NepanikarColors.containerD,
+      NepanikarColors.container(context),
       NepanikarColors.white,
     );
 
@@ -104,18 +104,18 @@ class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntr
                   decoration: InputDecoration(
                     labelText: context.l10n.search_by_summary,
                     labelStyle: TextStyle(
-                      color: NepanikarColors.primarySwatch.shade400,
+                      color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade400,
                       fontWeight: FontWeight.bold,
                     ),
                     fillColor: containerColor,
                     filled: true,
                     enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: NepanikarColors.containerD),
+                      borderSide: BorderSide(color: NepanikarColors.container(context)),
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     hintText: context.l10n.enter_part_of_summary,
                     hintStyle: TextStyle(
-                      color: NepanikarColors.primarySwatch.shade400,
+                      color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade400,
                       fontWeight: FontWeight.w500,
                       fontSize: 14,
                     ),
@@ -138,7 +138,7 @@ class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntr
                     decoration: BoxDecoration(
                       color: containerColor,
                       borderRadius: const BorderRadius.all(Radius.circular(40)),
-                      border: Border.all(color: NepanikarColors.containerD),
+                      border: Border.all(color: NepanikarColors.container(context)),
                     ),
                     selectedColor: textStyleColor,
                     selectedItemsTextStyle: TextStyle(color: textStyleColor),
@@ -148,7 +148,9 @@ class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntr
                     buttonText: Text(
                       context.l10n.search_by_emotions,
                       style: TextStyle(
-                        color: NepanikarColors.primarySwatch.shade400,
+                        color: NepanikarColors.primarySwatch(
+                          Theme.of(context).primaryColor,
+                        ).shade400,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),
@@ -187,7 +189,7 @@ class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntr
                           _search();
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: NepanikarColors.containerD,
+                          backgroundColor: NepanikarColors.container(context),
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
                         ),
                         child: Text(

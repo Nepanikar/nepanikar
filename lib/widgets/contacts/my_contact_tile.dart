@@ -55,7 +55,11 @@ class _MyContactTileState extends State<MyContactTile> {
 
   @override
   Widget build(BuildContext context) {
-    final tileColor = customColorsBasedOnDarkMode(context, NepanikarColors.containerD, null);
+    final tileColor = customColorsBasedOnDarkMode(
+      context,
+      NepanikarColors.container(context),
+      null,
+    );
     final textColor = textColorBasedOnDarkMode(context);
     final colorFilter = textColor != null ? ColorFilter.mode(textColor, BlendMode.srcIn) : null;
     final buttonStyle = TextButton.styleFrom(
@@ -101,7 +105,7 @@ class _MyContactTileState extends State<MyContactTile> {
                   icon: Icon(
                     Icons.close,
                     semanticLabel: context.l10n.delete_record,
-                    color: NepanikarColors.primarySwatch.shade500,
+                    color: textColor,
                     size: 20,
                   ),
                   onPressed: () async {
@@ -119,7 +123,9 @@ class _MyContactTileState extends State<MyContactTile> {
               ],
             ),
             const SizedBox(height: 12),
-            NepanikarHorizontalDivider(color: NepanikarColors.primarySwatch.shade100),
+            NepanikarHorizontalDivider(
+              color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade100,
+            ),
             SizedBox(
               width: context.screenWidth,
               child: Row(

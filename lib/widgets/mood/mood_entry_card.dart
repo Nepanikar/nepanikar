@@ -26,7 +26,7 @@ class MoodEntryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final backgroundColor = customColorsBasedOnDarkMode(
       context,
-      NepanikarColors.containerD,
+      NepanikarColors.container(context),
       NepanikarColors.white,
     );
 

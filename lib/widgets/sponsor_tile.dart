@@ -19,7 +19,7 @@ class SponsorTile extends StatelessWidget {
         children: [
           Text(title, style: NepanikarFonts.title3),
           const SizedBox(height: 15),
-          const Divider(height: 0, thickness: 1, color: NepanikarColors.purple200),
+          Divider(height: 0, thickness: 1, color: NepanikarColors.primary(context)),
           if (type == SponsorType.primary)
             Container(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 45),

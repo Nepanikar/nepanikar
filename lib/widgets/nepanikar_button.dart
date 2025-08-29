@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 
-import 'package:nepanikar/helpers/color_helpers.dart';
-
 enum ButtonType {
   primary,
   primaryAsync,
@@ -128,9 +126,13 @@ class _NepanikarButtonState extends State<NepanikarButton> with SingleTickerProv
     final iconColor = widget.buttonType.isPrimary
         ? Colors.white
         : _isButtonInteractive
-        ? NepanikarColors.primary
-        : NepanikarColors.primarySwatch.shade500;
-    final textColor = textColorBasedOnDarkMode(context);
+        ? NepanikarColors.primary(context)
+        : NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade500;
+    final textColor = widget.buttonType.isPrimary
+        ? Colors.white
+        : Theme.of(context).brightness == Brightness.dark
+        ? NepanikarColors.primaryColorShade(context, 0.55)
+        : NepanikarColors.primary(context);
     final colorFilter = ColorFilter.mode(iconColor, BlendMode.srcIn);
 
     return _isLoading

@@ -39,19 +39,31 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   NotificationsService get _notificationsService => registry.get<NotificationsService>();
 
+  static Future<void> updateColor(
+    BuildContext innerContext,
+    Offset position,
+    UserSettingsDao userSettingsDao,
+  ) async {
+    final box = innerContext.findRenderObject()! as RenderBox;
+    final value = (position.dx / box.size.width).clamp(0.0, 1.0);
+    final hue = (1.0 - value) * 360.0;
+    final color = HSLColor.fromAHSL(1.0, hue, 0.708, 0.2686).toColor();
+    await userSettingsDao.saveMainColor(color);
+  }
+
   @override
   Widget build(BuildContext context) {
     final userSettingsDao = registry.get<UserSettingsDao>();
     final currentTheme = Theme.of(context);
     bool isDarkMode = currentTheme.brightness == Brightness.dark;
-    final svgColor = svgColorBasedOnDarkMode(context);
-    final colorFilter = svgColor != null ? ColorFilter.mode(svgColor, BlendMode.srcIn) : null;
+    svgColorBasedOnDarkMode(context);
+    final colorFilter = svgColorFilterBasedOnDarkMode(context);
     final pdfColor = pdfColorBasedOnDarkMode(context);
     final pdfColorFilter = pdfColor != null ? ColorFilter.mode(pdfColor, BlendMode.srcIn) : null;
     final colorForDarkModeButton = customColorsBasedOnDarkMode(
       context,
       NepanikarColors.white,
-      NepanikarColors.primary,
+      NepanikarColors.primary(context),
     );
 
     return NepanikarScreenWrapper(
@@ -65,7 +77,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(16),
             child: Material(
-              color: isDarkMode ? NepanikarColors.containerD : NepanikarColors.white,
+              color: isDarkMode ? NepanikarColors.container(context) : NepanikarColors.white,
               borderRadius: BorderRadius.circular(16),
               child: Column(
                 children: [
@@ -152,9 +164,32 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     },
                   ),
                   _SettingsMenuItem(
+                    leading: Assets.icons.color.svg(colorFilter: colorFilter),
+                    text: context.l10n.color_scheme,
+                  ),
+                  Builder(
+                    builder: (innerContext) {
+                      return GestureDetector(
+                        onTapDown: (details) async {
+                          await updateColor(innerContext, details.localPosition, userSettingsDao);
+                        },
+                        onHorizontalDragUpdate: (details) async {
+                          await updateColor(innerContext, details.localPosition, userSettingsDao);
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(3),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: Assets.icons.hue.svg(width: double.infinity, height: 40),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                  _SettingsMenuItem(
                     leading: Icon(
                       Icons.shield_outlined,
-                      color: isDarkMode ? Colors.white : NepanikarColors.primary,
+                      color: isDarkMode ? Colors.white : NepanikarColors.primary(context),
                     ),
                     text: context.l10n.support,
                     onTap: () => context.push(const SponsorsRoute().location),
@@ -163,7 +198,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     decoration: BoxDecoration(
                       border: Border(
                         top: isDarkMode
-                            ? BorderSide(color: NepanikarColors.primarySwatch.shade700)
+                            ? BorderSide(
+                                color: NepanikarColors.primarySwatch(
+                                  Theme.of(context).primaryColor,
+                                ).shade700,
+                              )
                             : const BorderSide(color: Color(0xffF2F2F5)),
                       ),
                     ),
@@ -256,7 +295,11 @@ class _SettingsMenuItem extends StatelessWidget {
           top: isDarkMode
               ? (hideTopSeparator
                     ? BorderSide.none
-                    : BorderSide(color: NepanikarColors.primarySwatch.shade700))
+                    : BorderSide(
+                        color: NepanikarColors.primarySwatch(
+                          Theme.of(context).primaryColor,
+                        ).shade700,
+                      ))
               : (hideTopSeparator ? BorderSide.none : const BorderSide(color: Color(0xffF2F2F5))),
         ),
       ),
@@ -284,7 +327,7 @@ class _SettingsMenuItem extends StatelessWidget {
                 ),
               ),
               Opacity(
-                opacity: onTap != null ? 1 : 0.5,
+                opacity: onTap != null ? 1 : 0.0,
                 child: Icon(
                   Icons.chevron_right,
                   color: isDarkMode ? Colors.white : const Color(0xffCDD1D5),

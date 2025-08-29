@@ -17,11 +17,17 @@ class MoodChart extends StatelessWidget {
     return AspectRatio(aspectRatio: 1.70, child: LineChart(_buildLineChartData(context)));
   }
 
-  Widget _leftTitleIcons(double value, TitleMeta meta) {
+  Widget _leftTitleIcons(double value, TitleMeta meta, BuildContext context) {
     final mood = Mood.fromInteger(value.toInt());
     return SideTitleWidget(
       meta: meta,
-      child: mood?.icon.svg(width: 32, height: 32) ?? const SizedBox.shrink(),
+      child:
+          mood?.icon.svg(
+            width: 32,
+            height: 32,
+            colorFilter: ColorFilter.matrix(svgColorMatrixBasedOnDarkMode(context, lighter: true)),
+          ) ??
+          const SizedBox.shrink(),
     );
   }
 
@@ -29,7 +35,7 @@ class MoodChart extends StatelessWidget {
     final lineColor = customColorsBasedOnDarkMode(
       context,
       NepanikarColors.white,
-      NepanikarColors.primary,
+      NepanikarColors.primary(context),
     );
     final locale = Localizations.localeOf(context).languageCode;
     return LineChartData(
@@ -78,7 +84,9 @@ class MoodChart extends StatelessWidget {
           sideTitles: SideTitles(
             interval: 1,
             showTitles: true,
-            getTitlesWidget: _leftTitleIcons,
+            getTitlesWidget: (value, meta) {
+              return _leftTitleIcons(value, meta, context);
+            },
             reservedSize: 40,
           ),
         ),
@@ -97,7 +105,7 @@ class MoodChart extends StatelessWidget {
           }).toList();
         },
         touchTooltipData: LineTouchTooltipData(
-          getTooltipColor: (LineBarSpot touchedSpot) => NepanikarColors.primary,
+          getTooltipColor: (LineBarSpot touchedSpot) => NepanikarColors.primary(context),
           getTooltipItems: (touchedSpots) {
             return touchedSpots.map((barSpot) {
               final flSpot = barSpot;

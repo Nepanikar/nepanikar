@@ -125,7 +125,9 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
                   child: Text(
                     description!,
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: NepanikarColors.primarySwatch.shade300),
+                    style: TextStyle(
+                      color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade50,
+                    ),
                   ),
                 ),
               ),
@@ -155,7 +157,7 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
                           isPlaying ? Icons.pause_rounded : Icons.play_arrow_rounded,
                           semanticLabel: isPlaying ? context.l10n.stop : context.l10n.start,
                           size: 40,
-                          color: NepanikarColors.primary,
+                          color: NepanikarColors.primary(context),
                         ),
                       ),
                     ),

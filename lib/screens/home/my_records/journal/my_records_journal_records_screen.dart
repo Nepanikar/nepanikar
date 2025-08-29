@@ -34,7 +34,6 @@ class MyRecordsJournalRecordsScreen extends StatelessWidget {
     final analytics = registry.get<FirebaseAnalytics>();
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.journal,
-      // TODO: l10n missing description?
       appBarDescription: '',
       isModuleList: false,
       isCardStackLayout: true,
@@ -76,7 +75,8 @@ class MyRecordsJournalRecordsScreen extends StatelessWidget {
             );
           },
           tooltip: context.l10n.add_item,
-          child: const Icon(Icons.add),
+          backgroundColor: Theme.of(context).primaryColor,
+          child: const Icon(Icons.add, color: Colors.white),
         ),
       ),
       children: [

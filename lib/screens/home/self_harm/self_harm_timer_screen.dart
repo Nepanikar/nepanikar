@@ -58,11 +58,15 @@ class SelfHarmTimerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final analytics = registry.get<FirebaseAnalytics>();
-    final cardColor = customColorsBasedOnDarkMode(context, NepanikarColors.containerD, null);
+    final cardColor = customColorsBasedOnDarkMode(
+      context,
+      NepanikarColors.container(context),
+      null,
+    );
     final backgroundColor = customColorsBasedOnDarkMode(
       context,
-      NepanikarColors.primaryD,
-      NepanikarColors.primary,
+      NepanikarColors.primary(context),
+      NepanikarColors.primary(context),
     );
     return Scaffold(
       backgroundColor: backgroundColor,
@@ -219,7 +223,7 @@ class SelfHarmTimerScreen extends StatelessWidget {
     final textColor = customColorsBasedOnDarkMode(
       context,
       NepanikarColors.white,
-      NepanikarColors.primary,
+      NepanikarColors.primary(context),
     );
     final valueTextStyle = NepanikarFonts.title2.copyWith(color: textColor);
     final labelTextStyle = NepanikarFonts.bodyRoman.copyWith(color: textColor);

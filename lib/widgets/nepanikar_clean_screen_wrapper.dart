@@ -11,7 +11,7 @@ class NepanikarCleanScreenWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(appBarTitle)),
-      backgroundColor: NepanikarColors.primary,
+      backgroundColor: NepanikarColors.primary(context),
       body: SafeArea(
         child: SingleChildScrollView(padding: const EdgeInsets.all(16), child: child),
       ),

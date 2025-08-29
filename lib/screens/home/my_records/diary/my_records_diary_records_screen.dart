@@ -50,7 +50,8 @@ class MyRecordsDiaryRecordsScreen extends StatelessWidget {
         android: () => FloatingActionButton(
           onPressed: () => context.push(const MyRecordsDiaryAddRoute().location),
           tooltip: context.l10n.add_item,
-          child: const Icon(Icons.add),
+          backgroundColor: Theme.of(context).primaryColor,
+          child: const Icon(Icons.add, color: Colors.white),
         ),
       ),
       children: [

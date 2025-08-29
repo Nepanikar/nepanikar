@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget {
     final currentTheme = Theme.of(context);
     final isDarkMode = currentTheme.brightness == Brightness.dark;
     final svgColor = svgColorBasedOnDarkMode(context);
-    final colorFilter = svgColor != null ? ColorFilter.mode(svgColor, BlendMode.srcIn) : null;
+    final colorFilter = svgColorFilterBasedOnDarkMode(context);
 
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
@@ -135,7 +135,7 @@ class HomeScreen extends StatelessWidget {
                     context.l10n.homepage_subtitle,
                     maxLines: 1,
                     style: NepanikarFonts.title2.copyWith(
-                      color: isDarkMode ? Colors.white : NepanikarColors.primaryD,
+                      color: isDarkMode ? Colors.white : NepanikarColors.primary(context),
                     ),
                   ),
                 ),

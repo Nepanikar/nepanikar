@@ -85,13 +85,9 @@ class NepanikarDropdown<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     const rightPadding = EdgeInsets.only(right: 16);
     final textColor = customColorsBasedOnDarkMode(context, NepanikarColors.white, _type.textColor);
-    final dropDownColor = customColorsBasedOnDarkMode(
-      context,
-      NepanikarColors.dropdownMenuD,
-      _type.bgColor,
-    );
-    final svgColor = svgColorBasedOnDarkMode(context);
-    final colorFilter = svgColor != null ? ColorFilter.mode(svgColor, BlendMode.srcIn) : null;
+    final dropDownColor = NepanikarColors.primaryColorShade(context, 0.6);
+    svgColorBasedOnDarkMode(context);
+    final colorFilter = svgColorFilterBasedOnDarkMode(context);
 
     return MaterialWrapper(
       color: dropDownColor,

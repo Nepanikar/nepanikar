@@ -25,8 +25,7 @@ class DepressionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    final svgColor = svgColorBasedOnDarkMode(context);
-    final colorFilter = svgColor != null ? ColorFilter.mode(svgColor, BlendMode.srcIn) : null;
+    final colorFilter = svgColorFilterBasedOnDarkMode(context);
 
     final modules = <Widget>[
       LongTile(

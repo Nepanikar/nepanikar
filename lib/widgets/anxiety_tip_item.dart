@@ -12,7 +12,7 @@ class TipItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final boxColor = customColorsBasedOnDarkMode(
       context,
-      NepanikarColors.containerD,
+      NepanikarColors.container(context),
       NepanikarColors.white,
     );
 

@@ -28,8 +28,8 @@ class _TipsCarouselBodyState extends State<TipsCarouselBody> {
   Widget build(BuildContext context) {
     final containerColor = customColorsBasedOnDarkMode(
       context,
-      NepanikarColors.headerD,
-      NepanikarColors.primary,
+      NepanikarColors.header(context),
+      NepanikarColors.primary(context),
     );
 
     return Stack(
@@ -88,7 +88,9 @@ class _TipsCarouselBodyState extends State<TipsCarouselBody> {
                           width: 148,
                           height: 6,
                           decoration: BoxDecoration(
-                            color: NepanikarColors.primarySwatch.shade300,
+                            color: NepanikarColors.primarySwatch(
+                              Theme.of(context).primaryColor,
+                            ).shade300,
                             borderRadius: BorderRadius.circular(3),
                           ),
                         ),
@@ -97,7 +99,7 @@ class _TipsCarouselBodyState extends State<TipsCarouselBody> {
                           child: DecoratedBox(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(3),
-                              color: NepanikarColors.primary,
+                              color: NepanikarColors.primary(context),
                             ),
                             child: Padding(
                               padding: EdgeInsets.symmetric(
@@ -116,7 +118,7 @@ class _TipsCarouselBodyState extends State<TipsCarouselBody> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Flexible(
-                            child: NepanikarButton.secondary(
+                            child: NepanikarButton(
                               onTap: () => controller.previousPage(
                                 duration: const Duration(milliseconds: 400),
                                 curve: Curves.easeInOut,

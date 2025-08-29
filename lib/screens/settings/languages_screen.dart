@@ -34,7 +34,7 @@ class LanguagesScreen extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
             boxShadow: NepanikarColors.cardShadow,
             color: Theme.of(context).brightness == Brightness.dark
-                ? NepanikarColors.containerD
+                ? NepanikarColors.container(context)
                 : NepanikarColors.filledContainer,
           ),
           child: Column(

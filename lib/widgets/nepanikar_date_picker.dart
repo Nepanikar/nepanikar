@@ -26,7 +26,7 @@ class NepanikarDatePicker extends StatelessWidget {
     final locale = Localizations.localeOf(context);
     final dateToDisplay = initialDate ?? DateTime.now();
     return MaterialWrapper(
-      color: NepanikarColors.filledContainer,
+      color: NepanikarColors.primaryColorShade(context, 0.65),
       onTap: () async {
         final pickedDate = await _showDatePicker(context);
         if (pickedDate != null) {

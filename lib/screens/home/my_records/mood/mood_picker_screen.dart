@@ -146,11 +146,11 @@ class _MoodPickerScreenState<T extends MoodTrackDao> extends State<MoodPickerScr
     final textStyleColor = customColorsBasedOnDarkMode(
       context,
       NepanikarColors.white,
-      NepanikarColors.primaryD,
+      NepanikarColors.primary(context),
     );
     final containerColor = customColorsBasedOnDarkMode(
       context,
-      NepanikarColors.containerD,
+      NepanikarColors.container(context),
       NepanikarColors.white,
     );
 
@@ -190,21 +190,13 @@ class _MoodPickerScreenState<T extends MoodTrackDao> extends State<MoodPickerScr
                   initialValue: summary,
                   decoration: InputDecoration(
                     labelText: context.l10n.title_entry_label,
-                    labelStyle: TextStyle(
-                      color: NepanikarColors.primarySwatch.shade400,
-                      fontWeight: FontWeight.bold,
-                    ),
                     fillColor: containerColor,
                     filled: true,
                     enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: NepanikarColors.containerD),
+                      borderSide: BorderSide(color: NepanikarColors.container(context)),
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     hintText: context.l10n.enter_summary,
-                    hintStyle: TextStyle(
-                      color: NepanikarColors.primarySwatch.shade400,
-                      fontWeight: FontWeight.bold,
-                    ),
                     floatingLabelBehavior: FloatingLabelBehavior.never,
                   ),
                   onChanged: (value) {
@@ -232,7 +224,7 @@ class _MoodPickerScreenState<T extends MoodTrackDao> extends State<MoodPickerScr
                         decoration: BoxDecoration(
                           color: containerColor,
                           borderRadius: const BorderRadius.all(Radius.circular(40)),
-                          border: Border.all(color: NepanikarColors.containerD),
+                          border: Border.all(color: NepanikarColors.container(context)),
                         ),
                         selectedColor: textStyleColor,
                         selectedItemsTextStyle: TextStyle(color: textStyleColor),
@@ -242,7 +234,7 @@ class _MoodPickerScreenState<T extends MoodTrackDao> extends State<MoodPickerScr
                         buttonText: Text(
                           context.l10n.select_your_emotions,
                           style: TextStyle(
-                            color: NepanikarColors.primarySwatch.shade400,
+                            color: textStyleColor,
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
                           ),
@@ -296,22 +288,14 @@ class _MoodPickerScreenState<T extends MoodTrackDao> extends State<MoodPickerScr
                   keyboardType: TextInputType.multiline,
                   decoration: InputDecoration(
                     labelText: context.l10n.summary_of_your_moment,
-                    labelStyle: TextStyle(
-                      color: NepanikarColors.primarySwatch.shade400,
-                      fontWeight: FontWeight.bold,
-                    ),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: NepanikarColors.containerD),
+                      borderSide: BorderSide(color: NepanikarColors.container(context)),
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     filled: true,
                     fillColor: containerColor,
                     alignLabelWithHint: true,
                     hintText: context.l10n.describe_what_happened,
-                    hintStyle: TextStyle(
-                      color: NepanikarColors.primarySwatch.shade400,
-                      fontWeight: FontWeight.bold,
-                    ),
                     floatingLabelBehavior: FloatingLabelBehavior.never,
                   ),
                   onChanged: (value) {
@@ -346,7 +330,7 @@ class _MoodPickerScreenState<T extends MoodTrackDao> extends State<MoodPickerScr
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: NepanikarColors.primary,
+                    backgroundColor: NepanikarColors.primary(context),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
                     padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                   ),
@@ -372,11 +356,13 @@ class _MoodPickerScreenState<T extends MoodTrackDao> extends State<MoodPickerScr
           backgroundColor: containerColor,
           title: Text(context.l10n.add_a_new_emotion),
           content: TextField(
-            cursorColor: NepanikarColors.primarySwatch.shade600,
+            cursorColor: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade600,
             controller: _newEmotionController,
             decoration: InputDecoration(
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: NepanikarColors.primarySwatch.shade600),
+                borderSide: BorderSide(
+                  color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade600,
+                ),
               ),
               hintText: context.l10n.type_a_new_emotion,
             ),
@@ -394,7 +380,7 @@ class _MoodPickerScreenState<T extends MoodTrackDao> extends State<MoodPickerScr
                   color: customColorsBasedOnDarkMode(
                     context,
                     NepanikarColors.white,
-                    NepanikarColors.primary,
+                    NepanikarColors.primary(context),
                   ),
                 ),
               ),
@@ -409,7 +395,7 @@ class _MoodPickerScreenState<T extends MoodTrackDao> extends State<MoodPickerScr
                   color: customColorsBasedOnDarkMode(
                     context,
                     NepanikarColors.white,
-                    NepanikarColors.primary,
+                    NepanikarColors.primary(context),
                   ),
                 ),
               ),

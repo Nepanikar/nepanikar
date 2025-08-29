@@ -88,7 +88,8 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
           android: () => FloatingActionButton(
             onPressed: _onItemAdd,
             tooltip: context.l10n.add_item,
-            child: const Icon(Icons.add),
+            backgroundColor: Theme.of(context).primaryColor,
+            child: const Icon(Icons.add, color: Colors.white),
           ),
         ),
         children: [
@@ -106,8 +107,9 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
                 itemCount: savedListItems.length,
                 shrinkWrap: true,
                 primary: false,
-                separatorBuilder: (_, _) =>
-                    NepanikarHorizontalDivider(color: NepanikarColors.primarySwatch.shade100),
+                separatorBuilder: (_, _) => NepanikarHorizontalDivider(
+                  color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade100,
+                ),
                 itemBuilder: (_, i) {
                   final record = savedListItems.entries.elementAt(i);
                   final checkFormKey = record.key;
@@ -178,7 +180,11 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
                                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                                         color: checkFormState == true
                                             ? checkedTextColor
-                                            : NepanikarColors.primarySwatch.shade400,
+                                            : isDarkmode(context)
+                                            ? Colors.white54
+                                            : NepanikarColors.primarySwatch(
+                                                Theme.of(context).primaryColor,
+                                              ).shade400,
                                       ),
                                       decoration: InputDecoration(
                                         hintText: context.l10n.activity_hint_text,

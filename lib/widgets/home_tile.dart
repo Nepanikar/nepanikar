@@ -16,7 +16,7 @@ class HomeTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final colorFilter = ColorFilter.mode(
-      isDarkMode ? Colors.white : NepanikarColors.primaryD,
+      isDarkMode ? Colors.white : NepanikarColors.primary(context),
       BlendMode.srcIn,
     );
 
@@ -39,7 +39,7 @@ class HomeTile extends StatelessWidget {
           ],
         ),
         child: Material(
-          color: isDarkMode ? NepanikarColors.containerD : Colors.white,
+          color: isDarkMode ? NepanikarColors.container(context) : Colors.white,
           borderRadius: BorderRadius.circular(16),
           child: InkWell(
             borderRadius: BorderRadius.circular(16),
@@ -69,7 +69,7 @@ class HomeTile extends StatelessWidget {
                           text,
                           style: NepanikarFonts.bodyHeavy.copyWith(
                             fontSize: context.isSmallScreen ? 14 : 15,
-                            color: isDarkMode ? Colors.white : NepanikarColors.primaryD,
+                            color: isDarkMode ? Colors.white : NepanikarColors.primary(context),
                           ),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,

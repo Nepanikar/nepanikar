@@ -41,14 +41,14 @@ class AboutAppScreen extends StatelessWidget {
                 Text(
                   context.l10n.about_app_text,
                   style: NepanikarFonts.bodySmallHeavy.copyWith(
-                    color: NepanikarColors.primarySwatch.shade800,
+                    color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade800,
                   ),
                 ),
                 const SizedBox(height: 48),
                 Text(
                   'v${_appConfig.appVersion}',
                   style: NepanikarFonts.bodySmallHeavy.copyWith(
-                    color: NepanikarColors.primarySwatch.shade400,
+                    color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade400,
                   ),
                 ),
               ],

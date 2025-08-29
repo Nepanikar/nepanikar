@@ -31,7 +31,7 @@ class MealPlanScreen extends StatelessWidget {
     final meals = getMealsById(context, id ?? '');
     final backgroundColor = customColorsBasedOnDarkMode(
       context,
-      NepanikarColors.containerD,
+      NepanikarColors.container(context),
       NepanikarColors.white,
     );
     return NepanikarScreenWrapper(

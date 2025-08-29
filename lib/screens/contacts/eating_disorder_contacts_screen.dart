@@ -51,7 +51,7 @@ class EatingDisorderContactsScreen extends StatelessWidget {
     final textColor = customColorsBasedOnDarkMode(
       context,
       NepanikarColors.white,
-      NepanikarColors.primary,
+      NepanikarColors.primary(context),
     );
     final linkifiedTextStyle = NepanikarFonts.bodyBlack.copyWith(
       color: textColor,

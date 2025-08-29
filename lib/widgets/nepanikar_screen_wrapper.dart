@@ -117,21 +117,25 @@ class _NepanikarScreenWrapperState extends State<NepanikarScreenWrapper> {
                   label: context.l10n.home,
                   isSelected: true,
                   isDarkMode: isDarkMode,
+                  context: context,
                 ),
                 buildBottomNavigationBarItem(
                   svgIconPath: Assets.icons.calendarEvent.path,
                   label: context.l10n.records,
                   isDarkMode: isDarkMode,
+                  context: context,
                 ),
                 buildBottomNavigationBarItem(
                   svgIconPath: Assets.icons.phone.path,
                   label: context.l10n.contacts_module,
                   isDarkMode: isDarkMode,
+                  context: context,
                 ),
                 buildBottomNavigationBarItem(
                   svgIconPath: Assets.icons.settings.path,
                   label: context.l10n.settings,
                   isDarkMode: isDarkMode,
+                  context: context,
                 ),
               ],
               showUnselectedLabels: true,
@@ -222,8 +226,8 @@ class AppBarOverflowContent extends StatelessWidget {
     final pageSidePadding = NepanikarSizes.screenContentPadding.left;
     final containerColor = customColorsBasedOnDarkMode(
       context,
-      NepanikarColors.headerD,
-      NepanikarColors.primary,
+      NepanikarColors.header(context),
+      Theme.of(context).primaryColor,
     );
 
     return Container(
@@ -240,7 +244,7 @@ class AppBarOverflowContent extends StatelessWidget {
                   isCardStackLayout ? '${appBarDescription!}\n' : appBarDescription!,
                   textAlign: TextAlign.center,
                   style: NepanikarFonts.bodyRoman.copyWith(
-                    color: NepanikarColors.primarySwatch.shade400,
+                    color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade100,
                   ),
                 ),
               ),
