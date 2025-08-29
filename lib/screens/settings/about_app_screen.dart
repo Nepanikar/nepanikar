@@ -29,7 +29,7 @@ class AboutAppScreen extends StatelessWidget {
         DecoratedBox(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            boxShadow: NepanikarColors.cardShadow,
+            boxShadow: NepanikarColors.cardShadow(context),
             color: Colors.white,
           ),
           child: Padding(

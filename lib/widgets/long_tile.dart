@@ -54,7 +54,7 @@ class LongTile extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          boxShadow: NepanikarColors.cardShadow,
+          boxShadow: NepanikarColors.cardShadow(context),
         ),
         child: Material(
           borderRadius: BorderRadius.circular(16),

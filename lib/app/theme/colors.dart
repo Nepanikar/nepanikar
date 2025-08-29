@@ -70,18 +70,20 @@ class NepanikarColors {
   static const white = Color(0xffffffff);
   static const purple200 = Color(0xffe2d2ef);
 
-  static final cardShadow = [
-    BoxShadow(
-      color: const Color(0xff280446).withValues(alpha: 0.08),
-      blurRadius: 32,
-      offset: const Offset(0, 8), // changes position of shadow
-    ),
-    BoxShadow(
-      color: const Color(0xff2C0B4A).withValues(alpha: 0.04),
-      blurRadius: 4,
-      offset: const Offset(0, 2), // changes position of shadow
-    ),
-  ];
+  static List<BoxShadow> cardShadow(BuildContext context) {
+    return [
+      BoxShadow(
+        color: Theme.of(context).primaryColor.withValues(alpha: 0.08),
+        blurRadius: 32,
+        offset: const Offset(0, 8), // changes position of shadow
+      ),
+      BoxShadow(
+        color: Theme.of(context).primaryColor.withValues(alpha: 0.04),
+        blurRadius: 4,
+        offset: const Offset(0, 2), // changes position of shadow
+      ),
+    ];
+  }
 
   static const heatMapColors = <int, Color>{
     1: Color(0xffA72C2C),

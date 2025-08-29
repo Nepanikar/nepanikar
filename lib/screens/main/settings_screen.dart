@@ -72,7 +72,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         DecoratedBox(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
-            boxShadow: NepanikarColors.cardShadow,
+            boxShadow: NepanikarColors.cardShadow(context),
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(16),

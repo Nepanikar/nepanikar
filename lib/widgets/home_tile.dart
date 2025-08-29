@@ -27,12 +27,12 @@ class HomeTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xff2C0B4A).withValues(alpha: 0.04),
+              color: Theme.of(context).primaryColor.withValues(alpha: 0.04),
               blurRadius: 4,
               offset: const Offset(0, 2), // changes position of shadow
             ),
             BoxShadow(
-              color: NepanikarColors.dark.withValues(alpha: 0.12),
+              color: Theme.of(context).primaryColor.withValues(alpha: 0.12),
               blurRadius: 48,
               offset: const Offset(0, 16), // changes position of shadow
             ),

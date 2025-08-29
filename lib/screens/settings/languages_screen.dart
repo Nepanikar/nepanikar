@@ -32,7 +32,7 @@ class LanguagesScreen extends StatelessWidget {
         DecoratedBox(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            boxShadow: NepanikarColors.cardShadow,
+            boxShadow: NepanikarColors.cardShadow(context),
             color: Theme.of(context).brightness == Brightness.dark
                 ? NepanikarColors.container(context)
                 : NepanikarColors.filledContainer,
