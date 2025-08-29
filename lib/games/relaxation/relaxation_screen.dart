@@ -58,6 +58,7 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
       throw 'Could not launch $url';
     }
   }
+
   @override
   void initState() {
     super.initState();
