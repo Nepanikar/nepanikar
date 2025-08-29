@@ -47,7 +47,6 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
     final int sMinutes = Duration(milliseconds: time).inMinutes;
     final int sSeconds = Duration(milliseconds: time).inSeconds;
 
-    //final int rHours = sHours;
     final int rMinutes = sMinutes - (sHours * 60);
     final int rSeconds = sSeconds - (sMinutes * 60 + sHours * 60 * 60);
 
@@ -59,9 +58,13 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
       throw 'Could not launch $url';
     }
   }
-
   @override
   void initState() {
+    super.initState();
+    _init();
+  }
+
+  Future<void> _init() async {
     super.initState();
 
     switch (widget.relaxationType) {
@@ -82,7 +85,7 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
         url = 'https://www.odpoveduvnitr.cz/';
     }
 
-    player.setAsset(asset);
+    await player.setAsset(asset);
     player.durationStream.listen((duration) {
       if (mounted) {
         setState(() {
@@ -140,11 +143,17 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
                 return Semantics(
                   button: true,
                   child: GestureDetector(
-                    onTap: () {
+                    onTap: () async {
+                      final state = player.processingState;
                       if (isPlaying) {
-                        player.pause();
+                        await player.pause();
                       } else {
-                        player.play();
+                        if (state == ProcessingState.idle) {
+                          await player.setAsset(asset);
+                        }
+                        if (state == ProcessingState.ready) {
+                          await player.play();
+                        }
                       }
                     },
                     child: ClipRRect(
