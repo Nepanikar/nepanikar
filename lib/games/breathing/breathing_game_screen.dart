@@ -11,7 +11,7 @@ part 'breathing_game_screen.g.dart';
 enum BreathingGameShape { circle, square, triangle }
 
 @TypedGoRoute<BreathingGameRoute>(path: '/games/breathing/:shape')
-class BreathingGameRoute extends GoRouteData with _$BreathingGameRoute {
+class BreathingGameRoute extends GoRouteData with $BreathingGameRoute {
   const BreathingGameRoute({required this.shape});
 
   final BreathingGameShape shape;

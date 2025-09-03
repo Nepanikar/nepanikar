@@ -30,7 +30,7 @@ import 'package:provider/provider.dart';
 part 'mood_records_screen.g.dart';
 
 @TypedGoRoute<MoodRecordsRoute>(path: '/home/my-records/mood-records')
-class MoodRecordsRoute extends GoRouteData with _$MoodRecordsRoute {
+class MoodRecordsRoute extends GoRouteData with $MoodRecordsRoute {
   const MoodRecordsRoute();
 
   @override

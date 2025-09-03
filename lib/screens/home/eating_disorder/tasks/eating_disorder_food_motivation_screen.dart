@@ -9,7 +9,7 @@ part 'eating_disorder_food_motivation_screen.g.dart';
   path: '/home/eating-disorder/tasks/food-motivation',
 )
 class EatingDisorderFoodMotivationRoute extends GoRouteData
-    with _$EatingDisorderFoodMotivationRoute {
+    with $EatingDisorderFoodMotivationRoute {
   const EatingDisorderFoodMotivationRoute();
 
   @override

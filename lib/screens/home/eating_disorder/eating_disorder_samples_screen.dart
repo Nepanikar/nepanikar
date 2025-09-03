@@ -10,7 +10,7 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 part 'eating_disorder_samples_screen.g.dart';
 
 @TypedGoRoute<EatingDisorderSamplesRoute>(path: '/home/eating-disorder/samples')
-class EatingDisorderSamplesRoute extends GoRouteData with _$EatingDisorderSamplesRoute {
+class EatingDisorderSamplesRoute extends GoRouteData with $EatingDisorderSamplesRoute {
   const EatingDisorderSamplesRoute();
 
   @override

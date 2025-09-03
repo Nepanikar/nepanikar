@@ -7,7 +7,7 @@ import 'package:nepanikar/widgets/input_form_contents/plan_form_content.dart';
 part 'self_harm_plan_screen.g.dart';
 
 @TypedGoRoute<SelfHarmPlanRoute>(path: '/home/self-harm/plan')
-class SelfHarmPlanRoute extends GoRouteData with _$SelfHarmPlanRoute {
+class SelfHarmPlanRoute extends GoRouteData with $SelfHarmPlanRoute {
   const SelfHarmPlanRoute();
 
   @override

@@ -15,7 +15,7 @@ import 'package:provider/provider.dart';
 part 'my_records_screen.g.dart';
 
 @TypedGoRoute<MyRecordsRoute>(path: '/home/my-records')
-class MyRecordsRoute extends GoRouteData with _$MyRecordsRoute {
+class MyRecordsRoute extends GoRouteData with $MyRecordsRoute {
   const MyRecordsRoute();
 
   @override

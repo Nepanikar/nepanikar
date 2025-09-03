@@ -14,7 +14,7 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 part 'eating_disorder_tasks_screen.g.dart';
 
 @TypedGoRoute<EatingDisorderTasksRoute>(path: '/home/eating-disorder/tasks')
-class EatingDisorderTasksRoute extends GoRouteData with _$EatingDisorderTasksRoute {
+class EatingDisorderTasksRoute extends GoRouteData with $EatingDisorderTasksRoute {
   const EatingDisorderTasksRoute();
 
   @override

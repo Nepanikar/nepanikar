@@ -7,7 +7,7 @@ part 'depression_praise_my_achievements_screen.g.dart';
 
 @TypedGoRoute<DepressionPraiseMyAchievementsRoute>(path: '/home/depression/praise-my-achievements')
 class DepressionPraiseMyAchievementsRoute extends GoRouteData
-    with _$DepressionPraiseMyAchievementsRoute {
+    with $DepressionPraiseMyAchievementsRoute {
   const DepressionPraiseMyAchievementsRoute();
 
   @override

@@ -22,7 +22,7 @@ part 'my_records_food_record_detail_menu_list_screen.g.dart';
 
 @TypedGoRoute<MyRecordsFoodRecordsDetailMenuListRoute>(path: '/home/my-records/food-records/detail')
 class MyRecordsFoodRecordsDetailMenuListRoute extends GoRouteData
-    with _$MyRecordsFoodRecordsDetailMenuListRoute {
+    with $MyRecordsFoodRecordsDetailMenuListRoute {
   const MyRecordsFoodRecordsDetailMenuListRoute();
 
   @override

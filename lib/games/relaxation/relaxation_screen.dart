@@ -13,7 +13,7 @@ part 'relaxation_screen.g.dart';
 enum RelaxationType { general, morning, evening }
 
 @TypedGoRoute<RelaxationRoute>(path: '/games/relaxation/:relaxationType')
-class RelaxationRoute extends GoRouteData with _$RelaxationRoute {
+class RelaxationRoute extends GoRouteData with $RelaxationRoute {
   const RelaxationRoute({required this.relaxationType});
 
   final RelaxationType relaxationType;

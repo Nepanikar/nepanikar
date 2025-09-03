@@ -6,7 +6,7 @@ import 'package:nepanikar/widgets/input_form_contents/checklist_form_content.dar
 part 'depression_activity_plan_screen.g.dart';
 
 @TypedGoRoute<DepressionActivityPlanRoute>(path: '/home/depression/activity-plan')
-class DepressionActivityPlanRoute extends GoRouteData with _$DepressionActivityPlanRoute {
+class DepressionActivityPlanRoute extends GoRouteData with $DepressionActivityPlanRoute {
   const DepressionActivityPlanRoute();
 
   @override

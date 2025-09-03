@@ -79,7 +79,7 @@ part 'routes.g.dart';
   path: '/',
   routes: [..._settingsRoutes, ..._gameRoutes, ..._contactRoutes, ..._homeRoutes],
 )
-class MainRoute extends GoRouteData with _$MainRoute {
+class MainRoute extends GoRouteData with $MainRoute {
   const MainRoute();
 
   @override

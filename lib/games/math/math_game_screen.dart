@@ -17,7 +17,7 @@ import 'package:nepanikar/widgets/nepanikar_button.dart';
 part 'math_game_screen.g.dart';
 
 @TypedGoRoute<MathGameRoute>(path: '/games/math/')
-class MathGameRoute extends GoRouteData with _$MathGameRoute {
+class MathGameRoute extends GoRouteData with $MathGameRoute {
   const MathGameRoute();
 
   @override

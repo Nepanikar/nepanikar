@@ -19,7 +19,7 @@ import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 part 'my_records_detail_journal_screen.g.dart';
 
 @TypedGoRoute<MyRecordsJournalDetailRoute>(path: '/home/my-records/journal-detail')
-class MyRecordsJournalDetailRoute extends GoRouteData with _$MyRecordsJournalDetailRoute {
+class MyRecordsJournalDetailRoute extends GoRouteData with $MyRecordsJournalDetailRoute {
   const MyRecordsJournalDetailRoute();
 
   @override

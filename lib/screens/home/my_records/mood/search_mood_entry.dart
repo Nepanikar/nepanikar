@@ -17,7 +17,7 @@ import 'package:provider/provider.dart';
 part 'search_mood_entry.g.dart';
 
 @TypedGoRoute<SearchMoodEntryRoute>(path: '/home/my-records/search-mood-entry')
-class SearchMoodEntryRoute extends GoRouteData with _$SearchMoodEntryRoute {
+class SearchMoodEntryRoute extends GoRouteData with $SearchMoodEntryRoute {
   const SearchMoodEntryRoute();
 
   @override

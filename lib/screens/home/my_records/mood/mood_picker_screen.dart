@@ -19,7 +19,7 @@ import 'package:provider/provider.dart';
 part 'mood_picker_screen.g.dart';
 
 @TypedGoRoute<MoodPickerRoute>(path: '/home/my-records/mood-picker')
-class MoodPickerRoute extends GoRouteData with _$MoodPickerRoute {
+class MoodPickerRoute extends GoRouteData with $MoodPickerRoute {
   const MoodPickerRoute();
 
   @override

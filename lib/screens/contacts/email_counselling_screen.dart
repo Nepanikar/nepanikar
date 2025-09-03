@@ -4,7 +4,7 @@ import 'package:nepanikar/screens/contacts/crisis_message_screen.dart';
 part 'email_counselling_screen.g.dart';
 
 @TypedGoRoute<EmailCounsellingRoute>(path: '/contacts/email-counselling')
-class EmailCounsellingRoute extends GoRouteData with _$EmailCounsellingRoute {
+class EmailCounsellingRoute extends GoRouteData with $EmailCounsellingRoute {
   const EmailCounsellingRoute();
 
   @override

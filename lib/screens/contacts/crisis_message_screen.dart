@@ -13,7 +13,7 @@ import 'package:url_launcher/url_launcher.dart';
 part 'crisis_message_screen.g.dart';
 
 @TypedGoRoute<CrisisMessageRoute>(path: '/contacts/crisis-message')
-class CrisisMessageRoute extends GoRouteData with _$CrisisMessageRoute {
+class CrisisMessageRoute extends GoRouteData with $CrisisMessageRoute {
   const CrisisMessageRoute();
 
   @override

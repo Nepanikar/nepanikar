@@ -12,7 +12,7 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 part 'languages_screen.g.dart';
 
 @TypedGoRoute<LanguagesRoute>(path: '/settings/language')
-class LanguagesRoute extends GoRouteData with _$LanguagesRoute {
+class LanguagesRoute extends GoRouteData with $LanguagesRoute {
   const LanguagesRoute();
 
   @override

@@ -9,7 +9,7 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 part 'relaxations_list_screen.g.dart';
 
 @TypedGoRoute<RelaxationsListRoute>(path: '/games/relaxation-list')
-class RelaxationsListRoute extends GoRouteData with _$RelaxationsListRoute {
+class RelaxationsListRoute extends GoRouteData with $RelaxationsListRoute {
   const RelaxationsListRoute();
 
   @override

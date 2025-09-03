@@ -10,7 +10,7 @@ import 'package:nepanikar/helpers/color_helpers.dart';
 part 'balance_game_screen.g.dart';
 
 @TypedGoRoute<BalanceGameRoute>(path: '/games/balance/')
-class BalanceGameRoute extends GoRouteData with _$BalanceGameRoute {
+class BalanceGameRoute extends GoRouteData with $BalanceGameRoute {
   const BalanceGameRoute();
 
   @override

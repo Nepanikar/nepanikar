@@ -6,7 +6,7 @@ import 'package:nepanikar/widgets/input_form_contents/list_form_content.dart';
 part 'suicidal_thoughts_reasons_no_screen.g.dart';
 
 @TypedGoRoute<SuicidalThoughtsReasonsNoRoute>(path: '/home/suicidal-thoughts/reasons-no')
-class SuicidalThoughtsReasonsNoRoute extends GoRouteData with _$SuicidalThoughtsReasonsNoRoute {
+class SuicidalThoughtsReasonsNoRoute extends GoRouteData with $SuicidalThoughtsReasonsNoRoute {
   const SuicidalThoughtsReasonsNoRoute();
 
   @override

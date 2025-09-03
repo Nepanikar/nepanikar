@@ -6,7 +6,7 @@ import 'package:nepanikar/widgets/input_form_contents/checklist_form_content.dar
 part 'eating_disorder_food_creative_screen.g.dart';
 
 @TypedGoRoute<EatingDisorderFoodCreativeRoute>(path: '/home/eating-disorder/tasks/food-creative')
-class EatingDisorderFoodCreativeRoute extends GoRouteData with _$EatingDisorderFoodCreativeRoute {
+class EatingDisorderFoodCreativeRoute extends GoRouteData with $EatingDisorderFoodCreativeRoute {
   const EatingDisorderFoodCreativeRoute();
 
   @override

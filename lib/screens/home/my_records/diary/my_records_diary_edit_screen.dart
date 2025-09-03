@@ -13,7 +13,7 @@ import 'package:nepanikar/widgets/diary/diary_edit_content.dart';
 part 'my_records_diary_edit_screen.g.dart';
 
 @TypedGoRoute<MyRecordsDiaryEditRoute>(path: '/home/my-records/diary/edit')
-class MyRecordsDiaryEditRoute extends GoRouteData with _$MyRecordsDiaryEditRoute {
+class MyRecordsDiaryEditRoute extends GoRouteData with $MyRecordsDiaryEditRoute {
   const MyRecordsDiaryEditRoute();
 
   @override

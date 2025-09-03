@@ -7,7 +7,7 @@ import 'package:nepanikar/widgets/tips_carousel_body.dart';
 part 'self_harm_tips_screen.g.dart';
 
 @TypedGoRoute<SelfHarmTipsRoute>(path: '/home/self-harm/tips')
-class SelfHarmTipsRoute extends GoRouteData with _$SelfHarmTipsRoute {
+class SelfHarmTipsRoute extends GoRouteData with $SelfHarmTipsRoute {
   const SelfHarmTipsRoute();
 
   @override

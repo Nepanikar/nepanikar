@@ -6,7 +6,7 @@ import 'package:nepanikar/services/db/my_records/my_records_sleep_track_dao.dart
 part 'my_records_sleep_track_screen.g.dart';
 
 @TypedGoRoute<MyRecordsSleepTrackRoute>(path: '/home/my-records/sleep-track')
-class MyRecordsSleepTrackRoute extends GoRouteData with _$MyRecordsSleepTrackRoute {
+class MyRecordsSleepTrackRoute extends GoRouteData with $MyRecordsSleepTrackRoute {
   const MyRecordsSleepTrackRoute();
 
   @override

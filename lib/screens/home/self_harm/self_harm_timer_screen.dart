@@ -20,7 +20,7 @@ import 'package:timer_builder/timer_builder.dart';
 part 'self_harm_timer_screen.g.dart';
 
 @TypedGoRoute<SelfHarmTimerRoute>(path: '/home/self-harm/timer')
-class SelfHarmTimerRoute extends GoRouteData with _$SelfHarmTimerRoute {
+class SelfHarmTimerRoute extends GoRouteData with $SelfHarmTimerRoute {
   const SelfHarmTimerRoute();
 
   @override

@@ -15,7 +15,7 @@ import 'package:url_launcher/url_launcher.dart';
 part 'export_screen.g.dart';
 
 @TypedGoRoute<ExportRoute>(path: '/settings/export')
-class ExportRoute extends GoRouteData with _$ExportRoute {
+class ExportRoute extends GoRouteData with $ExportRoute {
   const ExportRoute();
 
   @override

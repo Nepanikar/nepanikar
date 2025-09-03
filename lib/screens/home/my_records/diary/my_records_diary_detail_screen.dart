@@ -20,7 +20,7 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 part 'my_records_diary_detail_screen.g.dart';
 
 @TypedGoRoute<MyRecordsDiaryDetailRoute>(path: '/home/my-records/diary/detail')
-class MyRecordsDiaryDetailRoute extends GoRouteData with _$MyRecordsDiaryDetailRoute {
+class MyRecordsDiaryDetailRoute extends GoRouteData with $MyRecordsDiaryDetailRoute {
   const MyRecordsDiaryDetailRoute();
 
   @override

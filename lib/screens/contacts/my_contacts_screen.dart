@@ -15,7 +15,7 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 part 'my_contacts_screen.g.dart';
 
 @TypedGoRoute<MyContactsRecordsRoute>(path: '/contacts/my-contacts-records')
-class MyContactsRecordsRoute extends GoRouteData with _$MyContactsRecordsRoute {
+class MyContactsRecordsRoute extends GoRouteData with $MyContactsRecordsRoute {
   const MyContactsRecordsRoute();
 
   @override

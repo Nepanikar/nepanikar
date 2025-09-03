@@ -7,7 +7,7 @@ import 'package:nepanikar/widgets/sponsor_tile.dart';
 part 'sponsors_screen.g.dart';
 
 @TypedGoRoute<SponsorsRoute>(path: '/settings/sponsors')
-class SponsorsRoute extends GoRouteData with _$SponsorsRoute {
+class SponsorsRoute extends GoRouteData with $SponsorsRoute {
   const SponsorsRoute();
 
   @override

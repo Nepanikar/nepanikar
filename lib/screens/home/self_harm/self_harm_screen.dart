@@ -13,7 +13,7 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 part 'self_harm_screen.g.dart';
 
 @TypedGoRoute<SelfHarmRoute>(path: '/home/self-harm')
-class SelfHarmRoute extends GoRouteData with _$SelfHarmRoute {
+class SelfHarmRoute extends GoRouteData with $SelfHarmRoute {
   const SelfHarmRoute();
 
   @override

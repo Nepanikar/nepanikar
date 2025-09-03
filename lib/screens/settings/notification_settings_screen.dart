@@ -15,7 +15,7 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 part 'notification_settings_screen.g.dart';
 
 @TypedGoRoute<NotificationSettingsRoute>(path: '/settings/notification-settings')
-class NotificationSettingsRoute extends GoRouteData with _$NotificationSettingsRoute {
+class NotificationSettingsRoute extends GoRouteData with $NotificationSettingsRoute {
   const NotificationSettingsRoute();
 
   @override

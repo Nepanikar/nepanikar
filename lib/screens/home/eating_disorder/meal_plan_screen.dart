@@ -8,7 +8,7 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 part 'meal_plan_screen.g.dart';
 
 @TypedGoRoute<MealPlanRoute>(path: '/home/eating-disorder/meal-plan')
-class MealPlanRoute extends GoRouteData with _$MealPlanRoute {
+class MealPlanRoute extends GoRouteData with $MealPlanRoute {
   const MealPlanRoute();
 
   @override

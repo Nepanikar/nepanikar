@@ -9,7 +9,7 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 part 'breathing_exercises_screen.g.dart';
 
 @TypedGoRoute<BreathingExercisesRoute>(path: '/games/breathing-list')
-class BreathingExercisesRoute extends GoRouteData with _$BreathingExercisesRoute {
+class BreathingExercisesRoute extends GoRouteData with $BreathingExercisesRoute {
   const BreathingExercisesRoute();
 
   @override

@@ -26,7 +26,7 @@ import 'package:provider/provider.dart';
 part 'mood_track_screen.g.dart';
 
 @TypedGoRoute<MoodTrackRoute>(path: '/home/my-records/mood-track')
-class MoodTrackRoute extends GoRouteData with _$MoodTrackRoute {
+class MoodTrackRoute extends GoRouteData with $MoodTrackRoute {
   const MoodTrackRoute();
 
   @override

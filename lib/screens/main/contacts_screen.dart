@@ -22,7 +22,7 @@ import 'package:nepanikar_contacts_gen/nepanikar_contacts_gen.dart';
 part 'contacts_screen.g.dart';
 
 @TypedGoRoute<ContactsRoute>(path: '/contacts')
-class ContactsRoute extends GoRouteData with _$ContactsRoute {
+class ContactsRoute extends GoRouteData with $ContactsRoute {
   const ContactsRoute();
 
   ContactsDataManager get _contactsDataManager => registry.get<ContactsDataManager>();

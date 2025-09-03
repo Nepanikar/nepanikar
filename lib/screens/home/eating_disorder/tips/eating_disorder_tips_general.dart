@@ -9,7 +9,7 @@ part 'eating_disorder_tips_general.g.dart';
 
 @TypedGoRoute<EatingDisorderTipsGeneralAppRoute>(path: '/home/eating-disorder/tips/general')
 class EatingDisorderTipsGeneralAppRoute extends GoRouteData
-    with _$EatingDisorderTipsGeneralAppRoute {
+    with $EatingDisorderTipsGeneralAppRoute {
   const EatingDisorderTipsGeneralAppRoute();
 
   @override

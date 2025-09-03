@@ -11,7 +11,7 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 part 'suicidal_thoughts_screen.g.dart';
 
 @TypedGoRoute<SuicidalThoughtsRoute>(path: '/home/suicidal-thoughts')
-class SuicidalThoughtsRoute extends GoRouteData with _$SuicidalThoughtsRoute {
+class SuicidalThoughtsRoute extends GoRouteData with $SuicidalThoughtsRoute {
   const SuicidalThoughtsRoute();
 
   @override

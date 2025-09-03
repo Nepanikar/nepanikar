@@ -9,7 +9,7 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 part 'about_app_screen.g.dart';
 
 @TypedGoRoute<AboutAppRoute>(path: '/settings/about-app')
-class AboutAppRoute extends GoRouteData with _$AboutAppRoute {
+class AboutAppRoute extends GoRouteData with $AboutAppRoute {
   const AboutAppRoute();
 
   @override

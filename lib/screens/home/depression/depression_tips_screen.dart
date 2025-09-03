@@ -7,7 +7,7 @@ import 'package:nepanikar/widgets/tips_carousel_body.dart';
 part 'depression_tips_screen.g.dart';
 
 @TypedGoRoute<DepressionTipsAppRoute>(path: '/home/depression/tips')
-class DepressionTipsAppRoute extends GoRouteData with _$DepressionTipsAppRoute {
+class DepressionTipsAppRoute extends GoRouteData with $DepressionTipsAppRoute {
   const DepressionTipsAppRoute();
 
   @override

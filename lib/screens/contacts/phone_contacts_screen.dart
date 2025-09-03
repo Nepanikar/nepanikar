@@ -10,7 +10,7 @@ import 'package:nepanikar_contacts_gen/nepanikar_contacts_gen.dart';
 part 'phone_contacts_screen.g.dart';
 
 @TypedGoRoute<PhoneContactsRoute>(path: '/contacts/phones')
-class PhoneContactsRoute extends GoRouteData with _$PhoneContactsRoute {
+class PhoneContactsRoute extends GoRouteData with $PhoneContactsRoute {
   const PhoneContactsRoute();
 
   ContactsDataManager get _contactsManager => registry.get<ContactsDataManager>();
