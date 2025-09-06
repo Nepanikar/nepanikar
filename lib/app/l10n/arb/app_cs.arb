@@ -1,4 +1,5 @@
 {
+  "@@locale": "cs",
   "about_app": "O aplikaci",
   "about_app_text": "Aplikace Nepanikař slouží jako pomocný nástroj první pomoci při psychických problémech, jako jsou například deprese či panika.  Cílem aplikace není nahradit lékařskou péči, pouze pomoci zmírnit příznaky. V případě zhoršení stavu je nutné vyhledat odbornou pomoc. Pokud Ti aplikace nepomáhá či si nejsi jistý/á jejím významem pro Tvůj stav, konzultuj její používání s Tvým lékařem.",
   "activity_hint_text": "Aktivita",
@@ -333,6 +334,5 @@
   "type_a_new_emotion": "Zadejte novou emoci",
   "universities": "Vysokoškolské poradny",
   "university_contacts_description": "Vysokoškolské poradny zpravidla vyžadují předchozí objednání.",
-  "year": "Rok",
-  "@@locale": "cs"
+  "year": "Rok"
 }

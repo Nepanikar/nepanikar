@@ -1,4 +1,5 @@
 {
+  "@@locale": "sv",
   "about_app": "Om appen",
   "about_app_text": "Denna app finns för alla som behöver akut hjälp vid depression, ångest eller andra problem. Appen erbjuder stöd men ersätter inte en konsultation med en kvalificerad läkare eller annan specialist. Det är nödvändigt att söka professionell hjälp om situationen försämras. Om appen inte hjälper eller om du är osäker på dess påverkan på din mentala hälsa, konsultera din läkare.",
   "activity_hint_text": "Aktivitet",
@@ -333,6 +334,5 @@
   "type_a_new_emotion": "Skriv en ny känsla",
   "universities": "Universitet",
   "university_contacts_description": "Universitetets rådgivningscenter kräver vanligtvis en tidbokning.",
-  "year": "År",
-  "@@locale": "sv"
+  "year": "År"
 }

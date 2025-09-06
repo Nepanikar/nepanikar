@@ -1,4 +1,5 @@
 {
+  "@@locale": "ja",
   "about_app": "このアプリについて",
   "about_app_text": "このアプリは、うつ病、不安、その他の問題で緊急の助けが必要な方のためのものです。アプリは支援を提供しますが、資格のある医師や専門家による相談の代わりにはなりません。状況が悪化した場合は、必ず専門家に相談してください。アプリが効果がない場合や、メンタルヘルスに良い影響を与えているか不確かの場合は、医師に相談してください。",
   "activity_hint_text": "アクティビティ",
@@ -6,7 +7,7 @@
   "add_item": "アイテムを追加",
   "answer": "回答",
   "anxiety_panic": "不安とパニック発作",
-  "app_name": "パニックにならないで",
+  "app_name": "ドントパニック",
   "audio_progress_announce": "再生済み",
   "audio_total_announce": "総再生時間",
   "balance_game_instructions": "画面下の2つのボックスをタップして、スイングをバランスさせてください。",
@@ -333,6 +334,5 @@
   "type_a_new_emotion": "新しい感情を入力",
   "universities": "大学",
   "university_contacts_description": "大学のカウンセリングセンターは通常、予約が必要です。",
-  "year": "年",
-  "@@locale": "ja"
+  "year": "年"
 }

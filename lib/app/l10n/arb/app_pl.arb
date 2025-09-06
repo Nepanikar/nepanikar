@@ -1,4 +1,5 @@
 {
+  "@@locale": "pl",
   "about_app": "O aplikacji",
   "about_app_text": "Ta aplikacja jest dla każdego, kto potrzebuje pilnej pomocy w przypadku depresji, stanów lękowych lub innych problemów. Aplikacja oferuje pomoc, ale nie zastępuje konsultacji z wykwalifikowanym lekarzem lub innym specjalistą. Konieczne jest poszukiwanie profesjonalnej pomocy, gdy sytuacja się pogorszy. Jeśli aplikacja nie pomoże lub nie masz pewności, czy ma ona pozytywny wpływ na zdrowie psychiczne, należy skonsultować się z lekarzem.",
   "activity_hint_text": "Działalność",
@@ -333,6 +334,5 @@
   "type_a_new_emotion": "Wprowadź nową emocję",
   "universities": "Uniwersytety",
   "university_contacts_description": "Uniwersyteckie centra doradcze zazwyczaj wymagają umówienia się na spotkanie.",
-  "year": "Rok",
-  "@@locale": "pl"
+  "year": "Rok"
 }

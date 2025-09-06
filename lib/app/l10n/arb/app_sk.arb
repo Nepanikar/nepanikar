@@ -1,4 +1,5 @@
 {
+  "@@locale": "sk",
   "about_app": "O aplikácii",
   "about_app_text": "Táto aplikácia slúži ako nástroj prvej pomoci  pri psychických problémoch ako sú depresia či panika.  Cieľom aplikácie nie je nahradiť lekársku starostlivosť,  ale pomôcť zmierniť príznaky.  V prípade zhoršenia stavu je nutné vyhľadať odbornú pomoc. Pokiaľ Vám aplikácia nepomáha alebo si nie ste istí jej významom pre Váš stav,  konzultujte jej používanie s Vaším lekárom.",
   "activity_hint_text": "Aktivita",
@@ -333,6 +334,5 @@
   "type_a_new_emotion": "Napíšte novú emóciu",
   "universities": "Univerzity",
   "university_contacts_description": "Vysokoškolské poradne spravidla vyžadujú predchádzajúce objednanie.",
-  "year": "Rok",
-  "@@locale": "sk"
+  "year": "Rok"
 }

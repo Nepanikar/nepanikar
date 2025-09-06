@@ -1,4 +1,5 @@
 {
+  "@@locale": "fi",
   "about_app": "Tietoa sovelluksesta",
   "about_app_text": "Tämä sovellus on tarkoitettu kaikille, jotka tarvitsevat kiireellistä apua masennuksen, ahdistuksen tai muiden mielenterveysongelmien yhteydessä. Sovellus tarjoaa tukea, mutta se ei korvaa pätevän lääkärin tai muun asiantuntijan konsultaatiota. Ammattiavun hakeminen on välttämätöntä, jos tilanne pahenee. Jos sovellus ei auta tai olet epävarma sen vaikutuksesta mielenterveyteesi, keskustele käytöstäsi lääkärisi kanssa.",
   "activity_hint_text": "Toiminta",
@@ -333,6 +334,5 @@
   "type_a_new_emotion": "Kirjoita uusi tunne",
   "universities": "Yliopistot",
   "university_contacts_description": "Yliopistojen neuvontakeskukset vaativat yleensä ajanvarauksen.",
-  "year": "Vuosi",
-  "@@locale": "fi"
+  "year": "Vuosi"
 }

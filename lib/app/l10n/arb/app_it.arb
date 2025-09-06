@@ -1,4 +1,5 @@
 {
+  "@@locale": "it",
   "about_app": "Informazioni dell’app",
   "about_app_text": "Questa applicazione è dedicata a tutti coloro che hanno bisogno di un aiuto urgente in caso di depressione, ansia o altri problemi.  L'app offre aiuto ma non sostituisce un consulto con un medico qualificato o un altro specialista. È necessario rivolgersi a un professionista quando la situazione peggiora.  Se l'app non è d'aiuto o se non si è sicuri che abbia un'influenza positiva sulla propria salute mentale, si consiglia di consultarne l'uso con il proprio medico.",
   "activity_hint_text": "Attività",
@@ -333,6 +334,5 @@
   "type_a_new_emotion": "Digita una nuova emozione",
   "universities": "Università",
   "university_contacts_description": "I centri di consulenza universitaria di solito richiedono un appuntamento.",
-  "year": "Anno",
-  "@@locale": "it"
+  "year": "Anno"
 }

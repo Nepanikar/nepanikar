@@ -1,4 +1,5 @@
 {
+  "@@locale": "pt",
   "about_app": "Sobre",
   "about_app_text": "Esta aplicação está aqui para qualquer pessoa que precise de ajuda urgente em caso de depressão, ansiedade ou outros problemas. A app oferece ajuda, mas não substitui uma consulta com um médico qualificado ou outro especialista. É necessário procurar ajuda profissional quando a situação se agrava. Se a app não ajudar ou se não tiver certeza se tem uma influência positiva na sua saúde mental, consulte o seu médico.",
   "activity_hint_text": "Atividade",
@@ -333,6 +334,5 @@
   "type_a_new_emotion": "Digite uma nova emoção",
   "universities": "Universidades",
   "university_contacts_description": "Os centros de aconselhamento universitário geralmente exigem marcação prévia.",
-  "year": "Ano",
-  "@@locale": "pt"
+  "year": "Ano"
 }

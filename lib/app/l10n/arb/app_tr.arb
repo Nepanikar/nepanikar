@@ -1,4 +1,5 @@
 {
+  "@@locale": "tr",
   "about_app": "Hakkında",
   "about_app_text": "Bu uygulama, depresyon, kaygı veya diğer sorunlar durumunda acil yardıma ihtiyacı olan herkes için burada. Uygulama yardım sunar, ancak nitelikli bir doktor veya diğer uzmanlarla yapılan danışmanlığın yerini almaz. Durum kötüleştiğinde profesyonel yardım almak gerekir. Uygulama yardımcı olmuyorsa veya zihinsel sağlığınız üzerinde olumlu bir etkisi olup olmadığından emin değilseniz, kullanımı hakkında doktorunuza danışın.",
   "activity_hint_text": "Aktivite",
@@ -333,6 +334,5 @@
   "type_a_new_emotion": "Yeni bir duygu yaz",
   "universities": "Üniversiteler",
   "university_contacts_description": "Üniversite danışma merkezleri genellikle randevu gerektirir.",
-  "year": "Yıl",
-  "@@locale": "tr"
+  "year": "Yıl"
 }

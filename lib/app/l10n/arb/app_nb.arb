@@ -1,4 +1,5 @@
 {
+  "@@locale": "nb",
   "about_app": "Om anvendelse",
   "about_app_text": "Denne applikasjonen fungerer som et førstehjelpsverktøy for psykologiske problemer som depresjon eller panikk. Målet med applikasjonen er ikke å erstatte medisinsk behandling, bare for å lindre symptomer. Ved forverring av tilstanden er det nødvendig å søke profesjonell hjelp. Hvis applikasjonen ikke hjelper deg eller du ikke er sikker på dens betydning for tilstanden din, ta en konsultasjon om bruk av applikasjonen med legen din.",
   "activity_hint_text": "Aktivitet",
@@ -333,6 +334,5 @@
   "type_a_new_emotion": "Skriv inn en ny følelse",
   "universities": "Universitetsrådgivning",
   "university_contacts_description": "Høgskolerådgivningssentre krever vanligvis en avtale.",
-  "year": "År",
-  "@@locale": "nb"
+  "year": "År"
 }

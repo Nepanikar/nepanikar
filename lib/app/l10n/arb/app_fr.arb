@@ -1,4 +1,5 @@
 {
+  "@@locale": "fr",
   "about_app": "Sur l’appli",
   "about_app_text": "Cette application sert comme moyen d’aide pendant les épisodes des troubles psychiques de type dépression ou anxieté. Le but de l’application n’est pas de remplacer les soins médicaux mais seulement atténuer les symptomes. En cas de déterioration d’état de  votre santé psychique, il est urgent de trouver une aide professionnelle. Si l’application ne vous aide pas ou vous n’êtes pas sûrs de son influence sur votre psychisme, consultez l’utilisation avec votre médicin..",
   "activity_hint_text": "Activité",
@@ -333,6 +334,5 @@
   "type_a_new_emotion": "Saisissez une nouvelle émotion",
   "universities": "Universités",
   "university_contacts_description": "Les centres de conseil universitaire exigent généralement un rendez-vous.",
-  "year": "Année",
-  "@@locale": "fr"
+  "year": "Année"
 }

@@ -1,4 +1,5 @@
 {
+  "@@locale": "de",
   "about_app": "Über die App",
   "about_app_text": "Diese App ist für alle da, die bei Depressionen, Angstzuständen oder anderen Problemen dringend Hilfe brauchen.  Die App bietet Hilfe, aber sie ersetzt nicht die Konsultation eines qualifizierten Arztes oder eines anderen Spezialisten. Es ist notwendig, professionelle Hilfe zu suchen, wenn sich die Situation verschlimmert.  Wenn die App nicht hilft oder Sie sich nicht sicher sind, ob sie einen positiven Einfluss auf Ihre psychische Gesundheit hat, sollten Sie die Anwendung mit Ihrem Arzt besprechen.",
   "activity_hint_text": "Aktivität",
@@ -333,6 +334,5 @@
   "type_a_new_emotion": "Geben Sie eine neue Emotion ein",
   "universities": "Universitäten",
   "university_contacts_description": "Die Beratungsstellen der Hochschulen verlangen in der Regel einen Termin.",
-  "year": "Jahr",
-  "@@locale": "de"
+  "year": "Jahr"
 }
