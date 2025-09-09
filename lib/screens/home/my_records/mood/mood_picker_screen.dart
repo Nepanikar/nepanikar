@@ -330,7 +330,7 @@ class _MoodPickerScreenState<T extends MoodTrackDao> extends State<MoodPickerScr
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor:NepanikarColors.primarySwatch(
+                    backgroundColor: NepanikarColors.primarySwatch(
                       Theme.of(context).primaryColor,
                     ).shade400,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),

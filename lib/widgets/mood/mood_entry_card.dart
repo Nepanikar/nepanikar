@@ -29,9 +29,7 @@ class MoodEntryCard extends StatelessWidget {
       NepanikarColors.container(context),
       NepanikarColors.white,
     );
-    final colorFilter = ColorFilter.matrix(
-      svgColorMatrixBasedOnDarkMode(context, lighter: true),
-    );
+    final colorFilter = ColorFilter.matrix(svgColorMatrixBasedOnDarkMode(context, lighter: true));
 
     return GestureDetector(
       onTap: onTap,

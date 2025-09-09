@@ -43,17 +43,11 @@ class _MoodEntryDetailState<T extends MoodTrackDao> extends State<MoodEntryDetai
               actions: <Widget>[
                 TextButton(
                   onPressed: () => Navigator.of(context).pop(false),
-                  child: Text(
-                    context.l10n.cancel,
-                    style: TextStyle(color: buttonColor),
-                  ),
+                  child: Text(context.l10n.cancel, style: TextStyle(color: buttonColor)),
                 ),
                 TextButton(
                   onPressed: () => Navigator.of(context).pop(true),
-                  child: Text(
-                    context.l10n.delete_record,
-                    style: TextStyle(color: buttonColor),
-                  ),
+                  child: Text(context.l10n.delete_record, style: TextStyle(color: buttonColor)),
                 ),
               ],
             );
@@ -72,9 +66,7 @@ class _MoodEntryDetailState<T extends MoodTrackDao> extends State<MoodEntryDetai
       NepanikarColors.primary(context),
     );
     final formattedDate = DateFormat('d. MMM. yyyy   HH:mm').format(moodEntry.date);
-    final colorFilter = ColorFilter.matrix(
-      svgColorMatrixBasedOnDarkMode(context, lighter: true),
-    );
+    final colorFilter = ColorFilter.matrix(svgColorMatrixBasedOnDarkMode(context, lighter: true));
 
     return Scaffold(
       appBar: AppBar(
@@ -96,7 +88,12 @@ class _MoodEntryDetailState<T extends MoodTrackDao> extends State<MoodEntryDetai
                     left: -70,
                     child: Opacity(
                       opacity: 0.1,
-                      child: SvgPicture.asset(moodEntry.mood.icon.path, width: 250, height: 250, colorFilter: colorFilter),
+                      child: SvgPicture.asset(
+                        moodEntry.mood.icon.path,
+                        width: 250,
+                        height: 250,
+                        colorFilter: colorFilter,
+                      ),
                     ),
                   ),
                   Positioned(

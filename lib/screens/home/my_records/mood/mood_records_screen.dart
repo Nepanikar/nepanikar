@@ -202,8 +202,10 @@ class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsS
                               _entryCount += 5;
                             });
                           },
-                          style: ElevatedButton.styleFrom(shape: const StadiumBorder(),
-                          padding: EdgeInsets.zero),
+                          style: ElevatedButton.styleFrom(
+                            shape: const StadiumBorder(),
+                            padding: EdgeInsets.zero,
+                          ),
                           child: const Icon(Icons.more_horiz, size: 40),
                         ),
                       );
