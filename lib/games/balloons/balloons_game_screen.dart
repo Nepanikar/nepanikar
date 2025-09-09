@@ -12,6 +12,7 @@ import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/utils/lottie_cache_manager.dart';
 import 'package:nepanikar/utils/registry.dart';
+import 'package:wakelock_plus/wakelock_plus.dart';
 part 'balloons_game_screen.g.dart';
 
 @TypedGoRoute<BalloonsGameRoute>(path: '/games/balloons/')
@@ -83,6 +84,7 @@ class _BalloonsGameScreenState extends State<BalloonsGameScreen> with TickerProv
     final view = WidgetsBinding.instance.platformDispatcher.views.first;
     final size = view.physicalSize / view.devicePixelRatio;
     _controller = AnimationController(vsync: this);
+    WakelockPlus.enable();
 
     setState(() {
       fpsMultiplier = fps / 30;
@@ -114,6 +116,7 @@ class _BalloonsGameScreenState extends State<BalloonsGameScreen> with TickerProv
   void dispose() {
     gameLoop.cancel();
     _controller.dispose();
+    WakelockPlus.disable();
     super.dispose();
   }
 

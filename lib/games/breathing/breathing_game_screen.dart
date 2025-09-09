@@ -6,6 +6,7 @@ import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/games/breathing/shape_painter.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/helpers/semantics_helpers.dart';
+import 'package:wakelock_plus/wakelock_plus.dart';
 part 'breathing_game_screen.g.dart';
 
 enum BreathingGameShape { circle, square, triangle }
@@ -120,6 +121,7 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
 
     _controller.addListener(progressListener);
     _controller.repeat();
+    WakelockPlus.enable();
   }
 
   @override
@@ -139,6 +141,7 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
     _indexNotifier.dispose();
     _scaleAnimation.value.dispose();
     _scaleAnimation.dispose();
+    WakelockPlus.disable();
     super.dispose();
   }
 
