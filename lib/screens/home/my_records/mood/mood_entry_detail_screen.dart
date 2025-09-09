@@ -31,6 +31,7 @@ class MoodEntryDetailScreen<T extends MoodTrackDao> extends StatefulWidget {
 
 class _MoodEntryDetailState<T extends MoodTrackDao> extends State<MoodEntryDetailScreen<T>> {
   Future<bool> _deleteMoodEntry(BuildContext context, MoodTrack moodEntry) async {
+    final buttonColor = Theme.of(context).hintColor;
     final bool confirmDelete =
         await showDialog(
           context: context,
@@ -44,14 +45,14 @@ class _MoodEntryDetailState<T extends MoodTrackDao> extends State<MoodEntryDetai
                   onPressed: () => Navigator.of(context).pop(false),
                   child: Text(
                     context.l10n.cancel,
-                    style: const TextStyle(color: NepanikarColors.white),
+                    style: TextStyle(color: buttonColor),
                   ),
                 ),
                 TextButton(
                   onPressed: () => Navigator.of(context).pop(true),
                   child: Text(
                     context.l10n.delete_record,
-                    style: const TextStyle(color: NepanikarColors.white),
+                    style: TextStyle(color: buttonColor),
                   ),
                 ),
               ],
@@ -71,6 +72,9 @@ class _MoodEntryDetailState<T extends MoodTrackDao> extends State<MoodEntryDetai
       NepanikarColors.primary(context),
     );
     final formattedDate = DateFormat('d. MMM. yyyy   HH:mm').format(moodEntry.date);
+    final colorFilter = ColorFilter.matrix(
+      svgColorMatrixBasedOnDarkMode(context, lighter: true),
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -92,7 +96,7 @@ class _MoodEntryDetailState<T extends MoodTrackDao> extends State<MoodEntryDetai
                     left: -70,
                     child: Opacity(
                       opacity: 0.1,
-                      child: SvgPicture.asset(moodEntry.mood.icon.path, width: 250, height: 250),
+                      child: SvgPicture.asset(moodEntry.mood.icon.path, width: 250, height: 250, colorFilter: colorFilter),
                     ),
                   ),
                   Positioned(
@@ -233,7 +237,7 @@ class _MoodEntryDetailState<T extends MoodTrackDao> extends State<MoodEntryDetai
                     }
                   },
                   style: ElevatedButton.styleFrom(backgroundColor: NepanikarColors.deleteButton),
-                  child: const Icon(Icons.delete, color: Colors.white, size: 30),
+                  child: const Icon(Icons.delete, color: Colors.white, size: 25),
                 ),
               ),
               SizedBox(
@@ -249,7 +253,7 @@ class _MoodEntryDetailState<T extends MoodTrackDao> extends State<MoodEntryDetai
                       Theme.of(context).primaryColor,
                     ).shade100,
                   ),
-                  child: const Icon(Icons.edit, color: Colors.white, size: 30),
+                  child: const Icon(Icons.edit, color: Colors.white, size: 25),
                 ),
               ),
             ],
