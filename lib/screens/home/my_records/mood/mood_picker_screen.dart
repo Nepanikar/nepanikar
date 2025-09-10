@@ -326,7 +326,7 @@ class _MoodPickerScreenState<T extends MoodTrackDao> extends State<MoodPickerScr
                       ).saveMoodTrack(summary, description, selectedEmotions, currentMood!);
                     }
                     if (mounted && context.mounted) {
-                      await context.push(const MoodRecordsRoute().location);
+                      await context.push(const MoodRecordsRoute(fromMoodPicker: true).location);
                     }
                   },
                   style: ElevatedButton.styleFrom(

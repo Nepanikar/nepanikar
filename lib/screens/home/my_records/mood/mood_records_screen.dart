@@ -15,7 +15,6 @@ import 'package:nepanikar/providers/mood_heatmap_filter_provider.dart';
 import 'package:nepanikar/providers/mood_state_provider.dart';
 import 'package:nepanikar/screens/home/my_records/mood/mood_entry_detail_screen.dart';
 import 'package:nepanikar/screens/home/my_records/mood/search_mood_entry.dart';
-import 'package:nepanikar/screens/home/my_records/my_records_screen.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_dao.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
 import 'package:nepanikar/services/notifications/notifications_service.dart';
@@ -31,14 +30,19 @@ part 'mood_records_screen.g.dart';
 
 @TypedGoRoute<MoodRecordsRoute>(path: '/home/my-records/mood-records')
 class MoodRecordsRoute extends GoRouteData with $MoodRecordsRoute {
-  const MoodRecordsRoute();
+  const MoodRecordsRoute({this.fromMoodPicker});
+
+  final bool? fromMoodPicker;
 
   @override
-  Widget build(BuildContext context, _) => const MoodRecordsScreen<MoodTrackDao>();
+  Widget build(BuildContext context, _) => MoodRecordsScreen<MoodTrackDao>(
+    fromMoodPicker: fromMoodPicker
+  );
 }
 
 class MoodRecordsScreen<T extends MoodTrackDao> extends StatefulWidget {
-  const MoodRecordsScreen({super.key});
+  const MoodRecordsScreen({super.key, this.fromMoodPicker});
+ final bool? fromMoodPicker;
 
   @override
   State<MoodRecordsScreen<T>> createState() => _MoodRecordsScreenState<T>();
@@ -250,7 +254,13 @@ class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsS
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-              context.push(const MyRecordsRoute().location);
+              if (widget.fromMoodPicker == true) {
+                context.go('/');
+              }
+              else {
+                context.pop();
+              }
+              //context.push(const MyRecordsRoute().location);
             },
           ),
           actions: [
@@ -278,7 +288,7 @@ class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsS
             style: NepanikarFonts.title2.copyWith(color: NepanikarColors.white),
           ),
           leading: Container(
-            margin: const EdgeInsets.only(left: 40),
+            margin: const EdgeInsets.only(left: 25),
             child: IconButton(
               icon: const Icon(Icons.arrow_back_ios),
               tooltip: context.l10n.mood_statistics,

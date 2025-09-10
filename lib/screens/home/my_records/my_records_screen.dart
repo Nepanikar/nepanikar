@@ -37,13 +37,12 @@ class MyRecordsScreen extends StatelessWidget {
       LongTile(
         text: context.l10n.depression_mood,
         image: Assets.illustrations.modules.moodTracker.svg(colorFilter: colorFilter),
-        // onTap: () => context.push(const MoodTrackRoute().location),
         onTap: () {
           Provider.of<MoodHeatmapFilterProvider>(
             context,
             listen: false,
           ).setFilter(HeatmapFilter.initial);
-          context.push(const MoodRecordsRoute().location);
+          context.push(const MoodRecordsRoute(fromMoodPicker: false).location);
         },
         isDarkMode: isDarkMode,
       ),
