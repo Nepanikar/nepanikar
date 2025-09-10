@@ -48,6 +48,13 @@ class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsS
   int _entryCount = 5;
   int _currentPageIndex = 0;
 
+  void changePage(bool forward) {
+    setState(() {
+      _currentPageIndex += (forward == true) ? 1 : -1;
+      _pageController.jumpToPage(_currentPageIndex);
+    });
+  }
+
   DateTime get _now => getNowDateTimeLocal();
 
   NotificationsService get _notificationsService => registry.get<NotificationsService>();
@@ -68,6 +75,7 @@ class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsS
       appBar: _appBarForPageIndex(_currentPageIndex),
       body: PageView(
         controller: _pageController,
+        physics: const NeverScrollableScrollPhysics(),
         onPageChanged: (index) {
           setState(() {
             _currentPageIndex = index;
@@ -138,6 +146,11 @@ class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsS
                       );
                     },
                   ),
+                ),
+                const SizedBox(height: 30),
+                ElevatedButton(
+                  onPressed: () => changePage(true),
+                  child: Text(context.l10n.mood_entries),
                 ),
                 const SizedBox(height: 30),
               ],
@@ -243,13 +256,8 @@ class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsS
           actions: [
             IconButton(
               icon: const Icon(Icons.arrow_forward_ios),
-              tooltip: context.l10n.notifications,
-              onPressed: () {
-                setState(() {
-                  _currentPageIndex += 1;
-                  _pageController.jumpToPage(_currentPageIndex);
-                });
-              },
+              tooltip: context.l10n.mood_entries,
+              onPressed: () => changePage(true),
             ),
             IconButton(
               icon: ExcludeSemantics(
@@ -273,12 +281,8 @@ class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsS
             margin: const EdgeInsets.only(left: 40),
             child: IconButton(
               icon: const Icon(Icons.arrow_back_ios),
-              onPressed: () {
-                setState(() {
-                  _currentPageIndex -= 1;
-                  _pageController.jumpToPage(_currentPageIndex);
-                });
-              },
+              tooltip: context.l10n.mood_statistics,
+              onPressed: () => changePage(false),
             ),
           ),
           actions: [

@@ -103,10 +103,6 @@ class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntr
                   controller: _searchController,
                   decoration: InputDecoration(
                     labelText: context.l10n.search_by_summary,
-                    labelStyle: TextStyle(
-                      color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade400,
-                      fontWeight: FontWeight.bold,
-                    ),
                     fillColor: containerColor,
                     filled: true,
                     enabledBorder: OutlineInputBorder(
@@ -114,11 +110,6 @@ class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntr
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     hintText: context.l10n.enter_part_of_summary,
-                    hintStyle: TextStyle(
-                      color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade400,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14,
-                    ),
                     floatingLabelBehavior: FloatingLabelBehavior.never,
                   ),
                   onChanged: (value) {
@@ -133,6 +124,9 @@ class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntr
                   child: MultiSelectDialogField(
                     searchable: true,
                     items: items,
+                    checkColor: Theme.of(context).brightness == Brightness.dark
+                        ? Theme.of(context).primaryColor
+                        : Colors.white,
                     backgroundColor: containerColor,
                     title: Text(context.l10n.emotions),
                     decoration: BoxDecoration(
@@ -147,13 +141,7 @@ class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntr
                     buttonIcon: Icon(Icons.arrow_drop_down, color: textStyleColor),
                     buttonText: Text(
                       context.l10n.search_by_emotions,
-                      style: TextStyle(
-                        color: NepanikarColors.primarySwatch(
-                          Theme.of(context).primaryColor,
-                        ).shade400,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                     ),
                     onConfirm: (results) {
                       _onEmotionsUpdated(results.cast<String>());
