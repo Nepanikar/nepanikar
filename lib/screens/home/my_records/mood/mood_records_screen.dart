@@ -35,14 +35,13 @@ class MoodRecordsRoute extends GoRouteData with $MoodRecordsRoute {
   final bool? fromMoodPicker;
 
   @override
-  Widget build(BuildContext context, _) => MoodRecordsScreen<MoodTrackDao>(
-    fromMoodPicker: fromMoodPicker
-  );
+  Widget build(BuildContext context, _) =>
+      MoodRecordsScreen<MoodTrackDao>(fromMoodPicker: fromMoodPicker);
 }
 
 class MoodRecordsScreen<T extends MoodTrackDao> extends StatefulWidget {
   const MoodRecordsScreen({super.key, this.fromMoodPicker});
- final bool? fromMoodPicker;
+  final bool? fromMoodPicker;
 
   @override
   State<MoodRecordsScreen<T>> createState() => _MoodRecordsScreenState<T>();
@@ -256,11 +255,9 @@ class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsS
             onPressed: () {
               if (widget.fromMoodPicker == true) {
                 context.go('/');
-              }
-              else {
+              } else {
                 context.pop();
               }
-              //context.push(const MyRecordsRoute().location);
             },
           ),
           actions: [
