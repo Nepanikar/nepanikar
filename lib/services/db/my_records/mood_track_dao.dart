@@ -173,7 +173,7 @@ class MoodTrackDao with CustomFilters {
     final filters = <Filter>[];
 
     if (summary.isNotEmpty) {
-      filters.add(Filter.matches('summary', summary));
+      filters.add(Filter.matchesRegExp('summary', RegExp('^$summary\$', caseSensitive: false)));
     }
 
     if (emotions.isNotEmpty) {

@@ -137,7 +137,7 @@ class MoodChartFilterProvider extends ChangeNotifier {
 }
 
 extension MoodChartFilterExt on Iterable<MoodTrack> {
-  Map<DateTime, MoodTrack?> filterByDateRange(DateTimeRange dateRange) {
+  Map<DateTime, List<MoodTrack>> filterByDateRange(DateTimeRange dateRange) {
     final startOfDay = DateTime(dateRange.start.year, dateRange.start.month, dateRange.start.day);
     final endOfDay = DateTime(dateRange.end.year, dateRange.end.month, dateRange.end.day);
 
@@ -149,13 +149,14 @@ extension MoodChartFilterExt on Iterable<MoodTrack> {
     }).toList();
 
     // Filter MoodTracks based on normalized date
-    final filteredMap = <DateTime, MoodTrack?>{};
+    final filteredMap = <DateTime, List<MoodTrack>>{};
     for (final moodTrack in moodTracks) {
       final moodTrackDate = DateTime(moodTrack.date.year, moodTrack.date.month, moodTrack.date.day);
       if (moodTrackDate.isAtSameMomentAs(startOfDay) ||
           (moodTrackDate.isAfter(startOfDay) && moodTrackDate.isBefore(endOfDay)) ||
           moodTrackDate.isAtSameMomentAs(endOfDay)) {
-        filteredMap[moodTrack.date] = moodTrack;
+        filteredMap.putIfAbsent(moodTrack.date, () => []);
+        filteredMap[moodTrack.date]!.add(moodTrack);
       }
     }
 

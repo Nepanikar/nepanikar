@@ -6,7 +6,7 @@ import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
 class MoodDataTable extends StatelessWidget {
   const MoodDataTable({super.key, required this.moodTrackData, required this.moodLabelBuilder});
 
-  final Map<DateTime, MoodTrack?> moodTrackData;
+  final Map<DateTime, List<MoodTrack>> moodTrackData;
   final String Function(Mood m) moodLabelBuilder;
 
   List<DataColumn> _getDataColumns(BuildContext context) {
@@ -19,14 +19,17 @@ class MoodDataTable extends StatelessWidget {
     return moodTrackData.entries
         .map((e) {
           final moodTrack = e.value;
-          return moodTrack == null
-              ? null
-              : DataRow(
-                  cells: [
-                    DataCell(Text(DateFormat.yMMMd(locale.languageCode).format(e.key))),
-                    DataCell(Text(moodLabelBuilder.call(moodTrack.mood))),
-                  ],
-                );
+          double averageMood = 0;
+          for (final mood in moodTrack) {
+            averageMood += mood.mood.index.toDouble();
+          }
+          averageMood /= moodTrack.length;
+          DataRow(
+            cells: [
+              DataCell(Text(DateFormat.yMMMd(locale.languageCode).format(e.key))),
+              DataCell(Text(averageMood.toStringAsFixed(2))),
+            ],
+          );
         })
         .whereType<DataRow>()
         .toList()

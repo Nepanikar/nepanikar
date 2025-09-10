@@ -323,7 +323,7 @@ class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsS
         final currDateRangeStart = moodChartFilterProvider.customDateRange?.start;
         final filteredData = dateRange != null
             ? allMoodTrackData.filterByDateRange(dateRange)
-            : <DateTime, MoodTrack?>{};
+            : <DateTime, List<MoodTrack>>{};
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: [

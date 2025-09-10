@@ -65,6 +65,11 @@ class _MoodEntryDetailState<T extends MoodTrackDao> extends State<MoodEntryDetai
       NepanikarColors.white,
       NepanikarColors.primary(context),
     );
+    final recordTextStyleColor = customColorsBasedOnDarkMode(
+      context,
+      NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade50,
+      NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade600,
+    );
     final formattedDate = DateFormat('d. MMM. yyyy   HH:mm').format(moodEntry.date);
     final colorFilter = ColorFilter.matrix(svgColorMatrixBasedOnDarkMode(context, lighter: true));
 
@@ -130,7 +135,6 @@ class _MoodEntryDetailState<T extends MoodTrackDao> extends State<MoodEntryDetai
                       child: Text(
                         context.l10n.title_entry_label,
                         style: TextStyle(
-                          // Replace with your style
                           color: textStyleColor,
                           fontSize: 50,
                           fontWeight: FontWeight.bold,
@@ -147,9 +151,7 @@ class _MoodEntryDetailState<T extends MoodTrackDao> extends State<MoodEntryDetai
                       child: Text(
                         moodEntry.summary!,
                         style: TextStyle(
-                          color: NepanikarColors.primarySwatch(
-                            Theme.of(context).primaryColor,
-                          ).shade700,
+                          color: recordTextStyleColor,
                           fontSize: 25,
                           fontWeight: FontWeight.bold,
                         ),
@@ -190,9 +192,7 @@ class _MoodEntryDetailState<T extends MoodTrackDao> extends State<MoodEntryDetai
                       child: Text(
                         moodEntry.description!,
                         style: TextStyle(
-                          color: NepanikarColors.primarySwatch(
-                            Theme.of(context).primaryColor,
-                          ).shade700,
+                          color: recordTextStyleColor,
                           fontSize: 15,
                           fontWeight: FontWeight.w500,
                         ),

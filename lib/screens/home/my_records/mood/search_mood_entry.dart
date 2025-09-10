@@ -141,7 +141,7 @@ class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntr
                     buttonIcon: Icon(Icons.arrow_drop_down, color: textStyleColor),
                     buttonText: Text(
                       context.l10n.search_by_emotions,
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                     ),
                     onConfirm: (results) {
                       _onEmotionsUpdated(results.cast<String>());
@@ -177,7 +177,6 @@ class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntr
                           _search();
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: NepanikarColors.container(context),
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
                         ),
                         child: Text(

@@ -9,7 +9,7 @@ import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
 class MoodChart extends StatelessWidget {
   const MoodChart({super.key, required this.moodTrackData, required this.moodLabelBuilder});
 
-  final Map<DateTime, MoodTrack?> moodTrackData;
+  final Map<DateTime, List<MoodTrack>> moodTrackData;
   final String Function(Mood m) moodLabelBuilder;
 
   @override
@@ -49,9 +49,12 @@ class MoodChart extends StatelessWidget {
           spots: moodTrackData.entries
               .mapIndexed((i, e) {
                 final moodTrack = e.value;
-                return moodTrack == null
-                    ? null
-                    : FlSpot(i.toDouble(), moodTrack.mood.index.toDouble());
+                double averageMood = 0;
+                for (final mood in moodTrack) {
+                  averageMood += mood.mood.index.toDouble();
+                }
+                averageMood /= moodTrack.length;
+                return FlSpot(i.toDouble(), averageMood);
               })
               .whereType<FlSpot>()
               .toList(),
@@ -110,13 +113,17 @@ class MoodChart extends StatelessWidget {
             return touchedSpots.map((barSpot) {
               final flSpot = barSpot;
               final moodTrack = moodTrackData.entries.elementAt(flSpot.x.toInt()).value;
-              if (moodTrack == null) return null;
               final formattedDate = DateFormat(
                 DateFormat.ABBR_MONTH_DAY,
                 locale,
-              ).format(moodTrack.date);
+              ).format(moodTrack[0].date);
+              double averageMood = 0;
+              for (final mood in moodTrack) {
+                averageMood += mood.mood.index.toDouble();
+              }
+              averageMood /= moodTrack.length;
               return LineTooltipItem(
-                '$formattedDate\n${moodLabelBuilder.call(moodTrack.mood)}',
+                '$formattedDate\n${averageMood.toStringAsPrecision(2)}',
                 const TextStyle(color: Colors.white),
               );
             }).toList();
