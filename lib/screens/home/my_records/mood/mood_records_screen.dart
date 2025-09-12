@@ -294,7 +294,7 @@ class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsS
           ),
           actions: [
             IconButton(
-              icon: const Icon(Icons.search, size: 35),
+              icon: const Icon(Icons.search, size: 30),
               onPressed: () {
                 context.push(const SearchMoodEntryRoute().location);
               },
