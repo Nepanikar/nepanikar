@@ -117,12 +117,8 @@ class NepanikarTheme {
         ),
         listTileTheme: const ListTileThemeData(horizontalTitleGap: 16),
         checkboxTheme: CheckboxThemeData(
-          fillColor: WidgetStateProperty.resolveWith<Color?>((states) {
-            if (states.contains(WidgetState.selected)) {
-              return mainColor;
-            }
-            return null;
-          }),
+          checkColor: WidgetStateProperty.all(Colors.white),
+          fillColor: WidgetStateProperty.all(mainColor),
         ),
         radioTheme: RadioThemeData(
           fillColor: WidgetStateProperty.resolveWith<Color?>((states) {

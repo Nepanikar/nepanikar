@@ -244,9 +244,6 @@ class _MyRecordsFoodRecordsDetailMenuDetailScreenState
                 (item) => Row(
                   children: [
                     Checkbox(
-                      checkColor: Theme.of(context).brightness == Brightness.dark
-                          ? Theme.of(context).hintColor
-                          : Colors.white,
                       value: activeValues.contains(item),
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(4.0)),

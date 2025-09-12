@@ -90,7 +90,7 @@ class _BalanceGameScreenState extends State<BalanceGameScreen> {
       NepanikarColors.container(context),
       NepanikarColors.primary(context),
     );
-    final buttonColor = NepanikarColors.primaryColorShade(context, 0.25);
+    final buttonColor = Colors.white54;
 
     return Scaffold(
       backgroundColor: backgroundColor,

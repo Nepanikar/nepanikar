@@ -68,9 +68,6 @@ class _MyRecordsFoodRecordsDetailMenuListScreenState
       leading: Checkbox(
         value: foodRecord.getIsFoodTaken(foodType),
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(4.0))),
-        checkColor: Theme.of(context).brightness == Brightness.dark
-            ? Theme.of(context).hintColor
-            : NepanikarColors.white,
         onChanged: (_) =>
             _myRecordsFoodRecordDao.updateMenuTakenState(widget.id, foodRecord, foodType),
       ),
