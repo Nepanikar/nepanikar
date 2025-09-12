@@ -18,6 +18,18 @@ class NepanikarDatePicker extends StatelessWidget {
       initialDate: now,
       firstDate: DateTime(2000),
       lastDate: DateTime(now.year + 5),
+      builder: (Theme.of(context).brightness == Brightness.dark)
+          ? (BuildContext context, Widget? child) {
+              return Theme(
+                data: Theme.of(context).copyWith(
+                  colorScheme: Theme.of(
+                    context,
+                  ).colorScheme.copyWith(primary: NepanikarColors.primaryColorShade(context, 0.8)),
+                ),
+                child: child!,
+              );
+            }
+          : null,
     );
   }
 

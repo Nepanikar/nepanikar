@@ -178,14 +178,12 @@ class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScree
     required List<MoodTrack> allMoodTrackData,
     required DateTime? firstMoodTrackDate,
   }) {
-    final containerColor = customColorsBasedOnDarkMode(
+    final arrowCanShiftColor = customColorsBasedOnDarkMode(
       context,
-      NepanikarColors.container(context),
       NepanikarColors.white,
+      NepanikarColors.primary(context),
     );
-
-    final arrowCanShiftColor = customColorsBasedOnDarkMode(context, NepanikarColors.white, null);
-    final colorFilter = ColorFilter.matrix(svgColorMatrixBasedOnDarkMode(context, lighter: true));
+    const arrowCannotShiftColor = Colors.white24;
 
     return Consumer<MoodChartFilterProvider>(
       builder: (_, moodChartFilterProvider, _) {
@@ -229,7 +227,9 @@ class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScree
               children: [
                 IconButton(
                   icon: ExcludeSemantics(
-                    child: Assets.icons.navigation.arrowLeft.svg(colorFilter: colorFilter),
+                    child: Assets.icons.navigation.arrowLeft.svg(
+                      colorFilter: ColorFilter.mode(arrowCanShiftColor!, BlendMode.srcIn),
+                    ),
                   ),
                   tooltip: context.l10n.filter_previous_time_period,
                   onPressed: () => moodChartFilterProvider.shiftDateRange(DateRangeSwitch.previous),
@@ -251,8 +251,8 @@ class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScree
                   icon: ExcludeSemantics(
                     child: Assets.icons.navigation.arrowRight.svg(
                       colorFilter: !canShiftNextDateRange
-                          ? ColorFilter.mode(containerColor!, BlendMode.srcIn)
-                          : ColorFilter.mode(arrowCanShiftColor!, BlendMode.srcIn),
+                          ? const ColorFilter.mode(arrowCannotShiftColor, BlendMode.srcIn)
+                          : ColorFilter.mode(arrowCanShiftColor, BlendMode.srcIn),
                     ),
                   ),
                   tooltip: context.l10n.filter_next_time_period,

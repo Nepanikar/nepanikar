@@ -312,18 +312,16 @@ class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsS
     required List<MoodTrack> allMoodTrackData,
     required DateTime? firstMoodTrackDate,
   }) {
-    final containerColor = customColorsBasedOnDarkMode(
+    final arrowCanShiftColor = customColorsBasedOnDarkMode(
       context,
-      NepanikarColors.container(context),
       NepanikarColors.white,
+      NepanikarColors.primary(context),
     );
-
-    final arrowCanShiftColor = customColorsBasedOnDarkMode(context, NepanikarColors.white, null);
+    const arrowCannotShiftColor = Colors.white24;
 
     return Consumer<MoodChartFilterProvider>(
       builder: (_, moodChartFilterProvider, _) {
         svgColorBasedOnDarkMode(context);
-        final colorFilter = svgColorFilterBasedOnDarkMode(context);
         final activeFilter = moodChartFilterProvider.activeFilter;
         final dateRange = moodChartFilterProvider.customDateRange;
         final canShiftNextDateRange = moodChartFilterProvider.canShiftDateRangeNext;
@@ -356,7 +354,9 @@ class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsS
               children: [
                 IconButton(
                   icon: ExcludeSemantics(
-                    child: Assets.icons.navigation.arrowLeft.svg(colorFilter: colorFilter),
+                    child: Assets.icons.navigation.arrowLeft.svg(
+                      colorFilter: ColorFilter.mode(arrowCanShiftColor!, BlendMode.srcIn),
+                    ),
                   ),
                   tooltip: context.l10n.filter_previous_time_period,
                   onPressed: () => moodChartFilterProvider.shiftDateRange(DateRangeSwitch.previous),
@@ -377,10 +377,9 @@ class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsS
                 IconButton(
                   icon: ExcludeSemantics(
                     child: Assets.icons.navigation.arrowRight.svg(
-                      // color: !canShiftNextDateRange ? Colors.grey : null,
                       colorFilter: !canShiftNextDateRange
-                          ? ColorFilter.mode(containerColor!, BlendMode.srcIn)
-                          : ColorFilter.mode(arrowCanShiftColor!, BlendMode.srcIn),
+                          ? const ColorFilter.mode(arrowCannotShiftColor, BlendMode.srcIn)
+                          : ColorFilter.mode(arrowCanShiftColor, BlendMode.srcIn),
                     ),
                   ),
                   tooltip: context.l10n.filter_next_time_period,

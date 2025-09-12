@@ -29,6 +29,18 @@ class NepanikarDateRangePicker extends StatelessWidget {
       firstDate: firstDate,
       lastDate: lastDate,
       initialDateRange: activeRange,
+      builder: (Theme.of(context).brightness == Brightness.dark)
+          ? (BuildContext context, Widget? child) {
+              return Theme(
+                data: Theme.of(context).copyWith(
+                  colorScheme: Theme.of(
+                    context,
+                  ).colorScheme.copyWith(primary: NepanikarColors.primaryColorShade(context, 0.8)),
+                ),
+                child: child!,
+              );
+            }
+          : null,
     );
   }
 
@@ -38,7 +50,6 @@ class NepanikarDateRangePicker extends StatelessWidget {
     final backgroundColor = NepanikarColors.primaryColorShade(context, 0.6);
     svgColorBasedOnDarkMode(context);
     final colorFilter = svgColorFilterBasedOnDarkMode(context);
-
     final textColor = customColorsBasedOnDarkMode(
       context,
       NepanikarColors.white,
