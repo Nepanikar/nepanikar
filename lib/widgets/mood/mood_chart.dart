@@ -31,6 +31,15 @@ class MoodChart extends StatelessWidget {
     );
   }
 
+  List<double> minMax(Map<DateTime, List<MoodTrack>> records) {
+    if (records.isEmpty) {
+      return [0.0, 0.0];
+    }
+    final DateTime minDate = records.keys.reduce((a, b) => a.isBefore(b) ? a : b);
+    final DateTime maxDate = records.keys.reduce((a, b) => a.isAfter(b) ? a : b);
+    return [minDate.day.toDouble(), maxDate.day.toDouble()];
+  }
+
   LineChartData _buildLineChartData(BuildContext context) {
     final lineColor = customColorsBasedOnDarkMode(
       context,
@@ -38,12 +47,13 @@ class MoodChart extends StatelessWidget {
       NepanikarColors.primary(context),
     );
     final locale = Localizations.localeOf(context).languageCode;
+    final minMaxDays = minMax(moodTrackData);
     return LineChartData(
       borderData: FlBorderData(show: false),
-      minX: 0,
+      minX: minMaxDays[0],
       minY: 0,
       maxY: Mood.values.length - 1,
-      maxX: moodTrackData.length - 1,
+      maxX: minMaxDays[1],
       lineBarsData: [
         LineChartBarData(
           spots: moodTrackData.entries
@@ -54,7 +64,7 @@ class MoodChart extends StatelessWidget {
                   averageMood += mood.mood.index.toDouble();
                 }
                 averageMood /= moodTrack.length;
-                return FlSpot(i.toDouble(), averageMood);
+                return FlSpot(moodTrack[0].date.day.toDouble(), averageMood);
               })
               .whereType<FlSpot>()
               .toList(),
@@ -83,6 +93,19 @@ class MoodChart extends StatelessWidget {
             .toList(),
       ),
       titlesData: FlTitlesData(
+        topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+        bottomTitles: AxisTitles(
+          sideTitles: SideTitles(
+            showTitles: true,
+            interval: 1,
+            getTitlesWidget: (value, meta) {
+              if (value % 1 == 0) {
+                return Text(value.toInt().toString());
+              }
+              return const SizedBox.shrink();
+            },
+          ),
+        ),
         leftTitles: AxisTitles(
           sideTitles: SideTitles(
             interval: 1,
