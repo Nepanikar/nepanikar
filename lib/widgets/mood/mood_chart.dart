@@ -40,6 +40,15 @@ class MoodChart extends StatelessWidget {
     return [minDate.day.toDouble(), maxDate.day.toDouble()];
   }
 
+  List<MoodTrack> getMoodTrackByDate(Map<DateTime, List<MoodTrack>> data, int day) {
+    for (var entry in data.entries) {
+      if (entry.key.day == day) {
+        return entry.value;
+      }
+    }
+    return [];
+  }
+
   LineChartData _buildLineChartData(BuildContext context) {
     final lineColor = customColorsBasedOnDarkMode(
       context,
@@ -135,7 +144,7 @@ class MoodChart extends StatelessWidget {
           getTooltipItems: (touchedSpots) {
             return touchedSpots.map((barSpot) {
               final flSpot = barSpot;
-              final moodTrack = moodTrackData.entries.elementAt(flSpot.x.toInt()).value;
+              final moodTrack = getMoodTrackByDate(moodTrackData, flSpot.x.toInt());
               final formattedDate = DateFormat(
                 DateFormat.ABBR_MONTH_DAY,
                 locale,
