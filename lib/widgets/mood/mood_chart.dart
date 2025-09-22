@@ -1,7 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
@@ -37,7 +36,20 @@ class MoodChart extends StatelessWidget {
       NepanikarColors.white,
       NepanikarColors.primary(context),
     );
-    final locale = Localizations.localeOf(context).languageCode;
+    final spots = <FlSpot>[];
+    final labels = <String>[];
+    moodTrackData.entries.toList().asMap().forEach((i, entry) {
+      final moodTrack = entry.value;
+      double averageMood = 0;
+      for (final mood in moodTrack) {
+        averageMood += mood.mood.index.toDouble();
+      }
+      averageMood /= moodTrack.length;
+      spots.add(FlSpot(i.toDouble(), averageMood));
+      final dateLabel = '${entry.key.day}.${entry.key.month}.';
+      labels.add(dateLabel);
+    });
+
     return LineChartData(
       borderData: FlBorderData(show: false),
       minX: 0,
@@ -46,18 +58,7 @@ class MoodChart extends StatelessWidget {
       maxX: moodTrackData.length - 1,
       lineBarsData: [
         LineChartBarData(
-          spots: moodTrackData.entries
-              .mapIndexed((i, e) {
-                final moodTrack = e.value;
-                double averageMood = 0;
-                for (final mood in moodTrack) {
-                  averageMood += mood.mood.index.toDouble();
-                }
-                averageMood /= moodTrack.length;
-                return FlSpot(i.toDouble(), averageMood);
-              })
-              .whereType<FlSpot>()
-              .toList(),
+          spots: spots,
           isStrokeCapRound: true,
           dotData: FlDotData(
             getDotPainter: (_, _, _, _) => FlDotCirclePainter(
@@ -83,13 +84,15 @@ class MoodChart extends StatelessWidget {
             .toList(),
       ),
       titlesData: FlTitlesData(
-        topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+        topTitles: const AxisTitles(),
         bottomTitles: AxisTitles(
           sideTitles: SideTitles(
             showTitles: true,
+            reservedSize: 32,
             getTitlesWidget: (value, meta) {
-              if (value % 1 == 0) {
-                return Text(value.toInt().toString());
+              final index = value.toInt();
+              if (index >= 0 && index < labels.length && value % 1 == 0) {
+                return Padding(padding: const EdgeInsets.only(top: 10), child: Text(labels[index]));
               }
               return const SizedBox.shrink();
             },
@@ -125,10 +128,7 @@ class MoodChart extends StatelessWidget {
             return touchedSpots.map((barSpot) {
               final flSpot = barSpot;
               final moodTrack = moodTrackData.entries.elementAt(flSpot.x.toInt()).value;
-              final formattedDate = DateFormat(
-                DateFormat.ABBR_MONTH_DAY,
-                locale,
-              ).format(moodTrack[0].date);
+              final formattedDate = labels[flSpot.x.toInt()];
               double averageMood = 0;
               for (final mood in moodTrack) {
                 averageMood += mood.mood.index.toDouble();
