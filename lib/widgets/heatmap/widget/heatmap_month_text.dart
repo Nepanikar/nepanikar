@@ -29,7 +29,7 @@ class HeatMapMonthText extends StatelessWidget {
   final EdgeInsets? margin;
 
   /// The list of every month labels and fitted space.
-  List<Widget> _labels() {
+  List<Widget> _labels(BuildContext context) {
     final List<Widget> items = [];
 
     // Set true if previous week was the first day of the month.
@@ -47,11 +47,11 @@ class HeatMapMonthText extends StatelessWidget {
         items.add(
           firstDayInfos!.length == 1 ||
                   (label == 0 && firstDayInfos![label] != firstDayInfos![label + 1])
-              ? _renderText(DateUtil.SHORT_MONTH_LABEL[firstDayInfos![label]])
+              ? _renderText(DateUtil.mothLabels(firstDayInfos![label], true, context))
               : Container(
                   width: ((size ?? 20) + (margin?.right ?? 2)) * 2,
                   margin: EdgeInsets.only(left: margin?.left ?? 2, right: margin?.right ?? 2),
-                  child: _renderText(DateUtil.SHORT_MONTH_LABEL[firstDayInfos![label]]),
+                  child: _renderText(DateUtil.mothLabels(firstDayInfos![label], true, context)),
                 ),
         );
       } else if (write) {
@@ -81,6 +81,6 @@ class HeatMapMonthText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: _labels());
+    return Row(children: _labels(context));
   }
 }

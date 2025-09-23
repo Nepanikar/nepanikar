@@ -24,7 +24,6 @@ class HeatMapCalendar extends StatefulWidget {
     this.flexible = false,
     this.margin,
     this.onClick,
-    this.onMonthChange,
     this.showColorTip = true,
     this.colorTipHelper,
     this.colorTipCount,
@@ -89,11 +88,6 @@ class HeatMapCalendar extends StatefulWidget {
   /// Paratmeter gives clicked [DateTime] value.
   final Function(DateTime)? onClick;
 
-  /// Function that will be called when month is changed.
-  ///
-  /// Paratmeter gives [DateTime] value of current month.
-  final Function(DateTime)? onMonthChange;
-
   /// Show color tip which represents the color range at the below.
   ///
   /// Default value is true.
@@ -134,7 +128,6 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
     setState(() {
       _currentDate = DateUtil.changeMonth(_currentDate ?? DateTime.now(), direction);
     });
-    widget.onMonthChange!(_currentDate!);
   }
 
   /// Header widget which shows left, right buttons and year/month text.
@@ -150,7 +143,7 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
 
         // Text which shows the current year and month
         Text(
-          '${DateUtil.MONTH_LABEL[_currentDate?.month ?? 0]} ${_currentDate?.year}',
+          '${DateUtil.mothLabels(_currentDate?.month ?? 0, false, context)} ${_currentDate?.year}',
           style: TextStyle(fontSize: widget.monthFontSize ?? 12, fontWeight: FontWeight.bold),
         ),
 
@@ -167,7 +160,8 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        for (final String label in DateUtil.WEEK_LABEL.skip(1))
+        //for (final String label in DateUtil.WEEK_LABEL.skip(1))
+        for (int i = 1; i <= 7; i++)
           WidgetUtil.flexibleContainer(
             widget.flexible ?? false,
             false,
@@ -179,7 +173,7 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
               width: widget.size ?? 42,
               alignment: Alignment.center,
               child: Text(
-                label,
+                DateUtil.weekDaysLabels(i, context),
                 style: TextStyle(
                   fontSize: widget.weekFontSize ?? 12,
                   color: NepanikarColors.white,

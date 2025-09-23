@@ -1,39 +1,27 @@
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
 class DateUtil {
   static const int DAYS_IN_WEEK = 7;
 
-  static const List<String> MONTH_LABEL = [
-    '',
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
+  static String mothLabels(int index, bool short, BuildContext context) {
+    final locale = Localizations.localeOf(context).toString();
+    if (index == 0 || index > 12) return '';
+    final date = DateTime(2000, index);
+    final text = DateFormat.MMMM(locale).format(date);
+    if (short) {
+      return text.substring(0, 3);
+    } else {
+      return text;
+    }
+  }
 
-  static const List<String> SHORT_MONTH_LABEL = [
-    '',
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
-
-  static const List<String> WEEK_LABEL = ['', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  static String weekDaysLabels(int index, BuildContext context) {
+    final locale = Localizations.localeOf(context).toString();
+    if (index == 0 || index > 7) return '';
+    final date = DateTime(2000, 1, index);
+    return DateFormat.E(locale).format(date);
+  }
 
   /// Get start day of month.
   static DateTime startDayOfMonth(DateTime referenceDate) =>

@@ -21,17 +21,15 @@ class HeatMapWeekText extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        for (final String label in DateUtil.WEEK_LABEL)
-          if (label.isNotEmpty) ...[
-            Container(
-              height: size ?? 20,
-              margin: margin ?? const EdgeInsets.all(2.0),
-              child: Text(
-                label,
-                style: TextStyle(fontSize: fontSize ?? 12, color: fontColor),
-              ),
+        for (int i = 1; i <= 7; i++)
+          Container(
+            height: size ?? 20,
+            margin: margin ?? const EdgeInsets.all(2.0),
+            child: Text(
+              DateUtil.weekDaysLabels(i, context),
+              style: TextStyle(fontSize: fontSize ?? 12, color: fontColor),
             ),
-          ],
+          ),
       ],
     );
   }

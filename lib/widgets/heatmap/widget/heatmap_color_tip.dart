@@ -1,7 +1,8 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
-
+import 'package:nepanikar/helpers/color_helpers.dart';
+import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/widgets/heatmap/data/heatmap_color.dart';
 import 'package:nepanikar/widgets/heatmap/data/heatmap_color_mode.dart';
 
@@ -104,11 +105,22 @@ class HeatMapColorTip extends StatelessWidget {
     );
   }
 
-  /// Default text widget.
-  Widget _defaultText(String text) {
-    return Text(
-      text,
-      style: TextStyle(fontWeight: FontWeight.bold, fontSize: size ?? 10),
+  Widget _defaultMoodIcon(bool happy, BuildContext context) {
+    const iconSize = 27.0;
+    final filter = ColorFilter.matrix(svgColorMatrixBasedOnDarkMode(context, lighter: true));
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: (happy != true)
+          ? Assets.illustrations.moods.mood0Sad.svg(
+              width: iconSize,
+              height: iconSize,
+              colorFilter: filter,
+            )
+          : Assets.illustrations.moods.mood4Happy.svg(
+              width: iconSize,
+              height: iconSize,
+              colorFilter: filter,
+            ),
     );
   }
 
@@ -119,9 +131,9 @@ class HeatMapColorTip extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
-          leftWidget ?? _defaultText('less'),
+          leftWidget ?? _defaultMoodIcon(false, context),
           ..._heatmapList(),
-          rightWidget ?? _defaultText('more'),
+          rightWidget ?? _defaultMoodIcon(true, context),
         ],
       ),
     );

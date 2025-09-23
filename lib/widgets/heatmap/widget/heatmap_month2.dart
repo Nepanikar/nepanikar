@@ -24,8 +24,11 @@ class HeatMapMonth2 extends StatelessWidget {
   Widget build(BuildContext context) {
     // Use the `month` to directly index into `DateUtil.SHORT_MONTH_LABEL`
     // Remember to adjust the index if necessary (e.g., if `month` is 1-based but the array is 0-based)
-    final String monthText = DateUtil
-        .SHORT_MONTH_LABEL[month - 1]; // Assuming month is 1-based and your array is 0-based
+    final String monthText = DateUtil.mothLabels(
+      month - 1,
+      true,
+      context,
+    ); // Assuming month is 1-based and your array is 0-based
 
     return Text(
       monthText,
