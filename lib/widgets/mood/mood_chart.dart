@@ -88,7 +88,7 @@ class MoodChart extends StatelessWidget {
         bottomTitles: AxisTitles(
           sideTitles: SideTitles(
             showTitles: true,
-            reservedSize: 32,
+            reservedSize: 35,
             getTitlesWidget: (value, meta) {
               final index = value.toInt();
               if (index >= 0 && index < labels.length && value % 1 == 0) {
