@@ -97,9 +97,6 @@ class $AssetsIconsGen {
   /// File path: assets/icons/home.svg
   SvgGenImage get home => const SvgGenImage('assets/icons/home.svg');
 
-  /// File path: assets/icons/hue.svg
-  SvgGenImage get hue => const SvgGenImage('assets/icons/hue.svg');
-
   /// File path: assets/icons/import.svg
   SvgGenImage get import => const SvgGenImage('assets/icons/import.svg');
 
@@ -150,7 +147,6 @@ class $AssetsIconsGen {
     globe,
     heart,
     home,
-    hue,
     import,
     instagram,
     language,

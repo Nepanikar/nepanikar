@@ -13,8 +13,8 @@ import 'package:nepanikar/screens/settings/about_app_screen.dart';
 import 'package:nepanikar/screens/settings/export_screen.dart';
 import 'package:nepanikar/screens/settings/languages_screen.dart';
 import 'package:nepanikar/screens/settings/sponsors_screen.dart';
+import 'package:nepanikar/screens/settings/theme_screen.dart';
 import 'package:nepanikar/services/db/database_service.dart';
-import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/services/notifications/notifications_service.dart';
 import 'package:nepanikar/utils/app_config.dart';
 import 'package:nepanikar/utils/extensions.dart';
@@ -39,32 +39,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   NotificationsService get _notificationsService => registry.get<NotificationsService>();
 
-  static Future<void> updateColor(
-    BuildContext innerContext,
-    Offset position,
-    UserSettingsDao userSettingsDao,
-  ) async {
-    final box = innerContext.findRenderObject()! as RenderBox;
-    final value = (position.dx / box.size.width).clamp(0.0, 1.0);
-    final hue = (1.0 - value) * 360.0;
-    final color = HSLColor.fromAHSL(1.0, hue, 0.708, 0.2686).toColor();
-    await userSettingsDao.saveMainColor(color);
-  }
-
   @override
   Widget build(BuildContext context) {
-    final userSettingsDao = registry.get<UserSettingsDao>();
     final currentTheme = Theme.of(context);
-    bool isDarkMode = currentTheme.brightness == Brightness.dark;
+    final bool isDarkMode = currentTheme.brightness == Brightness.dark;
     svgColorBasedOnDarkMode(context);
     final colorFilter = svgColorFilterBasedOnDarkMode(context);
     final pdfColor = pdfColorBasedOnDarkMode(context);
     final pdfColorFilter = pdfColor != null ? ColorFilter.mode(pdfColor, BlendMode.srcIn) : null;
-    final colorForDarkModeButton = customColorsBasedOnDarkMode(
-      context,
-      NepanikarColors.white,
-      NepanikarColors.primary(context),
-    );
 
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.settings,
@@ -150,41 +132,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     onTap: () => context.push(const LanguagesRoute().location),
                   ),
                   _SettingsMenuItem(
-                    leading: Icon(
-                      isDarkMode ? Icons.wb_sunny : Icons.brightness_3,
-                      color: colorForDarkModeButton,
-                    ),
-                    text: isDarkMode ? context.l10n.dark_mode_on : context.l10n.dark_mode_off,
-                    onTap: () async {
-                      final newThemeMode = isDarkMode ? ThemeMode.light : ThemeMode.dark;
-                      await userSettingsDao.saveThemeMode(newThemeMode);
-                      setState(() {
-                        isDarkMode = !isDarkMode;
-                      });
-                    },
-                  ),
-                  _SettingsMenuItem(
                     leading: Assets.icons.color.svg(colorFilter: colorFilter),
                     text: context.l10n.color_scheme,
-                  ),
-                  Builder(
-                    builder: (innerContext) {
-                      return GestureDetector(
-                        onTapDown: (details) async {
-                          await updateColor(innerContext, details.localPosition, userSettingsDao);
-                        },
-                        onHorizontalDragUpdate: (details) async {
-                          await updateColor(innerContext, details.localPosition, userSettingsDao);
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(3),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(15),
-                            child: Assets.icons.hue.svg(width: double.infinity, height: 40),
-                          ),
-                        ),
-                      );
-                    },
+                    onTap: () => context.push(const ThemeRoute().location),
                   ),
                   _SettingsMenuItem(
                     leading: Icon(

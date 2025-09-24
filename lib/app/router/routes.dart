@@ -70,6 +70,7 @@ import 'package:nepanikar/screens/settings/export_screen.dart';
 import 'package:nepanikar/screens/settings/languages_screen.dart';
 import 'package:nepanikar/screens/settings/notification_settings_screen.dart';
 import 'package:nepanikar/screens/settings/sponsors_screen.dart';
+import 'package:nepanikar/screens/settings/theme_screen.dart';
 
 part 'routes.g.dart';
 
@@ -93,6 +94,7 @@ const _settingsRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<AboutAppRoute>(path: 'settings/about-app'),
   TypedGoRoute<ExportRoute>(path: 'settings/export'),
   TypedGoRoute<LanguagesRoute>(path: 'settings/language'),
+  TypedGoRoute<ThemeRoute>(path: 'settings/theme'),
 ];
 
 const _gameRoutes = <TypedGoRoute<GoRouteData>>[
