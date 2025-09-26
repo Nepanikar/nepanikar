@@ -57,4 +57,5 @@ to regenerate the JSON file.
 - `flutter pub run build_runner watch -d` - watch and generate automatically changes when files are changed
 - `flutter gen-l10n` - recompile .arb language files
 - `flutter pub run flutter_native_splash:create` - regenerate splash screen
+- `dart format --line-length 100 ./` - automatic formatting of the project
 

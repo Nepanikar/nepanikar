@@ -78,9 +78,10 @@ class _ThemeScreenState extends State<ThemeScreen> {
               Row(
                 children: [
                   Text(
-                    (isDarkMode == true) ? context.l10n.dark_mode_on : context.l10n.dark_mode_off,
+                    context.l10n.dark_mode,
                     style: NepanikarFonts.bodySmallMedium.copyWith(
                       fontWeight: FontWeight.w700,
+                      fontSize: 20,
                       color: textColor,
                     ),
                   ),
@@ -93,11 +94,20 @@ class _ThemeScreenState extends State<ThemeScreen> {
                       final newThemeMode = isDarkMode ? ThemeMode.light : ThemeMode.dark;
                       await userSettingsDao.saveThemeMode(newThemeMode);
                       setState(() {
-                        isDarkMode = !isDarkMode;
+                        isDarkMode = value;
                       });
                     },
                   ),
                 ],
+              ),
+              const SizedBox(height: 30),
+              Text(
+                context.l10n.choose_a_color,
+                style: NepanikarFonts.bodySmallMedium.copyWith(
+                  fontWeight: FontWeight.w700,
+                  color: textColor,
+                  fontSize: 20,
+                ),
               ),
               Builder(
                 builder: (innerContext) {
@@ -126,6 +136,19 @@ class _ThemeScreenState extends State<ThemeScreen> {
                     ),
                   );
                 },
+              ),
+              const SizedBox(height: 30),
+              ElevatedButton(
+                onPressed: () async {
+                  await userSettingsDao.saveMainColor(NepanikarColors.defaultPrimary);
+                  final brightness = WidgetsBinding.instance.platformDispatcher.platformBrightness;
+                  isDarkMode = (brightness == Brightness.dark);
+                  await userSettingsDao.saveThemeMode(
+                    isDarkMode ? ThemeMode.dark : ThemeMode.light,
+                  );
+                  setState(() {});
+                },
+                child: Text(context.l10n.default_reset),
               ),
             ],
           ),
