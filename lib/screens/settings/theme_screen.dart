@@ -129,6 +129,14 @@ class _ThemeScreenState extends State<ThemeScreen> {
                             decoration: const BoxDecoration(
                               borderRadius: BorderRadius.all(Radius.circular(150)),
                               gradient: SweepGradient(colors: colors),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black38,
+                                  blurRadius: 30,
+                                  spreadRadius: 5,
+                                  offset: Offset(-15, 15),
+                                ),
+                              ],
                             ),
                           ),
                         ),
