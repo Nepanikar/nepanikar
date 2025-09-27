@@ -6,8 +6,8 @@ part of 'phone_contact_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PhoneContactSingle _$$PhoneContactSingleFromJson(Map<String, dynamic> json) =>
-    _$PhoneContactSingle(
+PhoneContactSingle _$PhoneContactSingleFromJson(Map<String, dynamic> json) =>
+    PhoneContactSingle(
       pinned: json['pinned'] as bool? ?? false,
       title: json['title'] as String,
       tel: json['tel'] as String,
@@ -15,7 +15,7 @@ _$PhoneContactSingle _$$PhoneContactSingleFromJson(Map<String, dynamic> json) =>
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$PhoneContactSingleToJson(_$PhoneContactSingle instance) =>
+Map<String, dynamic> _$PhoneContactSingleToJson(PhoneContactSingle instance) =>
     <String, dynamic>{
       'pinned': instance.pinned,
       'title': instance.title,
@@ -24,8 +24,8 @@ Map<String, dynamic> _$$PhoneContactSingleToJson(_$PhoneContactSingle instance) 
       'runtimeType': instance.$type,
     };
 
-_$PhoneContactSubList _$$PhoneContactSubListFromJson(Map<String, dynamic> json) =>
-    _$PhoneContactSubList(
+PhoneContactSubList _$PhoneContactSubListFromJson(Map<String, dynamic> json) =>
+    PhoneContactSubList(
       title: json['title'] as String,
       subtitle: json['subtitle'] as String?,
       subPhoneContacts: (json['subPhoneContacts'] as List<dynamic>)
@@ -34,20 +34,20 @@ _$PhoneContactSubList _$$PhoneContactSubListFromJson(Map<String, dynamic> json) 
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$PhoneContactSubListToJson(_$PhoneContactSubList instance) =>
-    <String, dynamic>{
-      'title': instance.title,
-      'subtitle': instance.subtitle,
-      'subPhoneContacts': instance.subPhoneContacts,
-      'runtimeType': instance.$type,
-    };
+Map<String, dynamic> _$PhoneContactSubListToJson(
+  PhoneContactSubList instance,
+) => <String, dynamic>{
+  'title': instance.title,
+  'subtitle': instance.subtitle,
+  'subPhoneContacts': instance.subPhoneContacts,
+  'runtimeType': instance.$type,
+};
 
-_$_SubPhoneContact _$$_SubPhoneContactFromJson(Map<String, dynamic> json) => _$_SubPhoneContact(
+_SubPhoneContact _$SubPhoneContactFromJson(Map<String, dynamic> json) =>
+    _SubPhoneContact(
       title: json['title'] as String,
       tel: json['tel'] as String,
     );
 
-Map<String, dynamic> _$$_SubPhoneContactToJson(_$_SubPhoneContact instance) => <String, dynamic>{
-      'title': instance.title,
-      'tel': instance.tel,
-    };
+Map<String, dynamic> _$SubPhoneContactToJson(_SubPhoneContact instance) =>
+    <String, dynamic>{'title': instance.title, 'tel': instance.tel};

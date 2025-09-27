@@ -4,7 +4,7 @@ part 'region_contact_model.freezed.dart';
 part 'region_contact_model.g.dart';
 
 @freezed
-class RegionContact with _$RegionContact {
+abstract class RegionContact with _$RegionContact {
   const factory RegionContact({
     required String region,
     required List<RegionItemContact> contacts,
@@ -14,7 +14,7 @@ class RegionContact with _$RegionContact {
 }
 
 @freezed
-class RegionItemContact with _$RegionItemContact {
+abstract class RegionItemContact with _$RegionItemContact {
   const factory RegionItemContact({
     required String name,
     required List<String> contactAddresses,

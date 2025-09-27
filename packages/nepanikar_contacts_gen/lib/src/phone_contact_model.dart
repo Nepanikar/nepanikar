@@ -4,7 +4,7 @@ part 'phone_contact_model.freezed.dart';
 part 'phone_contact_model.g.dart';
 
 @freezed
-class PhoneContact with _$PhoneContact {
+abstract class PhoneContact with _$PhoneContact {
   const factory PhoneContact({
     @Default(false) bool pinned,
     required String title,
@@ -24,7 +24,7 @@ class PhoneContact with _$PhoneContact {
 }
 
 @freezed
-class SubPhoneContact with _$SubPhoneContact {
+abstract class SubPhoneContact with _$SubPhoneContact {
   const factory SubPhoneContact({
     required String title,
     required String tel,

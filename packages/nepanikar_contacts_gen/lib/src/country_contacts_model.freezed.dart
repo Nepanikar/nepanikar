@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,299 +9,324 @@ part of 'country_contacts_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-CountryContacts _$CountryContactsFromJson(Map<String, dynamic> json) {
-  return _CountryContacts.fromJson(json);
-}
 
 /// @nodoc
 mixin _$CountryContacts {
-  String get languageCode => throw _privateConstructorUsedError;
-  List<PhoneContact>? get phoneContacts => throw _privateConstructorUsedError;
-  List<RegionContact>? get crisisCenterContacts => throw _privateConstructorUsedError;
-  List<ChatContact>? get chatContacts => throw _privateConstructorUsedError;
-  List<RegionContact>? get universityRegionContacts => throw _privateConstructorUsedError;
-  List<String>? get eatingDisorderContacts => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $CountryContactsCopyWith<CountryContacts> get copyWith => throw _privateConstructorUsedError;
+ String get languageCode; List<PhoneContact>? get phoneContacts; List<RegionContact>? get crisisCenterContacts; List<ChatContact>? get chatContacts; List<RegionContact>? get universityRegionContacts; List<String>? get eatingDisorderContacts;
+/// Create a copy of CountryContacts
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$CountryContactsCopyWith<CountryContacts> get copyWith => _$CountryContactsCopyWithImpl<CountryContacts>(this as CountryContacts, _$identity);
+
+  /// Serializes this CountryContacts to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CountryContacts&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&const DeepCollectionEquality().equals(other.phoneContacts, phoneContacts)&&const DeepCollectionEquality().equals(other.crisisCenterContacts, crisisCenterContacts)&&const DeepCollectionEquality().equals(other.chatContacts, chatContacts)&&const DeepCollectionEquality().equals(other.universityRegionContacts, universityRegionContacts)&&const DeepCollectionEquality().equals(other.eatingDisorderContacts, eatingDisorderContacts));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,languageCode,const DeepCollectionEquality().hash(phoneContacts),const DeepCollectionEquality().hash(crisisCenterContacts),const DeepCollectionEquality().hash(chatContacts),const DeepCollectionEquality().hash(universityRegionContacts),const DeepCollectionEquality().hash(eatingDisorderContacts));
+
+@override
+String toString() {
+  return 'CountryContacts(languageCode: $languageCode, phoneContacts: $phoneContacts, crisisCenterContacts: $crisisCenterContacts, chatContacts: $chatContacts, universityRegionContacts: $universityRegionContacts, eatingDisorderContacts: $eatingDisorderContacts)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $CountryContactsCopyWith<$Res> {
-  factory $CountryContactsCopyWith(CountryContacts value, $Res Function(CountryContacts) then) =
-      _$CountryContactsCopyWithImpl<$Res, CountryContacts>;
-  @useResult
-  $Res call(
-      {String languageCode,
-      List<PhoneContact>? phoneContacts,
-      List<RegionContact>? crisisCenterContacts,
-      List<ChatContact>? chatContacts,
-      List<RegionContact>? universityRegionContacts,
-      List<String>? eatingDisorderContacts});
-}
+abstract mixin class $CountryContactsCopyWith<$Res>  {
+  factory $CountryContactsCopyWith(CountryContacts value, $Res Function(CountryContacts) _then) = _$CountryContactsCopyWithImpl;
+@useResult
+$Res call({
+ String languageCode, List<PhoneContact>? phoneContacts, List<RegionContact>? crisisCenterContacts, List<ChatContact>? chatContacts, List<RegionContact>? universityRegionContacts, List<String>? eatingDisorderContacts
+});
 
+
+
+
+}
 /// @nodoc
-class _$CountryContactsCopyWithImpl<$Res, $Val extends CountryContacts>
+class _$CountryContactsCopyWithImpl<$Res>
     implements $CountryContactsCopyWith<$Res> {
-  _$CountryContactsCopyWithImpl(this._value, this._then);
+  _$CountryContactsCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final CountryContacts _self;
+  final $Res Function(CountryContacts) _then;
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? languageCode = null,
-    Object? phoneContacts = freezed,
-    Object? crisisCenterContacts = freezed,
-    Object? chatContacts = freezed,
-    Object? universityRegionContacts = freezed,
-    Object? eatingDisorderContacts = freezed,
-  }) {
-    return _then(_value.copyWith(
-      languageCode: null == languageCode
-          ? _value.languageCode
-          : languageCode // ignore: cast_nullable_to_non_nullable
-              as String,
-      phoneContacts: freezed == phoneContacts
-          ? _value.phoneContacts
-          : phoneContacts // ignore: cast_nullable_to_non_nullable
-              as List<PhoneContact>?,
-      crisisCenterContacts: freezed == crisisCenterContacts
-          ? _value.crisisCenterContacts
-          : crisisCenterContacts // ignore: cast_nullable_to_non_nullable
-              as List<RegionContact>?,
-      chatContacts: freezed == chatContacts
-          ? _value.chatContacts
-          : chatContacts // ignore: cast_nullable_to_non_nullable
-              as List<ChatContact>?,
-      universityRegionContacts: freezed == universityRegionContacts
-          ? _value.universityRegionContacts
-          : universityRegionContacts // ignore: cast_nullable_to_non_nullable
-              as List<RegionContact>?,
-      eatingDisorderContacts: freezed == eatingDisorderContacts
-          ? _value.eatingDisorderContacts
-          : eatingDisorderContacts // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-    ) as $Val);
-  }
+/// Create a copy of CountryContacts
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? languageCode = null,Object? phoneContacts = freezed,Object? crisisCenterContacts = freezed,Object? chatContacts = freezed,Object? universityRegionContacts = freezed,Object? eatingDisorderContacts = freezed,}) {
+  return _then(_self.copyWith(
+languageCode: null == languageCode ? _self.languageCode : languageCode // ignore: cast_nullable_to_non_nullable
+as String,phoneContacts: freezed == phoneContacts ? _self.phoneContacts : phoneContacts // ignore: cast_nullable_to_non_nullable
+as List<PhoneContact>?,crisisCenterContacts: freezed == crisisCenterContacts ? _self.crisisCenterContacts : crisisCenterContacts // ignore: cast_nullable_to_non_nullable
+as List<RegionContact>?,chatContacts: freezed == chatContacts ? _self.chatContacts : chatContacts // ignore: cast_nullable_to_non_nullable
+as List<ChatContact>?,universityRegionContacts: freezed == universityRegionContacts ? _self.universityRegionContacts : universityRegionContacts // ignore: cast_nullable_to_non_nullable
+as List<RegionContact>?,eatingDisorderContacts: freezed == eatingDisorderContacts ? _self.eatingDisorderContacts : eatingDisorderContacts // ignore: cast_nullable_to_non_nullable
+as List<String>?,
+  ));
 }
 
-/// @nodoc
-abstract class _$$_CountryContactsCopyWith<$Res> implements $CountryContactsCopyWith<$Res> {
-  factory _$$_CountryContactsCopyWith(
-          _$_CountryContacts value, $Res Function(_$_CountryContacts) then) =
-      __$$_CountryContactsCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String languageCode,
-      List<PhoneContact>? phoneContacts,
-      List<RegionContact>? crisisCenterContacts,
-      List<ChatContact>? chatContacts,
-      List<RegionContact>? universityRegionContacts,
-      List<String>? eatingDisorderContacts});
 }
 
-/// @nodoc
-class __$$_CountryContactsCopyWithImpl<$Res>
-    extends _$CountryContactsCopyWithImpl<$Res, _$_CountryContacts>
-    implements _$$_CountryContactsCopyWith<$Res> {
-  __$$_CountryContactsCopyWithImpl(
-      _$_CountryContacts _value, $Res Function(_$_CountryContacts) _then)
-      : super(_value, _then);
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? languageCode = null,
-    Object? phoneContacts = freezed,
-    Object? crisisCenterContacts = freezed,
-    Object? chatContacts = freezed,
-    Object? universityRegionContacts = freezed,
-    Object? eatingDisorderContacts = freezed,
-  }) {
-    return _then(_$_CountryContacts(
-      languageCode: null == languageCode
-          ? _value.languageCode
-          : languageCode // ignore: cast_nullable_to_non_nullable
-              as String,
-      phoneContacts: freezed == phoneContacts
-          ? _value._phoneContacts
-          : phoneContacts // ignore: cast_nullable_to_non_nullable
-              as List<PhoneContact>?,
-      crisisCenterContacts: freezed == crisisCenterContacts
-          ? _value._crisisCenterContacts
-          : crisisCenterContacts // ignore: cast_nullable_to_non_nullable
-              as List<RegionContact>?,
-      chatContacts: freezed == chatContacts
-          ? _value._chatContacts
-          : chatContacts // ignore: cast_nullable_to_non_nullable
-              as List<ChatContact>?,
-      universityRegionContacts: freezed == universityRegionContacts
-          ? _value._universityRegionContacts
-          : universityRegionContacts // ignore: cast_nullable_to_non_nullable
-              as List<RegionContact>?,
-      eatingDisorderContacts: freezed == eatingDisorderContacts
-          ? _value._eatingDisorderContacts
-          : eatingDisorderContacts // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-    ));
-  }
+/// Adds pattern-matching-related methods to [CountryContacts].
+extension CountryContactsPatterns on CountryContacts {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CountryContacts value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _CountryContacts() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CountryContacts value)  $default,){
+final _that = this;
+switch (_that) {
+case _CountryContacts():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CountryContacts value)?  $default,){
+final _that = this;
+switch (_that) {
+case _CountryContacts() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String languageCode,  List<PhoneContact>? phoneContacts,  List<RegionContact>? crisisCenterContacts,  List<ChatContact>? chatContacts,  List<RegionContact>? universityRegionContacts,  List<String>? eatingDisorderContacts)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _CountryContacts() when $default != null:
+return $default(_that.languageCode,_that.phoneContacts,_that.crisisCenterContacts,_that.chatContacts,_that.universityRegionContacts,_that.eatingDisorderContacts);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String languageCode,  List<PhoneContact>? phoneContacts,  List<RegionContact>? crisisCenterContacts,  List<ChatContact>? chatContacts,  List<RegionContact>? universityRegionContacts,  List<String>? eatingDisorderContacts)  $default,) {final _that = this;
+switch (_that) {
+case _CountryContacts():
+return $default(_that.languageCode,_that.phoneContacts,_that.crisisCenterContacts,_that.chatContacts,_that.universityRegionContacts,_that.eatingDisorderContacts);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String languageCode,  List<PhoneContact>? phoneContacts,  List<RegionContact>? crisisCenterContacts,  List<ChatContact>? chatContacts,  List<RegionContact>? universityRegionContacts,  List<String>? eatingDisorderContacts)?  $default,) {final _that = this;
+switch (_that) {
+case _CountryContacts() when $default != null:
+return $default(_that.languageCode,_that.phoneContacts,_that.crisisCenterContacts,_that.chatContacts,_that.universityRegionContacts,_that.eatingDisorderContacts);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_CountryContacts extends _CountryContacts {
-  const _$_CountryContacts(
-      {required this.languageCode,
-      final List<PhoneContact>? phoneContacts,
-      final List<RegionContact>? crisisCenterContacts,
-      final List<ChatContact>? chatContacts,
-      final List<RegionContact>? universityRegionContacts,
-      final List<String>? eatingDisorderContacts})
-      : _phoneContacts = phoneContacts,
-        _crisisCenterContacts = crisisCenterContacts,
-        _chatContacts = chatContacts,
-        _universityRegionContacts = universityRegionContacts,
-        _eatingDisorderContacts = eatingDisorderContacts,
-        super._();
 
-  factory _$_CountryContacts.fromJson(Map<String, dynamic> json) =>
-      _$$_CountryContactsFromJson(json);
+class _CountryContacts extends CountryContacts {
+  const _CountryContacts({required this.languageCode, final  List<PhoneContact>? phoneContacts, final  List<RegionContact>? crisisCenterContacts, final  List<ChatContact>? chatContacts, final  List<RegionContact>? universityRegionContacts, final  List<String>? eatingDisorderContacts}): _phoneContacts = phoneContacts,_crisisCenterContacts = crisisCenterContacts,_chatContacts = chatContacts,_universityRegionContacts = universityRegionContacts,_eatingDisorderContacts = eatingDisorderContacts,super._();
+  factory _CountryContacts.fromJson(Map<String, dynamic> json) => _$CountryContactsFromJson(json);
 
-  @override
-  final String languageCode;
-  final List<PhoneContact>? _phoneContacts;
-  @override
-  List<PhoneContact>? get phoneContacts {
-    final value = _phoneContacts;
-    if (value == null) return null;
-    if (_phoneContacts is EqualUnmodifiableListView) return _phoneContacts;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  final List<RegionContact>? _crisisCenterContacts;
-  @override
-  List<RegionContact>? get crisisCenterContacts {
-    final value = _crisisCenterContacts;
-    if (value == null) return null;
-    if (_crisisCenterContacts is EqualUnmodifiableListView) return _crisisCenterContacts;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  final List<ChatContact>? _chatContacts;
-  @override
-  List<ChatContact>? get chatContacts {
-    final value = _chatContacts;
-    if (value == null) return null;
-    if (_chatContacts is EqualUnmodifiableListView) return _chatContacts;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  final List<RegionContact>? _universityRegionContacts;
-  @override
-  List<RegionContact>? get universityRegionContacts {
-    final value = _universityRegionContacts;
-    if (value == null) return null;
-    if (_universityRegionContacts is EqualUnmodifiableListView) return _universityRegionContacts;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  final List<String>? _eatingDisorderContacts;
-  @override
-  List<String>? get eatingDisorderContacts {
-    final value = _eatingDisorderContacts;
-    if (value == null) return null;
-    if (_eatingDisorderContacts is EqualUnmodifiableListView) return _eatingDisorderContacts;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  String toString() {
-    return 'CountryContacts(languageCode: $languageCode, phoneContacts: $phoneContacts, crisisCenterContacts: $crisisCenterContacts, chatContacts: $chatContacts, universityRegionContacts: $universityRegionContacts, eatingDisorderContacts: $eatingDisorderContacts)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_CountryContacts &&
-            (identical(other.languageCode, languageCode) || other.languageCode == languageCode) &&
-            const DeepCollectionEquality().equals(other._phoneContacts, _phoneContacts) &&
-            const DeepCollectionEquality()
-                .equals(other._crisisCenterContacts, _crisisCenterContacts) &&
-            const DeepCollectionEquality().equals(other._chatContacts, _chatContacts) &&
-            const DeepCollectionEquality()
-                .equals(other._universityRegionContacts, _universityRegionContacts) &&
-            const DeepCollectionEquality()
-                .equals(other._eatingDisorderContacts, _eatingDisorderContacts));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      languageCode,
-      const DeepCollectionEquality().hash(_phoneContacts),
-      const DeepCollectionEquality().hash(_crisisCenterContacts),
-      const DeepCollectionEquality().hash(_chatContacts),
-      const DeepCollectionEquality().hash(_universityRegionContacts),
-      const DeepCollectionEquality().hash(_eatingDisorderContacts));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_CountryContactsCopyWith<_$_CountryContacts> get copyWith =>
-      __$$_CountryContactsCopyWithImpl<_$_CountryContacts>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_CountryContactsToJson(
-      this,
-    );
-  }
+@override final  String languageCode;
+ final  List<PhoneContact>? _phoneContacts;
+@override List<PhoneContact>? get phoneContacts {
+  final value = _phoneContacts;
+  if (value == null) return null;
+  if (_phoneContacts is EqualUnmodifiableListView) return _phoneContacts;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
 }
 
-abstract class _CountryContacts extends CountryContacts {
-  const factory _CountryContacts(
-      {required final String languageCode,
-      final List<PhoneContact>? phoneContacts,
-      final List<RegionContact>? crisisCenterContacts,
-      final List<ChatContact>? chatContacts,
-      final List<RegionContact>? universityRegionContacts,
-      final List<String>? eatingDisorderContacts}) = _$_CountryContacts;
-  const _CountryContacts._() : super._();
-
-  factory _CountryContacts.fromJson(Map<String, dynamic> json) = _$_CountryContacts.fromJson;
-
-  @override
-  String get languageCode;
-  @override
-  List<PhoneContact>? get phoneContacts;
-  @override
-  List<RegionContact>? get crisisCenterContacts;
-  @override
-  List<ChatContact>? get chatContacts;
-  @override
-  List<RegionContact>? get universityRegionContacts;
-  @override
-  List<String>? get eatingDisorderContacts;
-  @override
-  @JsonKey(ignore: true)
-  _$$_CountryContactsCopyWith<_$_CountryContacts> get copyWith =>
-      throw _privateConstructorUsedError;
+ final  List<RegionContact>? _crisisCenterContacts;
+@override List<RegionContact>? get crisisCenterContacts {
+  final value = _crisisCenterContacts;
+  if (value == null) return null;
+  if (_crisisCenterContacts is EqualUnmodifiableListView) return _crisisCenterContacts;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
 }
+
+ final  List<ChatContact>? _chatContacts;
+@override List<ChatContact>? get chatContacts {
+  final value = _chatContacts;
+  if (value == null) return null;
+  if (_chatContacts is EqualUnmodifiableListView) return _chatContacts;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+ final  List<RegionContact>? _universityRegionContacts;
+@override List<RegionContact>? get universityRegionContacts {
+  final value = _universityRegionContacts;
+  if (value == null) return null;
+  if (_universityRegionContacts is EqualUnmodifiableListView) return _universityRegionContacts;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+ final  List<String>? _eatingDisorderContacts;
+@override List<String>? get eatingDisorderContacts {
+  final value = _eatingDisorderContacts;
+  if (value == null) return null;
+  if (_eatingDisorderContacts is EqualUnmodifiableListView) return _eatingDisorderContacts;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+
+/// Create a copy of CountryContacts
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$CountryContactsCopyWith<_CountryContacts> get copyWith => __$CountryContactsCopyWithImpl<_CountryContacts>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$CountryContactsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CountryContacts&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&const DeepCollectionEquality().equals(other._phoneContacts, _phoneContacts)&&const DeepCollectionEquality().equals(other._crisisCenterContacts, _crisisCenterContacts)&&const DeepCollectionEquality().equals(other._chatContacts, _chatContacts)&&const DeepCollectionEquality().equals(other._universityRegionContacts, _universityRegionContacts)&&const DeepCollectionEquality().equals(other._eatingDisorderContacts, _eatingDisorderContacts));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,languageCode,const DeepCollectionEquality().hash(_phoneContacts),const DeepCollectionEquality().hash(_crisisCenterContacts),const DeepCollectionEquality().hash(_chatContacts),const DeepCollectionEquality().hash(_universityRegionContacts),const DeepCollectionEquality().hash(_eatingDisorderContacts));
+
+@override
+String toString() {
+  return 'CountryContacts(languageCode: $languageCode, phoneContacts: $phoneContacts, crisisCenterContacts: $crisisCenterContacts, chatContacts: $chatContacts, universityRegionContacts: $universityRegionContacts, eatingDisorderContacts: $eatingDisorderContacts)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$CountryContactsCopyWith<$Res> implements $CountryContactsCopyWith<$Res> {
+  factory _$CountryContactsCopyWith(_CountryContacts value, $Res Function(_CountryContacts) _then) = __$CountryContactsCopyWithImpl;
+@override @useResult
+$Res call({
+ String languageCode, List<PhoneContact>? phoneContacts, List<RegionContact>? crisisCenterContacts, List<ChatContact>? chatContacts, List<RegionContact>? universityRegionContacts, List<String>? eatingDisorderContacts
+});
+
+
+
+
+}
+/// @nodoc
+class __$CountryContactsCopyWithImpl<$Res>
+    implements _$CountryContactsCopyWith<$Res> {
+  __$CountryContactsCopyWithImpl(this._self, this._then);
+
+  final _CountryContacts _self;
+  final $Res Function(_CountryContacts) _then;
+
+/// Create a copy of CountryContacts
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? languageCode = null,Object? phoneContacts = freezed,Object? crisisCenterContacts = freezed,Object? chatContacts = freezed,Object? universityRegionContacts = freezed,Object? eatingDisorderContacts = freezed,}) {
+  return _then(_CountryContacts(
+languageCode: null == languageCode ? _self.languageCode : languageCode // ignore: cast_nullable_to_non_nullable
+as String,phoneContacts: freezed == phoneContacts ? _self._phoneContacts : phoneContacts // ignore: cast_nullable_to_non_nullable
+as List<PhoneContact>?,crisisCenterContacts: freezed == crisisCenterContacts ? _self._crisisCenterContacts : crisisCenterContacts // ignore: cast_nullable_to_non_nullable
+as List<RegionContact>?,chatContacts: freezed == chatContacts ? _self._chatContacts : chatContacts // ignore: cast_nullable_to_non_nullable
+as List<ChatContact>?,universityRegionContacts: freezed == universityRegionContacts ? _self._universityRegionContacts : universityRegionContacts // ignore: cast_nullable_to_non_nullable
+as List<RegionContact>?,eatingDisorderContacts: freezed == eatingDisorderContacts ? _self._eatingDisorderContacts : eatingDisorderContacts // ignore: cast_nullable_to_non_nullable
+as List<String>?,
+  ));
+}
+
+
+}
+
+// dart format on

@@ -4,7 +4,7 @@ part 'chat_contact_model.freezed.dart';
 part 'chat_contact_model.g.dart';
 
 @freezed
-class ChatContact with _$ChatContact {
+abstract class ChatContact with _$ChatContact {
   const ChatContact._();
 
   const factory ChatContact.subList({
@@ -17,7 +17,7 @@ class ChatContact with _$ChatContact {
 }
 
 @freezed
-class SubChatContact with _$SubChatContact {
+abstract class SubChatContact with _$SubChatContact {
   const factory SubChatContact({
     required String title,
     required String url,

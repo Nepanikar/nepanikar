@@ -5,7 +5,7 @@ part 'all_contacts_model.freezed.dart';
 part 'all_contacts_model.g.dart';
 
 @freezed
-class AllContacts with _$AllContacts {
+abstract class AllContacts with _$AllContacts {
   const factory AllContacts({
     required List<CountryContacts> countryContacts,
   }) = _AllContacts;

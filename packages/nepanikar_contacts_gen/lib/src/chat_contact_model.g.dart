@@ -6,8 +6,8 @@ part of 'chat_contact_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ChatContactSubList _$$ChatContactSubListFromJson(Map<String, dynamic> json) =>
-    _$ChatContactSubList(
+ChatContactSubList _$ChatContactSubListFromJson(Map<String, dynamic> json) =>
+    ChatContactSubList(
       title: json['title'] as String,
       subtitle: json['subtitle'] as String?,
       subChatContacts: (json['subChatContacts'] as List<dynamic>)
@@ -15,19 +15,15 @@ _$ChatContactSubList _$$ChatContactSubListFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$ChatContactSubListToJson(_$ChatContactSubList instance) =>
+Map<String, dynamic> _$ChatContactSubListToJson(ChatContactSubList instance) =>
     <String, dynamic>{
       'title': instance.title,
       'subtitle': instance.subtitle,
       'subChatContacts': instance.subChatContacts,
     };
 
-_$_SubChatContact _$$_SubChatContactFromJson(Map<String, dynamic> json) => _$_SubChatContact(
-      title: json['title'] as String,
-      url: json['url'] as String,
-    );
+_SubChatContact _$SubChatContactFromJson(Map<String, dynamic> json) =>
+    _SubChatContact(title: json['title'] as String, url: json['url'] as String);
 
-Map<String, dynamic> _$$_SubChatContactToJson(_$_SubChatContact instance) => <String, dynamic>{
-      'title': instance.title,
-      'url': instance.url,
-    };
+Map<String, dynamic> _$SubChatContactToJson(_SubChatContact instance) =>
+    <String, dynamic>{'title': instance.title, 'url': instance.url};

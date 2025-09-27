@@ -7,7 +7,7 @@ part 'country_contacts_model.freezed.dart';
 part 'country_contacts_model.g.dart';
 
 @freezed
-class CountryContacts with _$CountryContacts {
+abstract class CountryContacts with _$CountryContacts {
   const factory CountryContacts({
     required String languageCode,
     List<PhoneContact>? phoneContacts,
