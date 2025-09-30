@@ -11,12 +11,7 @@ final cs_Contacts = CountryContacts(
 );
 
 const _phoneContacts = <PhoneContact>[
-  PhoneContact(
-    pinned: true,
-    title: 'Linka bezpečí',
-    tel: '116 111',
-    subtitle: 'Nonstop zdarma',
-  ),
+  PhoneContact(pinned: true, title: 'Linka bezpečí', tel: '116 111', subtitle: 'Nonstop zdarma'),
   PhoneContact(
     pinned: true,
     title: 'Linka psychické pomoci',
@@ -31,21 +26,9 @@ const _phoneContacts = <PhoneContact>[
       SubPhoneContact(title: 'Mobil', tel: '608 902 410'),
     ],
   ),
-  PhoneContact(
-    title: 'Linka pro rodinu a školu',
-    subtitle: 'Nonstop zdarma',
-    tel: '116 000',
-  ),
-  PhoneContact(
-    title: 'Pražská linka důvěry',
-    subtitle: 'Nonstop',
-    tel: '222 580 697',
-  ),
-  PhoneContact(
-    title: 'Linka důvěry CKI Bohnice',
-    subtitle: 'Nonstop',
-    tel: '284 016 666',
-  ),
+  PhoneContact(title: 'Linka pro rodinu a školu', subtitle: 'Nonstop zdarma', tel: '116 000'),
+  PhoneContact(title: 'Pražská linka důvěry', subtitle: 'Nonstop', tel: '222 580 697'),
+  PhoneContact(title: 'Linka důvěry CKI Bohnice', subtitle: 'Nonstop', tel: '284 016 666'),
   PhoneContact.subList(
     title: 'Linka důvěry Dětského krizového centra',
     subtitle: 'Nonstop',
@@ -479,75 +462,47 @@ const _crisisCenterContacts = <RegionContact>[
 const _chatContacts = <ChatContact>[
   ChatContact.subList(
     title: 'Nepanikař',
-    subChatContacts: [
-      SubChatContact(
-        title: 'Po-Pá 16-22h',
-        url: 'https://nepanikar.eu/poradna/',
-      ),
-    ],
+    subChatContacts: [SubChatContact(title: 'Po-Pá 16-22h', url: 'https://nepanikar.eu/poradna/')],
   ),
   ChatContact.subList(
     title: 'Linka Bezpečí',
     subChatContacts: [
-      SubChatContact(
-        title: 'Denně 9-13h a 15-19h',
-        url: 'https://www.linkabezpeci.cz/chat',
-      ),
+      SubChatContact(title: 'Denně 9-13h a 15-19h', url: 'https://www.linkabezpeci.cz/chat'),
     ],
   ),
   ChatContact.subList(
     title: 'iPoradna',
     subChatContacts: [
-      SubChatContact(
-        title: '',
-        url: 'https://iporadna.cz/elinka-chatova-poradna/',
-      ),
+      SubChatContact(title: '', url: 'https://iporadna.cz/elinka-chatova-poradna/'),
     ],
   ),
   ChatContact.subList(
     title: 'Modrá linka',
     subChatContacts: [
-      SubChatContact(
-        title: 'Po, St, Ne 18-22h\nPá 10-13h',
-        url: 'https://chat.modralinka.cz/',
-      ),
+      SubChatContact(title: 'Po, St, Ne 18-22h\nPá 10-13h', url: 'https://chat.modralinka.cz/'),
     ],
   ),
   ChatContact.subList(
     title: 'Chat pražské linky důvěry',
     subChatContacts: [
-      SubChatContact(
-        title: 'Po-Čt 9-21h\nPá 16-20h\nSo 14-20h',
-        url: 'https://www.chat-pomoc.cz/',
-      ),
+      SubChatContact(title: 'Po-Čt 9-21h\nPá 16-20h\nSo 14-20h', url: 'https://www.chat-pomoc.cz/'),
     ],
   ),
   ChatContact.subList(
     title: 'Linka první psychické pomoci',
     subChatContacts: [
-      SubChatContact(
-        title: 'Po-Ne 12-17h',
-        url: 'https://linkapsychickepomoci.cz/chat/',
-      ),
+      SubChatContact(title: 'Po-Ne 12-17h', url: 'https://linkapsychickepomoci.cz/chat/'),
     ],
   ),
   ChatContact.subList(
     title: 'Linka pro rodinu a školu',
     subChatContacts: [
-      SubChatContact(
-        title: 'Po-Ne 15-18h',
-        url: 'https://linkaztracenedite.cz/chat/',
-      ),
+      SubChatContact(title: 'Po-Ne 15-18h', url: 'https://linkaztracenedite.cz/chat/'),
     ],
   ),
   ChatContact.subList(
     title: 'Locika - dětství bez násilí',
-    subChatContacts: [
-      SubChatContact(
-        title: 'Po-Pá 13-17h',
-        url: 'https://locika.neziskovky.com/',
-      ),
-    ],
+    subChatContacts: [SubChatContact(title: 'Po-Pá 13-17h', url: 'https://locika.neziskovky.com/')],
   ),
 ];
 
@@ -557,10 +512,7 @@ const _universityRegionContacts = <RegionContact>[
     contacts: [
       RegionItemContact(
         name: 'Akademie výtvarných umění Praha',
-        contactAddresses: [
-          'https://avu.cz/oddeleni/psychologicke-pracoviste',
-          'psycholog@avu.cz',
-        ],
+        contactAddresses: ['https://avu.cz/oddeleni/psychologicke-pracoviste', 'psycholog@avu.cz'],
       ),
       RegionItemContact(
         name: 'Česká zemědělská univerzita v Praze',
@@ -579,9 +531,7 @@ const _universityRegionContacts = <RegionContact>[
       ),
       RegionItemContact(
         name: 'Policejní akademie ČR v Praze',
-        contactAddresses: [
-          'chvostkova@polac.cz',
-        ],
+        contactAddresses: ['chvostkova@polac.cz'],
       ),
       RegionItemContact(
         name: 'Univerzita Jana Amose Komenského, s.r.o.',
@@ -612,10 +562,7 @@ const _universityRegionContacts = <RegionContact>[
     contacts: [
       RegionItemContact(
         name: 'Masarykova univerzita',
-        contactAddresses: [
-          'https://www.teiresias.muni.cz/',
-          'teiresias@muni.cz',
-        ],
+        contactAddresses: ['https://www.teiresias.muni.cz/', 'teiresias@muni.cz'],
       ),
       RegionItemContact(
         name: 'Mendelova univerzita v Brně',
@@ -653,10 +600,7 @@ const _universityRegionContacts = <RegionContact>[
     contacts: [
       RegionItemContact(
         name: 'Jihočeská univerzita v Českých Budějovicích',
-        contactAddresses: [
-          'http://www.pf.jcu.cz/structure/poradna/',
-          'zbajgarova@pf.jcu.cz',
-        ],
+        contactAddresses: ['http://www.pf.jcu.cz/structure/poradna/', 'zbajgarova@pf.jcu.cz'],
       ),
     ],
   ),
@@ -761,10 +705,7 @@ const _universityRegionContacts = <RegionContact>[
     contacts: [
       RegionItemContact(
         name: 'Univerzita Tomáše Bati ve Zlíně',
-        contactAddresses: [
-          'https://akademickaporadna.utb.cz/poradna/',
-          'poradnak@utb.cz',
-        ],
+        contactAddresses: ['https://akademickaporadna.utb.cz/poradna/', 'poradnak@utb.cz'],
       ),
     ],
   ),

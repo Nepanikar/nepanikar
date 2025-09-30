@@ -10,29 +10,14 @@ final it_Contacts = en_Contacts.copyWith(
 );
 
 const _phoneContacts = <PhoneContact>[
-  PhoneContact(
-    title: 'Telefono Azzurro',
-    subtitle: 'Per bambini e studenti',
-    tel: '19696',
-  ),
-  PhoneContact(
-    title: 'Telefono Amico',
-    tel: '199 284 284',
-  ),
-  PhoneContact(
-    title: 'Samaritans Suicide Hotline',
-    tel: '800 86 00 22',
-  ),
+  PhoneContact(title: 'Telefono Azzurro', subtitle: 'Per bambini e studenti', tel: '19696'),
+  PhoneContact(title: 'Telefono Amico', tel: '199 284 284'),
+  PhoneContact(title: 'Samaritans Suicide Hotline', tel: '800 86 00 22'),
 ];
 
 const _chatContacts = <ChatContact>[
   ChatContact.subList(
     title: 'La Chat di Telefono Azzurro',
-    subChatContacts: [
-      SubChatContact(
-        title: '',
-        url: 'https://azzurro.it/chat/',
-      ),
-    ],
+    subChatContacts: [SubChatContact(title: '', url: 'https://azzurro.it/chat/')],
   ),
 ];

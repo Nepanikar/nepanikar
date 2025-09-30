@@ -10,23 +10,10 @@ final pl_Contacts = en_Contacts.copyWith(
 );
 
 const _phoneContacts = <PhoneContact>[
-  PhoneContact(
-    pinned: true,
-    title: 'Numer alarmowy',
-    tel: '112',
-  ),
-  PhoneContact(
-    title: 'Woj. zarządzanie kryzysowe',
-    tel: '987',
-  ),
-  PhoneContact(
-    title: 'Pogotowie Ratunkowe',
-    tel: '999',
-  ),
-  PhoneContact(
-    title: 'Centrum kryzysowe',
-    tel: '+48 91 350-80-80',
-  ),
+  PhoneContact(pinned: true, title: 'Numer alarmowy', tel: '112'),
+  PhoneContact(title: 'Woj. zarządzanie kryzysowe', tel: '987'),
+  PhoneContact(title: 'Pogotowie Ratunkowe', tel: '999'),
+  PhoneContact(title: 'Centrum kryzysowe', tel: '+48 91 350-80-80'),
 ];
 
 const _crisisCenterContacts = <RegionContact>[
@@ -61,11 +48,7 @@ const _crisisCenterContacts = <RegionContact>[
     contacts: [
       RegionItemContact(
         name: 'Ośrodek Interwencji Kryzysowej',
-        contactAddresses: [
-          'ul. Ks. J. Popiełuszki 24',
-          '05-820 Piastów',
-          'http://zowpiastow.pl/',
-        ],
+        contactAddresses: ['ul. Ks. J. Popiełuszki 24', '05-820 Piastów', 'http://zowpiastow.pl/'],
       ),
     ],
   ),
@@ -87,11 +70,7 @@ const _crisisCenterContacts = <RegionContact>[
     contacts: [
       RegionItemContact(
         name: 'Warszawskie Centrum Pomocy Rodzinie',
-        contactAddresses: [
-          'Lipińska 2',
-          '01-001 Warszawa',
-          'https://wcpr.pl/',
-        ],
+        contactAddresses: ['Lipińska 2', '01-001 Warszawa', 'https://wcpr.pl/'],
       ),
     ],
   ),

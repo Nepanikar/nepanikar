@@ -6,33 +6,30 @@ part of 'country_contacts_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_CountryContacts _$CountryContactsFromJson(Map<String, dynamic> json) =>
-    _CountryContacts(
-      languageCode: json['languageCode'] as String,
-      phoneContacts: (json['phoneContacts'] as List<dynamic>?)
-          ?.map((e) => PhoneContact.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      crisisCenterContacts: (json['crisisCenterContacts'] as List<dynamic>?)
-          ?.map((e) => RegionContact.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      chatContacts: (json['chatContacts'] as List<dynamic>?)
-          ?.map((e) => ChatContact.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      universityRegionContacts:
-          (json['universityRegionContacts'] as List<dynamic>?)
-              ?.map((e) => RegionContact.fromJson(e as Map<String, dynamic>))
-              .toList(),
-      eatingDisorderContacts: (json['eatingDisorderContacts'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
-    );
+_CountryContacts _$CountryContactsFromJson(Map<String, dynamic> json) => _CountryContacts(
+  languageCode: json['languageCode'] as String,
+  phoneContacts: (json['phoneContacts'] as List<dynamic>?)
+      ?.map((e) => PhoneContact.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  crisisCenterContacts: (json['crisisCenterContacts'] as List<dynamic>?)
+      ?.map((e) => RegionContact.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  chatContacts: (json['chatContacts'] as List<dynamic>?)
+      ?.map((e) => ChatContact.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  universityRegionContacts: (json['universityRegionContacts'] as List<dynamic>?)
+      ?.map((e) => RegionContact.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  eatingDisorderContacts: (json['eatingDisorderContacts'] as List<dynamic>?)
+      ?.map((e) => e as String)
+      .toList(),
+);
 
-Map<String, dynamic> _$CountryContactsToJson(_CountryContacts instance) =>
-    <String, dynamic>{
-      'languageCode': instance.languageCode,
-      'phoneContacts': instance.phoneContacts,
-      'crisisCenterContacts': instance.crisisCenterContacts,
-      'chatContacts': instance.chatContacts,
-      'universityRegionContacts': instance.universityRegionContacts,
-      'eatingDisorderContacts': instance.eatingDisorderContacts,
-    };
+Map<String, dynamic> _$CountryContactsToJson(_CountryContacts instance) => <String, dynamic>{
+  'languageCode': instance.languageCode,
+  'phoneContacts': instance.phoneContacts,
+  'crisisCenterContacts': instance.crisisCenterContacts,
+  'chatContacts': instance.chatContacts,
+  'universityRegionContacts': instance.universityRegionContacts,
+  'eatingDisorderContacts': instance.eatingDisorderContacts,
+};

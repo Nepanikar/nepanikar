@@ -14,9 +14,7 @@ const _phoneContacts = <PhoneContact>[
   PhoneContact.subList(
     title: 'Psychosoziale Dienste in Wien Notfälle',
     subtitle: '',
-    subPhoneContacts: [
-      SubPhoneContact(title: 'Nonstop', tel: '(01) 31330'),
-    ],
+    subPhoneContacts: [SubPhoneContact(title: 'Nonstop', tel: '(01) 31330')],
   ),
   PhoneContact.subList(
     title: 'Telefonseelsorge Deutschland',
@@ -34,9 +32,7 @@ const _crisisCenterContacts = <RegionContact>[
     contacts: [
       RegionItemContact(
         name: 'TelefonSeelsorge',
-        contactAddresses: [
-          'https://www.telefonseelsorge.de/',
-        ],
+        contactAddresses: ['https://www.telefonseelsorge.de/'],
       ),
       RegionItemContact(
         name: 'Psychiatrisches Zentrum Nordbadenn',
@@ -72,11 +68,7 @@ const _crisisCenterContacts = <RegionContact>[
       ),
       RegionItemContact(
         name: 'Zentrum für Psychiatrie Calw - Klinikum Nordschwarzwald',
-        contactAddresses: [
-          'Im Lützenhardter Hof',
-          '75365 Calw',
-          'https://www.zfp-emmendingen.de/',
-        ],
+        contactAddresses: ['Im Lützenhardter Hof', '75365 Calw', 'https://www.zfp-emmendingen.de/'],
       ),
     ],
   ),
@@ -85,11 +77,7 @@ const _crisisCenterContacts = <RegionContact>[
     contacts: [
       RegionItemContact(
         name: 'Psychosoziale Dienste in Wien',
-        contactAddresses: [
-          'Modecenterstraße 14/A/2',
-          '1030 Wien',
-          'https://psd-wien.at/',
-        ],
+        contactAddresses: ['Modecenterstraße 14/A/2', '1030 Wien', 'https://psd-wien.at/'],
       ),
     ],
   ),
@@ -98,11 +86,6 @@ const _crisisCenterContacts = <RegionContact>[
 const _chatContacts = <ChatContact>[
   ChatContact.subList(
     title: 'Telefonseelsorge',
-    subChatContacts: [
-      SubChatContact(
-        title: '',
-        url: 'https://online.telefonseelsorge.de/',
-      ),
-    ],
+    subChatContacts: [SubChatContact(title: '', url: 'https://online.telefonseelsorge.de/')],
   ),
 ];

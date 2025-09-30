@@ -9,8 +9,5 @@ final es_Contacts = en_Contacts.copyWith(
 );
 
 const _phoneContacts = <PhoneContact>[
-  PhoneContact(
-    title: 'Teléfono de la Esperanza',
-    tel: '717 003 717',
-  ),
+  PhoneContact(title: 'Teléfono de la Esperanza', tel: '717 003 717'),
 ];

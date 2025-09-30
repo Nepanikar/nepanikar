@@ -18,10 +18,7 @@ abstract class ChatContact with _$ChatContact {
 
 @freezed
 abstract class SubChatContact with _$SubChatContact {
-  const factory SubChatContact({
-    required String title,
-    required String url,
-  }) = _SubChatContact;
+  const factory SubChatContact({required String title, required String url}) = _SubChatContact;
 
   const SubChatContact._();
 

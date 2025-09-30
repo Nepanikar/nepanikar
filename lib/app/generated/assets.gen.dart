@@ -458,9 +458,24 @@ class $AssetsIllustrationsModulesGen {
   /// File path: assets/illustrations/modules/diary.svg
   SvgGenImage get diary => const SvgGenImage('assets/illustrations/modules/diary.svg');
 
+  /// File path: assets/illustrations/modules/eating_after.svg
+  SvgGenImage get eatingAfter => const SvgGenImage('assets/illustrations/modules/eating_after.svg');
+
   /// File path: assets/illustrations/modules/eating_disorder.svg
   SvgGenImage get eatingDisorder =>
       const SvgGenImage('assets/illustrations/modules/eating_disorder.svg');
+
+  /// File path: assets/illustrations/modules/eating_fail.svg
+  SvgGenImage get eatingFail => const SvgGenImage('assets/illustrations/modules/eating_fail.svg');
+
+  /// File path: assets/illustrations/modules/eating_over.svg
+  SvgGenImage get eatingOver => const SvgGenImage('assets/illustrations/modules/eating_over.svg');
+
+  /// File path: assets/illustrations/modules/eating_tips.svg
+  SvgGenImage get eatingTips => const SvgGenImage('assets/illustrations/modules/eating_tips.svg');
+
+  /// File path: assets/illustrations/modules/eating_vomit.svg
+  SvgGenImage get eatingVomit => const SvgGenImage('assets/illustrations/modules/eating_vomit.svg');
 
   /// File path: assets/illustrations/modules/email_help.svg
   SvgGenImage get emailHelp => const SvgGenImage('assets/illustrations/modules/email_help.svg');
@@ -542,7 +557,12 @@ class $AssetsIllustrationsModulesGen {
     breathingTriangle,
     depression,
     diary,
+    eatingAfter,
     eatingDisorder,
+    eatingFail,
+    eatingOver,
+    eatingTips,
+    eatingVomit,
     emailHelp,
     emergencyPlan,
     figure,

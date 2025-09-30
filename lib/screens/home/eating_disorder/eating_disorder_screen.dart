@@ -48,7 +48,7 @@ class EatingDisorderScreen extends StatelessWidget {
     final modules = <Widget>[
       LongTile(
         text: context.l10n.food_tips,
-        image: Assets.illustrations.modules.eatingDisorder.svg(colorFilter: colorFilter),
+        image: Assets.illustrations.modules.eatingTips.svg(colorFilter: colorFilter),
         onTap: () => context.push(const EatingDisorderTipsRoute().location),
         isDarkMode: isDarkMode,
       ),

@@ -12,5 +12,6 @@ _AllContacts _$AllContactsFromJson(Map<String, dynamic> json) => _AllContacts(
       .toList(),
 );
 
-Map<String, dynamic> _$AllContactsToJson(_AllContacts instance) =>
-    <String, dynamic>{'countryContacts': instance.countryContacts};
+Map<String, dynamic> _$AllContactsToJson(_AllContacts instance) => <String, dynamic>{
+  'countryContacts': instance.countryContacts,
+};

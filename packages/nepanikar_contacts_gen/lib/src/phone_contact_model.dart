@@ -25,10 +25,7 @@ abstract class PhoneContact with _$PhoneContact {
 
 @freezed
 abstract class SubPhoneContact with _$SubPhoneContact {
-  const factory SubPhoneContact({
-    required String title,
-    required String tel,
-  }) = _SubPhoneContact;
+  const factory SubPhoneContact({required String title, required String tel}) = _SubPhoneContact;
 
   const SubPhoneContact._();
 
