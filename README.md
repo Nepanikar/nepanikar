@@ -5,7 +5,7 @@ First aid for psychological issues - Official mobile app for [nepanikar.eu](http
 ## Project specs & conventions
 
 - targeted platforms: iOS, Android
-- Flutter version: 3.35.x
+- Flutter version: 3.38.x
 - code style: 100 characters per line
 - state management: [Provider](https://pub.dev/packages/provider)
 - routing: [GoRouter](https://pub.dev/packages/go_router)
