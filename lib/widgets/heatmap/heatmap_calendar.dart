@@ -143,7 +143,7 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
 
         // Text which shows the current year and month
         Text(
-          '${DateUtil.mothLabels(_currentDate?.month ?? 0, false, context)} ${_currentDate?.year}',
+          '${DateUtil.monthLabels(_currentDate?.month ?? 0, false, context)} ${_currentDate?.year}',
           style: TextStyle(fontSize: widget.monthFontSize ?? 12, fontWeight: FontWeight.bold),
         ),
 
@@ -160,8 +160,7 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        //for (final String label in DateUtil.WEEK_LABEL.skip(1))
-        for (int i = 1; i <= 7; i++)
+        for (final i in [2, 3, 4, 5, 6, 7, 1])
           WidgetUtil.flexibleContainer(
             widget.flexible ?? false,
             false,

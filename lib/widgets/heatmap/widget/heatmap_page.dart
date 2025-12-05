@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:nepanikar/widgets/heatmap/data/heatmap_color_mode.dart';
 import 'package:nepanikar/widgets/heatmap/util/datasets_util.dart';
 import 'package:nepanikar/widgets/heatmap/util/date_util.dart';
@@ -90,59 +89,7 @@ class HeatMapPage extends StatelessWidget {
 
   final bool? showText;
 
-  /*
-  /// Get [HeatMapColumn] from [startDate] to [endDate].
-  List<Widget> _heatmapColumnList(int specificMonth) {
-    final List<Widget> columns = [];
-    final int year = startDate.year;
-    final dateTime = DateTime(year, specificMonth);
-    final lastDay = DateUtil.endDayOfMonth(dateTime);
-    final int daysInMonth = lastDay.day;
-
-    // Process each week in the month
-    for (int day = 1; day <= daysInMonth; day += 7) {
-      final DateTime weekStart = DateTime(year, specificMonth, day);
-      final DateTime weekEnd = DateTime(year, specificMonth, min(day + 6, daysInMonth));
-
-      // Filter datasets for the days in this week only
-      final Map<DateTime, int> weeklyData = {};
-      if (datasets != null) {
-        for (final entry in datasets!.entries) {
-          if (entry.key.isAfter(weekStart.subtract(const Duration(days: 1))) &&
-              (entry.key.isBefore(weekEnd.add(const Duration(days: 1))) ||
-                  entry.key.isAtSameMomentAs(weekEnd))) {
-            weeklyData[entry.key] = entry.value;
-          }
-        }
-      }
-
-      // Create a HeatMapColumn for the current week
-      columns.add(
-        HeatMapColumn(
-          startDate: weekStart,
-          endDate: weekEnd,
-          colorMode: colorMode,
-          numDays: weekEnd.difference(weekStart).inDays + 1,
-          size: size,
-          fontSize: fontSize,
-          defaultColor: defaultColor,
-          colorsets: colorsets,
-          textColor: textColor,
-          borderRadius: borderRadius,
-          margin: margin,
-          maxValue: maxValue,
-          onClick: onClick,
-          datasets: weeklyData,
-          showText: showText,
-        ),
-      );
-    }
-
-    return columns;
-  }
-  */
-
-  Widget _buildYearlyHeatmap() {
+  Widget _buildYearlyHeatmap(BuildContext context) {
     final List<Widget> monthlyColumns = [];
     // Iterate over each month and create a HeatMapColumn for that month
     for (int month = 1; month <= 12; month++) {
@@ -183,10 +130,7 @@ class HeatMapPage extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  // You can also use the first letter of the month here as per your requirement
-                  DateFormat(
-                    'MMM',
-                  ).format(firstDayOfMonth), // 'MMM' formats to a three-letter month name
+                  DateUtil.monthLabels(firstDayOfMonth.month, false, context).substring(0, 3),
                   style: TextStyle(
                     fontSize: fontSize,
                     color: textColor,
@@ -207,7 +151,7 @@ class HeatMapPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final yearlyHeatmap = _buildYearlyHeatmap();
+    final yearlyHeatmap = _buildYearlyHeatmap(context);
     return yearlyHeatmap;
   }
 }

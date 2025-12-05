@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 class DateUtil {
   static const int DAYS_IN_WEEK = 7;
 
-  static String mothLabels(int index, bool short, BuildContext context) {
+  static String monthLabels(int index, bool short, BuildContext context) {
     final locale = Localizations.localeOf(context).toString();
     if (index == 0 || index > 12) return '';
     final date = DateTime(2000, index);
