@@ -461,6 +461,18 @@ class $AssetsIllustrationsModulesGen {
   /// File path: assets/illustrations/modules/eating_after.svg
   SvgGenImage get eatingAfter => const SvgGenImage('assets/illustrations/modules/eating_after.svg');
 
+  /// File path: assets/illustrations/modules/eating_am_snack.svg
+  SvgGenImage get eatingAmSnack =>
+      const SvgGenImage('assets/illustrations/modules/eating_am_snack.svg');
+
+  /// File path: assets/illustrations/modules/eating_breakfast.svg
+  SvgGenImage get eatingBreakfast =>
+      const SvgGenImage('assets/illustrations/modules/eating_breakfast.svg');
+
+  /// File path: assets/illustrations/modules/eating_dinner.svg
+  SvgGenImage get eatingDinner =>
+      const SvgGenImage('assets/illustrations/modules/eating_dinner.svg');
+
   /// File path: assets/illustrations/modules/eating_disorder.svg
   SvgGenImage get eatingDisorder =>
       const SvgGenImage('assets/illustrations/modules/eating_disorder.svg');
@@ -468,8 +480,15 @@ class $AssetsIllustrationsModulesGen {
   /// File path: assets/illustrations/modules/eating_fail.svg
   SvgGenImage get eatingFail => const SvgGenImage('assets/illustrations/modules/eating_fail.svg');
 
+  /// File path: assets/illustrations/modules/eating_lunch.svg
+  SvgGenImage get eatingLunch => const SvgGenImage('assets/illustrations/modules/eating_lunch.svg');
+
   /// File path: assets/illustrations/modules/eating_over.svg
   SvgGenImage get eatingOver => const SvgGenImage('assets/illustrations/modules/eating_over.svg');
+
+  /// File path: assets/illustrations/modules/eating_pm_snack.svg
+  SvgGenImage get eatingPmSnack =>
+      const SvgGenImage('assets/illustrations/modules/eating_pm_snack.svg');
 
   /// File path: assets/illustrations/modules/eating_tips.svg
   SvgGenImage get eatingTips => const SvgGenImage('assets/illustrations/modules/eating_tips.svg');
@@ -558,9 +577,14 @@ class $AssetsIllustrationsModulesGen {
     depression,
     diary,
     eatingAfter,
+    eatingAmSnack,
+    eatingBreakfast,
+    eatingDinner,
     eatingDisorder,
     eatingFail,
+    eatingLunch,
     eatingOver,
+    eatingPmSnack,
     eatingTips,
     eatingVomit,
     emailHelp,
