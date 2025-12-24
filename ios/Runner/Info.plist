@@ -61,6 +61,7 @@
 	  <string>sv</string>
 	  <string>tr</string>
 	  <string>uk</string>
+	  <string>vi</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
