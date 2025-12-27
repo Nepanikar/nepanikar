@@ -15,7 +15,7 @@ extension SemanticsUiExt on BuildContext {
   ///
   /// Good use cases: Breathing exercises, Correct/Incorrect answers in Math, etc.
   void semanticsAnnounce(String message) {
-    SemanticsService.announce(message, Directionality.of(this));
+    SemanticsService.sendAnnouncement(View.of(this), message, Directionality.of(this));
   }
 
   /// Whether accessibility reader is enabled (e.g. TalkBack on Android, VoiceOver on iOS).

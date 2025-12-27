@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
-import 'package:nepanikar/games/balance/balance_game_screen.dart';
-import 'package:nepanikar/games/balloons/balloons_game_screen.dart';
 import 'package:nepanikar/games/breathing/breathing_exercises_screen.dart';
-import 'package:nepanikar/games/math/math_game_screen.dart';
+import 'package:nepanikar/games/games_screen.dart';
 import 'package:nepanikar/games/relaxation/relaxations_list_screen.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/screens/home/anxiety/anxiety_tips_route.dart';
@@ -13,6 +11,7 @@ import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
+
 part 'anxiety_screen.g.dart';
 
 @TypedGoRoute<AnxietyAppRoute>(path: '/home/anxiety')
@@ -47,21 +46,9 @@ class AnxietyAppScreen extends StatelessWidget {
         isDarkMode: isDarkMode,
       ),
       LongTile(
-        text: context.l10n.math,
-        image: Assets.illustrations.games.math.math.svg(colorFilter: colorFilter),
-        onTap: () => context.push(const MathGameRoute().location),
-        isDarkMode: isDarkMode,
-      ),
-      LongTile(
-        text: context.l10n.game_balls,
-        image: Assets.illustrations.games.balloons.baloons.svg(colorFilter: colorFilter),
-        onTap: () => context.push(const BalloonsGameRoute().location),
-        isDarkMode: isDarkMode,
-      ),
-      LongTile(
-        text: context.l10n.game_balance,
-        image: Assets.illustrations.games.swing.swing.svg(colorFilter: colorFilter),
-        onTap: () => context.push(const BalanceGameRoute().location),
+        text: context.l10n.games,
+        image: Assets.illustrations.modules.games.svg(colorFilter: colorFilter),
+        onTap: () => context.push(const GamesRoute().location),
         isDarkMode: isDarkMode,
       ),
       if (['cs', 'sk'].contains(_userSettingsDao.locale.languageCode))
