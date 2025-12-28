@@ -41,6 +41,7 @@ class _PlantsGameScreenState extends State<PlantsGameScreen> with TickerProvider
   List<Plant> plants = [];
   int elapsed = 0;
   math.Point<double> explosionCoord = const math.Point<double>(0.0, 0.0);
+  late math.Point<double> handCoord;
   Slash slash = Slash();
   bool showHint = true;
 
@@ -60,13 +61,6 @@ class _PlantsGameScreenState extends State<PlantsGameScreen> with TickerProvider
     return (val > 0) ? 1 : 2;
   }
 
-  bool onSegment(math.Point p, math.Point q, math.Point r) {
-    return q.x <= math.max(p.x, r.x) &&
-        q.x >= math.min(p.x, r.x) &&
-        q.y <= math.max(p.y, r.y) &&
-        q.y >= math.min(p.y, r.y);
-  }
-
   bool segmentsIntersect(math.Point p1, math.Point q1, math.Point p2, math.Point q2) {
     final o1 = orientation(p1, q1, p2);
     final o2 = orientation(p1, q1, q2);
@@ -74,45 +68,59 @@ class _PlantsGameScreenState extends State<PlantsGameScreen> with TickerProvider
     final o4 = orientation(p2, q2, q1);
 
     if (o1 != o2 && o3 != o4) return true;
-
-    if (o1 == 0 && onSegment(p1, p2, q1)) return true;
-    if (o2 == 0 && onSegment(p1, q2, q1)) return true;
-    if (o3 == 0 && onSegment(p2, p1, q2)) return true;
-    if (o4 == 0 && onSegment(p2, q1, q2)) return true;
-
     return false;
   }
 
-  void runFrame() {
-    final newPlants = plants.mapIndexed((i, e) {
-      if (e.variant == -1) {
-        var position = const math.Point<double>(0.0, 0.0);
-        if (math.Random().nextDouble() > 0.5) {
-          position = math.Point(
-            (math.Random().nextDouble() > 0.5) ? sceneWidth : 0,
-            sceneHeight * math.Random().nextDouble(),
-          );
-        } else {
-          position = math.Point(
-            sceneWidth * math.Random().nextDouble(),
-            (math.Random().nextDouble() > 0.5) ? sceneHeight : 0,
-          );
-        }
-        final orientation = sceneCenter - position;
-        return Plant(
-          initialPosition: position,
-          x: position.x,
-          y: position.y,
-          variant: (math.Random().nextDouble() * 3).round(),
-          flipped: math.Random().nextDouble() > 0.5,
-          size: orientation.magnitude * 1.2,
-          speed: maxSpeed * randomHalfToOne(),
-          angle: math.atan2(orientation.y, orientation.x) + math.pi / 2,
+  Plant generatePlant([math.Point<double>? coord, bool? grown])
+  {
+    var position = const math.Point<double>(0.0, 0.0);
+    if(coord == null) {
+      if (math.Random().nextDouble() > 0.5) {
+        position = math.Point(
+          (math.Random().nextDouble() > 0.5) ? sceneWidth : 0,
+          sceneHeight * math.Random().nextDouble(),
         );
       } else {
-        if (sceneCenter.distanceTo(math.Point<double>(e.x, e.y)) < minDistance) {
-          return Plant();
-        }
+        position = math.Point(
+          sceneWidth * math.Random().nextDouble(),
+          (math.Random().nextDouble() > 0.5) ? sceneHeight : 0,
+        );
+      }
+    }
+    else {
+      position = coord;
+    }
+
+    final orientation = sceneCenter - position;
+    var currentPosition = position;
+    if(grown == true) {
+        currentPosition = sceneCenter;
+      }
+    return Plant(
+      initialPosition: position,
+      x: currentPosition.x,
+      y: currentPosition.y,
+      variant: (math.Random().nextDouble() * 3).round(),
+      flipped: math.Random().nextDouble() > 0.5,
+      size: orientation.magnitude * 1.2,
+      speed: maxSpeed * randomHalfToOne(),
+      angle: math.atan2(orientation.y, orientation.x) + math.pi / 2,
+    );
+  }
+
+  void runFrame() {
+    slash.update();
+    if(elapsed < 2.5*fps) {
+      handCoord += const math.Point(1.0, -1.0);
+    }
+    else
+    {
+      handCoord = math.Point(sceneWidth*2, sceneHeight*2);
+    }
+    final newPlants = plants.mapIndexed((i, e) {
+      if (e.variant == -1) {
+        return generatePlant();
+      } else {
         if (slash.active) {
           if (segmentsIntersect(
             slash.start,
@@ -129,15 +137,14 @@ class _PlantsGameScreenState extends State<PlantsGameScreen> with TickerProvider
             return Plant();
           }
         }
-        final trajectory = sceneCenter - e.initialPosition;
+        final trajectory = sceneCenter - math.Point(e.x, e.y);
         final step = trajectory * e.speed;
         return e.copyWith(x: e.x + step.x, y: e.y + step.y);
       }
     }).toList();
     setState(() {
-      elapsed = elapsed + 1;
+      elapsed++;
       plants = newPlants;
-      slash.update();
     });
   }
 
@@ -157,7 +164,9 @@ class _PlantsGameScreenState extends State<PlantsGameScreen> with TickerProvider
       sceneHeight = size.height;
       sceneCenter = math.Point(sceneWidth / 2.0, sceneHeight / 2.0);
       slash.sizeLimit = sceneWidth * 0.35;
+      handCoord = math.Point<double>(sceneWidth*0.2, sceneHeight*0.4);
       plants = List.generate(numberOfPlants, (index) => Plant());
+      plants.first = generatePlant(const math.Point<double>(0.0, 0.0), true);
     });
 
     gameLoop = Timer.periodic(Duration(milliseconds: (1000 / fps).round()), (timer) => runFrame());
@@ -271,7 +280,14 @@ class _PlantsGameScreenState extends State<PlantsGameScreen> with TickerProvider
                 child: Assets.icons.heart.svg(
                   width: heartSize,
                   colorFilter: ColorFilter.mode(heartColor!, BlendMode.srcIn),
-                ),
+                ),),
+                Positioned(
+                  top: handCoord.y,
+                  left: handCoord.x,
+                  child: Assets.illustrations.games.balloons.touchGesture.svg(
+                  width: heartSize,
+                  colorFilter: colorFilter,
+                  ),
               ),
               Align(
                 alignment: Alignment.topLeft,
