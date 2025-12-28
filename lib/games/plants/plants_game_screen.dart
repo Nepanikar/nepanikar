@@ -71,10 +71,9 @@ class _PlantsGameScreenState extends State<PlantsGameScreen> with TickerProvider
     return false;
   }
 
-  Plant generatePlant([math.Point<double>? coord, bool? grown])
-  {
+  Plant generatePlant([math.Point<double>? coord, bool? grown]) {
     var position = const math.Point<double>(0.0, 0.0);
-    if(coord == null) {
+    if (coord == null) {
       if (math.Random().nextDouble() > 0.5) {
         position = math.Point(
           (math.Random().nextDouble() > 0.5) ? sceneWidth : 0,
@@ -86,16 +85,15 @@ class _PlantsGameScreenState extends State<PlantsGameScreen> with TickerProvider
           (math.Random().nextDouble() > 0.5) ? sceneHeight : 0,
         );
       }
-    }
-    else {
+    } else {
       position = coord;
     }
 
     final orientation = sceneCenter - position;
     var currentPosition = position;
-    if(grown == true) {
-        currentPosition = sceneCenter;
-      }
+    if (grown == true) {
+      currentPosition = sceneCenter;
+    }
     return Plant(
       initialPosition: position,
       x: currentPosition.x,
@@ -110,12 +108,10 @@ class _PlantsGameScreenState extends State<PlantsGameScreen> with TickerProvider
 
   void runFrame() {
     slash.update();
-    if(elapsed < 2.5*fps) {
+    if (elapsed < 2.5 * fps) {
       handCoord += const math.Point(1.0, -1.0);
-    }
-    else
-    {
-      handCoord = math.Point(sceneWidth*2, sceneHeight*2);
+    } else {
+      handCoord = math.Point(sceneWidth * 2, sceneHeight * 2);
     }
     final newPlants = plants.mapIndexed((i, e) {
       if (e.variant == -1) {
@@ -164,7 +160,7 @@ class _PlantsGameScreenState extends State<PlantsGameScreen> with TickerProvider
       sceneHeight = size.height;
       sceneCenter = math.Point(sceneWidth / 2.0, sceneHeight / 2.0);
       slash.sizeLimit = sceneWidth * 0.35;
-      handCoord = math.Point<double>(sceneWidth*0.2, sceneHeight*0.4);
+      handCoord = math.Point<double>(sceneWidth * 0.2, sceneHeight * 0.4);
       plants = List.generate(numberOfPlants, (index) => Plant());
       plants.first = generatePlant(const math.Point<double>(0.0, 0.0), true);
     });
@@ -280,14 +276,15 @@ class _PlantsGameScreenState extends State<PlantsGameScreen> with TickerProvider
                 child: Assets.icons.heart.svg(
                   width: heartSize,
                   colorFilter: ColorFilter.mode(heartColor!, BlendMode.srcIn),
-                ),),
-                Positioned(
-                  top: handCoord.y,
-                  left: handCoord.x,
-                  child: Assets.illustrations.games.balloons.touchGesture.svg(
+                ),
+              ),
+              Positioned(
+                top: handCoord.y,
+                left: handCoord.x,
+                child: Assets.illustrations.games.balloons.touchGesture.svg(
                   width: heartSize,
                   colorFilter: colorFilter,
-                  ),
+                ),
               ),
               Align(
                 alignment: Alignment.topLeft,
