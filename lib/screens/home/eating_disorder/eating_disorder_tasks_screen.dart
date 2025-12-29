@@ -51,7 +51,7 @@ class EatingDisorderTasksScreen extends StatelessWidget {
       ),
       LongTile(
         text: context.l10n.food_tasks_like,
-        image: Assets.illustrations.moods.mood4Happy.svg(colorFilter: colorFilter),
+        image: Assets.icons.heart.svg(colorFilter: colorFilter),
         onTap: () => context.push(const EatingDisorderLikeOnMyselfRoute().location),
         isDarkMode: isDarkMode,
       ),
