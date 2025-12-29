@@ -461,6 +461,10 @@ class $AssetsIllustrationsModulesGen {
   /// File path: assets/illustrations/modules/diary.svg
   SvgGenImage get diary => const SvgGenImage('assets/illustrations/modules/diary.svg');
 
+  /// File path: assets/illustrations/modules/eating_afraid.svg
+  SvgGenImage get eatingAfraid =>
+      const SvgGenImage('assets/illustrations/modules/eating_afraid.svg');
+
   /// File path: assets/illustrations/modules/eating_after.svg
   SvgGenImage get eatingAfter => const SvgGenImage('assets/illustrations/modules/eating_after.svg');
 
@@ -472,6 +476,10 @@ class $AssetsIllustrationsModulesGen {
   SvgGenImage get eatingBreakfast =>
       const SvgGenImage('assets/illustrations/modules/eating_breakfast.svg');
 
+  /// File path: assets/illustrations/modules/eating_challenge.svg
+  SvgGenImage get eatingChallenge =>
+      const SvgGenImage('assets/illustrations/modules/eating_challenge.svg');
+
   /// File path: assets/illustrations/modules/eating_dinner.svg
   SvgGenImage get eatingDinner =>
       const SvgGenImage('assets/illustrations/modules/eating_dinner.svg');
@@ -482,6 +490,9 @@ class $AssetsIllustrationsModulesGen {
 
   /// File path: assets/illustrations/modules/eating_fail.svg
   SvgGenImage get eatingFail => const SvgGenImage('assets/illustrations/modules/eating_fail.svg');
+
+  /// File path: assets/illustrations/modules/eating_like.svg
+  SvgGenImage get eatingLike => const SvgGenImage('assets/illustrations/modules/eating_like.svg');
 
   /// File path: assets/illustrations/modules/eating_lunch.svg
   SvgGenImage get eatingLunch => const SvgGenImage('assets/illustrations/modules/eating_lunch.svg');
@@ -582,12 +593,15 @@ class $AssetsIllustrationsModulesGen {
     breathingTriangle,
     depression,
     diary,
+    eatingAfraid,
     eatingAfter,
     eatingAmSnack,
     eatingBreakfast,
+    eatingChallenge,
     eatingDinner,
     eatingDisorder,
     eatingFail,
+    eatingLike,
     eatingLunch,
     eatingOver,
     eatingPmSnack,
