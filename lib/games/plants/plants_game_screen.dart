@@ -28,9 +28,11 @@ class PlantsGameScreen extends StatefulWidget {
   State<PlantsGameScreen> createState() => _PlantsGameScreenState();
 }
 
+const topOffset = 50;
+
 class _PlantsGameScreenState extends State<PlantsGameScreen> with TickerProviderStateMixin {
   late final Timer gameLoop;
-  static const numberOfPlants = 3;
+  static const numberOfPlants = 6;
   late final AnimationController _controller;
   late final double maxSpeed;
   late final double minDistance;
@@ -69,6 +71,15 @@ class _PlantsGameScreenState extends State<PlantsGameScreen> with TickerProvider
 
     if (o1 != o2 && o3 != o4) return true;
     return false;
+  }
+
+  bool intersect(Plant testedPlant, Slash currentSlash) {
+    return segmentsIntersect(
+      slash.start,
+      slash.limitedEnd,
+      testedPlant.initialPosition,
+      math.Point(testedPlant.x, testedPlant.y),
+    );
   }
 
   Plant generatePlant([math.Point<double>? coord, bool? grown]) {
@@ -118,14 +129,10 @@ class _PlantsGameScreenState extends State<PlantsGameScreen> with TickerProvider
         return generatePlant();
       } else {
         if (slash.active) {
-          if (segmentsIntersect(
-            slash.start,
-            slash.limitedEnd,
-            e.initialPosition,
-            math.Point(e.x, e.y),
-          )) {
+          if (intersect(e, slash)) {
             slash.active = false;
-            explosionCoord = math.Point(e.x, e.y);
+            explosionCoord = slash.start + slash.limitedEnd;
+            explosionCoord = math.Point<double>(explosionCoord.x / 2.0, explosionCoord.y / 2.0);
             _controller
               ..reset()
               ..duration = const Duration(milliseconds: 800)
@@ -154,7 +161,7 @@ class _PlantsGameScreenState extends State<PlantsGameScreen> with TickerProvider
 
     setState(() {
       fpsMultiplier = fps / 30;
-      maxSpeed = (0.000004 * size.height) / fpsMultiplier;
+      maxSpeed = (0.000008 * size.height) / fpsMultiplier;
       minDistance = size.width * 0.01;
       sceneWidth = size.width;
       sceneHeight = size.height;
@@ -194,7 +201,7 @@ class _PlantsGameScreenState extends State<PlantsGameScreen> with TickerProvider
       NepanikarColors.primaryColorShade(context, 0.3),
     );
 
-    final colorFilter = svgColorFilterBasedOnDarkMode(context);
+    final colorFilter = ColorFilter.matrix(svgColorMatrixBasedOnDarkMode(context));
     final heartSize = sceneWidth * 0.2;
 
     return Scaffold(
@@ -210,35 +217,30 @@ class _PlantsGameScreenState extends State<PlantsGameScreen> with TickerProvider
             children: [
               ...plants.mapIndexed(
                 (i, e) => Positioned(
-                  top: e.y,
-                  left: e.x,
-                  child: Stack(
-                    children: [
-                      Transform.rotate(
-                        alignment: Alignment.topCenter,
-                        angle: e.angle,
-                        child: Transform.flip(
-                          flipX: e.flipped,
-                          child: switch (e.variant) {
-                            0 => Assets.illustrations.games.plants.plant1.svg(
-                              width: e.width(),
-                              height: e.size,
-                              colorFilter: colorFilter,
-                            ),
-                            1 => Assets.illustrations.games.plants.plant2.svg(
-                              width: e.width(),
-                              height: e.size,
-                              colorFilter: colorFilter,
-                            ),
-                            _ => Assets.illustrations.games.plants.plant3.svg(
-                              width: e.width(),
-                              height: e.size,
-                              colorFilter: colorFilter,
-                            ),
-                          },
+                  top: e.y - topOffset,
+                  left: e.x - e.width() * 0.5,
+                  width: e.width(),
+                  height: e.size,
+                  child: Transform.rotate(
+                    alignment: Alignment.topCenter,
+                    angle: e.angle,
+                    child: Transform.flip(
+                      flipX: e.flipped,
+                      child: switch (e.variant) {
+                        0 => Assets.illustrations.games.plants.plant1.svg(
+                          fit: BoxFit.fill,
+                          colorFilter: colorFilter,
                         ),
-                      ),
-                    ],
+                        1 => Assets.illustrations.games.plants.plant2.svg(
+                          fit: BoxFit.fill,
+                          colorFilter: colorFilter,
+                        ),
+                        _ => Assets.illustrations.games.plants.plant3.svg(
+                          fit: BoxFit.fill,
+                          colorFilter: colorFilter,
+                        ),
+                      },
+                    ),
                   ),
                 ),
               ),
@@ -251,7 +253,7 @@ class _PlantsGameScreenState extends State<PlantsGameScreen> with TickerProvider
                   child: Assets.illustrations.games.plants.slash.svg(
                     width: slash.width(),
                     height: slash.size,
-                    colorFilter: colorFilter,
+                    colorFilter: ColorFilter.mode(uiColor!, BlendMode.srcIn),
                   ),
                 ),
               ),
@@ -271,7 +273,7 @@ class _PlantsGameScreenState extends State<PlantsGameScreen> with TickerProvider
                   ),
                 ),
               Positioned(
-                top: sceneCenter.y - heartSize / 2,
+                top: sceneCenter.y - heartSize / 2 - topOffset,
                 left: sceneCenter.x - heartSize / 2,
                 child: Assets.icons.heart.svg(
                   width: heartSize,
@@ -341,7 +343,7 @@ class Slash {
     }
     coord = start;
     final orientation = end - start;
-    coord -= math.Point(width() / 2.0, 50);
+    coord -= math.Point(width() / 2.0, topOffset.toDouble());
     angle = math.atan2(orientation.y, orientation.x) - math.pi / 2;
     size = start.distanceTo(end).clamp(0, sizeLimit);
     final normalizedOrientation = math.Point<double>(
