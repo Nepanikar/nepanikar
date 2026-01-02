@@ -18,7 +18,13 @@ class PlantsGameRoute extends GoRouteData with $PlantsGameRoute {
   const PlantsGameRoute();
 
   @override
-  Widget build(BuildContext context, _) => const PlantsGameScreen();
+  Widget build(BuildContext context, _) {
+    return OrientationBuilder(
+      builder: (context, orientation) {
+        return PlantsGameScreen(key: ValueKey(orientation));
+      },
+    );
+  }
 }
 
 class PlantsGameScreen extends StatefulWidget {
