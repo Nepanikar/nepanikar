@@ -5,7 +5,7 @@ First aid for psychological issues - Official mobile app for [nepanikar.eu](http
 ## Project specs & conventions
 
 - targeted platforms: iOS, Android
-- Flutter version: 3.38.x
+- Flutter version: 3.41.x
 - code style: 100 characters per line
 - state management: [Provider](https://pub.dev/packages/provider)
 - routing: [GoRouter](https://pub.dev/packages/go_router)
@@ -18,7 +18,7 @@ Run command `flutter run` from root folder of application.
 
 ### Adding a new asset
 
-[flutter_gen](https://pub.dev/packages/flutter_gen) package let's us quickly generate paths for images/icons.
+[flutter_gen](https://pub.dev/packages/flutter_gen) package lets us quickly generate paths for images/icons.
 To add a new asset, add it to `./assets/` and then run `flutter packages pub run build_runner build -d`.
 If you are creating a new assets folder, do not forget to reference it in `pubspec.yaml`.
 
@@ -33,7 +33,7 @@ The prerequisites for running the localization update script are:
 - Localazy CLI (run `npm install -g @localazy/cli` or see [Installation](https://localazy.com/docs/cli/installation)
   page for other options)
 
-After that you can simply run the script located in `./bin/localazy/localazy_gen.sh`.
+After that, you can simply run the script located in `./bin/localazy/localazy_gen.sh`.
 
 ### Updating contacts & help data
 
@@ -45,10 +45,10 @@ The prerequisites for updating and regenerating these data is:
 
 - Dart SDK
 
-The source of these data are managed by `nepanikar_contacts_gen` Dart package, source data are located 
-in `./packages/nepanikar_contacts_gen/bin/translation_extra_files/{language_tag}.dart`. 
+The source of these data is managed by `nepanikar_contacts_gen` Dart package.
+Source data are located in `./packages/nepanikar_contacts_gen/bin/translation_extra_files/{language_tag}.dart`. 
 
-Make there the necessary changes then simply run the script located in `./bin/nepanikar_contacts_gen` 
+Make the necessary changes, then simply run the script located in `./bin/nepanikar_contacts_gen` 
 to regenerate the JSON file.
 
 ### Commands
