@@ -68,6 +68,9 @@ definitions:
         chmod +x gradlew
         fastlane add_plugin huawei_appgallery_connect
         bundle install
+        if ! bundle exec fastlane huawei; then
+        echo "Huawei upload failed — continuing pipeline"
+        fi
         bundle exec fastlane huawei
 
 workflows:
