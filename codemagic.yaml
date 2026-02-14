@@ -71,7 +71,6 @@ definitions:
         if ! bundle exec fastlane huawei; then
         echo "Huawei upload failed — continuing pipeline"
         fi
-        bundle exec fastlane huawei
 
 workflows:
   release:
