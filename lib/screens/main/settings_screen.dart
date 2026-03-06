@@ -45,8 +45,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final bool isDarkMode = currentTheme.brightness == Brightness.dark;
     svgColorBasedOnDarkMode(context);
     final colorFilter = svgColorFilterBasedOnDarkMode(context);
-    final pdfColor = pdfColorBasedOnDarkMode(context);
-    final pdfColorFilter = pdfColor != null ? ColorFilter.mode(pdfColor, BlendMode.srcIn) : null;
 
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.settings,
@@ -199,18 +197,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ),
                 ],
               ),
-            ),
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 45),
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 245),
-            child: Column(
-              children: [
-                Assets.sponsors.sponsorPpf.image(color: pdfColor),
-                Assets.sponsors.sponsorCeskoDigitalSvg.svg(colorFilter: pdfColorFilter),
-              ],
             ),
           ),
         ),

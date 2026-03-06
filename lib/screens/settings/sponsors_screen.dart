@@ -27,7 +27,6 @@ class SponsorsScreen extends StatelessWidget {
             title: context.l10n.main_partners,
             type: SponsorType.primary,
             logoPaths: [
-              Assets.sponsors.sponsorPpf.path,
               Assets.sponsors.sponsorCeskoDigitalPng.path,
             ],
           ),

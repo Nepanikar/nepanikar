@@ -295,9 +295,6 @@ class $AssetsSponsorsGen {
   AssetGenImage get sponsorLivechatoo =>
       const AssetGenImage('assets/sponsors/sponsor_livechatoo.png');
 
-  /// File path: assets/sponsors/sponsor_ppf.png
-  AssetGenImage get sponsorPpf => const AssetGenImage('assets/sponsors/sponsor_ppf.png');
-
   /// File path: assets/sponsors/sponsor_rodiny_orlickych.png
   AssetGenImage get sponsorRodinyOrlickych =>
       const AssetGenImage('assets/sponsors/sponsor_rodiny_orlickych.png');
@@ -311,7 +308,6 @@ class $AssetsSponsorsGen {
     sponsorCeskoDigitalSvg,
     sponsorKofi,
     sponsorLivechatoo,
-    sponsorPpf,
     sponsorRodinyOrlickych,
     sponsorUniqa,
   ];
