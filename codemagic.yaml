@@ -5,7 +5,7 @@ definitions:
     flutter: 3.41.4
     xcode: 26.0
     cocoapods: default
-    ruby: 3.3.2
+    ruby: 3.3.6
   artifacts: &artifacts
     - build/**/outputs/bundle/**/*.apk
     - build/**/outputs/bundle/**/*.aab
