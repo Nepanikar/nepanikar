@@ -64,11 +64,6 @@ definitions:
     - &publish_huawei
       name: Publish to the Huawei AppGallery store
       script: |
-        # Fix cause fastlane does not support ruby 3.4 yet
-        rbenv global 3.3.9 || rbenv install 3.3.9
-        rbenv rehash
-        ruby -v
-
         cd android
         chmod +x gradlew
         fastlane add_plugin huawei_appgallery_connect
