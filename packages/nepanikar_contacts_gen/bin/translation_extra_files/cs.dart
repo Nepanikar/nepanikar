@@ -411,6 +411,15 @@ const _crisisCenterContacts = <RegionContact>[
         ],
       ),
       RegionItemContact(
+        name: 'Centrum krizové péče při Emergency Masarykovy nemocnice v Ústí nad Labem',
+        contactAddresses: [
+          'Sociální péče 3316/12a, 400 11 Ústí nad Labem - Severní Terasa',
+          '705 588 381',
+          'ckp.ul@kzcr.eu',
+          'https://www.kzcr.eu/cz/ul/pro-pacienty/zdravotnicka-pracoviste/centrum-krizove-pece/',
+        ],
+      ),
+      RegionItemContact(
         name: 'Spirála Ústecký kraj, z.s. - Centrum krizové intervence Rumbuk',
         contactAddresses: [
           'Pá 10:00-16:00',

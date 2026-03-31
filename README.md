@@ -48,7 +48,7 @@ The prerequisites for updating and regenerating these data is:
 The source of these data is managed by `nepanikar_contacts_gen` Dart package.
 Source data are located in `./packages/nepanikar_contacts_gen/bin/translation_extra_files/{language_tag}.dart`. 
 
-Make the necessary changes, then simply run the script located in `./bin/nepanikar_contacts_gen` 
+Make the necessary changes, then simply run the script located in `./bin/nepanikar_contacts_gen/` 
 to regenerate the JSON file.
 
 ### Commands
