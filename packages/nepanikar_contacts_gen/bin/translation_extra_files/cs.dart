@@ -28,7 +28,6 @@ const _phoneContacts = <PhoneContact>[
   ),
   PhoneContact(title: 'Linka pro rodinu a školu', subtitle: 'Nonstop zdarma', tel: '116 000'),
   PhoneContact(title: 'Pražská linka důvěry', subtitle: 'Nonstop', tel: '222 580 697'),
-  PhoneContact(title: 'Linka důvěry CKI Bohnice', subtitle: 'Nonstop', tel: '284 016 666'),
   PhoneContact.subList(
     title: 'Linka důvěry Dětského krizového centra',
     subtitle: 'Nonstop',
