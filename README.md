@@ -34,6 +34,10 @@ The prerequisites for running the localization update script are:
   page for other options)
 
 After that, you can simply run the script located in `./bin/localazy/localazy_gen.sh`.
+When adding a new language:
+1. Create the localization file in lib/app/l10n/arb/
+2. Create appropriate android/app/src/main/res/values-LOCALE
+3. Create appropriate ios/Runner/LOCALE.lproj
 
 ### Updating contacts & help data
 
