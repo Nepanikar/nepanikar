@@ -29,9 +29,7 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
     final modules = <Widget>[
       LongTile(
         text: context.l10n.food_breakfast,
-        image: Assets.illustrations.modules.eatingDisorder.svg(
-          colorFilter: colorFilter,
-        ),
+        image: Assets.illustrations.modules.eatingBreakfast.svg(colorFilter: colorFilter),
         onTap: () => context.push(
           Uri(
             path: const MealPlanRoute().location,
@@ -44,9 +42,7 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
       ),
       LongTile(
         text: '${context.l10n.food_am_snack} ',
-        image: Assets.illustrations.modules.eatingDisorder.svg(
-          colorFilter: colorFilter,
-        ),
+        image: Assets.illustrations.modules.eatingAmSnack.svg(colorFilter: colorFilter),
         onTap: () => context.push(
           Uri(
             path: const MealPlanRoute().location,
@@ -59,9 +55,7 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
       ),
       LongTile(
         text: '${context.l10n.food_lunch} ',
-        image: Assets.illustrations.modules.eatingDisorder.svg(
-          colorFilter: colorFilter,
-        ),
+        image: Assets.illustrations.modules.eatingLunch.svg(colorFilter: colorFilter),
         onTap: () => context.push(
           Uri(
             path: const MealPlanRoute().location,
@@ -74,9 +68,7 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
       ),
       LongTile(
         text: context.l10n.food_pm_snack,
-        image: Assets.illustrations.modules.eatingDisorder.svg(
-          colorFilter: colorFilter,
-        ),
+        image: Assets.illustrations.modules.eatingPmSnack.svg(colorFilter: colorFilter),
         onTap: () => context.push(
           Uri(
             path: const MealPlanRoute().location,
@@ -89,9 +81,7 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
       ),
       LongTile(
         text: context.l10n.food_dinner,
-        image: Assets.illustrations.modules.eatingDisorder.svg(
-          colorFilter: colorFilter,
-        ),
+        image: Assets.illustrations.modules.eatingDinner.svg(colorFilter: colorFilter),
         onTap: () => context.push(
           Uri(
             path: const MealPlanRoute().location,

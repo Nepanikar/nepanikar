@@ -13,18 +13,19 @@ const _phoneContacts = <PhoneContact>[
   PhoneContact(
     pinned: true,
     title: 'Linka detskej istoty',
-    subtitle: 'Nonstop zdarma',
+    subtitle: 'Nonstop zadarmo',
     tel: '116 123',
   ),
-  PhoneContact(
-    title: 'Krízová linka pomoci',
-    subtitle: 'Nonstop zdarma',
-    tel: '0800 500 333',
-  ),
+  PhoneContact(title: 'Krízová linka pomoci', subtitle: 'Nonstop zadarmo', tel: '0800 500 333'),
   PhoneContact(
     title: 'Liga za duševné zdravie Slovensko',
-    subtitle: 'Nonstop zdarma',
+    subtitle: 'Nonstop zadarmo',
     tel: '0800 800 566',
+  ),
+  PhoneContact(
+    title: 'Linka detskej dôvery',
+    subtitle: 'Po-Pá 8-20h, zadarmo',
+    tel: '0800 221 021',
   ),
 ];
 
@@ -88,6 +89,10 @@ const _chatContacts = <ChatContact>[
     subChatContacts: [
       SubChatContact(title: '', url: 'https://viacakonick.gov.sk/'),
     ],
+  ),
+  ChatContact.subList(
+    title: 'Linka detskej dôvery',
+    subChatContacts: [SubChatContact(title: 'Po-Pá 8-19h', url: 'https://linkadetskejdovery.sk/')],
   ),
 ];
 

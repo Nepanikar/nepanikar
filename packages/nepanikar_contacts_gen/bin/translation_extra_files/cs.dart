@@ -31,21 +31,8 @@ const _phoneContacts = <PhoneContact>[
       SubPhoneContact(title: 'Mobil', tel: '608 902 410'),
     ],
   ),
-  PhoneContact(
-    title: 'Linka pro rodinu a školu',
-    subtitle: 'Nonstop zdarma',
-    tel: '116 000',
-  ),
-  PhoneContact(
-    title: 'Pražská linka důvěry',
-    subtitle: 'Nonstop',
-    tel: '222 580 697',
-  ),
-  PhoneContact(
-    title: 'Linka důvěry CKI Bohnice',
-    subtitle: 'Nonstop',
-    tel: '284 016 666',
-  ),
+  PhoneContact(title: 'Linka pro rodinu a školu', subtitle: 'Nonstop zdarma', tel: '116 000'),
+  PhoneContact(title: 'Pražská linka důvěry', subtitle: 'Nonstop', tel: '222 580 697'),
   PhoneContact.subList(
     title: 'Linka důvěry Dětského krizového centra',
     subtitle: 'Nonstop',
@@ -428,6 +415,15 @@ const _crisisCenterContacts = <RegionContact>[
           'K Chatám 22, 403 40 Ústí nad Labem – Skorotice',
           '475 603 390',
           'https://spirala-ul.cz/sluzby/ambulantni-sluzba/',
+        ],
+      ),
+      RegionItemContact(
+        name: 'Centrum krizové péče při Emergency Masarykovy nemocnice v Ústí nad Labem',
+        contactAddresses: [
+          'Sociální péče 3316/12a, 400 11 Ústí nad Labem - Severní Terasa',
+          '705 588 381',
+          'ckp.ul@kzcr.eu',
+          'https://www.kzcr.eu/cz/ul/pro-pacienty/zdravotnicka-pracoviste/centrum-krizove-pece/',
         ],
       ),
       RegionItemContact(

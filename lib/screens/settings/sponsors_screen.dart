@@ -26,10 +26,7 @@ class SponsorsScreen extends StatelessWidget {
           SponsorTile(
             title: context.l10n.main_partners,
             type: SponsorType.primary,
-            logoPaths: [
-              Assets.sponsors.sponsorPpf.path,
-              Assets.sponsors.sponsorCeskoDigitalPng.path,
-            ],
+            logoPaths: [Assets.sponsors.sponsorCeskoDigitalPng.path],
           ),
           const SizedBox(height: 20),
           SponsorTile(

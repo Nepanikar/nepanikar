@@ -47,20 +47,12 @@ class HeatMapMonthText extends StatelessWidget {
         // Otherwise, add Text with width margin.
         items.add(
           firstDayInfos!.length == 1 ||
-                  (label == 0 &&
-                      firstDayInfos![label] != firstDayInfos![label + 1])
-              ? _renderText(
-                  DateUtil.mothLabels(firstDayInfos![label], true, context),
-                )
+                  (label == 0 && firstDayInfos![label] != firstDayInfos![label + 1])
+              ? _renderText(DateUtil.monthLabels(firstDayInfos![label], true, context))
               : Container(
                   width: ((size ?? 20) + (margin?.right ?? 2)) * 2,
-                  margin: EdgeInsets.only(
-                    left: margin?.left ?? 2,
-                    right: margin?.right ?? 2,
-                  ),
-                  child: _renderText(
-                    DateUtil.mothLabels(firstDayInfos![label], true, context),
-                  ),
+                  margin: EdgeInsets.only(left: margin?.left ?? 2, right: margin?.right ?? 2),
+                  child: _renderText(DateUtil.monthLabels(firstDayInfos![label], true, context)),
                 ),
         );
       } else if (write) {

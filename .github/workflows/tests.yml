@@ -5,8 +5,8 @@ on:
   pull_request:
 
 env:
-  flutter_version: '3.35.5'
-  dart_version: '3.9.0'
+  flutter_version: '3.44.1'
+  dart_version: '3.11.4'
 
 jobs:
   app:

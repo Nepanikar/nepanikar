@@ -2,8 +2,8 @@ definitions:
   instance: &instance
     max_build_duration: 60
   env_versions: &env_versions
-    flutter: 3.35.5
-    xcode: 16.0
+    flutter: 3.44.1
+    xcode: 26.3
     cocoapods: default
   artifacts: &artifacts
     - build/**/outputs/bundle/**/*.apk
@@ -68,7 +68,9 @@ definitions:
         chmod +x gradlew
         fastlane add_plugin huawei_appgallery_connect
         bundle install
-        bundle exec fastlane huawei
+        if ! bundle exec fastlane huawei; then
+        echo "Huawei upload failed — continuing pipeline"
+        fi
 
 workflows:
   release:

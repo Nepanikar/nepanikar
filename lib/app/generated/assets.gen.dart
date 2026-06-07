@@ -308,9 +308,6 @@ class $AssetsSponsorsGen {
   AssetGenImage get sponsorLivechatoo =>
       const AssetGenImage('assets/sponsors/sponsor_livechatoo.png');
 
-  /// File path: assets/sponsors/sponsor_ppf.png
-  AssetGenImage get sponsorPpf => const AssetGenImage('assets/sponsors/sponsor_ppf.png');
-
   /// File path: assets/sponsors/sponsor_rodiny_orlickych.png
   AssetGenImage get sponsorRodinyOrlickych =>
       const AssetGenImage('assets/sponsors/sponsor_rodiny_orlickych.png');
@@ -324,7 +321,6 @@ class $AssetsSponsorsGen {
     sponsorCeskoDigitalSvg,
     sponsorKofi,
     sponsorLivechatoo,
-    sponsorPpf,
     sponsorRodinyOrlickych,
     sponsorUniqa,
   ];
@@ -460,6 +456,9 @@ class $AssetsIllustrationsGamesGen {
   /// Directory path: assets/illustrations/games/math
   $AssetsIllustrationsGamesMathGen get math => const $AssetsIllustrationsGamesMathGen();
 
+  /// Directory path: assets/illustrations/games/plants
+  $AssetsIllustrationsGamesPlantsGen get plants => const $AssetsIllustrationsGamesPlantsGen();
+
   /// Directory path: assets/illustrations/games/swing
   $AssetsIllustrationsGamesSwingGen get swing => const $AssetsIllustrationsGamesSwingGen();
 }
@@ -496,8 +495,28 @@ class $AssetsIllustrationsModulesGen {
   /// File path: assets/illustrations/modules/diary.svg
   SvgGenImage get diary => const SvgGenImage('assets/illustrations/modules/diary.svg');
 
+  /// File path: assets/illustrations/modules/eating_afraid.svg
+  SvgGenImage get eatingAfraid =>
+      const SvgGenImage('assets/illustrations/modules/eating_afraid.svg');
+
   /// File path: assets/illustrations/modules/eating_after.svg
   SvgGenImage get eatingAfter => const SvgGenImage('assets/illustrations/modules/eating_after.svg');
+
+  /// File path: assets/illustrations/modules/eating_am_snack.svg
+  SvgGenImage get eatingAmSnack =>
+      const SvgGenImage('assets/illustrations/modules/eating_am_snack.svg');
+
+  /// File path: assets/illustrations/modules/eating_breakfast.svg
+  SvgGenImage get eatingBreakfast =>
+      const SvgGenImage('assets/illustrations/modules/eating_breakfast.svg');
+
+  /// File path: assets/illustrations/modules/eating_challenge.svg
+  SvgGenImage get eatingChallenge =>
+      const SvgGenImage('assets/illustrations/modules/eating_challenge.svg');
+
+  /// File path: assets/illustrations/modules/eating_dinner.svg
+  SvgGenImage get eatingDinner =>
+      const SvgGenImage('assets/illustrations/modules/eating_dinner.svg');
 
   /// File path: assets/illustrations/modules/eating_disorder.svg
   SvgGenImage get eatingDisorder =>
@@ -506,8 +525,18 @@ class $AssetsIllustrationsModulesGen {
   /// File path: assets/illustrations/modules/eating_fail.svg
   SvgGenImage get eatingFail => const SvgGenImage('assets/illustrations/modules/eating_fail.svg');
 
+  /// File path: assets/illustrations/modules/eating_like.svg
+  SvgGenImage get eatingLike => const SvgGenImage('assets/illustrations/modules/eating_like.svg');
+
+  /// File path: assets/illustrations/modules/eating_lunch.svg
+  SvgGenImage get eatingLunch => const SvgGenImage('assets/illustrations/modules/eating_lunch.svg');
+
   /// File path: assets/illustrations/modules/eating_over.svg
   SvgGenImage get eatingOver => const SvgGenImage('assets/illustrations/modules/eating_over.svg');
+
+  /// File path: assets/illustrations/modules/eating_pm_snack.svg
+  SvgGenImage get eatingPmSnack =>
+      const SvgGenImage('assets/illustrations/modules/eating_pm_snack.svg');
 
   /// File path: assets/illustrations/modules/eating_tips.svg
   SvgGenImage get eatingTips => const SvgGenImage('assets/illustrations/modules/eating_tips.svg');
@@ -527,6 +556,9 @@ class $AssetsIllustrationsModulesGen {
 
   /// File path: assets/illustrations/modules/food_tracker.svg
   SvgGenImage get foodTracker => const SvgGenImage('assets/illustrations/modules/food_tracker.svg');
+
+  /// File path: assets/illustrations/modules/games.svg
+  SvgGenImage get games => const SvgGenImage('assets/illustrations/modules/games.svg');
 
   /// File path: assets/illustrations/modules/homework.svg
   SvgGenImage get homework => const SvgGenImage('assets/illustrations/modules/homework.svg');
@@ -595,16 +627,25 @@ class $AssetsIllustrationsModulesGen {
     breathingTriangle,
     depression,
     diary,
+    eatingAfraid,
     eatingAfter,
+    eatingAmSnack,
+    eatingBreakfast,
+    eatingChallenge,
+    eatingDinner,
     eatingDisorder,
     eatingFail,
+    eatingLike,
+    eatingLunch,
     eatingOver,
+    eatingPmSnack,
     eatingTips,
     eatingVomit,
     emailHelp,
     emergencyPlan,
     figure,
     foodTracker,
+    games,
     homework,
     journal,
     moodTracker,
@@ -692,6 +733,28 @@ class $AssetsIllustrationsGamesMathGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [correct, math, wrong];
+}
+
+class $AssetsIllustrationsGamesPlantsGen {
+  const $AssetsIllustrationsGamesPlantsGen();
+
+  /// File path: assets/illustrations/games/plants/plant1.svg
+  SvgGenImage get plant1 => const SvgGenImage('assets/illustrations/games/plants/plant1.svg');
+
+  /// File path: assets/illustrations/games/plants/plant2.svg
+  SvgGenImage get plant2 => const SvgGenImage('assets/illustrations/games/plants/plant2.svg');
+
+  /// File path: assets/illustrations/games/plants/plant3.svg
+  SvgGenImage get plant3 => const SvgGenImage('assets/illustrations/games/plants/plant3.svg');
+
+  /// File path: assets/illustrations/games/plants/plants.svg
+  SvgGenImage get plants => const SvgGenImage('assets/illustrations/games/plants/plants.svg');
+
+  /// File path: assets/illustrations/games/plants/slash.svg
+  SvgGenImage get slash => const SvgGenImage('assets/illustrations/games/plants/slash.svg');
+
+  /// List of all assets
+  List<SvgGenImage> get values => [plant1, plant2, plant3, plants, slash];
 }
 
 class $AssetsIllustrationsGamesSwingGen {
