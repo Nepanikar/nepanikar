@@ -1,0 +1,294 @@
+============================================================
+                    TYZDEN 1
+============================================================
+
+TEMA TYZDNA: Uvod do programu
+KRATKY POPIS TYZDNA: Zoznamenie sa s programom, edukacia o HPO a DBT, stanovenie cielov a zaklady starostlivosti o seba
+
+
+============================================================
+                    DEN 1
+============================================================
+
+NAZOV: Predstavenie programu
+KRATKY POPIS (1 veta): Zoznamte sa s programom a jeho strukturou
+TYP: lekcia
+ODHADOVANY CAS: 15 minut
+
+------- OBSAH -------
+
+[NADPIS]
+Vitajte v programe
+
+[TEXT]
+Prave ste otvorili program, ktory bol vytvoreny pre ludi, ktori sa ucia zvladat prejavy hranicnej poruchy osobnosti. Je ale aj pre tych, ktori maju vseobecne potize v oblasti emocii, stresu, impulzivneho chovania a medziludskych vztahov, vratane toho sami so sebou.
+
+[TEXT]
+Program moze uzivatelovi poskytnut radu nastrojov a strategii, pre ktore boli inspiraciou overene metody dialekticko-behavioralnej terapie (DBT). Viac o DBT sa mozete dozvediet v zaciatku programu.
+
+[TEXT]
+Nabite dovednosti z programu vam mozu pomoct lepsie porozumiet svojim emociam, regulovat impulsy, zlepsit komunikaciu s ostatnymi a vztah sam so sebou.
+
+[UPOZORNENIE]
+Priide nam dolezite povedat, ze program nenahradzuje terapiu. Moze byt vsak dobrym pomocnikom pre tych, ktori z akehokolvek dovodu na terapiu ist nemozu alebo nechcu alebo cakaju na svoj termin.
+
+[NADPIS]
+Struktura programu
+
+[TEXT]
+Program trva 7 tyzdnov. Je ziaduce, aby bol plneny kazdodenne, nie je to vsak nutnou podmienkou. Program obsahuje najma prakticke cvicenia, ale aj jednoduche vysvetlenia roznych suvisiacich javov. Jeho plnenie zaberie v priemere 5-20 minut denne.
+
+[ZOZNAM]
+- Tyzden 1: Uvod a pece o seba
+- Tyzden 2: Mindfulness
+- Tyzden 3: Emocna regulacia
+- Tyzden 4: Tolerancia distresu
+- Tyzden 5: Impulzivne chovanie
+- Tyzden 6: Medziludske vztahy a sebapojetie
+- Tyzden 7: Zaver programu
+
+[TEXT]
+Tyzden obvykle zacne nejakym poucenim o danej oblasti, aby davalo zmysel, na co sa v danom tyzdni budeme zameriavat a preco. V dalsich dnoch sa postupne budeme ucit novym dovednostiam. Koniec tyzdna bude vzdy venovany zhrnutiu a zamysleniu nad tym, co sme sa naucili.
+
+[TIP]
+Mozno to znie teraz zlozito a narocne, ale nie je treba sa obavat. Cvicenia su davkovane tak, aby pre vas neboli prilis zahlcujuce.
+
+[OTAZKA]
+Zadajte prosim vase krstne meno a zajmeno, aby vas program mohol oslovovat (napr. Monika, ona).
+
+
+============================================================
+                    DEN 2
+============================================================
+
+NAZOV: Edukacia HPO + DBT
+KRATKY POPIS (1 veta): Dozviete sa zakladne informacie o hranicnej poruche osobnosti a DBT terapii
+TYP: lekcia
+ODHADOVANY CAS: 15 minut
+
+------- OBSAH -------
+
+[NADPIS]
+Co je hranicna porucha osobnosti?
+
+[TEXT]
+Hranicna porucha osobnosti (skratene HPO) je dusevne ochorenie charakterizovane vyraznymi vykyvmi nalad, impulzivnym chovanim a nestabilnymi vztahmi. Ludia s touto poruchou casto zazivaju intenzivne emocie, ktore sa rychlo menia, a mozu mat problemy s tym, ako vnimaju sami seba a ostatnych.
+
+[TEXT]
+Tento program je urceny nielen ludom s diagnostikovanou hranicnou poruchou osobnosti, ale aj tym, ktori len vnimaju nejake obtize v oblasti emocii, impulzivity alebo vztahov. Cielom nie je nalepkovat ani stigmatizovat, ale ponuknut nastroje a strategie, ktore mozu pomoct kazdemu, kto chce zlepsit kvalitu zivota v spomenutych oblastiach.
+
+[NADPIS]
+Co je DBT?
+
+[TEXT]
+DBT, cize dialekticko-behavioralna terapia, je sposob, ako sa ucit lepsie zvladat svoje emocie a stres. Pomaha ludom porozumiet tomu, co citia, a najst sposoby, ako reagovat bez impulzivneho chovania. DBT tiez podporuje zlepsenie vztahov s ostatnymi a uci, ako sa prijat a zaroven pracovat na zmenach, ktore chceme vo svojom zivote urobit.
+
+[NADPIS]
+Preco je nacvik dovednosti dolezity?
+
+[TEXT]
+Nacvik dovednosti je dolezity preto, ze samotne vedenie nestaci - je potreba precvicovat nove sposoby, ako reagovat na emocie, stres alebo konflikty, aby sa stali prirodzenou sucastou zivota. Ked nove strategie pravidelne pouzivame, znizujeme impulzivne chovanie a lahsie zvladame tazke situacie. Pravidelny nacvik nam tiez dodava pocit istoty v situaciach, ktore byvali skoor obtazne.
+
+[TIP]
+Ak by si mal/a zaujem dozvediet sa o HPO alebo DBT viac, mozes si precitat doplnkove materialy.
+
+[OTAZKA]
+Je ti jasne, o com bude tento program? Mas nejake otazky?
+
+
+============================================================
+                    DEN 3
+============================================================
+
+NAZOV: Ciele a ocakavania
+KRATKY POPIS (1 veta): Stanovte si svoje ciele pomocou metody SMART
+TYP: worksheet
+ODHADOVANY CAS: 20 minut
+
+------- OBSAH -------
+
+[NADPIS]
+Vase ocakavania a ciele
+
+[TEXT]
+Pojdme si dnes zlahka popovidat o tom, s akym ocakavanim vstupujete do programu a akych cielov by ste chceli dosiahnut.
+
+[OTAZKA]
+S akym ocakavanim vstupujes do programu?
+
+[OTAZKA]
+Akych cielov by si chcel/a pocas programu dosiahnut?
+
+[TEXT]
+Je uplne v poriadku zacinat aj s malymi cielmi. Kazdy krok, aj ten najmensi, je dolezity a posuva nas smerom, ktorym chceme ist. Popravde - tie jednoduchsie ciele sa nam plnia lepsie.
+
+[NADPIS]
+SMART ciele
+
+[TEXT]
+SMART ciele je konkretny sposob, ako si nastavit ciele tak, aby boli jasne, realne a dosiahnutelne.
+
+[KROKY]
+1. S - Specificky: ciel je jasne definovany, vies presne, coho chces dosiahnut
+2. M - Meratelny: mozes sledovat, ci si ciel splnil/a, napriklad poctom pokusov
+3. A - Adekvatny: ciel je realisticky a zvladnutelny vzhladom k tvojim moznostiam
+4. R - Relevantny: ciel ma pre teba vyznam a suvisi s tym, co je pre teba dolezite
+5. T - Terminovany: je jasne, do kedy chces ciele dosiahnut
+
+[NADPIS]
+Pracovny list: Moj SMART ciel
+
+[ZOZNAM]
+- Specificky (S): Co konkretne chcem dokazat?
+- Meratelny (M): Ako poznam, ze som ciele dosiahol/a?
+- Adekvatny (A): Je to pre mna realne zvladnutelne? Ako?
+- Relevantny (R): Preco je to pre mna dolezite?
+- Terminovany (T): Do kedy chcem ciele dosiahnut?
+
+[TIP]
+Priklad: "Chcem nekricat na kamaratku, ked ma nastve, ze dorazila neskoro na stretnutie. Poznam to tak, ze jej poviem pokojne, ze mi vadi cakanie. Je to dosiahnutelne, pretoze si vopred pripravim vetu. Je to dolezite, pretoze si chcem udrzat dobry vztah. Chcem to vyskusat pri dalsom stretnuti."
+
+[OTAZKA]
+Skus si teraz definovat jeden tvoj SMART ciel pre priebeh programu.
+
+
+============================================================
+                    DEN 4
+============================================================
+
+NAZOV: Pece o seba - PLEASE
+KRATKY POPIS (1 veta): Naucte sa model PLEASE pre znizenie zranitelnosti voci negativnym emociam
+TYP: technika
+ODHADOVANY CAS: 20 minut
+
+------- OBSAH -------
+
+[NADPIS]
+Preco je pece o seba dolezita?
+
+[TEXT]
+Pece o seba je dolezita, pretoze nam pomaha udrzovat fyzicku i psychicku energiu, lepsie zvladat stres a predchadzat vycerpaniu. Ked sa starame o svoje potreby, mame viac sily zvladat emocie, byt trpezlivejsi k ostatnym a citit sa vyrovnanejsie.
+
+[NADPIS]
+Model PLEASE
+
+[TEXT]
+K tomu nam moze pomoct model PLEASE. Su to aktivity pre znizenie zranitelnosti voci negativnym emociam tym, ze sa starame o telo a zakladne potreby.
+
+[KROKY]
+1. PL - Pecuj o telo: Staram sa o svoje fyzicke zdravie? (navsteva lekara, odpocinek, lieky)
+2. E - Energia z vyzivy: Jem pravidelne a vyvazene? (pravidelne jedla, viac ovocia a zeleniny)
+3. A - Abstinuj od navykovych latok: Vyhybam sa alkoholu, nadmernemu kofeinu alebo inym navykovym latkam?
+4. S - Spanok: Dopriavam si dostatok kvalitneho spanku? (chodit spat skor, pravidelny rezim)
+5. E - Energia z pohybu: Hybem sa pravidelne? (prechadzky, lahke cvicenie, joga)
+
+[NADPIS]
+Vyzva na 3 dni
+
+[TEXT]
+Niekedy sa stava, ze s jednou oblastou z modelu PLEASE dlhodobo bojujeme. Ak mas pocit, ze sa ta to tyka, mozes si dat malu vyzvu na dalsie tri dni. Vyber si tu, ktora je pre teba prave teraz najdolezitejsia:
+
+[ZOZNAM]
+- P: Skus pocas dalsich troch dni urobit krok k peci o svoje zdravie
+- L: Skus jest pravidelne, alebo si do jedalnička pridaj jednu zdravsiu potravinu
+- E: Skus obmedzit alebo vynechat jednu latku, ktora ti neprospiva
+- A: Nastav si pravidelny cas na spanie a skus ho tri dni dodrzat
+- S: Zarad kazdy den aspon 10 minut pohybu
+- E: Skus si kazdy den najst kratku aktivitu, ktora ti pomoze zkludnit emocie
+
+[TIP]
+Ak si nieco vyberies, bude ti chodit kazdy den pripomienka. Mozes ju vypnut pri splneni vyzvy.
+
+[OTAZKA]
+Ktoru oblast z modelu PLEASE by si chcel/a zlepsit?
+
+
+============================================================
+                    DEN 5
+============================================================
+
+NAZOV: Pauza
+KRATKY POPIS (1 veta): Dnes si oddychnite od programu
+TYP: reflexia
+ODHADOVANY CAS: 5 minut
+
+------- OBSAH -------
+
+[NADPIS]
+Cas na oddych
+
+[TEXT]
+Pre dnesny den si dame od programu pauzu. Pre zaciatok sme toho zvladli spolocne mnoho. Ocenujeme tvoje odhodlanie, s ktorym sa do programu zapajujes!
+
+[TEXT]
+Dnes si naozaj zasluzis odpocinek.
+
+[TIP]
+Nezabudni si zaznamenat svoju naladu v sekcii Moje zaznamy.
+
+[OTAZKA]
+Ako sa dnes citis?
+
+
+============================================================
+                    DEN 6
+============================================================
+
+NAZOV: Pauza
+KRATKY POPIS (1 veta): Aj dnes si doprajte volnejsi den
+TYP: reflexia
+ODHADOVANY CAS: 5 minut
+
+------- OBSAH -------
+
+[NADPIS]
+Pokracujeme v oddychu
+
+[TEXT]
+Aj dnes nejaku vacsiu pracu vynechame. Mas za sebou skvelý zaciatok a zasluzis si chvilku oddychu.
+
+[TIP]
+Pokracuj v zaznamnavani nalady a pripadne v PLEASE vyzve, ak si si ju zvolil/a.
+
+[OTAZKA]
+Ako sa ti dari s PLEASE vyzvou, ak si si ju dal/a?
+
+
+============================================================
+                    DEN 7 - ZHRNUTIE TYZDNA
+============================================================
+
+NAZOV: Zhrnutie tyzdna 1
+KRATKY POPIS (1 veta): Co sme sa tento tyzden naucili
+TYP: zhrnutie
+ODHADOVANY CAS: 10 minut
+
+------- OBSAH -------
+
+[NADPIS]
+Co sme sa tento tyzden naucili
+
+[ZOZNAM]
+- Zoznamili sme sa s programom a jeho strukturou (7 tyzdnov, 7 oblasti)
+- Dozvedeli sme sa zakladne informacie o HPO a DBT terapii
+- Naucili sme sa stanovovat SMART ciele
+- Spoznali sme model PLEASE pre starostlivost o seba
+- Zaznamenavali sme si naladu
+
+[NADPIS]
+Otazky na reflexiu
+
+[OTAZKA]
+Co pre teba bolo najzaujimavejsie? Co si sa naucil/a?
+
+[OTAZKA]
+Pouzil/a si nieco z toho, co si sa naucil/a vo tvojom zivote? Co a kedy?
+
+[OTAZKA]
+Kedy konkretne by si tuto dovednost mohol/a vyuzit v dalsom tyzdni?
+
+[CITAT]
+"Kazdy krok, aj ten najmensi, je dolezity a posuva nas smerom, ktorym chceme ist."
+
+
+============================================================

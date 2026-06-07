@@ -1,0 +1,662 @@
+{
+  "_dokumentacia": {
+    "popis": "Sablona pre BPD program - 7 tyzdnov, kazdy ma 7 dni",
+    "verzia": "1.0",
+    "poznamka": "Toto je pracovna verzia s priamym textom. Lokalizacia sa doriesi neskor.",
+
+    "vysvetlenie_poli": {
+      "weekNumber": "Cislo tyzdna (1-7)",
+      "dayNumber": "Cislo dna v tyzdni (1-7)",
+      "title": "Nazov (dna/tyzdna)",
+      "description": "Kratky popis - co uzivatel v tento den spravi",
+      "theme": "Tema tyzdna",
+      "contentType": "Typ obsahu - urcuje ako sa den zobrazi",
+      "durationMinutes": "Odhadovany cas na dokoncenie v minutach",
+      "sections": "Pole sekcii - samotny obsah dna",
+      "exerciseId": "ID cvicenia ak den obsahuje interaktivne cvicenie",
+      "worksheetId": "ID pracovneho listu ak den obsahuje worksheet",
+      "techniqueId": "ID techniky (STOP, TIPP, atd.)"
+    },
+
+    "typy_obsahu": {
+      "lesson": "Edukacny obsah - teoria, vysvetlenie",
+      "exercise": "Interaktivne cvicenie - dychanie, meditacia",
+      "reflection": "Sebareflexia - otazky na zamyslenie",
+      "worksheet": "Pracovny list - formular na vyplnenie",
+      "technique": "Nacvik DBT techniky",
+      "meditation": "Mindfulness cvicenie",
+      "summary": "Zhrnutie tyzdna"
+    },
+
+    "typy_sekcii": {
+      "text": "Bezny odstavec textu",
+      "heading": "Nadpis",
+      "bullet_list": "Zoznam s odrazkami",
+      "numbered_list": "Cislovany zoznam (kroky)",
+      "tip": "Tip alebo rada (zvyrazneny box)",
+      "warning": "Upozornenie (cerveny box)",
+      "quote": "Citat alebo motivacna myslienka",
+      "question": "Otazka na reflexiu",
+      "infographic": "Obrazok/infografika"
+    }
+  },
+
+  "weeks": [
+    {
+      "weekNumber": 1,
+      "title": "Uvod a zaklady vsimavosti",
+      "theme": "Mindfulness",
+      "description": "Zoznámenie s programom a základy všímavosti",
+      "iconPath": null,
+
+      "days": [
+        {
+          "dayNumber": 1,
+          "title": "Vitejte v programe",
+          "description": "Zoznamenie s programom a jeho strukturou",
+          "contentType": "lesson",
+          "durationMinutes": 15,
+
+          "sections": [
+            {
+              "type": "heading",
+              "content": "Vitejte v 7-tyzdnovom programe"
+            },
+            {
+              "type": "text",
+              "content": "Tento program vas prevedie zakladmi DBT (dialekticko-behavioralnej terapie). Kazdy den vas caka kratka lekcia, cvicenie alebo reflexia."
+            },
+            {
+              "type": "text",
+              "content": "Program je rozdeleny do 7 tyzdnov, kazdy sa zameriava na inu oblast:"
+            },
+            {
+              "type": "bullet_list",
+              "items": [
+                "Tyzden 1: Vsimavost (mindfulness)",
+                "Tyzden 2: Regulacia emocii",
+                "Tyzden 3: Tolerancia distresu",
+                "Tyzden 4: Medziludska efektivita",
+                "Tyzden 5: Praca s impulzivitou",
+                "Tyzden 6: Sebauctivanie",
+                "Tyzden 7: Zhrnutie a plan do buducna"
+              ]
+            },
+            {
+              "type": "tip",
+              "content": "Odporucame venovat programu 15-30 minut denne. Najlepsie je cvicit rano alebo vecer, ked mate klud."
+            },
+            {
+              "type": "question",
+              "content": "Co vas priviedlo k tomuto programu? Co by ste chceli zmenit?"
+            }
+          ]
+        },
+        {
+          "dayNumber": 2,
+          "title": "Co je vsimavost?",
+          "description": "Zaklady mindfulness a preco je dolezita",
+          "contentType": "lesson",
+          "durationMinutes": 15,
+
+          "sections": [
+            {
+              "type": "heading",
+              "content": "Vsimavost - byt pritomny v okamihu"
+            },
+            {
+              "type": "text",
+              "content": "Vsimavost (mindfulness) znamena vedome vnimat pritomny okamih - bez posudzovania, bez snahy nieco menit."
+            },
+            {
+              "type": "text",
+              "content": "Preco je vsimavost dolezita pri silnych emociach?"
+            },
+            {
+              "type": "bullet_list",
+              "items": [
+                "Pomaha zastavit automaticke reakcie",
+                "Dava nam priestor medzi podnetom a reakciou",
+                "Umoznuje nam vedome si vybrat, ako budeme reagovat",
+                "Znizuje intenzitu emocii"
+              ]
+            },
+            {
+              "type": "quote",
+              "content": "Medzi podnetom a reakciou je priestor. V tomto priestore je nasa sloboda vybrat si reakciu."
+            }
+          ]
+        },
+        {
+          "dayNumber": 3,
+          "title": "Vedome dychanie",
+          "description": "Prve mindfulness cvicenie - pozorovanie dychu",
+          "contentType": "exercise",
+          "durationMinutes": 10,
+
+          "sections": [
+            {
+              "type": "heading",
+              "content": "Cvicenie: Vedome dychanie"
+            },
+            {
+              "type": "text",
+              "content": "Toto je zakladne mindfulness cvicenie. Budeme jednoducho pozorovat svoj dych."
+            },
+            {
+              "type": "numbered_list",
+              "items": [
+                "Sadnite si pohodlne, chrbat rovny ale nie stuhy",
+                "Zatvorte oci alebo uprte pohlad na jeden bod",
+                "Zamerajte pozornost na svoj dych",
+                "Vsimajte si, ako vzduch vchadza a vychadza",
+                "Ked vam myslenky odbehnú, jemne sa vráťte k dychu",
+                "Pokracujte 3-5 minut"
+              ]
+            },
+            {
+              "type": "tip",
+              "content": "Je normalne, ze vam myslenky odbehnu. Neposudzujte sa. Jednoducho sa vrátte k dychu."
+            }
+          ],
+
+          "exerciseId": "breathing_basic"
+        },
+        {
+          "dayNumber": 4,
+          "title": "Pozorovanie myslienok",
+          "description": "Cvicenie na odpútanie sa od myslienok",
+          "contentType": "exercise",
+          "durationMinutes": 15,
+
+          "sections": [
+            {
+              "type": "heading",
+              "content": "Cvicenie: Myslenky ako oblaky"
+            },
+            {
+              "type": "text",
+              "content": "Dnes sa naucime pozorovat myslenky bez toho, aby sme sa v nich stratili."
+            },
+            {
+              "type": "text",
+              "content": "Predstavte si, ze sedite na luke a pozeráte na oblohu. Vase myslenky su ako oblaky - priletia a odletia."
+            },
+            {
+              "type": "numbered_list",
+              "items": [
+                "Zatvorte oci a par krat sa zhlboka nadychnite",
+                "Ked sa objavi myslienka, vsimnte si ju",
+                "Pomenujte ju: 'toto je starost', 'toto je spomienka'",
+                "Predstavte si, ze ju kladiete na oblak",
+                "Sledujte, ako oblak pomaly odplava",
+                "Vrátte sa k pozorovaniu oblohy"
+              ]
+            },
+            {
+              "type": "quote",
+              "content": "Nie ste vase myslenky. Ste ten, kto myslenky pozoruje."
+            }
+          ]
+        },
+        {
+          "dayNumber": 5,
+          "title": "Vsimavost v beznom dni",
+          "description": "Ako zaradit mindfulness do kazdodenneho zivota",
+          "contentType": "lesson",
+          "durationMinutes": 10,
+
+          "sections": [
+            {
+              "type": "heading",
+              "content": "Mindfulness pocas dna"
+            },
+            {
+              "type": "text",
+              "content": "Nemusite meditovat hodiny. Vsimavost sa da cvicit pri beznych cinnostiach."
+            },
+            {
+              "type": "heading",
+              "content": "Priklady vsimaveho dna:"
+            },
+            {
+              "type": "bullet_list",
+              "items": [
+                "Rano: Vsimajte si chut rannej kavy/caju. Naozaj ju ochutnajte.",
+                "Cestou: Vsimajte si 5 veci, ktore vidite, 4 ktore pocujete, 3 ktore citite.",
+                "Pri jidel: Jedzte pomaly, vnimajte chute a textury.",
+                "Pri cakani: Namiesto telefonu pozorujte svoj dych.",
+                "Vecer: 3 veci, za ktore ste dnes vdacni."
+              ]
+            },
+            {
+              "type": "tip",
+              "content": "Vyberte si jednu cinnost, ktoru dnes urobite vsimavo."
+            }
+          ]
+        },
+        {
+          "dayNumber": 6,
+          "title": "Body scan",
+          "description": "Meditacia na uvedomenie si tela",
+          "contentType": "meditation",
+          "durationMinutes": 15,
+
+          "sections": [
+            {
+              "type": "heading",
+              "content": "Cvicenie: Prechadzka telom (Body Scan)"
+            },
+            {
+              "type": "text",
+              "content": "Body scan je technika, pri ktorej postupne presuvate pozornost cez cele telo."
+            },
+            {
+              "type": "numbered_list",
+              "items": [
+                "Lahnite si alebo sadnite pohodlne",
+                "Zatvorte oci a par krat sa zhlboka nadychnite",
+                "Zamerajte pozornost na chodidla - co citite?",
+                "Pomaly presuvajte pozornost hore - lytka, kolena, stehna...",
+                "Pokracujte cez brucho, hrudnik, ruky, ramena",
+                "Zakoncite na tvari a temene hlavy",
+                "Nakoniec vnimajte cele telo naraz"
+              ]
+            },
+            {
+              "type": "tip",
+              "content": "Ak najdete napatie, skuste sa pri vydychu do tej oblasti uvolnit."
+            }
+          ],
+
+          "exerciseId": "body_scan"
+        },
+        {
+          "dayNumber": 7,
+          "title": "Zhrnutie tyzdna 1",
+          "description": "Reflexia a zopakovanie",
+          "contentType": "summary",
+          "durationMinutes": 10,
+
+          "sections": [
+            {
+              "type": "heading",
+              "content": "Co sme sa tento tyzden naucili"
+            },
+            {
+              "type": "bullet_list",
+              "items": [
+                "Vsimavost znamena byt pritomny v okamihu bez posudzovania",
+                "Dych je kotva, ku ktorej sa mozeme vzdy vratit",
+                "Myslenky nie sme my - mozeme ich pozorovat",
+                "Mindfulness sa da cvicit pri beznych cinnostiach",
+                "Body scan pomaha uvedomit si telo a uvolnit napatie"
+              ]
+            },
+            {
+              "type": "heading",
+              "content": "Otazky na reflexiu"
+            },
+            {
+              "type": "question",
+              "content": "Ktore cvicenie vam najviac sadlo? Preco?"
+            },
+            {
+              "type": "question",
+              "content": "Kedy pocas dna by ste mohli pravidelne cvicit vsimavost?"
+            },
+            {
+              "type": "question",
+              "content": "Vsimli ste si nejaky rozdiel vo vasom prozivani tento tyzden?"
+            },
+            {
+              "type": "quote",
+              "content": "Zvyk z vas vytvari prax. Aj 5 minut denne je lepsich nez hodina raz za tyzden."
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "weekNumber": 2,
+      "title": "Regulacia emocii",
+      "theme": "Emotion Regulation",
+      "description": "Porozumenie emociam a ako s nimi pracovat",
+      "iconPath": null,
+
+      "days": [
+        {
+          "dayNumber": 1,
+          "title": "--- VYPLNIT ---",
+          "description": "--- VYPLNIT ---",
+          "contentType": "lesson",
+          "durationMinutes": 15,
+          "sections": []
+        },
+        {
+          "dayNumber": 2,
+          "title": "--- VYPLNIT ---",
+          "description": "--- VYPLNIT ---",
+          "contentType": "lesson",
+          "durationMinutes": 15,
+          "sections": []
+        },
+        {
+          "dayNumber": 3,
+          "title": "--- VYPLNIT ---",
+          "description": "--- VYPLNIT ---",
+          "contentType": "technique",
+          "durationMinutes": 20,
+          "sections": [],
+          "techniqueId": null
+        },
+        {
+          "dayNumber": 4,
+          "title": "--- VYPLNIT ---",
+          "description": "--- VYPLNIT ---",
+          "contentType": "worksheet",
+          "durationMinutes": 20,
+          "sections": [],
+          "worksheetId": null
+        },
+        {
+          "dayNumber": 5,
+          "title": "--- VYPLNIT ---",
+          "description": "--- VYPLNIT ---",
+          "contentType": "exercise",
+          "durationMinutes": 15,
+          "sections": []
+        },
+        {
+          "dayNumber": 6,
+          "title": "--- VYPLNIT ---",
+          "description": "--- VYPLNIT ---",
+          "contentType": "reflection",
+          "durationMinutes": 15,
+          "sections": []
+        },
+        {
+          "dayNumber": 7,
+          "title": "Zhrnutie tyzdna 2",
+          "description": "Reflexia a zopakovanie",
+          "contentType": "summary",
+          "durationMinutes": 10,
+          "sections": []
+        }
+      ]
+    },
+
+    {
+      "weekNumber": 3,
+      "title": "Tolerancia distresu",
+      "theme": "Distress Tolerance",
+      "description": "Techniky pre zvládanie kríz a silných emócií",
+      "iconPath": null,
+      "days": [
+        {"dayNumber": 1, "title": "--- VYPLNIT ---", "description": "---", "contentType": "lesson", "durationMinutes": 15, "sections": []},
+        {"dayNumber": 2, "title": "--- VYPLNIT ---", "description": "---", "contentType": "lesson", "durationMinutes": 15, "sections": []},
+        {"dayNumber": 3, "title": "Technika STOP", "description": "Zastavenie pred impulzívnym konaním", "contentType": "technique", "durationMinutes": 20, "sections": [], "techniqueId": "STOP"},
+        {"dayNumber": 4, "title": "Technika TIPP", "description": "Rýchle zníženie intenzity emócie", "contentType": "technique", "durationMinutes": 25, "sections": [], "techniqueId": "TIPP"},
+        {"dayNumber": 5, "title": "Technika ACCEPTS", "description": "Odvrátenie pozornosti od krízy", "contentType": "technique", "durationMinutes": 20, "sections": [], "techniqueId": "ACCEPTS"},
+        {"dayNumber": 6, "title": "--- VYPLNIT ---", "description": "---", "contentType": "reflection", "durationMinutes": 15, "sections": []},
+        {"dayNumber": 7, "title": "Zhrnutie tyzdna 3", "description": "Reflexia a zopakovanie", "contentType": "summary", "durationMinutes": 10, "sections": []}
+      ]
+    },
+
+    {
+      "weekNumber": 4,
+      "title": "Medziludska efektivita",
+      "theme": "Interpersonal Effectiveness",
+      "description": "Komunikácia a vzťahy",
+      "iconPath": null,
+      "days": [
+        {"dayNumber": 1, "title": "--- VYPLNIT ---", "description": "---", "contentType": "lesson", "durationMinutes": 15, "sections": []},
+        {"dayNumber": 2, "title": "--- VYPLNIT ---", "description": "---", "contentType": "lesson", "durationMinutes": 15, "sections": []},
+        {"dayNumber": 3, "title": "Technika DEARMAN", "description": "Ako požiadať o to, čo potrebujem", "contentType": "technique", "durationMinutes": 25, "sections": [], "techniqueId": "DEARMAN"},
+        {"dayNumber": 4, "title": "Technika GIVE", "description": "Udržanie vzťahu", "contentType": "technique", "durationMinutes": 20, "sections": [], "techniqueId": "GIVE"},
+        {"dayNumber": 5, "title": "Technika FAST", "description": "Sebaúcta v komunikácii", "contentType": "technique", "durationMinutes": 20, "sections": [], "techniqueId": "FAST"},
+        {"dayNumber": 6, "title": "--- VYPLNIT ---", "description": "---", "contentType": "reflection", "durationMinutes": 15, "sections": []},
+        {"dayNumber": 7, "title": "Zhrnutie tyzdna 4", "description": "Reflexia a zopakovanie", "contentType": "summary", "durationMinutes": 10, "sections": []}
+      ]
+    },
+
+    {
+      "weekNumber": 5,
+      "title": "Praca s impulzivitou",
+      "theme": "Impulse Control",
+      "description": "Rozpoznanie a zvládanie impulzov",
+      "iconPath": null,
+      "days": [
+        {"dayNumber": 1, "title": "--- VYPLNIT ---", "description": "---", "contentType": "lesson", "durationMinutes": 15, "sections": []},
+        {"dayNumber": 2, "title": "--- VYPLNIT ---", "description": "---", "contentType": "lesson", "durationMinutes": 15, "sections": []},
+        {"dayNumber": 3, "title": "--- VYPLNIT ---", "description": "---", "contentType": "technique", "durationMinutes": 20, "sections": []},
+        {"dayNumber": 4, "title": "--- VYPLNIT ---", "description": "---", "contentType": "worksheet", "durationMinutes": 20, "sections": []},
+        {"dayNumber": 5, "title": "--- VYPLNIT ---", "description": "---", "contentType": "exercise", "durationMinutes": 15, "sections": []},
+        {"dayNumber": 6, "title": "--- VYPLNIT ---", "description": "---", "contentType": "reflection", "durationMinutes": 15, "sections": []},
+        {"dayNumber": 7, "title": "Zhrnutie tyzdna 5", "description": "Reflexia a zopakovanie", "contentType": "summary", "durationMinutes": 10, "sections": []}
+      ]
+    },
+
+    {
+      "weekNumber": 6,
+      "title": "Sebauctivanie",
+      "theme": "Self-Respect",
+      "description": "Technika PLEASE a starostlivosť o seba",
+      "iconPath": null,
+      "days": [
+        {"dayNumber": 1, "title": "--- VYPLNIT ---", "description": "---", "contentType": "lesson", "durationMinutes": 15, "sections": []},
+        {"dayNumber": 2, "title": "--- VYPLNIT ---", "description": "---", "contentType": "lesson", "durationMinutes": 15, "sections": []},
+        {"dayNumber": 3, "title": "Technika PLEASE", "description": "Zníženie zraniteľnosti", "contentType": "technique", "durationMinutes": 20, "sections": [], "techniqueId": "PLEASE"},
+        {"dayNumber": 4, "title": "--- VYPLNIT ---", "description": "---", "contentType": "worksheet", "durationMinutes": 20, "sections": []},
+        {"dayNumber": 5, "title": "--- VYPLNIT ---", "description": "---", "contentType": "exercise", "durationMinutes": 15, "sections": []},
+        {"dayNumber": 6, "title": "--- VYPLNIT ---", "description": "---", "contentType": "reflection", "durationMinutes": 15, "sections": []},
+        {"dayNumber": 7, "title": "Zhrnutie tyzdna 6", "description": "Reflexia a zopakovanie", "contentType": "summary", "durationMinutes": 10, "sections": []}
+      ]
+    },
+
+    {
+      "weekNumber": 7,
+      "title": "Zhrnutie a plan do buducna",
+      "theme": "Review & Planning",
+      "description": "Opakovanie a vytvorenie plánu pre budúcnosť",
+      "iconPath": null,
+      "days": [
+        {"dayNumber": 1, "title": "--- VYPLNIT ---", "description": "---", "contentType": "lesson", "durationMinutes": 15, "sections": []},
+        {"dayNumber": 2, "title": "--- VYPLNIT ---", "description": "---", "contentType": "lesson", "durationMinutes": 15, "sections": []},
+        {"dayNumber": 3, "title": "--- VYPLNIT ---", "description": "---", "contentType": "exercise", "durationMinutes": 20, "sections": []},
+        {"dayNumber": 4, "title": "--- VYPLNIT ---", "description": "---", "contentType": "reflection", "durationMinutes": 20, "sections": []},
+        {"dayNumber": 5, "title": "--- VYPLNIT ---", "description": "---", "contentType": "worksheet", "durationMinutes": 20, "sections": []},
+        {"dayNumber": 6, "title": "--- VYPLNIT ---", "description": "---", "contentType": "reflection", "durationMinutes": 15, "sections": []},
+        {"dayNumber": 7, "title": "Zaver programu", "description": "Gratulujeme k dokonceniu!", "contentType": "summary", "durationMinutes": 15, "sections": []}
+      ]
+    }
+  ],
+
+  "techniques": {
+    "_popis": "Definicie DBT technik - vyplnit podrobne kroky",
+
+    "STOP": {
+      "name": "STOP",
+      "fullName": "Stop, Take a step back, Observe, Proceed mindfully",
+      "description": "Technika na zastavenie pred impulzivnym konanim",
+      "category": "distress_tolerance",
+      "steps": [
+        {"letter": "S", "name": "Stop", "description": "Zastavte sa. Nehybte sa. Nerobte nic."},
+        {"letter": "T", "name": "Take a step back", "description": "Ustupte od situacie. Nadychnite sa."},
+        {"letter": "O", "name": "Observe", "description": "Pozorujte. Co sa deje? Co citite? Co si myslite?"},
+        {"letter": "P", "name": "Proceed mindfully", "description": "Pokracujte vedome. Rozhodnite sa, co je najlepsi krok."}
+      ],
+      "whenToUse": [
+        "Ked citite silnu emociu",
+        "Ked mate nutkanie nieco urobit",
+        "Pred dulezitym rozhodnutim",
+        "V konflikte"
+      ],
+      "infographicPath": "assets/bpd/infographics/stop.svg"
+    },
+
+    "TIPP": {
+      "name": "TIPP",
+      "fullName": "Temperature, Intense exercise, Paced breathing, Paired muscle relaxation",
+      "description": "Technika na rychle znizenie intenzity emocie",
+      "category": "distress_tolerance",
+      "steps": [
+        {"letter": "T", "name": "Temperature", "description": "Zmente telesnu teplotu - studena voda na tvar, lad v rukach"},
+        {"letter": "I", "name": "Intense exercise", "description": "Intenzivny pohyb na 10-20 minut - beh, skakanie, kliky"},
+        {"letter": "P", "name": "Paced breathing", "description": "Pomale dychanie - vydych dlhsi nez nadych (napr. 4-7-8)"},
+        {"letter": "P", "name": "Paired muscle relaxation", "description": "Postupne napinanie a uvolnovanie svalov"}
+      ],
+      "whenToUse": [
+        "V akutnej krize",
+        "Pri panike",
+        "Ked je emocna intenzita nad 7/10",
+        "Ked ine techniky nefunguju"
+      ],
+      "infographicPath": "assets/bpd/infographics/tipp.svg"
+    },
+
+    "ACCEPTS": {
+      "name": "ACCEPTS",
+      "fullName": "Activities, Contributing, Comparisons, Emotions, Pushing away, Thoughts, Sensations",
+      "description": "Technika na odvratenie pozornosti od krizy",
+      "category": "distress_tolerance",
+      "steps": [
+        {"letter": "A", "name": "Activities", "description": "Aktivita - nieco, co vas zamestna (upratovanie, hra, prechádzka)"},
+        {"letter": "C", "name": "Contributing", "description": "Prispievanie - pomozte niekomu inemu"},
+        {"letter": "C", "name": "Comparisons", "description": "Porovnanie - s vlastnou minulostou alebo s horsiou situaciou"},
+        {"letter": "E", "name": "Emotions", "description": "Emocie - vyvolajte opacnu emociu (smutok → komedia)"},
+        {"letter": "P", "name": "Pushing away", "description": "Odtlacenie - odlozte problem na neskor (mentalny trezor)"},
+        {"letter": "T", "name": "Thoughts", "description": "Myslienky - zamerajte mysel inam (pocitanie, puzzle)"},
+        {"letter": "S", "name": "Sensations", "description": "Pocity - silny telesny pocit (lad, ostra chut)"}
+      ],
+      "whenToUse": [
+        "Ked potrebujete prestávku od problemu",
+        "Ked je emocna intenzita stredna (4-7/10)",
+        "Ked TIPP nestaci"
+      ],
+      "infographicPath": "assets/bpd/infographics/accepts.svg"
+    },
+
+    "DEARMAN": {
+      "name": "DEARMAN",
+      "fullName": "Describe, Express, Assert, Reinforce, Mindful, Appear confident, Negotiate",
+      "description": "Technika na asertivnu komunikaciu - ako ziskat to, co potrebujem",
+      "category": "interpersonal",
+      "steps": [
+        {"letter": "D", "name": "Describe", "description": "Popíšte situáciu objektívne, bez hodnotenia"},
+        {"letter": "E", "name": "Express", "description": "Vyjadrite svoje pocity a názory"},
+        {"letter": "A", "name": "Assert", "description": "Jasne povedzte, čo chcete alebo potrebujete"},
+        {"letter": "R", "name": "Reinforce", "description": "Vysvetlite pozitívne dôsledky ak vám vyhovejú"},
+        {"letter": "M", "name": "Mindful", "description": "Zostaňte pri téme, nenechajte sa odviesť"},
+        {"letter": "A", "name": "Appear confident", "description": "Pôsobte sebaisto (aj keď sa tak necítite)"},
+        {"letter": "N", "name": "Negotiate", "description": "Buďte ochotní vyjednávať a hľadať kompromis"}
+      ],
+      "whenToUse": [
+        "Ked potrebujete nieco poziadat",
+        "Ked potrebujete nieco odmietnut",
+        "V konfliktnych situaciach"
+      ],
+      "infographicPath": "assets/bpd/infographics/dearman.svg"
+    },
+
+    "GIVE": {
+      "name": "GIVE",
+      "fullName": "Gentle, Interested, Validate, Easy manner",
+      "description": "Technika na udrzanie vztahu pocas komunikacie",
+      "category": "interpersonal",
+      "steps": [
+        {"letter": "G", "name": "Gentle", "description": "Buďte jemní - bez útokov, výčitiek, súdenia"},
+        {"letter": "I", "name": "Interested", "description": "Prejavte záujem - počúvajte, pýtajte sa"},
+        {"letter": "V", "name": "Validate", "description": "Validujte - uznajte pocity a pohľad druhého"},
+        {"letter": "E", "name": "Easy manner", "description": "Ľahký prístup - usmievajte sa, buďte priateľskí"}
+      ],
+      "whenToUse": [
+        "Ked vam zalezi na vztahu",
+        "Pri konfliktoch s blizkymi",
+        "Ked chcete znizit napatie"
+      ],
+      "infographicPath": "assets/bpd/infographics/give.svg"
+    },
+
+    "FAST": {
+      "name": "FAST",
+      "fullName": "Fair, Apologies (no excessive), Stick to values, Truthful",
+      "description": "Technika na udrzanie sebaúcty v komunikácii",
+      "category": "interpersonal",
+      "steps": [
+        {"letter": "F", "name": "Fair", "description": "Buďte férový - k sebe aj k druhému"},
+        {"letter": "A", "name": "Apologies (no excessive)", "description": "Neospravedlňujte sa zbytočne - len keď je to namieste"},
+        {"letter": "S", "name": "Stick to values", "description": "Držte sa svojich hodnôt - nerobte kompromisy v tom, čo je pre vás dôležité"},
+        {"letter": "T", "name": "Truthful", "description": "Buďte pravdiví - neklamte, neprikrášľujte"}
+      ],
+      "whenToUse": [
+        "Ked citite tlak ustúpiť",
+        "Ked sa ospravedlňujete za všetko",
+        "Ked potrebujete zachovat sebaúctu"
+      ],
+      "infographicPath": "assets/bpd/infographics/fast.svg"
+    },
+
+    "PLEASE": {
+      "name": "PLEASE",
+      "fullName": "Physical illness, Eating, Avoid drugs, Sleep, Exercise",
+      "description": "Technika na znizenie emocnej zranitelnosti",
+      "category": "emotion_regulation",
+      "steps": [
+        {"letter": "PL", "name": "Physical illness", "description": "Starajte sa o fyzické zdravie - navštívte lekára, berte lieky"},
+        {"letter": "E", "name": "Eating", "description": "Jedzte pravidelne a vyvážene"},
+        {"letter": "A", "name": "Avoid drugs", "description": "Vyhýbajte sa drogám a nadmernému alkoholu"},
+        {"letter": "S", "name": "Sleep", "description": "Spte dostatočne (7-9 hodín)"},
+        {"letter": "E", "name": "Exercise", "description": "Pravidelne cvičte"}
+      ],
+      "whenToUse": [
+        "Kazdy den ako prevencia",
+        "Ked ste viac zranitelni",
+        "Po kríze na zotavenie"
+      ],
+      "infographicPath": "assets/bpd/infographics/please.svg"
+    }
+  },
+
+  "exercises": {
+    "_popis": "Definicie interaktivnych cviceni",
+
+    "breathing_basic": {
+      "type": "breathing",
+      "title": "Vedome dychanie",
+      "instructions": "Pozorujte svoj dych 3-5 minut",
+      "durationSeconds": 180,
+      "settings": {
+        "showTimer": true,
+        "playSound": false
+      }
+    },
+
+    "body_scan": {
+      "type": "guided_meditation",
+      "title": "Body Scan - Prechadzka telom",
+      "instructions": "Postupne presuvajte pozornost cez cele telo",
+      "durationSeconds": 600,
+      "audioPath": "assets/bpd/audio/body_scan.mp3"
+    }
+  },
+
+  "worksheets": {
+    "_popis": "Definicie pracovnych listov - interaktivne formulare",
+
+    "emotion_diary": {
+      "title": "Emocny dennik",
+      "instructions": "Zaznamenajte situaciu a vase emocie",
+      "fields": [
+        {"id": "date", "type": "date", "label": "Datum a cas"},
+        {"id": "situation", "type": "textarea", "label": "Co sa stalo? (situacia)", "placeholder": "Popisete situaciu objektívne..."},
+        {"id": "emotion", "type": "emotion_picker", "label": "Aka emocia?"},
+        {"id": "intensity", "type": "slider", "label": "Intenzita (0-10)", "min": 0, "max": 10},
+        {"id": "thoughts", "type": "textarea", "label": "Ake myslienky?", "placeholder": "Co vam preslo hlavou..."},
+        {"id": "body", "type": "textarea", "label": "Co ste citili v tele?", "placeholder": "Napr. napatie v ramenach, búšenie srdca..."},
+        {"id": "action", "type": "textarea", "label": "Co ste urobili?", "placeholder": "Vasa reakcia..."}
+      ]
+    }
+  }
+}

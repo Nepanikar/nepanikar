@@ -10,6 +10,7 @@ Goal: give the agent the *right* context with the *fewest* tokens. These files a
 | User-facing text, translations, plurals, languages    | [localization.md](localization.md) |
 | Code style, naming, "how is this normally done here"  | [patterns.md](patterns.md) |
 | BPD programme weeks/days feature                       | see `CLAUDE.md` → "BPD Programme Development" |
+| HPO/BPD programme content + content↔code mapping       | [../hpo/README.md](../hpo/README.md) |
 
 ## 10-second orientation
 
