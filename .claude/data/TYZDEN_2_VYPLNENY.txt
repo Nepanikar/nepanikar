@@ -1,0 +1,291 @@
+============================================================
+                    TYZDEN 2
+============================================================
+
+TEMA TYZDNA: Mindfulness
+KRATKY POPIS TYZDNA: Zaklady mindfulness, What skills, How skills, dychove cvicenia a techniky vsimavosti
+KLUCOVA DOVEDNOST: What + How skills
+
+
+============================================================
+                    DEN 1
+============================================================
+
+NAZOV: Edukace mindfulness
+KRATKY POPIS (1 veta): Dozviete sa, co je mindfulness a preco je dolezity
+TYP: lekcia
+ODHADOVANY CAS: 10-15 minut
+ROUTE_TYPE: day1MindfulnessEducation
+
+------- OBSAH -------
+
+[NADPIS]
+Co je mindfulness?
+
+[TEXT]
+Mindfulness (alebo aj vsimavost) je schopnost vedome zamerit pozornost na pritomny okamzik. Na to, co prave teraz prezivame, citime alebo robime, a to bez posuzovania. Nie je to o tom "mat prazdnu hlavu", ale skôr o tom umet si vsimnut, co sa v nas i okolo nas deje, a zostat u toho chvilu pritomni.
+
+[TEXT]
+Pre ludi, ktori zazivaju silne emocie, maju sklony jednat bez uvazenia alebo prezivaju silny stres, moze byt mindfulness uzitocne v tom, ze prinasa vacsi klid a priestor k uvedomeniu si moznosti, ako reagovat. Vdaka tomu sa znizuje riziko jednat cisto pod vplyvom emocii a rastie schopnost zvladat situacie s vacsou rozvahou.
+
+[ZOZNAM]
+- Mindfulness pomaha znizovat uzkost, depresiu a napatie
+- Posiluje sustredenie
+- Zlepsuje kvalitu medziludskych vztahov
+
+[UPOZORNENIE]
+V ramci DBT je mindfulness povazovana za zakladnu dovednost, na ktorej stoja vsetky ostatne - pretoze nam pomaha "zastavit sa" a vsimnut si, co sa skutocne deje, nez urobime dalsi krok.
+
+[TIP]
+Ak by si mal/a zaujem dozvediet sa o mindfulness viac, mozes si pozriet doplnkove materialy.
+
+[OTAZKA]
+Ako sa prave teraz citis? Skus si to vsimnut bez hodnotenia.
+
+
+============================================================
+                    DEN 2
+============================================================
+
+NAZOV: What skills ("co" dovednosti)
+KRATKY POPIS (1 veta): Naucte sa tri zakladne dovednosti - pozorovanie, popis a zapojenie sa
+TYP: cvicenie
+ODHADOVANY CAS: 15-20 minut
+ROUTE_TYPE: day2WhatSkills
+
+------- OBSAH -------
+
+[NADPIS]
+What skills - "Co" dovednosti
+
+[TEXT]
+Jedna sa o dovednosti, ktore popisuju CO robit, ked praktikujes mindfulness. Su tri a popisuju, co vlastne robim, ked praktikujem mindfulness.
+
+[KROKY]
+1. POZOROVANIE - len si vsimam toho, co sa deje. To moze byt dych, telesny pocit, myslienka alebo nieco okolo mna. Nehodnotim to, len to zaznamenam, ako keby som bol/a fotograf.
+2. POPIS - ked si niecoho vsimnem, dam tomu slova. Napriklad: "Teraz citim napatie v ramenach." alebo "Objavila sa myslienka, ze to nezvladnem." Davanie slov pomaha ziskat odstup a vyjasnit si, co sa deje.
+3. ZAPOJENIE SA - ked nieco robim, snazim sa byt do toho naplno ponoreny/a. Nie napol mysliet na nieco ine, ale venovat pozornost aktivite, v ktorej prave som.
+
+[NADPIS]
+Cvicenia na dnes
+
+[TEXT]
+Vyber si aspon dve kratke cvicenia z kazdej kategorie. Nemusia byt dnes - staci kedykolvek pocas dnesneho dna.
+
+[ZOZNAM - POZOROVANIE]
+- Ocima: Zastav sa a venuj pozornost tomu, co vidis. Mozes sa divat na oblohu, stromy alebo na nejaky drobny detail.
+- Usami: Len nasluchaj. Sustred sa na zvuky okolo seba - ich rytmus, vysku alebo pauzy medzi nimi.
+- Cichom: Vnimaj vone vo svojom okoli - jedlo, napoje, kvety alebo len vzduch vonku.
+- Chutou: Jez vedome. Skus si dat susto a vsimat si kazdej chuti a zmeny.
+- Telom: Ked mas nutenie nieco urobit, zastav sa a vsimni si, ako sa to nutenie prejavuje v tele.
+- Dotykom: Vnimaj, ake to je, ked sa chodidla dotykaju zeme pri chodzi.
+- Napatim: Zastav sa a venuj pozornost miestu, kde citis v tele napatie.
+- Dychom: Sustred sa na svoj dych - ako sa pri nadychu zdviha brucho a hrudnik.
+- Myslienkami: Len si vsimni, ako prichadzaju a odchadzaju. Predstav si, ze myslienky su mraky na oblohe.
+
+[ZOZNAM - POPIS]
+- Popisuj okoli: Pozri sa na oblohu, list alebo na cloveka okolo seba a skus ho popisat co najpresnejsie.
+- Popisuj rec a chovanie: Ked s niekym hovors, zopakuj si presne, co povedal.
+- Popisuj emocie: Ked pride emocia, pomenuj ju: "Citim vztek" alebo "Teraz sa objavuje smutok".
+- Popisuj myslienky: Ked ta zaplavi silna emocia, vsimni si svojich myslienok.
+- Popisuj dych: Sleduj svoj nadych a vydych. Mozes si v duchu rikat "nadychujem sa, vydychujem".
+
+[ZOZNAM - ZAPOJENIE SA]
+- Prozij spojenie s okolim: Vnimaj, ako ta drzi zem pod nohami, ako ta podopiera stolicka.
+- Hudba a pohyb: Tancuj, spievaj alebo sa len hybaj do rytmu oblubenenej hudby.
+- Aktivity s druhymi: Ked ti niekto nieco rozprava, skus sa do toho plne ponorovat a nacuuvat naplno.
+- Telesne aktivity: Chod behat, cvicit alebo cokolvek ine a skus sa sustredit len na pohyb.
+- Slova a dych: Skus sa plne sustredit na jedno slovo alebo na pocitanie dychu.
+
+[TIP]
+Oznac si cvicenia, ktore si dnes vykonal/a, a zapisat si, ako si sa pri nich citil/a.
+
+
+============================================================
+                    DEN 3
+============================================================
+
+NAZOV: How skills ("jak" dovednosti)
+KRATKY POPIS (1 veta): Naucte sa, AKO vykonavat mindfulness - jednomyslne, bez posuzovania a efektivne
+TYP: cvicenie
+ODHADOVANY CAS: 15-20 minut
+ROUTE_TYPE: day3HowSkills
+
+------- OBSAH -------
+
+[NADPIS]
+How skills - "Ako" dovednosti
+
+[TEXT]
+Su to sposoby, AKO vykonavat dricve zmienene dovednosti. Ako to teda podla DBT robit? Jednomyslne, bez posuzovania a efektivne.
+
+[KROKY]
+1. JEDNOMYSLNE - Bud plne pritomny/a a rob vzdy len jednu vec naraz. Sustred sa na aktualny moment a ulohu, bez toho, aby si bol/a rozptylovan/a minulostou alebo buducnostou.
+2. BEZ POSUZOVANIA - Sleduj svoje myslienky, pocity a prozitky neutralne, bez snahy ich hodnotit ako dobre alebo zle, spravne ci nespravne.
+3. EFEKTIVNE - Sustred sa na to, co je potreba k dosiahnutiu ciela v danej situacii, namiesto toho, aby ta ovladali emocie alebo tvrdohlavost.
+
+[NADPIS]
+Cvicenia na dnes
+
+[ZOZNAM - JEDNOMYSLNE]
+- Pri priprave caju alebo kavy sa sustred na kazdy krok - ako beries kanvicu, lijes vodu, vnimas vonu a teplo.
+- Umyvaj riad pomaly, ako keby kazda sklenicka bola dolezita. Vnimaj dotyk vody, penu, zvuk.
+- Pri umyvani ruk sleduj kazdy pohyb - ako sa ruky dotykaju vody, ako peni mydlo.
+- Pri upratovani postupuj krok za krokom - ked ukladas knihu, uvedom si, ze drzis prave tu konkretnu knihu.
+- Pri kupeli si dopraj cas - sustred sa na kazdy dotyk vody na tele, na teplo, vonu.
+- Pri meditacii sed pohodlne, sleduj dych a s kazdym nadychom i vydychom si v duchu povedz "jedna".
+
+[ZOZNAM - BEZ POSUZOVANIA]
+- Skus si vsimnut, ked ti v hlave naskoci hodnotiaca myslienka, a len si povedz: "To je hodnotiaca myslienka."
+- Pocitaj, kolkokrat za den ta take myslienky napadnu.
+- Ked hodnotis, skus namiesto toho popisat len fakty: co sa naozaj stalo, co vidis, pocujes alebo citis.
+- Popis, ako sa citis, ale bez nalepok typu "dobre/zle" - len cisto emocie.
+- Vyskusaj zmenit ton hlasu, vyraz tvare alebo postoj tela, ked si uvedomis, ze hodnotis.
+- Rozpravaj niekomu svoj den tak, ze popises len konkretne udalosti a reakcie - ziadne sudy.
+- Napis si kratky popis situacie, ktora ta rozrusila, cisto podla faktov.
+
+[ZOZNAM - EFEKTIVNE]
+- Ked citis vztek alebo napatie voci niekomu, opytaj sa sam seba: "Je to, co chcem urobit, naozaj ucinne?"
+- Vsimni si, kedy mas potrebu "mat pravdu" za kazdu cenu. Skus namiesto toho dat prednost tomu, co je ucelne.
+- Sleduj, kedy sa v tebe objavuje zatvrdzelost alebo neochota nieco urobit. Poloz si otazku: "Pomaha mi to teraz?"
+- Skus pustit tvrdohlavost a vyskusat pristup, ktory je funkcny. Vsimaj si rozdiel, ktory to priniesie.
+
+[TIP]
+Vcera a dnes sme sa naucili zaklady pre mindfulness. Skus zajtra byt mindfull aspon v jednej situacii (napr. pri raajkach, prechadzke, poslechu hudby) a snaz sa uplatnit vsetky what skills aj how skills.
+
+
+============================================================
+                    DEN 4
+============================================================
+
+NAZOV: Vsimave dychanie
+KRATKY POPIS (1 veta): Naucte sa rozne techniky vedomeho dychania pre upokojenie
+TYP: cvicenie
+ODHADOVANY CAS: 10-15 minut
+ROUTE_TYPE: day4Breathing
+
+------- OBSAH -------
+
+[NADPIS]
+Vsimave dychanie
+
+[TEXT]
+Vsimave dychanie nam pomaha zastavit sa a ukotvit v pritomnom okamihu. Vdaka sustredeniu na dych si mozeme vsimnut, co sa v nas deje, a lepsie zvladat stres alebo silne emocie.
+
+[TEXT]
+Vsimave dychanie moze upokojit telo a mysel, znizit impulzivne reakcie a podporuje sebaovladanie.
+
+[NADPIS]
+Vyber si techniku dychania
+
+[ZOZNAM]
+- VSIMAVE DYCHANIE: Len pozorujes svoj dych tak, ako prirodzene plynie - vsimas si nadychu, vydychu, pohybu brucha alebo hrudnika. Ked utecie pozornost, jemne ju vratis spat k dychu.
+- DYCHANIE DO STVORCA: Nadychujes sa na 4 doby, zadrzis dych na 4 doby, vydychujes na 4 doby a opat zadrzis na 4 doby. Opakujes niekolko kol.
+- DYCHANIE 7-11: Nadychujes sa kratsiu dobu (na 7 dob) a vydychujes dlhsiu dobu (na 11 dob). Vdaka tomu sa telo prirodzene upokojuje a nervovy system prepiina do rezimu odpocinku.
+
+[TIP]
+Ak je pre teba 7 a 11 moc narocne, zacni kludne trebars s 4-6 a postupne si dlzku nadychovania a vydychovania predlzuj.
+
+[OTAZKA]
+Ktora technika dychania ti najviac vyhovovala? Preco?
+
+
+============================================================
+                    DEN 5
+============================================================
+
+NAZOV: Pauza
+KRATKY POPIS (1 veta): Dnes si oddychnite od programu
+TYP: reflexia
+ODHADOVANY CAS: 2-5 minut
+ROUTE_TYPE: pause
+
+------- OBSAH -------
+
+[NADPIS]
+Cas na oddych
+
+[TEXT]
+Dnesok bude ve znamen pauzy od programu. Uz teraz mas za sebou spoustu skvelej prace a Tvoj pristup je inspirativny! Vyuzij dnesny den k regeneracii a nacerpaj sily na dalsie kroky.
+
+[TIP]
+Nezabudni si zaznamenat svoju naladu v sekcii Moje zaznamy. A skus byt mindful aspon v jednej situacii pocas dna.
+
+[OTAZKA]
+Ako sa dnes citis?
+
+
+============================================================
+                    DEN 6
+============================================================
+
+NAZOV: Mindfulness techniky
+KRATKY POPIS (1 veta): Rozsirte si znalost mindfulness technik
+TYP: cvicenie
+ODHADOVANY CAS: 10-15 minut
+ROUTE_TYPE: day6MindfulnessTechniques
+
+------- OBSAH -------
+
+[NADPIS]
+Dalsie mindfulness techniky
+
+[TEXT]
+Dnes rozsirime nasu znalost mindfulness technik. Mozes si vybrat jedno cvicenie z ponuky, ktore dnes vyskusas. Zvysok si mozes nechat na inokedy.
+
+[ZOZNAM]
+- SKENOVANIE TELA: Pri nadychu vnimas, ako vzduch vstupuje do tela, pri vydychu si uvedomujes, kde v tele citis napatie, a nechavas ho uvolnit.
+- VSIMAVA CHADZA: Vnimas kazdy krok, kontakt noh so zemou, pohyb tela.
+- VSIMAVE JEDENIE: Jes pomaly a vsimas si chuti, voni, textury i toho, ako sa citis pri jedle.
+- VSIMAVE NACUVANIE: Plne sa sustredujes na to, co hovor druhy, bez planovania svojej odpovede.
+- VSETKYCH PAT POHROMADE: Ukotvenie v piatich zmysloch - zamerias sa na to, co prave teraz vidis, pocujes, citis cichom, chutas a vnimas dotykom.
+
+[TIP]
+K ostatnym cviceniam sa mozes kedykolvek vratit alebo si ich ulozit do zachranneho balicka.
+
+[OTAZKA]
+Ktoru techniku si dnes vyskusal/a? Ako ti pomohla?
+
+
+============================================================
+                    DEN 7 - ZHRNUTIE TYZDNA
+============================================================
+
+NAZOV: Zhrnutie tyzdna 2
+KRATKY POPIS (1 veta): Co sme sa tento tyzden naucili o mindfulness
+TYP: zhrnutie
+ODHADOVANY CAS: 10 minut
+ROUTE_TYPE: summary
+
+------- OBSAH -------
+
+[NADPIS]
+Co sme sa tento tyzden naucili
+
+[ZOZNAM]
+- Dozvedeli sme sa, co je mindfulness a preco je dolezity
+- Naucili sme sa What skills - pozorovanie, popis, zapojenie sa
+- Naucili sme sa How skills - jednomyslne, bez posuzovania, efektivne
+- Vyskusali sme rozne techniky dychania
+- Spoznali sme dalsie mindfulness techniky (skenovanie tela, vsimava chadza, jedenie, nacuvanie)
+
+[NADPIS]
+Otazky na reflexiu
+
+[OTAZKA]
+Co pre teba bolo najzaujimavejsie? Co si sa naucil/a?
+
+[OTAZKA]
+Pouzil/a si nieco z toho, co si sa naucil/a vo tvojom zivote? Co a kedy?
+
+[OTAZKA]
+Kedy ti technika mindfulness pomohla?
+
+[OTAZKA]
+Kedy konkretne by si tuto dovednost mohol/a vyuzit v dalsom tyzdni?
+
+[CITAT]
+"Mindfulness nie je o tom mat prazdnu hlavu, ale o tom byt pritomny v tom, co prave robis."
+
+
+============================================================

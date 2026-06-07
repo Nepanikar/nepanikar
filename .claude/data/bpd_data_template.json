@@ -1,0 +1,366 @@
+{
+  "_documentation": {
+    "description": "Sablona pre BPD program - 7 tyzdnov, kazdy ma 7 dni",
+    "author": "Nepanikar team",
+    "version": "1.0",
+
+    "fields_explanation": {
+      "weekNumber": "Cislo tyzdna (1-7)",
+      "dayNumber": "Cislo dna v tyzdni (1-7)",
+      "titleKey": "Kluc pre preklad nazvu dna - pouziva sa v ARB suboroch pre lokalizaciu",
+      "descriptionKey": "Kluc pre preklad kratkeho popisu dna",
+      "contentType": "Typ obsahu dna - urcuje ako sa zobrazi v appke",
+      "iconPath": "Cesta k ikonke (volitelne) - napr. 'assets/bpd/icons/mindfulness.svg'",
+      "sections": "Pole sekcii obsahu - kazda sekcia ma svoj typ a obsah",
+      "exerciseId": "ID cvicenia ak den obsahuje interaktivne cvicenie",
+      "worksheetId": "ID pracovneho listu ak den obsahuje worksheet",
+      "techniqueId": "ID techniky (STOP, TIPP, ACCEPTS, atd.) ak den uci novu techniku"
+    },
+
+    "content_types": {
+      "lesson": "Edukacny obsah - teoreticka cast, vysvetlenie konceptov",
+      "exercise": "Interaktivne cvicenie - uzivatel nieco robi/vyplna",
+      "reflection": "Reflexia/sebareflexia - otazky na zamyslenie",
+      "worksheet": "Pracovny list - strukturovany formular na vyplnenie",
+      "technique": "Nacvik techniky - STOP, TIPP, ACCEPTS, DEARMAN, GIVE, FAST, PLEASE",
+      "meditation": "Meditacia/mindfulness cvicenie",
+      "summary": "Zhrnutie tyzdna/programu"
+    },
+
+    "section_types": {
+      "text": "Bezny textovy odstavec",
+      "heading": "Nadpis sekcie",
+      "bullet_list": "Zoznam s odrazkami",
+      "numbered_list": "Cislovany zoznam",
+      "quote": "Citat alebo dolezita myslienka",
+      "tip": "Tip alebo rada",
+      "warning": "Upozornenie",
+      "exercise_prompt": "Zadanie cvicenia",
+      "reflection_question": "Otazka na reflexiu",
+      "infographic": "Referencia na infografiku/obrazok"
+    },
+
+    "techniques": {
+      "STOP": "Stop - Zastavit sa, Ustúpit, Pozorovat, Pokracovat vedome",
+      "TIPP": "Teplota, Intenzivny pohyb, Pomalé dychanie, Párové svalov relaxovanie",
+      "ACCEPTS": "Aktivity, Prispievanie, Porovnania, Emocie, Odtlacenie, Myslienky, Pocity",
+      "DEARMAN": "Describe, Express, Assert, Reinforce, Mindful, Appear confident, Negotiate",
+      "GIVE": "Gentle, Interested, Validate, Easy manner",
+      "FAST": "Fair, Apologies (no excessive), Stick to values, Truthful",
+      "PLEASE": "Physical illness, Eating, Avoid drugs, Sleep, Exercise"
+    }
+  },
+
+  "weeks": [
+    {
+      "weekNumber": 1,
+      "titleKey": "bpd_week_1_title",
+      "descriptionKey": "bpd_week_1_description",
+      "themeKey": "bpd_week_1_theme",
+      "iconPath": null,
+
+      "days": [
+        {
+          "dayNumber": 1,
+          "titleKey": "bpd_w1_d1_title",
+          "descriptionKey": "bpd_w1_d1_description",
+          "contentType": "lesson",
+          "iconPath": null,
+          "durationMinutes": 15,
+
+          "sections": [
+            {
+              "type": "heading",
+              "contentKey": "bpd_w1_d1_section_1_heading"
+            },
+            {
+              "type": "text",
+              "contentKey": "bpd_w1_d1_section_1_text"
+            },
+            {
+              "type": "bullet_list",
+              "contentKeys": [
+                "bpd_w1_d1_bullet_1",
+                "bpd_w1_d1_bullet_2",
+                "bpd_w1_d1_bullet_3"
+              ]
+            },
+            {
+              "type": "tip",
+              "contentKey": "bpd_w1_d1_tip_1"
+            },
+            {
+              "type": "reflection_question",
+              "contentKey": "bpd_w1_d1_reflection_1"
+            }
+          ],
+
+          "exerciseId": null,
+          "worksheetId": null,
+          "techniqueId": null
+        },
+        {
+          "dayNumber": 2,
+          "titleKey": "bpd_w1_d2_title",
+          "descriptionKey": "bpd_w1_d2_description",
+          "contentType": "exercise",
+          "iconPath": null,
+          "durationMinutes": 20,
+
+          "sections": [
+            {
+              "type": "text",
+              "contentKey": "bpd_w1_d2_intro"
+            },
+            {
+              "type": "exercise_prompt",
+              "contentKey": "bpd_w1_d2_exercise_instructions"
+            }
+          ],
+
+          "exerciseId": "mindfulness_breathing_basic",
+          "worksheetId": null,
+          "techniqueId": null
+        },
+        {
+          "dayNumber": 3,
+          "titleKey": "bpd_w1_d3_title",
+          "descriptionKey": "bpd_w1_d3_description",
+          "contentType": "technique",
+          "iconPath": null,
+          "durationMinutes": 25,
+
+          "sections": [
+            {
+              "type": "heading",
+              "contentKey": "bpd_w1_d3_technique_name"
+            },
+            {
+              "type": "text",
+              "contentKey": "bpd_w1_d3_technique_intro"
+            },
+            {
+              "type": "infographic",
+              "imagePath": "assets/bpd/infographics/stop_technique.svg",
+              "altTextKey": "bpd_w1_d3_infographic_alt"
+            },
+            {
+              "type": "numbered_list",
+              "contentKeys": [
+                "bpd_w1_d3_step_1",
+                "bpd_w1_d3_step_2",
+                "bpd_w1_d3_step_3",
+                "bpd_w1_d3_step_4"
+              ]
+            }
+          ],
+
+          "exerciseId": null,
+          "worksheetId": null,
+          "techniqueId": "STOP"
+        },
+        {
+          "dayNumber": 4,
+          "titleKey": "bpd_w1_d4_title",
+          "descriptionKey": "bpd_w1_d4_description",
+          "contentType": "worksheet",
+          "iconPath": null,
+          "durationMinutes": 30,
+
+          "sections": [
+            {
+              "type": "text",
+              "contentKey": "bpd_w1_d4_intro"
+            }
+          ],
+
+          "exerciseId": null,
+          "worksheetId": "emotion_diary_basic",
+          "techniqueId": null
+        },
+        {
+          "dayNumber": 5,
+          "titleKey": "bpd_w1_d5_title",
+          "descriptionKey": "bpd_w1_d5_description",
+          "contentType": "meditation",
+          "iconPath": null,
+          "durationMinutes": 15,
+
+          "sections": [
+            {
+              "type": "text",
+              "contentKey": "bpd_w1_d5_intro"
+            }
+          ],
+
+          "exerciseId": "guided_meditation_body_scan",
+          "worksheetId": null,
+          "techniqueId": null
+        },
+        {
+          "dayNumber": 6,
+          "titleKey": "bpd_w1_d6_title",
+          "descriptionKey": "bpd_w1_d6_description",
+          "contentType": "reflection",
+          "iconPath": null,
+          "durationMinutes": 20,
+
+          "sections": [
+            {
+              "type": "text",
+              "contentKey": "bpd_w1_d6_intro"
+            },
+            {
+              "type": "reflection_question",
+              "contentKey": "bpd_w1_d6_question_1"
+            },
+            {
+              "type": "reflection_question",
+              "contentKey": "bpd_w1_d6_question_2"
+            },
+            {
+              "type": "reflection_question",
+              "contentKey": "bpd_w1_d6_question_3"
+            }
+          ],
+
+          "exerciseId": null,
+          "worksheetId": null,
+          "techniqueId": null
+        },
+        {
+          "dayNumber": 7,
+          "titleKey": "bpd_w1_d7_title",
+          "descriptionKey": "bpd_w1_d7_description",
+          "contentType": "summary",
+          "iconPath": null,
+          "durationMinutes": 10,
+
+          "sections": [
+            {
+              "type": "heading",
+              "contentKey": "bpd_w1_d7_summary_heading"
+            },
+            {
+              "type": "text",
+              "contentKey": "bpd_w1_d7_summary_text"
+            },
+            {
+              "type": "bullet_list",
+              "contentKeys": [
+                "bpd_w1_d7_learned_1",
+                "bpd_w1_d7_learned_2",
+                "bpd_w1_d7_learned_3"
+              ]
+            },
+            {
+              "type": "quote",
+              "contentKey": "bpd_w1_d7_motivation_quote"
+            }
+          ],
+
+          "exerciseId": null,
+          "worksheetId": null,
+          "techniqueId": null
+        }
+      ]
+    }
+  ],
+
+  "exercises": {
+    "_documentation": "Definicie interaktivnych cviceni - referencovane cez exerciseId",
+
+    "mindfulness_breathing_basic": {
+      "type": "breathing",
+      "titleKey": "exercise_breathing_basic_title",
+      "instructionsKey": "exercise_breathing_basic_instructions",
+      "durationSeconds": 180,
+      "settings": {
+        "inhaleSeconds": 4,
+        "holdSeconds": 4,
+        "exhaleSeconds": 4
+      }
+    },
+    "guided_meditation_body_scan": {
+      "type": "audio_meditation",
+      "titleKey": "exercise_body_scan_title",
+      "audioPath": "assets/bpd/audio/{locale}/body_scan.mp3",
+      "durationSeconds": 600
+    }
+  },
+
+  "worksheets": {
+    "_documentation": "Definicie pracovnych listov - referencovane cez worksheetId",
+
+    "emotion_diary_basic": {
+      "titleKey": "worksheet_emotion_diary_title",
+      "instructionsKey": "worksheet_emotion_diary_instructions",
+      "fields": [
+        {
+          "id": "situation",
+          "type": "text_area",
+          "labelKey": "worksheet_emotion_diary_situation_label",
+          "placeholderKey": "worksheet_emotion_diary_situation_placeholder",
+          "required": true
+        },
+        {
+          "id": "emotion",
+          "type": "emotion_picker",
+          "labelKey": "worksheet_emotion_diary_emotion_label",
+          "required": true
+        },
+        {
+          "id": "intensity",
+          "type": "slider",
+          "labelKey": "worksheet_emotion_diary_intensity_label",
+          "min": 0,
+          "max": 10,
+          "required": true
+        },
+        {
+          "id": "thoughts",
+          "type": "text_area",
+          "labelKey": "worksheet_emotion_diary_thoughts_label",
+          "required": false
+        },
+        {
+          "id": "body_sensations",
+          "type": "text_area",
+          "labelKey": "worksheet_emotion_diary_body_label",
+          "required": false
+        }
+      ]
+    }
+  },
+
+  "techniques": {
+    "_documentation": "Definicie DBT technik - referencovane cez techniqueId",
+
+    "STOP": {
+      "nameKey": "technique_stop_name",
+      "fullNameKey": "technique_stop_full_name",
+      "descriptionKey": "technique_stop_description",
+      "stepsKeys": [
+        "technique_stop_step_s",
+        "technique_stop_step_t",
+        "technique_stop_step_o",
+        "technique_stop_step_p"
+      ],
+      "infographicPath": "assets/bpd/infographics/stop.svg",
+      "category": "distress_tolerance"
+    },
+    "TIPP": {
+      "nameKey": "technique_tipp_name",
+      "fullNameKey": "technique_tipp_full_name",
+      "descriptionKey": "technique_tipp_description",
+      "stepsKeys": [
+        "technique_tipp_step_t",
+        "technique_tipp_step_i",
+        "technique_tipp_step_p1",
+        "technique_tipp_step_p2"
+      ],
+      "infographicPath": "assets/bpd/infographics/tipp.svg",
+      "category": "distress_tolerance"
+    }
+  }
+}

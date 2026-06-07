@@ -220,7 +220,7 @@ lib/screens/bpd_programme/
     ├── smart_education_screen.dart
     └── smart_goal_form_screen.dart
 
-lib/widgets/bpd/
+lib/screens/bpd_programme/widgets/
 ├── day_preview_sheet.dart      # Bottom sheet for day preview
 └── day_page_base.dart          # Reusable widgets for day pages
 
@@ -234,7 +234,7 @@ Programme content is in `assets/bpd/programme_content.json`. Use this for:
 - Page content for education days
 - Consistency across the app
 
-### Reusable Widgets (lib/widgets/bpd/day_page_base.dart)
+### Reusable Widgets (lib/screens/bpd_programme/widgets/day_page_base.dart)
 - `DayPageBase` - Scrollable content with fixed bottom button
 - `SectionHeader` - Icon + title header for sections
 - `FeatureCard` - Card with icon, title, description
@@ -280,7 +280,7 @@ enum _DayRouteType {
 ### Code Structure
 - Keep files under 300 lines
 - Split large screens into separate page widgets
-- Use reusable widgets from `lib/widgets/bpd/`
+- Use reusable widgets from `lib/screens/bpd_programme/widgets/`
 
 ### Content
 - All BPD content is in `assets/bpd/programme_content.json`
