@@ -39,7 +39,6 @@ class EatingDisorderDistractionsScreen extends StatelessWidget {
         text: context.l10n.games,
         image: Assets.illustrations.modules.games.svg(colorFilter: colorFilter),
         onTap: () => context.push(const GamesRoute().location),
-        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.breath,

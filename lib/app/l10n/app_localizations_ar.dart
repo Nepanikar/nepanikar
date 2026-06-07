@@ -583,6 +583,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get game => 'لعبة';
 
   @override
+  String get games => 'الألعاب';
+
+  @override
   String get game_balance => 'لعبة الميزان';
 
   @override
@@ -803,6 +806,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get plan => 'خطة الطوارئ';
+
+  @override
+  String get plants => 'نباتات';
 
   @override
   String get plan_example => 'سأذهب للتسوق';

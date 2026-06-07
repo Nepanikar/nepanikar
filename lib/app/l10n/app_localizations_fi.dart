@@ -589,6 +589,9 @@ class AppLocalizationsFi extends AppLocalizations {
   String get game => 'Peli';
 
   @override
+  String get games => 'Pelit';
+
+  @override
   String get game_balance => 'Keinupeli';
 
   @override
@@ -813,6 +816,9 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get plan => 'Hätäplan';
+
+  @override
+  String get plants => 'Kasvit';
 
   @override
   String get plan_example => 'Menen kauppaan';

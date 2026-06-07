@@ -458,7 +458,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get food_misc_text =>
-      'Otaczaj się ludźmi, którzy się o Ciebie troszczą i wspierają\nPamiętaj o kontaktach do psychiatry, psychologa i dietetyka\nNie rezygnuj z hobby i rzeczy, które wcześniej kochałeś\nPraktykuj relaksację przynajmniej jeden raz dziennie\nUprawiaj rekreacyjnie sport (ale uważaj i nie&apos;tuj nadmiernie ;) )\nZapewnij sobie dużo dobrego i długiego snu\nPisz w pamiętniku\nZnajdź swoją bratnią duszę (lub dobrego przyjaciela do głębokich rozmów)\nNie patrz w lustro\nNie waż się\nJedz z kimś, kto cię wspiera i sprawia, że czujesz się bardziej komfortowo\nJedz regularnie (około 5 do 6 razy dziennie)\nZastanów się nad swoimi nawykami dotyczącymi picia';
+      'Otaczaj się ludźmi, którzy się o Ciebie troszczą i wspierają\nPamiętaj o kontaktach do psychiatry, psychologa i dietetyka\nNie rezygnuj z hobby i rzeczy, które wcześniej kochałeś\nPraktykuj relaksację przynajmniej jeden raz dziennie\nUprawiaj rekreacyjnie sport (ale uważaj i nie przesadzaj ;) )\nZapewnij sobie dużo dobrego i długiego snu\nPisz w pamiętniku\nZnajdź swoją bratnią duszę (lub dobrego przyjaciela do głębokich rozmów)\nNie patrz w lustro\nNie waż się\nJedz z kimś, kto cię wspiera i sprawia, że czujesz się bardziej komfortowo\nJedz regularnie (około 5 do 6 razy dziennie)\nZastanów się nad swoimi nawykami dotyczącymi picia';
 
   @override
   String get food_motivation_header =>
@@ -587,6 +587,9 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get game => 'Gra';
+
+  @override
+  String get games => 'Gry';
 
   @override
   String get game_balance => 'Gra Huśtawka';
@@ -813,6 +816,9 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get plan => 'Plan ratunku';
+
+  @override
+  String get plants => 'Rośliny';
 
   @override
   String get plan_example => 'Zrobię zakupy';

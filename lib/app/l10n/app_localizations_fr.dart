@@ -41,7 +41,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get balance_game_instructions =>
-      'Votre tâche consiste à taper sur les deux cases en bas de l&apos;écran pour maintenir l&apos;équilibre du swing.';
+      'Votre tâche consiste à taper sur les deux cases en bas de l\'écran pour maintenir l\'équilibre du swing.';
 
   @override
   String get balloons_game_tip =>
@@ -168,13 +168,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get custom_message => 'Texte du message (facultatif)';
 
   @override
-  String get custom_ppl => 'Les gens qui m&apos;intéressent';
+  String get custom_ppl => 'Les gens qui m\'intéressent';
 
   @override
   String get custom_theme => 'Réglage de la couleur';
 
   @override
-  String get custom_write => 'À qui j&apos;écrirai...';
+  String get custom_write => 'À qui j\'écrirai...';
 
   @override
   String get custom_write_body =>
@@ -203,7 +203,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get delete_data_description =>
-      'Voulez-vous vraiment supprimer toutes les données ?';
+      'Voulez-vous vraiment supprimer toutes les données?';
 
   @override
   String get delete_data_title => 'Suprimmer les données';
@@ -221,21 +221,20 @@ class AppLocalizationsFr extends AppLocalizations {
   String get depression_help => 'Qu’est-ce qui peut m’aider';
 
   @override
-  String get depression_mood => 'Surveillance de l&apos;humeur';
+  String get depression_mood => 'Surveillance de l\'humeur';
 
   @override
   String get depression_nice => 'Qu’est-ce qui m’a fait plaisir';
 
   @override
   String get depression_nice_header =>
-      'Ici, je peux écrire ce qui m&apos;a plu aujourd&apos;hui:';
+      'Ici, je peux écrire ce qui m\'a plu aujourd\'hui:';
 
   @override
   String get depression_plan => 'Planning des activités';
 
   @override
-  String get depression_plan_header =>
-      'Ici j&apos;écris ce que je compte faire:';
+  String get depression_plan_header => 'Ici j\'écris ce que je compte faire:';
 
   @override
   String get depression_praise => 'Mes succès';
@@ -275,7 +274,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Vous n\'avez encore aucune entrée dans le journal.';
 
   @override
-  String get diary_record_date => 'Date d&apos;enregistrement';
+  String get diary_record_date => 'Date d\'enregistrement';
 
   @override
   String get distraction => 'Distraction';
@@ -372,14 +371,14 @@ class AppLocalizationsFr extends AppLocalizations {
   String get follow_us => 'Suivez-nous';
 
   @override
-  String get food => 'Trouble de l&apos;alimentation';
+  String get food => 'Trouble de l\'alimentation';
 
   @override
   String get food_afraid_header =>
-      'Écrivez une liste d&apos;aliments «interdits» dans cette liste et essayez un aliment chaque semaine et décochez-le sur la liste.\n';
+      'Écrivez une liste d\'aliments «interdits» dans cette liste et essayez un aliment chaque semaine et décochez-le sur la liste.\n';
 
   @override
-  String get food_afraid_text => 'La nourriture dont j&apos;ai peur';
+  String get food_afraid_text => 'La nourriture dont j\'ai peur';
 
   @override
   String get food_am_snack => 'Casse-croûte';
@@ -389,7 +388,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get food_challenge_text =>
-      'Je veux être et je sais être gentil avec moi-même \n        Aujourd&apos;hui, je vais essayer de penser positivement et de croire que tout ira bien \n        A partir d&apos;aujourd&apos;hui, je ne cacherai plus mes sentiments \n        Chaque heure, je me louerai \n        Aujourd&apos;hui, j&apos;écrirai 20 de mes objectifs personnels que j&apos;aimerais atteindre à l&apos;avenir \n        Je vais me concentrer sur des choses différentes de la nourriture et commencer à trouver le sens de ma vie \n        Je vais arrêter de me vilipender et de me faire du mal \n        Je vais exprimer ma gratitude aux autres parce qu&apos;ils se soucient de moi \n        Je reconnais ce qui est bon pour moi et mon corps \n        Je vais montrer à quelqu&apos;un à quel point ils sont importants pour moi \n        Si je n’ai pas d’aide professionnelle, j’en trouverai aujourd’hui \n        Aujourd&apos;hui est un jour de repos car j&apos;en ai besoin \n        Je reconnais ce dont j&apos;ai besoin et ce que je manque dans ma vie \n        Je vais remercier mes parents parce qu&apos;ils m&apos;ont élevé comme une personne honnête \n        Je penserai aux gens qui se soucient de moi \n        Je vais créer ma propre devise \n        Aujourd&apos;hui, je n’ai pas peur de manger. \n        Aujourd&apos;hui, je partagerai mes insécurités et mes peurs avec quelqu&apos;un \n        Je pardonnerai à toutes les personnes qui m&apos;ont blessé. Je me pardonne. \n        À partir d&apos;aujourd&apos;hui, je vais essayer de parler de ce qui me dérange et de ce que je ressens \n        Désormais, je n&apos;aurai plus peur de dire que je suis fatigué ou que je n&apos;ai pas envie de faire quelque chose.\n        J&apos;apprends à dire NON \n        Je vais commencer à écrire mon nouveau journal \n        Je ne tolérerai aucun commentaire haineux que les autres disent au sujet du poids de quelqu&apos;un.\n        Je vais écrire toutes les choses que j&apos;ai déjà accomplies dans ma vie \n        J&apos;ai autant d&apos;amis que j&apos;ai de doigts sur les mains';
+      'Je veux être et je sais être gentil avec moi-même \nAujourd\'hui, je vais essayer de penser positivement et de croire que tout ira bien \nA partir d\'aujourd\'hui, je ne cacherai plus mes sentiments \nChaque heure, je me louerai \nAujourd\'hui, j\'écrirai 20 de mes objectifs personnels que j\'aimerais atteindre à l\'avenir \nJe vais me concentrer sur des choses différentes de la nourriture et commencer à trouver le sens de ma vie \nJe vais arrêter de me vilipender et de me faire du mal \nJe vais exprimer ma gratitude aux autres parce qu\'ils se soucient de moi \nJe reconnais ce qui est bon pour moi et mon corps \nJe vais montrer à quelqu\'un à quel point ils sont importants pour moi \nSi je n’ai pas d’aide professionnelle, j’en trouverai aujourd’hui \nAujourd\'hui est un jour de repos car j\'en ai besoin \nJe reconnais ce dont j\'ai besoin et ce que je manque dans ma vie \nJe vais remercier mes parents parce qu\'ils m\'ont élevé comme une personne honnête \nJe penserai aux gens qui se soucient de moi \nJe vais créer ma propre devise \nAujourd\'hui, je n’ai pas peur de manger. \nAujourd\'hui, je partagerai mes insécurités et mes peurs avec quelqu\'un \nJe pardonnerai à toutes les personnes qui m\'ont blessé. Je me pardonne. \nÀ partir d\'aujourd\'hui, je vais essayer de parler de ce qui me dérange et de ce que je ressens \nDésormais, je n\'aurai plus peur de dire que je suis fatigué ou que je n\'ai pas envie de faire quelque chose.\nJ\'apprends à dire NON \nJe vais commencer à écrire mon nouveau journal \nJe ne tolérerai aucun commentaire haineux que les autres disent au sujet du poids de quelqu\'un.\nJe vais écrire toutes les choses que j\'ai déjà accomplies dans ma vie \nJ\'ai autant d\'amis que j\'ai de doigts sur les mains';
 
   @override
   String get food_choice => 'Sélection de repas';
@@ -402,7 +401,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get food_creative_text =>
-      'Dessinez une image de votre maladie et déchirez le papier.\n        Écrivez une lettre à votre «moi» malade, dites merci et au revoir. \n        Notez les points pourquoi vous voulez être en bonne santé et quels sont les obstacles sur votre chemin de récupération.\n        Triez votre gâchis de papier sur votre table.\n        Essayez une nouvelle coiffure.\n        Étirez vos muscles.\n        Avez-vous pensé à un tatouage? Achetez du henné et trouvez la bonne place sur votre beau corps!\n        Créez un livre de souvenirs de vos vacances préférées. Imprimez des photos ou des autocollants, soyez créatif.\n        Étudiez une nouvelle langue.\n        Essayez de jouer n&apos;importe quel instrument de musique.\n        Découvrez comment faire de l&apos;origami à partir de papier.\n        Notez les moments de votre vie que vous aimeriez revivre.\n        Créez une décoration pour votre chambre';
+      'Dessinez une image de votre maladie et déchirez le papier.\nÉcrivez une lettre à votre «moi» malade, dites merci et au revoir. \nNotez les points pourquoi vous voulez être en bonne santé et quels sont les obstacles sur votre chemin de récupération.\nTriez votre gâchis de papier sur votre table.\nEssayez une nouvelle coiffure.\nÉtirez vos muscles.\nAvez-vous pensé à un tatouage? Achetez du henné et trouvez la bonne place sur votre beau corps!\nCréez un livre de souvenirs de vos vacances préférées. Imprimez des photos ou des autocollants, soyez créatif.\nÉtudiez une nouvelle langue.\nEssayez de jouer n\'importe quel instrument de musique.\nDécouvrez comment faire de l\'origami à partir de papier.\nNotez les moments de votre vie que vous aimeriez revivre.\nCréez une décoration pour votre chambre';
 
   @override
   String get food_dinner => 'Dîner';
@@ -412,48 +411,48 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get food_dishes_am_snack =>
-      'smoothie à base de banane, de bleuets et de graines de chia\n                 Yaourt aux fraises avec biscuits';
+      'smoothie à base de banane, de bleuets et de graines de chia\nYaourt aux fraises avec biscuits';
 
   @override
   String get food_dishes_breakfast =>
-      'Flocons d&apos;avoine avec beurre, pomme, noix, miel et cannelle, avec un yaourt blanc sur le dessus.\n                  Muesli maison, fruits frais et yaourt blanc\n                 Oeufs brouillés à l&apos;oignon de printemps, baguette, salade de tomates';
+      'Flocons d\'avoine avec beurre, pomme, noix, miel et cannelle, avec un yaourt blanc sur le dessus.\n Muesli maison, fruits frais et yaourt blanc\nOeufs brouillés à l\'oignon de printemps, baguette, salade de tomates';
 
   @override
   String get food_dishes_dinner =>
-      'saumon grillé, légumes et purée de pommes de terre\n                 Pappardelle à la carbonara\n                 houmous aux tomates et poireaux, pain de seigle complet\n                 légume rôti au parmesan, petit pain noir\n                 baguette de graines avec tartinade de fromage cottage, oignons et légumes\n                 pain avec tartinade et jambon, salade de légumes\n                 salat caprese à base de tomates et mozzarella, knäckebrots\n                 assiette de jambon, fromage, oeufs, légumes et kornspitz';
+      'saumon grillé, légumes et purée de pommes de terre\nPappardelle à la carbonara\nhoumous aux tomates et poireaux, pain de seigle complet\nlégume rôti au parmesan, petit pain noir\nbaguette de graines avec tartinade de fromage cottage, oignons et légumes\npain avec tartinade et jambon, salade de légumes\nsalat caprese à base de tomates et mozzarella, knäckebrots\nassiette de jambon, fromage, oeufs, légumes et kornspitz';
 
   @override
   String get food_dishes_lunch =>
-      'côtelette frite avec purée de pommes de terre, une salade aux germes de printemps\n                 pâtes aux légumes, vinaigrette au yaourt, feuilles de basilic\n                 poulet grillé, couscous aux légumes\n                 crème de potiron\n                 bouillon de poulet aux légumes\n                 minestrone';
+      'côtelette frite avec purée de pommes de terre, une salade aux germes de printemps\npâtes aux légumes, vinaigrette au yaourt, feuilles de basilic\npoulet grillé, couscous aux légumes\ncrème de potiron\nbouillon de poulet aux légumes\nminestrone';
 
   @override
   String get food_dishes_pm_snack =>
-      'fruits avec du yaourt grec, de la citrouille frite et des graines de tournesol\n                 pain grillé noir, fromage, légumes\n                 banane grillée sur beurre, yaourt\n                 fromage cottage au miel et prunes séchées';
+      'fruits avec du yaourt grec, de la citrouille frite et des graines de tournesol\npain grillé noir, fromage, légumes\nbanane grillée sur beurre, yaourt\nfromage cottage au miel et prunes séchées';
 
   @override
-  String get food_fail => 'J&apos;échoue';
+  String get food_fail => 'J\'échoue';
 
   @override
   String get food_fail_text =>
-      'Ne te punis pas \n        Parlez de vos sentiments avec quelqu&apos;un \n        Sachez que la récupération est un long processus et que chaque difficulté que vous surmontez vous rend plus fort \n        Notez ce dont vous êtes fier (caractéristiques de votre personnalité, succès…) \n        Reconnaissez tout ce que vous avez traversé et surmonté (nous sommes fiers de vous;))';
+      'Ne te punis pas \nParlez de vos sentiments avec quelqu\'un \nSachez que la récupération est un long processus et que chaque difficulté que vous surmontez vous rend plus fort \nNotez ce dont vous êtes fier (caractéristiques de votre personnalité, succès…) \nReconnaissez tout ce que vous avez traversé et surmonté (nous sommes fiers de vous;))';
 
   @override
   String get food_figure => 'Forme du corps';
 
   @override
   String get food_figure_text =>
-      'Si j&apos;ai faim, je peux ajouter plus de nourriture dans mon assiette \n        J&apos;aime vraiment ma nourriture \n        Ce n&apos;est pas un problème quand j&apos;ai des restes dans mon assiette (si je ne suis pas dans un régime actif de prise de poids en cas de poids insuffisant;)). Je n&apos;ai pas besoin de penser à la nourriture tout le temps. \n        J&apos;aime le mouvement naturel et les sports récréatifs. \n        Je suis plus qu&apos;un simple chiffre sur mon poids. Je suis précieux. Je suis digne de moi. \n        Je mange des aliments nutritionnellement équilibrés. \n        Il est normal d’avoir faim et il faut manger. \n        Il y a tellement de choses plus importantes et plus belles dans ce monde que la seule nourriture. \n        La beauté d&apos;un être humain n&apos;est pas cachée dans son poids. \n        Je n&apos;abandonne pas sans me battre, je crois en moi. \n        Je ne m&apos;attends pas à ce qu&apos;il passe par lui-même. \n        Je ne me compare pas aux autres. \n        Nous ne sommes que des humains, nous pouvons faire des erreurs. L&apos;important est d&apos;apprendre d&apos;eux et de ne pas les répéter. \n        Je comprends que je me souciais trop de mon apparence et des opinions des autres. \n        Je sais que j&apos;ai besoin d&apos;énergie pour vivre. \n        Je suis conscient que j&apos;ai des problèmes avec la nourriture et que c&apos;est moi qui peux m&apos;en occuper. \n        Mon corps a besoin de soins nourrissants et appropriés. \n        Je mange une variété de nourriture. Je n&apos;ai pas peur des fruits, des légumes, de la viande ou des produits de boulangerie. \n        Je sais que je peux le faire, mais je n&apos;ai pas peur de demander de l&apos;aide. \n        Mes succès et mes échecs dans mon parcours de récupération seront partagés avec quelqu&apos;un en qui j&apos;ai confiance. \n        J&apos;ai des amis sur lesquels je peux compter. \n        Je n&apos;achète aucun magazine sur la perte de poids ou les régimes amaigrissants. \n        Je suis fier de moi même pour les petits défis atteints. \n        Personne n&apos;est parfait, mais je peux être incroyable sans régime ni inquiétude concernant mon poids ou mon apparence. \n        Je ne mange pas pendant les nuits parce que je sais que c&apos;est le moment où je me sens vulnérable. \n        Je n&apos;ai pas besoin d&apos;avoir un corps parfait. Je décide à quoi devrait ressembler mon corps. Mon âme est parfaite. \n        Je suis heureux dans mes relations. \n        Tout n&apos;a pas de raison logique. \n        Je sais qui je peux appeler quand je me sens mal. \n        Je n&apos;ai pas à sourire tout le temps. \n        Je peux être en colère. \n        C&apos;est tout à fait OK de demander de l&apos;aide. \n        Je ne suis pas seul avec mes luttes. ';
+      'Si j\'ai faim, je peux ajouter plus de nourriture dans mon assiette \nJ\'aime vraiment ma nourriture \nCe n\'est pas un problème quand j\'ai des restes dans mon assiette (si je ne suis pas dans un régime actif de prise de poids en cas de poids insuffisant;)). Je n\'ai pas besoin de penser à la nourriture tout le temps. \nJ\'aime le mouvement naturel et les sports récréatifs. \nJe suis plus qu\'un simple chiffre sur mon poids. Je suis précieux. Je suis digne de moi. \nJe mange des aliments nutritionnellement équilibrés. \nIl est normal d’avoir faim et il faut manger. \nIl y a tellement de choses plus importantes et plus belles dans ce monde que la seule nourriture. \nLa beauté d\'un être humain n\'est pas cachée dans son poids. \nJe n\'abandonne pas sans me battre, je crois en moi. \nJe ne m\'attends pas à ce qu\'il passe par lui-même. \nJe ne me compare pas aux autres. \nNous ne sommes que des humains, nous pouvons faire des erreurs. L\'important est d\'apprendre d\'eux et de ne pas les répéter. \nJe comprends que je me souciais trop de mon apparence et des opinions des autres. \nJe sais que j\'ai besoin d\'énergie pour vivre. \nJe suis conscient que j\'ai des problèmes avec la nourriture et que c\'est moi qui peux m\'en occuper. \nMon corps a besoin de soins nourrissants et appropriés. \nJe mange une variété de nourriture. Je n\'ai pas peur des fruits, des légumes, de la viande ou des produits de boulangerie. \nJe sais que je peux le faire, mais je n\'ai pas peur de demander de l\'aide. \nMes succès et mes échecs dans mon parcours de récupération seront partagés avec quelqu\'un en qui j\'ai confiance. \nJ\'ai des amis sur lesquels je peux compter. \nJe n\'achète aucun magazine sur la perte de poids ou les régimes amaigrissants. \nJe suis fier de moi même pour les petits défis atteints. \nPersonne n\'est parfait, mais je peux être incroyable sans régime ni inquiétude concernant mon poids ou mon apparence. \nJe ne mange pas pendant les nuits parce que je sais que c\'est le moment où je me sens vulnérable. \nJe n\'ai pas besoin d\'avoir un corps parfait. Je décide à quoi devrait ressembler mon corps. Mon âme est parfaite. \nJe suis heureux dans mes relations. \nTout n\'a pas de raison logique. \nJe sais qui je peux appeler quand je me sens mal. \nJe n\'ai pas à sourire tout le temps. \nJe peux être en colère. \nC\'est tout à fait OK de demander de l\'aide. \nJe ne suis pas seul avec mes luttes. ';
 
   @override
   String get food_food_like_header =>
-      'Ici j&apos;écris une liste de repas que j&apos;aime';
+      'Ici j\'écris une liste de repas que j\'aime';
 
   @override
-  String get food_food_like_text => 'La nourriture que j&apos;aime';
+  String get food_food_like_text => 'La nourriture que j\'aime';
 
   @override
   String get food_like_header =>
-      'Ici, j&apos;écris une liste de choses que j&apos;aime chez moi';
+      'Ici, j\'écris une liste de choses que j\'aime chez moi';
 
   @override
   String get food_like_text => ' ';
@@ -466,7 +465,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get food_misc_text =>
-      'Soyez entouré de personnes qui vous prennent en charge et vous soutiennent \n        Gardez à l&apos;esprit les contacts d&apos;un psychiatre, d&apos;un psychologue et d&apos;un nutritionniste \n        N&apos;abandonnez pas vos passe-temps et les choses que vous aimiez avant \n        Pratiquer la relaxation au moins une fois par jour \n        Faites des sports récréatifs (mais soyez prudent et ne faites pas trop d&apos;exercice;)) \n        Donnez-vous beaucoup de sommeil bon et long \n        Écrivez dans un journal \n        Trouvez votre âme sœur (ou un bon ami pour des discussions profondes) \n        Ne te regarde pas dans le miroir \n        Ne te pèse pas \n        Mangez avec quelqu&apos;un qui vous soutient et vous met à l&apos;aise \n        Manger régulièrement (environ 5 à 6 fois par jour) \n        Pensez à vos habitudes de consommation';
+      'Soyez entouré de personnes qui vous prennent en charge et vous soutiennent \nGardez à l\'esprit les contacts d\'un psychiatre, d\'un psychologue et d\'un nutritionniste \nN\'abandonnez pas vos passe-temps et les choses que vous aimiez avant \nPratiquer la relaxation au moins une fois par jour \nFaites des sports récréatifs (mais soyez prudent et ne faites pas trop d\'exercice;)) \nDonnez-vous beaucoup de sommeil bon et long \nÉcrivez dans un journal \nTrouvez votre âme sœur (ou un bon ami pour des discussions profondes) \nNe te regarde pas dans le miroir \nNe te pèse pas \nMangez avec quelqu\'un qui vous soutient et vous met à l\'aise \nManger régulièrement (environ 5 à 6 fois par jour) \nPensez à vos habitudes de consommation';
 
   @override
   String get food_motivation_header =>
@@ -480,7 +479,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get food_overeat_text =>
-      'Soyez conscient de vos sentiments, reconnaissez ce qui s&apos;en vient \n        Essayez de vous éloigner de la cuisine ou de la nourriture, concentrez-vous sur quelque chose de différent (jeux vidéo…) \n        Allez vous promener \n        Peignez vos ongles \n        Mâcher un chewing-gum \n        Trouvez une entreprise, ne soyez pas seul \n        Appeler une personne proche \n        Prenez un stylo et notez vos sentiments';
+      'Soyez conscient de vos sentiments, reconnaissez ce qui s\'en vient \nEssayez de vous éloigner de la cuisine ou de la nourriture, concentrez-vous sur quelque chose de différent (jeux vidéo…) \nAllez vous promener \nPeignez vos ongles \nMâcher un chewing-gum \nTrouvez une entreprise, ne soyez pas seul \nAppeler une personne proche \nPrenez un stylo et notez vos sentiments';
 
   @override
   String get food_pm_snack => 'Casse-croûte';
@@ -492,7 +491,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get food_problems_anxiety => 'inquiétude';
 
   @override
-  String get food_problems_anxiety_attack => 'crise d&apos;angoisse';
+  String get food_problems_anxiety_attack => 'crise d\'angoisse';
 
   @override
   String get food_problems_disgusted => 'dégoûter';
@@ -519,7 +518,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get food_problems_satisfied => 'la satisfaction';
 
   @override
-  String get food_problems_self_harm => 'l&apos;automutilation';
+  String get food_problems_self_harm => 'l\'automutilation';
 
   @override
   String get food_problems_stress => 'stress';
@@ -531,14 +530,14 @@ class AppLocalizationsFr extends AppLocalizations {
   String get food_problems_vomit => 'vomissement';
 
   @override
-  String get food_record_feel => 'Qu&apos;avez-vous ressenti pendant le repas?';
+  String get food_record_feel => 'Qu\'avez-vous ressenti pendant le repas?';
 
   @override
   String get food_record_problems =>
-      'Avez-vous remarqué des problèmes de troubles de l&apos;alimentation? Lesquels?';
+      'Avez-vous remarqué des problèmes de troubles de l\'alimentation? Lesquels?';
 
   @override
-  String get food_record_what => 'Qu&apos;as-tu mangé?';
+  String get food_record_what => 'Qu\'as-tu mangé?';
 
   @override
   String get food_record_when => 'Quand as-tu mangé?';
@@ -562,7 +561,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get food_tasks => 'Tâches';
 
   @override
-  String get food_tasks_afraid => 'La nourriture dont j&apos;ai peur';
+  String get food_tasks_afraid => 'La nourriture dont j\'ai peur';
 
   @override
   String get food_tasks_challenge => 'Tâches';
@@ -571,10 +570,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get food_tasks_creative => 'Les tâches créatives';
 
   @override
-  String get food_tasks_food_like => 'La nourriture que j&apos;aime';
+  String get food_tasks_food_like => 'La nourriture que j\'aime';
 
   @override
-  String get food_tasks_like => 'Ce que j&apos;aime chez moi';
+  String get food_tasks_like => 'Ce que j\'aime chez moi';
 
   @override
   String get food_tasks_motivation => 'Motivation';
@@ -584,17 +583,20 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get food_tips_text =>
-      'Respirez profondément \n        Essayez de vous concentrer sur les jeux ou le nombre de chiffres dans cette application \n        Pensez à votre motivation - pourquoi voulez-vous être en bonne santé? \n        Pleure juste, n&apos;aie pas honte de tes larmes \n        Appelez une personne proche qui vous comprend et vous soutient \n        Rencontrer un ami proche \n        Embrasse ta maman / papa / grand-mère / animal \n        Écoutez de la musique \n        Lire un livre \n        Regardez votre émission télévisée, série télévisée ou film préféré \n        Colorez votre mandala avec des couleurs vives \n        Notez les raisons pour lesquelles vous voulez être en bonne santé';
+      'Respirez profondément \nEssayez de vous concentrer sur les jeux ou le nombre de chiffres dans cette application \nPensez à votre motivation - pourquoi voulez-vous être en bonne santé? \nPleure juste, n\'aie pas honte de tes larmes \nAppelez une personne proche qui vous comprend et vous soutient \nRencontrer un ami proche \nEmbrasse ta maman / papa / grand-mère / animal \nÉcoutez de la musique \nLire un livre \nRegardez votre émission télévisée, série télévisée ou film préféré \nColorez votre mandala avec des couleurs vives \nNotez les raisons pour lesquelles vous voulez être en bonne santé';
 
   @override
-  String get food_vomit => 'Envie de vomir ou de faire de l&apos;exercice';
+  String get food_vomit => 'Envie de vomir ou de faire de l\'exercice';
 
   @override
   String get food_vomit_text =>
-      'Notez les raisons pour lesquelles vous voulez être en bonne santé \n        Trouvez une entreprise, ne soyez pas seul \n        Appeler une personne proche \n        Envoyez un SMS à votre ami proche \n        Respirez profondément \n        Concentrez-vous sur le comptage des nombres ou jouer à d&apos;autres jeux dans cette application \n        Prenez un stylo et notez vos sentiments ';
+      'Notez les raisons pour lesquelles vous voulez être en bonne santé \nTrouvez une entreprise, ne soyez pas seul \nAppeler une personne proche \nEnvoyez un SMS à votre ami proche \nRespirez profondément \nConcentrez-vous sur le comptage des nombres ou jouer à d\'autres jeux dans cette application \nPrenez un stylo et notez vos sentiments ';
 
   @override
   String get game => 'Jeu';
+
+  @override
+  String get games => 'Jeux';
 
   @override
   String get game_balance => 'Jeu de swing';
@@ -610,7 +612,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get home => 'Accueil';
 
   @override
-  String get homepage_subtitle => 'Comment pouvons-nous vous aider ?';
+  String get homepage_subtitle => 'Comment pouvons-nous vous aider?';
 
   @override
   String get hours => 'Heures';
@@ -623,7 +625,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get import_export_text =>
-      'Ici, vous pouvez exporter vos données enregistrées dans l&apos;application vers un fichier ou télécharger le fichier enregistré. L&apos;importation du fichier écrasera les données actuellement enregistrées!';
+      'Ici, vous pouvez exporter vos données enregistrées dans l\'application vers un fichier ou télécharger le fichier enregistré. L\'importation du fichier écrasera les données actuellement enregistrées!';
 
   @override
   String get import_failed =>
@@ -645,7 +647,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get journal_grateful => 'De quoi suis-je reconnaissant?';
 
   @override
-  String get journal_great => 'Qu&apos;est-ce qui rend cette journée géniale?';
+  String get journal_great => 'Qu\'est-ce qui rend cette journée géniale?';
 
   @override
   String get journal_improve =>
@@ -653,7 +655,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get journal_three =>
-      'Trois bonnes choses qui se sont produites aujourd&apos;hui:';
+      'Trois bonnes choses qui se sont produites aujourd\'hui:';
 
   @override
   String get language => 'Langue';
@@ -674,7 +676,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get math_annouce_incorrect_answer => 'Réponse incorrecte';
 
   @override
-  String get math_game_answer_button => 'Quel est le résultat ?';
+  String get math_game_answer_button => 'Quel est le résultat?';
 
   @override
   String get message_text => 'Texte du message';
@@ -733,7 +735,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get mood_statistics => 'Statistiques d\'humeur';
 
   @override
-  String get mood_text => 'Comment je me sens aujourd&apos;hui:';
+  String get mood_text => 'Comment je me sens aujourd\'hui:';
 
   @override
   String get mood_track_chart_guide =>
@@ -744,7 +746,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'L\'ambiance a été enregistrée avec succès';
 
   @override
-  String get mood_welcome_title => 'Salut, comment te sens-tu aujourd\'hui ?';
+  String get mood_welcome_title => 'Salut, comment te sens-tu aujourd\'hui?';
 
   @override
   String get my_contacts => 'Mes contacts';
@@ -763,7 +765,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get my_records => 'Mes records';
 
   @override
-  String get need_help => 'Avez-vous besoin d&apos;une aide professionnelle?';
+  String get need_help => 'Avez-vous besoin d\'une aide professionnelle?';
 
   @override
   String get next => 'Suivant';
@@ -828,6 +830,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get plan => 'Le plan d’urgence';
 
   @override
+  String get plants => 'Plantes';
+
+  @override
   String get plan_example => 'Faire les courses';
 
   @override
@@ -885,7 +890,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get plural_year_other => 'Années';
 
   @override
-  String get praise_example => 'J&apos;ai fait mon exercice quotidien';
+  String get praise_example => 'J\'ai fait mon exercice quotidien';
 
   @override
   String get previous => 'Précédent';
@@ -960,11 +965,11 @@ class AppLocalizationsFr extends AppLocalizations {
   String get self_harm => 'Je veux me mutiler';
 
   @override
-  String get self_harm_helped => 'Ce qui m&apos;a aidé';
+  String get self_harm_helped => 'Ce qui m\'a aidé';
 
   @override
   String get self_harm_helped_header =>
-      'Énumérez où vous pouvez écrire des choses qui vous ont aidé à éviter l&apos;automutilation auparavant.';
+      'Énumérez où vous pouvez écrire des choses qui vous ont aidé à éviter l\'automutilation auparavant.';
 
   @override
   String get self_harm_plan_questions =>
@@ -978,11 +983,11 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get self_harm_timer_3_months =>
-      'Tu as passé un quart d\'année sans te blesser.\nC\'est génial !';
+      'Tu as passé un quart d\'année sans te blesser.\nC\'est génial!';
 
   @override
   String get self_harm_timer_begin =>
-      'Tu t\'en sors très bien.\nContinuez comme ça !';
+      'Tu t\'en sors très bien.\nContinuez comme ça!';
 
   @override
   String get self_harm_timer_day =>
@@ -990,15 +995,15 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get self_harm_timer_half_year =>
-      'Tu as parcouru un long chemin, tu ne t\'es pas blessé depuis six mois.\nC\'est un excellent résultat !';
+      'Tu as parcouru un long chemin, tu ne t\'es pas blessé depuis six mois.\nC\'est un excellent résultat!';
 
   @override
   String get self_harm_timer_hour =>
-      'Bon début ! Notez les conseils qui vous ont aidé.\nPeux-tu faire le suivant ?';
+      'Bon début! Notez les conseils qui vous ont aidé.\nPeux-tu faire le suivant?';
 
   @override
   String get self_harm_timer_month =>
-      'Tu ne t\'es pas blessé depuis un mois.\nQu\'est-ce qui te pousse à continuer ?';
+      'Tu ne t\'es pas blessé depuis un mois.\nQu\'est-ce qui te pousse à continuer?';
 
   @override
   String get self_harm_timer_week =>
@@ -1033,7 +1038,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get sleep_text =>
-      'À quel point mon sommeil était-il bon aujourd&apos;hui?';
+      'À quel point mon sommeil était-il bon aujourd\'hui?';
 
   @override
   String get sleep_title => 'Mon sommeil';

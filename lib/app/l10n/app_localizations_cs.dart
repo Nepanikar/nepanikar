@@ -590,6 +590,9 @@ class AppLocalizationsCs extends AppLocalizations {
   String get game => 'Hra';
 
   @override
+  String get games => 'Hry';
+
+  @override
   String get game_balance => 'Hra houpačka';
 
   @override
@@ -813,6 +816,9 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get plan => 'Záchranný plán';
+
+  @override
+  String get plants => 'Rostliny';
 
   @override
   String get plan_example => 'Nakoupím v obchodě';

@@ -591,6 +591,9 @@ class AppLocalizationsSv extends AppLocalizations {
   String get game => 'Spel';
 
   @override
+  String get games => 'Spel';
+
+  @override
   String get game_balance => 'Gungbrädespel';
 
   @override
@@ -816,6 +819,9 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get plan => 'Nödsituationplan';
+
+  @override
+  String get plants => 'Växter';
 
   @override
   String get plan_example => 'Jag ska gå och handla';

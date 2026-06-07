@@ -487,7 +487,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get food_problems_anxiety => 'disagio';
 
   @override
-  String get food_problems_anxiety_attack => 'attacco d&apos;ansia';
+  String get food_problems_anxiety_attack => 'attacco d\'ansia';
 
   @override
   String get food_problems_disgusted => 'disgusto';
@@ -592,6 +592,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get game => 'Giocando';
 
   @override
+  String get games => 'Giochi';
+
+  @override
   String get game_balance => 'Gioco altalena';
 
   @override
@@ -618,7 +621,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get import_export_text =>
-      'Qui è possibile esportare i dati salvati nell&apos;applicazione in un file o caricare il file salvato. L&apos;importazione del file sovrascriverà i dati attualmente salvati!';
+      'Qui è possibile esportare i dati salvati nell\'applicazione in un file o caricare il file salvato. L\'importazione del file sovrascriverà i dati attualmente salvati!';
 
   @override
   String get import_failed =>
@@ -743,7 +746,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get my_contacts_header =>
-      'Qui posso scrivere i miei contatti, inviare loro un&apos;e-mail, sms o chiamarli.';
+      'Qui posso scrivere i miei contatti, inviare loro un\'e-mail, sms o chiamarli.';
 
   @override
   String get my_contacts_names_example => 'Nome';
@@ -817,6 +820,9 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get plan => 'Piano di salvaguardia';
+
+  @override
+  String get plants => 'Piante';
 
   @override
   String get plan_example => 'Faccio la spesa';
@@ -954,7 +960,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get self_harm_helped_header =>
-      'Elenca dove puoi scrivere le cose che ti hanno aiutato a evitare l&apos;autolesionismo prima.';
+      'Elenca dove puoi scrivere le cose che ti hanno aiutato a evitare l\'autolesionismo prima.';
 
   @override
   String get self_harm_plan_questions =>

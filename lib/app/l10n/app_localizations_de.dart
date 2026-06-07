@@ -595,6 +595,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get game => 'das Spiel';
 
   @override
+  String get games => 'Spiele';
+
+  @override
   String get game_balance => 'Schaukelspiel';
 
   @override
@@ -820,6 +823,9 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get plan => 'der Rettungsplan';
+
+  @override
+  String get plants => 'Pflanzen';
 
   @override
   String get plan_example => 'Ich gehe einkaufen';

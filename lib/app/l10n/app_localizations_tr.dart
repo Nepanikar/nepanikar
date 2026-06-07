@@ -589,6 +589,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get game => 'Oyun';
 
   @override
+  String get games => 'Oyunlar';
+
+  @override
   String get game_balance => 'Tahterevalli oyunu';
 
   @override
@@ -812,6 +815,9 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get plan => 'Acil durum planı';
+
+  @override
+  String get plants => 'Bitkiler';
 
   @override
   String get plan_example => 'Alışverişe gideceğim';

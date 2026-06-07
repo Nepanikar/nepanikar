@@ -24,6 +24,7 @@ import 'app_localizations_sk.dart';
 import 'app_localizations_sv.dart';
 import 'app_localizations_tr.dart';
 import 'app_localizations_uk.dart';
+import 'app_localizations_vi.dart';
 
 // ignore_for_file: type=lint
 
@@ -130,6 +131,7 @@ abstract class AppLocalizations {
     Locale('sv'),
     Locale('tr'),
     Locale('uk'),
+    Locale('vi'),
   ];
 
   /// No description provided for @about_app.
@@ -1224,6 +1226,12 @@ abstract class AppLocalizations {
   /// **'Hra'**
   String get game;
 
+  /// No description provided for @games.
+  ///
+  /// In cs, this message translates to:
+  /// **'Hry'**
+  String get games;
+
   /// No description provided for @game_balance.
   ///
   /// In cs, this message translates to:
@@ -1655,6 +1663,12 @@ abstract class AppLocalizations {
   /// In cs, this message translates to:
   /// **'Záchranný plán'**
   String get plan;
+
+  /// No description provided for @plants.
+  ///
+  /// In cs, this message translates to:
+  /// **'Rostliny'**
+  String get plants;
 
   /// No description provided for @plan_example.
   ///
@@ -2191,6 +2205,7 @@ class _AppLocalizationsDelegate
     'sv',
     'tr',
     'uk',
+    'vi',
   ].contains(locale.languageCode);
 
   @override
@@ -2238,6 +2253,8 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
       return AppLocalizationsTr();
     case 'uk':
       return AppLocalizationsUk();
+    case 'vi':
+      return AppLocalizationsVi();
   }
 
   throw FlutterError(

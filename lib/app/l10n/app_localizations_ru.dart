@@ -592,6 +592,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get game => 'Игры';
 
   @override
+  String get games => 'Игры';
+
+  @override
   String get game_balance => 'Свинг игра';
 
   @override
@@ -816,6 +819,9 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get plan => 'Кризисный план';
+
+  @override
+  String get plants => 'Растения';
 
   @override
   String get plan_example => 'Пойду за покупками';

@@ -50,7 +50,6 @@ class AnxietyAppScreen extends StatelessWidget {
         text: context.l10n.games,
         image: Assets.illustrations.modules.games.svg(colorFilter: colorFilter),
         onTap: () => context.push(const GamesRoute().location),
-        isDarkMode: isDarkMode,
       ),
       if (['cs', 'sk'].contains(_userSettingsDao.locale.languageCode))
         LongTile(

@@ -594,6 +594,9 @@ class AppLocalizationsNb extends AppLocalizations {
   String get game => 'Spill';
 
   @override
+  String get games => 'Spill';
+
+  @override
   String get game_balance => 'Spillet swing';
 
   @override
@@ -817,6 +820,9 @@ class AppLocalizationsNb extends AppLocalizations {
 
   @override
   String get plan => 'Redningsplan';
+
+  @override
+  String get plants => 'Planter';
 
   @override
   String get plan_example => 'Jeg skal handle i butikken';

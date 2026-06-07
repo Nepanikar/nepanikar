@@ -575,6 +575,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get game => '게임';
 
   @override
+  String get games => '게임';
+
+  @override
   String get game_balance => '시소 게임';
 
   @override
@@ -792,6 +795,9 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get plan => '응급 계획';
+
+  @override
+  String get plants => '식물';
 
   @override
   String get plan_example => '장보러 갈 거예요';

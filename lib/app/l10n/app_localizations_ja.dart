@@ -574,6 +574,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get game => 'ゲーム';
 
   @override
+  String get games => 'ゲーム';
+
+  @override
   String get game_balance => 'シーソーゲーム';
 
   @override
@@ -791,6 +794,9 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get plan => '緊急時の計画';
+
+  @override
+  String get plants => '植物';
 
   @override
   String get plan_example => '買い物に行きます';

@@ -591,6 +591,9 @@ class AppLocalizationsSk extends AppLocalizations {
   String get game => 'Hra';
 
   @override
+  String get games => 'Hry';
+
+  @override
   String get game_balance => 'Hra hojdačka';
 
   @override
@@ -814,6 +817,9 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get plan => 'Záchranný plán';
+
+  @override
+  String get plants => 'Rastliny';
 
   @override
   String get plan_example => 'Nakúpim v obchode';
