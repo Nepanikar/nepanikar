@@ -23,7 +23,8 @@ class MyContactTile extends StatefulWidget {
 }
 
 class _MyContactTileState extends State<MyContactTile> {
-  MyContactsRecordsDao get _myContactsRecordsDao => registry.get<MyContactsRecordsDao>();
+  MyContactsRecordsDao get _myContactsRecordsDao =>
+      registry.get<MyContactsRecordsDao>();
 
   late final TextEditingController _nameController;
   late final TextEditingController _contactAddressController;
@@ -32,7 +33,9 @@ class _MyContactTileState extends State<MyContactTile> {
   void initState() {
     super.initState();
     _nameController = TextEditingController(text: widget.record.name);
-    _contactAddressController = TextEditingController(text: widget.record.contactAddress);
+    _contactAddressController = TextEditingController(
+      text: widget.record.contactAddress,
+    );
   }
 
   @override
@@ -61,7 +64,9 @@ class _MyContactTileState extends State<MyContactTile> {
       null,
     );
     final textColor = textColorBasedOnDarkMode(context);
-    final colorFilter = textColor != null ? ColorFilter.mode(textColor, BlendMode.srcIn) : null;
+    final colorFilter = textColor != null
+        ? ColorFilter.mode(textColor, BlendMode.srcIn)
+        : null;
     final buttonStyle = TextButton.styleFrom(
       textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
     );
@@ -79,7 +84,9 @@ class _MyContactTileState extends State<MyContactTile> {
                 Padding(
                   padding: const EdgeInsets.only(top: 12),
                   child: ExcludeSemantics(
-                    child: Assets.icons.userCircle.svg(colorFilter: colorFilter),
+                    child: Assets.icons.userCircle.svg(
+                      colorFilter: colorFilter,
+                    ),
                   ),
                 ),
                 Expanded(
@@ -89,14 +96,18 @@ class _MyContactTileState extends State<MyContactTile> {
                       _buildTextField(
                         hintText: context.l10n.my_contacts_names_example,
                         controller: _nameController,
-                        onChanged: (value) async =>
-                            await _myContactsRecordsDao.updateName(widget.id, widget.record, value),
+                        onChanged: (value) async => await _myContactsRecordsDao
+                            .updateName(widget.id, widget.record, value),
                       ),
                       _buildTextField(
                         hintText: context.l10n.phone,
                         controller: _contactAddressController,
-                        onChanged: (value) async => await _myContactsRecordsDao
-                            .updateContactAddress(widget.id, widget.record, value),
+                        onChanged: (value) async =>
+                            await _myContactsRecordsDao.updateContactAddress(
+                              widget.id,
+                              widget.record,
+                              value,
+                            ),
                       ),
                     ],
                   ),
@@ -112,7 +123,9 @@ class _MyContactTileState extends State<MyContactTile> {
                     await context.showOkCancelNepanikarDialog(
                       text: context.l10n.really_remove,
                       onPrimaryBtnTap: (_) async {
-                        context.semanticsAnnounce(context.l10n.record_deleted_announce);
+                        context.semanticsAnnounce(
+                          context.l10n.record_deleted_announce,
+                        );
                         await _myContactsRecordsDao.deleteRecord(widget.id);
                       },
                       primaryBtnLabel: context.l10n.mood_help_yes,
@@ -124,7 +137,9 @@ class _MyContactTileState extends State<MyContactTile> {
             ),
             const SizedBox(height: 12),
             NepanikarHorizontalDivider(
-              color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade100,
+              color: NepanikarColors.primarySwatch(
+                Theme.of(context).primaryColor,
+              ).shade100,
             ),
             SizedBox(
               width: context.screenWidth,
@@ -136,13 +151,21 @@ class _MyContactTileState extends State<MyContactTile> {
                     children: [
                       TextButton(
                         style: buttonStyle,
-                        child: Text(context.l10n.send_sms, style: TextStyle(color: textColor)),
-                        onPressed: () => launchSmsNum(_contactAddressController.text),
+                        child: Text(
+                          context.l10n.send_sms,
+                          style: TextStyle(color: textColor),
+                        ),
+                        onPressed: () =>
+                            launchSmsNum(_contactAddressController.text),
                       ),
                       TextButton(
                         style: buttonStyle,
-                        child: Text(context.l10n.make_call, style: TextStyle(color: textColor)),
-                        onPressed: () => launchPhoneNum(_contactAddressController.text),
+                        child: Text(
+                          context.l10n.make_call,
+                          style: TextStyle(color: textColor),
+                        ),
+                        onPressed: () =>
+                            launchPhoneNum(_contactAddressController.text),
                       ),
                     ],
                   ),

@@ -17,17 +17,20 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 part 'my_records_journal_records_screen.g.dart';
 
 @TypedGoRoute<MyRecordsJournalRecordsRoute>(path: '/home/my-records/journal')
-class MyRecordsJournalRecordsRoute extends GoRouteData with $MyRecordsJournalRecordsRoute {
+class MyRecordsJournalRecordsRoute extends GoRouteData
+    with $MyRecordsJournalRecordsRoute {
   const MyRecordsJournalRecordsRoute();
 
   @override
-  Widget build(BuildContext context, _) => const MyRecordsJournalRecordsScreen();
+  Widget build(BuildContext context, _) =>
+      const MyRecordsJournalRecordsScreen();
 }
 
 class MyRecordsJournalRecordsScreen extends StatelessWidget {
   const MyRecordsJournalRecordsScreen({super.key});
 
-  MyRecordsJournalDao get _myRecordsJournalDao => registry.get<MyRecordsJournalDao>();
+  MyRecordsJournalDao get _myRecordsJournalDao =>
+      registry.get<MyRecordsJournalDao>();
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +48,9 @@ class MyRecordsJournalRecordsScreen extends StatelessWidget {
             tooltip: context.l10n.add_item,
             onPressed: () async {
               final goRouter = GoRouter.of(context);
-              final id = await _myRecordsJournalDao.createRecord(getEmptyJournalRecord());
+              final id = await _myRecordsJournalDao.createRecord(
+                getEmptyJournalRecord(),
+              );
               unawaited(analytics.logEvent(name: 'journal_record_created'));
               await goRouter.push(
                 const MyRecordsJournalDetailRoute().location,
@@ -64,7 +69,9 @@ class MyRecordsJournalRecordsScreen extends StatelessWidget {
         android: () => FloatingActionButton(
           onPressed: () async {
             final goRouter = GoRouter.of(context);
-            final id = await _myRecordsJournalDao.createRecord(getEmptyJournalRecord());
+            final id = await _myRecordsJournalDao.createRecord(
+              getEmptyJournalRecord(),
+            );
             unawaited(analytics.logEvent(name: 'journal_record_created'));
             await goRouter.push(
               const MyRecordsJournalDetailRoute().location,

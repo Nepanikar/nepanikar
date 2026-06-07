@@ -86,7 +86,10 @@ class _NepanikarScreenWrapperState extends State<NepanikarScreenWrapper> {
           padding: const EdgeInsets.fromLTRB(24, 16, 24, 16),
           children: widget.children.mapIndexed((i, e) {
             final isFirst = i == 0;
-            return Padding(padding: EdgeInsets.fromLTRB(0, isFirst ? 0 : 6, 0, 6), child: e);
+            return Padding(
+              padding: EdgeInsets.fromLTRB(0, isFirst ? 0 : 6, 0, 6),
+              child: e,
+            );
           }).toList(),
         );
       } else {
@@ -101,12 +104,17 @@ class _NepanikarScreenWrapperState extends State<NepanikarScreenWrapper> {
     }
 
     return Scaffold(
-      appBar: AppBar(title: Text(widget.appBarTitle), actions: widget.appBarActions),
+      appBar: AppBar(
+        title: Text(widget.appBarTitle),
+        actions: widget.appBarActions,
+      ),
       resizeToAvoidBottomInset: false,
       floatingActionButton: widget.floatingActionButton == null
           ? null
           : Padding(
-              padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom,
+              ),
               child: widget.floatingActionButton,
             ),
       bottomNavigationBar: widget.showBottomNavbar
@@ -116,25 +124,26 @@ class _NepanikarScreenWrapperState extends State<NepanikarScreenWrapper> {
                   svgIconPath: Assets.icons.home.path,
                   label: context.l10n.home,
                   isSelected: true,
-                  isDarkMode: isDarkMode,
                   context: context,
                 ),
                 buildBottomNavigationBarItem(
                   svgIconPath: Assets.icons.calendarEvent.path,
                   label: context.l10n.records,
-                  isDarkMode: isDarkMode,
+                  context: context,
+                ),
+                buildBottomNavigationBarItem(
+                  svgIconPath: Assets.icons.calendarEvent.path,
+                  label: 'BPD',
                   context: context,
                 ),
                 buildBottomNavigationBarItem(
                   svgIconPath: Assets.icons.phone.path,
                   label: context.l10n.contacts_module,
-                  isDarkMode: isDarkMode,
                   context: context,
                 ),
                 buildBottomNavigationBarItem(
                   svgIconPath: Assets.icons.settings.path,
                   label: context.l10n.settings,
-                  isDarkMode: isDarkMode,
                   context: context,
                 ),
               ],
@@ -162,13 +171,19 @@ class _NepanikarScreenWrapperState extends State<NepanikarScreenWrapper> {
                   ),
                   Container(
                     margin: EdgeInsets.only(
-                      top: (_appBarOverflowSize > 32 ? _appBarOverflowSize : 50) - 32,
+                      top:
+                          (_appBarOverflowSize > 32
+                              ? _appBarOverflowSize
+                              : 50) -
+                          32,
                       // Padding from the keyboard, if opened.
                       bottom: MediaQuery.of(context).viewInsets.bottom,
                     ),
                     child: SizedBox(
                       width: double.infinity,
-                      height: widget.expandToMaxScreenHeight ? context.screenHeight : null,
+                      height: widget.expandToMaxScreenHeight
+                          ? context.screenHeight
+                          : null,
                       child: Card(
                         color: containerColor,
                         clipBehavior: Clip.hardEdge,
@@ -237,14 +252,23 @@ class AppBarOverflowContent extends StatelessWidget {
       child: appBarDescription == null
           ? null
           : Padding(
-              padding: EdgeInsets.fromLTRB(pageSidePadding, 6, pageSidePadding, pageSidePadding),
+              padding: EdgeInsets.fromLTRB(
+                pageSidePadding,
+                6,
+                pageSidePadding,
+                pageSidePadding,
+              ),
               child: ExcludeSemantics(
                 excluding: appBarDescription!.isEmpty,
                 child: Text(
-                  isCardStackLayout ? '${appBarDescription!}\n' : appBarDescription!,
+                  isCardStackLayout
+                      ? '${appBarDescription!}\n'
+                      : appBarDescription!,
                   textAlign: TextAlign.center,
                   style: NepanikarFonts.bodyRoman.copyWith(
-                    color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade100,
+                    color: NepanikarColors.primarySwatch(
+                      Theme.of(context).primaryColor,
+                    ).shade100,
                   ),
                 ),
               ),

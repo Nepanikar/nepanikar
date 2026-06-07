@@ -23,7 +23,9 @@ class SelfHarmPlanScreen extends StatelessWidget {
       appBarTitle: context.l10n.plan,
       appBarDescription: context.l10n.emergency_plan_description,
       planItems: {
-        for (final title in context.l10n.self_harm_plan_questions.extractToItems()) title: null,
+        for (final title
+            in context.l10n.self_harm_plan_questions.extractToItems())
+          title: null,
       },
     );
   }

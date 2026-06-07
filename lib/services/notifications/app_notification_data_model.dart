@@ -13,7 +13,8 @@ part 'app_notification_data_model.g.dart';
 /// (e.g. open a specific screen).
 @freezed
 abstract class AppNotificationData with _$AppNotificationData {
-  const factory AppNotificationData({required NotificationType type}) = _AppNotificationData;
+  const factory AppNotificationData({required NotificationType type}) =
+      _AppNotificationData;
 
   const AppNotificationData._();
 
@@ -28,6 +29,8 @@ extension ReceivedNotificationExt on ReceivedNotification {
     if (payload == null) return null;
     final customDataPayload = payload![nestedPayloadKey];
     if (customDataPayload == null) return null;
-    return AppNotificationData.fromJson(jsonDecode(customDataPayload) as Map<String, Object?>);
+    return AppNotificationData.fromJson(
+      jsonDecode(customDataPayload) as Map<String, Object?>,
+    );
   }
 }

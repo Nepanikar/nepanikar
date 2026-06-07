@@ -2,7 +2,8 @@ import 'package:nepanikar/services/db/common/nepanikar_plan_form_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 
 class SuicidalThoughtsPlanDao extends NepanikarPlanFormDao {
-  SuicidalThoughtsPlanDao({required super.dbService}) : super(storeKeyName: _storeKeyName);
+  SuicidalThoughtsPlanDao({required super.dbService})
+    : super(storeKeyName: _storeKeyName);
 
   @override
   Future<SuicidalThoughtsPlanDao> init() async {

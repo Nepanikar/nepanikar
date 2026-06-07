@@ -61,20 +61,24 @@ class HeatMapColorTip extends StatelessWidget {
   ///
   /// If [ColorMode.color], call [_heatmapListColor]
   /// If [ColorMode.opacity], call [_heatmapListOpacity]
-  List<Widget> _heatmapList() =>
-      colorMode == ColorMode.color ? _heatmapListColor() : _heatmapListOpacity();
+  List<Widget> _heatmapList() => colorMode == ColorMode.color
+      ? _heatmapListColor()
+      : _heatmapListOpacity();
 
   /// Evenly show every colors from lowest to highest.
   List<Widget> _heatmapListColor() {
     final List<Widget> children = [];
-    final SplayTreeMap<int, Color> sortedColorset = SplayTreeMap<int, Color>.from(
-      colorsets ?? {},
-      (a, b) => a.compareTo(b),
-    );
+    final SplayTreeMap<int, Color> sortedColorset =
+        SplayTreeMap<int, Color>.from(
+          colorsets ?? {},
+          (a, b) => a.compareTo(b),
+        );
 
     for (int i = 0; i < (containerCount ?? _defaultLength); i++) {
       // Correctly calculate index within bounds and use elements
-      final int index = ((sortedColorset.length / (containerCount ?? _defaultLength)) * i).floor();
+      final int index =
+          ((sortedColorset.length / (containerCount ?? _defaultLength)) * i)
+              .floor();
       final Color color = sortedColorset.values.elementAt(index);
       children.add(_tipContainer(color));
     }
@@ -89,7 +93,9 @@ class HeatMapColorTip extends StatelessWidget {
     for (int i = 0; i < (containerCount ?? _defaultLength); i++) {
       children.add(
         _tipContainer(
-          colorsets?.values.first.withValues(alpha: i / (containerCount ?? _defaultLength)) ??
+          colorsets?.values.first.withValues(
+                alpha: i / (containerCount ?? _defaultLength),
+              ) ??
               Colors.white,
         ),
       );
@@ -107,7 +113,9 @@ class HeatMapColorTip extends StatelessWidget {
 
   Widget _defaultMoodIcon(bool happy, BuildContext context) {
     const iconSize = 27.0;
-    final filter = ColorFilter.matrix(svgColorMatrixBasedOnDarkMode(context, lighter: true));
+    final filter = ColorFilter.matrix(
+      svgColorMatrixBasedOnDarkMode(context, lighter: true),
+    );
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: (happy != true)

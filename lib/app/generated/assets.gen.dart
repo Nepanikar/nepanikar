@@ -45,6 +45,19 @@ class $AssetsAudioGen {
   List<String> get values => [eveningCS, morningCS, relaxCS];
 }
 
+class $AssetsBpdGen {
+  const $AssetsBpdGen();
+
+  /// File path: assets/bpd/bpd_weeks_data.json
+  String get bpdWeeksData => 'assets/bpd/bpd_weeks_data.json';
+
+  /// File path: assets/bpd/programme_content.json
+  String get programmeContent => 'assets/bpd/programme_content.json';
+
+  /// List of all assets
+  List<String> get values => [bpdWeeksData, programmeContent];
+}
+
 class $AssetsContactsGen {
   const $AssetsContactsGen();
 
@@ -315,6 +328,31 @@ class $AssetsSponsorsGen {
     sponsorRodinyOrlickych,
     sponsorUniqa,
   ];
+}
+
+class $AssetsTestsGen {
+  const $AssetsTestsGen();
+
+  /// File path: assets/tests/BRCS-test.csv
+  String get bRCSTest => 'assets/tests/BRCS-test.csv';
+
+  /// File path: assets/tests/GAD-7-test.csv
+  String get gAD7Test => 'assets/tests/GAD-7-test.csv';
+
+  /// File path: assets/tests/PHQ-9-test.csv
+  String get pHQ9Test => 'assets/tests/PHQ-9-test.csv';
+
+  /// File path: assets/tests/PSS-test.csv
+  String get pSSTest => 'assets/tests/PSS-test.csv';
+
+  /// File path: assets/tests/anxiety.csv
+  String get anxiety => 'assets/tests/anxiety.csv';
+
+  /// File path: assets/tests/tests-data.json
+  String get testsData => 'assets/tests/tests-data.json';
+
+  /// List of all assets
+  List<String> get values => [bRCSTest, gAD7Test, pHQ9Test, pSSTest, anxiety, testsData];
 }
 
 class $AssetsAnimatedIllustrationsMoodsGen {
@@ -682,11 +720,13 @@ class Assets {
   static const $AssetsAnimatedIllustrationsGen animatedIllustrations =
       $AssetsAnimatedIllustrationsGen();
   static const $AssetsAudioGen audio = $AssetsAudioGen();
+  static const $AssetsBpdGen bpd = $AssetsBpdGen();
   static const $AssetsContactsGen contacts = $AssetsContactsGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsIllustrationsGen illustrations = $AssetsIllustrationsGen();
   static const $AssetsMealsGen meals = $AssetsMealsGen();
   static const $AssetsSponsorsGen sponsors = $AssetsSponsorsGen();
+  static const $AssetsTestsGen tests = $AssetsTestsGen();
 }
 
 class AssetGenImage {

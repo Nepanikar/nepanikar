@@ -6,14 +6,21 @@ import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
 
 class MoodChart extends StatelessWidget {
-  const MoodChart({super.key, required this.moodTrackData, required this.moodLabelBuilder});
+  const MoodChart({
+    super.key,
+    required this.moodTrackData,
+    required this.moodLabelBuilder,
+  });
 
   final Map<DateTime, List<MoodTrack>> moodTrackData;
   final String Function(Mood m) moodLabelBuilder;
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(aspectRatio: 1.70, child: LineChart(_buildLineChartData(context)));
+    return AspectRatio(
+      aspectRatio: 1.70,
+      child: LineChart(_buildLineChartData(context)),
+    );
   }
 
   Widget _leftTitleIcons(double value, TitleMeta meta, BuildContext context) {
@@ -24,7 +31,9 @@ class MoodChart extends StatelessWidget {
           mood?.icon.svg(
             width: 32,
             height: 32,
-            colorFilter: ColorFilter.matrix(svgColorMatrixBasedOnDarkMode(context, lighter: true)),
+            colorFilter: ColorFilter.matrix(
+              svgColorMatrixBasedOnDarkMode(context, lighter: true),
+            ),
           ) ??
           const SizedBox.shrink(),
     );
@@ -92,7 +101,10 @@ class MoodChart extends StatelessWidget {
             getTitlesWidget: (value, meta) {
               final index = value.toInt();
               if (index >= 0 && index < labels.length && value % 1 == 0) {
-                return Padding(padding: const EdgeInsets.only(top: 10), child: Text(labels[index]));
+                return Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Text(labels[index]),
+                );
               }
               return const SizedBox.shrink();
             },
@@ -116,18 +128,23 @@ class MoodChart extends StatelessWidget {
             return TouchedSpotIndicatorData(
               FlLine(color: lineColor ?? Colors.black, strokeWidth: 3),
               FlDotData(
-                getDotPainter: (_, _, _, _) =>
-                    FlDotCirclePainter(radius: 8, color: lineColor ?? Colors.black),
+                getDotPainter: (_, _, _, _) => FlDotCirclePainter(
+                  radius: 8,
+                  color: lineColor ?? Colors.black,
+                ),
               ),
             );
           }).toList();
         },
         touchTooltipData: LineTouchTooltipData(
-          getTooltipColor: (LineBarSpot touchedSpot) => NepanikarColors.primary(context),
+          getTooltipColor: (LineBarSpot touchedSpot) =>
+              NepanikarColors.primary(context),
           getTooltipItems: (touchedSpots) {
             return touchedSpots.map((barSpot) {
               final flSpot = barSpot;
-              final moodTrack = moodTrackData.entries.elementAt(flSpot.x.toInt()).value;
+              final moodTrack = moodTrackData.entries
+                  .elementAt(flSpot.x.toInt())
+                  .value;
               final formattedDate = labels[flSpot.x.toInt()];
               double averageMood = 0;
               for (final mood in moodTrack) {

@@ -116,7 +116,9 @@ class HeatMap extends StatefulWidget {
 class _HeatMap extends State<HeatMap> {
   /// Put child into [SingleChildScrollView] so that user can scroll the widet horizontally.
   Widget _scrollableHeatMap(Widget child) {
-    return widget.scrollable ? SingleChildScrollView(reverse: true, child: child) : child;
+    return widget.scrollable
+        ? SingleChildScrollView(reverse: true, child: child)
+        : child;
   }
 
   @override
@@ -128,7 +130,9 @@ class _HeatMap extends State<HeatMap> {
         _scrollableHeatMap(
           HeatMapPage(
             endDate: widget.endDate ?? DateTime.now(),
-            startDate: widget.startDate ?? DateUtil.oneYearBefore(widget.endDate ?? DateTime.now()),
+            startDate:
+                widget.startDate ??
+                DateUtil.oneYearBefore(widget.endDate ?? DateTime.now()),
             colorMode: widget.colorMode,
             size: widget.size,
             fontSize: widget.fontSize,

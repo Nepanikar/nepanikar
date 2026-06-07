@@ -45,9 +45,10 @@ class MyRecordsJournalDTO extends Equatable {
               final answers = <Tuple2<JournalQuestion, String>>[];
               for (final journalQuestion in JournalQuestion.values) {
                 // First item is the date, so we need to add 1 to the index.
-                final answer =
-                    splitValues.safeElementAtOrNull(journalQuestion.index + 1)?.getIniStrValue() ??
-                        '';
+                final answer = splitValues
+                        .safeElementAtOrNull(journalQuestion.index + 1)
+                        ?.getIniStrValue() ??
+                    '';
                 answers.add(Tuple2(journalQuestion, answer));
               }
               records.add(JournalRecordDTO(date: date, answers: answers));
@@ -63,7 +64,8 @@ class MyRecordsJournalDTO extends Equatable {
   }
 
   factory MyRecordsJournalDTO.getIosData(Map<String, Object> config) {
-    final journalRecordsSize = config['journalRecords.size']?.toString().getIniIntValue();
+    final journalRecordsSize =
+        config['journalRecords.size']?.toString().getIniIntValue();
 
     final records = <JournalRecordDTO>[];
     if (journalRecordsSize != null) {
@@ -80,9 +82,10 @@ class MyRecordsJournalDTO extends Equatable {
             final answers = <Tuple2<JournalQuestion, String>>[];
             for (final journalQuestion in JournalQuestion.values) {
               // First item is the date, so we need to add 1 to the index.
-              final answer =
-                  splitValues.safeElementAtOrNull(journalQuestion.index + 1)?.getIniStrValue() ??
-                      '';
+              final answer = splitValues
+                      .safeElementAtOrNull(journalQuestion.index + 1)
+                      ?.getIniStrValue() ??
+                  '';
               answers.add(Tuple2(journalQuestion, answer));
             }
             records.add(JournalRecordDTO(date: date, answers: answers));

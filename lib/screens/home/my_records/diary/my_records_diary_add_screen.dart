@@ -41,7 +41,10 @@ class MyRecordsDiaryAddScreen extends StatelessWidget {
         goRouter.pop();
         await goRouter.push(
           const MyRecordsDiaryDetailRoute().location,
-          extra: DiaryRecordRouteExtraData(diaryRecordId: id, diaryRecord: diaryRecord),
+          extra: DiaryRecordRouteExtraData(
+            diaryRecordId: id,
+            diaryRecord: diaryRecord,
+          ),
         );
       },
       secondaryButtonText: context.l10n.cancel,

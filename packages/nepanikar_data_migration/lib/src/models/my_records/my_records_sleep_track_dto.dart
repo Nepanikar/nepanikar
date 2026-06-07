@@ -8,14 +8,17 @@ class MyRecordsSleepTrackDTO extends Equatable {
   });
 
   factory MyRecordsSleepTrackDTO.getAndroidData(Config config) {
-    final values = MyRecordsMoodTrackDTO.getAndroidData(config, sectionName: 'sleep').values;
+    final values =
+        MyRecordsMoodTrackDTO.getAndroidData(config, sectionName: 'sleep')
+            .values;
     return MyRecordsSleepTrackDTO._(
       values: values == null || values.isEmpty ? null : values,
     );
   }
 
   factory MyRecordsSleepTrackDTO.getIosData(Map<String, Object> config) {
-    final values = MyRecordsMoodTrackDTO.getIosData(config, sectionName: 'sleep').values;
+    final values =
+        MyRecordsMoodTrackDTO.getIosData(config, sectionName: 'sleep').values;
     return MyRecordsSleepTrackDTO._(
       values: values == null || values.isEmpty ? null : values,
     );

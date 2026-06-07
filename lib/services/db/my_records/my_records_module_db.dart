@@ -7,6 +7,7 @@ import 'package:nepanikar/services/db/my_records/food/my_records_food_record_dao
 import 'package:nepanikar/services/db/my_records/journal/my_records_journal_dao.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_dao.dart';
 import 'package:nepanikar/services/db/my_records/my_records_sleep_track_dao.dart';
+import 'package:nepanikar/services/db/tests/test_results_dao.dart';
 import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 
 class MyRecordsModuleDb implements NepanikarModuleDb {
@@ -20,15 +21,23 @@ class MyRecordsModuleDb implements NepanikarModuleDb {
   late final MyRecordsJournalDao _myRecordsJournalDao;
   late final MyRecordsFoodRecordDao _myRecordsFoodRecordDao;
   late final EmotionsDao _emotionsDao;
+  late final TestResultsDao _testResultsDao;
 
   @override
   Future<MyRecordsModuleDb> initModuleDaos() async {
     _moodTrackDao = await MoodTrackDao(dbService: _dbService).init();
-    _myRecordsSleepTrackDao = await MyRecordsSleepTrackDao(dbService: _dbService).init();
+    _myRecordsSleepTrackDao = await MyRecordsSleepTrackDao(
+      dbService: _dbService,
+    ).init();
     _myRecordsDiaryDao = await MyRecordsDiaryDao(dbService: _dbService).init();
-    _myRecordsJournalDao = await MyRecordsJournalDao(dbService: _dbService).init();
-    _myRecordsFoodRecordDao = await MyRecordsFoodRecordDao(dbService: _dbService).init();
+    _myRecordsJournalDao = await MyRecordsJournalDao(
+      dbService: _dbService,
+    ).init();
+    _myRecordsFoodRecordDao = await MyRecordsFoodRecordDao(
+      dbService: _dbService,
+    ).init();
     _emotionsDao = await EmotionsDao(dbService: _dbService).init();
+    _testResultsDao = await TestResultsDao(dbService: _dbService).init();
     return this;
   }
 
@@ -40,9 +49,12 @@ class MyRecordsModuleDb implements NepanikarModuleDb {
     await _myRecordsJournalDao.clear();
     await _myRecordsFoodRecordDao.clear();
     await _emotionsDao.clear();
+    await _testResultsDao.clear();
   }
 
-  Future<void> doModuleOldVersionMigration(MyRecordsModuleDTO moduleConfig) async {
+  Future<void> doModuleOldVersionMigration(
+    MyRecordsModuleDTO moduleConfig,
+  ) async {
     final moodTrackConfig = moduleConfig.moodTrackConfig;
     if (moodTrackConfig != null) {
       await _moodTrackDao.doOldVersionMigration(moodTrackConfig);

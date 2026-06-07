@@ -17,7 +17,8 @@ class MathEquation {
     final r = Random();
     var a = r.nextInt(_cppMaxInt) % 10;
     var b = r.nextInt(_cppMaxInt) % 10;
-    final MathOperation operation = MathOperation.values[r.nextInt(MathOperation.values.length)];
+    final MathOperation operation =
+        MathOperation.values[r.nextInt(MathOperation.values.length)];
     if (operation == MathOperation.subtract && b > a) {
       // Swap so we don't get negative result.
       final int temp = a;
@@ -25,7 +26,12 @@ class MathEquation {
       b = temp;
     }
     final correctResult = operation.calculate(a, b);
-    return MathEquation._(a: a, b: b, operation: operation, correctResult: correctResult);
+    return MathEquation._(
+      a: a,
+      b: b,
+      operation: operation,
+      correctResult: correctResult,
+    );
   }
 
   final int a;

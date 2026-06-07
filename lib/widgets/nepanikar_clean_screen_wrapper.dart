@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 
 class NepanikarCleanScreenWrapper extends StatelessWidget {
-  const NepanikarCleanScreenWrapper({super.key, required this.appBarTitle, required this.child});
+  const NepanikarCleanScreenWrapper({
+    super.key,
+    required this.appBarTitle,
+    required this.child,
+  });
 
   final String appBarTitle;
   final Widget child;
@@ -13,7 +17,10 @@ class NepanikarCleanScreenWrapper extends StatelessWidget {
       appBar: AppBar(title: Text(appBarTitle)),
       backgroundColor: NepanikarColors.primary(context),
       body: SafeArea(
-        child: SingleChildScrollView(padding: const EdgeInsets.all(16), child: child),
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
+          child: child,
+        ),
       ),
     );
   }

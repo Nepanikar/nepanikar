@@ -20,16 +20,19 @@ abstract class PhoneContact with _$PhoneContact {
     required List<SubPhoneContact> subPhoneContacts,
   }) = PhoneContactSubList;
 
-  factory PhoneContact.fromJson(Map<String, Object?> json) => _$PhoneContactFromJson(json);
+  factory PhoneContact.fromJson(Map<String, Object?> json) =>
+      _$PhoneContactFromJson(json);
 }
 
 @freezed
 abstract class SubPhoneContact with _$SubPhoneContact {
-  const factory SubPhoneContact({required String title, required String tel}) = _SubPhoneContact;
+  const factory SubPhoneContact({required String title, required String tel}) =
+      _SubPhoneContact;
 
   const SubPhoneContact._();
 
-  factory SubPhoneContact.fromJson(Map<String, Object?> json) => _$SubPhoneContactFromJson(json);
+  factory SubPhoneContact.fromJson(Map<String, Object?> json) =>
+      _$SubPhoneContactFromJson(json);
 
   String get unformattedTel => tel.unformatPhoneNum();
 }

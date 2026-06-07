@@ -11,13 +11,17 @@ enum ButtonType {
   secondary,
   secondaryAsync;
 
-  bool get isPrimary => this == ButtonType.primary || this == ButtonType.primaryAsync;
+  bool get isPrimary =>
+      this == ButtonType.primary || this == ButtonType.primaryAsync;
 
-  bool get isSecondary => this == ButtonType.secondary || this == ButtonType.secondaryAsync;
+  bool get isSecondary =>
+      this == ButtonType.secondary || this == ButtonType.secondaryAsync;
 
-  bool get isAsync => this == ButtonType.primaryAsync || this == ButtonType.secondaryAsync;
+  bool get isAsync =>
+      this == ButtonType.primaryAsync || this == ButtonType.secondaryAsync;
 
-  bool get isOutlined => this == ButtonType.secondary || this == ButtonType.secondaryAsync;
+  bool get isOutlined =>
+      this == ButtonType.secondary || this == ButtonType.secondaryAsync;
 }
 
 class NepanikarButton extends StatefulWidget {
@@ -78,7 +82,8 @@ class NepanikarButton extends StatefulWidget {
   State<NepanikarButton> createState() => _NepanikarButtonState();
 }
 
-class _NepanikarButtonState extends State<NepanikarButton> with SingleTickerProviderStateMixin {
+class _NepanikarButtonState extends State<NepanikarButton>
+    with SingleTickerProviderStateMixin {
   bool _isLoading = false;
 
   late final AnimationController _animController;
@@ -104,7 +109,10 @@ class _NepanikarButtonState extends State<NepanikarButton> with SingleTickerProv
   @override
   void initState() {
     super.initState();
-    _animController = AnimationController(duration: const Duration(seconds: 1), vsync: this);
+    _animController = AnimationController(
+      duration: const Duration(seconds: 1),
+      vsync: this,
+    );
   }
 
   @override
@@ -127,7 +135,9 @@ class _NepanikarButtonState extends State<NepanikarButton> with SingleTickerProv
         ? Colors.white
         : _isButtonInteractive
         ? NepanikarColors.primary(context)
-        : NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade500;
+        : NepanikarColors.primarySwatch(
+            Theme.of(context).primaryColor,
+          ).shade500;
     final textColor = widget.buttonType.isPrimary
         ? Colors.white
         : Theme.of(context).brightness == Brightness.dark
@@ -141,13 +151,21 @@ class _NepanikarButtonState extends State<NepanikarButton> with SingleTickerProv
             child: RotationTransition(
               turns: Tween(begin: 0.0, end: 1.0).animate(_animController),
               child: widget.buttonType.isPrimary
-                  ? Assets.icons.spinner.svg(width: iconSize, colorFilter: colorFilter)
-                  : Assets.icons.warningWavy.svg(width: iconSize, colorFilter: colorFilter),
+                  ? Assets.icons.spinner.svg(
+                      width: iconSize,
+                      colorFilter: colorFilter,
+                    )
+                  : Assets.icons.warningWavy.svg(
+                      width: iconSize,
+                      colorFilter: colorFilter,
+                    ),
             ),
           )
         : Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: widget.expandToContentWidth ? MainAxisSize.max : MainAxisSize.min,
+            mainAxisSize: widget.expandToContentWidth
+                ? MainAxisSize.max
+                : MainAxisSize.min,
             children: [
               if (widget.leadingIcon != null)
                 Padding(
@@ -155,7 +173,10 @@ class _NepanikarButtonState extends State<NepanikarButton> with SingleTickerProv
                   child: ExcludeSemantics(
                     child: widget.leadingIcon!.svg(
                       width: iconSize / 3,
-                      colorFilter: const ColorFilter.mode(NepanikarColors.white, BlendMode.srcIn),
+                      colorFilter: const ColorFilter.mode(
+                        NepanikarColors.white,
+                        BlendMode.srcIn,
+                      ),
                     ),
                   ),
                 ),
@@ -166,7 +187,10 @@ class _NepanikarButtonState extends State<NepanikarButton> with SingleTickerProv
                 Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: ExcludeSemantics(
-                    child: widget.trailingIcon!.svg(width: iconSize / 3, colorFilter: colorFilter),
+                    child: widget.trailingIcon!.svg(
+                      width: iconSize / 3,
+                      colorFilter: colorFilter,
+                    ),
                   ),
                 ),
             ],

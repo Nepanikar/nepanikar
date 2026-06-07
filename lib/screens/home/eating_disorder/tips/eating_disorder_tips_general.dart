@@ -7,13 +7,16 @@ import 'package:nepanikar/widgets/tips_carousel_body.dart';
 
 part 'eating_disorder_tips_general.g.dart';
 
-@TypedGoRoute<EatingDisorderTipsGeneralAppRoute>(path: '/home/eating-disorder/tips/general')
+@TypedGoRoute<EatingDisorderTipsGeneralAppRoute>(
+  path: '/home/eating-disorder/tips/general',
+)
 class EatingDisorderTipsGeneralAppRoute extends GoRouteData
     with $EatingDisorderTipsGeneralAppRoute {
   const EatingDisorderTipsGeneralAppRoute();
 
   @override
-  Widget build(BuildContext context, _) => const EatingDisorderTipsGeneralScreen();
+  Widget build(BuildContext context, _) =>
+      const EatingDisorderTipsGeneralScreen();
 }
 
 class EatingDisorderTipsGeneralScreen extends StatelessWidget {

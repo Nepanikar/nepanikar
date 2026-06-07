@@ -34,13 +34,22 @@ class MyContactsCrisisMessageDao {
   }
 
   /// Returns a tuple of the contact address and the body message.
-  Stream<Tuple2<String, String>> get contactAddressAndMessageStream => Rx.combineLatest2(
-    _store.record(_contactAddressKey).onSnapshot(_db).map((snapshot) => snapshot?.value ?? ''),
-    _store.record(_bodyMessageKey).onSnapshot(_db).map((snapshot) => snapshot?.value ?? ''),
-    Tuple2.new,
-  );
+  Stream<Tuple2<String, String>> get contactAddressAndMessageStream =>
+      Rx.combineLatest2(
+        _store
+            .record(_contactAddressKey)
+            .onSnapshot(_db)
+            .map((snapshot) => snapshot?.value ?? ''),
+        _store
+            .record(_bodyMessageKey)
+            .onSnapshot(_db)
+            .map((snapshot) => snapshot?.value ?? ''),
+        Tuple2.new,
+      );
 
-  Future<void> doOldVersionMigration(MyContactsCrisisMessageDTO crisisMessageConfig) async {
+  Future<void> doOldVersionMigration(
+    MyContactsCrisisMessageDTO crisisMessageConfig,
+  ) async {
     final contactAddress = crisisMessageConfig.contactMessageAddress;
     if (contactAddress != null) {
       await saveContactAddress(contactAddress);

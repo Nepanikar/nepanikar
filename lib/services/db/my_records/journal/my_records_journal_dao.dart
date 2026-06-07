@@ -32,7 +32,10 @@ class MyRecordsJournalDao {
     await _store.addAll(_db, serializedItems);
   }
 
-  Future<void> updateRecord(String key, {required JournalRecord updatedJournalRecord}) async {
+  Future<void> updateRecord(
+    String key, {
+    required JournalRecord updatedJournalRecord,
+  }) async {
     final updatedItem = updatedJournalRecord.toJson();
     await _store.record(key).put(_db, updatedItem);
   }
@@ -49,7 +52,9 @@ class MyRecordsJournalDao {
       });
 
   Stream<Map<String, JournalRecord>> get allRecordsStream => _store
-      .query(finder: Finder(sortOrders: [SortOrder(FilterKeys.dateWithTime, false)]))
+      .query(
+        finder: Finder(sortOrders: [SortOrder(FilterKeys.dateWithTime, false)]),
+      )
       .onSnapshots(_db)
       .map((event) {
         final entries = event
@@ -72,7 +77,10 @@ class MyRecordsJournalDao {
             (r) => JournalRecord(
               dateTime: r.date,
               answers: r.answers
-                  .map((a) => JournalRecordAnswer(question: a.item1, answer: a.item2))
+                  .map(
+                    (a) =>
+                        JournalRecordAnswer(question: a.item1, answer: a.item2),
+                  )
                   .toList(),
             ),
           )

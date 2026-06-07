@@ -147,11 +147,17 @@ class HeatMapPage extends StatelessWidget {
     // Iterate over each month and create a HeatMapColumn for that month
     for (int month = 1; month <= 12; month++) {
       final int year = startDate.year;
-      final DateTime firstDayOfMonth = DateUtil.startDayOfMonth(DateTime(year, month));
-      final DateTime lastDayOfMonth = DateUtil.endDayOfMonth(DateTime(year, month));
+      final DateTime firstDayOfMonth = DateUtil.startDayOfMonth(
+        DateTime(year, month),
+      );
+      final DateTime lastDayOfMonth = DateUtil.endDayOfMonth(
+        DateTime(year, month),
+      );
 
       final Map<DateTime, int> monthlyData = Map<DateTime, int>.fromEntries(
-        datasets?.entries.where((entry) => entry.key.month == month && entry.key.year == year) ??
+        datasets?.entries.where(
+              (entry) => entry.key.month == month && entry.key.year == year,
+            ) ??
             const Iterable.empty(),
       );
 
@@ -184,9 +190,9 @@ class HeatMapPage extends StatelessWidget {
               children: [
                 Text(
                   // You can also use the first letter of the month here as per your requirement
-                  DateFormat(
-                    'MMM',
-                  ).format(firstDayOfMonth), // 'MMM' formats to a three-letter month name
+                  DateFormat('MMM').format(
+                    firstDayOfMonth,
+                  ), // 'MMM' formats to a three-letter month name
                   style: TextStyle(
                     fontSize: fontSize,
                     color: textColor,

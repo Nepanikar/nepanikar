@@ -38,8 +38,13 @@ class FoodRecordAnswerDTO extends Equatable {
   final List<FoodQuestionProblem> problemTickedAnswers;
 
   @override
-  List<Object> get props =>
-      [foodType, isTaken, textQuestionAnswers, feelTickedAnswers, problemTickedAnswers];
+  List<Object> get props => [
+        foodType,
+        isTaken,
+        textQuestionAnswers,
+        feelTickedAnswers,
+        problemTickedAnswers
+      ];
 
   @override
   String toString() {
@@ -83,7 +88,8 @@ FoodRecordAnswerDTO _getFoodRecordAnswer({
   if (dataConfigLineParts.length >= 6) {
     for (final foodTextQuestion in FoodQuestionText.values) {
       if (foodTextQuestion.index < 4) {
-        final answer = dataConfigLineParts.safeElementAtOrNull(foodTextQuestion.index);
+        final answer =
+            dataConfigLineParts.safeElementAtOrNull(foodTextQuestion.index);
         textQuestionAnswers.add(Tuple2(foodTextQuestion, answer ?? ''));
       }
     }
@@ -91,7 +97,8 @@ FoodRecordAnswerDTO _getFoodRecordAnswer({
     final feelAnswers = dataConfigLineParts.safeElementAtOrNull(5);
     if (feelAnswers != null && feelAnswers.length == 10) {
       for (final feelQuestion in FoodQuestionFeel.values) {
-        final answerBool = feelAnswers.split('').safeElementAtOrNull(feelQuestion.index);
+        final answerBool =
+            feelAnswers.split('').safeElementAtOrNull(feelQuestion.index);
         if (answerBool == '1') {
           feelTickedAnswers.add(feelQuestion);
         }
@@ -101,7 +108,8 @@ FoodRecordAnswerDTO _getFoodRecordAnswer({
     final problemAnswers = dataConfigLineParts.safeElementAtOrNull(6);
     if (problemAnswers != null && problemAnswers.length == 5) {
       for (final problemQuestion in FoodQuestionProblem.values) {
-        final answerBool = problemAnswers.split('').safeElementAtOrNull(problemQuestion.index);
+        final answerBool =
+            problemAnswers.split('').safeElementAtOrNull(problemQuestion.index);
         if (answerBool == '1') {
           problemTickedAnswers.add(problemQuestion);
         }
@@ -199,7 +207,8 @@ class MyRecordsFoodDTO extends Equatable {
   }
 
   factory MyRecordsFoodDTO.getIosData(Map<String, Object> config) {
-    final foodRecordsDatesSize = config['foodRecordDates.size']?.toString().getIniIntValue();
+    final foodRecordsDatesSize =
+        config['foodRecordDates.size']?.toString().getIniIntValue();
 
     const foodTypeBreakfastKey = 'foodRecordBreakfast';
     const foodTypeAmSnackKey = 'foodRecordAmSnack';
@@ -211,7 +220,8 @@ class MyRecordsFoodDTO extends Equatable {
     final records = <FoodRecordDTO>[];
     if (foodRecordsDatesSize != null) {
       for (var i = 1; i <= foodRecordsDatesSize; i++) {
-        final foodRecordDateLine = config['foodRecordDates.$i.value']?.toString();
+        final foodRecordDateLine =
+            config['foodRecordDates.$i.value']?.toString();
         if (foodRecordDateLine == null) continue;
         final splitValues = foodRecordDateLine.split('|');
         if (splitValues.isNotEmpty) {
@@ -233,32 +243,38 @@ class MyRecordsFoodDTO extends Equatable {
               _getFoodRecordAnswer(
                 foodType: FoodType.breakfast,
                 isTaken: getIsTaken(1),
-                dataConfigLine: config['$foodTypeBreakfastKey.$i.value']?.toString(),
+                dataConfigLine:
+                    config['$foodTypeBreakfastKey.$i.value']?.toString(),
               ),
               _getFoodRecordAnswer(
                 foodType: FoodType.amSnack,
                 isTaken: getIsTaken(2),
-                dataConfigLine: config['$foodTypeAmSnackKey.$i.value']?.toString(),
+                dataConfigLine:
+                    config['$foodTypeAmSnackKey.$i.value']?.toString(),
               ),
               _getFoodRecordAnswer(
                 foodType: FoodType.lunch,
                 isTaken: getIsTaken(3),
-                dataConfigLine: config['$foodTypeLunchKey.$i.value']?.toString(),
+                dataConfigLine:
+                    config['$foodTypeLunchKey.$i.value']?.toString(),
               ),
               _getFoodRecordAnswer(
                 foodType: FoodType.pmSnack,
                 isTaken: getIsTaken(4),
-                dataConfigLine: config['$foodTypePmSnackKey.$i.value']?.toString(),
+                dataConfigLine:
+                    config['$foodTypePmSnackKey.$i.value']?.toString(),
               ),
               _getFoodRecordAnswer(
                 foodType: FoodType.dinner,
                 isTaken: getIsTaken(5),
-                dataConfigLine: config['$foodTypeDinnerKey.$i.value']?.toString(),
+                dataConfigLine:
+                    config['$foodTypeDinnerKey.$i.value']?.toString(),
               ),
               _getFoodRecordAnswer(
                 foodType: FoodType.secondDinner,
                 isTaken: getIsTaken(6),
-                dataConfigLine: config['$foodTypeSecondDinnerKey.$i.value']?.toString(),
+                dataConfigLine:
+                    config['$foodTypeSecondDinnerKey.$i.value']?.toString(),
               ),
             ],
           );

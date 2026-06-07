@@ -13,7 +13,8 @@ class MyContactsRecordsDTO extends Equatable {
 
     final myContactsEntries = <MapEntry<String, String>>[];
     if (myContactsNumbersMap != null) {
-      final sortedContactsNumbersMapEntries = myContactsNumbersMap.entries.toList()
+      final sortedContactsNumbersMapEntries = myContactsNumbersMap.entries
+          .toList()
         ..sort((a, b) => confKeysSorter(a.key, b.key));
 
       for (final contactNumberEntry in sortedContactsNumbersMapEntries) {
@@ -29,7 +30,8 @@ class MyContactsRecordsDTO extends Equatable {
   }
 
   factory MyContactsRecordsDTO.getIosData(Map<String, Object> config) {
-    final myContactsNumbersSize = config['myContactsNumbers.size']?.toString().getIniIntValue();
+    final myContactsNumbersSize =
+        config['myContactsNumbers.size']?.toString().getIniIntValue();
 
     final myContactsEntries = <MapEntry<String, String>>[];
     if (myContactsNumbersSize != null) {

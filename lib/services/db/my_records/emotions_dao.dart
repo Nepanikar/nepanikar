@@ -19,7 +19,13 @@ class EmotionsDao {
 
   Database get _db => _dbService.database;
 
-  static final List<String> defaultEmotions = ['Happy', 'Sad', 'Excited', 'Relaxed', 'Angry'];
+  static final List<String> defaultEmotions = [
+    'Happy',
+    'Sad',
+    'Excited',
+    'Relaxed',
+    'Angry',
+  ];
 
   Future<void> initEmotions() async {
     final existingEmotions = await getEmotions();
@@ -47,7 +53,10 @@ class EmotionsDao {
     final finder = Finder(sortOrders: [SortOrder(Field.key)]);
     final records = await _store.find(_db, finder: finder);
 
-    return records.map((record) => record.value['emotion']! as String).whereType<String>().toList();
+    return records
+        .map((record) => record.value['emotion']! as String)
+        .whereType<String>()
+        .toList();
   }
 
   //TODO urobit odstranovanie a updatovanie emocii + case ked su emocie pouzivane

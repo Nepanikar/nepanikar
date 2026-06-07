@@ -45,13 +45,17 @@ class HeatMapContainer extends StatelessWidget {
             alignment: Alignment.center,
             decoration: BoxDecoration(
               color: selectedColor,
-              borderRadius: BorderRadius.all(Radius.circular(borderRadius ?? 5)),
+              borderRadius: BorderRadius.all(
+                Radius.circular(borderRadius ?? 5),
+              ),
             ),
             child: (showText ?? true)
                 ? Text(
                     date.day.toString(),
                     style: TextStyle(
-                      color: isColored ? Colors.black : textColor ?? const Color(0xFF8A8A8A),
+                      color: isColored
+                          ? Colors.black
+                          : textColor ?? const Color(0xFF8A8A8A),
                       fontSize: fontSize,
                       fontWeight: FontWeight.bold,
                     ),

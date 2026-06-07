@@ -5,9 +5,11 @@ import 'package:sembast/sembast.dart';
 typedef PlanFormItem = String;
 
 abstract class NepanikarPlanFormDao {
-  NepanikarPlanFormDao({required DatabaseService dbService, required String storeKeyName})
-    : _dbService = dbService,
-      _store = StoreRef(storeKeyName);
+  NepanikarPlanFormDao({
+    required DatabaseService dbService,
+    required String storeKeyName,
+  }) : _dbService = dbService,
+       _store = StoreRef(storeKeyName);
 
   // TODO: use @mustBeOverridden annotation, will be available in Dart 2.19
   Future<NepanikarPlanFormDao> init() async => this;
@@ -17,7 +19,8 @@ abstract class NepanikarPlanFormDao {
 
   Database get _db => _dbService.database;
 
-  String getFormItemKeyFromFormIndex(int formIndex) => 'plan_form_item_$formIndex';
+  String getFormItemKeyFromFormIndex(int formIndex) =>
+      'plan_form_item_$formIndex';
 
   Future<void> saveFormText(int formIndex, {required String? text}) async {
     final key = getFormItemKeyFromFormIndex(formIndex);
@@ -31,10 +34,12 @@ abstract class NepanikarPlanFormDao {
     }
   }
 
-  Stream<List<RecordSnapshot<String, PlanFormItem?>>> get allFormItemsRecordsStream =>
-      _store.query().onSnapshots(_db);
+  Stream<List<RecordSnapshot<String, PlanFormItem?>>>
+  get allFormItemsRecordsStream => _store.query().onSnapshots(_db);
 
-  Future<void> doOldVersionMigration(NepanikarListFormDTO planFormConfig) async {
+  Future<void> doOldVersionMigration(
+    NepanikarListFormDTO planFormConfig,
+  ) async {
     final planFormItems = planFormConfig.texts;
     if (planFormItems != null) {
       await _addFormTexts(planFormItems);

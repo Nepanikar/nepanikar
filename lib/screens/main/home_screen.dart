@@ -28,7 +28,8 @@ class HomeScreen extends StatelessWidget {
 
   MoodTrackDao get _moodTrackDao => registry.get<MoodTrackDao>();
 
-  NotificationsService get _notificationsService => registry.get<NotificationsService>();
+  NotificationsService get _notificationsService =>
+      registry.get<NotificationsService>();
 
   @override
   Widget build(BuildContext context) {
@@ -43,32 +44,44 @@ class HomeScreen extends StatelessWidget {
     final modules = <HomeTile>[
       HomeTile(
         text: context.l10n.depression,
-        image: Assets.illustrations.modules.depression.svg(colorFilter: colorFilter),
+        image: Assets.illustrations.modules.depression.svg(
+          colorFilter: colorFilter,
+        ),
         location: const DepressionRoute().location,
       ),
       HomeTile(
         text: context.l10n.anxiety_panic,
-        image: Assets.illustrations.modules.anxietyPanic.svg(colorFilter: colorFilter),
+        image: Assets.illustrations.modules.anxietyPanic.svg(
+          colorFilter: colorFilter,
+        ),
         location: const AnxietyAppRoute().location,
       ),
       HomeTile(
         text: context.l10n.self_harm,
-        image: Assets.illustrations.modules.selfHarm.svg(colorFilter: colorFilter),
+        image: Assets.illustrations.modules.selfHarm.svg(
+          colorFilter: colorFilter,
+        ),
         location: const SelfHarmRoute().location,
       ),
       HomeTile(
         text: context.l10n.suicidal_thoughts,
-        image: Assets.illustrations.modules.suicidalThoughts.svg(colorFilter: colorFilter),
+        image: Assets.illustrations.modules.suicidalThoughts.svg(
+          colorFilter: colorFilter,
+        ),
         location: const SuicidalThoughtsRoute().location,
       ),
       HomeTile(
         text: context.l10n.food,
-        image: Assets.illustrations.modules.eatingDisorder.svg(colorFilter: colorFilter),
+        image: Assets.illustrations.modules.eatingDisorder.svg(
+          colorFilter: colorFilter,
+        ),
         location: const EatingDisorderRoute().location,
       ),
       HomeTile(
         text: context.l10n.my_records,
-        image: Assets.illustrations.modules.myRecords.svg(colorFilter: colorFilter),
+        image: Assets.illustrations.modules.myRecords.svg(
+          colorFilter: colorFilter,
+        ),
         location: const MyRecordsRoute().location,
       ),
     ];
@@ -116,7 +129,9 @@ class HomeScreen extends StatelessWidget {
                     return MoodPicker(
                       onPick: (mood) {
                         final l10n = context.l10n;
-                        unawaited(_notificationsService.rescheduleNotifications(l10n));
+                        unawaited(
+                          _notificationsService.rescheduleNotifications(l10n),
+                        );
                       },
                     );
                   },
@@ -135,7 +150,9 @@ class HomeScreen extends StatelessWidget {
                     context.l10n.homepage_subtitle,
                     maxLines: 1,
                     style: NepanikarFonts.title2.copyWith(
-                      color: isDarkMode ? Colors.white : NepanikarColors.primary(context),
+                      color: isDarkMode
+                          ? Colors.white
+                          : NepanikarColors.primary(context),
                     ),
                   ),
                 ),
@@ -145,9 +162,11 @@ class HomeScreen extends StatelessWidget {
                 child: GridView.count(
                   shrinkWrap: true,
                   primary: false,
-                  crossAxisCount: (MediaQuery.of(context).size.width / context.tabletMaxColumnWidth)
-                      .floor()
-                      .clamp(2, 6),
+                  crossAxisCount:
+                      (MediaQuery.of(context).size.width /
+                              context.tabletMaxColumnWidth)
+                          .floor()
+                          .clamp(2, 6),
                   crossAxisSpacing: context.isSmallScreen ? 12 : 16,
                   mainAxisSpacing: context.isSmallScreen ? 12 : 16,
                   childAspectRatio: context.isSmallScreen ? 1.4 : 1.2,

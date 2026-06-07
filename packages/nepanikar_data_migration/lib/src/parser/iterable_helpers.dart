@@ -4,7 +4,8 @@ import 'package:collection/collection.dart';
 // exception if the index is negative and returns null instead.
 extension IterableExtension<T> on Iterable<T> {
   /// Does not throw an exception if the index is negative or out of bounds.
-  T? safeElementAtOrNull(int index) => index <= -1 ? null : skip(index).firstOrNull;
+  T? safeElementAtOrNull(int index) =>
+      index <= -1 ? null : skip(index).firstOrNull;
 }
 
 extension ListExtensions<E> on List<E> {

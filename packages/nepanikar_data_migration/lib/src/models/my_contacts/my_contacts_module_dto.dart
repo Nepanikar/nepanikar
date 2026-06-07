@@ -16,7 +16,8 @@ class MyContactsModuleDTO extends Equatable {
 
     MyContactsCrisisMessageDTO? contactsCrisisMessageConfig;
     try {
-      contactsCrisisMessageConfig = MyContactsCrisisMessageDTO.getAndroidData(config);
+      contactsCrisisMessageConfig =
+          MyContactsCrisisMessageDTO.getAndroidData(config);
     } catch (_) {}
 
     return MyContactsModuleDTO._(
@@ -33,7 +34,8 @@ class MyContactsModuleDTO extends Equatable {
 
     MyContactsCrisisMessageDTO? contactsCrisisMessageConfig;
     try {
-      contactsCrisisMessageConfig = MyContactsCrisisMessageDTO.getIosData(config);
+      contactsCrisisMessageConfig =
+          MyContactsCrisisMessageDTO.getIosData(config);
     } catch (_) {}
 
     return MyContactsModuleDTO._(
@@ -46,5 +48,6 @@ class MyContactsModuleDTO extends Equatable {
   final MyContactsCrisisMessageDTO? contactsCrisisMessageConfig;
 
   @override
-  List<Object?> get props => [contactsMyContactsConfig, contactsCrisisMessageConfig];
+  List<Object?> get props =>
+      [contactsMyContactsConfig, contactsCrisisMessageConfig];
 }

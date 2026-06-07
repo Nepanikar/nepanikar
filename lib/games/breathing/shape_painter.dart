@@ -5,7 +5,8 @@ import 'package:nepanikar/games/breathing/breathing_game_screen.dart';
 import 'package:polygon/polygon.dart';
 
 class BorderPainter extends CustomPainter {
-  const BorderPainter({required this.animation, required this.shape}) : super(repaint: animation);
+  const BorderPainter({required this.animation, required this.shape})
+    : super(repaint: animation);
 
   final Animation<double> animation;
   final BreathingGameShape shape;
@@ -61,11 +62,9 @@ class BorderPainter extends CustomPainter {
     }
 
     if (shape == BreathingGameShape.triangle) {
-      final path = const Polygon([
-        Offset(-1, -1),
-        Offset(0, 1),
-        Offset(1, -1),
-      ]).computePath(rect: const Offset(0, 80) & size, radius: cornerRadius * 2);
+      final path = const Polygon(
+        [Offset(-1, -1), Offset(0, 1), Offset(1, -1)],
+      ).computePath(rect: const Offset(0, 80) & size, radius: cornerRadius * 2);
       canvas.drawPath(
         path,
         paint

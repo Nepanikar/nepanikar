@@ -41,7 +41,10 @@ class MealPlanScreen extends StatelessWidget {
           color: backgroundColor,
           borderRadius: BorderRadius.circular(12),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 24.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20.0,
+              vertical: 24.0,
+            ),
             child: Column(
               children: meals
                   .map(

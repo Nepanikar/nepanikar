@@ -26,20 +26,26 @@ class MoodTrackDao with CustomFilters {
 
   Future<void> saveMood(Mood mood) async {
     final dateTimeToSave = DateTime.now();
-    final date = DateTime.utc(dateTimeToSave.year, dateTimeToSave.month, dateTimeToSave.day);
+    final date = DateTime.utc(
+      dateTimeToSave.year,
+      dateTimeToSave.month,
+      dateTimeToSave.day,
+    );
     final moodTrack = MoodTrack(mood: mood, date: date, summary: '');
     final json = moodTrack.toJson();
-    await _store.findFirst(_db, finder: Finder(filter: getDateEqualsFilter(date))).then((
-      record,
-    ) async {
-      if (record == null) {
-        debugPrint('MoodTrackDao: Not found mood for today - adding new: $json');
-        await _store.add(_db, json);
-      } else {
-        debugPrint('MoodTrackDao: Found for today, updating to: $json');
-        await _store.record(record.key).put(_db, json);
-      }
-    });
+    await _store
+        .findFirst(_db, finder: Finder(filter: getDateEqualsFilter(date)))
+        .then((record) async {
+          if (record == null) {
+            debugPrint(
+              'MoodTrackDao: Not found mood for today - adding new: $json',
+            );
+            await _store.add(_db, json);
+          } else {
+            debugPrint('MoodTrackDao: Found for today, updating to: $json');
+            await _store.record(record.key).put(_db, json);
+          }
+        });
   }
 
   Future<void> saveMoods(List<MoodTrack> items) async {
@@ -49,7 +55,11 @@ class MoodTrackDao with CustomFilters {
   Stream<List<MoodTrack>> get allMoodTracksStream => _store
       .query(finder: Finder(sortOrders: [SortOrder(FilterKeys.date)]))
       .onSnapshots(_db)
-      .map((snapshots) => snapshots.map((snapshot) => MoodTrack.fromJson(snapshot.value)).toList());
+      .map(
+        (snapshots) => snapshots
+            .map((snapshot) => MoodTrack.fromJson(snapshot.value))
+            .toList(),
+      );
 
   Stream<MoodTrack?> get latestMoodTrackStream => _store
       .query(finder: Finder(filter: getDateEqualsFilter(getNowDateUtc())))
@@ -67,18 +77,25 @@ class MoodTrackDao with CustomFilters {
 
   Future<bool> isTodayTracked() async {
     final now = getNowDateUtc();
-    final record = await _store.findFirst(_db, finder: Finder(filter: getDateEqualsFilter(now)));
+    final record = await _store.findFirst(
+      _db,
+      finder: Finder(filter: getDateEqualsFilter(now)),
+    );
     return record != null;
   }
 
-  Future<void> doOldVersionMigration(MyRecordsMoodTrackDTO moodTrackConfig) async {
+  Future<void> doOldVersionMigration(
+    MyRecordsMoodTrackDTO moodTrackConfig,
+  ) async {
     final valuesMap = moodTrackConfig.values;
     if (valuesMap != null) {
       final moodTracks = valuesMap.entries
           .map((dateMoodEntry) {
             final date = dateMoodEntry.key.toUtcDate();
             final mood = Mood.fromInteger(dateMoodEntry.value);
-            return mood == null ? null : MoodTrack(date: date, mood: mood, summary: '');
+            return mood == null
+                ? null
+                : MoodTrack(date: date, mood: mood, summary: '');
           })
           .whereType<MoodTrack>()
           .toList();

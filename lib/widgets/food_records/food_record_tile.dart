@@ -9,7 +9,11 @@ import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 
 class FoodRecordTile extends StatelessWidget {
-  const FoodRecordTile({super.key, required this.dailyFoodRecord, required this.onTap});
+  const FoodRecordTile({
+    super.key,
+    required this.dailyFoodRecord,
+    required this.onTap,
+  });
 
   final DailyFoodRecord dailyFoodRecord;
   final VoidCallback? onTap;
@@ -19,11 +23,13 @@ class FoodRecordTile extends StatelessWidget {
     return label.length >= 3 ? label.substring(0, 3) : label;
   }
 
-  bool _getIsFoodTypeTaken(FoodType foodType) => dailyFoodRecord.getIsFoodTaken(foodType);
+  bool _getIsFoodTypeTaken(FoodType foodType) =>
+      dailyFoodRecord.getIsFoodTaken(foodType);
 
   @override
   Widget build(BuildContext context) {
-    final ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark
+    final ThemeMode currentThemeMode =
+        Theme.of(context).brightness == Brightness.dark
         ? ThemeMode.dark
         : ThemeMode.light;
     final bool isDarkMode = currentThemeMode == ThemeMode.dark;
@@ -35,7 +41,9 @@ class FoodRecordTile extends StatelessWidget {
     final colorFilterUnchecked = ColorFilter.mode(
       isDarkMode
           ? Colors.white38
-          : NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade400,
+          : NepanikarColors.primarySwatch(
+              Theme.of(context).primaryColor,
+            ).shade400,
       BlendMode.srcIn,
     );
 
@@ -46,9 +54,13 @@ class FoodRecordTile extends StatelessWidget {
       onTap: onTap,
       child: LongTile(
         image: null,
-        isDarkMode: isDarkMode,
-        text: DateFormat.yMd(locale.languageCode).format(dailyFoodRecord.dateTime),
-        textTextStyle: textStyle.copyWith(fontSize: 12, fontWeight: FontWeight.w700),
+        text: DateFormat.yMd(
+          locale.languageCode,
+        ).format(dailyFoodRecord.dateTime),
+        textTextStyle: textStyle.copyWith(
+          fontSize: 12,
+          fontWeight: FontWeight.w700,
+        ),
         onTap: null,
         showSubContentSeparator: false,
         subContent: Padding(
@@ -60,7 +72,9 @@ class FoodRecordTile extends StatelessWidget {
                   .mapIndexed(
                     (i, foodType) => Flexible(
                       child: Padding(
-                        padding: i == 0 ? EdgeInsets.zero : const EdgeInsets.only(left: 6),
+                        padding: i == 0
+                            ? EdgeInsets.zero
+                            : const EdgeInsets.only(left: 6),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -71,11 +85,12 @@ class FoodRecordTile extends StatelessWidget {
                                 colorFilter: colorFilter,
                               )
                             else
-                              Assets.icons.checkmarks.checkCircularUnchecked.svg(
-                                width: 14,
-                                height: 14,
-                                colorFilter: colorFilterUnchecked,
-                              ),
+                              Assets.icons.checkmarks.checkCircularUnchecked
+                                  .svg(
+                                    width: 14,
+                                    height: 14,
+                                    colorFilter: colorFilterUnchecked,
+                                  ),
                             const SizedBox(width: 5),
                             Flexible(
                               child: Text(
@@ -85,7 +100,9 @@ class FoodRecordTile extends StatelessWidget {
                                   fontSize: 12,
                                   fontWeight: FontWeight.w700,
                                   color: _getIsFoodTypeTaken(foodType)
-                                      ? (isDarkMode ? NepanikarColors.white : NepanikarColors.dark)
+                                      ? (isDarkMode
+                                            ? NepanikarColors.white
+                                            : NepanikarColors.dark)
                                       : (isDarkMode
                                             ? Colors.white30
                                             : NepanikarColors.primarySwatch(

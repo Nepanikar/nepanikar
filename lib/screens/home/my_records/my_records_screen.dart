@@ -4,6 +4,7 @@ import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/providers/mood_heatmap_filter_provider.dart';
+import 'package:nepanikar/screens/home/my_records/tests/test_list_screen.dart';
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_records_screen.dart';
 import 'package:nepanikar/screens/home/my_records/food_records/my_records_food_records_list_screen.dart';
 import 'package:nepanikar/screens/home/my_records/journal/my_records_journal_records_screen.dart';
@@ -29,14 +30,14 @@ class MyRecordsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    svgColorBasedOnDarkMode(context);
     final colorFilter = svgColorFilterBasedOnDarkMode(context);
 
     final modules = <Widget>[
       LongTile(
         text: context.l10n.depression_mood,
-        image: Assets.illustrations.modules.moodTracker.svg(colorFilter: colorFilter),
+        image: Assets.illustrations.modules.moodTracker.svg(
+          colorFilter: colorFilter,
+        ),
         onTap: () {
           Provider.of<MoodHeatmapFilterProvider>(
             context,
@@ -44,31 +45,41 @@ class MyRecordsScreen extends StatelessWidget {
           ).setFilter(HeatmapFilter.initial);
           context.push(const MoodRecordsRoute(fromMoodPicker: false).location);
         },
-        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.sleep_title,
-        image: Assets.illustrations.modules.sleepTracker.svg(colorFilter: colorFilter),
+        image: Assets.illustrations.modules.sleepTracker.svg(
+          colorFilter: colorFilter,
+        ),
         onTap: () => context.push(const MyRecordsSleepTrackRoute().location),
-        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.diary,
         image: Assets.illustrations.modules.diary.svg(colorFilter: colorFilter),
         onTap: () => context.push(const MyRecordsDiaryRecordsRoute().location),
-        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.journal,
-        image: Assets.illustrations.modules.journal.svg(colorFilter: colorFilter),
-        onTap: () => context.push(const MyRecordsJournalRecordsRoute().location),
-        isDarkMode: isDarkMode,
+        image: Assets.illustrations.modules.journal.svg(
+          colorFilter: colorFilter,
+        ),
+        onTap: () =>
+            context.push(const MyRecordsJournalRecordsRoute().location),
       ),
       LongTile(
         text: context.l10n.food_records,
-        image: Assets.illustrations.modules.foodTracker.svg(colorFilter: colorFilter),
-        onTap: () => context.push(const MyRecordsFoodRecordsListRoute().location),
-        isDarkMode: isDarkMode,
+        image: Assets.illustrations.modules.foodTracker.svg(
+          colorFilter: colorFilter,
+        ),
+        onTap: () =>
+            context.push(const MyRecordsFoodRecordsListRoute().location),
+      ),
+      LongTile(
+        text: 'Tests',
+        image: Assets.illustrations.modules.foodTracker.svg(
+          colorFilter: colorFilter,
+        ),
+        onTap: () => context.push(const TestListScreenRoute().location),
       ),
     ];
 

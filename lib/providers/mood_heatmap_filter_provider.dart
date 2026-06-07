@@ -28,7 +28,11 @@ enum HeatmapFilter {
     DateTimeRange shiftMonths(DateTime startDate, int months) {
       final adjustedStart = DateTime(startDate.year, startDate.month + months);
       // Correctly finds the end of the target month
-      final endOfMonth = DateTime(adjustedStart.year, adjustedStart.month + 1, 0);
+      final endOfMonth = DateTime(
+        adjustedStart.year,
+        adjustedStart.month + 1,
+        0,
+      );
 
       return DateTimeRange(start: adjustedStart, end: endOfMonth);
     }
@@ -55,7 +59,10 @@ enum HeatmapFilter {
     switch (this) {
       case HeatmapFilter.month:
         if (dateRangeSwitch == DateRangeSwitch.previous) {
-          return shiftMonths(start, -1); // Shift 1 month back for previous or initialize
+          return shiftMonths(
+            start,
+            -1,
+          ); // Shift 1 month back for previous or initialize
         } else if (dateRangeSwitch == null) {
           return DateTimeRange(start: start, end: end);
         } else {
@@ -63,7 +70,10 @@ enum HeatmapFilter {
         }
       case HeatmapFilter.year:
         if (dateRangeSwitch == DateRangeSwitch.previous) {
-          return shiftMonths(start, -12); // Shift 12 months back for previous or initialize
+          return shiftMonths(
+            start,
+            -12,
+          ); // Shift 12 months back for previous or initialize
         } else if (dateRangeSwitch == null) {
           return DateTimeRange(start: start, end: end);
         } else {
@@ -109,6 +119,7 @@ class MoodHeatmapFilterProvider extends ChangeNotifier {
       dateRangeSwitch: DateRangeSwitch.next,
       customDateRange: _activeDateRange,
     );
-    return nextRange.start.isBefore(now) || nextRange.start.isAtSameMomentAs(now);
+    return nextRange.start.isBefore(now) ||
+        nextRange.start.isAtSameMomentAs(now);
   }
 }

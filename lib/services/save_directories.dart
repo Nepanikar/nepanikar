@@ -21,13 +21,18 @@ class SaveDirectories {
   String get oldAppDataConfigFilePath =>
       join(supportDir.path, '.config', 'DontPanicDevs', 'DontPanic.conf');
 
-  String get oldAppDataConfigFileBackupPath => join(supportDir.path, 'DontPanicOldConfig');
+  String get oldAppDataConfigFileBackupPath =>
+      join(supportDir.path, 'DontPanicOldConfig');
 
   Future<void> clearSaveDirectories() async {
     try {
       await supportDir.delete(recursive: true);
     } catch (e, s) {
-      await logExceptionToCrashlytics(e, s, logMessage: 'Error deleting save directories.');
+      await logExceptionToCrashlytics(
+        e,
+        s,
+        logMessage: 'Error deleting save directories.',
+      );
     }
   }
 }

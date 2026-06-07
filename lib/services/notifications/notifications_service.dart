@@ -44,15 +44,18 @@ class NotificationsService {
     await _awesomeNotifications.resetGlobalBadge();
     await _awesomeNotifications.setListeners(
       onActionReceivedMethod: NotificationController.onActionReceivedMethod,
-      onNotificationDisplayedMethod: NotificationController.onNotificationDisplayedMethod,
-      onDismissActionReceivedMethod: NotificationController.onDismissActionReceivedMethod,
+      onNotificationDisplayedMethod:
+          NotificationController.onNotificationDisplayedMethod,
+      onDismissActionReceivedMethod:
+          NotificationController.onDismissActionReceivedMethod,
     );
   }
 
   Future<void> checkPermission() async {
     final hasPermission = await _awesomeNotifications.isNotificationAllowed();
     if (!hasPermission) {
-      final requestRes = await _awesomeNotifications.requestPermissionToSendNotifications();
+      final requestRes = await _awesomeNotifications
+          .requestPermissionToSendNotifications();
       if (!requestRes) {
         // User denied permission, system notification settings screen will be opened.
         return;
@@ -80,7 +83,8 @@ class NotificationsService {
     final r = math.Random();
     final nowDate = DateTime.now().toDate();
     for (final type in NotificationType.values) {
-      final notificationTypeSettings = await _userSettingsDao.getNotificationTypeSettings(type);
+      final notificationTypeSettings = await _userSettingsDao
+          .getNotificationTypeSettings(type);
       if (notificationTypeSettings == null) {
         // No settings for this type, skip scheduling.
         debugPrint(
@@ -96,8 +100,14 @@ class NotificationsService {
       const scheduleAheadDays = 8;
       final isTodayTypeAlreadyTracked = await type.isTodayAlreadyTracked();
       final sevenDaysAheadList = !isTodayTypeAlreadyTracked
-          ? List.generate(scheduleAheadDays, (i) => nowDate.add(Duration(days: i)))
-          : List.generate(scheduleAheadDays - 1, (i) => nowDate.add(Duration(days: i + 1)));
+          ? List.generate(
+              scheduleAheadDays,
+              (i) => nowDate.add(Duration(days: i)),
+            )
+          : List.generate(
+              scheduleAheadDays - 1,
+              (i) => nowDate.add(Duration(days: i + 1)),
+            );
 
       // Schedule notifications for each day, including today if needed.
       for (final date in sevenDaysAheadList) {

@@ -3,7 +3,8 @@
 import 'dart:io';
 
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:nepanikar_data_migration/nepanikar_data_migration.dart' as nep_data_migration;
+import 'package:nepanikar_data_migration/nepanikar_data_migration.dart'
+    as nep_data_migration;
 
 Future<void> main(List<String> arguments) async {
   // const codec = nep_data_migration.NepanikarConfigParser.NEPANIKAR_CONF_CODEC;
@@ -19,7 +20,8 @@ Future<void> main(List<String> arguments) async {
   // print(testStr2.cleanUnicodes());
 
   const filePath = './bin/example_data/DontPanic_small.conf';
-  final conf = nep_data_migration.NepanikarConfigParser.parseAndroidConfigFile(File(filePath));
+  final conf = nep_data_migration.NepanikarConfigParser.parseAndroidConfigFile(
+      File(filePath));
   print(
     conf.myRecordsModuleConfig?.foodRecordConfig?.records
         .toString()

@@ -19,34 +19,43 @@ class ChatContactTile extends StatelessWidget {
   TextStyle get _charUrlTextStyle =>
       NepanikarFonts.bodyBlack.copyWith(color: NepanikarColors.defaultPrimary);
 
-  String _getShortUrlLink(String fullUrl) => Uri.tryParse(fullUrl)?.host ?? fullUrl;
+  String _getShortUrlLink(String fullUrl) =>
+      Uri.tryParse(fullUrl)?.host ?? fullUrl;
 
   @override
   Widget build(BuildContext context) {
     return chatContact.map(subList: (c) => _buildSubListContact(context, c));
   }
 
-  Widget _buildSubListContact(BuildContext context, ChatContactSubList contact) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+  Widget _buildSubListContact(
+    BuildContext context,
+    ChatContactSubList contact,
+  ) {
     final textColor = textColorBasedOnDarkMode(context);
     final subContactsLength = contact.subChatContacts.length;
     final isSingleSubList = subContactsLength == 1;
-    final colorFilter = textColor != null ? ColorFilter.mode(textColor, BlendMode.srcIn) : null;
+    final colorFilter = textColor != null
+        ? ColorFilter.mode(textColor, BlendMode.srcIn)
+        : null;
     return GestureDetector(
       onTap: isSingleSubList
           ? () async => await launchUrLink(contact.subChatContacts.first.url)
           : null,
       onLongPress: isSingleSubList
-          ? () async => await copyContact(context, contact.subChatContacts.first.url)
+          ? () async =>
+                await copyContact(context, contact.subChatContacts.first.url)
           : null,
       child: LongTile(
-        isDarkMode: isDarkMode,
         text: contact.title,
         textTextStyle: _textTextStyle.copyWith(color: textColor),
         description: contact.subtitle,
-        descriptionTextStyle: _descriptionChatTextStyle.copyWith(color: textColor),
+        descriptionTextStyle: _descriptionChatTextStyle.copyWith(
+          color: textColor,
+        ),
         image: ExcludeSemantics(
-          child: Assets.illustrations.contacts.chat.svg(colorFilter: colorFilter),
+          child: Assets.illustrations.contacts.chat.svg(
+            colorFilter: colorFilter,
+          ),
         ),
         trailing: const SizedBox.shrink(),
         onTap: null,
@@ -80,7 +89,8 @@ class ChatContactTile extends StatelessWidget {
                     ],
                   ),
                   onTap: () async => await launchUrLink(subContact.url),
-                  onLongPress: () async => await copyContact(context, subContact.url),
+                  onLongPress: () async =>
+                      await copyContact(context, subContact.url),
                 ),
               )
               .toList(),

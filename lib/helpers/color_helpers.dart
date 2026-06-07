@@ -6,7 +6,9 @@ bool isDarkmode(BuildContext context) {
 }
 
 Color? svgColorBasedOnDarkMode(BuildContext context) {
-  return isDarkmode(context) ? NepanikarColors.white : Theme.of(context).primaryColor;
+  return isDarkmode(context)
+      ? NepanikarColors.white
+      : Theme.of(context).primaryColor;
 }
 
 List<double> colorMatrixBasedOnColor(Color tintColor) {
@@ -38,10 +40,17 @@ List<double> colorMatrixBasedOnColor(Color tintColor) {
   ];
 }
 
-List<double> svgColorMatrixBasedOnDarkMode(BuildContext context, {bool lighter = false}) {
-  var tintColor = NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade100;
+List<double> svgColorMatrixBasedOnDarkMode(
+  BuildContext context, {
+  bool lighter = false,
+}) {
+  var tintColor = NepanikarColors.primarySwatch(
+    Theme.of(context).primaryColor,
+  ).shade100;
   if (lighter) {
-    tintColor = NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade50;
+    tintColor = NepanikarColors.primarySwatch(
+      Theme.of(context).primaryColor,
+    ).shade50;
   }
   return colorMatrixBasedOnColor(tintColor);
 }
@@ -53,7 +62,11 @@ ColorFilter svgColorFilterBasedOnDarkMode(BuildContext context) {
 }
 
 Color? textColorBasedOnDarkMode(BuildContext context) {
-  return customColorsBasedOnDarkMode(context, NepanikarColors.white, NepanikarColors.dark);
+  return customColorsBasedOnDarkMode(
+    context,
+    NepanikarColors.white,
+    NepanikarColors.dark,
+  );
 }
 
 Color? pdfColorBasedOnDarkMode(BuildContext context) {

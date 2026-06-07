@@ -1,0 +1,21 @@
+question_id,question_text,answer_id,answer_text,answer_score
+q1,"Hledám kreativní postupy při řešení obtížných situací.",a1,"Toto mě nevystihuje vůbec",1
+q1,"Hledám kreativní postupy při řešení obtížných situací.",a2,"Toto mě spíše nevystihuje",2
+q1,"Hledám kreativní postupy při řešení obtížných situací.",a3,"Neutrální",3
+q1,"Hledám kreativní postupy při řešení obtížných situací.",a4,"Toto mě vystihuje",4
+q1,"Hledám kreativní postupy při řešení obtížných situací.",a5,"Toto mě vystihuje naprosto přesně",5
+q2,"Nehledě na to, co se mi přihodí, umím kontrolovat svoje reakce.",a1,"Toto mě nevystihuje vůbec",1
+q2,"Nehledě na to, co se mi přihodí, umím kontrolovat svoje reakce.",a2,"Toto mě spíše nevystihuje",2
+q2,"Nehledě na to, co se mi přihodí, umím kontrolovat svoje reakce.",a3,"Neutrální",3
+q2,"Nehledě na to, co se mi přihodí, umím kontrolovat svoje reakce.",a4,"Toto mě vystihuje",4
+q2,"Nehledě na to, co se mi přihodí, umím kontrolovat svoje reakce.",a5,"Toto mě vystihuje naprosto přesně",5
+q3,"Věřím, že rostu tím, že překonávám obtížné životní situace.",a1,"Toto mě nevystihuje vůbec",1
+q3,"Věřím, že rostu tím, že překonávám obtížné životní situace.",a2,"Toto mě spíše nevystihuje",2
+q3,"Věřím, že rostu tím, že překonávám obtížné životní situace.",a3,"Neutrální",3
+q3,"Věřím, že rostu tím, že překonávám obtížné životní situace.",a4,"Toto mě vystihuje",4
+q3,"Věřím, že rostu tím, že překonávám obtížné životní situace.",a5,"Toto mě vystihuje naprosto přesně",5
+q4,"Aktivně hledám způsoby, jak se vyrovnat se ztrátami, které mě v životě potkají.",a1,"Toto mě nevystihuje vůbec",1
+q4,"Aktivně hledám způsoby, jak se vyrovnat se ztrátami, které mě v životě potkají.",a2,"Toto mě spíše nevystihuje",2
+q4,"Aktivně hledám způsoby, jak se vyrovnat se ztrátami, které mě v životě potkají.",a3,"Neutrální",3
+q4,"Aktivně hledám způsoby, jak se vyrovnat se ztrátami, které mě v životě potkají.",a4,"Toto mě vystihuje",4
+q4,"Aktivně hledám způsoby, jak se vyrovnat se ztrátami, které mě v životě potkají.",a5,"Toto mě vystihuje naprosto přesně",5

@@ -49,4 +49,7 @@ app.*.map.json
 .env
 /.mason/
 .fvm/flutter_sdk
+build_output.txt
+fix_imports.dart
+**/settings.local.json
 

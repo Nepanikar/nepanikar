@@ -5,11 +5,12 @@ import 'package:nepanikar/app/theme/colors.dart';
 
 BottomNavigationBarItem buildBottomNavigationBarItem({
   bool isSelected = false,
-  required bool isDarkMode,
   required String svgIconPath,
   required String label,
   required BuildContext context,
 }) {
+  var isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
   return BottomNavigationBarItem(
     icon: Column(
       children: [
@@ -20,13 +21,21 @@ BottomNavigationBarItem buildBottomNavigationBarItem({
             colorFilter: isDarkMode
                 ? (isSelected
                       ? const ColorFilter.mode(Colors.white, BlendMode.srcIn)
-                      : const ColorFilter.mode(Colors.transparent, BlendMode.srcIn))
+                      : const ColorFilter.mode(
+                          Colors.transparent,
+                          BlendMode.srcIn,
+                        ))
                 : (isSelected
                       ? ColorFilter.mode(
-                          NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade800,
+                          NepanikarColors.primarySwatch(
+                            Theme.of(context).primaryColor,
+                          ).shade800,
                           BlendMode.srcIn,
                         )
-                      : const ColorFilter.mode(Colors.transparent, BlendMode.srcIn)),
+                      : const ColorFilter.mode(
+                          Colors.transparent,
+                          BlendMode.srcIn,
+                        )),
           ),
         ),
         SvgPicture.asset(
@@ -35,16 +44,22 @@ BottomNavigationBarItem buildBottomNavigationBarItem({
               ? (isSelected
                     ? const ColorFilter.mode(Colors.white, BlendMode.srcIn)
                     : ColorFilter.mode(
-                        NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade50,
+                        NepanikarColors.primarySwatch(
+                          Theme.of(context).primaryColor,
+                        ).shade50,
                         BlendMode.srcIn,
                       ))
               : (isSelected
                     ? ColorFilter.mode(
-                        NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade800,
+                        NepanikarColors.primarySwatch(
+                          Theme.of(context).primaryColor,
+                        ).shade800,
                         BlendMode.srcIn,
                       )
                     : ColorFilter.mode(
-                        NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade200,
+                        NepanikarColors.primarySwatch(
+                          Theme.of(context).primaryColor,
+                        ).shade200,
                         BlendMode.srcIn,
                       )),
         ),

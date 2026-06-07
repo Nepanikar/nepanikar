@@ -13,14 +13,17 @@ part 'chat_contacts_screen.g.dart';
 class ChatContactsRoute extends GoRouteData with $ChatContactsRoute {
   const ChatContactsRoute();
 
-  ContactsDataManager get _contactsManager => registry.get<ContactsDataManager>();
+  ContactsDataManager get _contactsManager =>
+      registry.get<ContactsDataManager>();
 
   UserSettingsDao get _userSettingsDao => registry.get<UserSettingsDao>();
 
   @override
   Widget build(BuildContext context, _) {
     final locale = _userSettingsDao.locale;
-    final chatContacts = _contactsManager.getContactsFromLocale(locale).chatContacts;
+    final chatContacts = _contactsManager
+        .getContactsFromLocale(locale)
+        .chatContacts;
     return ChatContactsScreen(chatContacts: chatContacts ?? []);
   }
 }
@@ -35,7 +38,9 @@ class ChatContactsScreen extends StatelessWidget {
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.chat,
       appBarDescription: context.l10n.chat_screen_description,
-      children: chatContacts.map((c) => ChatContactTile(chatContact: c)).toList(),
+      children: chatContacts
+          .map((c) => ChatContactTile(chatContact: c))
+          .toList(),
     );
   }
 }

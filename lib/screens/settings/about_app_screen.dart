@@ -36,19 +36,27 @@ class AboutAppScreen extends StatelessWidget {
             padding: const EdgeInsets.all(24.0),
             child: Column(
               children: [
-                Row(children: [Text(context.l10n.about_app, style: NepanikarFonts.title3)]),
+                Row(
+                  children: [
+                    Text(context.l10n.about_app, style: NepanikarFonts.title3),
+                  ],
+                ),
                 const SizedBox(height: 16),
                 Text(
                   context.l10n.about_app_text,
                   style: NepanikarFonts.bodySmallHeavy.copyWith(
-                    color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade800,
+                    color: NepanikarColors.primarySwatch(
+                      Theme.of(context).primaryColor,
+                    ).shade800,
                   ),
                 ),
                 const SizedBox(height: 48),
                 Text(
                   'v${_appConfig.appVersion}',
                   style: NepanikarFonts.bodySmallHeavy.copyWith(
-                    color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade400,
+                    color: NepanikarColors.primarySwatch(
+                      Theme.of(context).primaryColor,
+                    ).shade400,
                   ),
                 ),
               ],

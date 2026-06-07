@@ -128,7 +128,8 @@ class MoodChartFilterProvider extends ChangeNotifier {
       dateRangeSwitch: DateRangeSwitch.next,
       customDateRange: _customDateRange,
     );
-    return nextRangeShift != null && nextRangeShift.start.isBefore(getNowDateTimeLocal().toDate());
+    return nextRangeShift != null &&
+        nextRangeShift.start.isBefore(getNowDateTimeLocal().toDate());
   }
 
   void _setDefaultDateRangeFromFilter(ChartFilter filter) {
@@ -138,12 +139,24 @@ class MoodChartFilterProvider extends ChangeNotifier {
 
 extension MoodChartFilterExt on Iterable<MoodTrack> {
   Map<DateTime, List<MoodTrack>> filterByDateRange(DateTimeRange dateRange) {
-    final startOfDay = DateTime(dateRange.start.year, dateRange.start.month, dateRange.start.day);
-    final endOfDay = DateTime(dateRange.end.year, dateRange.end.month, dateRange.end.day);
+    final startOfDay = DateTime(
+      dateRange.start.year,
+      dateRange.start.month,
+      dateRange.start.day,
+    );
+    final endOfDay = DateTime(
+      dateRange.end.year,
+      dateRange.end.month,
+      dateRange.end.day,
+    );
 
     final moodTracks = map((moodTrack) {
       final originalDate = moodTrack.date;
-      final normalizedDate = DateTime(originalDate.year, originalDate.month, originalDate.day);
+      final normalizedDate = DateTime(
+        originalDate.year,
+        originalDate.month,
+        originalDate.day,
+      );
       // Assuming your MoodTrack class has a copyWith method
       return moodTrack.copyWith(date: normalizedDate);
     }).toList();
@@ -151,9 +164,14 @@ extension MoodChartFilterExt on Iterable<MoodTrack> {
     // Filter MoodTracks based on normalized date
     final filteredMap = <DateTime, List<MoodTrack>>{};
     for (final moodTrack in moodTracks) {
-      final moodTrackDate = DateTime(moodTrack.date.year, moodTrack.date.month, moodTrack.date.day);
+      final moodTrackDate = DateTime(
+        moodTrack.date.year,
+        moodTrack.date.month,
+        moodTrack.date.day,
+      );
       if (moodTrackDate.isAtSameMomentAs(startOfDay) ||
-          (moodTrackDate.isAfter(startOfDay) && moodTrackDate.isBefore(endOfDay)) ||
+          (moodTrackDate.isAfter(startOfDay) &&
+              moodTrackDate.isBefore(endOfDay)) ||
           moodTrackDate.isAtSameMomentAs(endOfDay)) {
         filteredMap.putIfAbsent(moodTrack.date, () => []);
         filteredMap[moodTrack.date]!.add(moodTrack);

@@ -106,5 +106,6 @@ abstract class MoodTrack with _$MoodTrack {
 
   const MoodTrack._();
 
-  factory MoodTrack.fromJson(Map<String, Object?> json) => _$MoodTrackFromJson(json);
+  factory MoodTrack.fromJson(Map<String, Object?> json) =>
+      _$MoodTrackFromJson(json);
 }

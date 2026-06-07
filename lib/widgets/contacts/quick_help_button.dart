@@ -24,7 +24,10 @@ class QuickHelpButton extends StatelessWidget {
               child: InkWell(
                 onTap: () => context.push(const ContactsRoute().location),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 12.0,
+                    horizontal: 16.0,
+                  ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -33,14 +36,19 @@ class QuickHelpButton extends StatelessWidget {
                         child: Assets.icons.phone.svg(
                           width: 20,
                           height: 20,
-                          colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                          colorFilter: const ColorFilter.mode(
+                            Colors.white,
+                            BlendMode.srcIn,
+                          ),
                         ),
                       ),
                       const SizedBox(width: 8),
                       Flexible(
                         child: Text(
                           context.l10n.quick_help_btn,
-                          style: NepanikarFonts.bodyHeavy.copyWith(color: Colors.white),
+                          style: NepanikarFonts.bodyHeavy.copyWith(
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ],

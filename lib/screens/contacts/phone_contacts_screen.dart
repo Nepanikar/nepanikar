@@ -13,14 +13,17 @@ part 'phone_contacts_screen.g.dart';
 class PhoneContactsRoute extends GoRouteData with $PhoneContactsRoute {
   const PhoneContactsRoute();
 
-  ContactsDataManager get _contactsManager => registry.get<ContactsDataManager>();
+  ContactsDataManager get _contactsManager =>
+      registry.get<ContactsDataManager>();
 
   UserSettingsDao get _userSettingsDao => registry.get<UserSettingsDao>();
 
   @override
   Widget build(BuildContext context, _) {
     final locale = _userSettingsDao.locale;
-    final phoneContacts = _contactsManager.getContactsFromLocale(locale).phoneContacts;
+    final phoneContacts = _contactsManager
+        .getContactsFromLocale(locale)
+        .phoneContacts;
     return PhoneContactsScreen(phoneContacts: phoneContacts ?? []);
   }
 }
@@ -34,7 +37,9 @@ class PhoneContactsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return NepanikarScreenWrapper(
       appBarTitle: context.l10n.phone,
-      children: phoneContacts.map((contact) => PhoneContactTile(phoneContact: contact)).toList(),
+      children: phoneContacts
+          .map((contact) => PhoneContactTile(phoneContact: contact))
+          .toList(),
     );
   }
 }

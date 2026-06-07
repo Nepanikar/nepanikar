@@ -34,7 +34,8 @@ class DepressionModuleDTO extends Equatable {
     return DepressionModuleDTO._(
       depressionActivityPlanConfig: depressionActivityPlanConfig,
       depressionNiceMadeHappyConfig: depressionNiceMadeHappyConfig,
-      depressionPraiseMyAchievementsConfig: depressionPraiseMyAchievementsConfig,
+      depressionPraiseMyAchievementsConfig:
+          depressionPraiseMyAchievementsConfig,
     );
   }
 
@@ -50,7 +51,8 @@ class DepressionModuleDTO extends Equatable {
 
     NepanikarListFormDTO? depressionNiceMadeHappyConfig;
     try {
-      depressionNiceMadeHappyConfig = NepanikarListFormDTO.getIosData(config, sectionName: 'nice');
+      depressionNiceMadeHappyConfig =
+          NepanikarListFormDTO.getIosData(config, sectionName: 'nice');
     } catch (_) {}
 
     NepanikarListFormDTO? depressionPraiseMyAchievementsConfig;
@@ -62,7 +64,8 @@ class DepressionModuleDTO extends Equatable {
     return DepressionModuleDTO._(
       depressionActivityPlanConfig: depressionActivityPlanConfig,
       depressionNiceMadeHappyConfig: depressionNiceMadeHappyConfig,
-      depressionPraiseMyAchievementsConfig: depressionPraiseMyAchievementsConfig,
+      depressionPraiseMyAchievementsConfig:
+          depressionPraiseMyAchievementsConfig,
     );
   }
 

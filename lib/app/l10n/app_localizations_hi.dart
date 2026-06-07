@@ -1,0 +1,1089 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
+import 'app_localizations.dart';
+
+// ignore_for_file: type=lint
+
+/// The translations for Hindi (`hi`).
+class AppLocalizationsHi extends AppLocalizations {
+  AppLocalizationsHi([String locale = 'hi']) : super(locale);
+
+  @override
+  String get about_app => 'ऐप के बारे में';
+
+  @override
+  String get about_app_text =>
+      'यह ऐप उन सभी लोगों के लिए है जिन्हें अवसाद, चिंता या अन्य मानसिक समस्याओं में तत्काल सहायता की आवश्यकता हो। ऐप मदद प्रदान करता है लेकिन यह योग्य डॉक्टर या विशेषज्ञ की परामर्श का विकल्प नहीं है। जब स्थिति गंभीर हो जाए तो पेशेवर मदद लेना आवश्यक है। यदि ऐप मदद नहीं करता या आपको संदेह है कि इसका आपके मानसिक स्वास्थ्य पर सकारात्मक प्रभाव है, तो कृपया इसे उपयोग करने से पहले अपने डॉक्टर से परामर्श करें।';
+
+  @override
+  String get activity_hint_text => 'गतिविधि';
+
+  @override
+  String get add_a_new_emotion => 'नई भावना जोड़ें';
+
+  @override
+  String get add_item => 'आइटम जोड़ें';
+
+  @override
+  String get answer => 'उत्तर';
+
+  @override
+  String get anxiety_panic => 'चिंता और घबराहट के दौरे';
+
+  @override
+  String get app_name => 'घबराएं नहीं';
+
+  @override
+  String get audio_progress_announce => 'अब तक बजाया गया';
+
+  @override
+  String get audio_total_announce => 'कुल लंबाई';
+
+  @override
+  String get balance_game_instructions =>
+      'आपका कार्य स्क्रीन के नीचे दोनों बॉक्सों को टैप करके झूले को संतुलित रखना है।';
+
+  @override
+  String get balloons_game_tip =>
+      'सभी सफेद गुब्बारों को फोड़ने के लिए टैप करें।';
+
+  @override
+  String get breath => 'साँस लेने के व्यायाम';
+
+  @override
+  String get breath_one => 'साँस लेने का व्यायाम';
+
+  @override
+  String get breath_speed => 'साँस की गति';
+
+  @override
+  String get breathe_hold => 'साँस रोकें';
+
+  @override
+  String get breathe_in => 'साँस लें';
+
+  @override
+  String get breathe_info => 'बैठ जाएं और किसी ठोस चीज़ पर टिक जाएं';
+
+  @override
+  String get breathe_out => 'साँस छोड़ें';
+
+  @override
+  String get breathe_slider => 'साँस की गति';
+
+  @override
+  String get breathing_exercise_i => 'साँस लेने का व्यायाम I';
+
+  @override
+  String get breathing_exercise_ii => 'साँस लेने का व्यायाम II';
+
+  @override
+  String get breathing_exercise_iii => 'साँस लेने का व्यायाम III';
+
+  @override
+  String get breathing_exercise_tip => 'बैठ जाएं और किसी ठोस चीज़ पर टिक जाएं।';
+
+  @override
+  String get cancel => 'रद्द करें';
+
+  @override
+  String get center => 'संकट केंद्र';
+
+  @override
+  String get chart_filter_custom => 'कस्टम';
+
+  @override
+  String get chart_filter_last_3_months => 'पिछले 3 महीने';
+
+  @override
+  String get chart_filter_last_6_months => 'पिछले 6 महीने';
+
+  @override
+  String get chart_filter_last_month => 'पिछला महीना';
+
+  @override
+  String get chart_filter_last_week => 'पिछला सप्ताह';
+
+  @override
+  String get chat => 'चैट';
+
+  @override
+  String get chat_screen_description =>
+      'चैट रूम का उपयोग करने के लिए इंटरनेट कनेक्शन आवश्यक है।';
+
+  @override
+  String get choose_a_color => 'कोई रंग चुनें';
+
+  @override
+  String get clear_all_button => 'सभी जांचें';
+
+  @override
+  String get clear_button => 'हटाएं';
+
+  @override
+  String get clear_data => 'संग्रहीत डेटा हटाएँ';
+
+  @override
+  String get color_scheme => 'रंग योजना';
+
+  @override
+  String get confirm_delete => 'क्या आप वाकई इस मूड एंट्री को हटाना चाहते हैं?';
+
+  @override
+  String get contact_copied_snackbar => 'संपर्क क्लिपबोर्ड में कॉपी हो गया है';
+
+  @override
+  String get contact_us => 'संपर्क करें';
+
+  @override
+  String get contact_us_text =>
+      'यदि आपके पास कोई सुझाव या प्रश्न हैं तो कृपया हमें ईमेल पर संपर्क करें: nepanikar.info@gmail.com';
+
+  @override
+  String get contacts => 'सहायता संपर्क';
+
+  @override
+  String get contacts_message => 'संकट संदेश';
+
+  @override
+  String get contacts_module => 'संपर्क';
+
+  @override
+  String get counselling_email_subject => 'ऐप से मदद';
+
+  @override
+  String get crisis_centers_description =>
+      'संक्षिप्त अवधि की देखभाल जब आप ऐसी स्थिति में हों जिसे आप अकेले संभाल नहीं पा रहे हों।';
+
+  @override
+  String get custom_do => 'मैं क्या करूँगा...';
+
+  @override
+  String get custom_go => 'मैं कहाँ जाऊँगा...';
+
+  @override
+  String get custom_message => 'संदेश का पाठ (वैकल्पिक)';
+
+  @override
+  String get custom_ppl => 'जिन लोगों की मुझे परवाह है';
+
+  @override
+  String get custom_theme => 'रंग सेटिंग्स';
+
+  @override
+  String get custom_write => 'मैं किसके लिए लिखूँ...';
+
+  @override
+  String get custom_write_body =>
+      'हाय, हाल ही में मेरे लिए कठिन रहा है, क्या हम बात कर सकते हैं?';
+
+  @override
+  String get dark_mode => 'डार्क मोड';
+
+  @override
+  String get dark_mode_off => 'डार्क मोड बंद है';
+
+  @override
+  String get dark_mode_on => 'डार्क मोड चालू है';
+
+  @override
+  String get date_of_entry_label => 'एंट्री की तारीख';
+
+  @override
+  String get date_of_note => 'नोट की तारीख';
+
+  @override
+  String get days => 'दिन';
+
+  @override
+  String get default_reset => 'डिफ़ॉल्ट';
+
+  @override
+  String get delete_data_description =>
+      'क्या आप वास्तव में सभी डेटा हटाना चाहते हैं?';
+
+  @override
+  String get delete_data_title => 'डेटा हटाएँ';
+
+  @override
+  String get delete_record => 'रिकॉर्ड हटाएँ';
+
+  @override
+  String get delete_success => 'आपका डेटा सफलतापूर्वक हटा दिया गया।';
+
+  @override
+  String get depression => 'अवसाद';
+
+  @override
+  String get depression_help => 'क्या मदद कर सकता है';
+
+  @override
+  String get depression_mood => 'मूड मॉनिटरिंग';
+
+  @override
+  String get depression_nice => 'क्या मुझे खुश करता है';
+
+  @override
+  String get depression_nice_header =>
+      'यहाँ मैं लिख सकता हूँ कि आज मुझे क्या खुश किया:';
+
+  @override
+  String get depression_plan => 'गतिविधि योजना';
+
+  @override
+  String get depression_plan_header => 'यहाँ मैं अपनी सभी योजनाएँ लिखूँगा:';
+
+  @override
+  String get depression_praise => 'मेरी सफलताएँ';
+
+  @override
+  String get depression_praise_header =>
+      'यहाँ मैं अपनी कुछ सफलताएँ लिख सकता हूँ:';
+
+  @override
+  String get depression_tips =>
+      'कुछ खेल करें\nसाइकिल लें और आधे घंटे की सवारी करें।\nअकेले न रहें\nसंदेश लिखें, या अपने माता-पिता, साथी या मित्र को कॉल करें। उनसे मिलें।\nध्यान का अभ्यास करें\nआराम से बैठें, आँखें बंद करें और गहरी साँसें लें। अपने विचारों को बहने दें और मन को मुक्त करें।\nधूम्रपान या शराब से बचें\nअपने लिए हर्बल या फल की चाय बनाएं।\nस्कूल काउंसलर या मनोवैज्ञानिक से बात करें\nजितनी जल्दी हो सके मीटिंग का प्रबंध करें।\nसंगीत सुनें\nअपने पसंदीदा गानों की प्लेलिस्ट बनाएं और सुनें।\nमित्रों से मिलें\nसंदेश लिखें या कॉल करें और उनसे मिलें।\nपसंदीदा फ़िल्म देखें\nजो फिल्म आपको पसंद हो या इंटरनेट पर कुछ वीडियो देखें।\nनिकट मित्र या परिवार को संदेश लिखें\nकिसी भरोसेमंद व्यक्ति को अपने भावनाओं के बारे में लिखें।\nचित्र बनाएं\nकिसी भी रंग भरने की किताब लें या मंडला प्रिंट करें और रंग भरें।\nव्यायाम करें\nदौड़ना, साइकिल चलाना या लंबी सैर मदद कर सकती है।\nआराम करें\nअपने फोन पर गाइडेड रिलैक्सेशन ऐप डाउनलोड करें। इसे चलाएँ, आराम से फर्श पर बैठें, आँखें बंद करें और आराम करें।\nसंगीत वाद्ययंत्र बजाएँ\nअपने पसंदीदा संगीत रचना बजाएँ।\nपढ़ें\nकुछ रोचक पढ़ें। किताब, मैगज़ीन या ऑनलाइन लेख।\nकिसी प्रिय को गले लगाएँ\nया आप अपने पालतू को प्यार कर सकते हैं।';
+
+  @override
+  String get describe_what_happened => 'बताएँ क्या हुआ...';
+
+  @override
+  String get description => 'विवरण';
+
+  @override
+  String get diary => 'डायरी';
+
+  @override
+  String get diary_add_appbar_title => 'नई रिकॉर्ड';
+
+  @override
+  String get diary_description =>
+      'अपनी प्रगति और उपलब्धियों को लिखें। आप हमेशा अपने नोट्स पर वापस जा सकते हैं।';
+
+  @override
+  String get diary_detail_appbar_title => 'रिकॉर्ड का विवरण';
+
+  @override
+  String get diary_edit_appbar_title => 'रिकॉर्ड संपादित करें';
+
+  @override
+  String get diary_empty => 'आपकी डायरी में अभी कोई एंट्री नहीं है।';
+
+  @override
+  String get diary_record_date => 'रिकॉर्ड की तारीख';
+
+  @override
+  String get distraction => 'ध्यान भटकाना';
+
+  @override
+  String get eating_disorder_description =>
+      'भोजन संबंधी विकारों का सामना करने के अपने कारण लिखें।';
+
+  @override
+  String get edit => 'संपादित करें';
+
+  @override
+  String get email_consultation => 'ई-मेल पर परामर्श';
+
+  @override
+  String get email_counselling_screen_description =>
+      'हम आपके ई-मेल का जवाब 7 दिनों के भीतर देंगे, और उत्तर आपके ई-मेल इनबॉक्स में आएगा।';
+
+  @override
+  String get emergency_plan_description =>
+      'जैसे ही आप बेहतर महसूस करें, आप अपनी व्यक्तिगत आपातकालीन योजना भर सकते हैं, जिसे आपके पास हमेशा हाथ में रहेगा। यह जरूरत के समय आपकी मदद कर सकता है।';
+
+  @override
+  String get emotion_angry => 'गुस्सा';
+
+  @override
+  String get emotion_excited => 'उत्साहित';
+
+  @override
+  String get emotion_happy => 'खुश';
+
+  @override
+  String get emotion_relaxed => 'आरामदायक';
+
+  @override
+  String get emotion_sad => 'उदास';
+
+  @override
+  String get emotion_too_long => 'भावना बहुत लंबी है (अधिकतम 12 अक्षर)';
+
+  @override
+  String get emotions => 'भावनाएँ';
+
+  @override
+  String get enter_part_of_summary => 'अपनी इच्छित सारांश का हिस्सा दर्ज करें';
+
+  @override
+  String get enter_summary => 'एक छोटा सारांश दर्ज करें';
+
+  @override
+  String get exit => 'बाहर जाएँ';
+
+  @override
+  String get export_button => 'निर्यात करें';
+
+  @override
+  String get export_data => 'डेटा निर्यात करें';
+
+  @override
+  String get export_failed => 'निर्यात असफल।';
+
+  @override
+  String get export_old_app_description =>
+      'यदि आपने नए संस्करण में अपडेट के दौरान कुछ डेटा खो दिया है, तो आप इसे यहां निर्यात कर सकते हैं। हमें ई-मेल करें pomoc@nepanikar.eu और हम आपकी मदद करेंगे।';
+
+  @override
+  String get export_old_app_title => 'पुराने ऐप संस्करण से डेटा निर्यात करें';
+
+  @override
+  String get export_successful => 'निर्यात सफल';
+
+  @override
+  String get feeling_bad_do =>
+      'यदि मैं ठीक महसूस नहीं कर रहा/रही हूँ, तो मैं कोशिश करूँगा/करूँगी:';
+
+  @override
+  String get feeling_bad_go =>
+      'यदि मैं ठीक महसूस नहीं कर रहा/रही हूँ, तो मैं जाऊँगा/जाऊँगी:';
+
+  @override
+  String get feeling_bad_write =>
+      'यदि मैं ठीक महसूस नहीं कर रहा/रही हूँ, तो मैं लिखूँगा/लिखूँगी:';
+
+  @override
+  String get feeling_bad_write_body => 'मैं उन्हें क्या लिखूँगा/लिखूँगी:';
+
+  @override
+  String get filter_next_time_period => 'अगली समयावधि';
+
+  @override
+  String get filter_previous_time_period => 'पिछली समयावधि';
+
+  @override
+  String get follow_us => 'हमें फॉलो करें';
+
+  @override
+  String get food => 'खानपान संबंधी विकार';
+
+  @override
+  String get food_afraid_header =>
+      'इस सूची में “प्रतिबंधित” खाद्य पदार्थ लिखें और हर हफ्ते एक खाद्य पदार्थ आज़माएँ और सूची से हटा दें।';
+
+  @override
+  String get food_afraid_text => 'वे खाद्य पदार्थ जिनसे मुझे डर लगता है';
+
+  @override
+  String get food_am_snack => 'नाश्ता';
+
+  @override
+  String get food_breakfast => 'नाश्ता';
+
+  @override
+  String get food_challenge_text =>
+      'मैं अपने आप के प्रति दयालु होना चाहता/चाहती हूँ और मुझे पता है कि कैसे होना है।\nआज मैं सकारात्मक सोचने और विश्वास करने की कोशिश करूंगा/करूंगी कि सब ठीक होगा।\nआज से मैं अपनी भावनाओं को छिपाऊँगा/छिपाऊँगी नहीं।\nहर घंटे मैं अपनी तारीफ करूंगा/करूँगी।\nआज मैं अपने भविष्य के लिए 20 व्यक्तिगत लक्ष्य लिखूँगा/लिखूँगी।\nमैं खाने की बजाय जीवन के अर्थ पर ध्यान केंद्रित करूंगा/करूँगी।\nमैं खुद को नुकसान पहुँचाना और निंदा करना बंद कर दूँगा।\nमैं दूसरों के प्रति आभार फैलाऊँगा/फैलाऊँगी।\nमैं अपने शरीर और मुझे क्या अच्छा लगता है, इसे स्वीकार करूंगा/करूँगी।\nमैं किसी को यह दिखाऊँगा/दिखाऊँगी कि वे मेरे लिए कितने महत्वपूर्ण हैं।\nअगर मेरे पास पेशेवर मदद नहीं है, तो आज मैं खोजूँगा/खोजूँगी।\nआज आराम का दिन है क्योंकि मुझे इसकी जरूरत है।\nमैं अपने जीवन में क्या चाहिए और क्या मिस हो रहा है, इसे स्वीकार करूंगा/करूँगी।\nमैं अपने माता-पिता का धन्यवाद कहूँगा/कहूँगी।\nमैं उन लोगों के बारे में सोचूँगा/सोचूँगी जो मेरी परवाह करते हैं।\nमैं अपना खुद का आदर्श वाक्य बनाऊँगा/बनाऊँगी।\nआज मुझे खाने से डर नहीं लगेगा।\nआज मैं अपनी असुरक्षाएँ और डर किसी के साथ साझा करूंगा/करूँगी।\nमैं उन सभी लोगों को माफ करूंगा/करूँगी जिन्होंने मुझे चोट पहुँचाई। मैं अपने आप को माफ कर रहा/रही हूँ।\nआज से मैं उस बारे में बात करने की कोशिश करूंगा/करूँगी जो मुझे परेशान करता है और मैं कैसा महसूस करता/करती हूँ।\nअब से मैं यह कहने से डरूंगा/डरूँगी नहीं कि मैं थका हुआ हूँ या मुझे कुछ करने का मन नहीं है।\nमैं \'ना\' कहना सीखूँगा/सिखूँगी।\nमैं अपनी नई डायरी लिखना शुरू करूँगा/करूँगी।\nमैं किसी के वजन के बारे में घृणास्पद टिप्पणियों को सहन नहीं करूँगा/करूँगी।\nमैं अपनी अब तक की उपलब्धियों को लिखूँगा/लिखूँगी।\nमेरे उतने ही दोस्त हैं जितनी मेरी उंगलियाँ हैं।';
+
+  @override
+  String get food_choice => 'भोजन चयन';
+
+  @override
+  String get food_contact => 'सहायता संपर्क';
+
+  @override
+  String get food_contact_text => '';
+
+  @override
+  String get food_creative_text =>
+      'अपनी बीमारी की एक तस्वीर बनाएं और कागज़ फाड़ दें।\nअपनी बीमार “स्वयं” को पत्र लिखें, धन्यवाद और विदा कहें।\nलिखें कि आप स्वस्थ क्यों होना चाहते हैं और आपकी रिकवरी यात्रा में बाधाएँ क्या हैं।\nअपनी टेबल पर कागज़ की गड़बड़ को सुलझाएँ।\nनया हेयरस्टाइल आज़माएँ।\nअपनी मांसपेशियों को खींचें।\nक्या आपने टैटू के बारे में सोचा है? हिना खरीदें और अपने सुंदर शरीर पर सही स्थान ढूंढें!\nअपनी पसंदीदा छुट्टी की मेमोरी बुक बनाएं। कुछ तस्वीरें या स्टिकर प्रिंट करें। क्रिएटिव बनें।\nनई भाषा सीखें।\nकोई संगीत वाद्य यंत्र बजाने की कोशिश करें।\nकागज़ से ओरिगामी बनाना सीखें।\nअपने जीवन के पल लिखें जिन्हें आप फिर से अनुभव करना चाहते हैं।\nअपने कमरे के लिए सजावट बनाएं।';
+
+  @override
+  String get food_dinner => 'रात का खाना';
+
+  @override
+  String get food_dishes => 'भोजन के उदाहरण';
+
+  @override
+  String get food_dishes_am_snack =>
+      'केले, ब्लूबेरी और चिया बीज से स्मूदी\nस्ट्रॉबेरी दही के साथ बिस्किट';
+
+  @override
+  String get food_dishes_breakfast =>
+      'ओटमील मक्खन, सेब, नट, शहद और दालचीनी के साथ, ऊपर सफेद दही\nघर का मूसली, ताज़ा फल और सफेद दही\nअंडे का भुर्ज़ा हरा प्याज़ के साथ, बगेट, टमाटर सलाद';
+
+  @override
+  String get food_dishes_dinner =>
+      'ग्रिल्ड सैल्मन, सब्जियाँ, और मैश किए आलू\nपप्पार्डेले à ला कार्बोनारा\nहुमस के साथ टमाटर और लीक, होलग्रेन राई ब्रेड\nभुनी सब्जियाँ परमेसन के साथ, डार्क रोल\nबीज बगेट कॉटेज चीज़ स्प्रेड, प्याज़ और सब्ज़ी के साथ\nब्रेड, स्प्रेड और हैम, सब्ज़ी का सलाद\nकैप्रेस सलाद टमाटर और मोत्ज़रेला चीज़ से, क्रैकब्रेड\nप्लेट में हैम, चीज़, अंडे, सब्ज़ी और कॉर्नस्पिट्ज़';
+
+  @override
+  String get food_dishes_lunch =>
+      'फ्राइड चॉप के साथ आलू का प्यूरी, स्प्रिंग स्प्राउट सलाद\nसब्ज़ियों के साथ पास्ता, दही ड्रेसिंग, तुलसी के पत्ते\nग्रिल्ड चिकन, कुसकुस के साथ सब्ज़ियाँ\nकद्दू की क्रीम\nसब्ज़ियों के साथ चिकन शोरबा\nमिनेस्ट्रोन';
+
+  @override
+  String get food_dishes_pm_snack =>
+      'फलों के साथ ग्रीक योगर्ट, तला हुआ कद्दू और सूरजमुखी के बीज\nडार्क टोस्ट ब्रेड, चीज़, सब्ज़ियाँ\nमक्खन पर ग्रिल्ड केला, दही\nकॉटेज चीज़ शहद और सुखी आलूबुखारे के साथ';
+
+  @override
+  String get food_fail => 'मैं असफल हो रहा/रही हूँ';
+
+  @override
+  String get food_fail_text =>
+      'खुद को दंडित मत करें\nकिसी से अपनी भावनाओं के बारे में बात करें\nध्यान रखें कि रिकवरी एक लंबी प्रक्रिया है और हर कठिनाई जो आप पार करते हैं वह आपको मजबूत बनाती है\nलिखें कि आप किस पर गर्व महसूस करते हैं (आपकी व्यक्तिगत विशेषताएँ, सफलता…)\nजो कुछ भी आपने सहा और पार किया उसे स्वीकार करें (हम आप पर गर्व करते हैं ;) )';
+
+  @override
+  String get food_figure => 'शरीर का आकार';
+
+  @override
+  String get food_figure_text =>
+      'अगर मैं भूखा हूँ, तो मैं अपनी प्लेट में और खाना रख सकता/सकती हूँ।\nमैं वास्तव में अपने भोजन का आनंद लेता/लेती हूँ।\nअगर मेरी प्लेट में कुछ बचा रह जाए, तो यह कोई समस्या नहीं है (यदि मैं गंभीर रूप से कम वजन बढ़ाने के सक्रिय कार्यक्रम में नहीं हूँ ;) )।\nमुझे हर समय खाने के बारे में सोचने की जरूरत नहीं है।\nमैं प्राकृतिक गतिविधियों और मनोरंजक खेलों का आनंद लेता/लेती हूँ।\nमैं सिर्फ अपने वजन के आंकड़े से अधिक हूँ। मैं मूल्यवान हूँ। मैं खुद के योग्य हूँ।\nमैं पोषक तत्वों से भरपूर भोजन करता/करती हूँ।\nभूखा होना सामान्य है, और खाना खाना जरूरी है।\nइस दुनिया में खाने के अलावा भी बहुत महत्वपूर्ण और सुंदर चीजें हैं।\nमनुष्य की सुंदरता केवल उसके वजन में नहीं होती।\nमैं बिना हार माने प्रयास करता/करती हूँ, मैं खुद पर विश्वास करता/करती हूँ।\nमैं उम्मीद नहीं करता/करती कि चीजें अपने आप बदल जाएँगी।\nमैं दूसरों से अपनी तुलना नहीं करता/करती।\nहम सिर्फ इंसान हैं, हम गलतियाँ कर सकते हैं। महत्वपूर्ण यह है कि उनसे सीखें और उन्हें दोहराएँ नहीं।\nमैं समझता/समझती हूँ कि मैं पहले अपनी उपस्थिति और दूसरों की राय की अधिक परवाह करता/करती थी।\nमैं जानता/जानती हूँ कि मुझे जीने के लिए ऊर्जा की आवश्यकता है।\nमैं जानता/जानती हूँ कि मुझे खाने में समस्याएँ हैं और इन्हें सुलझाना मेरे हाथ में है।\nमेरे शरीर को पोषण और उचित देखभाल की आवश्यकता है।\nमैं विभिन्न प्रकार का भोजन खाता/खाती हूँ। मुझे फल, सब्जियाँ, मांस या बेकरी उत्पादों से डर नहीं लगता।\nमैं जानता/जानती हूँ कि मैं कर सकता/सकती हूँ, लेकिन मदद मांगने से डरता/डरती नहीं हूँ।\nमेरी रिकवरी यात्रा में मेरी सफलताएँ और असफलताएँ मैं किसी भरोसेमंद व्यक्ति के साथ साझा करूँगा/करूँगी।\nमेरे कुछ दोस्त हैं जिन पर मैं भरोसा कर सकता/सकती हूँ।\nमैं वजन घटाने या डाइटिंग वाली कोई मैगज़ीन नहीं खरीदता/खरीदती।\nमैं अपने छोटे-छोटे उपलब्धियों पर भी गर्व करता/करती हूँ।\nकोई भी पूर्ण नहीं है, लेकिन मैं बिना किसी डाइटिंग या वजन/उपस्थिति की चिंता के शानदार हो सकता/सकती हूँ।\nमैं रात में नहीं खाता/खाती क्योंकि मुझे पता है कि यह समय मुझे कमजोर महसूस कराता है।\nमुझे परफेक्ट बॉडी की जरूरत नहीं है। मैं तय करता/करती हूँ कि मेरा शरीर कैसा दिखना चाहिए। मेरी आत्मा परिपूर्ण है।\nमैं अपने रिश्तों में खुश हूँ।\nहर चीज़ का तार्किक कारण नहीं होता।\nमैं जानता/जानती हूँ कि जब मैं बुरा महसूस करूँ तो किसे कॉल कर सकता/सकती हूँ।\nमुझे हमेशा मुस्कुराने की जरूरत नहीं है।\nमैं गुस्सा हो सकता/सकती हूँ।\nमदद मांगना पूरी तरह से ठीक है।\nमैं अपनी समस्याओं के साथ अकेला/अकेली नहीं हूँ।';
+
+  @override
+  String get food_food_like_header =>
+      'यहाँ मैं उन व्यंजनों की सूची लिखता/लिखती हूँ जिन्हें मैं पसंद करता/करती हूँ';
+
+  @override
+  String get food_food_like_text => ' ';
+
+  @override
+  String get food_like_header =>
+      'यहाँ मैं उन चीज़ों की सूची लिखता/लिखती हूँ जो मुझे अपने बारे में पसंद हैं';
+
+  @override
+  String get food_like_text => ' ';
+
+  @override
+  String get food_lunch => 'दोपहर का भोजन';
+
+  @override
+  String get food_misc => 'सामान्य';
+
+  @override
+  String get food_misc_text =>
+      'उन लोगों के बीच रहें जो आपकी परवाह और समर्थन करते हैं\nसाइकेट्रिस्ट, साइकॉलजिस्ट और न्यूट्रिशनिस्ट के संपर्क याद रखें\nअपने शौक और पहले पसंद की चीज़ों को छोड़ें नहीं\nदिन में कम से कम एक बार रिलैक्सेशन का अभ्यास करें\nकुछ मनोरंजक खेल करें (लेकिन सावधान रहें और अत्यधिक व्यायाम न करें ;) )\nअपने आप को पर्याप्त और लंबी नींद दें\nडायरी में लिखें\nअपना जीवनसाथी (या गहरे वार्तालाप के लिए अच्छा मित्र) खोजें\nआईने में न देखें\nखुद को तौलें नहीं\nकिसी ऐसे व्यक्ति के साथ खाएं जो आपका समर्थन करता हो और आपको सहज महसूस कराए\nनियमित रूप से खाएं (लगभग दिन में 5 से 6 बार)\nअपने शराब पीने की आदतों के बारे में सोचें';
+
+  @override
+  String get food_motivation_header => 'स्वस्थ रहने के कारणों की सूची';
+
+  @override
+  String get food_motivation_text => ' ';
+
+  @override
+  String get food_overeat => 'अत्यधिक खाने की प्रवृत्ति';
+
+  @override
+  String get food_overeat_text =>
+      'अपने भावनाओं के प्रति सचेत रहें, जो आने वाला है उसे स्वीकार करें\nखाना या रसोई से खुद को दूर रखने की कोशिश करें, किसी अन्य चीज़ पर ध्यान दें (वीडियो गेम्स…)\nसैर पर जाएँ\nअपने नाखून पेंट करें\nच्यूइंग गम चबाएँ\nकुछ साथी ढूंढें, अकेले न रहें\nकिसी करीबी व्यक्ति को कॉल करें\nकलम लें और अपनी भावनाएँ लिखें';
+
+  @override
+  String get food_pm_snack => 'नाश्ता';
+
+  @override
+  String get food_problems_anger => 'गुस्सा';
+
+  @override
+  String get food_problems_anxiety => 'चिंता का दौरा';
+
+  @override
+  String get food_problems_anxiety_attack => 'बेचैनी';
+
+  @override
+  String get food_problems_disgusted => 'घृणा';
+
+  @override
+  String get food_problems_exercise => 'व्यायाम';
+
+  @override
+  String get food_problems_fear => 'भय';
+
+  @override
+  String get food_problems_happy => 'खुशी';
+
+  @override
+  String get food_problems_laxative => 'पाखाना बढ़ाने वाली दवा';
+
+  @override
+  String get food_problems_proud => 'गर्व';
+
+  @override
+  String get food_problems_sad => 'उदासी';
+
+  @override
+  String get food_problems_satisfied => 'संतोष';
+
+  @override
+  String get food_problems_self_harm => 'स्वयं को चोट पहुँचाना';
+
+  @override
+  String get food_problems_stress => 'तनाव';
+
+  @override
+  String get food_problems_unsatisfied => 'असंतोष';
+
+  @override
+  String get food_problems_vomit => 'उल्टी';
+
+  @override
+  String get food_record_feel => 'भोजन के दौरान आपने कैसा महसूस किया?';
+
+  @override
+  String get food_record_problems =>
+      'क्या आपने कोई खाने से संबंधित समस्या महसूस की? कौन-सी?';
+
+  @override
+  String get food_record_what => 'आपने क्या खाया?';
+
+  @override
+  String get food_record_when => 'आपने कब खाया?';
+
+  @override
+  String get food_record_where => 'आपने कहाँ खाया?';
+
+  @override
+  String get food_record_with => 'आप किसके साथ खा रहे थे?';
+
+  @override
+  String get food_records => 'भोजन रिकॉर्ड';
+
+  @override
+  String get food_remorse => 'खाने के बाद अपराधबोध';
+
+  @override
+  String get food_second_dinner => 'दूसरा रात का भोजन';
+
+  @override
+  String get food_tasks => 'कार्य';
+
+  @override
+  String get food_tasks_afraid => 'जो भोजन मुझे डराता है';
+
+  @override
+  String get food_tasks_challenge => 'चुनौतियाँ';
+
+  @override
+  String get food_tasks_creative => 'रचनात्मक कार्य';
+
+  @override
+  String get food_tasks_food_like => 'जो भोजन मुझे पसंद है';
+
+  @override
+  String get food_tasks_like => 'अपने बारे में जो मुझे पसंद है';
+
+  @override
+  String get food_tasks_motivation => 'प्रेरणा';
+
+  @override
+  String get food_tips => 'टिप्स';
+
+  @override
+  String get food_tips_text =>
+      'गहरी साँस लें\nइस एप्लिकेशन में खेलों या नंबर गिनने पर ध्यान केंद्रित करने की कोशिश करें\nअपनी प्रेरणा के बारे में सोचें - आप स्वस्थ क्यों रहना चाहते हैं?\nबस रोएँ, अपनी आँसुओं के लिए शर्मिंदा न हों\nकिसी करीबी व्यक्ति को कॉल करें जो आपकी समझता और समर्थन करता हो\nकिसी करीबी मित्र से मिलें\nअपनी माँ/पिता/दादी/पालतू को गले लगाएँ\nसंगीत सुनें\nकिताब पढ़ें\nअपना पसंदीदा टीवी शो, सीरीज़ या फिल्म देखें\nअपने मंडला को चमकीले रंगों से रंगें\nलिखें कि आप स्वस्थ क्यों रहना चाहते हैं';
+
+  @override
+  String get food_vomit => 'उल्टी या व्यायाम की इच्छा';
+
+  @override
+  String get food_vomit_text =>
+      'लिखें कि आप स्वस्थ क्यों रहना चाहते हैं\nकुछ साथी ढूंढें, अकेले न रहें\nकिसी करीबी व्यक्ति को कॉल करें\nअपने करीबी मित्र को मैसेज करें\nगहरी साँस लें\nइस एप्लिकेशन में नंबर गिनने या अन्य खेलों पर ध्यान दें\nकलम लें और अपनी भावनाएँ लिखें';
+
+  @override
+  String get game => 'खेल';
+
+  @override
+  String get game_balance => 'झूला खेल';
+
+  @override
+  String get game_balls => 'गेंदों का खेल';
+
+  @override
+  String get game_instructions =>
+      'उज्ज्वल सफेद गेंदों को छूकर मारें। ग्रे और काले गेंदें केवल आपको भ्रमित करने के लिए हैं।';
+
+  @override
+  String get home => 'होम';
+
+  @override
+  String get homepage_subtitle => 'हम आपकी कैसे मदद कर सकते हैं?';
+
+  @override
+  String get hours => 'घंटे';
+
+  @override
+  String get import_button => 'इम्पोर्ट करें';
+
+  @override
+  String get import_export => 'इम्पोर्ट/एक्सपोर्ट';
+
+  @override
+  String get import_export_text =>
+      'यहाँ आप एप्लिकेशन से अपने सहेजे हुए डेटा को फ़ाइल में निर्यात कर सकते हैं या सहेजे हुए डेटा को अपलोड कर सकते हैं। फ़ाइल इम्पोर्ट करने से वर्तमान सहेजे हुए डेटा को अधिलेखित किया जाएगा!';
+
+  @override
+  String get import_failed => 'इम्पोर्ट के दौरान त्रुटि हुई।';
+
+  @override
+  String get import_successful => 'सफलतापूर्वक इम्पोर्ट किया गया।';
+
+  @override
+  String get item_added_announce => 'आइटम जोड़ा गया';
+
+  @override
+  String get journal => 'जर्नल';
+
+  @override
+  String get journal_feel => 'मैं कैसा महसूस कर रहा/रही हूँ?';
+
+  @override
+  String get journal_grateful => 'मैं किन चीज़ों के लिए आभारी हूँ?';
+
+  @override
+  String get journal_great => 'इस दिन को महान क्या बनाता है?';
+
+  @override
+  String get journal_improve => 'इस दिन को कैसे बेहतर बनाया जा सकता है?';
+
+  @override
+  String get journal_three => 'आज हुई तीन अच्छी चीज़ें:';
+
+  @override
+  String get language => 'भाषा';
+
+  @override
+  String get main_partners => 'मुख्य साझेदार';
+
+  @override
+  String get make_call => 'कॉल करें';
+
+  @override
+  String get math => 'गणित';
+
+  @override
+  String get math_annouce_correct_answer => 'सही उत्तर';
+
+  @override
+  String get math_annouce_incorrect_answer => 'गलत उत्तर';
+
+  @override
+  String get math_game_answer_button => 'परिणाम क्या है?';
+
+  @override
+  String get message_text => 'संदेश पाठ';
+
+  @override
+  String get minutes => 'मिनट';
+
+  @override
+  String get month => 'महीना';
+
+  @override
+  String get months => 'महीने';
+
+  @override
+  String get mood => 'मूड';
+
+  @override
+  String get mood_bad_sad => 'उदास';
+
+  @override
+  String get mood_chart => 'मूड चार्ट';
+
+  @override
+  String get mood_entries => 'मूड एंट्रीज़';
+
+  @override
+  String get mood_good => 'अच्छा';
+
+  @override
+  String get mood_great_happy => 'बहुत अच्छा';
+
+  @override
+  String get mood_heatmap => 'मूड हीटमैप';
+
+  @override
+  String get mood_help =>
+      'आप हाल ही में उदास महसूस कर रहे हैं, क्या आप पेशेवर मदद लेने पर विचार नहीं करना चाहेंगे?';
+
+  @override
+  String get mood_help_no => 'नहीं';
+
+  @override
+  String get mood_help_yes => 'हाँ';
+
+  @override
+  String get mood_miserable_sad => 'बेहद उदास';
+
+  @override
+  String get mood_no_data =>
+      'ग्राफ़ के लिए कम से कम दो सहेजे हुए मान आवश्यक हैं';
+
+  @override
+  String get mood_not_much => 'ठीक है';
+
+  @override
+  String get mood_statistics => 'मूड सांख्यिकी';
+
+  @override
+  String get mood_text => 'आज मैं कैसा महसूस कर रहा/रही हूँ:';
+
+  @override
+  String get mood_track_chart_guide =>
+      'तारीख़ सीमा सेट करें और मूड के रुझान को देखें';
+
+  @override
+  String get mood_tracked_success_snackbar =>
+      'मूड सफलतापूर्वक रिकॉर्ड किया गया';
+
+  @override
+  String get mood_welcome_title => 'हाय, आप आज कैसा महसूस कर रहे हैं?';
+
+  @override
+  String get my_contacts => 'मेरे संपर्क';
+
+  @override
+  String get my_contacts_header =>
+      'यहाँ मैं अपने संपर्क लिख सकता/सकती हूँ, उन्हें ईमेल, एसएमएस भेज सकता/सकती हूँ या कॉल कर सकता/सकती हूँ।';
+
+  @override
+  String get my_contacts_names_example => 'नाम';
+
+  @override
+  String get my_contacts_numbers_example => 'फोन नंबर या ईमेल';
+
+  @override
+  String get my_records => 'मेरे रिकॉर्ड';
+
+  @override
+  String get need_help => 'क्या आपको पेशेवर मदद की ज़रूरत है?';
+
+  @override
+  String get next => 'अगला';
+
+  @override
+  String get nice_example => 'मौसम अच्छा था...';
+
+  @override
+  String get no_description_provided => 'कोई विवरण प्रदान नहीं किया गया';
+
+  @override
+  String get no_mood_entries =>
+      'इन परिस्थितियों के लिए कोई मूड एंट्रीज़ नहीं हैं।';
+
+  @override
+  String get no_record_yet_empty_text => 'आपके पास अभी कोई रिकॉर्ड नहीं है';
+
+  @override
+  String get note_detail => 'नोट का विवरण';
+
+  @override
+  String get notification_mood_reminder_title =>
+      'आपने आज अपना मूड अभी तक दर्ज नहीं किया है';
+
+  @override
+  String get notification_reminder_header => 'क्या आप भूल गए नहीं हैं?';
+
+  @override
+  String get notification_reminder_time => 'रिमाइंडर का समय';
+
+  @override
+  String get notification_sleep_mood_reminder_title =>
+      'आपने आज अपनी नींद का रिकॉर्ड अभी तक दर्ज नहीं किया है';
+
+  @override
+  String get notifications => 'सूचनाएँ';
+
+  @override
+  String get online_therapy => 'ऑनलाइन थेरेपी';
+
+  @override
+  String get other => 'अन्य';
+
+  @override
+  String get other_partners => 'अन्य साझेदार';
+
+  @override
+  String get panic_tips =>
+      'हमारे ऐप के साथ साँस लें\n\n100 से 0 तक गिनती करें\n\nकिसी कागज़ के टुकड़े को ज़ोर से निचोड़ें\n\nअपने करीबी मित्र या परिवार को गले लगाएँ\n\nसाँस रोकें\n\nअपने लिए चॉकलेट लें\n\nसफाई करें\nअपने कमरे को झाड़ें या वैक्यूम करें\nअपनी पसंदीदा फिल्म देखें\n\nअपने पालतू के साथ खेलें\n\nस्केच करें\nकागज़ और पेंसिल लें और अपनी भावनाओं को चित्रित करें\nसंगीत सुनें\nफोन का उपयोग करके अपनी पसंदीदा गानों की सूची बनाएं\nताज़ा हवा में बाहर जाएँ\nआधा घंटा तेज़ गति से चलने के लिए खुद को बाहर ले जाएँ';
+
+  @override
+  String get panic_tips_9 => 'पैनिक अटैक के टिप्स';
+
+  @override
+  String get people_to_write =>
+      'वे लोग जिन्हें मैं नुकसान पहुँचाऊँगा अगर मैं खुद को नुकसान पहुँचाऊँ:';
+
+  @override
+  String get phone => 'फोन';
+
+  @override
+  String get plan => 'आपातकालीन योजना';
+
+  @override
+  String get plan_example => 'मैं शॉपिंग के लिए जाऊँगा/जाऊँगी';
+
+  @override
+  String get plural_day_few => 'दिन';
+
+  @override
+  String get plural_day_one => 'दिन';
+
+  @override
+  String get plural_day_other => 'दिन';
+
+  @override
+  String get plural_hour_few => 'घंटे';
+
+  @override
+  String get plural_hour_one => 'घंटा';
+
+  @override
+  String get plural_hour_other => 'घंटे';
+
+  @override
+  String get plural_minutes_few => 'मिनट';
+
+  @override
+  String get plural_minutes_one => 'मिनट';
+
+  @override
+  String get plural_minutes_other => 'मिनट';
+
+  @override
+  String get plural_month_few => 'महीने';
+
+  @override
+  String get plural_month_one => 'महीना';
+
+  @override
+  String get plural_month_other => 'महीने';
+
+  @override
+  String get plural_second_few => 'सेकंड';
+
+  @override
+  String get plural_second_one => 'सेकंड';
+
+  @override
+  String get plural_second_other => 'सेकंड';
+
+  @override
+  String get plural_year_few => 'साल';
+
+  @override
+  String get plural_year_one => 'साल';
+
+  @override
+  String get plural_year_other => 'साल';
+
+  @override
+  String get praise_example => 'मैंने अपनी दैनिक एक्सरसाइज पूरी की';
+
+  @override
+  String get previous => 'पिछला';
+
+  @override
+  String get quick_help_btn => 'त्वरित मदद';
+
+  @override
+  String get rate => 'हमें रेट करें';
+
+  @override
+  String get really_remove => 'क्या आप वाकई इसे करना चाहते हैं?';
+
+  @override
+  String get really_stop_timer => 'क्या आप सच में टाइमर रोकना चाहते हैं?';
+
+  @override
+  String get reasons => 'जीने के कारण';
+
+  @override
+  String get reasons_example =>
+      'अपने पालतू के साथ खेलना (कुत्ता, बिल्ली, गिनी पिग)\nगिटार सुनना और कैम्पफायर पर गाना गाना\nजो मैं पसंद करता/करती हूँ वह पढ़ना\nअपने लिए साथी ढूँढना\nबच्चे होना\nदूसरों की मदद करना';
+
+  @override
+  String get reasons_text =>
+      'अगर मैं जिंदा रहूँ तो मैं अभी भी कर सकता/सकती हूँ:';
+
+  @override
+  String get record_added_announce => 'रिकॉर्ड जोड़ा गया';
+
+  @override
+  String get record_created_announce => 'रिकॉर्ड बनाया गया';
+
+  @override
+  String get record_deleted_announce => 'रिकॉर्ड हटा दिया गया';
+
+  @override
+  String get record_saved_announce => 'रिकॉर्ड सहेजा गया';
+
+  @override
+  String get records => 'रिकॉर्ड';
+
+  @override
+  String get relaxation => 'विश्राम';
+
+  @override
+  String get reset_inputs => 'सहेजे गए डेटा को हटाएँ';
+
+  @override
+  String get save => 'सहेजें';
+
+  @override
+  String get search => 'खोजें';
+
+  @override
+  String get search_by_emotions => 'भावनाओं से खोजें';
+
+  @override
+  String get search_by_summary => 'सारांश से खोजें';
+
+  @override
+  String get select_region_dropdown_label => 'एक क्षेत्र चुनें';
+
+  @override
+  String get select_up_to_9_emotions => 'आप केवल 9 भावनाएँ चुन सकते हैं!';
+
+  @override
+  String get select_your_emotions => 'अपनी भावनाएँ चुनें';
+
+  @override
+  String get self_harm => 'आत्म-हानि';
+
+  @override
+  String get self_harm_helped => 'इसने मुझे मदद की';
+
+  @override
+  String get self_harm_helped_header =>
+      'सूची जहाँ आप लिख सकते हैं कि आपको आत्म-हानि से बचने में क्या मदद मिली।';
+
+  @override
+  String get self_harm_plan_questions =>
+      'मैं इसे क्यों करना चाहता/चाहती हूँ?\nमैं इसके पहले क्या कोशिश करूँगा/करूँगी?\nमैं इसे किसके लिए करना चाहता/चाहती हूँ?\nमैं किससे संपर्क करूँ?';
+
+  @override
+  String get self_harm_record => 'मेरा रिकॉर्ड';
+
+  @override
+  String get self_harm_timer => 'मैं कितने समय तक संभाल पा रहा/रही हूँ';
+
+  @override
+  String get self_harm_timer_3_months =>
+      'आपने बिना आत्म-हानि के एक चौथाई साल बिताया है।\nयह शानदार है!';
+
+  @override
+  String get self_harm_timer_begin =>
+      'आप बहुत अच्छा कर रहे हैं।\nइसे जारी रखें!';
+
+  @override
+  String get self_harm_timer_day =>
+      'आपने पहला बड़ा कदम लिया है, आपने दिन पूरा कर लिया।';
+
+  @override
+  String get self_harm_timer_half_year =>
+      'आपने लंबा सफर तय किया है, आपने छह महीने तक खुद को चोट नहीं पहुँचाई।\nयह शानदार परिणाम है!';
+
+  @override
+  String get self_harm_timer_hour =>
+      'शानदार शुरुआत! उन टिप्स को लिखें जिन्होंने आपकी मदद की।\nक्या आप अगला भी कर सकते हैं?';
+
+  @override
+  String get self_harm_timer_month =>
+      'आपने एक महीने तक खुद को चोट नहीं पहुँचाई।\nक्या चीज़ आपको आगे बढ़ाए रखती है?';
+
+  @override
+  String get self_harm_timer_week =>
+      'आपने पूरा सप्ताह पूरा किया है, शानदार कि आपने इसे किया।';
+
+  @override
+  String get self_harm_timer_year =>
+      'आपने बिना आत्म-हानि के पहला साल पूरा कर लिया।\nउम्मीद है आप इसे जारी रखेंगे।';
+
+  @override
+  String get self_harm_tips => 'मैं अपनी मदद कैसे कर सकता/सकती हूँ?';
+
+  @override
+  String get self_harm_tips_13 =>
+      'एक आइस क्यूब लें और इसे धीरे-धीरे उस जगह पर घुमाएँ जहाँ आप खुद को चोट पहुँचाना चाहते हैं\n\nअपने दोस्त को मैसेज करें\nपूछें कि वे कैसे हैं\nएक लाल हाइलाइटर लें और इसे अपने हाथ पर बनाएं\n\nतकिए पर पंच करें\n\nकागज़ पर अपनी भावनाएँ लिखें और फिर उसे फाड़ दें\n\nकिसी भी कागज़ के टुकड़े को मसल दें\n\nपूरी आवाज़ में चिल्लाएँ\n\nव्यायाम करें\nसाइकिल चलाएँ या दौड़ पर जाएँ।\nचलने जाएँ\nकोई सुंदर रास्ता या पसंदीदा जगह चुनें और वहां जाएँ।\nसफाई करें\nअपने कमरे को झाड़ें या वैक्यूम करें।\nपेंटिंग करें\nकोई भी रंग भरने की किताब या मंडला प्रिंट करें और पेंट करें।\nबिल्कुल वही स्केच करें जो आप अपने आप को करना चाहते हैं\n\nसोने की कोशिश करें।\n\nविश्राम करें\nफोन पर कोई गाइडेड रिलैक्सेशन ऐप डाउनलोड करें। इसे चलाएँ, फ़र्श पर आराम से बैठें, आँखें बंद करें और विश्राम करें।\nठंडी शावर लें\n\nमुट्ठियाँ बांधें\n\nअपने दोस्त या परिवार को मैसेज करें\nकिसी भरोसेमंद व्यक्ति को मैसेज करें कि आप ठीक महसूस नहीं कर रहे हैं\nलोगों के बीच बाहर जाएँ\nसिटी सेंटर तक चलें और खुद को कुछ अच्छा दें।';
+
+  @override
+  String get send => 'भेजें';
+
+  @override
+  String get send_records => 'रिकॉर्ड भेजें';
+
+  @override
+  String get send_records_text =>
+      'वह तारीख़ सीमा चुनें जिसके रिकॉर्ड आप भेजना चाहते हैं और प्राप्तकर्ता का ईमेल पता।';
+
+  @override
+  String get send_sms => 'एसएमएस भेजें';
+
+  @override
+  String get settings => 'सेटिंग्स';
+
+  @override
+  String get sleep_text => 'आज मेरी नींद कैसी रही?';
+
+  @override
+  String get sleep_title => 'मेरी नींद';
+
+  @override
+  String get sleep_track_chart_guide =>
+      'तारीख़ सीमा सेट करें और नींद की गुणवत्ता देखें';
+
+  @override
+  String get sleep_tracked_success_snackbar =>
+      'नींद की गुणवत्ता सफलतापूर्वक रिकॉर्ड की गई';
+
+  @override
+  String get start => 'शुरू करें';
+
+  @override
+  String get statistics => 'सांख्यिकी';
+
+  @override
+  String get stop => 'रोकें';
+
+  @override
+  String get submit => 'पुष्टि करें';
+
+  @override
+  String get suicidal_thoughts => 'आत्मघाती विचार';
+
+  @override
+  String get summary_of_your_moment => 'आपके पल का सारांश';
+
+  @override
+  String get support => 'के द्वारा समर्थित';
+
+  @override
+  String get support_us => 'हमें समर्थन दें';
+
+  @override
+  String get text_of_entry_label => 'एंट्री का टेक्स्ट';
+
+  @override
+  String get theme_slider => 'आप यहाँ अपनी पृष्ठभूमि का रंग चुन सकते हैं';
+
+  @override
+  String get theme_slider_light => 'उज्ज्वलता समायोजन';
+
+  @override
+  String get title_entry_hint_text => 'एंट्री का नाम दें';
+
+  @override
+  String get title_entry_label => 'एंट्री का शीर्षक';
+
+  @override
+  String get type_a_new_emotion => 'नई भावना टाइप करें';
+
+  @override
+  String get universities => 'विश्वविद्यालय';
+
+  @override
+  String get university_contacts_description =>
+      'कॉलेज काउंसलिंग सेंटर आमतौर पर अपॉइंटमेंट की आवश्यकता होती है।';
+
+  @override
+  String get year => 'साल';
+}

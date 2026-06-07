@@ -34,7 +34,10 @@ class SelfHarmTimerScreen extends StatelessWidget {
 
   DateTime get _now => DateTime.now();
 
-  String _getMotivationTitle(BuildContext context, Duration diffFromStartDateTime) {
+  String _getMotivationTitle(
+    BuildContext context,
+    Duration diffFromStartDateTime,
+  ) {
     final l10n = context.l10n;
     if (diffFromStartDateTime.inMinutes < 60) {
       return l10n.self_harm_timer_begin;
@@ -85,7 +88,8 @@ class SelfHarmTimerScreen extends StatelessWidget {
                     const Duration(seconds: 30),
                     builder: (_) {
                       return StreamBuilder<DateTime?>(
-                        stream: _selfHarmTimerDao.selfHarmTimerStartDateTimeStream,
+                        stream:
+                            _selfHarmTimerDao.selfHarmTimerStartDateTimeStream,
                         builder: (_, snapshot) {
                           final startDateTime = snapshot.data;
                           final isTimerRunning = startDateTime != null;
@@ -101,7 +105,10 @@ class SelfHarmTimerScreen extends StatelessWidget {
                             children: [
                               if (isTimerRunning) ...[
                                 _buildCardTitle(
-                                  _getMotivationTitle(context, _now.difference(startDateTime)),
+                                  _getMotivationTitle(
+                                    context,
+                                    _now.difference(startDateTime),
+                                  ),
                                   context,
                                 ),
                                 const Padding(
@@ -115,7 +122,10 @@ class SelfHarmTimerScreen extends StatelessWidget {
                                   return _buildTimeTextSection(
                                     context,
                                     dateTimeRange: isTimerRunning
-                                        ? DateTimeRange(start: startDateTime.toLocal(), end: _now)
+                                        ? DateTimeRange(
+                                            start: startDateTime.toLocal(),
+                                            end: _now,
+                                          )
                                         : null,
                                     showSeconds: showSecsTimer(),
                                   );
@@ -125,8 +135,13 @@ class SelfHarmTimerScreen extends StatelessWidget {
                               if (!isTimerRunning)
                                 NepanikarButton(
                                   onTap: () async {
-                                    await _selfHarmTimerDao.startSelfHarmTimer();
-                                    unawaited(analytics.logEvent(name: 'start_self_harm_timer'));
+                                    await _selfHarmTimerDao
+                                        .startSelfHarmTimer();
+                                    unawaited(
+                                      analytics.logEvent(
+                                        name: 'start_self_harm_timer',
+                                      ),
+                                    );
                                   },
                                   expandToContentWidth: true,
                                   text: context.l10n.start,
@@ -139,24 +154,35 @@ class SelfHarmTimerScreen extends StatelessWidget {
                                       onPrimaryBtnTap: (context) async {
                                         final goRouter = GoRouter.of(context);
                                         final l10n = context.l10n;
-                                        await _selfHarmTimerDao.stopSelfHarmTimer();
-                                        await _selfHarmTimerDao.startSelfHarmTimer();
+                                        await _selfHarmTimerDao
+                                            .stopSelfHarmTimer();
+                                        await _selfHarmTimerDao
+                                            .startSelfHarmTimer();
                                         unawaited(
-                                          analytics.logEvent(name: 'restart_self_harm_timer'),
+                                          analytics.logEvent(
+                                            name: 'restart_self_harm_timer',
+                                          ),
                                         );
                                         if (context.mounted) {
                                           context.showOkCancelNepanikarDialog(
                                             text: l10n.need_help,
                                             onPrimaryBtnTap: (context) =>
-                                                goRouter.push(const ContactsRoute().location),
+                                                goRouter.push(
+                                                  const ContactsRoute()
+                                                      .location,
+                                                ),
                                             primaryBtnLabel: l10n.mood_help_yes,
-                                            secondaryBtnLabel: l10n.mood_help_no,
-                                            defaultAction: DialogDefaultAction.both,
+                                            secondaryBtnLabel:
+                                                l10n.mood_help_no,
+                                            defaultAction:
+                                                DialogDefaultAction.both,
                                           );
                                         }
                                       },
-                                      primaryBtnLabel: context.l10n.mood_help_yes,
-                                      secondaryBtnLabel: context.l10n.mood_help_no,
+                                      primaryBtnLabel:
+                                          context.l10n.mood_help_yes,
+                                      secondaryBtnLabel:
+                                          context.l10n.mood_help_no,
                                     );
                                   },
                                   expandToContentWidth: true,
@@ -186,7 +212,10 @@ class SelfHarmTimerScreen extends StatelessWidget {
                       StreamBuilder<DateTimeRange?>(
                         stream: _selfHarmTimerDao.selfHarmTimerRecordStream,
                         builder: (_, snapshot) {
-                          return _buildTimeTextSection(context, dateTimeRange: snapshot.data);
+                          return _buildTimeTextSection(
+                            context,
+                            dateTimeRange: snapshot.data,
+                          );
                         },
                       ),
                     ],
@@ -210,7 +239,10 @@ class SelfHarmTimerScreen extends StatelessWidget {
       child: Text(
         text,
         textAlign: TextAlign.center,
-        style: NepanikarFonts.title3.copyWith(fontWeight: FontWeight.w900, color: textColor),
+        style: NepanikarFonts.title3.copyWith(
+          fontWeight: FontWeight.w900,
+          color: textColor,
+        ),
       ),
     );
   }
@@ -239,7 +271,9 @@ class SelfHarmTimerScreen extends StatelessWidget {
             TextSpan(text: value, style: valueTextStyle),
             TextSpan(
               text: ' $label',
-              style: labelStyleSameAsValueStyle ? valueTextStyle : labelTextStyle,
+              style: labelStyleSameAsValueStyle
+                  ? valueTextStyle
+                  : labelTextStyle,
             ),
           ],
         ),

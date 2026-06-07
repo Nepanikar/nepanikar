@@ -29,7 +29,9 @@ class MoodEntryCard extends StatelessWidget {
       NepanikarColors.container(context),
       NepanikarColors.white,
     );
-    final colorFilter = ColorFilter.matrix(svgColorMatrixBasedOnDarkMode(context, lighter: true));
+    final colorFilter = ColorFilter.matrix(
+      svgColorMatrixBasedOnDarkMode(context, lighter: true),
+    );
 
     return GestureDetector(
       onTap: onTap,
@@ -50,7 +52,10 @@ class MoodEntryCard extends StatelessWidget {
                   children: [
                     Text(
                       dateTime,
-                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
                     ),
                     const SizedBox(height: 10),
                     Text(
@@ -61,7 +66,12 @@ class MoodEntryCard extends StatelessWidget {
                   ],
                 ),
               ),
-              SvgPicture.asset(moodIcon.path, width: 45, height: 45, colorFilter: colorFilter),
+              SvgPicture.asset(
+                moodIcon.path,
+                width: 45,
+                height: 45,
+                colorFilter: colorFilter,
+              ),
               const SizedBox(width: 10),
             ],
           ),

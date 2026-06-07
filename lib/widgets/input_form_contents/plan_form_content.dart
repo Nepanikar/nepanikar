@@ -30,25 +30,33 @@ class PlanFormContent<T extends NepanikarPlanFormDao> extends StatefulWidget {
   State<PlanFormContent> createState() => _PlanFormContentState<T>();
 }
 
-class _PlanFormContentState<T extends NepanikarPlanFormDao> extends State<PlanFormContent> {
+class _PlanFormContentState<T extends NepanikarPlanFormDao>
+    extends State<PlanFormContent> {
   final _textControllersMap = <int, TextEditingController>{};
   final analytics = registry.get<FirebaseAnalytics>();
 
-  late final Stream<List<RecordSnapshot<String, PlanFormItem?>>> _allFormItemsStream;
+  late final Stream<List<RecordSnapshot<String, PlanFormItem?>>>
+  _allFormItemsStream;
 
   List<String> get planItemsTitles => widget.planItems.keys.toList();
 
   T get _planFormDao => registry.get<T>();
 
-  void _setFormTextsFromSavedList(List<RecordSnapshot<String, PlanFormItem?>> savedRecords) {
+  void _setFormTextsFromSavedList(
+    List<RecordSnapshot<String, PlanFormItem?>> savedRecords,
+  ) {
     for (var formIndex = 0; formIndex < planItemsTitles.length; formIndex++) {
       final textController = _textControllersMap[formIndex];
       final formKey = _planFormDao.getFormItemKeyFromFormIndex(formIndex);
-      final savedFormRecord = savedRecords.firstWhereOrNull((r) => r.key == formKey);
+      final savedFormRecord = savedRecords.firstWhereOrNull(
+        (r) => r.key == formKey,
+      );
       final savedFormValue = savedFormRecord?.value ?? '';
       textController
         ?..text = savedFormValue
-        ..selection = TextSelection.fromPosition(TextPosition(offset: savedFormValue.length));
+        ..selection = TextSelection.fromPosition(
+          TextPosition(offset: savedFormValue.length),
+        );
     }
   }
 
@@ -56,7 +64,9 @@ class _PlanFormContentState<T extends NepanikarPlanFormDao> extends State<PlanFo
   void initState() {
     super.initState();
     _textControllersMap.addAll(
-      planItemsTitles.asMap().map((i, _) => MapEntry(i, TextEditingController())),
+      planItemsTitles.asMap().map(
+        (i, _) => MapEntry(i, TextEditingController()),
+      ),
     );
     _allFormItemsStream = _planFormDao.allFormItemsRecordsStream;
   }
@@ -93,7 +103,10 @@ class _PlanFormContentState<T extends NepanikarPlanFormDao> extends State<PlanFo
                 shrinkWrap: true,
                 primary: false,
                 padding: EdgeInsets.zero,
-                children: widget.planItems.entries.mapIndexed((formIndex, entry) {
+                children: widget.planItems.entries.mapIndexed((
+                  formIndex,
+                  entry,
+                ) {
                   final title = entry.key;
                   final hintText = entry.value;
                   final textController = _textControllersMap[formIndex];

@@ -43,7 +43,9 @@ class LanguagesScreen extends StatelessWidget {
                   (index, item) => _LanguageItem(
                     text: item.toLanguageTag(),
                     hideTopSeparator: index == 0,
-                    selected: _userSettingsDao.locale.languageCode == item.languageCode,
+                    selected:
+                        _userSettingsDao.locale.languageCode ==
+                        item.languageCode,
                     onTap: () => _userSettingsDao.saveLocale(item),
                   ),
                 )
@@ -73,7 +75,9 @@ class _LanguageItem extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: Border(
-          top: hideTopSeparator ? BorderSide.none : const BorderSide(color: Color(0xffF2F2F5)),
+          top: hideTopSeparator
+              ? BorderSide.none
+              : const BorderSide(color: Color(0xffF2F2F5)),
         ),
       ),
       child: InkWell(
@@ -85,10 +89,16 @@ class _LanguageItem extends StatelessWidget {
             children: [
               Text(
                 text.toUpperCase(),
-                style: NepanikarFonts.bodyHeavy.copyWith(color: Theme.of(context).hintColor),
+                style: NepanikarFonts.bodyHeavy.copyWith(
+                  color: Theme.of(context).hintColor,
+                ),
               ),
               if (selected)
-                const Icon(Icons.check_outlined, color: NepanikarColors.success, size: 20),
+                const Icon(
+                  Icons.check_outlined,
+                  color: NepanikarColors.success,
+                  size: 20,
+                ),
             ],
           ),
         ),

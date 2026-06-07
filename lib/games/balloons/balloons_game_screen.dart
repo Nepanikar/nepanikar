@@ -30,7 +30,8 @@ class BalloonsGameScreen extends StatefulWidget {
   State<BalloonsGameScreen> createState() => _BalloonsGameScreenState();
 }
 
-class _BalloonsGameScreenState extends State<BalloonsGameScreen> with TickerProviderStateMixin {
+class _BalloonsGameScreenState extends State<BalloonsGameScreen>
+    with TickerProviderStateMixin {
   late final Timer gameLoop;
   static const numberOfBalloons = 5;
   late final AnimationController _controller;
@@ -60,14 +61,20 @@ class _BalloonsGameScreenState extends State<BalloonsGameScreen> with TickerProv
           y: sceneHeight,
           wanted: wanted,
           height: e.height,
-          speed: minSpeed + (speedMultiplier / fpsMultiplier) * math.Random().nextDouble(),
-          wiggleAmount: (wiggleMultiplier / fpsMultiplier) * math.Random().nextDouble(),
+          speed:
+              minSpeed +
+              (speedMultiplier / fpsMultiplier) * math.Random().nextDouble(),
+          wiggleAmount:
+              (wiggleMultiplier / fpsMultiplier) * math.Random().nextDouble(),
           wiggleSpeed: math.Random().nextDouble() * 0.8,
           lightVariant: math.Random().nextBool(),
         );
       } else {
         return e.copyWith(
-          x: e.x + e.wiggleAmount * math.sin((e.wiggleSpeed / fpsMultiplier) * elapsed + 100 * i),
+          x:
+              e.x +
+              e.wiggleAmount *
+                  math.sin((e.wiggleSpeed / fpsMultiplier) * elapsed + 100 * i),
           y: e.y - e.speed,
         );
       }
@@ -109,7 +116,10 @@ class _BalloonsGameScreenState extends State<BalloonsGameScreen> with TickerProv
     });
 
     // N fps game loop using timer
-    gameLoop = Timer.periodic(Duration(milliseconds: (1000 / fps).round()), (timer) => runFrame());
+    gameLoop = Timer.periodic(
+      Duration(milliseconds: (1000 / fps).round()),
+      (timer) => runFrame(),
+    );
   }
 
   @override
@@ -140,24 +150,42 @@ class _BalloonsGameScreenState extends State<BalloonsGameScreen> with TickerProv
                 child: Stack(
                   children: [
                     if (e.wanted)
-                      Assets.illustrations.games.balloons.balloonWanted.svg(width: 100)
+                      Assets.illustrations.games.balloons.balloonWanted.svg(
+                        width: 100,
+                      )
                     else
                       IgnorePointer(
                         child: e.lightVariant
-                            ? Assets.illustrations.games.balloons.balloonUnwanted1.svg(
-                                width: 100,
-                                colorFilter: ColorFilter.mode(
-                                  NepanikarColors.primaryColorShade(context, 0.45),
-                                  BlendMode.srcIn,
-                                ),
-                              )
-                            : Assets.illustrations.games.balloons.balloonUnwanted2.svg(
-                                width: 100,
-                                colorFilter: ColorFilter.mode(
-                                  NepanikarColors.primaryColorShade(context, 0.25),
-                                  BlendMode.srcIn,
-                                ),
-                              ),
+                            ? Assets
+                                  .illustrations
+                                  .games
+                                  .balloons
+                                  .balloonUnwanted1
+                                  .svg(
+                                    width: 100,
+                                    colorFilter: ColorFilter.mode(
+                                      NepanikarColors.primaryColorShade(
+                                        context,
+                                        0.45,
+                                      ),
+                                      BlendMode.srcIn,
+                                    ),
+                                  )
+                            : Assets
+                                  .illustrations
+                                  .games
+                                  .balloons
+                                  .balloonUnwanted2
+                                  .svg(
+                                    width: 100,
+                                    colorFilter: ColorFilter.mode(
+                                      NepanikarColors.primaryColorShade(
+                                        context,
+                                        0.25,
+                                      ),
+                                      BlendMode.srcIn,
+                                    ),
+                                  ),
                       ),
                     IgnorePointer(
                       ignoring: !e.wanted,
@@ -232,7 +260,9 @@ class _BalloonsGameScreenState extends State<BalloonsGameScreen> with TickerProv
                 child: Padding(
                   padding: const EdgeInsets.all(15),
                   child: Icon(
-                    Platform.isAndroid ? Icons.arrow_back : Icons.arrow_back_ios,
+                    Platform.isAndroid
+                        ? Icons.arrow_back
+                        : Icons.arrow_back_ios,
                     color: Colors.white,
                     size: 25,
                   ),

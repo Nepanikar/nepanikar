@@ -16,6 +16,9 @@ final _svgPathsToCache = <String>[
 Future<void> precacheSvgs() async {
   for (final path in _svgPathsToCache) {
     final loader = SvgAssetLoader(path);
-    await svg.cache.putIfAbsent(loader.cacheKey(null), () => loader.loadBytes(null));
+    await svg.cache.putIfAbsent(
+      loader.cacheKey(null),
+      () => loader.loadBytes(null),
+    );
   }
 }

@@ -24,7 +24,11 @@ const _crisisCenterContacts = <RegionContact>[
     contacts: [
       RegionItemContact(
         name: "Centre Intersectoriel d'Accueil et de Crise (Longjumeau)",
-        contactAddresses: ['1 rue Lieron', '91160 Longjumeau', 'https://www.longjumeau.fr/'],
+        contactAddresses: [
+          '1 rue Lieron',
+          '91160 Longjumeau',
+          'https://www.longjumeau.fr/',
+        ],
       ),
     ],
   ),

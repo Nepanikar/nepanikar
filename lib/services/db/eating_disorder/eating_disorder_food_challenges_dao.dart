@@ -2,7 +2,8 @@ import 'package:nepanikar/services/db/common/nepanikar_checklist_form_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 
 class EatingDisorderFoodChallengesDao extends NepanikarCheckListFormDao {
-  EatingDisorderFoodChallengesDao({required super.dbService}) : super(storeKeyName: _storeKeyName);
+  EatingDisorderFoodChallengesDao({required super.dbService})
+    : super(storeKeyName: _storeKeyName);
 
   @override
   Future<EatingDisorderFoodChallengesDao> init() async {

@@ -39,19 +39,28 @@ class HeatMapMonthText extends StatelessWidget {
     for (int label = 0; label < (firstDayInfos?.length ?? 0); label++) {
       // If given week is first week of given datesets or
       // first week of month, create labels
-      if (label == 0 || (label > 0 && firstDayInfos![label] != firstDayInfos![label - 1])) {
+      if (label == 0 ||
+          (label > 0 && firstDayInfos![label] != firstDayInfos![label - 1])) {
         write = true;
 
         // Add Text without width margin if first week is end of the month.
         // Otherwise, add Text with width margin.
         items.add(
           firstDayInfos!.length == 1 ||
-                  (label == 0 && firstDayInfos![label] != firstDayInfos![label + 1])
-              ? _renderText(DateUtil.mothLabels(firstDayInfos![label], true, context))
+                  (label == 0 &&
+                      firstDayInfos![label] != firstDayInfos![label + 1])
+              ? _renderText(
+                  DateUtil.mothLabels(firstDayInfos![label], true, context),
+                )
               : Container(
                   width: ((size ?? 20) + (margin?.right ?? 2)) * 2,
-                  margin: EdgeInsets.only(left: margin?.left ?? 2, right: margin?.right ?? 2),
-                  child: _renderText(DateUtil.mothLabels(firstDayInfos![label], true, context)),
+                  margin: EdgeInsets.only(
+                    left: margin?.left ?? 2,
+                    right: margin?.right ?? 2,
+                  ),
+                  child: _renderText(
+                    DateUtil.mothLabels(firstDayInfos![label], true, context),
+                  ),
                 ),
         );
       } else if (write) {
@@ -62,7 +71,10 @@ class HeatMapMonthText extends StatelessWidget {
         // Else create empty box.
         items.add(
           Container(
-            margin: EdgeInsets.only(left: margin?.left ?? 2, right: margin?.right ?? 2),
+            margin: EdgeInsets.only(
+              left: margin?.left ?? 2,
+              right: margin?.right ?? 2,
+            ),
             width: size ?? 20,
           ),
         );

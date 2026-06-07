@@ -36,13 +36,18 @@ class _DiaryEditContentState extends State<DiaryEditContent> {
 
   late DateTime _dateTime;
 
-  DiaryRecord? get _initialDiaryRecord => widget.diaryRecordRouteExtraData?.diaryRecord;
+  DiaryRecord? get _initialDiaryRecord =>
+      widget.diaryRecordRouteExtraData?.diaryRecord;
 
   @override
   void initState() {
     super.initState();
-    _titleEditingController = TextEditingController(text: _initialDiaryRecord?.title);
-    _textContentEditingController = TextEditingController(text: _initialDiaryRecord?.text);
+    _titleEditingController = TextEditingController(
+      text: _initialDiaryRecord?.title,
+    );
+    _textContentEditingController = TextEditingController(
+      text: _initialDiaryRecord?.text,
+    );
     _dateTime = _initialDiaryRecord?.dateTime ?? DateTime.now();
   }
 
@@ -94,7 +99,9 @@ class _DiaryEditContentState extends State<DiaryEditContent> {
           TextField(
             controller: _titleEditingController,
             textInputAction: TextInputAction.next,
-            decoration: InputDecoration(hintText: context.l10n.title_entry_hint_text),
+            decoration: InputDecoration(
+              hintText: context.l10n.title_entry_hint_text,
+            ),
           ),
           const SizedBox(height: 12),
           Text(context.l10n.text_of_entry_label, style: labelTextStyle),

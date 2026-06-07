@@ -13,26 +13,34 @@ class ContactsDataManager {
   late final AllContacts _allContacts;
 
   Future<void> init() async {
-    _allContacts = await rootBundle.loadString(Assets.contacts.allContacts).then((s) async {
-      try {
-        return AllContacts.fromJson(jsonDecode(s) as Map<String, dynamic>);
-      } catch (e, s) {
-        await logExceptionToCrashlytics(e, s, logMessage: 'Error decoding AllContacts json.');
-        return const AllContacts(countryContacts: []);
-      }
-    });
+    _allContacts = await rootBundle
+        .loadString(Assets.contacts.allContacts)
+        .then((s) async {
+          try {
+            return AllContacts.fromJson(jsonDecode(s) as Map<String, dynamic>);
+          } catch (e, s) {
+            await logExceptionToCrashlytics(
+              e,
+              s,
+              logMessage: 'Error decoding AllContacts json.',
+            );
+            return const AllContacts(countryContacts: []);
+          }
+        });
   }
 
   CountryContacts getContactsFromLocale(Locale locale) {
     return _allContacts.countryContacts.firstWhereOrNull(
-          (countryContacts) => countryContacts.languageCode == locale.languageCode,
+          (countryContacts) =>
+              countryContacts.languageCode == locale.languageCode,
         ) ??
         _defaultContacts;
   }
 
   CountryContacts get _defaultContacts =>
       _allContacts.countryContacts.firstWhereOrNull(
-        (countryContacts) => countryContacts.languageCode == NepanikarLanguages.en.languageCode,
+        (countryContacts) =>
+            countryContacts.languageCode == NepanikarLanguages.en.languageCode,
       ) ??
       const CountryContacts(languageCode: 'not_found');
 }

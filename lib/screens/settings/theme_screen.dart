@@ -46,11 +46,10 @@ class _ThemeScreenState extends State<ThemeScreen> {
   Widget build(BuildContext context) {
     final currentTheme = Theme.of(context);
     bool isDarkMode = currentTheme.brightness == Brightness.dark;
-    final WidgetStateProperty<Color?> trackColor = WidgetStateProperty<Color?>.fromMap(
-      <WidgetStatesConstraint, Color>{
-        WidgetState.selected: NepanikarColors.primaryColorShade(context, 0.6),
-      },
-    );
+    final WidgetStateProperty<Color?> trackColor =
+        WidgetStateProperty<Color?>.fromMap(<WidgetStatesConstraint, Color>{
+          WidgetState.selected: NepanikarColors.primaryColorShade(context, 0.6),
+        });
     final textColor = textColorBasedOnDarkMode(context);
     const List<Color> colors = [
       Color.fromARGB(255, 255, 0, 0),
@@ -91,7 +90,9 @@ class _ThemeScreenState extends State<ThemeScreen> {
                     activeThumbColor: Colors.black,
                     trackColor: trackColor,
                     onChanged: (bool value) async {
-                      final newThemeMode = isDarkMode ? ThemeMode.light : ThemeMode.dark;
+                      final newThemeMode = isDarkMode
+                          ? ThemeMode.light
+                          : ThemeMode.dark;
                       await userSettingsDao.saveThemeMode(newThemeMode);
                       setState(() {
                         isDarkMode = value;
@@ -113,10 +114,18 @@ class _ThemeScreenState extends State<ThemeScreen> {
                 builder: (innerContext) {
                   return GestureDetector(
                     onTapDown: (details) async {
-                      await updateColor(innerContext, details.localPosition, userSettingsDao);
+                      await updateColor(
+                        innerContext,
+                        details.localPosition,
+                        userSettingsDao,
+                      );
                     },
                     onHorizontalDragUpdate: (details) async {
-                      await updateColor(innerContext, details.localPosition, userSettingsDao);
+                      await updateColor(
+                        innerContext,
+                        details.localPosition,
+                        userSettingsDao,
+                      );
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(20),
@@ -127,7 +136,9 @@ class _ThemeScreenState extends State<ThemeScreen> {
                             width: 300,
                             height: 300,
                             decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(150)),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(150),
+                              ),
                               gradient: SweepGradient(colors: colors),
                               boxShadow: [
                                 BoxShadow(
@@ -148,8 +159,13 @@ class _ThemeScreenState extends State<ThemeScreen> {
               const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () async {
-                  await userSettingsDao.saveMainColor(NepanikarColors.defaultPrimary);
-                  final brightness = WidgetsBinding.instance.platformDispatcher.platformBrightness;
+                  await userSettingsDao.saveMainColor(
+                    NepanikarColors.defaultPrimary,
+                  );
+                  final brightness = WidgetsBinding
+                      .instance
+                      .platformDispatcher
+                      .platformBrightness;
                   isDarkMode = (brightness == Brightness.dark);
                   await userSettingsDao.saveThemeMode(
                     isDarkMode ? ThemeMode.dark : ThemeMode.light,

@@ -31,7 +31,11 @@ class MyContactsRecordsDao {
     await _store.addAll(_db, serializedItems);
   }
 
-  Future<void> updateName(String id, MyContactRecord currRecord, String newName) async {
+  Future<void> updateName(
+    String id,
+    MyContactRecord currRecord,
+    String newName,
+  ) async {
     final updatedRecord = currRecord.copyWith(name: newName);
     await _store.record(id).update(_db, updatedRecord.toJson());
   }
@@ -41,7 +45,9 @@ class MyContactsRecordsDao {
     MyContactRecord currRecord,
     String newContactAddress,
   ) async {
-    final updatedRecord = currRecord.copyWith(contactAddress: newContactAddress);
+    final updatedRecord = currRecord.copyWith(
+      contactAddress: newContactAddress,
+    );
     await _store.record(id).update(_db, updatedRecord.toJson());
   }
 
@@ -63,11 +69,16 @@ class MyContactsRecordsDao {
         return Map.fromEntries(entries);
       });
 
-  Future<void> doOldVersionMigration(MyContactsRecordsDTO myContactsRecordsConfig) async {
+  Future<void> doOldVersionMigration(
+    MyContactsRecordsDTO myContactsRecordsConfig,
+  ) async {
     final recordEntries = myContactsRecordsConfig.recordEntries;
     if (recordEntries != null) {
       final records = recordEntries
-          .map((entry) => MyContactRecord(name: entry.key, contactAddress: entry.value))
+          .map(
+            (entry) =>
+                MyContactRecord(name: entry.key, contactAddress: entry.value),
+          )
           .toList();
       await _addRecords(records);
     }

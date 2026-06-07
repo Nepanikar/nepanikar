@@ -48,7 +48,11 @@ const _crisisCenterContacts = <RegionContact>[
     contacts: [
       RegionItemContact(
         name: 'Ośrodek Interwencji Kryzysowej',
-        contactAddresses: ['ul. Ks. J. Popiełuszki 24', '05-820 Piastów', 'http://zowpiastow.pl/'],
+        contactAddresses: [
+          'ul. Ks. J. Popiełuszki 24',
+          '05-820 Piastów',
+          'http://zowpiastow.pl/',
+        ],
       ),
     ],
   ),

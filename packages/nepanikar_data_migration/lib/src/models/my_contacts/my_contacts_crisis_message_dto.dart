@@ -13,7 +13,8 @@ class MyContactsCrisisMessageDTO extends Equatable {
 
     final contactMessageAddress =
         config.get(sectionName, 'contactMessageAddress')?.getIniStrValue();
-    final contactMessageBody = config.get(sectionName, 'contactMessageBody')?.getIniStrValue();
+    final contactMessageBody =
+        config.get(sectionName, 'contactMessageBody')?.getIniStrValue();
 
     return MyContactsCrisisMessageDTO._(
       contactMessageAddress: contactMessageAddress,

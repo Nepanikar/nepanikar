@@ -60,12 +60,19 @@ class DateUtil {
   }
 
   /// Change day of [referenceDate].
-  static DateTime changeDay(DateTime referenceDate, int dayCount) =>
-      DateTime(referenceDate.year, referenceDate.month, referenceDate.day + dayCount);
+  static DateTime changeDay(DateTime referenceDate, int dayCount) => DateTime(
+    referenceDate.year,
+    referenceDate.month,
+    referenceDate.day + dayCount,
+  );
 
   /// Change month of [referenceDate].
   static DateTime changeMonth(DateTime referenceDate, int monthCount) =>
-      DateTime(referenceDate.year, referenceDate.month + monthCount, referenceDate.day);
+      DateTime(
+        referenceDate.year,
+        referenceDate.month + monthCount,
+        referenceDate.day,
+      );
 
   //#region unused methods.
 

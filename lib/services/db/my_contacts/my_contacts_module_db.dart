@@ -15,8 +15,12 @@ class MyContactsModuleDb implements NepanikarModuleDb {
 
   @override
   Future<MyContactsModuleDb> initModuleDaos() async {
-    _myContactsRecordsDao = await MyContactsRecordsDao(dbService: _dbService).init();
-    _myContactsCrisisMessageDao = await MyContactsCrisisMessageDao(dbService: _dbService).init();
+    _myContactsRecordsDao = await MyContactsRecordsDao(
+      dbService: _dbService,
+    ).init();
+    _myContactsCrisisMessageDao = await MyContactsCrisisMessageDao(
+      dbService: _dbService,
+    ).init();
     return this;
   }
 
@@ -26,15 +30,21 @@ class MyContactsModuleDb implements NepanikarModuleDb {
     await _myContactsCrisisMessageDao.clear();
   }
 
-  Future<void> doModuleOldVersionMigration(MyContactsModuleDTO moduleConfig) async {
+  Future<void> doModuleOldVersionMigration(
+    MyContactsModuleDTO moduleConfig,
+  ) async {
     final myContactsRecordsConfig = moduleConfig.contactsMyContactsConfig;
     if (myContactsRecordsConfig != null) {
-      await _myContactsRecordsDao.doOldVersionMigration(myContactsRecordsConfig);
+      await _myContactsRecordsDao.doOldVersionMigration(
+        myContactsRecordsConfig,
+      );
     }
 
     final crisisMessageConfig = moduleConfig.contactsCrisisMessageConfig;
     if (crisisMessageConfig != null) {
-      await _myContactsCrisisMessageDao.doOldVersionMigration(crisisMessageConfig);
+      await _myContactsCrisisMessageDao.doOldVersionMigration(
+        crisisMessageConfig,
+      );
     }
   }
 

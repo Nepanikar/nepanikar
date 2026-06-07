@@ -33,7 +33,8 @@ class HeatMapColumn extends StatelessWidget {
              ? (colorMode == ColorMode.opacity
                    ? colorsets?.values.first.withValues(
                        alpha:
-                           (datasets?[currentDate]?.toDouble() ?? 0) / (maxValue?.toDouble() ?? 1),
+                           (datasets?[currentDate]?.toDouble() ?? 0) /
+                           (maxValue?.toDouble() ?? 1),
                      )
                    : DatasetsUtil.getColor(colorsets, datasets?[currentDate]))
              : null;

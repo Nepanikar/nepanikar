@@ -10,7 +10,8 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 part 'eating_disorder_samples_screen.g.dart';
 
 @TypedGoRoute<EatingDisorderSamplesRoute>(path: '/home/eating-disorder/samples')
-class EatingDisorderSamplesRoute extends GoRouteData with $EatingDisorderSamplesRoute {
+class EatingDisorderSamplesRoute extends GoRouteData
+    with $EatingDisorderSamplesRoute {
   const EatingDisorderSamplesRoute();
 
   @override
@@ -23,64 +24,83 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     svgColorBasedOnDarkMode(context);
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final colorFilter = svgColorFilterBasedOnDarkMode(context);
 
     final modules = <Widget>[
       LongTile(
         text: context.l10n.food_breakfast,
-        image: Assets.illustrations.modules.eatingDisorder.svg(colorFilter: colorFilter),
+        image: Assets.illustrations.modules.eatingDisorder.svg(
+          colorFilter: colorFilter,
+        ),
         onTap: () => context.push(
           Uri(
             path: const MealPlanRoute().location,
-            queryParameters: {'id': MealType.breakfast.name, 'title': context.l10n.food_breakfast},
+            queryParameters: {
+              'id': MealType.breakfast.name,
+              'title': context.l10n.food_breakfast,
+            },
           ).toString(),
         ),
-        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: '${context.l10n.food_am_snack} ',
-        image: Assets.illustrations.modules.eatingDisorder.svg(colorFilter: colorFilter),
+        image: Assets.illustrations.modules.eatingDisorder.svg(
+          colorFilter: colorFilter,
+        ),
         onTap: () => context.push(
           Uri(
             path: const MealPlanRoute().location,
-            queryParameters: {'id': MealType.amSnack.name, 'title': context.l10n.food_am_snack},
+            queryParameters: {
+              'id': MealType.amSnack.name,
+              'title': context.l10n.food_am_snack,
+            },
           ).toString(),
         ),
-        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: '${context.l10n.food_lunch} ',
-        image: Assets.illustrations.modules.eatingDisorder.svg(colorFilter: colorFilter),
+        image: Assets.illustrations.modules.eatingDisorder.svg(
+          colorFilter: colorFilter,
+        ),
         onTap: () => context.push(
           Uri(
             path: const MealPlanRoute().location,
-            queryParameters: {'id': MealType.lunch.name, 'title': context.l10n.food_lunch},
+            queryParameters: {
+              'id': MealType.lunch.name,
+              'title': context.l10n.food_lunch,
+            },
           ).toString(),
         ),
-        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_pm_snack,
-        image: Assets.illustrations.modules.eatingDisorder.svg(colorFilter: colorFilter),
+        image: Assets.illustrations.modules.eatingDisorder.svg(
+          colorFilter: colorFilter,
+        ),
         onTap: () => context.push(
           Uri(
             path: const MealPlanRoute().location,
-            queryParameters: {'id': MealType.pmSnack.name, 'title': context.l10n.food_pm_snack},
+            queryParameters: {
+              'id': MealType.pmSnack.name,
+              'title': context.l10n.food_pm_snack,
+            },
           ).toString(),
         ),
-        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_dinner,
-        image: Assets.illustrations.modules.eatingDisorder.svg(colorFilter: colorFilter),
+        image: Assets.illustrations.modules.eatingDisorder.svg(
+          colorFilter: colorFilter,
+        ),
         onTap: () => context.push(
           Uri(
             path: const MealPlanRoute().location,
-            queryParameters: {'id': MealType.dinner.name, 'title': context.l10n.food_dinner},
+            queryParameters: {
+              'id': MealType.dinner.name,
+              'title': context.l10n.food_dinner,
+            },
           ).toString(),
         ),
-        isDarkMode: isDarkMode,
       ),
     ];
     return NepanikarScreenWrapper(

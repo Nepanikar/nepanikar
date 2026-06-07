@@ -57,7 +57,10 @@ class _TipsCarouselBodyState extends State<TipsCarouselBody> {
                         itemCount: widget.pages.length,
                         onPageChanged: (index) {
                           unawaited(
-                            analytics.logEvent(name: 'slide', parameters: {'tip': index + 1}),
+                            analytics.logEvent(
+                              name: 'slide',
+                              parameters: {'tip': index + 1},
+                            ),
                           );
                         },
                         itemBuilder: (context, index) {
@@ -66,7 +69,8 @@ class _TipsCarouselBodyState extends State<TipsCarouselBody> {
                             child: ExcludeSemantics(
                               excluding: activeIndex != index,
                               child: TipItem(
-                                scale: 1.0 - (0.15 * (index - activeIndex).abs()),
+                                scale:
+                                    1.0 - (0.15 * (index - activeIndex).abs()),
                                 content: widget.pages.elementAt(index),
                               ),
                             ),
@@ -135,9 +139,11 @@ class _TipsCarouselBodyState extends State<TipsCarouselBody> {
                                 duration: const Duration(milliseconds: 400),
                                 curve: Curves.easeInOut,
                               ),
-                              enabled: activeIndex.floor() < widget.pages.length - 1,
+                              enabled:
+                                  activeIndex.floor() < widget.pages.length - 1,
                               text: context.l10n.next,
-                              trailingIcon: Assets.icons.navigation.chevronRight,
+                              trailingIcon:
+                                  Assets.icons.navigation.chevronRight,
                             ),
                           ),
                         ],

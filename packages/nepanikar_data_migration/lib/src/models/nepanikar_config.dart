@@ -25,12 +25,14 @@ class NepanikarConfig extends Equatable {
 
     SuicidalThoughtsModuleDTO? suicidalThoughtsModuleConfig;
     try {
-      suicidalThoughtsModuleConfig = SuicidalThoughtsModuleDTO.getAndroidData(config);
+      suicidalThoughtsModuleConfig =
+          SuicidalThoughtsModuleDTO.getAndroidData(config);
     } catch (_) {}
 
     EatingDisorderModuleDTO? eatingDisorderModuleConfig;
     try {
-      eatingDisorderModuleConfig = EatingDisorderModuleDTO.getAndroidData(config);
+      eatingDisorderModuleConfig =
+          EatingDisorderModuleDTO.getAndroidData(config);
     } catch (_) {}
 
     MyRecordsModuleDTO? myRecordsModuleConfig;
@@ -66,7 +68,8 @@ class NepanikarConfig extends Equatable {
 
     SuicidalThoughtsModuleDTO? suicidalThoughtsModuleConfig;
     try {
-      suicidalThoughtsModuleConfig = SuicidalThoughtsModuleDTO.getIosData(config);
+      suicidalThoughtsModuleConfig =
+          SuicidalThoughtsModuleDTO.getIosData(config);
     } catch (_) {}
 
     EatingDisorderModuleDTO? eatingDisorderModuleConfig;

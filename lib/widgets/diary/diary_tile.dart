@@ -22,21 +22,22 @@ class DiaryTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    svgColorBasedOnDarkMode(context);
     final colorFilter = svgColorFilterBasedOnDarkMode(context);
 
     const textStyle = NepanikarFonts.bodyHeavy;
     final locale = Localizations.localeOf(context);
 
     return LongTile(
-      isDarkMode: isDarkMode,
-      image: Assets.illustrations.modules.myRecords.svg(colorFilter: colorFilter),
+      image: Assets.illustrations.modules.myRecords.svg(
+        colorFilter: colorFilter,
+      ),
       text: DateFormat.yMd(locale.languageCode).format(date),
       textTextStyle: textStyle.copyWith(
         fontSize: 12,
         fontWeight: FontWeight.w700,
-        color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade700,
+        color: NepanikarColors.primarySwatch(
+          Theme.of(context).primaryColor,
+        ).shade700,
       ),
       description: title,
       descriptionSemanticsEnabled: isTitle,

@@ -11,8 +11,8 @@ class SuicidalThoughtsModuleDTO extends Equatable {
   factory SuicidalThoughtsModuleDTO.getAndroidData(Config config) {
     NepanikarListFormDTO? suicidalThoughtsPlanConfig;
     try {
-      suicidalThoughtsPlanConfig =
-          NepanikarListFormDTO.getAndroidData(config, sectionName: 'suicidePlan');
+      suicidalThoughtsPlanConfig = NepanikarListFormDTO.getAndroidData(config,
+          sectionName: 'suicidePlan');
     } catch (_) {}
 
     NepanikarListFormDTO? suicidalThoughtsReasonsNoConfig;

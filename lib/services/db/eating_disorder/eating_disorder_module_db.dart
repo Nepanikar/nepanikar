@@ -36,7 +36,9 @@ class EatingDisorderModuleDb implements NepanikarModuleDb {
     _eatingDisorderLikeOnMyselfDao = await EatingDisorderLikeOnMyselfDao(
       dbService: _dbService,
     ).init();
-    _eatingDisorderFoodILikeDao = await EatingDisorderFoodILikeDao(dbService: _dbService).init();
+    _eatingDisorderFoodILikeDao = await EatingDisorderFoodILikeDao(
+      dbService: _dbService,
+    ).init();
     _eatingDisorderFoodAfraidOfDao = await EatingDisorderFoodAfraidOfDao(
       dbService: _dbService,
     ).init();
@@ -53,25 +55,38 @@ class EatingDisorderModuleDb implements NepanikarModuleDb {
     await _eatingDisorderFoodAfraidOfDao.clear();
   }
 
-  Future<void> doModuleOldVersionMigration(EatingDisorderModuleDTO moduleConfig) async {
+  Future<void> doModuleOldVersionMigration(
+    EatingDisorderModuleDTO moduleConfig,
+  ) async {
     final foodCreativeConfig = moduleConfig.eatingDisorderFoodCreativeConfig;
     if (foodCreativeConfig != null) {
-      await _eatingDisorderFoodCreativeDao.doOldVersionMigration(foodCreativeConfig);
+      await _eatingDisorderFoodCreativeDao.doOldVersionMigration(
+        foodCreativeConfig,
+      );
     }
 
-    final foodMotivationConfig = moduleConfig.eatingDisorderFoodMotivationConfig;
+    final foodMotivationConfig =
+        moduleConfig.eatingDisorderFoodMotivationConfig;
     if (foodMotivationConfig != null) {
-      await _eatingDisorderFoodMotivationDao.doOldVersionMigration(foodMotivationConfig);
+      await _eatingDisorderFoodMotivationDao.doOldVersionMigration(
+        foodMotivationConfig,
+      );
     }
 
-    final foodChallengesConfig = moduleConfig.eatingDisorderFoodChallengesConfig;
+    final foodChallengesConfig =
+        moduleConfig.eatingDisorderFoodChallengesConfig;
     if (foodChallengesConfig != null) {
-      await _eatingDisorderFoodChallengesDao.doOldVersionMigration(foodChallengesConfig);
+      await _eatingDisorderFoodChallengesDao.doOldVersionMigration(
+        foodChallengesConfig,
+      );
     }
 
-    final likeOnMyselfConfig = moduleConfig.eatingDisorderFoodLikeOnMyselfConfig;
+    final likeOnMyselfConfig =
+        moduleConfig.eatingDisorderFoodLikeOnMyselfConfig;
     if (likeOnMyselfConfig != null) {
-      await _eatingDisorderLikeOnMyselfDao.doOldVersionMigration(likeOnMyselfConfig);
+      await _eatingDisorderLikeOnMyselfDao.doOldVersionMigration(
+        likeOnMyselfConfig,
+      );
     }
 
     final foodILikeConfig = moduleConfig.eatingDisorderFoodILikeConfig;
@@ -81,7 +96,9 @@ class EatingDisorderModuleDb implements NepanikarModuleDb {
 
     final foodAfraidOfConfig = moduleConfig.eatingDisorderFoodAfraidOfConfig;
     if (foodAfraidOfConfig != null) {
-      await _eatingDisorderFoodAfraidOfDao.doOldVersionMigration(foodAfraidOfConfig);
+      await _eatingDisorderFoodAfraidOfDao.doOldVersionMigration(
+        foodAfraidOfConfig,
+      );
     }
   }
 

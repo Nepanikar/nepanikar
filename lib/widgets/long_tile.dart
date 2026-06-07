@@ -16,7 +16,6 @@ class LongTile extends StatelessWidget {
     this.descriptionMaxLines,
     required this.image,
     required this.onTap,
-    required this.isDarkMode,
     this.onLongPress,
     this.trailing,
     this.subContent,
@@ -24,7 +23,6 @@ class LongTile extends StatelessWidget {
     this.showSubContentSeparator = true,
   });
 
-  final bool isDarkMode;
   final Color? backgroundColor;
   final String text;
   final TextStyle textTextStyle;
@@ -44,6 +42,8 @@ class LongTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     Color? longTileColor = longTileColorBasedOnDarkMode(context);
     if (backgroundColor != null) {
       longTileColor = backgroundColor;
@@ -68,7 +68,10 @@ class LongTile extends StatelessWidget {
                 onTap: onTap,
                 onLongPress: onLongPress,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 16.0,
+                    horizontal: 24.0,
+                  ),
                   child: Row(
                     crossAxisAlignment: image == null
                         ? CrossAxisAlignment.start
@@ -76,7 +79,9 @@ class LongTile extends StatelessWidget {
                     children: [
                       if (image != null) ...[
                         ConstrainedBox(
-                          constraints: BoxConstraints.tight(const Size.square(40)),
+                          constraints: BoxConstraints.tight(
+                            const Size.square(40),
+                          ),
                           child: ExcludeSemantics(child: image),
                         ),
                         const SizedBox(width: 16),
@@ -121,7 +126,10 @@ class LongTile extends StatelessWidget {
                                         BlendMode.srcIn,
                                       ),
                                     )
-                                  : Assets.icons.navigation.arrowRight.svg(width: 16, height: 16),
+                                  : Assets.icons.navigation.arrowRight.svg(
+                                      width: 16,
+                                      height: 16,
+                                    ),
                             ),
                       ),
                     ],
@@ -132,7 +140,9 @@ class LongTile extends StatelessWidget {
                 if (showSubContentSeparator)
                   Padding(
                     padding: EdgeInsets.symmetric(
-                      horizontal: Theme.of(context).listTileTheme.horizontalTitleGap ?? 0,
+                      horizontal:
+                          Theme.of(context).listTileTheme.horizontalTitleGap ??
+                          0,
                     ),
                     child: const NepanikarHorizontalDivider(),
                   ),

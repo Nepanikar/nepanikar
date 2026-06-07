@@ -14,15 +14,19 @@ class DepressionModuleDb implements NepanikarModuleDb {
 
   late final DepressionActivityPlanDao _depressionActivityPlanDao;
   late final DepressionNiceMadeHappyDao _depressionNiceMadeHappyDao;
-  late final DepressionPraiseMyAchievementsDao _depressionPraiseMyAchievementsDao;
+  late final DepressionPraiseMyAchievementsDao
+  _depressionPraiseMyAchievementsDao;
 
   @override
   Future<DepressionModuleDb> initModuleDaos() async {
-    _depressionActivityPlanDao = await DepressionActivityPlanDao(dbService: _dbService).init();
-    _depressionNiceMadeHappyDao = await DepressionNiceMadeHappyDao(dbService: _dbService).init();
-    _depressionPraiseMyAchievementsDao = await DepressionPraiseMyAchievementsDao(
+    _depressionActivityPlanDao = await DepressionActivityPlanDao(
       dbService: _dbService,
     ).init();
+    _depressionNiceMadeHappyDao = await DepressionNiceMadeHappyDao(
+      dbService: _dbService,
+    ).init();
+    _depressionPraiseMyAchievementsDao =
+        await DepressionPraiseMyAchievementsDao(dbService: _dbService).init();
     return this;
   }
 
@@ -33,27 +37,40 @@ class DepressionModuleDb implements NepanikarModuleDb {
     await _depressionPraiseMyAchievementsDao.clear();
   }
 
-  Future<void> doModuleOldVersionMigration(DepressionModuleDTO moduleConfig) async {
+  Future<void> doModuleOldVersionMigration(
+    DepressionModuleDTO moduleConfig,
+  ) async {
     final activityPlanConfig = moduleConfig.depressionActivityPlanConfig;
     if (activityPlanConfig != null) {
-      await _depressionActivityPlanDao.doOldVersionMigration(activityPlanConfig);
+      await _depressionActivityPlanDao.doOldVersionMigration(
+        activityPlanConfig,
+      );
     }
 
     final niceMadeHappyConfig = moduleConfig.depressionNiceMadeHappyConfig;
     if (niceMadeHappyConfig != null) {
-      await _depressionNiceMadeHappyDao.doOldVersionMigration(niceMadeHappyConfig);
+      await _depressionNiceMadeHappyDao.doOldVersionMigration(
+        niceMadeHappyConfig,
+      );
     }
 
-    final praiseMyAchievementsConfig = moduleConfig.depressionPraiseMyAchievementsConfig;
+    final praiseMyAchievementsConfig =
+        moduleConfig.depressionPraiseMyAchievementsConfig;
     if (praiseMyAchievementsConfig != null) {
-      await _depressionPraiseMyAchievementsDao.doOldVersionMigration(praiseMyAchievementsConfig);
+      await _depressionPraiseMyAchievementsDao.doOldVersionMigration(
+        praiseMyAchievementsConfig,
+      );
     }
   }
 
   @override
   Future<void> preloadDefaultModuleData(AppLocalizations l10n) async {
-    await _depressionActivityPlanDao.preloadDefaultData(l10n.plan_example.extractToItems());
-    await _depressionNiceMadeHappyDao.preloadDefaultData(l10n.nice_example.extractToItems());
+    await _depressionActivityPlanDao.preloadDefaultData(
+      l10n.plan_example.extractToItems(),
+    );
+    await _depressionNiceMadeHappyDao.preloadDefaultData(
+      l10n.nice_example.extractToItems(),
+    );
     await _depressionPraiseMyAchievementsDao.preloadDefaultData(
       l10n.praise_example.extractToItems(),
     );

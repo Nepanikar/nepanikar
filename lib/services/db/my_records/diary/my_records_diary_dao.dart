@@ -32,7 +32,10 @@ class MyRecordsDiaryDao {
     await _store.addAll(_db, serializedItems);
   }
 
-  Future<void> updateRecord(String key, {required DiaryRecord updatedDiaryRecord}) async {
+  Future<void> updateRecord(
+    String key, {
+    required DiaryRecord updatedDiaryRecord,
+  }) async {
     final updatedItem = updatedDiaryRecord.toJson();
     await _store.record(key).put(_db, updatedItem);
   }
@@ -49,7 +52,9 @@ class MyRecordsDiaryDao {
       });
 
   Stream<Map<String, DiaryRecord>> get allRecordsStream => _store
-      .query(finder: Finder(sortOrders: [SortOrder(FilterKeys.dateWithTime, false)]))
+      .query(
+        finder: Finder(sortOrders: [SortOrder(FilterKeys.dateWithTime, false)]),
+      )
       .onSnapshots(_db)
       .map((event) {
         final entries = event
@@ -69,8 +74,11 @@ class MyRecordsDiaryDao {
     if (recordEntries != null) {
       final diaryRecords = recordEntries
           .map(
-            (dateTextEntry) =>
-                DiaryRecord(dateTime: dateTextEntry.key, title: '', text: dateTextEntry.value),
+            (dateTextEntry) => DiaryRecord(
+              dateTime: dateTextEntry.key,
+              title: '',
+              text: dateTextEntry.value,
+            ),
           )
           .toList();
       await _addRecords(diaryRecords);

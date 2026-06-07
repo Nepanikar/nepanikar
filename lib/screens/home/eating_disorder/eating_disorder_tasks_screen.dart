@@ -14,7 +14,8 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 part 'eating_disorder_tasks_screen.g.dart';
 
 @TypedGoRoute<EatingDisorderTasksRoute>(path: '/home/eating-disorder/tasks')
-class EatingDisorderTasksRoute extends GoRouteData with $EatingDisorderTasksRoute {
+class EatingDisorderTasksRoute extends GoRouteData
+    with $EatingDisorderTasksRoute {
   const EatingDisorderTasksRoute();
 
   @override
@@ -26,46 +27,57 @@ class EatingDisorderTasksScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     svgColorBasedOnDarkMode(context);
     final colorFilter = svgColorFilterBasedOnDarkMode(context);
 
     final modules = <Widget>[
       LongTile(
         text: context.l10n.food_tasks_creative,
-        image: Assets.illustrations.modules.eatingDisorder.svg(colorFilter: colorFilter),
-        onTap: () => context.push(const EatingDisorderFoodCreativeRoute().location),
-        isDarkMode: isDarkMode,
+        image: Assets.illustrations.modules.eatingDisorder.svg(
+          colorFilter: colorFilter,
+        ),
+        onTap: () =>
+            context.push(const EatingDisorderFoodCreativeRoute().location),
       ),
       LongTile(
         text: context.l10n.food_tasks_motivation,
-        image: Assets.illustrations.modules.eatingDisorder.svg(colorFilter: colorFilter),
-        onTap: () => context.push(const EatingDisorderFoodMotivationRoute().location),
-        isDarkMode: isDarkMode,
+        image: Assets.illustrations.modules.eatingDisorder.svg(
+          colorFilter: colorFilter,
+        ),
+        onTap: () =>
+            context.push(const EatingDisorderFoodMotivationRoute().location),
       ),
       LongTile(
         text: context.l10n.food_tasks_challenge,
-        image: Assets.illustrations.modules.eatingDisorder.svg(colorFilter: colorFilter),
-        onTap: () => context.push(const EatingDisorderFoodChallengesRoute().location),
-        isDarkMode: isDarkMode,
+        image: Assets.illustrations.modules.eatingDisorder.svg(
+          colorFilter: colorFilter,
+        ),
+        onTap: () =>
+            context.push(const EatingDisorderFoodChallengesRoute().location),
       ),
       LongTile(
         text: context.l10n.food_tasks_like,
-        image: Assets.illustrations.modules.eatingDisorder.svg(colorFilter: colorFilter),
-        onTap: () => context.push(const EatingDisorderLikeOnMyselfRoute().location),
-        isDarkMode: isDarkMode,
+        image: Assets.illustrations.modules.eatingDisorder.svg(
+          colorFilter: colorFilter,
+        ),
+        onTap: () =>
+            context.push(const EatingDisorderLikeOnMyselfRoute().location),
       ),
       LongTile(
         text: context.l10n.food_tasks_food_like,
-        image: Assets.illustrations.modules.eatingDisorder.svg(colorFilter: colorFilter),
-        onTap: () => context.push(const EatingDisorderFoodILikeRoute().location),
-        isDarkMode: isDarkMode,
+        image: Assets.illustrations.modules.eatingDisorder.svg(
+          colorFilter: colorFilter,
+        ),
+        onTap: () =>
+            context.push(const EatingDisorderFoodILikeRoute().location),
       ),
       LongTile(
         text: context.l10n.food_tasks_afraid,
-        image: Assets.illustrations.modules.eatingDisorder.svg(colorFilter: colorFilter),
-        onTap: () => context.push(const EatingDisorderFoodAfraidOfRoute().location),
-        isDarkMode: isDarkMode,
+        image: Assets.illustrations.modules.eatingDisorder.svg(
+          colorFilter: colorFilter,
+        ),
+        onTap: () =>
+            context.push(const EatingDisorderFoodAfraidOfRoute().location),
       ),
     ];
     return NepanikarScreenWrapper(

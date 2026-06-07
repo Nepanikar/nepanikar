@@ -6,12 +6,16 @@ import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/widgets/tips_carousel_body.dart';
 part 'eating_disorder_tips_figure.g.dart';
 
-@TypedGoRoute<EatingDisorderTipsFigureAppRoute>(path: '/home/eating-disorder/tips/figure')
-class EatingDisorderTipsFigureAppRoute extends GoRouteData with $EatingDisorderTipsFigureAppRoute {
+@TypedGoRoute<EatingDisorderTipsFigureAppRoute>(
+  path: '/home/eating-disorder/tips/figure',
+)
+class EatingDisorderTipsFigureAppRoute extends GoRouteData
+    with $EatingDisorderTipsFigureAppRoute {
   const EatingDisorderTipsFigureAppRoute();
 
   @override
-  Widget build(BuildContext context, _) => const EatingDisorderTipsFigureAppScreen();
+  Widget build(BuildContext context, _) =>
+      const EatingDisorderTipsFigureAppScreen();
 }
 
 class EatingDisorderTipsFigureAppScreen extends StatelessWidget {

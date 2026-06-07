@@ -22,7 +22,11 @@ class NepanikarHorizontalDivider extends StatelessWidget {
     return Divider(
       height: height,
       thickness: thickness,
-      color: color ?? NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade200,
+      color:
+          color ??
+          NepanikarColors.primarySwatch(
+            Theme.of(context).primaryColor,
+          ).shade200,
       indent: indent,
       endIndent: endIndent,
     );

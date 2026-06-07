@@ -9,7 +9,8 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 part 'breathing_exercises_screen.g.dart';
 
 @TypedGoRoute<BreathingExercisesRoute>(path: '/games/breathing-list')
-class BreathingExercisesRoute extends GoRouteData with $BreathingExercisesRoute {
+class BreathingExercisesRoute extends GoRouteData
+    with $BreathingExercisesRoute {
   const BreathingExercisesRoute();
 
   @override
@@ -21,33 +22,41 @@ class BreathingExercisesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final colorFilter = svgColorFilterBasedOnDarkMode(context);
 
     final modules = <Widget>[
       LongTile(
         text: context.l10n.breathing_exercise_i,
-        image: Assets.illustrations.modules.breathingCircle.svg(colorFilter: colorFilter),
-        onTap: () =>
-            context.push(const BreathingGameRoute(shape: BreathingGameShape.circle).location),
-        isDarkMode: isDarkMode,
+        image: Assets.illustrations.modules.breathingCircle.svg(
+          colorFilter: colorFilter,
+        ),
+        onTap: () => context.push(
+          const BreathingGameRoute(shape: BreathingGameShape.circle).location,
+        ),
       ),
       LongTile(
         text: context.l10n.breathing_exercise_ii,
-        image: Assets.illustrations.modules.breathingTriangle.svg(colorFilter: colorFilter),
-        onTap: () =>
-            context.push(const BreathingGameRoute(shape: BreathingGameShape.triangle).location),
-        isDarkMode: isDarkMode,
+        image: Assets.illustrations.modules.breathingTriangle.svg(
+          colorFilter: colorFilter,
+        ),
+        onTap: () => context.push(
+          const BreathingGameRoute(shape: BreathingGameShape.triangle).location,
+        ),
       ),
       LongTile(
         text: context.l10n.breathing_exercise_iii,
-        image: Assets.illustrations.modules.breathingSquare.svg(colorFilter: colorFilter),
-        onTap: () =>
-            context.push(const BreathingGameRoute(shape: BreathingGameShape.square).location),
-        isDarkMode: isDarkMode,
+        image: Assets.illustrations.modules.breathingSquare.svg(
+          colorFilter: colorFilter,
+        ),
+        onTap: () => context.push(
+          const BreathingGameRoute(shape: BreathingGameShape.square).location,
+        ),
       ),
     ];
 
-    return NepanikarScreenWrapper(appBarTitle: context.l10n.breath, children: modules);
+    return NepanikarScreenWrapper(
+      appBarTitle: context.l10n.breath,
+      children: modules,
+    );
   }
 }

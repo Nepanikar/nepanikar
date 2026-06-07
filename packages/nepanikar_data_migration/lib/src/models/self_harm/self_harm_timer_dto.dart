@@ -11,7 +11,8 @@ class SelfHarmTimerDTO extends Equatable {
   factory SelfHarmTimerDTO.getAndroidData(Config config) {
     const sectionName = 'General';
 
-    final selfHarmTimer = config.get(sectionName, 'selfHarmTimer')?.getIniBoolValue();
+    final selfHarmTimer =
+        config.get(sectionName, 'selfHarmTimer')?.getIniBoolValue();
     final DateTime? currSelfHarmTimerStartDateTime;
 
     // Whether the self harm timer is running, get start Date Time.
@@ -22,7 +23,8 @@ class SelfHarmTimerDTO extends Equatable {
       currSelfHarmTimerStartDateTime = null;
     }
 
-    final selfHarmTimerRecord = config.get(sectionName, 'selfHarmTimerRecord')?.getIniIntValue();
+    final selfHarmTimerRecord =
+        config.get(sectionName, 'selfHarmTimerRecord')?.getIniIntValue();
 
     return SelfHarmTimerDTO._(
       currSelfHarmTimerStartDateTime: currSelfHarmTimerStartDateTime,
@@ -37,13 +39,15 @@ class SelfHarmTimerDTO extends Equatable {
 
     // Whether the self harm timer is running, get start Date Time.
     if (selfHarmTimer == true) {
-      currSelfHarmTimerStartDateTime =
-          config['selfHarmTimerDate']?.toString().getIniDateTimeValue(cleanFromUnicodes: false);
+      currSelfHarmTimerStartDateTime = config['selfHarmTimerDate']
+          ?.toString()
+          .getIniDateTimeValue(cleanFromUnicodes: false);
     } else {
       currSelfHarmTimerStartDateTime = null;
     }
 
-    final selfHarmTimerRecord = config['selfHarmTimerRecord']?.toString().getIniIntValue();
+    final selfHarmTimerRecord =
+        config['selfHarmTimerRecord']?.toString().getIniIntValue();
 
     return SelfHarmTimerDTO._(
       currSelfHarmTimerStartDateTime: currSelfHarmTimerStartDateTime,
@@ -58,5 +62,6 @@ class SelfHarmTimerDTO extends Equatable {
   final int? selfHarmTimerRecord;
 
   @override
-  List<Object?> get props => [currSelfHarmTimerStartDateTime, selfHarmTimerRecord];
+  List<Object?> get props =>
+      [currSelfHarmTimerStartDateTime, selfHarmTimerRecord];
 }

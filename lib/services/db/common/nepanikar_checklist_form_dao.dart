@@ -4,9 +4,11 @@ import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 import 'package:sembast/sembast.dart';
 
 abstract class NepanikarCheckListFormDao {
-  NepanikarCheckListFormDao({required DatabaseService dbService, required String storeKeyName})
-    : _dbService = dbService,
-      _store = stringMapStoreFactory.store(storeKeyName);
+  NepanikarCheckListFormDao({
+    required DatabaseService dbService,
+    required String storeKeyName,
+  }) : _dbService = dbService,
+       _store = stringMapStoreFactory.store(storeKeyName);
 
   // TODO: use @mustBeOverridden annotation, will be available in Dart 2.19
   Future<NepanikarCheckListFormDao> init() async => this;
@@ -35,7 +37,10 @@ abstract class NepanikarCheckListFormDao {
     await _store.record(key).put(_db, updatedItem);
   }
 
-  Future<void> updateFormState(String key, {required ChecklistItem item}) async {
+  Future<void> updateFormState(
+    String key, {
+    required ChecklistItem item,
+  }) async {
     final updatedItem = item.copyWith(isChecked: !item.isChecked).toJson();
     await _store.record(key).put(_db, updatedItem);
   }
@@ -62,11 +67,15 @@ abstract class NepanikarCheckListFormDao {
     await _addFormItems(texts.map((e) => ChecklistItem(text: e)).toList());
   }
 
-  Future<void> doOldVersionMigration(NepanikarChecklistFormDTO checklistConfig) async {
+  Future<void> doOldVersionMigration(
+    NepanikarChecklistFormDTO checklistConfig,
+  ) async {
     final checklistItems = checklistConfig.records;
     if (checklistItems != null) {
       await _addFormItems(
-        checklistItems.map((e) => ChecklistItem(text: e.key, isChecked: e.value)).toList(),
+        checklistItems
+            .map((e) => ChecklistItem(text: e.key, isChecked: e.value))
+            .toList(),
       );
     }
   }

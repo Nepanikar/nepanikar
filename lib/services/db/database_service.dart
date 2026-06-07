@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:native_shared_preferences/native_shared_preferences.dart';
 import 'package:nepanikar/app/l10n/app_localizations.dart';
+import 'package:nepanikar/services/db/bpd/bpd_module_db.dart';
 import 'package:nepanikar/services/db/depression/depression_module_db.dart';
 import 'package:nepanikar/services/db/eating_disorder/eating_disorder_module_db.dart';
 import 'package:nepanikar/services/db/my_contacts/my_contacts_module_db.dart';
@@ -12,6 +13,7 @@ import 'package:nepanikar/services/db/my_records/emotions_dao.dart';
 import 'package:nepanikar/services/db/my_records/my_records_module_db.dart';
 import 'package:nepanikar/services/db/self_harm/self_harm_module_db.dart';
 import 'package:nepanikar/services/db/suicidal_thoughts/suicidal_thoughts_module_db.dart';
+import 'package:nepanikar/services/db/tests/test_results_dao.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/services/save_directories.dart';
 import 'package:nepanikar/utils/crashlytics_utils.dart';
@@ -20,7 +22,8 @@ import 'package:path/path.dart';
 import 'package:sembast/sembast_io.dart';
 
 class DatabaseService {
-  DatabaseService({required SaveDirectories saveDirectories}) : _saveDirectories = saveDirectories;
+  DatabaseService({required SaveDirectories saveDirectories})
+    : _saveDirectories = saveDirectories;
 
   Future<void> init() async {
     mainStore = StoreRef.main();
@@ -35,10 +38,15 @@ class DatabaseService {
     _userSettingsDao = await UserSettingsDao(dbService: this).init();
     _depressionModuleDb = await DepressionModuleDb(this).initModuleDaos();
     _selfHarmModuleDb = await SelfHarmModuleDb(this).initModuleDaos();
-    _suicidalThoughtsModuleDb = await SuicidalThoughtsModuleDb(this).initModuleDaos();
-    _eatingDisorderModuleDb = await EatingDisorderModuleDb(this).initModuleDaos();
+    _suicidalThoughtsModuleDb = await SuicidalThoughtsModuleDb(
+      this,
+    ).initModuleDaos();
+    _eatingDisorderModuleDb = await EatingDisorderModuleDb(
+      this,
+    ).initModuleDaos();
     _myRecordsModuleDb = await MyRecordsModuleDb(this).initModuleDaos();
     _myContactsModuleDb = await MyContactsModuleDb(this).initModuleDaos();
+    _bpdModuleDb = await BpdModuleDb(this).initModuleDaos();
     await EmotionsDao(dbService: this).initEmotions();
     _areDaosInitialized = true;
   }
@@ -56,6 +64,7 @@ class DatabaseService {
   late final EatingDisorderModuleDb _eatingDisorderModuleDb;
   late final MyRecordsModuleDb _myRecordsModuleDb;
   late final MyContactsModuleDb _myContactsModuleDb;
+  late final BpdModuleDb _bpdModuleDb;
 
   bool _areDaosInitialized = false;
 
@@ -71,7 +80,9 @@ class DatabaseService {
       onVersionChanged: (db, oldVersion, newVersion) async {
         // If oldVersion is 0, we are creating the database for the first time.
         if (oldVersion == 0) {
-          debugPrint('DATABASE_SERVICE: Creating database for the first time - first app install.');
+          debugPrint(
+            'DATABASE_SERVICE: Creating database for the first time - first app install.',
+          );
           final oldVersionAppDataExists = await _oldAppVersionDataExists();
           if (oldVersionAppDataExists) {
             debugPrint('DATABASE_SERVICE: Old app version data FOUND.');
@@ -88,7 +99,8 @@ class DatabaseService {
   }
 
   Future<void> checkDataPreloaded(AppLocalizations l10n) async {
-    final areDataPreloaded = await mainStore.record(_dataPreloadedKey).get(database) as bool?;
+    final areDataPreloaded =
+        await mainStore.record(_dataPreloadedKey).get(database) as bool?;
     if (areDataPreloaded == null || !areDataPreloaded) {
       debugPrint('DATABASE_SERVICE: Preloading default data.');
       await preloadDefaultData(l10n);
@@ -108,6 +120,7 @@ class DatabaseService {
     await _eatingDisorderModuleDb.preloadDefaultModuleData(l10n);
     await _myRecordsModuleDb.preloadDefaultModuleData(l10n);
     await _myContactsModuleDb.preloadDefaultModuleData(l10n);
+    await _bpdModuleDb.preloadDefaultModuleData(l10n);
     await _setDataPreloaded();
   }
 
@@ -122,12 +135,14 @@ class DatabaseService {
       try {
         final Map<String, Object> configMap =
             await NativeSharedPreferences.getSharedPreferencesMap();
-        return configMap.containsKey('selfHarmExist') || configMap.containsKey('selfHarmPlan.size');
+        return configMap.containsKey('selfHarmExist') ||
+            configMap.containsKey('selfHarmPlan.size');
       } catch (e, s) {
         await logExceptionToCrashlytics(
           e,
           s,
-          logMessage: 'DATABASE_SERVICE: Error while checking if old app version IOS data exists',
+          logMessage:
+              'DATABASE_SERVICE: Error while checking if old app version IOS data exists',
         );
       }
     }
@@ -144,19 +159,23 @@ class DatabaseService {
 
   Future<Map<String, Object>> getOldIosAppConfigMap() async {
     try {
-      final Map<String, Object> configMap = await NativeSharedPreferences.getSharedPreferencesMap();
+      final Map<String, Object> configMap =
+          await NativeSharedPreferences.getSharedPreferencesMap();
       return configMap;
     } catch (e, s) {
       await logExceptionToCrashlytics(
         e,
         s,
-        logMessage: 'DATABASE_SERVICE: Error while getting old app version IOS data',
+        logMessage:
+            'DATABASE_SERVICE: Error while getting old app version IOS data',
       );
     }
     return {};
   }
 
-  Future<void> _clearAndBackupOldAppConfigData({required File? androidConfigFile}) async {
+  Future<void> _clearAndBackupOldAppConfigData({
+    required File? androidConfigFile,
+  }) async {
     if (Platform.isAndroid) {
       if (androidConfigFile == null) return;
       await _backupOldAndroidConfigFile(androidConfigFile);
@@ -166,7 +185,8 @@ class DatabaseService {
         await logExceptionToCrashlytics(
           e,
           s,
-          logMessage: 'DATABASE_SERVICE: Error while deleting old app Android data config file',
+          logMessage:
+              'DATABASE_SERVICE: Error while deleting old app Android data config file',
         );
       }
     } else if (Platform.isIOS) {
@@ -178,7 +198,8 @@ class DatabaseService {
         await logExceptionToCrashlytics(
           e,
           s,
-          logMessage: 'DATABASE_SERVICE: Error while clearing old app version IOS data',
+          logMessage:
+              'DATABASE_SERVICE: Error while clearing old app version IOS data',
         );
       }
     }
@@ -194,7 +215,8 @@ class DatabaseService {
       await logExceptionToCrashlytics(
         e,
         s,
-        logMessage: 'DATABASE_SERVICE: Error while backing up old app version IOS data',
+        logMessage:
+            'DATABASE_SERVICE: Error while backing up old app version IOS data',
       );
     }
   }
@@ -208,7 +230,8 @@ class DatabaseService {
       await logExceptionToCrashlytics(
         e,
         s,
-        logMessage: 'DATABASE_SERVICE: Error while backing up old app Android data config file',
+        logMessage:
+            'DATABASE_SERVICE: Error while backing up old app Android data config file',
       );
     }
   }
@@ -218,7 +241,9 @@ class DatabaseService {
     final File? androidConfigFile = await getOldAndroidAppConfigFile();
     if (Platform.isAndroid) {
       if (androidConfigFile == null) return;
-      nepanikarConfig = NepanikarConfigParser.parseAndroidConfigFile(androidConfigFile);
+      nepanikarConfig = NepanikarConfigParser.parseAndroidConfigFile(
+        androidConfigFile,
+      );
     } else {
       final config = await NativeSharedPreferences.getSharedPreferencesMap();
       nepanikarConfig = NepanikarConfigParser.parseIosConfigFile(config);
@@ -227,7 +252,9 @@ class DatabaseService {
     final depressionModuleConfig = nepanikarConfig.depressionModuleConfig;
     if (depressionModuleConfig != null) {
       try {
-        await _depressionModuleDb.doModuleOldVersionMigration(depressionModuleConfig);
+        await _depressionModuleDb.doModuleOldVersionMigration(
+          depressionModuleConfig,
+        );
       } catch (e, s) {
         await logExceptionToCrashlytics(
           e,
@@ -241,7 +268,9 @@ class DatabaseService {
     final selfHarmModuleConfig = nepanikarConfig.selfHarmModuleConfig;
     if (selfHarmModuleConfig != null) {
       try {
-        await _selfHarmModuleDb.doModuleOldVersionMigration(selfHarmModuleConfig);
+        await _selfHarmModuleDb.doModuleOldVersionMigration(
+          selfHarmModuleConfig,
+        );
       } catch (e, s) {
         await logExceptionToCrashlytics(
           e,
@@ -252,10 +281,13 @@ class DatabaseService {
       }
     }
 
-    final suicidalThoughtsModuleConfig = nepanikarConfig.suicidalThoughtsModuleConfig;
+    final suicidalThoughtsModuleConfig =
+        nepanikarConfig.suicidalThoughtsModuleConfig;
     if (suicidalThoughtsModuleConfig != null) {
       try {
-        await _suicidalThoughtsModuleDb.doModuleOldVersionMigration(suicidalThoughtsModuleConfig);
+        await _suicidalThoughtsModuleDb.doModuleOldVersionMigration(
+          suicidalThoughtsModuleConfig,
+        );
       } catch (e, s) {
         await logExceptionToCrashlytics(
           e,
@@ -266,10 +298,13 @@ class DatabaseService {
       }
     }
 
-    final eatingDisorderModuleConfig = nepanikarConfig.eatingDisorderModuleConfig;
+    final eatingDisorderModuleConfig =
+        nepanikarConfig.eatingDisorderModuleConfig;
     if (eatingDisorderModuleConfig != null) {
       try {
-        await _eatingDisorderModuleDb.doModuleOldVersionMigration(eatingDisorderModuleConfig);
+        await _eatingDisorderModuleDb.doModuleOldVersionMigration(
+          eatingDisorderModuleConfig,
+        );
       } catch (e, s) {
         await logExceptionToCrashlytics(
           e,
@@ -283,7 +318,9 @@ class DatabaseService {
     final myRecordsModuleConfig = nepanikarConfig.myRecordsModuleConfig;
     if (myRecordsModuleConfig != null) {
       try {
-        await _myRecordsModuleDb.doModuleOldVersionMigration(myRecordsModuleConfig);
+        await _myRecordsModuleDb.doModuleOldVersionMigration(
+          myRecordsModuleConfig,
+        );
       } catch (e, s) {
         await logExceptionToCrashlytics(
           e,
@@ -297,7 +334,9 @@ class DatabaseService {
     final myContactsModuleConfig = nepanikarConfig.myContactsModuleConfig;
     if (myContactsModuleConfig != null) {
       try {
-        await _myContactsModuleDb.doModuleOldVersionMigration(myContactsModuleConfig);
+        await _myContactsModuleDb.doModuleOldVersionMigration(
+          myContactsModuleConfig,
+        );
       } catch (e, s) {
         await logExceptionToCrashlytics(
           e,
@@ -321,5 +360,6 @@ class DatabaseService {
     await _eatingDisorderModuleDb.clearModule();
     await _myRecordsModuleDb.clearModule();
     await _myContactsModuleDb.clearModule();
+    await _bpdModuleDb.clearModule();
   }
 }

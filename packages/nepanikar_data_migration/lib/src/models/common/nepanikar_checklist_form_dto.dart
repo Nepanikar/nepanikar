@@ -38,14 +38,16 @@ class NepanikarChecklistFormDTO extends Equatable {
     required String sectionTextsName,
     required String sectionCheckboxStatesName,
   }) {
-    final textsSize = config['$sectionTextsName.size']?.toString().getIniIntValue();
+    final textsSize =
+        config['$sectionTextsName.size']?.toString().getIniIntValue();
 
     final records = <MapEntry<String, bool>>[];
     if (textsSize != null) {
       for (var i = 1; i <= textsSize; i++) {
         final text = config['$sectionTextsName.$i.value']?.toString() ?? '';
-        final checkboxState =
-            config['$sectionCheckboxStatesName.$i.value']?.toString().getIniBoolValue();
+        final checkboxState = config['$sectionCheckboxStatesName.$i.value']
+            ?.toString()
+            .getIniBoolValue();
         records.add(MapEntry(text, checkboxState ?? false));
       }
     }

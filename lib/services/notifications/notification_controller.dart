@@ -14,7 +14,9 @@ abstract class NotificationController {
     ReceivedNotification receivedNotification,
   ) async {
     final notificationData = receivedNotification.toAppNotificationData();
-    debugPrint('NOTIFICATION_CONTROLLER: Notification received: ${notificationData?.type.name}');
+    debugPrint(
+      'NOTIFICATION_CONTROLLER: Notification received: ${notificationData?.type.name}',
+    );
     // Commented out cuz this does not work on iOS
     // (https://github.com/rafaelsetragni/awesome_notifications/issues/743).
     // await FirebaseAnalytics.instance.logEvent(
@@ -27,9 +29,13 @@ abstract class NotificationController {
 
   /// Use this method to detect if the user dismissed a notification.
   @pragma('vm:entry-point')
-  static Future<void> onDismissActionReceivedMethod(ReceivedAction receivedAction) async {
+  static Future<void> onDismissActionReceivedMethod(
+    ReceivedAction receivedAction,
+  ) async {
     final notificationData = receivedAction.toAppNotificationData();
-    debugPrint('NOTIFICATION_CONTROLLER: Notification dismissed: ${notificationData?.type.name}');
+    debugPrint(
+      'NOTIFICATION_CONTROLLER: Notification dismissed: ${notificationData?.type.name}',
+    );
     await FirebaseAnalytics.instance.logEvent(
       name: 'notification_dismissed',
       parameters: {'notification_type': notificationData?.type.name ?? ''},
@@ -38,9 +44,13 @@ abstract class NotificationController {
 
   /// Use this method to detect when the user taps on a notification or action button.
   @pragma('vm:entry-point')
-  static Future<void> onActionReceivedMethod(ReceivedAction receivedAction) async {
+  static Future<void> onActionReceivedMethod(
+    ReceivedAction receivedAction,
+  ) async {
     final notificationData = receivedAction.toAppNotificationData();
-    debugPrint('NOTIFICATION_CONTROLLER: Notification tapped: ${notificationData?.type.name}');
+    debugPrint(
+      'NOTIFICATION_CONTROLLER: Notification tapped: ${notificationData?.type.name}',
+    );
     await FirebaseAnalytics.instance.logEvent(
       name: 'notification_tapped',
       parameters: {'notification_type': notificationData?.type.name ?? ''},
@@ -48,7 +58,9 @@ abstract class NotificationController {
 
     final routeDestination = notificationData?.type.routeDestination;
     if (routeDestination != null) {
-      debugPrint('NOTIFICATION_CONTROLLER: Navigating to $routeDestination from notification');
+      debugPrint(
+        'NOTIFICATION_CONTROLLER: Navigating to $routeDestination from notification',
+      );
       final goRouter = registry.get<GoRouter>();
       // Check if the current route is the same as the destination route.
       if (goRouter.state.uri.toString() != routeDestination) {

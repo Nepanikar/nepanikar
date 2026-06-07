@@ -16,7 +16,11 @@ const _phoneContacts = <PhoneContact>[
     subtitle: 'Nonstop zdarma',
     tel: '116 123',
   ),
-  PhoneContact(title: 'Krízová linka pomoci', subtitle: 'Nonstop zdarma', tel: '0800 500 333'),
+  PhoneContact(
+    title: 'Krízová linka pomoci',
+    subtitle: 'Nonstop zdarma',
+    tel: '0800 500 333',
+  ),
   PhoneContact(
     title: 'Liga za duševné zdravie Slovensko',
     subtitle: 'Nonstop zdarma',
@@ -51,25 +55,39 @@ const _crisisCenterContacts = <RegionContact>[
 const _chatContacts = <ChatContact>[
   ChatContact.subList(
     title: 'IPčko',
-    subChatContacts: [SubChatContact(title: '', url: 'https://ipcko.sk/chatova-poradna/')],
+    subChatContacts: [
+      SubChatContact(title: '', url: 'https://ipcko.sk/chatova-poradna/'),
+    ],
   ),
   ChatContact.subList(
     title: 'Dobrá linka',
-    subChatContacts: [SubChatContact(title: '', url: 'https://dobralinka.sk/chatova-poradna/')],
+    subChatContacts: [
+      SubChatContact(title: '', url: 'https://dobralinka.sk/chatova-poradna/'),
+    ],
   ),
   ChatContact.subList(
     title: 'Krizová linka pomoci',
     subChatContacts: [
-      SubChatContact(title: '', url: 'https://www.krizovalinkapomoci.sk/chatova-poradna/'),
+      SubChatContact(
+        title: '',
+        url: 'https://www.krizovalinkapomoci.sk/chatova-poradna/',
+      ),
     ],
   ),
   ChatContact.subList(
     title: 'Nepanikař',
-    subChatContacts: [SubChatContact(title: 'Po-Pá 16-22h', url: 'https://nepanikar.eu/poradna/')],
+    subChatContacts: [
+      SubChatContact(
+        title: 'Po-Pá 16-22h',
+        url: 'https://nepanikar.eu/poradna/',
+      ),
+    ],
   ),
   ChatContact.subList(
     title: 'Viac ako nick',
-    subChatContacts: [SubChatContact(title: '', url: 'https://viacakonick.gov.sk/')],
+    subChatContacts: [
+      SubChatContact(title: '', url: 'https://viacakonick.gov.sk/'),
+    ],
   ),
 ];
 

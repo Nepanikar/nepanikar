@@ -5,7 +5,10 @@ import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 class MyRecordsMoodTrackDTO extends Equatable {
   const MyRecordsMoodTrackDTO._({required this.values});
 
-  factory MyRecordsMoodTrackDTO.getAndroidData(Config config, {String sectionName = 'moods'}) {
+  factory MyRecordsMoodTrackDTO.getAndroidData(
+    Config config, {
+    String sectionName = 'moods',
+  }) {
     final convertedValues = <DateTime, int>{};
     final confValues = config.items(sectionName);
 
@@ -20,7 +23,11 @@ class MyRecordsMoodTrackDTO extends Equatable {
               final dateTime = split[0].getIniDateTimeValue();
               final value = split[1].getIniIntValue();
               if (dateTime != null && value != null) {
-                final date = DateTime.utc(dateTime.year, dateTime.month, dateTime.day);
+                final date = DateTime.utc(
+                  dateTime.year,
+                  dateTime.month,
+                  dateTime.day,
+                );
                 convertedValues[date] = value - 1;
               }
             }
@@ -28,14 +35,18 @@ class MyRecordsMoodTrackDTO extends Equatable {
         }
       }
     }
-    return MyRecordsMoodTrackDTO._(values: convertedValues.isEmpty ? null : convertedValues);
+    return MyRecordsMoodTrackDTO._(
+      values: convertedValues.isEmpty ? null : convertedValues,
+    );
   }
 
   factory MyRecordsMoodTrackDTO.getIosData(
     Map<String, Object> config, {
     String sectionName = 'moods',
   }) {
-    final moodValuesSize = config['$sectionName.size']?.toString().getIniIntValue();
+    final moodValuesSize = config['$sectionName.size']
+        ?.toString()
+        .getIniIntValue();
 
     final convertedValues = <DateTime, int>{};
     if (moodValuesSize != null) {
@@ -44,17 +55,25 @@ class MyRecordsMoodTrackDTO extends Equatable {
         if (line != null) {
           final split = line.split('|');
           if (split.length == 2) {
-            final dateTime = split[0].getIniDateTimeValue(cleanFromUnicodes: false);
+            final dateTime = split[0].getIniDateTimeValue(
+              cleanFromUnicodes: false,
+            );
             final value = split[1].getIniIntValue();
             if (dateTime != null && value != null) {
-              final date = DateTime.utc(dateTime.year, dateTime.month, dateTime.day);
+              final date = DateTime.utc(
+                dateTime.year,
+                dateTime.month,
+                dateTime.day,
+              );
               convertedValues[date] = value - 1;
             }
           }
         }
       }
     }
-    return MyRecordsMoodTrackDTO._(values: convertedValues.isEmpty ? null : convertedValues);
+    return MyRecordsMoodTrackDTO._(
+      values: convertedValues.isEmpty ? null : convertedValues,
+    );
   }
 
   factory MyRecordsMoodTrackDTO.fromValues(Map<DateTime, int> values) =>

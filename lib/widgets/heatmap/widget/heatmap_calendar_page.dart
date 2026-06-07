@@ -20,7 +20,9 @@ class HeatMapCalendarPage extends StatelessWidget {
     this.borderRadius,
     this.onClick,
   }) : separatedDate = DateUtil.separatedMonth(baseDate),
-       maxValue = DatasetsUtil.getMaxValue(DatasetsUtil.filterMonth(datasets, baseDate));
+       maxValue = DatasetsUtil.getMaxValue(
+         DatasetsUtil.filterMonth(datasets, baseDate),
+       );
 
   /// The DateTime value which contains the current calendar's date value.
   final DateTime baseDate;
@@ -101,7 +103,8 @@ class HeatMapCalendarPage extends StatelessWidget {
             datasets: Map.from(datasets ?? {})
               ..removeWhere(
                 (key, value) =>
-                    !(key.isAfter(date.keys.first) && key.isBefore(date.values.first) ||
+                    !(key.isAfter(date.keys.first) &&
+                            key.isBefore(date.values.first) ||
                         key == date.keys.first ||
                         key == date.values.first),
               ),

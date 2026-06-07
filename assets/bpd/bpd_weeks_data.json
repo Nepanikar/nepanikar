@@ -1,0 +1,46 @@
+{
+  "weeks": [
+    {
+      "weekNumber": 1,
+      "titleKey": "week_1_mindfulness",
+      "descriptionKey": "week_1_mindfulness_description",
+      "iconPath": null
+    },
+    {
+      "weekNumber": 2,
+      "titleKey": "week_2_breathing",
+      "descriptionKey": "week_2_breathing_description",
+      "iconPath": null
+    },
+    {
+      "weekNumber": 3,
+      "titleKey": "week_3_emotions",
+      "descriptionKey": "week_3_emotions_description",
+      "iconPath": null
+    },
+    {
+      "weekNumber": 4,
+      "titleKey": "week_4_distress_tolerance",
+      "descriptionKey": "week_4_distress_tolerance_description",
+      "iconPath": null
+    },
+    {
+      "weekNumber": 5,
+      "titleKey": "week_5_interpersonal_effectiveness",
+      "descriptionKey": "week_5_interpersonal_effectiveness_description",
+      "iconPath": null
+    },
+    {
+      "weekNumber": 6,
+      "titleKey": "week_6_emotion_regulation",
+      "descriptionKey": "week_6_emotion_regulation_description",
+      "iconPath": null
+    },
+    {
+      "weekNumber": 7,
+      "titleKey": "week_7_review",
+      "descriptionKey": "week_7_review_description",
+      "iconPath": null
+    }
+  ]
+}

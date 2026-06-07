@@ -7,13 +7,16 @@ import 'package:nepanikar/widgets/tips_carousel_body.dart';
 
 part 'eating_disorder_tips_remorse.g.dart';
 
-@TypedGoRoute<EatingDisorderTipsRemorseAppRoute>(path: '/home/eating-disorder/tips/remorse')
+@TypedGoRoute<EatingDisorderTipsRemorseAppRoute>(
+  path: '/home/eating-disorder/tips/remorse',
+)
 class EatingDisorderTipsRemorseAppRoute extends GoRouteData
     with $EatingDisorderTipsRemorseAppRoute {
   const EatingDisorderTipsRemorseAppRoute();
 
   @override
-  Widget build(BuildContext context, _) => const EatingDisorderTipsRemorseScreen();
+  Widget build(BuildContext context, _) =>
+      const EatingDisorderTipsRemorseScreen();
 }
 
 class EatingDisorderTipsRemorseScreen extends StatelessWidget {

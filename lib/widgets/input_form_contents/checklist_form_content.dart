@@ -14,7 +14,8 @@ import 'package:nepanikar/widgets/empty_records_state_widget.dart';
 import 'package:nepanikar/widgets/nepanikar_horizontal_divider.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
-class ChecklistFormContent<T extends NepanikarCheckListFormDao> extends StatefulWidget {
+class ChecklistFormContent<T extends NepanikarCheckListFormDao>
+    extends StatefulWidget {
   const ChecklistFormContent({
     super.key,
     required this.appBarTitle,
@@ -108,7 +109,9 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
                 shrinkWrap: true,
                 primary: false,
                 separatorBuilder: (_, _) => NepanikarHorizontalDivider(
-                  color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade100,
+                  color: NepanikarColors.primarySwatch(
+                    Theme.of(context).primaryColor,
+                  ).shade100,
                 ),
                 itemBuilder: (_, i) {
                   final record = savedListItems.entries.elementAt(i);
@@ -137,7 +140,9 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
                                 child: Checkbox(
                                   value: checkFormState,
                                   shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(4.0),
+                                    ),
                                   ),
                                   visualDensity: const VisualDensity(
                                     vertical: VisualDensity.minimumDensity,
@@ -173,46 +178,71 @@ class _ChecklistFormContentState<T extends NepanikarCheckListFormDao>
                                     },
                                     child: TextFormField(
                                       initialValue: checkFormText,
-                                      onChanged: (value) => _idTextMap[checkFormKey] = value,
+                                      onChanged: (value) =>
+                                          _idTextMap[checkFormKey] = value,
                                       minLines: 1,
                                       maxLines: null,
                                       textInputAction: TextInputAction.newline,
-                                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                        color: checkFormState == true
-                                            ? checkedTextColor
-                                            : isDarkmode(context)
-                                            ? Colors.white54
-                                            : NepanikarColors.primarySwatch(
-                                                Theme.of(context).primaryColor,
-                                              ).shade400,
-                                      ),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium
+                                          ?.copyWith(
+                                            color: checkFormState == true
+                                                ? checkedTextColor
+                                                : isDarkmode(context)
+                                                ? Colors.white54
+                                                : NepanikarColors.primarySwatch(
+                                                    Theme.of(
+                                                      context,
+                                                    ).primaryColor,
+                                                  ).shade400,
+                                          ),
                                       decoration: InputDecoration(
-                                        hintText: context.l10n.activity_hint_text,
+                                        hintText:
+                                            context.l10n.activity_hint_text,
                                         border: InputBorder.none,
                                         enabledBorder: InputBorder.none,
                                         focusedBorder: InputBorder.none,
                                         disabledBorder: InputBorder.none,
                                         errorBorder: InputBorder.none,
                                         focusedErrorBorder: InputBorder.none,
-                                        contentPadding: const EdgeInsets.only(top: 15, bottom: 8),
+                                        contentPadding: const EdgeInsets.only(
+                                          top: 15,
+                                          bottom: 8,
+                                        ),
                                         suffixIcon: IconButton(
                                           onPressed: () {
-                                            if (FocusScope.of(context).hasFocus) {
+                                            if (FocusScope.of(
+                                              context,
+                                            ).hasFocus) {
                                               FocusScope.of(context).unfocus();
                                             }
                                             context.semanticsAnnounce(
-                                              context.l10n.record_deleted_announce,
+                                              context
+                                                  .l10n
+                                                  .record_deleted_announce,
                                             );
-                                            WidgetsBinding.instance.addPostFrameCallback((_) async {
-                                              _idTextMap.remove(checkFormKey);
-                                              await _listFormDao.deleteFormItem(checkFormKey);
-                                              await analytics.logEvent(name: 'delete_activity');
-                                            });
+                                            WidgetsBinding.instance
+                                                .addPostFrameCallback((
+                                                  _,
+                                                ) async {
+                                                  _idTextMap.remove(
+                                                    checkFormKey,
+                                                  );
+                                                  await _listFormDao
+                                                      .deleteFormItem(
+                                                        checkFormKey,
+                                                      );
+                                                  await analytics.logEvent(
+                                                    name: 'delete_activity',
+                                                  );
+                                                });
                                           },
                                           icon: Icon(
                                             Icons.clear,
                                             size: 16,
-                                            semanticLabel: context.l10n.delete_record,
+                                            semanticLabel:
+                                                context.l10n.delete_record,
                                           ),
                                         ),
                                       ),

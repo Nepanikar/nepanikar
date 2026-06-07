@@ -21,7 +21,8 @@ class SearchMoodEntryRoute extends GoRouteData with $SearchMoodEntryRoute {
   const SearchMoodEntryRoute();
 
   @override
-  Widget build(BuildContext context, _) => const SearchMoodEntryScreen<MoodTrackDao>();
+  Widget build(BuildContext context, _) =>
+      const SearchMoodEntryScreen<MoodTrackDao>();
 }
 
 class SearchMoodEntryScreen<T extends MoodTrackDao> extends StatefulWidget {
@@ -31,7 +32,8 @@ class SearchMoodEntryScreen<T extends MoodTrackDao> extends StatefulWidget {
   State<SearchMoodEntryScreen<T>> createState() => _SearchMoodEntryState<T>();
 }
 
-class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntryScreen<T>> {
+class _SearchMoodEntryState<T extends MoodTrackDao>
+    extends State<SearchMoodEntryScreen<T>> {
   T get _trackDao => registry.get<T>();
 
   final TextEditingController _searchController = TextEditingController();
@@ -51,7 +53,10 @@ class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntr
   }
 
   Future<void> _search() async {
-    final results = await _trackDao.searchMoodTracks(_summaryToSearch, _selectedEmotions);
+    final results = await _trackDao.searchMoodTracks(
+      _summaryToSearch,
+      _selectedEmotions,
+    );
     setState(() {
       _searchResults = results;
     });
@@ -67,9 +72,14 @@ class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntr
   @override
   Widget build(BuildContext context) {
     _emotions = Provider.of<MoodState>(context).emotions;
-    final items = _emotions.map((emotion) => MultiSelectItem<String>(emotion, emotion)).toList();
+    final items = _emotions
+        .map((emotion) => MultiSelectItem<String>(emotion, emotion))
+        .toList();
 
-    const pageHorizontalPadding = EdgeInsets.symmetric(horizontal: 24.0, vertical: 12);
+    const pageHorizontalPadding = EdgeInsets.symmetric(
+      horizontal: 24.0,
+      vertical: 12,
+    );
 
     final ValueKey<int> uniqueKey = ValueKey<int>(_selectedEmotions.length);
 
@@ -106,7 +116,9 @@ class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntr
                     fillColor: containerColor,
                     filled: true,
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: NepanikarColors.container(context)),
+                      borderSide: BorderSide(
+                        color: NepanikarColors.container(context),
+                      ),
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     hintText: context.l10n.enter_part_of_summary,
@@ -132,16 +144,24 @@ class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntr
                     decoration: BoxDecoration(
                       color: containerColor,
                       borderRadius: const BorderRadius.all(Radius.circular(40)),
-                      border: Border.all(color: NepanikarColors.container(context)),
+                      border: Border.all(
+                        color: NepanikarColors.container(context),
+                      ),
                     ),
                     selectedColor: textStyleColor,
                     selectedItemsTextStyle: TextStyle(color: textStyleColor),
                     unselectedColor: textStyleColor,
                     itemsTextStyle: TextStyle(color: textStyleColor),
-                    buttonIcon: Icon(Icons.arrow_drop_down, color: textStyleColor),
+                    buttonIcon: Icon(
+                      Icons.arrow_drop_down,
+                      color: textStyleColor,
+                    ),
                     buttonText: Text(
                       context.l10n.search_by_emotions,
-                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
                     ),
                     onConfirm: (results) {
                       _onEmotionsUpdated(results.cast<String>());
@@ -177,11 +197,16 @@ class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntr
                           _search();
                         },
                         style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18.0),
+                          ),
                         ),
                         child: Text(
                           context.l10n.search,
-                          style: const TextStyle(color: Colors.white, fontSize: 14), // Text color
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                          ), // Text color
                         ),
                       ),
                     ),
@@ -202,11 +227,16 @@ class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntr
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: NepanikarColors.deleteButton,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18.0),
+                          ),
                         ),
                         child: Text(
                           context.l10n.clear_button,
-                          style: const TextStyle(color: Colors.white, fontSize: 14), // Text color
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                          ), // Text color
                         ),
                       ),
                     ),
@@ -217,27 +247,39 @@ class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntr
                   if (_searchResults.isNotEmpty) ...[
                     Text(
                       context.l10n.mood_entries,
-                      style: NepanikarFonts.title2.copyWith(color: textStyleColor),
+                      style: NepanikarFonts.title2.copyWith(
+                        color: textStyleColor,
+                      ),
                     ),
                     ListView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      itemCount: _searchResults.length, // Use the length of the search results list
+                      itemCount: _searchResults
+                          .length, // Use the length of the search results list
                       itemBuilder: (context, index) {
-                        final moodEntry = _searchResults[index]; // Access the search result item
+                        final moodEntry =
+                            _searchResults[index]; // Access the search result item
                         return Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 10,
+                            horizontal: 16,
+                          ),
                           child: MoodEntryCard(
-                            dateTime: DateFormat('d. MMM yyyy, HH:mm').format(moodEntry.date),
+                            dateTime: DateFormat(
+                              'd. MMM yyyy, HH:mm',
+                            ).format(moodEntry.date),
                             moodIcon: moodEntry.mood.icon,
                             moodDescription:
-                                moodEntry.summary ?? context.l10n.no_description_provided,
+                                moodEntry.summary ??
+                                context.l10n.no_description_provided,
                             onTap: () {
                               Provider.of<MoodState>(
                                 context,
                                 listen: false,
                               ).selectMoodEntry(moodEntry);
-                              context.push(const MoodEntryDetailRoute().location);
+                              context.push(
+                                const MoodEntryDetailRoute().location,
+                              );
                             },
                           ),
                         );
@@ -246,7 +288,9 @@ class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntr
                   ] else ...[
                     Text(
                       context.l10n.no_mood_entries,
-                      style: NepanikarFonts.title2.copyWith(color: textStyleColor),
+                      style: NepanikarFonts.title2.copyWith(
+                        color: textStyleColor,
+                      ),
                     ),
                   ],
                 ],

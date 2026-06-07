@@ -10,7 +10,8 @@ class MyRecordsMoodTrackDTO extends Equatable {
     this.emotions,
   });
 
-  factory MyRecordsMoodTrackDTO.getAndroidData(Config config, {String sectionName = 'moods'}) {
+  factory MyRecordsMoodTrackDTO.getAndroidData(Config config,
+      {String sectionName = 'moods'}) {
     final convertedValues = <DateTime, int>{};
     final convertedSummaries = <DateTime, String>{};
     final convertedDescriptions = <DateTime, String?>{};
@@ -32,8 +33,9 @@ class MyRecordsMoodTrackDTO extends Equatable {
             if (split.length > 1) {
               value = split[1].getIniIntValue();
             }
-            final emotions =
-                split.length > 2 ? split[2].split(',').cast<String>() : [].cast<String>();
+            final emotions = split.length > 2
+                ? split[2].split(',').cast<String>()
+                : [].cast<String>();
             if (split.length > 3) {
               summary = split[3].getIniStrValue();
             }
@@ -41,7 +43,8 @@ class MyRecordsMoodTrackDTO extends Equatable {
               description = split[4].getIniStrValue();
             }
             if (dateTime != null && value != null) {
-              final date = DateTime.utc(dateTime.year, dateTime.month, dateTime.day);
+              final date =
+                  DateTime.utc(dateTime.year, dateTime.month, dateTime.day);
               convertedValues[date] = value - 1;
               convertedEmotions[date] = emotions;
               convertedSummaries[date] = summary!;
@@ -54,7 +57,8 @@ class MyRecordsMoodTrackDTO extends Equatable {
     return MyRecordsMoodTrackDTO._(
       values: convertedValues.isEmpty ? null : convertedValues,
       summaries: convertedSummaries.isEmpty ? null : convertedSummaries,
-      descriptions: convertedDescriptions.isEmpty ? null : convertedDescriptions,
+      descriptions:
+          convertedDescriptions.isEmpty ? null : convertedDescriptions,
       emotions: convertedEmotions.isEmpty ? null : convertedEmotions,
     );
   }
@@ -63,7 +67,8 @@ class MyRecordsMoodTrackDTO extends Equatable {
     Map<String, Object> config, {
     String sectionName = 'moods',
   }) {
-    final moodValuesSize = config['$sectionName.size']?.toString().getIniIntValue();
+    final moodValuesSize =
+        config['$sectionName.size']?.toString().getIniIntValue();
 
     final convertedDescriptions = <DateTime, String?>{};
     final convertedValues = <DateTime, int>{};
@@ -84,7 +89,9 @@ class MyRecordsMoodTrackDTO extends Equatable {
           if (split.length > 1) {
             value = split[1].getIniIntValue();
           }
-          emotions = split.length > 2 ? split[2].split(',').cast<String>() : <String>[];
+          emotions = split.length > 2
+              ? split[2].split(',').cast<String>()
+              : <String>[];
           if (split.length > 3) {
             summary = split[3];
           }
@@ -92,7 +99,8 @@ class MyRecordsMoodTrackDTO extends Equatable {
             description = split[4];
           }
           if (dateTime != null && value != null) {
-            final date = DateTime.utc(dateTime.year, dateTime.month, dateTime.day);
+            final date =
+                DateTime.utc(dateTime.year, dateTime.month, dateTime.day);
             convertedValues[date] = value;
             convertedEmotions[date] = emotions;
             convertedSummaries[date] = summary ?? '';
@@ -104,7 +112,8 @@ class MyRecordsMoodTrackDTO extends Equatable {
     return MyRecordsMoodTrackDTO._(
       values: convertedValues.isEmpty ? null : convertedValues,
       summaries: convertedSummaries.isEmpty ? null : convertedSummaries,
-      descriptions: convertedDescriptions.isEmpty ? null : convertedDescriptions,
+      descriptions:
+          convertedDescriptions.isEmpty ? null : convertedDescriptions,
       emotions: convertedEmotions.isEmpty ? null : convertedEmotions,
     );
   }
@@ -116,7 +125,10 @@ class MyRecordsMoodTrackDTO extends Equatable {
     Map<DateTime, List<String>> emotions,
   ) =>
       MyRecordsMoodTrackDTO._(
-          values: values, summaries: summaries, descriptions: descriptions, emotions: emotions);
+          values: values,
+          summaries: summaries,
+          descriptions: descriptions,
+          emotions: emotions);
 
   /// The map of mood track values.
   ///

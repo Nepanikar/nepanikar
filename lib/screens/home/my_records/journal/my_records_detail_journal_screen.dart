@@ -18,8 +18,11 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 part 'my_records_detail_journal_screen.g.dart';
 
-@TypedGoRoute<MyRecordsJournalDetailRoute>(path: '/home/my-records/journal-detail')
-class MyRecordsJournalDetailRoute extends GoRouteData with $MyRecordsJournalDetailRoute {
+@TypedGoRoute<MyRecordsJournalDetailRoute>(
+  path: '/home/my-records/journal-detail',
+)
+class MyRecordsJournalDetailRoute extends GoRouteData
+    with $MyRecordsJournalDetailRoute {
   const MyRecordsJournalDetailRoute();
 
   @override
@@ -31,7 +34,10 @@ class MyRecordsJournalDetailRoute extends GoRouteData with $MyRecordsJournalDeta
 }
 
 class JournalRecordRouteExtraData extends Equatable {
-  const JournalRecordRouteExtraData({required this.journalRecordId, required this.journalRecord});
+  const JournalRecordRouteExtraData({
+    required this.journalRecordId,
+    required this.journalRecord,
+  });
 
   final String journalRecordId;
   final JournalRecord journalRecord;
@@ -46,21 +52,26 @@ class MyRecordsJournalDetailScreen extends StatefulWidget {
   final String journalId;
 
   @override
-  State<MyRecordsJournalDetailScreen> createState() => _MyRecordsJournalDetailScreenState();
+  State<MyRecordsJournalDetailScreen> createState() =>
+      _MyRecordsJournalDetailScreenState();
 }
 
-class _MyRecordsJournalDetailScreenState extends State<MyRecordsJournalDetailScreen> {
-  final Map<JournalQuestion, TextEditingController> _textEditingControllersMap = {};
+class _MyRecordsJournalDetailScreenState
+    extends State<MyRecordsJournalDetailScreen> {
+  final Map<JournalQuestion, TextEditingController> _textEditingControllersMap =
+      {};
 
   final analytics = registry.get<FirebaseAnalytics>();
 
   Map<JournalQuestion, String> get _answers => {
-    for (final entry in _textEditingControllersMap.entries) entry.key: entry.value.text,
+    for (final entry in _textEditingControllersMap.entries)
+      entry.key: entry.value.text,
   };
 
   late final Stream<JournalRecord?> _journalRecordStream;
 
-  MyRecordsJournalDao get _myRecordsJournalDao => registry.get<MyRecordsJournalDao>();
+  MyRecordsJournalDao get _myRecordsJournalDao =>
+      registry.get<MyRecordsJournalDao>();
 
   DateTime? _selectedDate;
 
@@ -72,7 +83,9 @@ class _MyRecordsJournalDetailScreenState extends State<MyRecordsJournalDetailScr
     for (final question in JournalQuestion.values) {
       _textEditingControllersMap[question] = TextEditingController();
     }
-    _journalRecordStream = _myRecordsJournalDao.watchRecordById(widget.journalId);
+    _journalRecordStream = _myRecordsJournalDao.watchRecordById(
+      widget.journalId,
+    );
   }
 
   @override
@@ -101,7 +114,9 @@ class _MyRecordsJournalDetailScreenState extends State<MyRecordsJournalDetailScr
       if (controller != null) {
         controller
           ..text = answer.answer
-          ..selection = TextSelection.fromPosition(TextPosition(offset: answer.answer.length));
+          ..selection = TextSelection.fromPosition(
+            TextPosition(offset: answer.answer.length),
+          );
         _answers[answer.question] = answer.answer;
       }
     }
@@ -157,8 +172,12 @@ class _MyRecordsJournalDetailScreenState extends State<MyRecordsJournalDetailScr
                   expandToContentWidth: true,
                   onTap: () async {
                     final goRouter = GoRouter.of(context);
-                    context.semanticsAnnounce(context.l10n.record_saved_announce);
-                    final journalRecord = _constructJournalRecord(_selectedDate!);
+                    context.semanticsAnnounce(
+                      context.l10n.record_saved_announce,
+                    );
+                    final journalRecord = _constructJournalRecord(
+                      _selectedDate!,
+                    );
                     await _myRecordsJournalDao.updateRecord(
                       widget.journalId,
                       updatedJournalRecord: journalRecord,
@@ -175,9 +194,15 @@ class _MyRecordsJournalDetailScreenState extends State<MyRecordsJournalDetailScr
                       text: context.l10n.really_remove,
                       onPrimaryBtnTap: (context) async {
                         final goRouter = GoRouter.of(context);
-                        context.semanticsAnnounce(context.l10n.record_deleted_announce);
-                        await _myRecordsJournalDao.deleteRecord(widget.journalId);
-                        unawaited(analytics.logEvent(name: 'journal_record_deleted'));
+                        context.semanticsAnnounce(
+                          context.l10n.record_deleted_announce,
+                        );
+                        await _myRecordsJournalDao.deleteRecord(
+                          widget.journalId,
+                        );
+                        unawaited(
+                          analytics.logEvent(name: 'journal_record_deleted'),
+                        );
                         goRouter.pop();
                       },
                       primaryBtnLabel: context.l10n.mood_help_yes,
@@ -207,7 +232,10 @@ class _MyRecordsJournalDetailScreenState extends State<MyRecordsJournalDetailScr
                 const SizedBox(height: 12),
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: Text(question.getQuestionLabel(context), style: labelTextStyle),
+                  child: Text(
+                    question.getQuestionLabel(context),
+                    style: labelTextStyle,
+                  ),
                 ),
                 const SizedBox(height: 8),
                 TextFormField(

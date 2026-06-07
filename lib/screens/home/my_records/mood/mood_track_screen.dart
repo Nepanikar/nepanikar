@@ -30,7 +30,8 @@ class MoodTrackRoute extends GoRouteData with $MoodTrackRoute {
   const MoodTrackRoute();
 
   @override
-  Widget build(BuildContext context, _) => const MoodTrackScreen<MoodTrackDao>();
+  Widget build(BuildContext context, _) =>
+      const MoodTrackScreen<MoodTrackDao>();
 }
 
 class MoodTrackScreen<T extends MoodTrackDao> extends StatefulWidget {
@@ -53,10 +54,12 @@ class MoodTrackScreen<T extends MoodTrackDao> extends StatefulWidget {
   State<MoodTrackScreen<T>> createState() => _MoodTrackScreenState<T>();
 }
 
-class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScreen<T>> {
+class _MoodTrackScreenState<T extends MoodTrackDao>
+    extends State<MoodTrackScreen<T>> {
   T get _trackDao => registry.get<T>();
 
-  NotificationsService get _notificationsService => registry.get<NotificationsService>();
+  NotificationsService get _notificationsService =>
+      registry.get<NotificationsService>();
 
   DateTime get _now => getNowDateTimeLocal();
 
@@ -75,7 +78,9 @@ class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScree
   @override
   Widget build(BuildContext context) {
     const pageSidePadding = 24.0;
-    const pageHorizontalPadding = EdgeInsets.symmetric(horizontal: pageSidePadding);
+    const pageHorizontalPadding = EdgeInsets.symmetric(
+      horizontal: pageSidePadding,
+    );
     final textColor = textColorBasedOnDarkMode(context);
 
     return Scaffold(
@@ -85,7 +90,10 @@ class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScree
           IconButton(
             icon: ExcludeSemantics(
               child: Assets.icons.notificationBell.svg(
-                colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                colorFilter: const ColorFilter.mode(
+                  Colors.white,
+                  BlendMode.srcIn,
+                ),
               ),
             ),
             tooltip: context.l10n.notifications,
@@ -111,7 +119,9 @@ class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScree
                       showLabels: widget.showMoodLabels,
                       onPick: (mood) async {
                         final l10n = context.l10n;
-                        unawaited(_notificationsService.rescheduleNotifications(l10n));
+                        unawaited(
+                          _notificationsService.rescheduleNotifications(l10n),
+                        );
                         if (GoRouter.of(context).state.uri.toString() ==
                             const MyRecordsSleepTrackRoute().location) {
                           await _trackDao.saveSleepTrack(mood);
@@ -138,7 +148,8 @@ class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScree
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    widget.chartDescription ?? context.l10n.mood_track_chart_guide,
+                    widget.chartDescription ??
+                        context.l10n.mood_track_chart_guide,
                     style: NepanikarFonts.bodyRoman.copyWith(color: textColor),
                   ),
                 ),
@@ -154,9 +165,13 @@ class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScree
                   stream: _trackDao.allMoodTracksStream,
                   builder: (_, snapshot) {
                     final allMoodTrackData = snapshot.data ?? [];
-                    final firstMoodTrackDate = allMoodTrackData.firstOrNull?.date;
+                    final firstMoodTrackDate =
+                        allMoodTrackData.firstOrNull?.date;
                     return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 24,
+                        horizontal: 24,
+                      ),
                       child: _buildChartWithFilters(
                         context,
                         allMoodTrackData: allMoodTrackData,
@@ -189,8 +204,10 @@ class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScree
       builder: (_, moodChartFilterProvider, _) {
         final activeFilter = moodChartFilterProvider.activeFilter;
         final dateRange = moodChartFilterProvider.customDateRange;
-        final canShiftNextDateRange = moodChartFilterProvider.canShiftDateRangeNext;
-        final currDateRangeStart = moodChartFilterProvider.customDateRange?.start;
+        final canShiftNextDateRange =
+            moodChartFilterProvider.canShiftDateRangeNext;
+        final currDateRangeStart =
+            moodChartFilterProvider.customDateRange?.start;
         final filteredData = dateRange != null
             ? allMoodTrackData.filterByDateRange(dateRange)
             : <DateTime, List<MoodTrack>>{};
@@ -212,14 +229,16 @@ class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScree
             if (_showChart)
               MoodChart(
                 moodTrackData: filteredData,
-                moodLabelBuilder: (m) =>
-                    widget.showMoodLabels ? m.getLabel(context) : m.getSemanticsLabel(context),
+                moodLabelBuilder: (m) => widget.showMoodLabels
+                    ? m.getLabel(context)
+                    : m.getSemanticsLabel(context),
               )
             else
               MoodDataTable(
                 moodTrackData: filteredData,
-                moodLabelBuilder: (m) =>
-                    widget.showMoodLabels ? m.getLabel(context) : m.getSemanticsLabel(context),
+                moodLabelBuilder: (m) => widget.showMoodLabels
+                    ? m.getLabel(context)
+                    : m.getSemanticsLabel(context),
               ),
             const SizedBox(height: 32),
             Row(
@@ -228,20 +247,27 @@ class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScree
                 IconButton(
                   icon: ExcludeSemantics(
                     child: Assets.icons.navigation.arrowLeft.svg(
-                      colorFilter: ColorFilter.mode(arrowCanShiftColor!, BlendMode.srcIn),
+                      colorFilter: ColorFilter.mode(
+                        arrowCanShiftColor!,
+                        BlendMode.srcIn,
+                      ),
                     ),
                   ),
                   tooltip: context.l10n.filter_previous_time_period,
-                  onPressed: () => moodChartFilterProvider.shiftDateRange(DateRangeSwitch.previous),
+                  onPressed: () => moodChartFilterProvider.shiftDateRange(
+                    DateRangeSwitch.previous,
+                  ),
                 ),
                 Expanded(
                   child: NepanikarDateRangePicker(
                     firstDate: firstMoodTrackDate == null
-                        ? currDateRangeStart ?? DateTime(_now.year, _now.month - 1)
+                        ? currDateRangeStart ??
+                              DateTime(_now.year, _now.month - 1)
                         : currDateRangeStart != null &&
                               firstMoodTrackDate.isBefore(currDateRangeStart)
                         ? firstMoodTrackDate
-                        : currDateRangeStart ?? DateTime(_now.year, _now.month - 1),
+                        : currDateRangeStart ??
+                              DateTime(_now.year, _now.month - 1),
                     lastDate: getNowDateTimeLocal(),
                     activeRange: moodChartFilterProvider.customDateRange,
                     onPick: moodChartFilterProvider.setCustomDateRange,
@@ -251,14 +277,22 @@ class _MoodTrackScreenState<T extends MoodTrackDao> extends State<MoodTrackScree
                   icon: ExcludeSemantics(
                     child: Assets.icons.navigation.arrowRight.svg(
                       colorFilter: !canShiftNextDateRange
-                          ? const ColorFilter.mode(arrowCannotShiftColor, BlendMode.srcIn)
-                          : ColorFilter.mode(arrowCanShiftColor, BlendMode.srcIn),
+                          ? const ColorFilter.mode(
+                              arrowCannotShiftColor,
+                              BlendMode.srcIn,
+                            )
+                          : ColorFilter.mode(
+                              arrowCanShiftColor,
+                              BlendMode.srcIn,
+                            ),
                     ),
                   ),
                   tooltip: context.l10n.filter_next_time_period,
                   onPressed: !canShiftNextDateRange
                       ? null
-                      : () => moodChartFilterProvider.shiftDateRange(DateRangeSwitch.next),
+                      : () => moodChartFilterProvider.shiftDateRange(
+                          DateRangeSwitch.next,
+                        ),
                 ),
               ],
             ),

@@ -24,7 +24,9 @@ class EmptyRecordsStateWidget extends StatelessWidget {
             colorFilter: ColorFilter.mode(
               isDarkmode(context)
                   ? Colors.white
-                  : NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade400,
+                  : NepanikarColors.primarySwatch(
+                      Theme.of(context).primaryColor,
+                    ).shade400,
               BlendMode.srcIn,
             ),
           ),
@@ -37,7 +39,9 @@ class EmptyRecordsStateWidget extends StatelessWidget {
             fontWeight: FontWeight.w500,
             color: isDarkmode(context)
                 ? Colors.white
-                : NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade400,
+                : NepanikarColors.primarySwatch(
+                    Theme.of(context).primaryColor,
+                  ).shade400,
           ),
         ),
       ],

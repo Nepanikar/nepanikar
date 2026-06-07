@@ -15,7 +15,8 @@ class EatingDisorderModuleDTO extends Equatable {
   factory EatingDisorderModuleDTO.getAndroidData(Config config) {
     NepanikarChecklistFormDTO? eatingDisorderFoodCreativeConfig;
     try {
-      eatingDisorderFoodCreativeConfig = NepanikarChecklistFormDTO.getAndroidData(
+      eatingDisorderFoodCreativeConfig =
+          NepanikarChecklistFormDTO.getAndroidData(
         config,
         sectionTextsName: 'foodCreative',
         sectionCheckboxStatesName: 'foodCreativeC',
@@ -24,7 +25,8 @@ class EatingDisorderModuleDTO extends Equatable {
 
     NepanikarChecklistFormDTO? eatingDisorderFoodMotivationConfig;
     try {
-      eatingDisorderFoodMotivationConfig = NepanikarChecklistFormDTO.getAndroidData(
+      eatingDisorderFoodMotivationConfig =
+          NepanikarChecklistFormDTO.getAndroidData(
         config,
         sectionTextsName: 'foodMotivation',
         sectionCheckboxStatesName: 'foodMotivationC',
@@ -33,7 +35,8 @@ class EatingDisorderModuleDTO extends Equatable {
 
     NepanikarChecklistFormDTO? eatingDisorderFoodChallengesConfig;
     try {
-      eatingDisorderFoodChallengesConfig = NepanikarChecklistFormDTO.getAndroidData(
+      eatingDisorderFoodChallengesConfig =
+          NepanikarChecklistFormDTO.getAndroidData(
         config,
         sectionTextsName: 'foodChallenge',
         sectionCheckboxStatesName: 'foodChallengeC',
@@ -48,13 +51,15 @@ class EatingDisorderModuleDTO extends Equatable {
 
     NepanikarListFormDTO? eatingDisorderFoodILikeConfig;
     try {
-      eatingDisorderFoodILikeConfig =
-          NepanikarListFormDTO.getAndroidData(config, sectionName: 'foodFoodLike');
+      eatingDisorderFoodILikeConfig = NepanikarListFormDTO.getAndroidData(
+          config,
+          sectionName: 'foodFoodLike');
     } catch (_) {}
 
     NepanikarChecklistFormDTO? eatingDisorderFoodAfraidOfConfig;
     try {
-      eatingDisorderFoodAfraidOfConfig = NepanikarChecklistFormDTO.getAndroidData(
+      eatingDisorderFoodAfraidOfConfig =
+          NepanikarChecklistFormDTO.getAndroidData(
         config,
         sectionTextsName: 'foodAfraid',
         sectionCheckboxStatesName: 'foodAfraidC',
@@ -65,7 +70,8 @@ class EatingDisorderModuleDTO extends Equatable {
       eatingDisorderFoodCreativeConfig: eatingDisorderFoodCreativeConfig,
       eatingDisorderFoodMotivationConfig: eatingDisorderFoodMotivationConfig,
       eatingDisorderFoodChallengesConfig: eatingDisorderFoodChallengesConfig,
-      eatingDisorderFoodLikeOnMyselfConfig: eatingDisorderFoodLikeOnMyselfConfig,
+      eatingDisorderFoodLikeOnMyselfConfig:
+          eatingDisorderFoodLikeOnMyselfConfig,
       eatingDisorderFoodILikeConfig: eatingDisorderFoodILikeConfig,
       eatingDisorderFoodAfraidOfConfig: eatingDisorderFoodAfraidOfConfig,
     );
@@ -124,7 +130,8 @@ class EatingDisorderModuleDTO extends Equatable {
       eatingDisorderFoodCreativeConfig: eatingDisorderFoodCreativeConfig,
       eatingDisorderFoodMotivationConfig: eatingDisorderFoodMotivationConfig,
       eatingDisorderFoodChallengesConfig: eatingDisorderFoodChallengesConfig,
-      eatingDisorderFoodLikeOnMyselfConfig: eatingDisorderFoodLikeOnMyselfConfig,
+      eatingDisorderFoodLikeOnMyselfConfig:
+          eatingDisorderFoodLikeOnMyselfConfig,
       eatingDisorderFoodILikeConfig: eatingDisorderFoodILikeConfig,
       eatingDisorderFoodAfraidOfConfig: eatingDisorderFoodAfraidOfConfig,
     );

@@ -12,13 +12,14 @@ class SelfHarmModuleDTO extends Equatable {
   factory SelfHarmModuleDTO.getAndroidData(Config config) {
     NepanikarListFormDTO? selfHarmHelpedConfig;
     try {
-      selfHarmHelpedConfig =
-          NepanikarListFormDTO.getAndroidData(config, sectionName: 'selfHarmHelped');
+      selfHarmHelpedConfig = NepanikarListFormDTO.getAndroidData(config,
+          sectionName: 'selfHarmHelped');
     } catch (_) {}
 
     NepanikarListFormDTO? selfHarmPlanConfig;
     try {
-      selfHarmPlanConfig = NepanikarListFormDTO.getAndroidData(config, sectionName: 'selfHarmPlan');
+      selfHarmPlanConfig = NepanikarListFormDTO.getAndroidData(config,
+          sectionName: 'selfHarmPlan');
     } catch (_) {}
 
     SelfHarmTimerDTO? selfHarmTimerConfig;
@@ -35,12 +36,14 @@ class SelfHarmModuleDTO extends Equatable {
   factory SelfHarmModuleDTO.getIosData(Map<String, Object> config) {
     NepanikarListFormDTO? selfHarmHelpedConfig;
     try {
-      selfHarmHelpedConfig = NepanikarListFormDTO.getIosData(config, sectionName: 'selfHarmHelped');
+      selfHarmHelpedConfig = NepanikarListFormDTO.getIosData(config,
+          sectionName: 'selfHarmHelped');
     } catch (_) {}
 
     NepanikarListFormDTO? selfHarmPlanConfig;
     try {
-      selfHarmPlanConfig = NepanikarListFormDTO.getIosData(config, sectionName: 'selfHarmPlan');
+      selfHarmPlanConfig =
+          NepanikarListFormDTO.getIosData(config, sectionName: 'selfHarmPlan');
     } catch (_) {}
 
     SelfHarmTimerDTO? selfHarmTimerConfig;
@@ -59,5 +62,6 @@ class SelfHarmModuleDTO extends Equatable {
   final SelfHarmTimerDTO? selfHarmTimerConfig;
 
   @override
-  List<Object?> get props => [selfHarmHelpedConfig, selfHarmPlanConfig, selfHarmTimerConfig];
+  List<Object?> get props =>
+      [selfHarmHelpedConfig, selfHarmPlanConfig, selfHarmTimerConfig];
 }

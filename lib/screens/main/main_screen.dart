@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
+import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/providers/mood_state_provider.dart';
+import 'package:nepanikar/screens/bpd_programme/bpd_landing_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/bpd_programme_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/bpd_weeks_screen.dart';
 import 'package:nepanikar/screens/home/my_records/my_records_screen.dart';
 import 'package:nepanikar/screens/main/contacts_screen.dart';
 import 'package:nepanikar/screens/main/home_screen.dart';
 import 'package:nepanikar/screens/main/settings_screen.dart';
 import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
+import 'package:nepanikar/services/db/user_settings/user_settings_models.dart';
 import 'package:nepanikar/utils/contacts_data_manager.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/bottom_navbar_item.dart';
@@ -33,7 +39,8 @@ class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
   bool isDarkMode = false;
 
-  ContactsDataManager get _contactsDataManager => registry.get<ContactsDataManager>();
+  ContactsDataManager get _contactsDataManager =>
+      registry.get<ContactsDataManager>();
 
   DatabaseService get _databaseService => registry.get<DatabaseService>();
 
@@ -45,9 +52,32 @@ class _MainScreenState extends State<MainScreen> {
     return <Widget>[
       const HomeScreen(),
       const MyRecordsScreen(showBottomNavbar: false),
+      _BpdLandingNavigator(userSettingsDao: _userSettingsDao),
       ContactsScreen(countryContacts: countryContacts),
       const SettingsScreen(),
     ];
+  }
+
+  Widget _buildBpdScreen() {
+    return FutureBuilder<BpdProgrammeStatus>(
+      future: _userSettingsDao.getBpdProgrammeStatus(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        return _BpdLandingNavigator(userSettingsDao: _userSettingsDao);
+
+        final status = snapshot.data!;
+        if (status.hasStarted) {
+          // Journey started - navigate to full-screen BPD weeks screen
+          return _BpdWeeksNavigator();
+        } else {
+          // Journey not started - navigate to full-screen landing page
+          return _BpdLandingNavigator(userSettingsDao: _userSettingsDao);
+        }
+      },
+    );
   }
 
   @override
@@ -77,8 +107,6 @@ class _MainScreenState extends State<MainScreen> {
     });
   }
 
-  List<SvgPicture> bottomNavigationIcons = [SvgPicture.asset(Assets.icons.home.path)];
-
   @override
   Widget build(BuildContext context) {
     isDarkMode = Theme.of(context).brightness == Brightness.dark;
@@ -91,28 +119,30 @@ class _MainScreenState extends State<MainScreen> {
             svgIconPath: Assets.icons.home.path,
             label: context.l10n.home,
             isSelected: _selectedIndex == 0,
-            isDarkMode: isDarkMode,
             context: context,
           ),
           buildBottomNavigationBarItem(
             svgIconPath: Assets.icons.calendarEvent.path,
             label: context.l10n.records,
             isSelected: _selectedIndex == 1,
-            isDarkMode: isDarkMode,
+            context: context,
+          ),
+          buildBottomNavigationBarItem(
+            svgIconPath: Assets.icons.calendarEvent.path,
+            label: 'BPD',
+            isSelected: _selectedIndex == 2,
             context: context,
           ),
           buildBottomNavigationBarItem(
             svgIconPath: Assets.icons.phone.path,
             label: context.l10n.contacts_module,
-            isSelected: _selectedIndex == 2,
-            isDarkMode: isDarkMode,
+            isSelected: _selectedIndex == 3,
             context: context,
           ),
           buildBottomNavigationBarItem(
             svgIconPath: Assets.icons.settings.path,
             label: context.l10n.settings,
-            isSelected: _selectedIndex == 3,
-            isDarkMode: isDarkMode,
+            isSelected: _selectedIndex == 4,
             context: context,
           ),
         ],
@@ -123,5 +153,65 @@ class _MainScreenState extends State<MainScreen> {
         onTap: _onItemTapped,
       ),
     );
+  }
+}
+
+class _BpdWeeksNavigator extends StatefulWidget {
+  const _BpdWeeksNavigator();
+
+  @override
+  State<_BpdWeeksNavigator> createState() => _BpdWeeksNavigatorState();
+}
+
+class _BpdWeeksNavigatorState extends State<_BpdWeeksNavigator> {
+  bool _hasNavigated = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_hasNavigated) {
+      _hasNavigated = true;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) {
+          context.push(const BpdWeeksScreenRoute().location);
+        }
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(child: CircularProgressIndicator());
+  }
+}
+
+class _BpdLandingNavigator extends StatefulWidget {
+  const _BpdLandingNavigator({required this.userSettingsDao});
+
+  final UserSettingsDao userSettingsDao;
+
+  @override
+  State<_BpdLandingNavigator> createState() => _BpdLandingNavigatorState();
+}
+
+class _BpdLandingNavigatorState extends State<_BpdLandingNavigator> {
+  bool _hasNavigated = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_hasNavigated) {
+      _hasNavigated = true;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) {
+          context.push(const BpdLandingScreenRoute().location);
+        }
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(child: CircularProgressIndicator());
   }
 }

@@ -3,7 +3,10 @@ import 'package:nepanikar/widgets/heatmap/util/date_util.dart';
 
 class DatasetsUtil {
   /// Filtering [datasets] where the key is on the same month of [referenceDate].
-  static Map<DateTime, int> filterMonth(Map<DateTime, int>? datasets, DateTime referenceDate) {
+  static Map<DateTime, int> filterMonth(
+    Map<DateTime, int>? datasets,
+    DateTime referenceDate,
+  ) {
     return Map.from(datasets ?? {})..removeWhere(
       (date, value) =>
           !(date.isAfter(DateUtil.startDayOfMonth(referenceDate)) &&

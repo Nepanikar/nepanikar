@@ -5,12 +5,16 @@ import 'package:nepanikar/services/db/eating_disorder/eating_disorder_like_on_my
 import 'package:nepanikar/widgets/input_form_contents/list_form_content.dart';
 part 'eating_disorder_like_on_myself_screen.g.dart';
 
-@TypedGoRoute<EatingDisorderLikeOnMyselfRoute>(path: '/home/eating-disorder/tasks/like-on-myself')
-class EatingDisorderLikeOnMyselfRoute extends GoRouteData with $EatingDisorderLikeOnMyselfRoute {
+@TypedGoRoute<EatingDisorderLikeOnMyselfRoute>(
+  path: '/home/eating-disorder/tasks/like-on-myself',
+)
+class EatingDisorderLikeOnMyselfRoute extends GoRouteData
+    with $EatingDisorderLikeOnMyselfRoute {
   const EatingDisorderLikeOnMyselfRoute();
 
   @override
-  Widget build(BuildContext context, _) => const EatingDisorderLikeOnMyselfScreen();
+  Widget build(BuildContext context, _) =>
+      const EatingDisorderLikeOnMyselfScreen();
 }
 
 class EatingDisorderLikeOnMyselfScreen extends StatelessWidget {

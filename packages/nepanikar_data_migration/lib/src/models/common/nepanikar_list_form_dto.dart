@@ -8,7 +8,8 @@ class NepanikarListFormDTO extends Equatable {
     required this.texts,
   });
 
-  factory NepanikarListFormDTO.getAndroidData(Config config, {required String sectionName}) {
+  factory NepanikarListFormDTO.getAndroidData(Config config,
+      {required String sectionName}) {
     final itemsMap = config.itemsToMap(sectionName);
 
     final texts = <String>[];
@@ -30,7 +31,8 @@ class NepanikarListFormDTO extends Equatable {
 
     final texts = <String>[];
     if (itemsSize != null) {
-      final keys = List.generate(itemsSize, (i) => '$sectionName.${i + 1}.value');
+      final keys =
+          List.generate(itemsSize, (i) => '$sectionName.${i + 1}.value');
       texts.addAll(keys.map((key) => config[key]?.toString() ?? ''));
     }
 

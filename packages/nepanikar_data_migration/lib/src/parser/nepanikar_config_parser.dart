@@ -19,7 +19,8 @@ class NepanikarConfigParser {
   static const QT_DATE_PATTERN = 'd.M.yyyy';
 
   static NepanikarConfig parseAndroidConfigFile(File configFile) {
-    final config = Config.fromStrings(configFile.readAsLinesSync(encoding: NEPANIKAR_CONF_CODEC));
+    final config = Config.fromStrings(
+        configFile.readAsLinesSync(encoding: NEPANIKAR_CONF_CODEC));
     return NepanikarConfig.getAndroidData(config);
   }
 
@@ -28,7 +29,8 @@ class NepanikarConfigParser {
   }
 }
 
-List<String> get fallbackParseLocales => <String>[Platform.localeName, 'en', 'cs'];
+List<String> get fallbackParseLocales =>
+    <String>[Platform.localeName, 'en', 'cs'];
 
 extension NepanikarParserStringExt on String {
   String cleanUnicodes() {
@@ -40,7 +42,9 @@ extension NepanikarParserStringExt on String {
         final charCode = int.tryParse(hex, radix: 16);
         return charCode == null ? '?' : String.fromCharCode(charCode);
       },
-    ).replaceAll('\\n', '\n').replaceAll('\\', ''); // Replace all backslashes except newline.
+    )
+        .replaceAll('\\n', '\n')
+        .replaceAll('\\', ''); // Replace all backslashes except newline.
   }
 
   String? getIniStrValue({bool cleanFromUnicodes = true}) {
@@ -50,23 +54,26 @@ extension NepanikarParserStringExt on String {
     return cleanFromUnicodes ? cleanUnicodes() : this;
   }
 
-  DateTime? getIniDateTimeValue({bool cleanFromUnicodes = true, String? dateTimePattern}) {
+  DateTime? getIniDateTimeValue(
+      {bool cleanFromUnicodes = true, String? dateTimePattern}) {
     final strValue = getIniStrValue(cleanFromUnicodes: cleanFromUnicodes);
     if (strValue == null) return null;
     DateTime? dateTime;
 
     try {
-      dateTime =
-          DateFormat(dateTimePattern ?? NepanikarConfigParser.QT_DATE_TIME_PATTERN).parse(strValue);
+      dateTime = DateFormat(
+              dateTimePattern ?? NepanikarConfigParser.QT_DATE_TIME_PATTERN)
+          .parse(strValue);
     } catch (e) {
       print(e);
 
       // Trying out fallback languages.
       for (final locale in fallbackParseLocales) {
         try {
-          dateTime =
-              DateFormat(dateTimePattern ?? NepanikarConfigParser.QT_DATE_TIME_PATTERN, locale)
-                  .parse(strValue);
+          dateTime = DateFormat(
+                  dateTimePattern ?? NepanikarConfigParser.QT_DATE_TIME_PATTERN,
+                  locale)
+              .parse(strValue);
           break;
         } catch (e) {
           print(e);
@@ -84,10 +91,12 @@ extension NepanikarParserStringExt on String {
   }
 
   bool? getIniBoolValue({bool cleanFromUnicodes = false}) {
-    final strValue = getIniStrValue(cleanFromUnicodes: cleanFromUnicodes)?.toLowerCase();
+    final strValue =
+        getIniStrValue(cleanFromUnicodes: cleanFromUnicodes)?.toLowerCase();
     final trueValues = ['true', 't'];
     final falseValues = ['false', 'f'];
-    final isBool = trueValues.contains(strValue) || falseValues.contains(strValue);
+    final isBool =
+        trueValues.contains(strValue) || falseValues.contains(strValue);
     if (isBool) {
       return trueValues.contains(strValue);
     }
@@ -97,7 +106,8 @@ extension NepanikarParserStringExt on String {
 
 extension ConfigItemsToMapExt on Config {
   /// The key is typically in format "1\value".
-  Map<String, String?>? itemsToMap(String sectionName, [String? keyNamePart = 'value']) {
+  Map<String, String?>? itemsToMap(String sectionName,
+      [String? keyNamePart = 'value']) {
     final sectionEntries = items(sectionName);
     if (sectionEntries == null) return null;
     final map = <String, String?>{};

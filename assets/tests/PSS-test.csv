@@ -1,0 +1,51 @@
+question_id,question_text,answer_id,answer_text,answer_score
+q1,"Jak často jste se za poslední měsíc naštval/a kvůli něčemu, co se stalo neočekaně?",a1,"Nikdy",0
+q1,"Jak často jste se za poslední měsíc naštval/a kvůli něčemu, co se stalo neočekaně?",a2,"Skoro nikdy",1
+q1,"Jak často jste se za poslední měsíc naštval/a kvůli něčemu, co se stalo neočekaně?",a3,"Občas",2
+q1,"Jak často jste se za poslední měsíc naštval/a kvůli něčemu, co se stalo neočekaně?",a4,"Docela často",3
+q1,"Jak často jste se za poslední měsíc naštval/a kvůli něčemu, co se stalo neočekaně?",a5,"Velmi často",4
+q2,"Jak často jste měl/a pocit, že nejste schopen/a kontrolovat důležité věci ve vašem životě?",a1,"Nikdy",0
+q2,"Jak často jste měl/a pocit, že nejste schopen/a kontrolovat důležité věci ve vašem životě?",a2,"Skoro nikdy",1
+q2,"Jak často jste měl/a pocit, že nejste schopen/a kontrolovat důležité věci ve vašem životě?",a3,"Občas",2
+q2,"Jak často jste měl/a pocit, že nejste schopen/a kontrolovat důležité věci ve vašem životě?",a4,"Docela často",3
+q2,"Jak často jste měl/a pocit, že nejste schopen/a kontrolovat důležité věci ve vašem životě?",a5,"Velmi často",4
+q3,"Jak často jste za poslední měsíc pociťoval/a nervozitu a stres?",a1,"Nikdy",0
+q3,"Jak často jste za poslední měsíc pociťoval/a nervozitu a stres?",a2,"Skoro nikdy",1
+q3,"Jak často jste za poslední měsíc pociťoval/a nervozitu a stres?",a3,"Občas",2
+q3,"Jak často jste za poslední měsíc pociťoval/a nervozitu a stres?",a4,"Docela často",3
+q3,"Jak často jste za poslední měsíc pociťoval/a nervozitu a stres?",a5,"Velmi často",4
+q4,"Jak často jste cítil/a jistotu ve své schopnosti zvládat osobní problémy?",a1,"Nikdy",0
+q4,"Jak často jste cítil/a jistotu ve své schopnosti zvládat osobní problémy?",a2,"Skoro nikdy",1
+q4,"Jak často jste cítil/a jistotu ve své schopnosti zvládat osobní problémy?",a3,"Občas",2
+q4,"Jak často jste cítil/a jistotu ve své schopnosti zvládat osobní problémy?",a4,"Docela často",3
+q4,"Jak často jste cítil/a jistotu ve své schopnosti zvládat osobní problémy?",a5,"Velmi často",4
+q5,"Jak často jste měl/a pocit, že se věci vyvíjejí podle vašich představ?",a1,"Nikdy",0
+q5,"Jak často jste měl/a pocit, že se věci vyvíjejí podle vašich představ?",a2,"Skoro nikdy",1
+q5,"Jak často jste měl/a pocit, že se věci vyvíjejí podle vašich představ?",a3,"Občas",2
+q5,"Jak často jste měl/a pocit, že se věci vyvíjejí podle vašich představ?",a4,"Docela často",3
+q5,"Jak často jste měl/a pocit, že se věci vyvíjejí podle vašich představ?",a5,"Velmi často",4
+q6,"Jak často jste zjistil/a, že si neumíte poradit se všemi povinnostmi, které jste měl/a udělat?",a1,"Nikdy",0
+q6,"Jak často jste zjistil/a, že si neumíte poradit se všemi povinnostmi, které jste měl/a udělat?",a2,"Skoro nikdy",1
+q6,"Jak často jste zjistil/a, že si neumíte poradit se všemi povinnostmi, které jste měl/a udělat?",a3,"Občas",2
+q6,"Jak často jste zjistil/a, že si neumíte poradit se všemi povinnostmi, které jste měl/a udělat?",a4,"Docela často",3
+q6,"Jak často jste zjistil/a, že si neumíte poradit se všemi povinnostmi, které jste měl/a udělat?",a5,"Velmi často",4
+q7,"Jak často jste dokázal/a kontrolovat svoji podrážděnost?",a1,"Nikdy",0
+q7,"Jak často jste dokázal/a kontrolovat svoji podrážděnost?",a2,"Skoro nikdy",1
+q7,"Jak často jste dokázal/a kontrolovat svoji podrážděnost?",a3,"Občas",2
+q7,"Jak často jste dokázal/a kontrolovat svoji podrážděnost?",a4,"Docela často",3
+q7,"Jak často jste dokázal/a kontrolovat svoji podrážděnost?",a5,"Velmi často",4
+q8,"Jak často jste měl/a pocit, že jste nad věcí?",a1,"Nikdy",0
+q8,"Jak často jste měl/a pocit, že jste nad věcí?",a2,"Skoro nikdy",1
+q8,"Jak často jste měl/a pocit, že jste nad věcí?",a3,"Občas",2
+q8,"Jak často jste měl/a pocit, že jste nad věcí?",a4,"Docela často",3
+q8,"Jak často jste měl/a pocit, že jste nad věcí?",a5,"Velmi často",4
+q9,"Jak často jste se rozhněval/a kvůli něčemu tak, že jste se nebyl/a schopen/a ovládat?",a1,"Nikdy",0
+q9,"Jak často jste se rozhněval/a kvůli něčemu tak, že jste se nebyl/a schopen/a ovládat?",a2,"Skoro nikdy",1
+q9,"Jak často jste se rozhněval/a kvůli něčemu tak, že jste se nebyl/a schopen/a ovládat?",a3,"Občas",2
+q9,"Jak často jste se rozhněval/a kvůli něčemu tak, že jste se nebyl/a schopen/a ovládat?",a4,"Docela často",3
+q9,"Jak často jste se rozhněval/a kvůli něčemu tak, že jste se nebyl/a schopen/a ovládat?",a5,"Velmi často",4
+q10,"Jak často jste cítil/a, že se na vás hrnou potíže tak moc, že je nejste schopen/a překonat?",a1,"Nikdy",0
+q10,"Jak často jste cítil/a, že se na vás hrnou potíže tak moc, že je nejste schopen/a překonat?",a2,"Skoro nikdy",1
+q10,"Jak často jste cítil/a, že se na vás hrnou potíže tak moc, že je nejste schopen/a překonat?",a3,"Občas",2
+q10,"Jak často jste cítil/a, že se na vás hrnou potíže tak moc, že je nejste schopen/a překonat?",a4,"Docela často",3
+q10,"Jak často jste cítil/a, že se na vás hrnou potíže tak moc, že je nejste schopen/a překonat?",a5,"Velmi často",4

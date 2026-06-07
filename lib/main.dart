@@ -36,8 +36,12 @@ class Nepanikar extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<MoodChartFilterProvider>(create: (_) => MoodChartFilterProvider()),
-        ChangeNotifierProvider<MoodState>(create: (_) => MoodState(_emotionsDao, _trackDao)),
+        ChangeNotifierProvider<MoodChartFilterProvider>(
+          create: (_) => MoodChartFilterProvider(),
+        ),
+        ChangeNotifierProvider<MoodState>(
+          create: (_) => MoodState(_emotionsDao, _trackDao),
+        ),
         ChangeNotifierProvider<MoodHeatmapFilterProvider>(
           create: (_) => MoodHeatmapFilterProvider(),
         ),
@@ -53,24 +57,30 @@ class Nepanikar extends StatelessWidget {
               return StreamBuilder<Color>(
                 stream: _userSettingsDao.mainColorStream,
                 builder: (context, snapshot) {
-                  final inputMainColor = snapshot.data ?? Theme.of(context).primaryColor;
+                  final inputMainColor =
+                      snapshot.data ?? Theme.of(context).primaryColor;
                   return MaterialApp.router(
                     debugShowCheckedModeBanner: false,
                     title: _getAppNameFromLocale(locale),
                     theme: NepanikarTheme.getThemeData(
-                      fontFamily: locale?.languageCode == NepanikarLanguages.uk.languageCode
+                      fontFamily:
+                          locale?.languageCode ==
+                              NepanikarLanguages.uk.languageCode
                           ? null
                           : FontFamily.satoshi,
                       mainColor: inputMainColor,
                     ),
                     darkTheme: darkTheme.getThemeData(
-                      fontFamily: locale?.languageCode == NepanikarLanguages.uk.languageCode
+                      fontFamily:
+                          locale?.languageCode ==
+                              NepanikarLanguages.uk.languageCode
                           ? null
                           : FontFamily.satoshi,
                       mainColor: inputMainColor,
                     ),
                     themeMode: themeMode,
-                    localizationsDelegates: AppLocalizations.localizationsDelegates,
+                    localizationsDelegates:
+                        AppLocalizations.localizationsDelegates,
                     supportedLocales: AppLocalizations.supportedLocales,
                     locale: locale,
                     routerConfig: _goRouter,

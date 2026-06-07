@@ -40,16 +40,13 @@ class _ExportScreenState extends State<ExportScreen> {
   @override
   void initState() {
     super.initState();
-    _oldAppConfigFileExistsFuture = File(_saveDirectories.oldAppDataConfigFileBackupPath).exists();
+    _oldAppConfigFileExistsFuture = File(
+      _saveDirectories.oldAppDataConfigFileBackupPath,
+    ).exists();
   }
 
   @override
   Widget build(BuildContext context) {
-    final ThemeMode currentThemeMode = Theme.of(context).brightness == Brightness.dark
-        ? ThemeMode.dark
-        : ThemeMode.light;
-    final bool isDarkMode = currentThemeMode == ThemeMode.dark;
-
     return NepanikarScreenWrapper(
       key: const ValueKey('export_screen'),
       appBarTitle: context.l10n.import_export,
@@ -65,7 +62,9 @@ class _ExportScreenState extends State<ExportScreen> {
             });
             await registry.get<ExportService>().export(
               onSuccess: () {
-                context.showSuccessSnackbar(text: context.l10n.export_successful);
+                context.showSuccessSnackbar(
+                  text: context.l10n.export_successful,
+                );
               },
               onError: () {
                 context.showErrorSnackbar(text: context.l10n.export_failed);
@@ -77,7 +76,6 @@ class _ExportScreenState extends State<ExportScreen> {
               });
             }
           },
-          isDarkMode: isDarkMode,
         ),
         LongTile(
           text: context.l10n.import_button,
@@ -89,7 +87,9 @@ class _ExportScreenState extends State<ExportScreen> {
             });
             await registry.get<ExportService>().import(
               onSuccess: () {
-                context.showSuccessSnackbar(text: context.l10n.import_successful);
+                context.showSuccessSnackbar(
+                  text: context.l10n.import_successful,
+                );
               },
               onError: () {
                 context.showErrorSnackbar(text: context.l10n.import_failed);
@@ -101,7 +101,6 @@ class _ExportScreenState extends State<ExportScreen> {
               });
             }
           },
-          isDarkMode: isDarkMode,
         ),
         FutureBuilder<bool>(
           future: _oldAppConfigFileExistsFuture,
@@ -135,7 +134,6 @@ class _ExportScreenState extends State<ExportScreen> {
                     debugPrint('Could not launch $uri');
                   }
                 },
-                isDarkMode: isDarkMode,
               ),
             );
           },
@@ -152,14 +150,17 @@ class _Spinner extends StatefulWidget {
   State<_Spinner> createState() => _SpinnerState();
 }
 
-class _SpinnerState extends State<_Spinner> with SingleTickerProviderStateMixin {
+class _SpinnerState extends State<_Spinner>
+    with SingleTickerProviderStateMixin {
   late final AnimationController _animController;
 
   @override
   void initState() {
     super.initState();
-    _animController = AnimationController(duration: const Duration(seconds: 1), vsync: this)
-      ..repeat();
+    _animController = AnimationController(
+      duration: const Duration(seconds: 1),
+      vsync: this,
+    )..repeat();
   }
 
   @override

@@ -8,7 +8,10 @@ import 'package:nepanikar/widgets/material_wrapper.dart';
 typedef LabelBuilder<T> = String Function(T value);
 
 enum NepanikarDropdownType {
-  filled(textColor: Color(0xff1F2C37), bgColor: NepanikarColors.filledContainer),
+  filled(
+    textColor: Color(0xff1F2C37),
+    bgColor: NepanikarColors.filledContainer,
+  ),
   outlined(textColor: NepanikarColors.dark, bgColor: Colors.white);
 
   const NepanikarDropdownType({required this.textColor, required this.bgColor});
@@ -84,7 +87,11 @@ class NepanikarDropdown<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const rightPadding = EdgeInsets.only(right: 16);
-    final textColor = customColorsBasedOnDarkMode(context, NepanikarColors.white, _type.textColor);
+    final textColor = customColorsBasedOnDarkMode(
+      context,
+      NepanikarColors.white,
+      _type.textColor,
+    );
     final dropDownColor = NepanikarColors.primaryColorShade(context, 0.6);
     svgColorBasedOnDarkMode(context);
     final colorFilter = svgColorFilterBasedOnDarkMode(context);
@@ -102,7 +109,9 @@ class NepanikarDropdown<T> extends StatelessWidget {
             icon: Padding(
               padding: rightPadding,
               child: ExcludeSemantics(
-                child: Assets.icons.navigation.chevronDown.svg(colorFilter: colorFilter),
+                child: Assets.icons.navigation.chevronDown.svg(
+                  colorFilter: colorFilter,
+                ),
               ),
             ),
             underline: const SizedBox.shrink(),

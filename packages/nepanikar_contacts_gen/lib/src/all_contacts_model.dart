@@ -6,9 +6,11 @@ part 'all_contacts_model.g.dart';
 
 @freezed
 abstract class AllContacts with _$AllContacts {
-  const factory AllContacts({required List<CountryContacts> countryContacts}) = _AllContacts;
+  const factory AllContacts({required List<CountryContacts> countryContacts}) =
+      _AllContacts;
 
   const AllContacts._();
 
-  factory AllContacts.fromJson(Map<String, Object?> json) => _$AllContactsFromJson(json);
+  factory AllContacts.fromJson(Map<String, Object?> json) =>
+      _$AllContactsFromJson(json);
 }

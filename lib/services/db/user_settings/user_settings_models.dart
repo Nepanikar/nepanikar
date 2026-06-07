@@ -9,15 +9,20 @@ part 'user_settings_models.g.dart';
 
 @freezed
 abstract class UserLanguage with _$UserLanguage {
-  const factory UserLanguage({required String languageCode, required String? countryCode}) =
-      _UserLanguage;
+  const factory UserLanguage({
+    required String languageCode,
+    required String? countryCode,
+  }) = _UserLanguage;
 
   const UserLanguage._();
 
-  factory UserLanguage.fromJson(Map<String, Object?> json) => _$UserLanguageFromJson(json);
+  factory UserLanguage.fromJson(Map<String, Object?> json) =>
+      _$UserLanguageFromJson(json);
 
-  static UserLanguage fromLocale(Locale locale) =>
-      UserLanguage(languageCode: locale.languageCode, countryCode: locale.countryCode);
+  static UserLanguage fromLocale(Locale locale) => UserLanguage(
+    languageCode: locale.languageCode,
+    countryCode: locale.countryCode,
+  );
 
   Locale toLocale() => Locale(languageCode, countryCode);
 }
@@ -38,11 +43,13 @@ abstract class NotificationTypeSettings with _$NotificationTypeSettings {
 
 @freezed
 abstract class UserThemeMode with _$UserThemeMode {
-  const factory UserThemeMode({@Default('system') String themeMode}) = _UserThemeMode;
+  const factory UserThemeMode({@Default('system') String themeMode}) =
+      _UserThemeMode;
 
   const UserThemeMode._();
 
-  factory UserThemeMode.fromJson(Map<String, Object?> json) => _$UserThemeModeFromJson(json);
+  factory UserThemeMode.fromJson(Map<String, Object?> json) =>
+      _$UserThemeModeFromJson(json);
 
   ThemeMode getThemeMode() {
     switch (themeMode) {
@@ -58,4 +65,17 @@ abstract class UserThemeMode with _$UserThemeMode {
   static String themeModeToString(ThemeMode themeMode) {
     return themeMode.toString().split('.').last;
   }
+}
+
+@freezed
+abstract class BpdProgrammeStatus with _$BpdProgrammeStatus {
+  const factory BpdProgrammeStatus({
+    required bool hasStarted,
+    DateTime? startedAt,
+  }) = _BpdProgrammeStatus;
+
+  const BpdProgrammeStatus._();
+
+  factory BpdProgrammeStatus.fromJson(Map<String, Object?> json) =>
+      _$BpdProgrammeStatusFromJson(json);
 }

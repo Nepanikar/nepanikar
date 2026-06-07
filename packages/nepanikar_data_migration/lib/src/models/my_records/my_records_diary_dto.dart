@@ -40,7 +40,8 @@ class MyRecordsDiaryDTO extends Equatable {
   }
 
   factory MyRecordsDiaryDTO.getIosData(Map<String, Object> config) {
-    final diaryRecordsSize = config['diaryRecords.size']?.toString().getIniIntValue();
+    final diaryRecordsSize =
+        config['diaryRecords.size']?.toString().getIniIntValue();
 
     final recordEntries = <MapEntry<DateTime, String>>[];
     if (diaryRecordsSize != null) {

@@ -13,6 +13,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/router/go_router_config.dart';
 import 'package:nepanikar/firebase_options.dart';
+import 'package:nepanikar/services/bpd_weeks_data_manager.dart';
 import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/services/export_service.dart';
@@ -39,18 +40,24 @@ Future<void> setup() async {
     FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
     return true;
   };
-  await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(!kDebugMode);
+  await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(
+    !kDebugMode,
+  );
 
   // Analytics
   registry.registerSingleton<FirebaseAnalytics>(FirebaseAnalytics.instance);
-  await registry.get<FirebaseAnalytics>().setAnalyticsCollectionEnabled(kReleaseMode);
+  await registry.get<FirebaseAnalytics>().setAnalyticsCollectionEnabled(
+    kReleaseMode,
+  );
 
   // Initialize intl localizations.
   loadDateIntlDataIfNotLoaded();
 
   // router
   registry.registerSingleton<GoRouter>(goRouterConfig);
-  registry.registerLazySingleton<GlobalKey<NavigatorState>>(() => GlobalKey<NavigatorState>());
+  registry.registerLazySingleton<GlobalKey<NavigatorState>>(
+    () => GlobalKey<NavigatorState>(),
+  );
 
   // services
   registry.registerSingleton<SaveDirectories>(SaveDirectories());
@@ -70,7 +77,9 @@ Future<void> setup() async {
   );
   await registry.get<NotificationsService>().init();
 
-  registry.registerSingleton(ExportService(databaseService: registry.get<DatabaseService>()));
+  registry.registerSingleton(
+    ExportService(databaseService: registry.get<DatabaseService>()),
+  );
 
   // utils
   final appInfo = await PackageInfo.fromPlatform();
@@ -87,4 +96,7 @@ Future<void> setup() async {
 
   registry.registerSingleton<ContactsDataManager>(ContactsDataManager());
   await registry.get<ContactsDataManager>().init();
+
+  registry.registerSingleton<BpdWeeksDataManager>(BpdWeeksDataManager());
+  await registry.get<BpdWeeksDataManager>().init();
 }

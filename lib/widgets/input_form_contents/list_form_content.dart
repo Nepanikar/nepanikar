@@ -14,7 +14,11 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:sembast/sembast.dart';
 
 class ListFormContent<T extends NepanikarListFormDao> extends StatefulWidget {
-  const ListFormContent({super.key, required this.appBarTitle, required this.appBarDescription});
+  const ListFormContent({
+    super.key,
+    required this.appBarTitle,
+    required this.appBarDescription,
+  });
 
   final String appBarTitle;
   final String appBarDescription;
@@ -23,8 +27,10 @@ class ListFormContent<T extends NepanikarListFormDao> extends StatefulWidget {
   State<ListFormContent> createState() => _ListFormContentState<T>();
 }
 
-class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFormContent> {
-  late final Stream<List<RecordSnapshot<String, ListFormItem>>> _allFormItemsStream;
+class _ListFormContentState<T extends NepanikarListFormDao>
+    extends State<ListFormContent> {
+  late final Stream<List<RecordSnapshot<String, ListFormItem>>>
+  _allFormItemsStream;
   final analytics = registry.get<FirebaseAnalytics>();
 
   T get _listFormDao => registry.get<T>();
@@ -95,7 +101,9 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
                 shrinkWrap: true,
                 primary: false,
                 separatorBuilder: (_, _) => NepanikarHorizontalDivider(
-                  color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade100,
+                  color: NepanikarColors.primarySwatch(
+                    Theme.of(context).primaryColor,
+                  ).shade100,
                 ),
                 itemBuilder: (_, i) {
                   final record = savedListItems[i];
@@ -116,7 +124,10 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
                           if (!hasFocus) {
                             final value = _idTextMap[formKey];
                             if (value != null) {
-                              await _listFormDao.updateFormText(formKey, text: value);
+                              await _listFormDao.updateFormText(
+                                formKey,
+                                text: value,
+                              );
                             }
                           }
                         },
@@ -134,14 +145,21 @@ class _ListFormContentState<T extends NepanikarListFormDao> extends State<ListFo
                             disabledBorder: InputBorder.none,
                             errorBorder: InputBorder.none,
                             focusedErrorBorder: InputBorder.none,
-                            contentPadding: const EdgeInsets.only(top: 12, left: 14),
+                            contentPadding: const EdgeInsets.only(
+                              top: 12,
+                              left: 14,
+                            ),
                             suffixIcon: IconButton(
                               onPressed: () {
                                 if (FocusScope.of(context).hasFocus) {
                                   FocusScope.of(context).unfocus();
                                 }
-                                context.semanticsAnnounce(context.l10n.record_deleted_announce);
-                                WidgetsBinding.instance.addPostFrameCallback((_) async {
+                                context.semanticsAnnounce(
+                                  context.l10n.record_deleted_announce,
+                                );
+                                WidgetsBinding.instance.addPostFrameCallback((
+                                  _,
+                                ) async {
                                   _idTextMap.remove(formKey);
                                   await _listFormDao.deleteFormItem(formKey);
                                   await analytics.logEvent(name: 'delete_item');
