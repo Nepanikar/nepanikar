@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=390">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+  :root { --primary:#491475; --dark:#280446; --secondary:#4EA3AD; --bg:#FBF6FF; --container:#EDE8F3; --purple200:#E2D2EF; }
+  body { font-family:'Inter',sans-serif; background:var(--bg); width:390px; min-height:844px; color:var(--dark); display:flex; flex-direction:column; }
+  .appbar { background:var(--primary); color:#fff; padding:14px 20px 12px; }
+  .appbar-row { display:flex; align-items:center; gap:14px; }
+  .appbar .back { font-size:22px; opacity:.9; }
+  .appbar .title { font-size:16px; font-weight:800; }
+  .appbar .step { margin-left:auto; font-size:12px; font-weight:700; opacity:.85; }
+  .progress { margin-top:12px; height:5px; border-radius:5px; background:rgba(255,255,255,.25); overflow:hidden; }
+  .progress > span { display:block; height:100%; width:70%; background:#fff; border-radius:5px; }
+  .content { flex:1; padding:24px; overflow-y:auto; }
+  .sec-head { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+  .sec-head .ico { width:38px; height:38px; border-radius:11px; background:var(--purple200); display:flex; align-items:center; justify-content:center; font-size:18px; }
+  .sec-head h2 { font-size:20px; font-weight:800; }
+  .lead { font-size:14px; color:rgba(40,4,70,.65); margin-bottom:20px; }
+  label.q { display:block; font-size:14px; font-weight:800; margin-bottom:8px; }
+  textarea { width:100%; min-height:78px; resize:none; background:#fff; border:1.5px solid var(--purple200); border-radius:12px; padding:13px 15px; font-family:inherit; font-size:14px; color:var(--dark); margin-bottom:18px; line-height:1.45; }
+  textarea::placeholder { color:#A083B8; }
+  .infobox { background:var(--purple200); border-left:4px solid var(--primary); border-radius:12px; padding:14px 16px; font-size:13.5px; line-height:1.5; font-weight:500; }
+  .footer { padding:14px 24px 24px; }
+  .btn { width:100%; height:52px; border-radius:12px; background:var(--primary); color:#fff; font-family:inherit; font-size:16px; font-weight:900; border:none; }
+</style>
+</head>
+<body>
+  <div class="appbar">
+    <div class="appbar-row"><span class="back">&larr;</span><span class="title">Den 1 · Představení</span><span class="step">7 / 10</span></div>
+    <div class="progress"><span></span></div>
+  </div>
+  <div class="content">
+    <div class="sec-head"><span class="ico">💬</span><h2>Cíle a očekávání</h2></div>
+    <p class="lead">Pojďme si ještě zlehka popovídat… :)</p>
+
+    <label class="q">S jakým očekáváním vstupuješ do programu?</label>
+    <textarea placeholder="Napiš sem cokoliv tě napadá…"></textarea>
+
+    <label class="q">Jakých cílů chceš během programu dosáhnout?</label>
+    <textarea placeholder="Klidně i drobné cíle…"></textarea>
+
+    <div class="infobox">Je naprosto v pořádku začínat i s malými cíli. Každý krok, i ten nejmenší, je důležitý a posouvá nás směrem, kterým chceme jít. Popravdě — ty jednodušší cíle se nám plní lépe.</div>
+  </div>
+  <div class="footer"><button class="btn">Pokračovat</button></div>
+</body>
+</html>

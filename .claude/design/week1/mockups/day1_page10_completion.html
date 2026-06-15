@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=390">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+  :root { --primary:#491475; --dark:#280446; --secondary:#4EA3AD; --bg:#FBF6FF; --container:#EDE8F3; --purple200:#E2D2EF; --success:#6FD866; }
+  body { font-family:'Inter',sans-serif; background:var(--bg); width:390px; min-height:844px; color:var(--dark); display:flex; flex-direction:column; }
+  .appbar { background:var(--primary); color:#fff; padding:14px 20px 12px; }
+  .appbar-row { display:flex; align-items:center; gap:14px; }
+  .appbar .title { font-size:16px; font-weight:800; }
+  .appbar .step { margin-left:auto; font-size:12px; font-weight:700; opacity:.85; }
+  .progress { margin-top:12px; height:5px; border-radius:5px; background:rgba(255,255,255,.25); overflow:hidden; }
+  .progress > span { display:block; height:100%; width:100%; background:#fff; border-radius:5px; }
+  .content { flex:1; padding:24px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
+  .badge { width:128px; height:128px; border-radius:50%; background:var(--purple200); display:flex; align-items:center; justify-content:center; margin-bottom:28px; position:relative; }
+  .badge .emoji { font-size:62px; }
+  .badge .check { position:absolute; right:6px; bottom:6px; width:40px; height:40px; border-radius:50%; background:var(--success); color:#fff; display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:900; border:4px solid var(--bg); }
+  h1 { font-size:28px; font-weight:800; color:var(--primary); margin-bottom:8px; }
+  .day-pill { font-size:12px; font-weight:800; color:var(--secondary); margin-bottom:18px; letter-spacing:.5px; }
+  p.praise { font-size:14.5px; line-height:1.6; color:rgba(40,4,70,.75); max-width:300px; }
+  .footer { padding:14px 24px 24px; }
+  .btn { width:100%; height:52px; border-radius:12px; background:var(--primary); color:#fff; font-family:inherit; font-size:16px; font-weight:900; border:none; }
+</style>
+</head>
+<body>
+  <div class="appbar">
+    <div class="appbar-row"><span class="title">Den 1 · Představení</span><span class="step">10 / 10</span></div>
+    <div class="progress"><span></span></div>
+  </div>
+  <div class="content">
+    <div class="badge"><span class="emoji">🎉</span><span class="check">✓</span></div>
+    <div class="day-pill">DEN 1 DOKONČEN</div>
+    <h1>Skvělá práce!</h1>
+    <p class="praise">První den je úspěšně u konce. Nastavit si jasné cíle vyžaduje energii a soustředění, takže ti patří velké uznání za tento důležitý krok. Pro dnešek je to všechno, odpočiň si a pokračovat budeme zítra.</p>
+  </div>
+  <div class="footer"><button class="btn">Skvělé!</button></div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: #2a2230; padding: 32px; color: #fff; }
+  h1 { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
+  .sub { font-size: 13px; opacity: .6; margin-bottom: 28px; }
+  .grid { display: flex; flex-wrap: wrap; gap: 28px; }
+  .device { width: 390px; }
+  .device .label { font-size: 12px; font-weight: 700; opacity: .7; margin-bottom: 8px; padding-left: 4px; }
+  .frame { width: 390px; height: 844px; border-radius: 36px; overflow: hidden; border: 8px solid #0d0a10; box-shadow: 0 18px 50px rgba(0,0,0,.45); background: #FBF6FF; }
+  iframe { width: 390px; height: 828px; border: none; display: block; }
+</style>
+</head>
+<body>
+  <h1>Týden 1 · Den 1 — Představení programu</h1>
+  <div class="sub">HTML mockupy · 390×844 · light mode</div>
+  <div class="grid" id="grid"></div>
+<script>
+  const pages = [
+    ["1 / 10 · Uvítání",            "day1_page1_uvitani.html"],
+    ["2 / 10 · Jak program funguje","day1_page2_jak_funguje.html"],
+    ["3 / 10 · HPO edukace",        "day1_page3_hpo.html"],
+    ["4 / 10 · DBT edukace",        "day1_page4_dbt.html"],
+    ["5 / 10 · Jak se dnes máš?",   "day1_page5_mood.html"],
+    ["6 / 10 · Reakce na náladu",   "day1_page6_reakce.html"],
+    ["7 / 10 · Cíle a očekávání",   "day1_page7_cile.html"],
+    ["8 / 10 · SMART cíle",         "day1_page8_smart.html"],
+    ["9 / 10 · SMART pracovní list","day1_page9_worksheet.html"],
+    ["10 / 10 · Hotovo",            "day1_page10_completion.html"],
+  ];
+  const grid = document.getElementById('grid');
+  pages.forEach(([label, file]) => {
+    const d = document.createElement('div');
+    d.className = 'device';
+    d.innerHTML = `<div class="label">${label}</div><div class="frame"><iframe src="${file}" loading="lazy"></iframe></div>`;
+    grid.appendChild(d);
+  });
+</script>
+</body>
+</html>

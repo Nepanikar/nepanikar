@@ -70,8 +70,8 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
       const _DayContentData(
         title: 'Představení programu',
         description:
-            'Vítej v programu! Seznámíš se s tím, co tě čeká během následujících 7 týdnů. Program ti poskytne nástroje a strategie inspirované dialekticko-behaviorální terapií (DBT) pro zvládání emocí, stresu a mezilidských vztahů.',
-        estimatedTime: '10-15 min',
+            'Vítej v programu! Seznámíš se s tím, co tě čeká během následujících 7 týdnů, dozvíš se něco o HPO a DBT, zaznamenáš si svou náladu a nastavíš si první SMART cíl.',
+        estimatedTime: '15-20 min',
         activityType: 'Úvod',
         routeType: _DayRouteType.onboarding,
       ),
