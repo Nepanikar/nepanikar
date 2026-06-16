@@ -8,19 +8,23 @@ class Day1WelcomeIntroPage extends StatelessWidget {
 
   final VoidCallback onNext;
 
-  static const _bullets = <String>[
-    'Právě jste otevřeli program, který byl vytvořen pro lidi učící se zvládat '
-        'projevy hraniční poruchy osobnosti. Je ale i pro ty, kteří mají obecně '
-        'potíže v oblasti emocí, stresu, impulzivního chování a mezilidských '
-        'vztahů, včetně toho sami se sebou.',
-    'Program může uživateli poskytnout řadu nástrojů a strategií, pro které byly '
-        'inspirací ověřené metody dialekticko-behaviorální terapie (DBT).',
-    'Nabité dovednosti z programu Vám mohou pomoci lépe porozumět svým emocím, '
-        'regulovat impulsy, zlepšit komunikaci s ostatními a vztah sám se sebou.',
-    'Přijde nám důležité říct, že program nenahrazuje terapii. Může být však '
-        'dobrým pomocníkem pro ty, kteří z jakéhokoliv důvodu na terapii jít '
-        'nemohou nebo nechtějí nebo čekají na svůj termín.',
-  ];
+  static const _b1 =
+      'Právě jste otevřeli program, který byl vytvořen pro lidi učící se zvládat '
+      'projevy hraniční poruchy osobnosti. Je ale i pro ty, kteří mají obecně '
+      'potíže v oblasti emocí, stresu, impulzivního chování a mezilidských '
+      'vztahů, včetně toho sami se sebou.';
+  static const _b2 =
+      'Program může uživateli poskytnout řadu nástrojů a strategií, pro které byly '
+      'inspirací ověřené metody dialekticko-behaviorální terapie (DBT).';
+  static const _b3 =
+      'Nabité dovednosti z programu Vám mohou pomoci lépe porozumět svým emocím, '
+      'regulovat impulsy, zlepšit komunikaci s ostatními a vztah sám se sebou.';
+  static const _b4 =
+      'Přijde nám důležité říct, že program nenahrazuje terapii. Může být však '
+      'dobrým pomocníkem pro ty, kteří z jakéhokoliv důvodu na terapii jít '
+      'nemohou nebo nechtějí nebo čekají na svůj termín.';
+
+  static const _bullets = <String>[_b1, _b2, _b3, _b4];
 
   @override
   Widget build(BuildContext context) {

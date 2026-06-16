@@ -128,7 +128,7 @@ class _Day1SmartWorksheetPageState extends State<Day1SmartWorksheetPage> {
                   border: Border.all(color: NepanikarColors.secondary, width: 1.3),
                   borderRadius: BorderRadius.circular(14),
                 ),
-                child: Text(
+                child: const Text(
                   'příklad',
                   style: TextStyle(
                     fontSize: 11,

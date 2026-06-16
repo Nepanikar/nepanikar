@@ -59,7 +59,7 @@ class Day1CompletionPage extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 24),
-                    Text(
+                    const Text(
                       'DEN 1 DOKONČEN',
                       style: TextStyle(
                         fontSize: 12,
