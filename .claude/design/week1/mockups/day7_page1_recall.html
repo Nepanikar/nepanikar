@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=390">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+  :root { --primary:#491475; --dark:#280446; --secondary:#4EA3AD; --bg:#FBF6FF; --container:#EDE8F3; --purple200:#E2D2EF; }
+  body { font-family:'Inter',sans-serif; background:var(--bg); width:390px; min-height:844px; color:var(--dark); display:flex; flex-direction:column; }
+  .appbar { background:var(--primary); color:#fff; padding:14px 20px 12px; }
+  .appbar-row { display:flex; align-items:center; gap:14px; }
+  .appbar .back { font-size:22px; opacity:.9; }
+  .appbar .title { font-size:16px; font-weight:800; }
+  .appbar .step { margin-left:auto; font-size:12px; font-weight:700; opacity:.85; }
+  .progress { margin-top:12px; height:5px; border-radius:5px; background:rgba(255,255,255,.25); overflow:hidden; }
+  .progress > span { display:block; height:100%; width:33%; background:#fff; border-radius:5px; }
+  .content { flex:1; padding:24px; overflow-y:auto; }
+  p.body { font-size:14px; font-weight:400; line-height:1.55; color:rgba(40,4,70,.8); margin-bottom:16px; }
+  h2 { font-size:20px; font-weight:800; margin-bottom:8px; }
+  .hint { font-size:13px; color:rgba(40,4,70,.6); margin-bottom:18px; }
+  .reveal { display:flex; flex-direction:column; gap:9px; }
+  .card { display:flex; align-items:center; gap:13px; border-radius:14px; padding:13px 14px; }
+  /* revealed */
+  .card.shown { background:var(--container); }
+  .card.shown .lt { flex:0 0 32px; height:32px; border-radius:8px; background:var(--primary); color:#fff; display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:900; }
+  .card.shown .w { font-size:14.5px; font-weight:700; }
+  /* hidden (tap to reveal) */
+  .card.hidden { background:#fff; border:1.5px dashed var(--purple200); justify-content:center; color:#A083B8; font-size:13px; font-weight:700; }
+  .footer { padding:14px 24px 24px; }
+  .btn { width:100%; height:52px; border-radius:12px; background:var(--primary); color:#fff; font-family:inherit; font-size:16px; font-weight:900; border:none; }
+</style>
+</head>
+<body>
+  <div class="appbar">
+    <div class="appbar-row"><span class="back">&larr;</span><span class="title">Den 7 · Shrnutí</span><span class="step">1 / 3</span></div>
+    <div class="progress"><span></span></div>
+  </div>
+  <div class="content">
+    <h2>Shrnutí týdne</h2>
+    <p class="body">Máme za sebou první týden, který byl spíše zaměřený na seznamování se s tím, co se bude dít. Příští týdny už budou více praktičtější!</p>
+    <p class="body">Taky jsme se zaměřili na důležité oblasti života, které značně ovlivňují naši psychickou pohodu. Dokážeš si je vybavit?</p>
+    <p class="hint">Klepnutím odkryješ jednotlivé oblasti modelu SPOKO.</p>
+    <div class="reveal">
+      <div class="card shown"><span class="lt">S</span><span class="w">Spánek</span></div>
+      <div class="card shown"><span class="lt">P</span><span class="w">Potrava</span></div>
+      <div class="card hidden">? klepni pro odkrytí</div>
+      <div class="card hidden">? klepni pro odkrytí</div>
+      <div class="card hidden">? klepni pro odkrytí</div>
+    </div>
+  </div>
+  <div class="footer"><button class="btn">Pokračovat</button></div>
+</body>
+</html>

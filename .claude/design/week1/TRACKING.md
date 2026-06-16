@@ -31,23 +31,38 @@
 > `lib/widgets/mood/`). Bandované reakcie (str. 6): good/happy → povzbudenie,
 > okay → neutrál, sad/bad → malé akcie.
 
-### Deň 2: SPOKO + Spánek
-🔁 SpokoDayScreen šablóna (neplánuje sa teraz)
+### Deň 2: SPOKO + Spánek (4 strany) — SPOKO šablóna
+| Strana | Názov | Design |
+|--------|-------|--------|
+| 1/4 | SPOKO intro (5 písmen, DNES = Spánek) | ⏳ mockups/day2_page1_spoko_intro.html |
+| 2/4 | Edukácia spánok + mapovacie otázky | ⏳ mockups/day2_page2_edukace_otazky.html |
+| 3/4 | Challenge pick-list + future challenge | ⏳ mockups/day2_page3_challenge.html |
+| 4/4 | Completion | ⏳ mockups/day2_page4_completion.html |
+
+> Deň 2 je **konkrétna inštancia SPOKO šablóny**. Dni 3–6 reusujú rovnaký layout,
+> menia sa len: edukácia, mapovacie otázky, challenge zoznam, closing — a
+> deep-link na kontakty (Deň 3 → PPP, Deň 4 → Podané ruce).
 
 ### Deň 3: Potrava
-🔁 SpokoDayScreen šablóna
+🔁 SPOKO šablóna (Deň 2) — deep-link na PPP kontakty
 
 ### Deň 4: Ne Omamným látkám
-🔁 SpokoDayScreen šablóna
+🔁 SPOKO šablóna (Deň 2) — deep-link na Podané ruce
 
 ### Deň 5: Kondice
-🔁 SpokoDayScreen šablóna
+🔁 SPOKO šablóna (Deň 2)
 
 ### Deň 6: Léčba Onemocnění
-🔁 SpokoDayScreen šablóna
+🔁 SPOKO šablóna (Deň 2)
 
-### Deň 7: Reflexe SPOKO a reflexe týdne
-🔁 Reuse `WeekReviewScreen`
+### Deň 7: Reflexe SPOKO a reflexe týdne (3 strany)
+| Strana | Názov | Design |
+|--------|-------|--------|
+| 1/3 | Recall 5 SPOKO oblastí (reveal-on-tap) | ⏳ mockups/day7_page1_recall.html |
+| 2/3 | Reflexia týždňa (4 voľné texty) | ⏳ mockups/day7_page2_reflexe.html |
+| 3/3 | Gratulácia k dokončeniu týždňa | ⏳ mockups/day7_page3_completion.html |
+
+> Flutter: Deň 7 môže reusovať `WeekReviewScreen` (summary routeType).
 
 ---
 
@@ -70,5 +85,6 @@
 | Deň | Design | Flutter |
 |-----|--------|---------|
 | 1 | ⏳ 100% (10/10 mockupov) | ✅ 100% (čaká na `flutter analyze` + beh) |
-| 2–6 | 🔁 šablóna | ❌ |
-| 7 | 🔁 šablóna | 🔁 |
+| 2 | ⏳ 100% (SPOKO šablóna, 4/4) | ❌ |
+| 3–6 | 🔁 SPOKO šablóna (Deň 2) | ❌ |
+| 7 | ⏳ 100% (3/3) | 🔁 WeekReviewScreen |
