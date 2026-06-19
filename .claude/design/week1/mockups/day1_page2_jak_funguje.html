@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=390">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+  :root { --primary:#491475; --dark:#280446; --secondary:#4EA3AD; --bg:#FBF6FF; --container:#EDE8F3; --purple200:#E2D2EF; --success:#6FD866; --info:#FEC786; }
+  body { font-family:'Inter',sans-serif; background:var(--bg); width:390px; min-height:844px; color:var(--dark); display:flex; flex-direction:column; }
+  .appbar { background:var(--primary); color:#fff; padding:14px 20px 12px; }
+  .appbar-row { display:flex; align-items:center; gap:14px; }
+  .appbar .back { font-size:22px; opacity:.9; }
+  .appbar .title { font-size:16px; font-weight:800; }
+  .appbar .step { margin-left:auto; font-size:12px; font-weight:700; opacity:.85; }
+  .progress { margin-top:12px; height:5px; border-radius:5px; background:rgba(255,255,255,.25); overflow:hidden; }
+  .progress > span { display:block; height:100%; width:20%; background:#fff; border-radius:5px; }
+  .content { flex:1; padding:24px; overflow-y:auto; }
+  .sec-head { display:flex; align-items:center; gap:10px; margin:2px 0 14px; }
+  .sec-head .ico { width:38px; height:38px; border-radius:11px; background:var(--purple200); display:flex; align-items:center; justify-content:center; font-size:20px; }
+  .sec-head h2 { font-size:20px; font-weight:800; }
+  p.body { font-size:14px; font-weight:400; line-height:1.5; color:rgba(40,4,70,.8); margin-bottom:16px; }
+  .weeks { display:flex; gap:6px; justify-content:space-between; margin:4px 0 8px; }
+  .week-dot { flex:1; text-align:center; }
+  .week-dot .num { width:34px; height:34px; margin:0 auto 4px; border-radius:50%; background:var(--container); color:var(--primary); font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center; }
+  .week-dot.first .num { background:var(--primary); color:#fff; }
+  .week-dot small { font-size:9px; color:rgba(40,4,70,.5); }
+  .caption { text-align:center; font-size:12px; color:rgba(40,4,70,.55); margin-bottom:20px; }
+  .areas-label { font-size:13px; font-weight:800; margin-bottom:10px; }
+  .areas { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px; }
+  .area { padding:9px 14px; border-radius:20px; background:var(--container); font-size:13px; font-weight:700; color:var(--primary); }
+  .infobox { background:var(--purple200); border-left:4px solid var(--primary); border-radius:12px; padding:14px 16px; display:flex; gap:12px; align-items:center; margin-bottom:16px; }
+  .infobox .big { font-size:24px; font-weight:900; color:var(--primary); white-space:nowrap; }
+  .infobox p { font-size:13px; font-weight:500; line-height:1.4; }
+  .footer { padding:14px 24px 24px; }
+  .btn { width:100%; height:52px; border-radius:12px; background:var(--primary); color:#fff; font-family:inherit; font-size:16px; font-weight:900; border:none; }
+</style>
+</head>
+<body>
+  <div class="appbar">
+    <div class="appbar-row"><span class="back">&larr;</span><span class="title">Den 1 · Představení</span><span class="step">2 / 10</span></div>
+    <div class="progress"><span></span></div>
+  </div>
+  <div class="content">
+    <div class="sec-head"><span class="ico">🗓️</span><h2>Jak program funguje</h2></div>
+    <p class="body">Program trvá 7 týdnů. Je žádoucí, aby byl plněn každodenně, není to však nutnou podmínkou. Program obsahuje zejména praktická cvičení, ale i jednoduchá vysvětlení různých souvisejících jevů, které se mohou v našich životech objevovat.</p>
+
+    <div class="weeks">
+      <div class="week-dot first"><div class="num">1</div><small>týden</small></div>
+      <div class="week-dot"><div class="num">2</div></div>
+      <div class="week-dot"><div class="num">3</div></div>
+      <div class="week-dot"><div class="num">4</div></div>
+      <div class="week-dot"><div class="num">5</div></div>
+      <div class="week-dot"><div class="num">6</div></div>
+      <div class="week-dot"><div class="num">7</div></div>
+    </div>
+    <div class="caption">7 společných týdnů</div>
+
+    <div class="infobox"><span class="big">5–20</span><p>minut denně — cvičení jsou dávkována tak, aby pro Tebe nebyla příliš zahlcující.</p></div>
+
+    <div class="areas-label">Během sedmi týdnů se budeme věnovat:</div>
+    <div class="areas">
+      <span class="area">všímavost</span>
+      <span class="area">emoční regulace</span>
+      <span class="area">snášení tísně</span>
+      <span class="area">mezilidské vztahy</span>
+      <span class="area">sebepojetí</span>
+    </div>
+
+    <p class="body">Týden obvykle začne poučením o dané oblasti, v dalších dnech se učíme novým dovednostem a konec týdne je věnován shrnutí. V každém týdnu je jedna klíčová dovednost a další dobrovolná cvičení — čím více energie do programu vložíš, tím lépe Ti může být do budoucna.</p>
+  </div>
+  <div class="footer"><button class="btn">Pokračovat</button></div>
+</body>
+</html>

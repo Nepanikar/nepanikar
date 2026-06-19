@@ -1,8 +1,8 @@
 ---
 name: build-screens
-description: Orchestrátor celej pipeline tvorby BPD/HPO obrazoviek pre jeden týždeň - postupne prevedie plán → Stitch design → Flutter implementáciu, s checkpointmi na schválenie medzi fázami. Spúšťa pod-skilly plan-screens, design-screen, implement-screen.
+description: Orchestrátor celej pipeline tvorby BPD/HPO obrazoviek pre jeden týždeň - postupne prevedie plán → HTML mockup design → Flutter implementáciu, s checkpointmi na schválenie medzi fázami. Spúšťa pod-skilly plan-screens, design-screen, implement-screen.
 disable-model-invocation: true
-allowed-tools: Read, Glob, Grep, Write, Edit, Bash, mcp__stitch__generate_screen_from_text
+allowed-tools: Read, Glob, Grep, Write, Edit, Bash, mcp__Claude_Preview__preview_start, mcp__Claude_Preview__preview_screenshot, mcp__Claude_Preview__preview_stop, mcp__Claude_Preview__preview_list
 ---
 
 # Build BPD Screens — orchestrátor pipeline
@@ -11,11 +11,11 @@ Prevedie celý týždeň BPD/HPO programu od obsahu po Flutter kód tým, že ri
 fázové pod-skilly:
 
 ```
-FÁZA 1  plan-screens      docs/hpo/ spec → plán + Stitch prompty + tracking
+FÁZA 1  plan-screens      docs/hpo/ spec → plán + tracking
    ↓  (checkpoint)
-FÁZA 2  design-screen     prompty → Stitch designy (loop cez všetky strany)
+FÁZA 2  design-screen     screen plán → HTML mockupy (loop cez všetky strany)
    ↓  (checkpoint)
-FÁZA 3  implement-screen  designy → Flutter kód (loop cez všetky dni)
+FÁZA 3  implement-screen  mockupy → Flutter kód (loop cez všetky dni)
 ```
 
 ## Parametre
@@ -55,11 +55,11 @@ jednu súhrnnú na konci (viď Záver).
 
 ## FÁZA 1 — Plán (plan-screens)
 
-Spusti vtedy, keď `WEEK<N>_SCREEN_PLAN.md` / `STITCH_PROMPTS.md` / `TRACKING.md`
+Spusti vtedy, keď `WEEK<N>_SCREEN_PLAN.md` / `TRACKING.md`
 pre týždeň ešte neexistujú, alebo o to používateľ požiada.
 
 1. Vykonaj `.claude/skills/plan-screens/SKILL.md` pre `$ARGUMENTS`.
-2. Výsledok: `WEEK<N>_SCREEN_PLAN.md`, `WEEK<N>_STITCH_PROMPTS.md`, `TRACKING.md`.
+2. Výsledok: `WEEK<N>_SCREEN_PLAN.md`, `TRACKING.md`.
 
 **CHECKPOINT 1** (ak nie je `auto`): ukáž zhrnutie plánu — počet dní/strán, čo sa
 reusuje, kľúčové UX rozhodnutia a otvorené otázky. Spýtaj sa, či pokračovať do
@@ -70,20 +70,19 @@ schválení.**
 
 ## FÁZA 2 — Design (design-screen, loop)
 
-Cieľ: všetky strany v sekcii "Stav — Stitch Design" v `TRACKING.md` sú ⏳/✅.
+Cieľ: všetky strany v sekcii "Stav — Design" v `TRACKING.md` sú ⏳/✅.
 
 Opakuj, kým zostáva nejaká strana ❌:
 1. Vykonaj `.claude/skills/design-screen/SKILL.md` pre `$ARGUMENTS` (vyrieši
-   jednu — prvú ❌ — stranu a označí ju ⏳).
-2. Generovanie trvá minúty — **neopakuj ten istý prompt**; po dokončení choď na
-   ďalšiu ❌ stranu.
+   jednu — prvú ❌ — stranu, vygeneruje HTML mockup, zobrazí preview, označí ju ⏳).
+2. **Neopakuj ten istý prompt** pre tú istú stranu; po dokončení choď na ďalšiu ❌.
 
 Strany označené 🔁 (reuse šablóny) preskakuj.
 
-**CHECKPOINT 2** (ak nie je `auto`): oznám, koľko designov sa vygenerovalo + link
-na Stitch projekt, a vyzvi používateľa, nech si ich prejde. Spýtaj sa, či
-pokračovať do implementácie. **Pokračuj až po schválení.** (Designy býva fajn
-skontrolovať očami pred kódením.)
+**CHECKPOINT 2** (ak nie je `auto`): oznám, koľko mockupov sa vygenerovalo +
+zoznam ciest k HTML súborom v `.claude/design/$ARGUMENTS/mockups/`, a vyzvi
+používateľa, nech si ich prezrie. Spýtaj sa, či pokračovať do implementácie.
+**Pokračuj až po schválení.** (Mockupy fajn skontrolovať očami pred kódením.)
 
 ---
 
@@ -91,7 +90,7 @@ skontrolovať očami pred kódením.)
 
 Cieľ: všetky dni v sekcii "Stav — Flutter implementácia" v `TRACKING.md` sú ✅.
 
-Opakuj, kým zostáva deň s Flutter ❌ (a Stitch ✅/🔁):
+Opakuj, kým zostáva deň s Flutter ❌ (a Design ✅/🔁):
 1. Vykonaj `.claude/skills/implement-screen/SKILL.md` pre `$ARGUMENTS` (vyrieši
    jeden — prvý taký — deň, vytvorí screen, route, spustí build_runner, označí ✅).
 2. Dni typu pauza/summary napoj na zdieľané šablóny (`day_pause_screen.dart`,
@@ -103,7 +102,7 @@ Po dobehnutí: spusti `dart format --line-length 100 lib/screens/bpd_programme/`
 
 ## Záver
 
-Ukáž finálny súhrn z `TRACKING.md` (Stitch % a Flutter % po dňoch) a čo ešte
+Ukáž finálny súhrn z `TRACKING.md` (Design % a Flutter % po dňoch) a čo ešte
 zostáva (napr. ručné napojenie šablón, otvorené rozhodnutia). Pripomeň, že kód
 treba overiť (`flutter analyze` / spustenie appky) — orchestrátor negarantuje
 behovú správnosť, len prejde pipeline.
@@ -113,8 +112,9 @@ behovú správnosť, len prejde pipeline.
 Sprav **jednu** retrospektívu za celú pipeline podľa protokolu v
 `.claude/skills/LESSONS.md` → "NA KONCI behu":
 - Čo bolo naprieč fázami nepohodlné / chýbalo v `docs/hpo/` spec / naviedlo zle?
-- Ktoré fázy boli trecie (napr. plán musel byť veľa upravovaný, prompty zlyhali,
-  build_runner padal) → zaznač, do ktorej časti ktorého skillu to patrí.
+- Ktoré fázy boli trecie (napr. plán musel byť veľa upravovaný, HTML generovanie
+  neodrážalo design, build_runner padal) → zaznač, do ktorej časti ktorého skillu
+  to patrí.
 - Bezpečné konkrétne opravy SKILL.md/docs aplikuj hneď (`applied`), zvyšok zaloguj
   ako `open`. Opakujúce sa lekcie (`seen ≥3`) nahlás používateľovi v súhrne.
 
@@ -123,15 +123,15 @@ Sprav **jednu** retrospektívu za celú pipeline podľa protokolu v
 ## Príklad použitia
 
 ```
-/build-screens week1            # s checkpointmi (odporúčané)
-/build-screens week1 auto       # celé bez pýtania
+/build-screens week3            # s checkpointmi (odporúčané)
+/build-screens week3 auto       # celé bez pýtania
 ```
 
-Priebeh `week1`:
-1. FÁZA 1 → plán + prompty + tracking → **checkpoint** (schváľ plán)
-2. FÁZA 2 → loop generovania Stitch strán → **checkpoint** (prezri designy)
+Priebeh `week3`:
+1. FÁZA 1 → plán + tracking → **checkpoint** (schváľ plán)
+2. FÁZA 2 → loop HTML mockupov cez Claude Preview → **checkpoint** (prezri mockupy)
 3. FÁZA 3 → loop Flutter implementácie dní → formátovanie → súhrn
 
 ## Súvisiace
-- Konštanty (paleta, Stitch ID): `.claude/design/DESIGN_PROMPTS.md` (jediný zdroj).
+- Konštanty (paleta, typografia): `.claude/design/DESIGN_PROMPTS.md` (jediný zdroj).
 - Obsah programu: `docs/hpo/` (content-reference, implementation-spec, TODO).

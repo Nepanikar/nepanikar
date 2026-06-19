@@ -2,7 +2,7 @@
 name: implement-screen
 description: Implementuje BPD screen vo Flutter - podľa Stitch designu a existujúcich vzorov
 disable-model-invocation: true
-allowed-tools: Read, Write, Edit, Glob, Grep, Bash
+allowed-tools: Read, Write, Edit, Glob, Grep, Bash, mcp__Claude_Preview__preview_start, mcp__Claude_Preview__preview_screenshot, mcp__Claude_Preview__preview_stop
 ---
 
 # Implement BPD Screen Workflow
@@ -34,13 +34,16 @@ Nájdi **prvý deň** kde:
 
 Preskakuj dni ktoré sú 🔁 (reuse šablóny).
 
-### 2. Analyzuj Stitch design
+### 2. Analyzuj design mockup
 
-Pozri sa na vygenerované screeny v Stitch projekte:
-- Project ID: viď `.claude/design/DESIGN_PROMPTS.md` → "Stitch projekt a dizajn systém"
-- Použi `mcp__stitch__list_screens` alebo `mcp__stitch__get_screen`
+Načítaj HTML mockup pre daný deň z:
+- `.claude/design/$ARGUMENTS/mockups/day{X}_page*.html` — vygenerované mockupy
 
-Alebo načítaj popis z `WEEK*_STITCH_PROMPTS.md` ak Stitch nie je dostupný.
+Ak mockupy neexistujú (TRACKING.md ukazuje ❌ pre Design), spusti najprv
+`/design-screen $ARGUMENTS` a potom sa vráť sem.
+
+Alternatívne načítaj popis strán z `.claude/design/$ARGUMENTS/WEEK*_SCREEN_PLAN.md`
+(sekcia pre daný deň) — tu je verbatim obsah a UX rozhodnutia.
 
 ### 3. Vytvor priečinkovú štruktúru
 

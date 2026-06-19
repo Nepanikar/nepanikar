@@ -32,15 +32,16 @@ decision from the user before starting.
 
 These change the shape of several tasks. Resolve with the user before W1-02+.
 
-- [?] **D1 — Day 1 layout.** New Week 1 merges intro + HPO/DBT + Moje záznamy +
-  SMART into a single "Day 1". Options: (a) one multi-page onboarding flow, or
-  (b) keep 3 separate screens chained from one day entry. *Affects W1-02..W1-05.*
+- [x] **D1 — Day 1 layout.** ✅ **Decided (2026-06-15): (a) one multi-page
+  onboarding flow** — single `Day1OnboardingScreen` with a `PageView` (10 pages),
+  shared progress bar, mirroring the week-2 day-screen pattern. *Affects
+  W1-02..W1-05.*
 - [?] **D2 — Drop PLEASE?** SPOKO replaces the DBT PLEASE model in Week 1. OK to
   remove `day4_please/` screen + `day4Please` route from Week 1? *Affects W1-06.*
-- [?] **D3 — Content single-source.** Day lists are duplicated in the Dart
-  `_weekDaysContent` map AND `programme_content.json`. Keep duplicating (simple,
-  current) or refactor the week-detail screen to read from JSON (one source)?
-  *Affects W1-01, GEN-01.*
+- [x] **D3 — Content single-source.** ✅ **Decided (2026-06-15): keep duplicating
+  for now** (Dart `_weekDaysContent` + JSON), refactor to single JSON source
+  later as the isolated `GEN-01` cleanup, once Week 1 stands. *Affects W1-01,
+  GEN-01.*
 - [?] **D4 — Challenge tracker scope.** SPOKO days link to an optional "future
   challenge" the user tracks over time. Build a real tracker now, or stub the
   deep-link and ship challenges as a today-only pick-list first? *Affects W1-07.*
@@ -76,41 +77,31 @@ These change the shape of several tasks. Resolve with the user before W1-02+.
 
 ### Day 1 — combined intro
 
-- [ ] **W1-03 — Name + pronoun input.**
-  - Context: Day 1 asks for first name + how the app should address the user
-    (name + pronoun); reused later for addressing the user.
-  - Files: Day 1 screen (per D1); a DAO under `lib/services/db/bpd/` to persist.
-  - Done when: value persists across restarts and is retrievable for later
-    screens.
+- [x] **W1-03 — Name + pronoun input.** ✅ Done (2026-06-15). Page 3 of the merged
+  Day 1 flow (`day1_onboarding/personalization_page.dart`); persisted via
+  `UserSettingsDao.saveBpdUserProfile` (`BpdUserProfile` + `BpdPronoun`).
 
-- [ ] **W1-04 — Programme intro + HPO/DBT education section.**
-  - Context: scrollable cards / bubbles (intro bullets) then HPO + DBT education
-    with two external links (Google Docs) and the existing characteristics/
-    benefits content already in JSON for the old Day 2.
-  - Files: Day 1 flow; reuse `day_page_base.dart` widgets; external links via the
-    app's standard URL-launch helper.
-  - Done when: content matches content-reference.md §1a/1b; links open.
+- [x] **W1-04 — Programme intro + HPO/DBT education section.** ✅ Done
+  (2026-06-15). Merged Day 1 flow pages 1–2 (intro bullets + how-it-works), 4
+  (HPO), 5 (DBT) in `day1_onboarding/`. Verbatim Czech from `source/tyzden-1.md`.
+  External Google-Doc links via `launchUrLink` (`external_link_button.dart`).
+  Note: built as new Czech pages (not the old Slovak `day2_education` widgets) for
+  language consistency — those Slovak widgets are now unused by Day 1.
 
-- [ ] **W1-05 — Mood check-in (Moje záznamy deep-link).**
-  - Context: question "Jak se dnes máš?" 1–10 emoji scale → score-banded random
-    response (6–10 / 5 / 1–4 branches) → small-action suggestions for 1–4 →
-    follow-up "Pomohlo to aspoň trochu?".
-  - Files: Day 1 flow; deep-link into `lib/screens/home/my_records/`; reuse
-    existing mood widgets in `lib/widgets/` if suitable.
-  - Done when: the three score bands show the right copy/options; entry is saved
-    where My-records data lives.
+- [~] **W1-05 — Mood check-in (Moje záznamy deep-link).** Partially done
+  (2026-06-15). Page 6 of the Day 1 flow (`mood_checkin_page.dart`) deep-links to
+  the **existing** mood feature (`MoodPickerRoute`, 5-mood) — mood recording is
+  already built, so we reuse it (decision 2026-06-12). **Deferred:** the
+  score-banded reaction + small-action suggestions + "Pomohlo to?" follow-up — the
+  existing picker navigates onward to mood-records and doesn't return a score to
+  the flow. Needs a mood round-trip to implement the bands (good/okay/sad).
 
-- [ ] **W1-06 — SMART goals section.**
-  - Context: free-text expectations + goals (persisted, re-shown in final week),
-    tappable SMART letters (S/M/A/R/T reveal detail), SMART worksheet with
-    example-on-tap fields. The existing `smart_education_screen.dart` /
-    `smart_goal_form_screen.dart` already cover parts of this — adapt, don't
-    rebuild from scratch.
-  - Files: `lib/screens/bpd_programme/weeks/week1/day3_smart/`, plus a persisted
-    store for expectations/goals (see W1-09).
-  - Depends on: D2.
-  - Done when: letters are tappable; worksheet saves; expectations + goals are
-    persisted with a key the final-week screen can read.
+- [x] **W1-06 — SMART goals section.** ✅ Done (2026-06-15). Day 1 flow pages 7
+  (expectations + goals free-text), 8 (tappable S/M/A/R/T tiles), 9 (worksheet
+  with example-on-tap). Expectations/goals persisted via new `BpdExpectationsDao`
+  (key `week1_day1`); SMART worksheet via existing `BpdSmartGoalsDao.createGoal`.
+  Built fresh in the Day 1 flow (not the old `day3_smart` screens) for the merged
+  single-flow layout. See GEN-02 for re-surfacing in the final week.
 
 ### Days 2–6 — SPOKO
 
@@ -174,9 +165,10 @@ and [implementation-spec.md → Week 2 additions](implementation-spec.md#week-2-
     `programme_content.json` instead of the hard-coded `_weekDaysContent` map, so
     content lives in one place. Depends on: D3.
 
-- [ ] **GEN-02 — Persisted "first vs last week" answers.**
-  - A small store so expectations/goals (W1-06) and similar entries written early
-    can be re-surfaced in the final week. Reuse for future weeks.
+- [~] **GEN-02 — Persisted "first vs last week" answers.** Store created
+  (2026-06-15): `BpdExpectationsDao` (`bpd_expectations` store, key `week1_day1`)
+  holds Day 1 expectations + goals. **Remaining:** read + display them in the
+  final-week screen, and generalise the pattern for other early/late entries.
 
 - [ ] **GEN-03 — Localisation pass.**
   - Programme copy is currently inline Czech/Slovak strings. Decide whether HPO

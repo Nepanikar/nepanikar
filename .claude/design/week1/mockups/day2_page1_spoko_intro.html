@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=390">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+  :root { --primary:#491475; --dark:#280446; --secondary:#4EA3AD; --bg:#FBF6FF; --container:#EDE8F3; --purple200:#E2D2EF; --info:#FEC786; }
+  body { font-family:'Inter',sans-serif; background:var(--bg); width:390px; min-height:844px; color:var(--dark); display:flex; flex-direction:column; }
+  .appbar { background:var(--primary); color:#fff; padding:14px 20px 12px; }
+  .appbar-row { display:flex; align-items:center; gap:14px; }
+  .appbar .back { font-size:22px; opacity:.9; }
+  .appbar .title { font-size:16px; font-weight:800; }
+  .appbar .step { margin-left:auto; font-size:12px; font-weight:700; opacity:.85; }
+  .progress { margin-top:12px; height:5px; border-radius:5px; background:rgba(255,255,255,.25); overflow:hidden; }
+  .progress > span { display:block; height:100%; width:25%; background:#fff; border-radius:5px; }
+  .content { flex:1; padding:24px; overflow-y:auto; }
+  .sec-head { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+  .sec-head .ico { width:40px; height:40px; border-radius:11px; background:var(--purple200); display:flex; align-items:center; justify-content:center; font-size:20px; }
+  .sec-head h2 { font-size:22px; font-weight:800; }
+  p.body { font-size:14px; font-weight:400; line-height:1.55; color:rgba(40,4,70,.8); margin-bottom:18px; }
+  .spoko-label { font-size:13px; font-weight:800; margin-bottom:10px; }
+  .letters { display:flex; flex-direction:column; gap:8px; margin-bottom:18px; }
+  .letter-row { display:flex; align-items:center; gap:13px; background:var(--container); border-radius:14px; padding:11px 14px; box-shadow:0 8px 32px rgba(73,20,117,.05); }
+  .letter-row .lt { flex:0 0 34px; height:34px; border-radius:9px; background:var(--primary); color:#fff; display:flex; align-items:center; justify-content:center; font-size:17px; font-weight:900; }
+  .letter-row .word { font-size:15px; font-weight:700; }
+  .letter-row .word small { display:block; font-size:11px; font-weight:500; color:rgba(40,4,70,.55); }
+  .letter-row.today { background:var(--primary); }
+  .letter-row.today .lt { background:#fff; color:var(--primary); }
+  .letter-row.today .word { color:#fff; }
+  .letter-row.today .word small { color:rgba(255,255,255,.75); }
+  .today-tag { margin-left:auto; background:var(--info); color:var(--dark); font-size:10px; font-weight:900; padding:4px 9px; border-radius:10px; }
+  .infobox { background:var(--purple200); border-left:4px solid var(--primary); border-radius:12px; padding:14px 16px; font-size:13px; font-weight:500; line-height:1.5; }
+  .footer { padding:14px 24px 24px; }
+  .btn { width:100%; height:52px; border-radius:12px; background:var(--primary); color:#fff; font-family:inherit; font-size:16px; font-weight:900; border:none; }
+</style>
+</head>
+<body>
+  <div class="appbar">
+    <div class="appbar-row"><span class="back">&larr;</span><span class="title">Den 2 · SPOKO</span><span class="step">1 / 4</span></div>
+    <div class="progress"><span></span></div>
+  </div>
+  <div class="content">
+    <div class="sec-head"><span class="ico">🌱</span><h2>Model SPOKO</h2></div>
+    <p class="body">Model SPOKO je jednoduchý způsob, jak se učit základní oblasti péče o tělo a psychickou stabilitu. Každý den se zaměříme na jedno písmeno a postupně si ukážeme, jak malé změny v každé oblasti mohou ovlivnit emoce, stres i celkovou pohodu. Cílem není dělat všechno dokonale, ale postupně si všímat a zkoušet malé kroky, které se dají udržet v běžném životě.</p>
+
+    <div class="spoko-label">SPOKO zahrnuje:</div>
+    <div class="letters">
+      <div class="letter-row today"><span class="lt">S</span><span class="word">Spánek</span><span class="today-tag">DNES</span></div>
+      <div class="letter-row"><span class="lt">P</span><span class="word">Potrava</span></div>
+      <div class="letter-row"><span class="lt">O</span><span class="word">ne Omamným látkám</span></div>
+      <div class="letter-row"><span class="lt">K</span><span class="word">Kondice</span></div>
+      <div class="letter-row"><span class="lt">O</span><span class="word">léčba Onemocnění</span></div>
+    </div>
+
+    <div class="infobox">Na první pohled mohou tyto oblasti působit jednoduše nebo samozřejmě. Ve skutečnosti ale tvoří základní biologické pilíře psychické stability. Když některá z nich dlouhodobě nefunguje dobře, tělo i mysl jsou více zranitelné vůči stresu, emočním výkyvům i impulzivnímu chování. I malé změny v těchto oblastech mohou mít překvapivě velký dopad na celkovou pohodu.</div>
+  </div>
+  <div class="footer"><button class="btn">Pokračovat</button></div>
+</body>
+</html>

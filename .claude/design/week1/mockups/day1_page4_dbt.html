@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=390">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+  :root { --primary:#491475; --dark:#280446; --secondary:#4EA3AD; --bg:#FBF6FF; --container:#EDE8F3; --purple200:#E2D2EF; }
+  body { font-family:'Inter',sans-serif; background:var(--bg); width:390px; min-height:844px; color:var(--dark); display:flex; flex-direction:column; }
+  .appbar { background:var(--primary); color:#fff; padding:14px 20px 12px; }
+  .appbar-row { display:flex; align-items:center; gap:14px; }
+  .appbar .back { font-size:22px; opacity:.9; }
+  .appbar .title { font-size:16px; font-weight:800; }
+  .appbar .step { margin-left:auto; font-size:12px; font-weight:700; opacity:.85; }
+  .progress { margin-top:12px; height:5px; border-radius:5px; background:rgba(255,255,255,.25); overflow:hidden; }
+  .progress > span { display:block; height:100%; width:40%; background:#fff; border-radius:5px; }
+  .content { flex:1; padding:24px; overflow-y:auto; }
+  .sec-head { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+  .sec-head .ico { padding:0 10px; height:38px; border-radius:11px; background:var(--secondary); display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:900; color:#fff; }
+  .sec-head h2 { font-size:20px; font-weight:800; }
+  .def { background:var(--container); border-radius:16px; padding:16px; font-size:14px; line-height:1.5; box-shadow:0 8px 32px rgba(73,20,117,.06); margin-bottom:16px; }
+  .link-btn { display:flex; align-items:center; justify-content:space-between; width:100%; padding:14px 16px; border:1.5px solid var(--primary); border-radius:12px; background:#fff; color:var(--primary); font-size:14px; font-weight:800; margin-bottom:22px; }
+  .link-btn .ext { font-size:16px; }
+  .why-label { font-size:13px; font-weight:800; margin-bottom:12px; }
+  .benefits { display:flex; flex-direction:column; gap:12px; margin-bottom:16px; }
+  .ben { display:flex; gap:12px; }
+  .ben .n { flex:0 0 28px; height:28px; border-radius:50%; background:var(--secondary); color:#fff; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:800; }
+  .ben p { font-size:13.5px; line-height:1.45; font-weight:400; }
+  .ben b { font-weight:800; }
+  .infobox { background:var(--purple200); border-left:4px solid var(--primary); border-radius:12px; padding:14px 16px; font-size:13.5px; font-weight:700; line-height:1.4; }
+  .footer { padding:14px 24px 24px; }
+  .btn { width:100%; height:52px; border-radius:12px; background:var(--primary); color:#fff; font-family:inherit; font-size:16px; font-weight:900; border:none; }
+</style>
+</head>
+<body>
+  <div class="appbar">
+    <div class="appbar-row"><span class="back">&larr;</span><span class="title">Den 1 · Představení</span><span class="step">4 / 10</span></div>
+    <div class="progress"><span></span></div>
+  </div>
+  <div class="content">
+    <div class="sec-head"><span class="ico">DBT</span><h2>Co je DBT</h2></div>
+    <div class="def">DBT, neboli dialekticko-behaviorální terapie, je způsob, jak se učit lépe zvládat své emoce a stres. Pomáhá lidem porozumět tomu, co cítí, a najít způsoby, jak reagovat bez impulzivního chování. DBT také podporuje zlepšení vztahů s ostatními a učí, jak se přijmout a zároveň pracovat na změnách, které chceme ve svém životě udělat.</div>
+    <div class="link-btn"><span>Chci vědět víc o DBT</span><span class="ext">↗</span></div>
+
+    <div class="why-label">Proč je důležitý nácvik dovedností?</div>
+    <div class="benefits">
+      <div class="ben"><span class="n">1</span><p><b>Snižujeme impulzivní chování</b> a snáze zvládáme těžké situace.</p></div>
+      <div class="ben"><span class="n">2</span><p>Nové strategie se pravidelným používáním <b>stávají přirozenou součástí života</b>.</p></div>
+      <div class="ben"><span class="n">3</span><p>Pravidelný nácvik dodává <b>pocit jistoty</b> v situacích, které bývaly obtížné.</p></div>
+    </div>
+    <div class="infobox">Samotné vědění nestačí — je potřeba procvičovat nové způsoby, jak reagovat na emoce, stres nebo konflikty.</div>
+  </div>
+  <div class="footer"><button class="btn">Pokračovat</button></div>
+</body>
+</html>

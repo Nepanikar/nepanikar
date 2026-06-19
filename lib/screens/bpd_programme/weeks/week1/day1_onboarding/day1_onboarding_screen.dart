@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/theme/colors.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week1/day1_onboarding/day1_completion_page.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week1/day1_onboarding/dbt_education_page.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week1/day1_onboarding/goals_expectations_page.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week1/day1_onboarding/how_program_works_page.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week1/day1_onboarding/hpo_education_page.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week1/day1_onboarding/mood_checkin_page.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week1/day1_onboarding/personalization_page.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week1/day1_onboarding/smart_intro_page.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week1/day1_onboarding/smart_worksheet_page.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week1/day1_onboarding/welcome_intro_page.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
+import 'package:nepanikar/services/db/bpd/bpd_expectations_dao.dart';
+import 'package:nepanikar/services/db/bpd/bpd_smart_goals_dao.dart';
 import 'package:nepanikar/services/db/bpd/bpd_user_profile_model.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
-import 'package:nepanikar/widgets/bpd_onboarding/onboarding_disclaimer_page.dart';
-import 'package:nepanikar/widgets/bpd_onboarding/onboarding_how_it_works_page.dart';
-import 'package:nepanikar/widgets/bpd_onboarding/onboarding_personalization_page.dart';
-import 'package:nepanikar/widgets/bpd_onboarding/onboarding_program_areas_page.dart';
-import 'package:nepanikar/widgets/bpd_onboarding/onboarding_welcome_page.dart';
 
 part 'day1_onboarding_screen.g.dart';
 
@@ -34,14 +41,26 @@ class Day1OnboardingScreen extends StatefulWidget {
 class _Day1OnboardingScreenState extends State<Day1OnboardingScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
-  static const int _totalPages = 5;
+  static const int _totalPages = 10;
+
+  // Free-text inputs persisted across the flow.
+  final _expectationsController = TextEditingController();
+  final _goalsController = TextEditingController();
+  final _smartControllers = List.generate(5, (_) => TextEditingController());
 
   UserSettingsDao get _userSettingsDao => registry.get<UserSettingsDao>();
   BpdDaysDao get _bpdDaysDao => registry.get<BpdDaysDao>();
+  BpdExpectationsDao get _expectationsDao => registry.get<BpdExpectationsDao>();
+  BpdSmartGoalsDao get _smartGoalsDao => registry.get<BpdSmartGoalsDao>();
 
   @override
   void dispose() {
     _pageController.dispose();
+    _expectationsController.dispose();
+    _goalsController.dispose();
+    for (final c in _smartControllers) {
+      c.dispose();
+    }
     super.dispose();
   }
 
@@ -54,22 +73,38 @@ class _Day1OnboardingScreenState extends State<Day1OnboardingScreen> {
     }
   }
 
-  Future<void> _completeOnboarding(String name, BpdPronoun pronoun) async {
-    // Save user profile
-    final userProfile = BpdUserProfile(
-      name: name,
-      pronoun: pronoun,
-      createdAt: DateTime.now(),
+  Future<void> _saveProfileAndNext(String name, BpdPronoun pronoun) async {
+    await _userSettingsDao.saveBpdUserProfile(
+      BpdUserProfile(name: name, pronoun: pronoun, createdAt: DateTime.now()),
     );
-    await _userSettingsDao.saveBpdUserProfile(userProfile);
+    _nextPage();
+  }
 
-    // Mark Day 1 of Week 1 as completed
-    await _bpdDaysDao.markDayCompleted(1, 1);
+  Future<void> _saveGoalsAndNext() async {
+    await _expectationsDao.saveExpectationsAndGoals(
+      expectations: _expectationsController.text.trim(),
+      goals: _goalsController.text.trim(),
+    );
+    _nextPage();
+  }
 
-    // Navigate back
-    if (mounted) {
-      context.pop();
+  Future<void> _saveSmartAndNext() async {
+    final hasContent = _smartControllers.any((c) => c.text.trim().isNotEmpty);
+    if (hasContent) {
+      await _smartGoalsDao.createGoal(
+        specific: _smartControllers[0].text.trim(),
+        measurable: _smartControllers[1].text.trim(),
+        achievable: _smartControllers[2].text.trim(),
+        relevant: _smartControllers[3].text.trim(),
+        timeBound: _smartControllers[4].text.trim(),
+      );
     }
+    _nextPage();
+  }
+
+  Future<void> _completeDay() async {
+    await _bpdDaysDao.markDayCompleted(1, 1);
+    if (mounted) context.pop();
   }
 
   @override
@@ -84,23 +119,30 @@ class _Day1OnboardingScreenState extends State<Day1OnboardingScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            // Header with close button and progress
             _buildHeader(primaryColor, isDarkMode),
-
-            // Page content
             Expanded(
               child: PageView(
                 controller: _pageController,
                 physics: const NeverScrollableScrollPhysics(),
                 onPageChanged: (page) => setState(() => _currentPage = page),
                 children: [
-                  OnboardingWelcomePage(onNext: _nextPage),
-                  OnboardingHowItWorksPage(onNext: _nextPage),
-                  OnboardingProgramAreasPage(onNext: _nextPage),
-                  OnboardingDisclaimerPage(onNext: _nextPage),
-                  OnboardingPersonalizationPage(
-                    onComplete: _completeOnboarding,
+                  Day1WelcomeIntroPage(onNext: _nextPage),
+                  Day1HowProgramWorksPage(onNext: _nextPage),
+                  Day1PersonalizationPage(onNext: _saveProfileAndNext),
+                  Day1HpoEducationPage(onNext: _nextPage),
+                  Day1DbtEducationPage(onNext: _nextPage),
+                  Day1MoodCheckinPage(onNext: _nextPage),
+                  Day1GoalsExpectationsPage(
+                    onNext: _saveGoalsAndNext,
+                    expectationsController: _expectationsController,
+                    goalsController: _goalsController,
                   ),
+                  Day1SmartIntroPage(onNext: _nextPage),
+                  Day1SmartWorksheetPage(
+                    onComplete: _saveSmartAndNext,
+                    controllers: _smartControllers,
+                  ),
+                  Day1CompletionPage(onComplete: _completeDay),
                 ],
               ),
             ),
@@ -115,7 +157,6 @@ class _Day1OnboardingScreenState extends State<Day1OnboardingScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
       child: Row(
         children: [
-          // Back/close button
           IconButton(
             icon: Icon(
               _currentPage == 0 ? Icons.close : Icons.arrow_back,
@@ -133,8 +174,6 @@ class _Day1OnboardingScreenState extends State<Day1OnboardingScreen> {
               }
             },
           ),
-
-          // Progress indicator
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -158,8 +197,6 @@ class _Day1OnboardingScreenState extends State<Day1OnboardingScreen> {
               ),
             ),
           ),
-
-          // Page counter
           Padding(
             padding: const EdgeInsets.only(right: 8),
             child: Text(

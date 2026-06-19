@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=390">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+  :root {
+    --primary: #491475; --dark: #280446; --secondary: #4EA3AD;
+    --bg: #FBF6FF; --container: #EDE8F3; --purple200: #E2D2EF;
+    --success: #6FD866; --info: #FEC786;
+  }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); width: 390px; min-height: 844px; color: var(--dark); display: flex; flex-direction: column; }
+
+  /* App bar */
+  .appbar { background: var(--primary); color: #fff; padding: 14px 20px 12px; }
+  .appbar-row { display: flex; align-items: center; gap: 14px; }
+  .appbar .back { font-size: 22px; line-height: 1; opacity: .9; }
+  .appbar .title { font-size: 16px; font-weight: 800; }
+  .appbar .step { margin-left: auto; font-size: 12px; font-weight: 700; opacity: .85; }
+  .progress { margin-top: 12px; height: 5px; border-radius: 5px; background: rgba(255,255,255,.25); overflow: hidden; }
+  .progress > span { display: block; height: 100%; width: 10%; background: #fff; border-radius: 5px; }
+
+  /* Content */
+  .content { flex: 1; padding: 24px; overflow-y: auto; }
+  .hero-icon { width: 76px; height: 76px; border-radius: 50%; background: var(--purple200); display: flex; align-items: center; justify-content: center; margin: 6px auto 18px; font-size: 36px; }
+  h1 { font-size: 26px; font-weight: 800; text-align: center; line-height: 1.2; }
+  .lead { text-align: center; font-size: 15px; font-weight: 400; color: rgba(40,4,70,.65); margin: 10px 0 22px; }
+
+  .bullets { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+  .bullet { background: var(--container); border-radius: 16px; padding: 14px 14px; display: flex; gap: 12px; align-items: flex-start; box-shadow: 0 8px 32px rgba(73,20,117,.06); }
+  .bullet .dot { flex: 0 0 28px; height: 28px; border-radius: 50%; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 15px; }
+  .bullet p { font-size: 13.5px; font-weight: 400; line-height: 1.45; }
+
+  .field-label { font-size: 13px; font-weight: 800; margin: 4px 0 8px; }
+  .text-input { width: 100%; background: #fff; border: 1.5px solid var(--purple200); border-radius: 12px; padding: 14px 16px; font-family: inherit; font-size: 15px; color: var(--dark); margin-bottom: 18px; }
+  .text-input::placeholder { color: #A083B8; }
+
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip { padding: 9px 16px; border-radius: 20px; border: 1.5px solid var(--purple200); background: #fff; font-size: 13.5px; font-weight: 500; color: var(--dark); }
+  .chip.active { background: var(--primary); border-color: var(--primary); color: #fff; font-weight: 700; }
+
+  /* Bottom button */
+  .footer { padding: 14px 24px 24px; background: var(--bg); }
+  .btn { width: 100%; height: 52px; border-radius: 12px; background: var(--primary); color: #fff; font-family: inherit; font-size: 16px; font-weight: 900; border: none; display: flex; align-items: center; justify-content: center; }
+</style>
+</head>
+<body>
+  <div class="appbar">
+    <div class="appbar-row">
+      <span class="back">&larr;</span>
+      <span class="title">Den 1 · Představení</span>
+      <span class="step">1 / 10</span>
+    </div>
+    <div class="progress"><span></span></div>
+  </div>
+
+  <div class="content">
+    <div class="hero-icon">💜</div>
+    <h1>Vítej v programu</h1>
+    <p class="lead">Jsme rádi, že jsi tady. Pojďme si na úvod říct, pro koho je tento program.</p>
+
+    <div class="bullets">
+      <div class="bullet"><span class="dot">1</span><p>Právě jste otevřeli program, který byl vytvořen pro lidi učící se zvládat projevy hraniční poruchy osobnosti. Je ale i pro ty, kteří mají obecně potíže v oblasti emocí, stresu, impulzivního chování a mezilidských vztahů, včetně toho sami se sebou.</p></div>
+      <div class="bullet"><span class="dot">2</span><p>Program může uživateli poskytnout řadu nástrojů a strategií, pro které byly inspirací ověřené metody dialekticko-behaviorální terapie (DBT).</p></div>
+      <div class="bullet"><span class="dot">3</span><p>Přijde nám důležité říct, že program nenahrazuje terapii.</p></div>
+    </div>
+
+    <div class="field-label">Jak ti máme říkat?</div>
+    <input class="text-input" type="text" placeholder="Tvoje křestní jméno" value="Tereza">
+
+    <div class="field-label">Jak chceš, aby tě Nepanikař oslovoval?</div>
+    <div class="chips">
+      <span class="chip active">on</span>
+      <span class="chip">ona</span>
+      <span class="chip">ono</span>
+      <span class="chip">nechci uvádět</span>
+    </div>
+  </div>
+
+  <div class="footer">
+    <button class="btn">Pokračovat</button>
+  </div>
+</body>
+</html>

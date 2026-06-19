@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=390">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+  :root { --primary:#491475; --dark:#280446; --secondary:#4EA3AD; --bg:#FBF6FF; --container:#EDE8F3; --purple200:#E2D2EF; }
+  body { font-family:'Inter',sans-serif; background:var(--bg); width:390px; min-height:844px; color:var(--dark); display:flex; flex-direction:column; }
+  .appbar { background:var(--primary); color:#fff; padding:14px 20px 12px; }
+  .appbar-row { display:flex; align-items:center; gap:14px; }
+  .appbar .back { font-size:22px; opacity:.9; }
+  .appbar .title { font-size:16px; font-weight:800; }
+  .appbar .step { margin-left:auto; font-size:12px; font-weight:700; opacity:.85; }
+  .progress { margin-top:12px; height:5px; border-radius:5px; background:rgba(255,255,255,.25); overflow:hidden; }
+  .progress > span { display:block; height:100%; width:60%; background:#fff; border-radius:5px; }
+  .content { flex:1; padding:24px; overflow-y:auto; }
+  .reaction { background:var(--container); border-radius:16px; padding:20px 18px; text-align:center; font-size:18px; font-weight:800; color:var(--primary); margin-bottom:22px; box-shadow:0 8px 32px rgba(73,20,117,.06); }
+  .q { font-size:15px; font-weight:800; margin-bottom:12px; }
+  .actions { display:flex; flex-direction:column; gap:9px; margin-bottom:22px; }
+  .action { display:flex; align-items:center; gap:12px; padding:13px 15px; border-radius:12px; border:1.5px solid var(--purple200); background:#fff; font-size:14px; font-weight:600; }
+  .action.sel { border-color:var(--primary); background:var(--purple200); }
+  .action .e { font-size:18px; }
+  .followup { font-size:14px; font-weight:800; margin-bottom:10px; }
+  .seg { display:flex; gap:8px; margin-bottom:24px; }
+  .seg .opt { flex:1; text-align:center; padding:11px 0; border-radius:12px; border:1.5px solid var(--purple200); background:#fff; font-size:14px; font-weight:700; }
+  .seg .opt.sel { border-color:var(--primary); background:var(--primary); color:#fff; }
+  .closing { background:var(--purple200); border-radius:16px; padding:16px; display:flex; gap:12px; align-items:flex-start; }
+  .closing .h { font-size:22px; }
+  .closing p { font-size:13.5px; line-height:1.5; font-weight:500; }
+  .footer { padding:14px 24px 24px; }
+  .btn { width:100%; height:52px; border-radius:12px; background:var(--primary); color:#fff; font-family:inherit; font-size:16px; font-weight:900; border:none; }
+</style>
+</head>
+<body>
+  <div class="appbar">
+    <div class="appbar-row"><span class="back">&larr;</span><span class="title">Den 1 · Představení</span><span class="step">6 / 10</span></div>
+    <div class="progress"><span></span></div>
+  </div>
+  <div class="content">
+    <!-- Banda podle zaznamenané nálady (5-moodový feature):
+         good/happy → povzbudivá věta · okay → neutrální věta ·
+         sad/bad → "Zkus jednu malou věc" + malé akce (níže, nejvíc obsahu). -->
+    <div class="reaction">„Zkus jednu malou věc:"</div>
+
+    <div class="q">Vyber si, co teď zkusíš</div>
+    <div class="actions">
+      <div class="action sel"><span class="e">💧</span> napij se vody</div>
+      <div class="action"><span class="e">🍎</span> dej si malé jídlo</div>
+      <div class="action"><span class="e">🛏️</span> na chvíli si lehni / odpočiň</div>
+      <div class="action"><span class="e">🚶</span> krátká procházka</div>
+    </div>
+
+    <div class="followup">Pomohlo to aspoň trochu?</div>
+    <div class="seg">
+      <span class="opt sel">ano</span>
+      <span class="opt">trochu</span>
+      <span class="opt">ne</span>
+    </div>
+
+    <div class="closing"><span class="h">💜</span><p>To je pro první seznamovací den vše! Chceme tě ocenit za rozhodnutí začít s tímto programem. Může to být velmi důležitý krok pro Tvoji osobní pohodu. Těšíme se na zítřek.</p></div>
+  </div>
+  <div class="footer"><button class="btn">Pokračovat</button></div>
+</body>
+</html>

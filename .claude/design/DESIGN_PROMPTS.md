@@ -1,19 +1,22 @@
 # Prompty pre generovanie dizajnu BPD programu
 
-> **JEDINÝ ZDROJ PRAVDY** pre konštanty dizajn pipeline (paleta, Stitch ID,
-> typografia, komponenty). Skilly `/plan-screens`, `/design-screen`,
-> `/implement-screen` na tento súbor odkazujú — neduplikuj tieto hodnoty inde.
+> **JEDINÝ ZDROJ PRAVDY** pre konštanty dizajn pipeline (paleta, typografia,
+> komponenty). Skilly `/plan-screens`, `/design-screen`, `/implement-screen`
+> na tento súbor odkazujú — neduplikuj tieto hodnoty inde.
 > Keď sa niečo zmení, zmeň to TU.
 
-## Stitch projekt a dizajn systém
+## Mockup systém
+
+Designy sa generujú ako **HTML/CSS súbory** zobrazované cez Claude Preview.
+
 | Parameter | Hodnota |
 |-----------|---------|
-| Project ID | `12102936321319572704` |
-| Design System ID | `6337495699421443160` |
-| Design System Name | "Nepanikar Purple" |
-| Default model | `GEMINI_3_1_PRO` |
-| Device | `MOBILE` |
-| Režim | LIGHT MODE (všetky prompty) |
+| Výstupný priečinok | `.claude/design/<week>/mockups/` |
+| Formát | HTML súbor na stranu (napr. `day1_page1_intro.html`) |
+| Mobile frame | `390 × 844 px` (iPhone 14 proporcie) |
+| Režim | LIGHT MODE (všetky mockupy) |
+| Font (mockup) | Inter (Google Fonts) |
+| Font (produkcia) | Satoshi |
 
 ## Typografia a komponenty
 ```
@@ -261,12 +264,30 @@ Style: Friendly, educational, non-clinical
 5. **Ikony namiesto fotiek** - jednoduché, line-art štýlové ikony
 6. **Mobile-first** - vždy portrait orientácia, dotykovo priateľské
 
-## Nástroje na generovanie
+## HTML mockup štandardy
 
-- **Midjourney:** Pridaj `--ar 9:16` pre mobile formát
-- **DALL-E:** Špecifikuj "mobile app UI design"
-- **Figma AI:** Použiteľné pre UI komponenty
-- **Canva:** Má šablóny pre infografiky
+```html
+<!-- Povinná hlavička každého mockupu -->
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=390">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #FBF6FF; width: 390px; min-height: 844px; }
+  </style>
+</head>
+```
+
+**Štandardné komponenty:**
+- App bar: `#491475` bg, biely text, výška 56px; progress bar (primary tint) ak viac strán
+- Primárne tlačidlo: `#491475` fill, biely w900 text, radius 12, width 100%, height 52px; fixne dole
+- Karta: `#EDE8F3` bg, radius 16, padding 16, `box-shadow: 0 8px 32px rgba(73,20,117,0.08)`
+- SectionHeader: ikona (emoji / inline SVG) + tučný nadpis v `#280446`
+- InfoBox: `#E2D2EF` bg, ľavý border 4px `#491475`, radius 12, padding 16
+- NumberedBenefit: číslo v `#491475` kruhu + text vedľa
 
 ---
 

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=390">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+  :root { --primary:#491475; --dark:#280446; --secondary:#4EA3AD; --bg:#FBF6FF; --container:#EDE8F3; --purple200:#E2D2EF; }
+  body { font-family:'Inter',sans-serif; background:var(--bg); width:390px; min-height:844px; color:var(--dark); display:flex; flex-direction:column; }
+  .appbar { background:var(--primary); color:#fff; padding:14px 20px 12px; }
+  .appbar-row { display:flex; align-items:center; gap:14px; }
+  .appbar .back { font-size:22px; opacity:.9; }
+  .appbar .title { font-size:16px; font-weight:800; }
+  .appbar .step { margin-left:auto; font-size:12px; font-weight:700; opacity:.85; }
+  .progress { margin-top:12px; height:5px; border-radius:5px; background:rgba(255,255,255,.25); overflow:hidden; }
+  .progress > span { display:block; height:100%; width:50%; background:#fff; border-radius:5px; }
+  .content { flex:1; padding:24px; display:flex; flex-direction:column; }
+  .pill { align-self:flex-start; background:var(--container); color:var(--primary); font-size:11px; font-weight:800; padding:6px 12px; border-radius:20px; margin-bottom:18px; }
+  h1 { font-size:24px; font-weight:800; }
+  .lead { font-size:14px; color:rgba(40,4,70,.65); line-height:1.5; margin:10px 0 24px; }
+
+  /* Preview of the EXISTING mood picker (5 moods) — not a new component */
+  .picker-card { background:#fff; border:1.5px solid var(--purple200); border-radius:16px; padding:18px 12px 14px; box-shadow:0 8px 32px rgba(73,20,117,.06); }
+  .picker-q { font-size:13px; font-weight:800; text-align:center; color:var(--primary); margin-bottom:14px; }
+  .moods { display:flex; justify-content:space-between; }
+  .mood { flex:1; text-align:center; }
+  .mood .face { font-size:34px; line-height:1; }
+  .mood small { display:block; font-size:10px; font-weight:700; color:rgba(40,4,70,.55); margin-top:5px; }
+  .reuse-note { display:flex; gap:8px; align-items:center; font-size:11.5px; color:rgba(40,4,70,.55); margin-top:14px; }
+  .reuse-note .tag { background:var(--secondary); color:#fff; font-weight:800; font-size:10px; padding:3px 8px; border-radius:10px; white-space:nowrap; }
+
+  .footer { padding:14px 24px 24px; }
+  .btn { width:100%; height:52px; border-radius:12px; background:var(--primary); color:#fff; font-family:inherit; font-size:16px; font-weight:900; border:none; display:flex; align-items:center; justify-content:center; gap:8px; }
+</style>
+</head>
+<body>
+  <div class="appbar">
+    <div class="appbar-row"><span class="back">&larr;</span><span class="title">Den 1 · Představení</span><span class="step">5 / 10</span></div>
+    <div class="progress"><span></span></div>
+  </div>
+  <div class="content">
+    <span class="pill">📝 První aktivita</span>
+    <h1>Pojďme si zkusit jednu aktivitu</h1>
+    <p class="lead">Zaznamenej si, jak se dnes máš. Záznam se uloží do <b>Mých záznamů</b>, kam se můžeš kdykoliv vrátit a sledovat, jak se tvá nálada vyvíjí.</p>
+
+    <div class="picker-card">
+      <div class="picker-q">Jak se dnes máš?</div>
+      <div class="moods">
+        <div class="mood"><div class="face">😣</div><small>Hrozně</small></div>
+        <div class="mood"><div class="face">🙁</div><small>Špatně</small></div>
+        <div class="mood"><div class="face">😐</div><small>Nic moc</small></div>
+        <div class="mood"><div class="face">🙂</div><small>Dobře</small></div>
+        <div class="mood"><div class="face">😄</div><small>Skvěle</small></div>
+      </div>
+      <div class="reuse-note"><span class="tag">reuse</span> Otevře stávající záznam nálady (Moje záznamy)</div>
+    </div>
+  </div>
+  <div class="footer"><button class="btn">📝 Zaznamenat náladu</button></div>
+</body>
+</html>

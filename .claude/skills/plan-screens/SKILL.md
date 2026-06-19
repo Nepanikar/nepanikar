@@ -56,8 +56,7 @@ Ak nie je argument, opýtaj sa používateľa na týždeň.
      — uveď ho v sekcii "Otvorené rozhodnutia" plánu a navrhni odporúčanú variantu.
 2. **Design system** (aby návrh sedel do appky):
    - `docs/agent/design-system.md` (farby, fonty, veľkosti, reusable widgety)
-   - `.claude/design/DESIGN_PROMPTS.md` a existujúci
-     `.claude/design/week2/WEEK2_STITCH_PROMPTS.md` ako referenčný štýl promptov
+   - `.claude/design/DESIGN_PROMPTS.md` — design tokeny (farby, typografia, spacing)
    - `lib/screens/bpd_programme/widgets/day_page_base.dart` (DayPageBase,
      SectionHeader, FeatureCard, NumberedBenefit, InfoBox) — preferuj reuse pred
      novými widgetmi
@@ -107,24 +106,34 @@ nový?) a **Otvorené otázky / riziká** ak nejaké sú.
 ### 3. Zapíš plán
 
 Vytvor `.claude/design/$ARGUMENTS/WEEK<N>_SCREEN_PLAN.md` podľa šablóny nižšie.
+Tento súbor je vstupom pre `/design-screen` (HTML mockup generovanie).
 
-### 4. Vygeneruj Stitch prompty a tracking
+### 4. Vygeneruj tracking
 
 Z plánu vytvor (alebo aktualizuj):
-- `.claude/design/$ARGUMENTS/WEEK<N>_STITCH_PROMPTS.md` — rovnaký formát a design
-  system reference ako `week2/WEEK2_STITCH_PROMPTS.md` (LIGHT MODE, ASCII layout
-  náčrt pre každú stranu, farby/typografia hore). Prompt každej strany musí
-  odrážať UX rozhodnutia z plánu. **Konkrétny text v prompte (nadpisy, telo,
-  položky) píš verbatim zo `source/`** — prompt opisuje len rozloženie/štýl,
-  nie preklad/parafrázu copy (viď ZÁSADA č. 1).
-- `.claude/design/$ARGUMENTS/TRACKING.md` — rovnaký formát ako
-  `week2/TRACKING.md`: tabuľky strán so stavom ❌, sekcia Stitch + Flutter +
-  Súhrn. Dni na reuse označ 🔁.
+- `.claude/design/$ARGUMENTS/TRACKING.md` — tabuľky strán so stavom ❌, sekcia
+  Design (HTML mockupy) + Flutter implementácia + Súhrn. Dni na reuse označ 🔁.
+
+Formát tracking sekcie:
+```markdown
+## Stav — Design
+
+### Deň X: Názov (N strán)
+| Strana | Názov | Design |
+|--------|-------|--------|
+| 1/N    | ...   | ❌     |
+
+## Stav — Flutter implementácia
+| Deň | Názov | Flutter |
+|-----|-------|---------|
+| X   | ...   | ❌      |
+```
 
 ### 5. Informuj používateľa
 
 Zhrň: koľko obrazoviek/strán, ktoré sa reusujú, kľúčové UX rozhodnutia, otvorené
-otázky na rozhodnutie, a že ďalší krok je `/design-screen $ARGUMENTS`.
+otázky na rozhodnutie, a že ďalší krok je `/design-screen $ARGUMENTS` (vygeneruje
+HTML mockupy cez Claude Preview).
 
 ---
 
