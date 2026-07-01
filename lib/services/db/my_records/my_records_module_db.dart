@@ -7,7 +7,6 @@ import 'package:nepanikar/services/db/my_records/food/my_records_food_record_dao
 import 'package:nepanikar/services/db/my_records/journal/my_records_journal_dao.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_dao.dart';
 import 'package:nepanikar/services/db/my_records/my_records_sleep_track_dao.dart';
-import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 
 class MyRecordsModuleDb implements NepanikarModuleDb {
   MyRecordsModuleDb(this._dbService);
@@ -40,28 +39,6 @@ class MyRecordsModuleDb implements NepanikarModuleDb {
     await _myRecordsJournalDao.clear();
     await _myRecordsFoodRecordDao.clear();
     await _emotionsDao.clear();
-  }
-
-  Future<void> doModuleOldVersionMigration(MyRecordsModuleDTO moduleConfig) async {
-    final moodTrackConfig = moduleConfig.moodTrackConfig;
-    if (moodTrackConfig != null) {
-      await _moodTrackDao.doOldVersionMigration(moodTrackConfig);
-    }
-
-    final diaryConfig = moduleConfig.diaryConfig;
-    if (diaryConfig != null) {
-      await _myRecordsDiaryDao.doOldVersionMigration(diaryConfig);
-    }
-
-    final journalConfig = moduleConfig.journalConfig;
-    if (journalConfig != null) {
-      await _myRecordsJournalDao.doOldVersionMigration(journalConfig);
-    }
-
-    final foodRecordConfig = moduleConfig.foodRecordConfig;
-    if (foodRecordConfig != null) {
-      await _myRecordsFoodRecordDao.doOldVersionMigration(foodRecordConfig);
-    }
   }
 
   @override

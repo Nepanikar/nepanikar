@@ -15,7 +15,7 @@ import 'package:path/path.dart';
 import 'package:sembast/sembast_io.dart';
 
 class DatabaseService {
-  DatabaseService({required SaveDirectories saveDirectories}) : _saveDirectories = saveDirectories;
+  DatabaseService({required this._saveDirectories});
 
   Future<void> init() async {
     mainStore = StoreRef.main();

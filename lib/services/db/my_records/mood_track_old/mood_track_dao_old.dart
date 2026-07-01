@@ -4,13 +4,11 @@ import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/services/db/filters.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
 import 'package:nepanikar/utils/registry.dart';
-import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 import 'package:sembast/sembast.dart';
 
 class MoodTrackDao with CustomFilters {
-  MoodTrackDao({required DatabaseService dbService, String? storeKeyName})
-    : _dbService = dbService,
-      _store = intMapStoreFactory.store(storeKeyName ?? _storeKeyName);
+  MoodTrackDao({required this._dbService, String? storeKeyName})
+    : _store = intMapStoreFactory.store(storeKeyName ?? _storeKeyName);
 
   Future<MoodTrackDao> init() async {
     registry.registerSingleton<MoodTrackDao>(this);
@@ -69,21 +67,6 @@ class MoodTrackDao with CustomFilters {
     final now = getNowDateUtc();
     final record = await _store.findFirst(_db, finder: Finder(filter: getDateEqualsFilter(now)));
     return record != null;
-  }
-
-  Future<void> doOldVersionMigration(MyRecordsMoodTrackDTO moodTrackConfig) async {
-    final valuesMap = moodTrackConfig.values;
-    if (valuesMap != null) {
-      final moodTracks = valuesMap.entries
-          .map((dateMoodEntry) {
-            final date = dateMoodEntry.key.toUtcDate();
-            final mood = Mood.fromInteger(dateMoodEntry.value);
-            return mood == null ? null : MoodTrack(date: date, mood: mood, summary: '');
-          })
-          .whereType<MoodTrack>()
-          .toList();
-      await saveMoods(moodTracks);
-    }
   }
 
   Future<void> clear() async {

@@ -1,13 +1,11 @@
 import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/services/db/my_contacts/my_contacts_records/my_contacts_record_model.dart';
 import 'package:nepanikar/utils/registry.dart';
-import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 import 'package:sembast/sembast.dart';
 
 class MyContactsRecordsDao {
-  MyContactsRecordsDao({required DatabaseService dbService})
-    : _dbService = dbService,
-      _store = stringMapStoreFactory.store(_storeKeyName);
+  MyContactsRecordsDao({required this._dbService})
+    : _store = stringMapStoreFactory.store(_storeKeyName);
 
   Future<MyContactsRecordsDao> init() async {
     registry.registerSingleton<MyContactsRecordsDao>(this);
@@ -24,11 +22,6 @@ class MyContactsRecordsDao {
   Future<void> addNewRecord() async {
     const emptyRecord = MyContactRecord(name: '', contactAddress: '');
     await _store.add(_db, emptyRecord.toJson());
-  }
-
-  Future<void> _addRecords(List<MyContactRecord> items) async {
-    final serializedItems = items.map((item) => item.toJson()).toList();
-    await _store.addAll(_db, serializedItems);
   }
 
   Future<void> updateName(String id, MyContactRecord currRecord, String newName) async {
@@ -62,16 +55,6 @@ class MyContactsRecordsDao {
             .toList();
         return Map.fromEntries(entries);
       });
-
-  Future<void> doOldVersionMigration(MyContactsRecordsDTO myContactsRecordsConfig) async {
-    final recordEntries = myContactsRecordsConfig.recordEntries;
-    if (recordEntries != null) {
-      final records = recordEntries
-          .map((entry) => MyContactRecord(name: entry.key, contactAddress: entry.value))
-          .toList();
-      await _addRecords(records);
-    }
-  }
 
   Future<void> clear() async {
     await _store.delete(_db);

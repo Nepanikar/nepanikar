@@ -8,7 +8,6 @@ import 'package:nepanikar/services/db/eating_disorder/eating_disorder_food_creat
 import 'package:nepanikar/services/db/eating_disorder/eating_disorder_food_i_like_dao.dart';
 import 'package:nepanikar/services/db/eating_disorder/eating_disorder_food_motivation_dao.dart';
 import 'package:nepanikar/services/db/eating_disorder/eating_disorder_like_on_myself_dao.dart';
-import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 
 class EatingDisorderModuleDb implements NepanikarModuleDb {
   EatingDisorderModuleDb(this._dbService);
@@ -51,38 +50,6 @@ class EatingDisorderModuleDb implements NepanikarModuleDb {
     await _eatingDisorderLikeOnMyselfDao.clear();
     await _eatingDisorderFoodILikeDao.clear();
     await _eatingDisorderFoodAfraidOfDao.clear();
-  }
-
-  Future<void> doModuleOldVersionMigration(EatingDisorderModuleDTO moduleConfig) async {
-    final foodCreativeConfig = moduleConfig.eatingDisorderFoodCreativeConfig;
-    if (foodCreativeConfig != null) {
-      await _eatingDisorderFoodCreativeDao.doOldVersionMigration(foodCreativeConfig);
-    }
-
-    final foodMotivationConfig = moduleConfig.eatingDisorderFoodMotivationConfig;
-    if (foodMotivationConfig != null) {
-      await _eatingDisorderFoodMotivationDao.doOldVersionMigration(foodMotivationConfig);
-    }
-
-    final foodChallengesConfig = moduleConfig.eatingDisorderFoodChallengesConfig;
-    if (foodChallengesConfig != null) {
-      await _eatingDisorderFoodChallengesDao.doOldVersionMigration(foodChallengesConfig);
-    }
-
-    final likeOnMyselfConfig = moduleConfig.eatingDisorderFoodLikeOnMyselfConfig;
-    if (likeOnMyselfConfig != null) {
-      await _eatingDisorderLikeOnMyselfDao.doOldVersionMigration(likeOnMyselfConfig);
-    }
-
-    final foodILikeConfig = moduleConfig.eatingDisorderFoodILikeConfig;
-    if (foodILikeConfig != null) {
-      await _eatingDisorderFoodILikeDao.doOldVersionMigration(foodILikeConfig);
-    }
-
-    final foodAfraidOfConfig = moduleConfig.eatingDisorderFoodAfraidOfConfig;
-    if (foodAfraidOfConfig != null) {
-      await _eatingDisorderFoodAfraidOfDao.doOldVersionMigration(foodAfraidOfConfig);
-    }
   }
 
   @override

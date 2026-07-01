@@ -4,7 +4,6 @@ import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/services/db/self_harm/self_harm_helped_dao.dart';
 import 'package:nepanikar/services/db/self_harm/self_harm_plan_dao.dart';
 import 'package:nepanikar/services/db/self_harm/self_harm_timer_dao.dart';
-import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 
 class SelfHarmModuleDb implements NepanikarModuleDb {
   SelfHarmModuleDb(this._dbService);
@@ -28,23 +27,6 @@ class SelfHarmModuleDb implements NepanikarModuleDb {
     await _selfHarmPlanDao.clear();
     await _selfHarmTimerDao.clear();
     await _selfHarmHelpedDao.clear();
-  }
-
-  Future<void> doModuleOldVersionMigration(SelfHarmModuleDTO moduleConfig) async {
-    final planFormConfig = moduleConfig.selfHarmPlanConfig;
-    if (planFormConfig != null) {
-      await _selfHarmPlanDao.doOldVersionMigration(planFormConfig);
-    }
-
-    final selfHarmTimerConfig = moduleConfig.selfHarmTimerConfig;
-    if (selfHarmTimerConfig != null) {
-      await _selfHarmTimerDao.doOldVersionMigration(selfHarmTimerConfig);
-    }
-
-    final selfHarmHelpedConfig = moduleConfig.selfHarmHelpedConfig;
-    if (selfHarmHelpedConfig != null) {
-      await _selfHarmHelpedDao.doOldVersionMigration(selfHarmHelpedConfig);
-    }
   }
 
   @override

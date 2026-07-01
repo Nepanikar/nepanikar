@@ -4,7 +4,7 @@ import 'package:nepanikar/services/db/common/nepanikar_module_db.dart';
 import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/services/db/suicidal_thoughts/suicidal_thoughts_plan_dao.dart';
 import 'package:nepanikar/services/db/suicidal_thoughts/suicidal_thoughts_reasons_no_dao.dart';
-import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
+
 
 class SuicidalThoughtsModuleDb implements NepanikarModuleDb {
   SuicidalThoughtsModuleDb(this._dbService);
@@ -27,18 +27,6 @@ class SuicidalThoughtsModuleDb implements NepanikarModuleDb {
   Future<void> clearModule() async {
     await _suicidalThoughtsPlanDao.clear();
     await _suicidalThoughtsReasonsNoDao.clear();
-  }
-
-  Future<void> doModuleOldVersionMigration(SuicidalThoughtsModuleDTO moduleConfig) async {
-    final planFormConfig = moduleConfig.suicidalThoughtsPlanConfig;
-    if (planFormConfig != null) {
-      await _suicidalThoughtsPlanDao.doOldVersionMigration(planFormConfig);
-    }
-
-    final reasonsNoConfig = moduleConfig.suicidalThoughtsReasonsNoConfig;
-    if (reasonsNoConfig != null) {
-      await _suicidalThoughtsReasonsNoDao.doOldVersionMigration(reasonsNoConfig);
-    }
   }
 
   @override

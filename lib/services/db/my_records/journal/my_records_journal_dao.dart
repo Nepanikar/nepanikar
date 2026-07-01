@@ -2,13 +2,11 @@ import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/services/db/filters.dart';
 import 'package:nepanikar/services/db/my_records/journal/my_records_journal_record_model.dart';
 import 'package:nepanikar/utils/registry.dart';
-import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 import 'package:sembast/sembast.dart';
 
 class MyRecordsJournalDao {
-  MyRecordsJournalDao({required DatabaseService dbService})
-    : _dbService = dbService,
-      _store = stringMapStoreFactory.store(_storeKeyName);
+  MyRecordsJournalDao({required this._dbService})
+    : _store = stringMapStoreFactory.store(_storeKeyName);
 
   Future<MyRecordsJournalDao> init() async {
     registry.registerSingleton<MyRecordsJournalDao>(this);
@@ -25,11 +23,6 @@ class MyRecordsJournalDao {
   Future<String> createRecord(JournalRecord journalRecord) async {
     final item = journalRecord.toJson();
     return await _store.add(_db, item);
-  }
-
-  Future<void> _addRecords(List<JournalRecord> items) async {
-    final serializedItems = items.map((item) => item.toJson()).toList();
-    await _store.addAll(_db, serializedItems);
   }
 
   Future<void> updateRecord(String key, {required JournalRecord updatedJournalRecord}) async {
@@ -63,23 +56,6 @@ class MyRecordsJournalDao {
             .toList();
         return Map.fromEntries(entries);
       });
-
-  Future<void> doOldVersionMigration(MyRecordsJournalDTO journalConfig) async {
-    final records = journalConfig.records;
-    if (records != null) {
-      final journalRecords = records
-          .map(
-            (r) => JournalRecord(
-              dateTime: r.date,
-              answers: r.answers
-                  .map((a) => JournalRecordAnswer(question: a.item1, answer: a.item2))
-                  .toList(),
-            ),
-          )
-          .toList();
-      await _addRecords(journalRecords);
-    }
-  }
 
   Future<void> clear() async {
     await _store.delete(_db);

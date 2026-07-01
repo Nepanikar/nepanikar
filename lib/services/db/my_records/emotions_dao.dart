@@ -3,9 +3,8 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:sembast/sembast.dart';
 
 class EmotionsDao {
-  EmotionsDao({required DatabaseService dbService, String? storeKeyName})
-    : _dbService = dbService,
-      _store = stringMapStoreFactory.store(storeKeyName ?? _storeKeyName);
+  EmotionsDao({required this._dbService, String? storeKeyName})
+    : _store = stringMapStoreFactory.store(storeKeyName ?? _storeKeyName);
 
   Future<EmotionsDao> init() async {
     registry.registerSingleton<EmotionsDao>(this);

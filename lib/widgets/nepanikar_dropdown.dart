@@ -71,8 +71,8 @@ class NepanikarDropdown<T> extends StatelessWidget {
     required this.labelBuilder,
     required this.onPick,
     required this.expand,
-    required NepanikarDropdownType type,
-  }) : _type = type;
+    required this._type,
+  });
 
   final T? activeItem;
   final Iterable<T> items;

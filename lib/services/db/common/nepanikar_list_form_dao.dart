@@ -1,13 +1,11 @@
 import 'package:nepanikar/services/db/database_service.dart';
-import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 import 'package:sembast/sembast.dart';
 
 typedef ListFormItem = String;
 
 abstract class NepanikarListFormDao {
-  NepanikarListFormDao({required DatabaseService dbService, required String storeKeyName})
-    : _dbService = dbService,
-      _store = StoreRef(storeKeyName);
+  NepanikarListFormDao({required this._dbService, required String storeKeyName})
+    : _store = StoreRef(storeKeyName);
 
   // TODO: use @mustBeOverridden annotation, will be available in Dart 2.19
   Future<NepanikarListFormDao> init() async => this;
@@ -38,13 +36,6 @@ abstract class NepanikarListFormDao {
 
   Future<void> preloadDefaultData(List<String> texts) async {
     await _addFormTexts(texts);
-  }
-
-  Future<void> doOldVersionMigration(NepanikarListFormDTO listFormConfig) async {
-    final listFormItems = listFormConfig.texts;
-    if (listFormItems != null) {
-      await _addFormTexts(listFormItems);
-    }
   }
 
   Future<void> clear() async {

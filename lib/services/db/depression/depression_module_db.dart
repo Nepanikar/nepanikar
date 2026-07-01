@@ -5,7 +5,6 @@ import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/services/db/depression/depression_activity_plan_dao.dart';
 import 'package:nepanikar/services/db/depression/depression_nice_made_happy_dao.dart';
 import 'package:nepanikar/services/db/depression/depression_praise_my_achievements_dao.dart';
-import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 
 class DepressionModuleDb implements NepanikarModuleDb {
   DepressionModuleDb(this._dbService);
@@ -31,23 +30,6 @@ class DepressionModuleDb implements NepanikarModuleDb {
     await _depressionActivityPlanDao.clear();
     await _depressionNiceMadeHappyDao.clear();
     await _depressionPraiseMyAchievementsDao.clear();
-  }
-
-  Future<void> doModuleOldVersionMigration(DepressionModuleDTO moduleConfig) async {
-    final activityPlanConfig = moduleConfig.depressionActivityPlanConfig;
-    if (activityPlanConfig != null) {
-      await _depressionActivityPlanDao.doOldVersionMigration(activityPlanConfig);
-    }
-
-    final niceMadeHappyConfig = moduleConfig.depressionNiceMadeHappyConfig;
-    if (niceMadeHappyConfig != null) {
-      await _depressionNiceMadeHappyDao.doOldVersionMigration(niceMadeHappyConfig);
-    }
-
-    final praiseMyAchievementsConfig = moduleConfig.depressionPraiseMyAchievementsConfig;
-    if (praiseMyAchievementsConfig != null) {
-      await _depressionPraiseMyAchievementsDao.doOldVersionMigration(praiseMyAchievementsConfig);
-    }
   }
 
   @override
