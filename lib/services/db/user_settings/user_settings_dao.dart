@@ -9,8 +9,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:sembast/sembast.dart';
 
 class UserSettingsDao {
-  UserSettingsDao({required this._dbService})
-    : _store = StoreRef(_storeKeyName);
+  UserSettingsDao({required this._dbService}) : _store = StoreRef(_storeKeyName);
 
   Future<UserSettingsDao> init() async {
     registry.registerSingleton<UserSettingsDao>(this);

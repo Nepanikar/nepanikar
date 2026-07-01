@@ -6,8 +6,7 @@ import 'package:sembast/sembast.dart';
 import 'package:sembast/timestamp.dart';
 
 class SelfHarmTimerDao {
-  SelfHarmTimerDao({required this._dbService})
-    : _store = StoreRef(_storeKeyName);
+  SelfHarmTimerDao({required this._dbService}) : _store = StoreRef(_storeKeyName);
 
   Future<SelfHarmTimerDao> init() async {
     registry.registerSingleton<SelfHarmTimerDao>(this);

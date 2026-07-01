@@ -5,7 +5,6 @@ import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/services/db/suicidal_thoughts/suicidal_thoughts_plan_dao.dart';
 import 'package:nepanikar/services/db/suicidal_thoughts/suicidal_thoughts_reasons_no_dao.dart';
 
-
 class SuicidalThoughtsModuleDb implements NepanikarModuleDb {
   SuicidalThoughtsModuleDb(this._dbService);
 

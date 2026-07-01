@@ -5,8 +5,7 @@ import 'package:sembast/sembast.dart';
 import 'package:tuple/tuple.dart';
 
 class MyContactsCrisisMessageDao {
-  MyContactsCrisisMessageDao({required this._dbService})
-    : _store = StoreRef(_storeKeyName);
+  MyContactsCrisisMessageDao({required this._dbService}) : _store = StoreRef(_storeKeyName);
 
   Future<MyContactsCrisisMessageDao> init() async {
     registry.registerSingleton<MyContactsCrisisMessageDao>(this);
