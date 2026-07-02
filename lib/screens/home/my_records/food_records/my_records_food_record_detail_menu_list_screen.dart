@@ -17,7 +17,6 @@ import 'package:nepanikar/widgets/nepanikar_button.dart';
 import 'package:nepanikar/widgets/nepanikar_date_picker.dart';
 import 'package:nepanikar/widgets/nepanikar_horizontal_divider.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
-import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 part 'my_records_food_record_detail_menu_list_screen.g.dart';
 
 @TypedGoRoute<MyRecordsFoodRecordsDetailMenuListRoute>(path: '/home/my-records/food-records/detail')

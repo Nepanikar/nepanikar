@@ -3,7 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/services/db/filters.dart';
-import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 
 part 'mood_track_model.freezed.dart';
 part 'mood_track_model.g.dart';
@@ -90,7 +89,9 @@ enum Mood {
     }
   }
 
-  static Mood? fromInteger(int value) => Mood.values.safeElementAtOrNull(value);
+  static Mood? fromInteger(int value) {
+    return Mood.values.elementAtOrNull(value);
+  }
 }
 
 @freezed

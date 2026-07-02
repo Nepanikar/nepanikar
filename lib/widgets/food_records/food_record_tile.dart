@@ -6,7 +6,6 @@ import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/services/db/my_records/food/my_records_food_record_model.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
-import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 
 class FoodRecordTile extends StatelessWidget {
   const FoodRecordTile({super.key, required this.dailyFoodRecord, required this.onTap});

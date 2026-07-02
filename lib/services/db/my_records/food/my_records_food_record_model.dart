@@ -3,11 +3,29 @@ import 'package:flutter/cupertino.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/services/db/filters.dart';
-import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 
 part 'my_records_food_record_model.freezed.dart';
 
 part 'my_records_food_record_model.g.dart';
+
+enum FoodType { breakfast, amSnack, lunch, pmSnack, dinner, secondDinner }
+
+enum FoodQuestionText { when, where, $with, what }
+
+enum FoodQuestionFeel {
+  happy,
+  satisfied,
+  proud,
+  fear,
+  anger,
+  anxiety,
+  unsatisfied,
+  disgusted,
+  sad,
+  stress,
+}
+
+enum FoodQuestionProblem { vomit, exercise, selfHarm, laxative, anxietyAttack }
 
 @freezed
 abstract class FoodQuestionTextAnswer with _$FoodQuestionTextAnswer {

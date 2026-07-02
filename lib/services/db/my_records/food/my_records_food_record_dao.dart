@@ -2,7 +2,6 @@ import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/services/db/filters.dart';
 import 'package:nepanikar/services/db/my_records/food/my_records_food_record_model.dart';
 import 'package:nepanikar/utils/registry.dart';
-import 'package:nepanikar_data_migration/nepanikar_data_migration.dart';
 import 'package:sembast/sembast.dart';
 
 class MyRecordsFoodRecordDao {
