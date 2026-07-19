@@ -28,25 +28,17 @@ class Day1GoalsExpectationsPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 24),
-          const SectionHeader(
-            icon: Icons.chat_bubble_outline,
-            title: 'Cíle a očekávání',
-          ),
+          const SectionHeader(icon: Icons.chat_bubble_outline, title: 'Cíle a očekávání'),
           const SizedBox(height: 12),
           Text(
             'Pojďme si ještě zlehka popovídat… :)',
             style: TextStyle(
               fontSize: 15,
-              color: isDarkMode
-                  ? Colors.white70
-                  : NepanikarColors.dark.withOpacity(0.7),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.7),
             ),
           ),
           const SizedBox(height: 24),
-          _FieldLabel(
-            text: 'S jakým očekáváním vstupuješ do programu?',
-            color: bodyColor,
-          ),
+          _FieldLabel(text: 'S jakým očekáváním vstupuješ do programu?', color: bodyColor),
           const SizedBox(height: 8),
           _MultilineField(
             controller: expectationsController,
@@ -54,10 +46,7 @@ class Day1GoalsExpectationsPage extends StatelessWidget {
             isDarkMode: isDarkMode,
           ),
           const SizedBox(height: 20),
-          _FieldLabel(
-            text: 'Jakých cílů chceš během programu dosáhnout?',
-            color: bodyColor,
-          ),
+          _FieldLabel(text: 'Jakých cílů chceš během programu dosáhnout?', color: bodyColor),
           const SizedBox(height: 8),
           _MultilineField(
             controller: goalsController,
@@ -68,7 +57,8 @@ class Day1GoalsExpectationsPage extends StatelessWidget {
           const InfoBox(
             icon: Icons.eco_outlined,
             title: 'Malé cíle se počítají',
-            text: 'Je naprosto v pořádku začínat i s malými cíli. Každý krok, i '
+            text:
+                'Je naprosto v pořádku začínat i s malými cíli. Každý krok, i '
                 'ten nejmenší, je důležitý a posouvá nás směrem, kterým chceme '
                 'jít. Popravdě – ty jednodušší cíle se nám plní lépe.',
           ),
@@ -95,11 +85,7 @@ class _FieldLabel extends StatelessWidget {
 }
 
 class _MultilineField extends StatelessWidget {
-  const _MultilineField({
-    required this.controller,
-    required this.hint,
-    required this.isDarkMode,
-  });
+  const _MultilineField({required this.controller, required this.hint, required this.isDarkMode});
 
   final TextEditingController controller;
   final String hint;
@@ -112,18 +98,12 @@ class _MultilineField extends StatelessWidget {
     return TextField(
       controller: controller,
       maxLines: 3,
-      style: TextStyle(
-        fontSize: 15,
-        color: isDarkMode ? Colors.white : NepanikarColors.dark,
-      ),
+      style: TextStyle(fontSize: 15, color: isDarkMode ? Colors.white : NepanikarColors.dark),
       decoration: InputDecoration(
         hintText: hint,
-        hintStyle: TextStyle(
-          color: isDarkMode ? Colors.white38 : Colors.grey.shade400,
-        ),
+        hintStyle: TextStyle(color: isDarkMode ? Colors.white38 : Colors.grey.shade400),
         filled: true,
-        fillColor:
-            isDarkMode ? Colors.white.withOpacity(0.05) : Colors.grey.shade50,
+        fillColor: isDarkMode ? Colors.white.withOpacity(0.05) : Colors.grey.shade50,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(

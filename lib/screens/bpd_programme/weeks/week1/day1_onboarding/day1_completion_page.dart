@@ -31,11 +31,7 @@ class Day1CompletionPage extends StatelessWidget {
                             color: primaryColor.withOpacity(0.15),
                             shape: BoxShape.circle,
                           ),
-                          child: Icon(
-                            Icons.celebration,
-                            size: 58,
-                            color: primaryColor,
-                          ),
+                          child: Icon(Icons.celebration, size: 58, color: primaryColor),
                         ),
                         Container(
                           width: 38,
@@ -50,11 +46,7 @@ class Day1CompletionPage extends StatelessWidget {
                               width: 4,
                             ),
                           ),
-                          child: const Icon(
-                            Icons.check,
-                            size: 20,
-                            color: Colors.white,
-                          ),
+                          child: const Icon(Icons.check, size: 20, color: Colors.white),
                         ),
                       ],
                     ),
@@ -87,9 +79,7 @@ class Day1CompletionPage extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 15,
                         height: 1.6,
-                        color: isDarkMode
-                            ? Colors.white70
-                            : NepanikarColors.dark.withOpacity(0.75),
+                        color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.75),
                       ),
                     ),
                   ],
@@ -107,9 +97,7 @@ class Day1CompletionPage extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: primaryColor,
                   foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                   elevation: 2,
                 ),
                 child: const Text(

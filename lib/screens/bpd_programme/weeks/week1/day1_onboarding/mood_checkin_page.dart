@@ -30,7 +30,7 @@ class Day1MoodCheckinPage extends StatelessWidget {
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 24),
+          const SizedBox(height: 16),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             decoration: BoxDecoration(
@@ -39,21 +39,13 @@ class Day1MoodCheckinPage extends StatelessWidget {
             ),
             child: Text(
               '📝 První aktivita',
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
-                color: primaryColor,
-              ),
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: primaryColor),
             ),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 14),
           Text(
             'Pojďme si zkusit jednu aktivitu',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: bodyColor,
-            ),
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: bodyColor),
           ),
           const SizedBox(height: 10),
           Text(
@@ -62,29 +54,21 @@ class Day1MoodCheckinPage extends StatelessWidget {
             style: TextStyle(
               fontSize: 15,
               height: 1.5,
-              color: isDarkMode
-                  ? Colors.white70
-                  : NepanikarColors.dark.withOpacity(0.7),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.7),
             ),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 18),
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 18),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
             decoration: BoxDecoration(
-              color: isDarkMode
-                  ? Colors.white.withOpacity(0.05)
-                  : Colors.grey.shade50,
+              color: isDarkMode ? Colors.white.withOpacity(0.05) : Colors.grey.shade50,
               borderRadius: BorderRadius.circular(16),
             ),
             child: Column(
               children: [
                 Text(
                   'Jak se dnes máš?',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: primaryColor,
-                  ),
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: primaryColor),
                 ),
                 const SizedBox(height: 14),
                 Row(
@@ -111,7 +95,7 @@ class Day1MoodCheckinPage extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 18),
+          const SizedBox(height: 16),
           SizedBox(
             width: double.infinity,
             height: 52,
@@ -125,9 +109,7 @@ class Day1MoodCheckinPage extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: primaryColor,
                 foregroundColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                 elevation: 2,
               ),
             ),

@@ -133,7 +133,7 @@ class _NepanikarScreenWrapperState extends State<NepanikarScreenWrapper> {
                 ),
                 buildBottomNavigationBarItem(
                   svgIconPath: Assets.icons.calendarEvent.path,
-                  label: 'BPD',
+                  label: 'DBT',
                   context: context,
                 ),
                 buildBottomNavigationBarItem(

@@ -43,17 +43,37 @@
 > menia sa len: edukácia, mapovacie otázky, challenge zoznam, closing — a
 > deep-link na kontakty (Deň 3 → PPP, Deň 4 → Podané ruce).
 
-### Deň 3: Potrava
-🔁 SPOKO šablóna (Deň 2) — deep-link na PPP kontakty
+> Dni 3–6 reusujú SPOKO šablónu Dňa 2, ale **bez** úvodnej strany s modelom (5
+> písmen) — tá je len v Dni 2. Štruktúra: **3 strany** (edukácia+otázky → výzva →
+> completion). Dni 3 a 4 majú navyše safety kontaktný deep-link.
 
-### Deň 4: Ne Omamným látkám
-🔁 SPOKO šablóna (Deň 2) — deep-link na Podané ruce
+### Deň 3: Potrava (3 strany)
+| Strana | Názov | Design |
+|--------|-------|--------|
+| 1/3 | Edukácia potrava + otázky + PPP kontakt | ⏳ mockups/day3_page1_edukace_otazky.html |
+| 2/3 | Challenge (7 položiek) | ⏳ mockups/day3_page2_challenge.html |
+| 3/3 | Completion | ⏳ mockups/day3_page3_completion.html |
 
-### Deň 5: Kondice
-🔁 SPOKO šablóna (Deň 2)
+### Deň 4: Ne Omamným látkám (3 strany)
+| Strana | Názov | Design |
+|--------|-------|--------|
+| 1/3 | Edukácia látky + otázky + Podané ruce kontakt | ⏳ mockups/day4_page1_edukace_otazky.html |
+| 2/3 | Challenge (8 položiek) | ⏳ mockups/day4_page2_challenge.html |
+| 3/3 | Completion | ⏳ mockups/day4_page3_completion.html |
 
-### Deň 6: Léčba Onemocnění
-🔁 SPOKO šablóna (Deň 2)
+### Deň 5: Kondice (3 strany)
+| Strana | Názov | Design |
+|--------|-------|--------|
+| 1/3 | Edukácia kondícia + otázky | ⏳ mockups/day5_page1_edukace_otazky.html |
+| 2/3 | Challenge (10 položiek) | ⏳ mockups/day5_page2_challenge.html |
+| 3/3 | Completion | ⏳ mockups/day5_page3_completion.html |
+
+### Deň 6: Léčba Onemocnění (3 strany)
+| Strana | Názov | Design |
+|--------|-------|--------|
+| 1/3 | Edukácia zdravie + otázky | ⏳ mockups/day6_page1_edukace_otazky.html |
+| 2/3 | Challenge (8 položiek) | ⏳ mockups/day6_page2_challenge.html |
+| 3/3 | Completion | ⏳ mockups/day6_page3_completion.html |
 
 ### Deň 7: Reflexe SPOKO a reflexe týdne (3 strany)
 | Strana | Názov | Design |
@@ -71,12 +91,15 @@
 | Deň | Názov | Flutter |
 |-----|-------|---------|
 | 1 | Představení programu | ✅ `weeks/week1/day1_onboarding/` (10-page flow) |
-| 2 | SPOKO + Spánek | ❌ |
-| 3 | Potrava | ❌ |
-| 4 | Ne Omamným látkám | ❌ |
-| 5 | Kondice | ❌ |
-| 6 | Léčba Onemocnění | ❌ |
-| 7 | Reflexe SPOKO | 🔁 WeekReviewScreen |
+| 2 | SPOKO + Spánek | ✅ `weeks/week1/day2_spoko/` (4-page flow) |
+| 3 | Potrava | ✅ `weeks/week1/spoko_day/` (SpokoDayScreen, data) |
+| 4 | Ne Omamným látkám | ✅ `weeks/week1/spoko_day/` (SpokoDayScreen, data) |
+| 5 | Kondice | ✅ `weeks/week1/spoko_day/` (SpokoDayScreen, data) |
+| 6 | Léčba Onemocnění | ✅ `weeks/week1/spoko_day/` (SpokoDayScreen, data) |
+| 7 | Reflexe SPOKO | ✅ `weeks/week1/day7_reflection/` (recall + 4 otázky + gratulácia) |
+
+> Dni 3–6 zdieľajú **`SpokoDayScreen`** (data-driven, 3 strany), obsah v
+> `spoko_day_data.dart`. Deň 2 ostáva samostatný (má navyše SPOKO-model intro stranu).
 
 ---
 
@@ -85,6 +108,9 @@
 | Deň | Design | Flutter |
 |-----|--------|---------|
 | 1 | ⏳ 100% (10/10 mockupov) | ✅ 100% (čaká na `flutter analyze` + beh) |
-| 2 | ⏳ 100% (SPOKO šablóna, 4/4) | ❌ |
-| 3–6 | 🔁 SPOKO šablóna (Deň 2) | ❌ |
-| 7 | ⏳ 100% (3/3) | 🔁 WeekReviewScreen |
+| 2 | ⏳ 100% (SPOKO šablóna, 4/4) | ✅ 100% (`weeks/week1/day2_spoko/`, 0 analyzer warnings) |
+| 3 | ⏳ 100% (3/3, Potrava + PPP) | ✅ 100% (SpokoDayScreen, 0 warnings) |
+| 4 | ⏳ 100% (3/3, látky + Podané ruce) | ✅ 100% (SpokoDayScreen, 0 warnings) |
+| 5 | ⏳ 100% (3/3, Kondice) | ✅ 100% (SpokoDayScreen, 0 warnings) |
+| 6 | ⏳ 100% (3/3, Léčba onem.) | ✅ 100% (SpokoDayScreen, 0 warnings) |
+| 7 | ⏳ 100% (3/3) | ✅ 100% (`weeks/week1/day7_reflection/`, 0 warnings) |

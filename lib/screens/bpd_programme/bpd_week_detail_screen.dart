@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/day1_onboarding/day1_onboarding_screen.dart';
-import 'package:nepanikar/screens/bpd_programme/weeks/week1/day2_education/day2_education_screen.dart';
-import 'package:nepanikar/screens/bpd_programme/weeks/week1/day4_please/day4_please_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week1/day2_spoko/day2_spoko_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week1/day7_reflection/day7_reflection_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week1/spoko_day/spoko_day_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/shared/day_pause_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week2/day1_mindfulness_intro/day1_mindfulness_intro_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week2/day2_what_skills/day2_what_skills_screen.dart';
@@ -14,12 +15,18 @@ import 'package:nepanikar/screens/bpd_programme/weeks/week2/day4_breathing/day4_
 import 'package:nepanikar/screens/bpd_programme/weeks/week2/day6_techniques/day6_techniques_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/shared/week_review_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/day3_smart/smart_education_screen.dart';
+import 'package:nepanikar/screens/home/my_records/dbt/dbt_records_screen.dart';
 import 'package:nepanikar/services/db/bpd/bpd_day_models.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_preview_sheet.dart';
 
 part 'bpd_week_detail_screen.g.dart';
+
+/// Weeks that already have implemented day content. The weeks skill tree
+/// unlocks only these; the rest stay locked until their content is built
+/// (keep in sync with `_weekDaysContent` below).
+const Set<int> kImplementedBpdWeeks = {1, 2};
 
 /// Route type for different day content screens
 enum _DayRouteType {
@@ -28,8 +35,12 @@ enum _DayRouteType {
   smart,
   pause,
   summary,
-  day2Education,
-  day4Please,
+  week1Day2Spoko,
+  week1Day3Potrava,
+  week1Day4Latky,
+  week1Day5Kondice,
+  week1Day6Onemocneni,
+  week1Day7Reflexe,
   // Week 2 - Mindfulness
   week2Day1MindfulnessIntro,
   week2Day2WhatSkills,
@@ -76,52 +87,52 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
         routeType: _DayRouteType.onboarding,
       ),
       const _DayContentData(
-        title: 'Edukace HPO + DBT',
+        title: 'SPOKO + Spánek',
         description:
-            'Dozvíš se něco málo o hraniční poruše osobnosti a dialekticko-behaviorální terapii. Pochopíš, proč je nácvik dovedností důležitý a jak ti může pomoci v každodenním životě.',
-        estimatedTime: '10-15 min',
-        activityType: 'Edukace',
-        routeType: _DayRouteType.day2Education,
-      ),
-      const _DayContentData(
-        title: 'Cíle a očekávání (SMART)',
-        description:
-            'Pojďme si stanovit cíle pomocí metody SMART. Naučíš se, jak si nastavit specifické, měřitelné, adekvátní, relevantní a termínované cíle pro tento program.',
-        estimatedTime: '10-15 min',
-        activityType: 'Cvičení',
-        routeType: _DayRouteType.smart,
-      ),
-      const _DayContentData(
-        title: 'Péče o sebe (PLEASE)',
-        description:
-            'Péče o sebe je klíčová pro zvládání emocí. Dnes se naučíš model PLEASE – aktivity pro snížení zranitelnosti vůči negativním emocím tím, že se staráš o tělo a základní potřeby.',
-        estimatedTime: '10-15 min',
+            'Seznámíš se s modelem SPOKO – základními oblastmi péče o tělo a psychickou stabilitu. Dnešní zaměření je spánek: zmapuješ si svůj současný stav a můžeš si vybrat malou výzvu, kterou dnes zkusíš.',
+        estimatedTime: '5-10 min',
         activityType: 'Edukace + Cvičení',
-        routeType: _DayRouteType.day4Please,
+        routeType: _DayRouteType.week1Day2Spoko,
       ),
       const _DayContentData(
-        title: 'Pauza',
+        title: 'Potrava',
         description:
-            'Pro dnešní den si dáme od programu pauzu. Pro začátek jsme toho zvládli společně spoustu. Oceňujeme Tvoje odhodlání! Dnes si opravdu zasloužíš odpočinek.',
-        estimatedTime: '2 min',
-        activityType: 'Odpočinek',
-        routeType: _DayRouteType.pause,
+            'Druhá oblast modelu SPOKO – potrava. Jídlo ovlivňuje nejen tělo, ale i emoce, energii a zvládání stresu. Zmapuješ si svůj současný stav a můžeš si vybrat malou výzvu.',
+        estimatedTime: '5-10 min',
+        activityType: 'Edukace + Cvičení',
+        routeType: _DayRouteType.week1Day3Potrava,
       ),
       const _DayContentData(
-        title: 'Pauza',
+        title: 'Ne omamným látkám',
         description:
-            'I dnes nějakou větší práci vynecháme. Máš za sebou skvělý začátek a zasloužíš si chvilku odpočinku.',
-        estimatedTime: '2 min',
-        activityType: 'Odpočinek',
-        routeType: _DayRouteType.pause,
+            'Téma omamných látek a jejich vlivu na náladu, spánek a zvládání stresu. Bez hodnocení si všimneš svého vztahu k nim a můžeš si zkusit malou výzvu.',
+        estimatedTime: '5-10 min',
+        activityType: 'Edukace + Cvičení',
+        routeType: _DayRouteType.week1Day4Latky,
       ),
       const _DayContentData(
-        title: 'Shrnutí týdne',
+        title: 'Kondice',
         description:
-            'Máme za sebou první týden! Zamyslíme se, co pro tebe bylo nejzajímavější, co ses naučil/a a jak to můžeš využít v dalším týdnu.',
-        estimatedTime: '10-15 min',
+            'Pohyb a fyzická aktivita mají přímý vliv na náladu, stres i energii. Nejde o výkon, ale o to, jak se tělo cítí v pohybu. Vyber si malou pohybovou výzvu.',
+        estimatedTime: '5-10 min',
+        activityType: 'Edukace + Cvičení',
+        routeType: _DayRouteType.week1Day5Kondice,
+      ),
+      const _DayContentData(
+        title: 'Léčba onemocnění',
+        description:
+            'Poslední oblast modelu SPOKO. Tělesné i psychické zdraví jsou propojené. Všimneš si, jak se staráš o své zdraví, a stanovíš si poslední výzvu tohoto týdne.',
+        estimatedTime: '5-10 min',
+        activityType: 'Edukace + Cvičení',
+        routeType: _DayRouteType.week1Day6Onemocneni,
+      ),
+      const _DayContentData(
+        title: 'Reflexe SPOKO a týdne',
+        description:
+            'Máme za sebou první týden! Připomeneš si oblasti modelu SPOKO a zamyslíš se nad tím, co ti přinesly, která byla nejvíc relevantní a co si chceš odnést dál.',
+        estimatedTime: '5-10 min',
         activityType: 'Reflexe',
-        routeType: _DayRouteType.summary,
+        routeType: _DayRouteType.week1Day7Reflexe,
       ),
     ],
     // Week 2 - Mindfulness
@@ -129,7 +140,7 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
       const _DayContentData(
         title: 'Edukace mindfulness',
         description:
-            'Dozvíš se, čo je mindfulness a prečo je dôležitý ako základ všetkých DBT zručností.',
+            'Dozvíš sa, čo je mindfulness a prečo je dôležitý ako základ všetkých DBT zručností.',
         estimatedTime: '10-15 min',
         activityType: 'Edukace',
         routeType: _DayRouteType.week2Day1MindfulnessIntro,
@@ -274,16 +285,32 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
             const Day1OnboardingScreenRoute().push(context).then((_) {
               _loadDaysProgress();
             });
-          case _DayRouteType.day2Education:
-            const Day2EducationScreenRoute().push(context).then((_) {
+          case _DayRouteType.week1Day2Spoko:
+            const Week1Day2SpokoScreenRoute().push(context).then((_) {
+              _loadDaysProgress();
+            });
+          case _DayRouteType.week1Day3Potrava:
+            const Week1Day3PotravaScreenRoute().push(context).then((_) {
+              _loadDaysProgress();
+            });
+          case _DayRouteType.week1Day4Latky:
+            const Week1Day4LatkyScreenRoute().push(context).then((_) {
+              _loadDaysProgress();
+            });
+          case _DayRouteType.week1Day5Kondice:
+            const Week1Day5KondiceScreenRoute().push(context).then((_) {
+              _loadDaysProgress();
+            });
+          case _DayRouteType.week1Day6Onemocneni:
+            const Week1Day6OnemocneniScreenRoute().push(context).then((_) {
+              _loadDaysProgress();
+            });
+          case _DayRouteType.week1Day7Reflexe:
+            const Week1Day7ReflexeScreenRoute().push(context).then((_) {
               _loadDaysProgress();
             });
           case _DayRouteType.smart:
             const SmartEducationScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.day4Please:
-            const Day4PleaseScreenRoute().push(context).then((_) {
               _loadDaysProgress();
             });
           case _DayRouteType.week2Day1MindfulnessIntro:
@@ -391,12 +418,18 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
                     ),
                     const SizedBox(width: 8),
                     const Text(
-                      'BPD program',
+                      'DBT program',
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
                         color: Colors.white,
                       ),
+                    ),
+                    const Spacer(),
+                    IconButton(
+                      icon: const Icon(Icons.self_improvement, color: Colors.white, size: 24),
+                      tooltip: 'DBT program',
+                      onPressed: () => const DbtRecordsRoute().push<void>(context),
                     ),
                   ],
                 ),

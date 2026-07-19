@@ -110,11 +110,16 @@ class NotificationSettingsScreen extends StatelessWidget {
         }
 
         final notificationTypeSettings = snapshot.data ?? [];
+        // Challenge reminders are managed per-challenge from "Moje výzvy",
+        // not from this global settings list.
+        final settingsTypes = NotificationType.values
+            .where((t) => t != NotificationType.challengeReminder)
+            .toList();
         return NepanikarScreenWrapper(
           appBarTitle: context.l10n.notifications,
           isCardStackLayout: true,
           expandToMaxScreenHeight: true,
-          children: NotificationType.values
+          children: settingsTypes
               .mapIndexed(
                 (i, notificationType) => _buildNotificationSection(
                   context,
@@ -138,7 +143,10 @@ class NotificationSettingsScreen extends StatelessWidget {
     NotificationTypeSettings? notificationTypeSettings,
   ) {
     final l10n = context.l10n;
-    final isLast = i == NotificationType.values.length - 1;
+    final settingsTypesCount = NotificationType.values
+        .where((t) => t != NotificationType.challengeReminder)
+        .length;
+    final isLast = i == settingsTypesCount - 1;
     final reminderTime = notificationTypeSettings != null
         ? TimeOfDay(
             hour: notificationTypeSettings.scheduledHour,

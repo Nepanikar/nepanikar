@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/bpd_week_detail_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/skill_tree.dart';
+import 'package:nepanikar/screens/main/main_screen.dart';
 import 'package:nepanikar/services/bpd_weeks_data_manager.dart';
 import 'package:nepanikar/services/db/bpd/bpd_week_models.dart';
 import 'package:nepanikar/services/db/bpd/bpd_weeks_dao.dart';
@@ -27,45 +30,234 @@ class BpdWeeksScreen extends StatefulWidget {
 
 class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
   BpdWeeksDao get _bpdWeeksDao => registry.get<BpdWeeksDao>();
-  BpdWeeksDataManager get _bpdWeeksDataManager =>
-      registry.get<BpdWeeksDataManager>();
+  BpdWeeksDataManager get _bpdWeeksDataManager => registry.get<BpdWeeksDataManager>();
 
   List<BpdWeekProgress> _weeksProgress = [];
   bool _isLoading = true;
-  late PageController _pageController;
-  int _currentPage = 0;
 
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(viewportFraction: 0.85, initialPage: 0);
     _loadWeeksProgress();
   }
 
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
-
   Future<void> _loadWeeksProgress() async {
-    final progress = await _bpdWeeksDao.getAllWeeksProgress();
+    var progress = await _bpdWeeksDao.getAllWeeksProgress();
+    if (progress.isEmpty) {
+      await _bpdWeeksDao.initializeWeeks(DateTime.now());
+      progress = await _bpdWeeksDao.getAllWeeksProgress();
+    }
+    if (!mounted) return;
     setState(() {
       _weeksProgress = progress;
       _isLoading = false;
     });
   }
 
-  void _handleWeekTap(BpdWeekProgress weekProgress, BpdWeekData weekData) {
-    if (weekProgress.isUnlocked()) {
-      context.push(
-        BpdWeekDetailScreenRoute(weekNumber: weekProgress.weekNumber).location,
-      );
+  /// A week is open when its content is implemented ([kImplementedBpdWeeks]);
+  /// weeks without content stay locked no matter what their unlock date says.
+  bool _isWeekOpen(BpdWeekProgress weekProgress) =>
+      kImplementedBpdWeeks.contains(weekProgress.weekNumber);
+
+  void _handleWeekTap(BpdWeekProgress weekProgress) {
+    if (_isWeekOpen(weekProgress)) {
+      context
+          .push(BpdWeekDetailScreenRoute(weekNumber: weekProgress.weekNumber).location)
+          .then((_) => _loadWeeksProgress());
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('This week is still locked')),
-      );
+      _showLockedWeekSheet(weekProgress);
     }
+  }
+
+  void _handleNodeTap(int weekNumber) {
+    final progress = _weeksProgress.where((w) => w.weekNumber == weekNumber).firstOrNull;
+    if (progress != null) _handleWeekTap(progress);
+  }
+
+  /// Leaves the DBT programme back to the app's home screen.
+  ///
+  /// The weeks screen is a child of [MainRoute], so the [MainScreen] underneath
+  /// is preserved on whichever tab launched the programme (the DBT tab). Going
+  /// to `/` with an explicit home-tab index makes [MainScreen] switch back to
+  /// Home (it reacts to the changed `extra` in `didUpdateWidget`), instead of
+  /// returning to the stale DBT tab whose navigator is stuck on a spinner.
+  void _exitToMain() {
+    context.go(const MainRoute().location, extra: MainPageExtra(initIndex: 0));
+  }
+
+  String _weekTitle(int weekNumber) =>
+      _bpdWeeksDataManager.getWeekData(weekNumber)?.titleKey ?? 'Týden $weekNumber';
+
+  /// Maps week progress to tree node states: unimplemented weeks are locked,
+  /// completed → green, first open-uncompleted → highlighted "current",
+  /// remaining open weeks → available.
+  List<SkillTreeNodeData> _buildTreeNodes() {
+    final firstActiveIndex = _weeksProgress.indexWhere((w) => !w.isCompleted && _isWeekOpen(w));
+    return List.generate(_weeksProgress.length, (i) {
+      final progress = _weeksProgress[i];
+      final SkillTreeNodeState state;
+      if (!_isWeekOpen(progress)) {
+        state = SkillTreeNodeState.locked;
+      } else if (progress.isCompleted) {
+        state = SkillTreeNodeState.completed;
+      } else if (i == firstActiveIndex) {
+        state = SkillTreeNodeState.current;
+      } else {
+        state = SkillTreeNodeState.available;
+      }
+      return SkillTreeNodeData(
+        id: progress.weekNumber,
+        label: 'Týden ${progress.weekNumber} · ${_weekTitle(progress.weekNumber)}',
+        state: state,
+        isCheckpoint: i == _weeksProgress.length - 1,
+      );
+    });
+  }
+
+  String _formatUnlockDate(DateTime date) {
+    const months = [
+      'ledna',
+      'února',
+      'března',
+      'dubna',
+      'května',
+      'června',
+      'července',
+      'srpna',
+      'září',
+      'října',
+      'listopadu',
+      'prosince',
+    ];
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+    final target = DateTime(date.year, date.month, date.day);
+    final days = target.difference(today).inDays;
+
+    final String relative;
+    if (days <= 0) {
+      relative = 'dnes';
+    } else if (days == 1) {
+      relative = 'zítra';
+    } else if (days <= 4) {
+      relative = 'za $days dny';
+    } else {
+      relative = 'za $days dní';
+    }
+    return '${date.day}. ${months[date.month - 1]} ($relative)';
+  }
+
+  void _showLockedWeekSheet(BpdWeekProgress weekProgress) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final primaryColor = Theme.of(context).primaryColor;
+    final textColor = isDarkMode ? Colors.white : NepanikarColors.dark;
+    final isImplemented = kImplementedBpdWeeks.contains(weekProgress.weekNumber);
+    final subtitle = isImplemented
+        ? 'Tento týden je zatím zamčený. Program se odemyká postupně, týden po týdnu.'
+        : 'Obsah tohoto týdne pro tebe ještě připravujeme.';
+    final unlockIcon = isImplemented ? Icons.calendar_today : Icons.update;
+    final unlockText = isImplemented
+        ? 'Odemkne se ${_formatUnlockDate(weekProgress.unlockDate)}'
+        : 'Odemkne se v některé z příštích aktualizací';
+
+    showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: isDarkMode ? NepanikarColors.containerColor(primaryColor) : Colors.white,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (sheetContext) {
+        return SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(24, 12, 24, 24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: 40,
+                  height: 4,
+                  decoration: BoxDecoration(
+                    color: isDarkMode ? Colors.white24 : Colors.grey.shade300,
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Container(
+                  width: 64,
+                  height: 64,
+                  decoration: BoxDecoration(
+                    color: isDarkMode ? Colors.white.withOpacity(0.08) : NepanikarColors.purple200,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(
+                    Icons.lock,
+                    size: 30,
+                    color: isDarkMode ? Colors.white70 : primaryColor,
+                  ),
+                ),
+                const SizedBox(height: 14),
+                Text(
+                  'Týden ${weekProgress.weekNumber} · ${_weekTitle(weekProgress.weekNumber)}',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: textColor),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  subtitle,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 14, height: 1.5, color: textColor.withOpacity(0.7)),
+                ),
+                const SizedBox(height: 18),
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(14),
+                  decoration: BoxDecoration(
+                    color: isDarkMode
+                        ? Colors.white.withOpacity(0.06)
+                        : NepanikarColors.filledContainer,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(unlockIcon, size: 18, color: isDarkMode ? Colors.white70 : primaryColor),
+                      const SizedBox(width: 8),
+                      Flexible(
+                        child: Text(
+                          unlockText,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w700,
+                            color: textColor,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 18),
+                SizedBox(
+                  width: double.infinity,
+                  height: 52,
+                  child: ElevatedButton(
+                    onPressed: () => Navigator.of(sheetContext).pop(),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: primaryColor,
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                    ),
+                    child: const Text(
+                      'Rozumím',
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -82,33 +274,17 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
       ),
     );
 
-    return Scaffold(
-      extendBodyBehindAppBar: false,
-      resizeToAvoidBottomInset: false,
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            stops: const [0.0, 0.3, 0.6, 0.85, 1.0],
-            colors: isDarkMode
-                ? [
-                    primaryColor.withOpacity(0.4),
-                    primaryColor.withOpacity(0.25),
-                    const Color(0xFF2A1A3D),
-                    const Color(0xFF1F1528),
-                    NepanikarColors.containerColor(primaryColor),
-                  ]
-                : [
-                    const Color(0xFFE8D5FF), // Soft lavender purple at top
-                    const Color(0xFFF5E6FF), // Light purple-pink
-                    const Color(0xFFFFF0F8), // Very light pink
-                    const Color(0xFFFFF8FA), // Almost white with hint of warmth
-                    const Color(0xFFFFFDFE), // Nearly white
-                  ],
-          ),
-        ),
-        child: SafeArea(
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (!didPop) _exitToMain();
+      },
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: isDarkMode
+            ? NepanikarColors.containerColor(primaryColor)
+            : const Color(0xFFFBF6FF),
+        body: SafeArea(
           child: Column(
             children: [
               // Header
@@ -124,16 +300,13 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
                   ],
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 20,
-                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
                       // Centered title
                       const Text(
-                        'BPD program',
+                        'DBT program',
                         style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
@@ -144,12 +317,8 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: IconButton(
-                          icon: const Icon(
-                            Icons.close,
-                            color: Colors.white,
-                            size: 28,
-                          ),
-                          onPressed: () => context.pop(),
+                          icon: const Icon(Icons.close, color: Colors.white, size: 28),
+                          onPressed: _exitToMain,
                         ),
                       ),
                     ],
@@ -157,86 +326,20 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
                 ),
               ),
 
-              // Page indicator dots
-              if (!_isLoading && _weeksProgress.isNotEmpty)
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(_weeksProgress.length, (index) {
-                      final isActive = index == _currentPage;
-                      return AnimatedContainer(
-                        duration: const Duration(milliseconds: 300),
-                        margin: const EdgeInsets.symmetric(horizontal: 4),
-                        width: isActive ? 24 : 8,
-                        height: 8,
-                        decoration: BoxDecoration(
-                          color: isActive
-                              ? primaryColor
-                              : (isDarkMode ? Colors.white30 : Colors.black26),
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                      );
-                    }),
-                  ),
-                ),
-
-              // Week cards carousel
+              // Skill tree of programme weeks
               Expanded(
                 child: _isLoading
                     ? const Center(child: CircularProgressIndicator())
-                    : PageView.builder(
-                        scrollDirection: Axis.vertical,
-                        controller: _pageController,
-                        onPageChanged: (page) {
-                          setState(() {
-                            _currentPage = page;
-                          });
-                        },
-                        itemCount: _weeksProgress.length,
-                        itemBuilder: (context, index) {
-                          final weekProgress = _weeksProgress[index];
-                          final weekData = _bpdWeeksDataManager.getWeekData(
-                            weekProgress.weekNumber,
-                          );
-
-                          if (weekData == null) return const SizedBox.shrink();
-
-                          return AnimatedBuilder(
-                            animation: _pageController,
-                            builder: (context, child) {
-                              double scale = 1.0;
-                              double opacity = 1.0;
-
-                              if (_pageController.position.haveDimensions) {
-                                final page = _pageController.page ?? 0.0;
-                                final diff = (page - index).abs();
-
-                                // Scale: centered card is 1.0, others are smaller
-                                scale = (1.0 - (diff * 0.25)).clamp(0.75, 1.0);
-
-                                // Opacity: make non-centered cards slightly transparent
-                                opacity = (1.0 - (diff * 0.3)).clamp(0.7, 1.0);
-                              }
-
-                              return Center(
-                                child: Transform.scale(
-                                  scale: scale,
-                                  child: Opacity(
-                                    opacity: opacity,
-                                    child: child,
-                                  ),
-                                ),
-                              );
-                            },
-                            child: _buildWeekCard(
-                              weekProgress: weekProgress,
-                              weekData: weekData,
-                              primaryColor: primaryColor,
-                              isDarkMode: isDarkMode,
-                            ),
-                          );
-                        },
+                    : _weeksProgress.isEmpty
+                    ? const SizedBox.shrink()
+                    : SingleChildScrollView(
+                        padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
+                        child: Column(
+                          children: [
+                            _buildProgrammeBanner(),
+                            SkillTreePath(nodes: _buildTreeNodes(), onNodeTap: _handleNodeTap),
+                          ],
+                        ),
                       ),
               ),
             ],
@@ -246,246 +349,16 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
     );
   }
 
-  Widget _buildWeekCard({
-    required BpdWeekProgress weekProgress,
-    required BpdWeekData weekData,
-    required Color primaryColor,
-    required bool isDarkMode,
-  }) {
-    final isUnlocked = weekProgress.isUnlocked();
+  Widget _buildProgrammeBanner() {
+    final currentWeek = _weeksProgress.where((w) => !w.isCompleted && _isWeekOpen(w)).firstOrNull;
+    final completedCount = _weeksProgress.where((w) => w.isCompleted).length;
+    final bannerWeek = currentWeek ?? _weeksProgress.last;
 
-    return GestureDetector(
-      onTap: () => _handleWeekTap(weekProgress, weekData),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // Week icon/illustration - the main circular element
-            _buildWeekIcon(
-              weekProgress: weekProgress,
-              primaryColor: primaryColor,
-              isDarkMode: isDarkMode,
-              isUnlocked: isUnlocked,
-            ),
-
-            const SizedBox(height: 24),
-
-            // Week level label
-            Text(
-              'ÚROVEŇ ${weekProgress.weekNumber}',
-              style: TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w600,
-                letterSpacing: 1.5,
-                color: isUnlocked
-                    ? primaryColor.withOpacity(0.8)
-                    : (isDarkMode ? Colors.white38 : Colors.black38),
-              ),
-            ),
-
-            const SizedBox(height: 8),
-
-            // Week title
-            Text(
-              weekData.titleKey.toUpperCase(),
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.w900,
-                color: isUnlocked
-                    ? (isDarkMode ? Colors.white : primaryColor)
-                    : (isDarkMode ? Colors.white30 : Colors.black26),
-                letterSpacing: 0.5,
-              ),
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-
-            const SizedBox(height: 16),
-
-            // Status indicator
-            if (weekProgress.isCompleted)
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 8,
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.green.withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
-                    color: Colors.green.withOpacity(0.3),
-                    width: 1,
-                  ),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(Icons.check_circle, color: Colors.green, size: 18),
-                    const SizedBox(width: 6),
-                    Text(
-                      'Completed',
-                      style: TextStyle(
-                        color: Colors.green.shade700,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 13,
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            else if (!isUnlocked)
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 8,
-                ),
-                decoration: BoxDecoration(
-                  color: (isDarkMode ? Colors.white10 : Colors.black12),
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
-                    color: isDarkMode ? Colors.white24 : Colors.black26,
-                    width: 1,
-                  ),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.lock,
-                      color: isDarkMode ? Colors.white54 : Colors.black54,
-                      size: 18,
-                    ),
-                    const SizedBox(width: 6),
-                    Text(
-                      'Unlocks ${_getUnlockDateText(weekProgress.unlockDate)}',
-                      style: TextStyle(
-                        color: isDarkMode ? Colors.white54 : Colors.black54,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 13,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-          ],
-        ),
-      ),
+    return SkillTreeBanner(
+      kicker: 'DBT program · Týden ${bannerWeek.weekNumber}',
+      title: _weekTitle(bannerWeek.weekNumber),
+      progress: _weeksProgress.isEmpty ? 0 : completedCount / _weeksProgress.length,
+      progressLabel: '$completedCount ze ${_weeksProgress.length} týdnů hotovo',
     );
-  }
-
-  Widget _buildWeekIcon({
-    required BpdWeekProgress weekProgress,
-    required Color primaryColor,
-    required bool isDarkMode,
-    required bool isUnlocked,
-  }) {
-    // Make purple dark and saturated like in the reference image
-    final darkPurple = HSLColor.fromColor(
-      primaryColor,
-    ).withSaturation(0.85).withLightness(0.35).toColor();
-
-    return Container(
-      width: 240,
-      height: 240,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: isUnlocked
-            ? primaryColor
-            : (isDarkMode ? Colors.white10 : Colors.black12),
-        boxShadow: isUnlocked
-            ? [
-                BoxShadow(
-                  color: primaryColor.withOpacity(0.5),
-                  blurRadius: 70,
-                  spreadRadius: 20,
-                ),
-                BoxShadow(
-                  color: primaryColor.withOpacity(0.3),
-                  blurRadius: 40,
-                  spreadRadius: 10,
-                ),
-              ]
-            : null,
-      ),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          // Main icon
-          Icon(
-            _getWeekIcon(weekProgress.weekNumber),
-            size: 120,
-            color: isUnlocked
-                ? Colors.white
-                : (isDarkMode ? Colors.white30 : Colors.black26),
-          ),
-          // Lock overlay for locked weeks
-          if (!isUnlocked)
-            Container(
-              width: 80,
-              height: 80,
-              decoration: BoxDecoration(
-                color: isDarkMode
-                    ? NepanikarColors.containerColor(
-                        primaryColor,
-                      ).withOpacity(0.9)
-                    : Colors.white.withOpacity(0.95),
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: isDarkMode ? Colors.white24 : Colors.black12,
-                  width: 2,
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
-                    blurRadius: 10,
-                    spreadRadius: 2,
-                  ),
-                ],
-              ),
-              child: Icon(
-                Icons.lock_rounded,
-                size: 40,
-                color: isDarkMode ? Colors.white54 : Colors.black45,
-              ),
-            ),
-        ],
-      ),
-    );
-  }
-
-  IconData _getWeekIcon(int weekNumber) {
-    switch (weekNumber) {
-      case 1:
-        return Icons.self_improvement;
-      case 2:
-        return Icons.air;
-      case 3:
-        return Icons.favorite;
-      case 4:
-        return Icons.shield;
-      case 5:
-        return Icons.people;
-      case 6:
-        return Icons.psychology;
-      case 7:
-        return Icons.emoji_events;
-      default:
-        return Icons.circle;
-    }
-  }
-
-  String _getUnlockDateText(DateTime unlockDate) {
-    final now = DateTime.now();
-    final difference = unlockDate.difference(now);
-
-    if (difference.inDays > 0) {
-      return 'in ${difference.inDays} ${difference.inDays == 1 ? 'day' : 'days'}';
-    } else if (difference.inHours > 0) {
-      return 'in ${difference.inHours} ${difference.inHours == 1 ? 'hour' : 'hours'}';
-    } else {
-      return 'soon';
-    }
   }
 }

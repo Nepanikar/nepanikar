@@ -291,6 +291,53 @@ Style: Friendly, educational, non-clinical
 
 ---
 
+## Koncept komponenty (SCHVÁLENÉ 2026-07-08, implementované vo Flutteri)
+
+> Referenčné mockupy: `.claude/design/concepts/` — `skill_tree_dbt.html`,
+> `day1_chat_1_uvitani.html`, `day1_chat_2_edukace.html`.
+> Flutter implementácia:
+> - chat: `lib/screens/bpd_programme/widgets/chat/` (`ChatDayPage`, `ChatBotBubble`,
+>   `ChatConceptCard`, `ChatInfoCard`, `ChatNumberedList`, `ChatStatsRow`,
+>   `ChatAreaChips`, `ChatTypingIndicator`) — použité v Day 1 (`welcome_chat_page.dart`,
+>   `education_chat_page.dart`)
+> - skill tree: `lib/screens/bpd_programme/widgets/skill_tree.dart` (`SkillTreeBanner`,
+>   `SkillTreePath`) — použité v `bpd_weeks_screen.dart` (uzly = TÝŽDNE programu;
+>   denný zoznam v `bpd_week_detail_screen.dart` zostáva klasický)
+>
+> Pri ďalších chat/mapa obrazovkách preferuj reuse týchto widgetov pred novými.
+
+### Chat šablóna (edukačné dni formou konverzácie)
+**Jednosmerný feed** — používateľ správy len DOSTÁVA (žiadne user bubliny, žiadne
+quick replies, žiadny input bar). Posun = fixné primárne tlačidlo dole
+("Pokračovat" / kontextový label); každý tap odkryje ďalšiu dávku správ.
+- App bar: primary bg, avatar Nepanikař (tyrkysový kruh 38px + 💜), meno + status "průvodce programem", krok `Den X · Y/N`, tenký progress (4px, tyrkysová výplň)
+- Bot bublina: biela, radius 18 (posledná v skupine ľavý-dolný roh 6), padding 10×14, font 14, tieň `0 2px 10px rgba(73,20,117,.07)`; avatar len pri poslednej bubline skupiny
+- Rich messages (odsadené 38px zľava ako bubliny):
+  - **Koncept karta** — gradient hlavička (badge skratky + názov), biele telo, outline link tlačidlo `↗`
+  - **Info karta** — `#E2D2EF` bg + ľavý border 4px primary (chat variant InfoBoxu)
+  - **Číslovaný zoznam** — biela karta, čísla v primary kruhoch 24px
+  - **Štatistiky** — rad mini kariet `#EDE8F3` s veľkým číslom v primary
+  - **Chips oblastí** — outline tyrkysové pilulky
+  - **Vstupná karta** — biela karta s poľami `#EDE8F3` (meno, mood škála…); bez vlastného CTA, odosiela ju fixné tlačidlo dole
+- Typing indikátor: 3 bodky `#E2D2EF`, blink animácia — signalizuje ďalšiu prichádzajúcu správu
+- Fixné tlačidlo dole: `#491475`, 52px, radius 12, w900, tieň `0 8px 24px rgba(73,20,117,.25)`
+- Čas správy: 10px, 35 % dark; deň oddelený pilulkou "Dnes"
+
+### Skill tree / mapa programu (Duolingo štýl)
+Uzly = TÝŽDNE programu (feedback 2026-07-08). Bez dekoračných srdiečok a bez
+knižky v banneri (odstránené po feedbacku).
+- Banner: gradient primary, kicker "DBT program · Týden N", názov aktuálneho týždňa, progress bar (výplň `#6FD866`), "X ze 7 týdnů hotovo"
+- Cesta: bodkovaná krivka `#E2D2EF` (dash `1 12`, width 4) kľukatiaca sa medzi uzlami
+- Uzol týždňa: kruh 60px + 3D tieň `0 5px 0`; popisok "Týden N · názov" pod uzlom (11px, 65 % dark)
+  - **Hotový**: `#6FD866` + biele ✓ (tieň `#55B54E`)
+  - **Aktuálny**: primary 68px + ★, pulzujúci ring `rgba(73,20,117,.25)`, bublina "TEĎ" (bob animácia)
+  - **Dostupný** (odomknutý, nie aktuálny): primary + ★ bez ringu/bubliny
+  - **Zamknutý** (podľa reálneho `unlockDate`): `#E2D2EF` + 🔒 `#B49CC9`, tieň `#D9CCE6`
+  - **Checkpoint (Týden 7)**: väčší 72px, radius 22 (squircle), 🏆
+- Tap na zamknutý uzol → bottom sheet: 🔒 v kruhu, "Týden N · názov", vysvetlenie postupného odomykania, karta s dátumom "Odemkne se D. mesiac (za X dní)", CTA "Rozumím"
+
+---
+
 ## Quick reference - farby na skopírovanie
 
 ```

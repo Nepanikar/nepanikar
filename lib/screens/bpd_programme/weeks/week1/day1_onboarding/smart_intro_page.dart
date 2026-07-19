@@ -14,19 +14,30 @@ class Day1SmartIntroPage extends StatefulWidget {
 
 class _Day1SmartIntroPageState extends State<Day1SmartIntroPage> {
   static const _letters = <_SmartLetter>[
-    _SmartLetter('S', 'Specifický',
-        'Cíl je jasně definovaný, víš přesně, čeho chceš dosáhnout.'),
-    _SmartLetter('M', 'Měřitelný',
-        'Můžeš sledovat, jestli se ti daří cíl plnit, například počtem pokusů '
-            'nebo jasným popisem toho, co považuješ za úspěch.'),
-    _SmartLetter('A', 'Adekvátní',
-        'Cíl je realistický a zvládnutelný vzhledem ke tvým možnostem ve tvojí '
-            'situaci.'),
-    _SmartLetter('R', 'Relevantní',
-        'Cíl má pro Tebe význam a souvisí s tím, co je pro Tebe důležité.'),
-    _SmartLetter('T', 'Termínovaný',
-        'Je jasné, do kdy chceš cíle dosáhnout, což Ti může pomoct udržet '
-            'motivaci.'),
+    _SmartLetter('S', 'Specifický', 'Cíl je jasně definovaný, víš přesně, čeho chceš dosáhnout.'),
+    _SmartLetter(
+      'M',
+      'Měřitelný',
+      'Můžeš sledovat, jestli se ti daří cíl plnit, například počtem pokusů '
+          'nebo jasným popisem toho, co považuješ za úspěch.',
+    ),
+    _SmartLetter(
+      'A',
+      'Adekvátní',
+      'Cíl je realistický a zvládnutelný vzhledem ke tvým možnostem ve tvojí '
+          'situaci.',
+    ),
+    _SmartLetter(
+      'R',
+      'Relevantní',
+      'Cíl má pro Tebe význam a souvisí s tím, co je pro Tebe důležité.',
+    ),
+    _SmartLetter(
+      'T',
+      'Termínovaný',
+      'Je jasné, do kdy chceš cíle dosáhnout, což Ti může pomoct udržet '
+          'motivaci.',
+    ),
   ];
 
   int? _openIndex = 0;
@@ -42,28 +53,22 @@ class _Day1SmartIntroPageState extends State<Day1SmartIntroPage> {
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 24),
+          const SizedBox(height: 16),
           Text(
             'SMART cíle',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: bodyColor,
-            ),
+            style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold, color: bodyColor),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 8),
           Text(
             'SMART cíle je konkrétní způsob, jak si nastavit cíle tak, aby byly '
             'jasné, reálné a dosažitelné. Klepni na písmeno pro vysvětlení.',
             style: TextStyle(
               fontSize: 15,
               height: 1.5,
-              color: isDarkMode
-                  ? Colors.white70
-                  : NepanikarColors.dark.withOpacity(0.7),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.7),
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 16),
           ...List.generate(_letters.length, (i) {
             return Padding(
               padding: const EdgeInsets.only(bottom: 10),
@@ -82,11 +87,7 @@ class _Day1SmartIntroPageState extends State<Day1SmartIntroPage> {
 }
 
 class _SmartTile extends StatelessWidget {
-  const _SmartTile({
-    required this.letter,
-    required this.isOpen,
-    required this.onTap,
-  });
+  const _SmartTile({required this.letter, required this.isOpen, required this.onTap});
 
   final _SmartLetter letter;
   final bool isOpen;
@@ -112,9 +113,7 @@ class _SmartTile extends StatelessWidget {
           border: Border.all(
             color: isOpen
                 ? primaryColor
-                : (isDarkMode
-                      ? Colors.white.withOpacity(0.1)
-                      : Colors.grey.shade300),
+                : (isDarkMode ? Colors.white.withOpacity(0.1) : Colors.grey.shade300),
             width: isOpen ? 2 : 1,
           ),
         ),
@@ -144,11 +143,7 @@ class _SmartTile extends StatelessWidget {
                 Expanded(
                   child: Text(
                     letter.title,
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                      color: textColor,
-                    ),
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: textColor),
                   ),
                 ),
                 Icon(
@@ -168,9 +163,7 @@ class _SmartTile extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 13.5,
                       height: 1.5,
-                      color: isDarkMode
-                          ? Colors.white70
-                          : NepanikarColors.dark.withOpacity(0.75),
+                      color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.75),
                     ),
                   ),
                 ),
