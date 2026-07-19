@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=390">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+  :root { --primary:#491475; --dark:#280446; --secondary:#4EA3AD; --bg:#FBF6FF; --container:#EDE8F3; --purple200:#E2D2EF; }
+  body { font-family:'Inter',sans-serif; background:var(--bg); width:390px; min-height:844px; color:var(--dark); display:flex; flex-direction:column; }
+  .appbar { background:var(--primary); color:#fff; padding:14px 20px 12px; }
+  .appbar-row { display:flex; align-items:center; gap:14px; }
+  .appbar .back { font-size:22px; opacity:.9; }
+  .appbar .title { font-size:16px; font-weight:800; }
+  .appbar .step { margin-left:auto; font-size:12px; font-weight:700; opacity:.85; }
+  .progress { margin-top:12px; height:5px; border-radius:5px; background:rgba(255,255,255,.25); overflow:hidden; }
+  .progress > span { display:block; height:100%; width:33%; background:#fff; border-radius:5px; }
+  .content { flex:1; padding:24px; overflow-y:auto; }
+  .sec-head { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+  .sec-head .ico { width:44px; height:44px; border-radius:12px; background:var(--purple200); display:flex; align-items:center; justify-content:center; font-size:21px; }
+  .sec-head h2 { font-size:21px; font-weight:800; }
+  p.body { font-size:14px; font-weight:400; line-height:1.55; color:rgba(40,4,70,.8); margin-bottom:14px; }
+  .q-note { font-size:12.5px; font-style:italic; color:rgba(40,4,70,.6); line-height:1.5; margin-bottom:16px; }
+  .q-label { font-size:13px; font-weight:800; margin:6px 0 12px; }
+  .questions { display:flex; flex-direction:column; gap:10px; margin-bottom:18px; }
+  .q { display:flex; gap:12px; align-items:flex-start; background:var(--container); border-radius:14px; padding:14px; box-shadow:0 8px 32px rgba(73,20,117,.05); }
+  .q .qmark { flex:0 0 26px; height:26px; border-radius:50%; background:var(--secondary); color:#fff; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:900; }
+  .q p { font-size:14px; font-weight:600; line-height:1.4; }
+  .footer { padding:14px 24px 24px; }
+  .btn { width:100%; height:52px; border-radius:12px; background:var(--primary); color:#fff; font-family:inherit; font-size:16px; font-weight:900; border:none; }
+</style>
+</head>
+<body>
+  <div class="appbar">
+    <div class="appbar-row"><span class="back">&larr;</span><span class="title">Den 5 · Kondice</span><span class="step">1 / 3</span></div>
+    <div class="progress"><span></span></div>
+  </div>
+  <div class="content">
+    <div class="sec-head"><span class="ico">🏃</span><h2>K – kondice</h2></div>
+    <p class="body">Pojďme se dnes zaměřit na kondici. Pohyb a fyzická aktivita mají přímý vliv na náladu, stres i energii. Pravidelný pohyb pomáhá tělu zpracovat napětí a podporuje psychickou stabilitu. Nejde o výkon ani vzhled, ale o to, jak se tělo cítí v pohybu.</p>
+    <p class="body">Nemusí jít o sport, stačí malý pohyb během dne.</p>
+
+    <p class="q-note">Nejdřív se zkus zamyslet nad tvým vztahem k pohybu..</p>
+
+    <div class="q-label">Zamysli se</div>
+    <div class="questions">
+      <div class="q"><span class="qmark">?</span><p>Jak často se během týdne hýbeš?</p></div>
+      <div class="q"><span class="qmark">?</span><p>Jak se cítíš během a po pohybu?</p></div>
+      <div class="q"><span class="qmark">?</span><p>Co ti v pohybu brání?</p></div>
+      <div class="q"><span class="qmark">?</span><p>Co ti naopak pohyb usnadňuje?</p></div>
+    </div>
+  </div>
+  <div class="footer"><button class="btn">Pokračovat</button></div>
+</body>
+</html>

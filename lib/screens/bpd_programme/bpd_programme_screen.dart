@@ -19,7 +19,7 @@ class BpdProgrammeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NepanikarScreenWrapper(
-      appBarTitle: 'BPD Program',
+      appBarTitle: 'DBT program',
       showBottomNavbar: true,
       children: [
         const SizedBox(height: 40),
@@ -31,7 +31,7 @@ class BpdProgrammeScreen extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.all(24.0),
             child: Text(
-              'BPD Programme Content\n\nComing Soon...',
+              'DBT Programme Content\n\nComing Soon...',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
               textAlign: TextAlign.center,
             ),

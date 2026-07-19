@@ -46,10 +46,16 @@ Toto nie je pasívny log — je to **uzavretá slučka**: na začiatku behu lekc
 _(zatiaľ žiadne)_
 
 ### design-screen
-_(zatiaľ žiadne)_
+- [open] (2026-07-08, seen ×1) design-screen+plan-screens: pribudli schválené šablóny "chat" (jednosmerný feed) a "skill tree" — tokeny v `DESIGN_PROMPTS.md` → "Koncept komponenty", hotové Flutter widgety (`widgets/chat/`, `widgets/skill_tree.dart`). Skilly zatiaľ poznajú len DayPageBase layout. → Pridať do plánu pole "Typ obrazovky" (štandard/chat/mapa) a do design-screen kroku 3 vetvenie šablón; pri implementácii reusovať hotové widgety.
+- [open] (2026-06-19, seen ×1) design-screen: `WEEK1_SCREEN_PLAN.md` pokrýval len Deň 1, takže dni 3–6 sa museli rozkresliť priamo zo `source/tyzden-1.md` (obísť krok 2 skillu). → Pred design fázou dať doplniť plán cez `plan-screens` pre celý týždeň, alebo nechať design-screen čítať priamo source keď plán chýba.
+- [applied] (2026-06-19, seen ×1) design-screen: SPOKO reuse dni (3–6) majú reálne **3 strany** (edukácia+otázky → výzva → completion), NIE 4 — úvodná strana s modelom (5 písmen) je len v Dni 2. Pôvodný odhad „~5 strán/deň" v pláne bol nadhodnotený.
+- [applied] (2026-06-19, seen ×1) design-screen: `preview_start` slúži pre dev-servery z `launch.json`, nie pre statické HTML mockupy — na screenshot statického súboru treba buď static-file server, alebo sa spoľahnúť na auto Launch preview panel (hooky po Write). Skill krok 4 to nereflektuje presne.
 
 ### implement-screen
-_(zatiaľ žiadne)_
+- [applied] (2026-06-19, seen ×1) implement-screen: HTML mockupy môžu mať **skrátený** copy oproti `source/` (Deň 2 infobox vynechal vetu „Péče o spánek, jídlo…“ a vetu o priebehu týždňa; q-note zlúčil/orezal). Pri implementácii vždy zlaďuj text proti `docs/hpo/source/tyzden-<n>.md`, nie proti mockupu — source má prednosť, žiadna veta nesmie vypadnúť (radšej dlhší scroll).
+- [applied] (2026-06-19, seen ×1) implement-screen: pri implementácii **redizajnovaného dňa** over `_weekDaysContent` + `routes.dart` na starý deň s **kolidujúcou cestou** (Deň 2 mal starý `day2Education` na `week/1/day/2`). Treba prepojiť enum/switch/content-map + route entry naraz, inak kolízia cesty alebo mŕtvy switch case.
+- [applied] (2026-06-19, seen ×1) implement-screen: pri **repointe celého týždňa** skontroluj aj generický summary/review screen (`week_review_screen.dart` `_weekData[<week>]`) — jeho per-week obsah (learnedItems, next-week) zostarne a začne zobrazovať odstránené dni. Tu to vyriešil dedikovaný Deň 7 screen (týždeň už nesmeruje na WeekReviewScreen).
+- [applied] (2026-06-19, seen ×1) implement-screen: dni reusujúce šablónu (SPOKO 3–6) rieš **jedným data-driven screenom** (`SpokoDayScreen` + `SpokoDayData` const objekty + per-deň `@TypedGoRoute` triedy v jednom súbore), nie kopírovaním 4 obrazoviek. go_router_builder zvládne viac `@TypedGoRoute` v jednom súbore. Pozn.: const data s adjacent-string wrapom v listoch → `// ignore_for_file: no_adjacent_strings_in_list` (`+` nie je const).
 
 ### build-screens (orchestrátor)
 _(zatiaľ žiadne)_

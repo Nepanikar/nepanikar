@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=390">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+  :root {
+    --primary:#491475; --dark:#280446; --secondary:#4EA3AD; --bg:#FBF6FF;
+    --container:#EDE8F3; --purple200:#E2D2EF; --info:#FEC786;
+  }
+  body { font-family:'Inter',sans-serif; background:var(--bg); width:390px; min-height:844px; color:var(--dark); display:flex; flex-direction:column; }
+
+  /* Chat app bar */
+  .appbar { background:var(--primary); color:#fff; padding:10px 16px; display:flex; align-items:center; gap:12px; position:sticky; top:0; z-index:10; }
+  .appbar .back { font-size:22px; opacity:.9; }
+  .avatar { width:38px; height:38px; border-radius:50%; background:var(--secondary); display:flex; align-items:center; justify-content:center; font-size:18px; flex:none; }
+  .appbar .who { line-height:1.25; }
+  .appbar .who b { font-size:15px; font-weight:800; display:block; }
+  .appbar .who i { font-style:normal; font-size:11px; opacity:.8; display:flex; align-items:center; gap:5px; }
+  .appbar .who i::before { content:""; width:7px; height:7px; border-radius:50%; background:#6FD866; }
+  .appbar .step { margin-left:auto; font-size:12px; font-weight:700; opacity:.85; }
+  .progress { height:4px; background:rgba(73,20,117,.15); }
+  .progress span { display:block; height:100%; width:10%; background:var(--secondary); }
+
+  /* Chat area */
+  .chat { flex:1; padding:16px 16px 8px; display:flex; flex-direction:column; gap:4px; overflow-y:auto; }
+  .daystamp { align-self:center; font-size:11px; font-weight:700; color:rgba(40,4,70,.4); background:var(--container); border-radius:10px; padding:4px 12px; margin:4px 0 10px; }
+
+  .row { display:flex; gap:8px; align-items:flex-end; margin-top:2px; }
+  .row .avatar { width:30px; height:30px; font-size:14px; visibility:hidden; }
+  .row.tail .avatar { visibility:visible; }
+
+  .bubble { max-width:290px; background:#fff; border-radius:18px 18px 18px 18px; padding:10px 14px; font-size:14px; line-height:1.5; box-shadow:0 2px 10px rgba(73,20,117,.07); }
+  .row.tail .bubble { border-bottom-left-radius:6px; }
+
+  .time { font-size:10px; color:rgba(40,4,70,.35); margin:4px 0 10px 38px; }
+
+  /* Rich message: info card */
+  .msgcard { max-width:290px; margin-left:38px; background:var(--purple200); border-left:4px solid var(--primary); border-radius:14px; padding:12px 14px; font-size:13.5px; line-height:1.5; }
+  .msgcard b { display:flex; align-items:center; gap:7px; margin-bottom:4px; font-size:13px; }
+
+  /* Rich message: stats */
+  .stats { max-width:290px; margin-left:38px; background:#fff; border-radius:16px; padding:14px; box-shadow:0 2px 10px rgba(73,20,117,.07); display:flex; gap:10px; }
+  .stat { flex:1; background:var(--container); border-radius:12px; padding:10px 8px; text-align:center; }
+  .stat .big { font-size:20px; font-weight:900; color:var(--primary); }
+  .stat small { font-size:10.5px; font-weight:600; color:rgba(40,4,70,.6); display:block; margin-top:2px; line-height:1.3; }
+
+  /* Rich message: area chips */
+  .areas { max-width:290px; margin-left:38px; display:flex; flex-wrap:wrap; gap:6px; }
+  .area { background:#fff; border:1.5px solid var(--secondary); color:var(--secondary); font-size:12px; font-weight:800; border-radius:20px; padding:6px 12px; }
+
+  /* Rich message: name form */
+  .form { max-width:290px; margin-left:38px; background:#fff; border-radius:16px; padding:14px; box-shadow:0 2px 10px rgba(73,20,117,.07); }
+  .form label { font-size:12px; font-weight:800; color:var(--primary); display:block; margin-bottom:6px; }
+  .form .field { background:var(--container); border-radius:10px; padding:11px 12px; font-size:14px; color:rgba(40,4,70,.45); margin-bottom:10px; }
+  .form .pills { display:flex; gap:6px; }
+  .pill { flex:1; text-align:center; border:1.5px solid var(--purple200); border-radius:10px; padding:8px 0; font-size:12.5px; font-weight:700; color:rgba(40,4,70,.6); }
+  .pill.on { background:var(--primary); border-color:var(--primary); color:#fff; font-weight:800; }
+
+  /* Fixed bottom button */
+  .footer { padding:14px 24px 24px; background:var(--bg); }
+  .btn { width:100%; height:52px; border-radius:12px; background:var(--primary); color:#fff; font-family:inherit; font-size:16px; font-weight:900; border:none; box-shadow:0 8px 24px rgba(73,20,117,.25); }
+</style>
+</head>
+<body>
+  <div class="appbar">
+    <span class="back">&larr;</span>
+    <div class="avatar">💜</div>
+    <div class="who"><b>Nepanikař</b><i>průvodce programem</i></div>
+    <span class="step">Den 1 · 1/10</span>
+  </div>
+  <div class="progress"><span></span></div>
+
+  <div class="chat">
+    <div class="daystamp">Dnes</div>
+
+    <div class="row tail"><div class="avatar">💜</div>
+      <div class="bubble">Ahoj! 👋 Právě jste otevřeli program, který byl vytvořen pro lidi učící se zvládat projevy hraniční poruchy osobnosti. Je ale i pro ty, kteří mají obecně potíže v oblasti emocí, stresu, impulzivního chování a mezilidských vztahů, včetně toho sami se sebou.</div>
+    </div>
+    <div class="time">18:02</div>
+
+    <div class="row"><div class="avatar">💜</div>
+      <div class="bubble">Program může uživateli poskytnout řadu nástrojů a strategií, pro které byly inspirací ověřené metody dialekticko-behaviorální terapie (DBT).</div>
+    </div>
+    <div class="row tail"><div class="avatar">💜</div>
+      <div class="bubble">Nabité dovednosti Vám mohou pomoci lépe porozumět svým emocím, regulovat impulsy, zlepšit komunikaci s ostatními a vztah sám se sebou.</div>
+    </div>
+    <div class="time">18:03</div>
+
+    <div class="msgcard"><b>ℹ️ Důležité</b>Program nenahrazuje terapii. Může být však dobrým pomocníkem pro ty, kteří z jakéhokoliv důvodu na terapii jít nemohou nebo nechtějí nebo čekají na svůj termín.</div>
+    <div class="time">18:03</div>
+
+    <div class="stats">
+      <div class="stat"><div class="big">7</div><small>týdnů<br>programu</small></div>
+      <div class="stat"><div class="big">5–20</div><small>minut<br>denně</small></div>
+      <div class="stat"><div class="big">1</div><small>klíčová dovednost týdně</small></div>
+    </div>
+    <div class="time">18:04</div>
+
+    <div class="row tail"><div class="avatar">💜</div>
+      <div class="bubble">Během těchto společných sedmi týdnů se budeme věnovat následujícím oblastem:</div>
+    </div>
+    <div class="areas">
+      <span class="area">všímavost</span><span class="area">emoční regulace</span>
+      <span class="area">snášení tísně</span><span class="area">mezilidské vztahy</span>
+      <span class="area">sebepojetí</span>
+    </div>
+    <div class="time">18:04</div>
+
+    <div class="row tail"><div class="avatar">💜</div>
+      <div class="bubble">Dává to smysl? Věříme, že ano. 💜 Zezačátku, než se do programu pustíme, zajímá nás Vaše křestní jméno a jak chcete, aby Vás Nepanikař oslovovalo.</div>
+    </div>
+    <div class="form">
+      <label>Tvoje křestní jméno</label>
+      <div class="field">Napiš svoje jméno…</div>
+      <label>Jak tě máme oslovovat?</label>
+      <div class="pills"><span class="pill on">on</span><span class="pill">ona</span><span class="pill">jinak</span></div>
+    </div>
+    <div class="time">18:05</div>
+  </div>
+
+  <div class="footer"><button class="btn">Uložit a pokračovat</button></div>
+</body>
+</html>

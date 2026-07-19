@@ -14,8 +14,9 @@ import 'package:nepanikar/screens/bpd_programme/bpd_landing_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/bpd_programme_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/bpd_week_detail_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/bpd_weeks_screen.dart';
-import 'package:nepanikar/screens/bpd_programme/weeks/week1/day2_education/day2_education_screen.dart';
-import 'package:nepanikar/screens/bpd_programme/weeks/week1/day4_please/day4_please_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week1/day2_spoko/day2_spoko_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week1/day7_reflection/day7_reflection_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week1/spoko_day/spoko_day_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/shared/day_pause_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/shared/week_review_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week2/day1_mindfulness_intro/day1_mindfulness_intro_screen.dart';
@@ -57,6 +58,8 @@ import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips
 import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_overeat.dart';
 import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_remorse.dart';
 import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_vomit.dart';
+import 'package:nepanikar/screens/home/my_records/challenges/my_challenges_screen.dart';
+import 'package:nepanikar/screens/home/my_records/dbt/dbt_records_screen.dart';
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_add_screen.dart';
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_detail_screen.dart';
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_edit_screen.dart';
@@ -64,6 +67,8 @@ import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_records
 import 'package:nepanikar/screens/home/my_records/food_records/my_records_food_record_detail_menu_detail_screen.dart';
 import 'package:nepanikar/screens/home/my_records/food_records/my_records_food_record_detail_menu_list_screen.dart';
 import 'package:nepanikar/screens/home/my_records/food_records/my_records_food_records_list_screen.dart';
+import 'package:nepanikar/screens/home/my_records/goals/my_goals_screen.dart';
+import 'package:nepanikar/screens/home/my_records/goals/smart_goal_form_screen.dart';
 import 'package:nepanikar/screens/home/my_records/journal/my_records_detail_journal_screen.dart';
 import 'package:nepanikar/screens/home/my_records/journal/my_records_journal_records_screen.dart';
 import 'package:nepanikar/screens/home/my_records/mood/mood_entry_detail_screen.dart';
@@ -261,6 +266,10 @@ const _myRecordsRoutes = <TypedGoRoute<GoRouteData>>[
     path: 'home/my-records/mood-records/mood-entry',
   ),
   TypedGoRoute<MyRecordsSleepTrackRoute>(path: 'home/my-records/sleep-track'),
+  TypedGoRoute<MyChallengesRoute>(path: 'home/my-records/challenges'),
+  TypedGoRoute<DbtRecordsRoute>(path: 'home/my-records/dbt'),
+  TypedGoRoute<MyGoalsRoute>(path: 'home/my-records/goals'),
+  TypedGoRoute<SmartGoalFormRoute>(path: 'home/my-records/goals/new'),
 
   // Diary
   TypedGoRoute<MyRecordsDiaryRecordsRoute>(path: 'home/my-records/diary'),
@@ -307,9 +316,17 @@ const _bpdProgrammeRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<Day1OnboardingScreenRoute>(
     path: 'bpd-programme/day-onboarding',
   ),
-  // Day content screens - Week 1
-  TypedGoRoute<Day2EducationScreenRoute>(path: 'bpd-programme/week/1/day/2'),
-  TypedGoRoute<Day4PleaseScreenRoute>(path: 'bpd-programme/week/1/day/4'),
+  // Day content screens - Week 1 (SPOKO)
+  TypedGoRoute<Week1Day2SpokoScreenRoute>(path: 'bpd-programme/week/1/day/2'),
+  TypedGoRoute<Week1Day3PotravaScreenRoute>(path: 'bpd-programme/week/1/day/3'),
+  TypedGoRoute<Week1Day4LatkyScreenRoute>(path: 'bpd-programme/week/1/day/4'),
+  TypedGoRoute<Week1Day5KondiceScreenRoute>(path: 'bpd-programme/week/1/day/5'),
+  TypedGoRoute<Week1Day6OnemocneniScreenRoute>(
+    path: 'bpd-programme/week/1/day/6',
+  ),
+  TypedGoRoute<Week1Day7ReflexeScreenRoute>(
+    path: 'bpd-programme/week/1/day/7',
+  ),
   // Day content screens - Week 2 (Mindfulness)
   TypedGoRoute<Week2Day1MindfulnessIntroScreenRoute>(
     path: 'bpd-programme/week/2/day/1',

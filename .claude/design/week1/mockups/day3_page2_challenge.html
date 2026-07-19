@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=390">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+  :root { --primary:#491475; --dark:#280446; --secondary:#4EA3AD; --bg:#FBF6FF; --container:#EDE8F3; --purple200:#E2D2EF; }
+  body { font-family:'Inter',sans-serif; background:var(--bg); width:390px; min-height:844px; color:var(--dark); display:flex; flex-direction:column; }
+  .appbar { background:var(--primary); color:#fff; padding:14px 20px 12px; }
+  .appbar-row { display:flex; align-items:center; gap:14px; }
+  .appbar .back { font-size:22px; opacity:.9; }
+  .appbar .title { font-size:16px; font-weight:800; }
+  .appbar .step { margin-left:auto; font-size:12px; font-weight:700; opacity:.85; }
+  .progress { margin-top:12px; height:5px; border-radius:5px; background:rgba(255,255,255,.25); overflow:hidden; }
+  .progress > span { display:block; height:100%; width:66%; background:#fff; border-radius:5px; }
+  .content { flex:1; padding:24px; overflow-y:auto; }
+  h2 { font-size:21px; font-weight:800; margin-bottom:8px; }
+  .lead { font-size:13.5px; color:rgba(40,4,70,.7); line-height:1.5; margin-bottom:18px; }
+  .checks { display:flex; flex-direction:column; gap:8px; margin-bottom:18px; }
+  .chk { display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:12px; border:1.5px solid var(--purple200); background:#fff; font-size:13.5px; font-weight:600; line-height:1.35; }
+  .chk .box { flex:0 0 22px; height:22px; border-radius:6px; border:2px solid var(--purple200); }
+  .chk.sel { border-color:var(--primary); background:var(--purple200); }
+  .chk.sel .box { background:var(--primary); border-color:var(--primary); position:relative; }
+  .chk.sel .box::after { content:'✓'; color:#fff; font-size:14px; font-weight:900; position:absolute; top:-2px; left:3px; }
+  .future-lead { font-size:13px; color:rgba(40,4,70,.7); line-height:1.5; margin-bottom:10px; }
+  .future { display:flex; align-items:center; gap:12px; width:100%; padding:14px 16px; border:1.5px dashed var(--secondary); border-radius:12px; background:rgba(78,163,173,.08); color:var(--secondary); font-size:13.5px; font-weight:800; }
+  .future .arrow { margin-left:auto; font-size:16px; }
+  .footer { padding:14px 24px 24px; }
+  .btn { width:100%; height:52px; border-radius:12px; background:var(--primary); color:#fff; font-family:inherit; font-size:16px; font-weight:900; border:none; }
+</style>
+</head>
+<body>
+  <div class="appbar">
+    <div class="appbar-row"><span class="back">&larr;</span><span class="title">Den 3 · Potrava</span><span class="step">2 / 3</span></div>
+    <div class="progress"><span></span></div>
+  </div>
+  <div class="content">
+    <h2>Dnešní výzva</h2>
+    <p class="lead">Zkusme i pro dnešek společnou výzvu. Vyber si alespoň jednu věc, kterou vyzkoušíš.</p>
+    <div class="checks">
+      <div class="chk sel"><span class="box"></span>Najíst se alespoň 3x během dne</div>
+      <div class="chk"><span class="box"></span>Nevynechat žádné hlavní jídlo (snídaně, oběd, večeře)</div>
+      <div class="chk"><span class="box"></span>Vypít alespoň 2,5 litru</div>
+      <div class="chk"><span class="box"></span>Dát si jídlo bez telefonu/obrazovky</div>
+      <div class="chk"><span class="box"></span>Zkusit jíst pomaleji a vnímat chuť jídla</div>
+      <div class="chk"><span class="box"></span>Přidat k jídlu navíc ovoce nebo zeleninu</div>
+      <div class="chk"><span class="box"></span>Najíst se dřív, než přijde „extrémní hlad“</div>
+    </div>
+    <p class="future-lead">Můžeš si nastavit výzvu i do budoucna.</p>
+    <div class="future"><span>🎯</span> Nastavit výzvu i do budoucna <span class="arrow">→</span></div>
+  </div>
+  <div class="footer"><button class="btn">Pokračovat</button></div>
+</body>
+</html>

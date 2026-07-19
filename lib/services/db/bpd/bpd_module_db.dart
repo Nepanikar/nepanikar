@@ -1,6 +1,9 @@
 import 'package:nepanikar/app/l10n/app_localizations.dart';
+import 'package:nepanikar/services/db/bpd/bpd_challenge_tracker_dao.dart';
+import 'package:nepanikar/services/db/bpd/bpd_challenges_dao.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
 import 'package:nepanikar/services/db/bpd/bpd_expectations_dao.dart';
+import 'package:nepanikar/services/db/bpd/bpd_reflection_dao.dart';
 import 'package:nepanikar/services/db/bpd/bpd_smart_goals_dao.dart';
 import 'package:nepanikar/services/db/bpd/bpd_weeks_dao.dart';
 import 'package:nepanikar/services/db/common/nepanikar_module_db.dart';
@@ -15,11 +18,17 @@ class BpdModuleDb implements NepanikarModuleDb {
   late final BpdDaysDao _bpdDaysDao;
   late final BpdSmartGoalsDao _bpdSmartGoalsDao;
   late final BpdExpectationsDao _bpdExpectationsDao;
+  late final BpdChallengesDao _bpdChallengesDao;
+  late final BpdChallengeTrackerDao _bpdChallengeTrackerDao;
+  late final BpdReflectionDao _bpdReflectionDao;
 
   BpdWeeksDao get bpdWeeksDao => _bpdWeeksDao;
   BpdDaysDao get bpdDaysDao => _bpdDaysDao;
   BpdSmartGoalsDao get bpdSmartGoalsDao => _bpdSmartGoalsDao;
   BpdExpectationsDao get bpdExpectationsDao => _bpdExpectationsDao;
+  BpdChallengesDao get bpdChallengesDao => _bpdChallengesDao;
+  BpdChallengeTrackerDao get bpdChallengeTrackerDao => _bpdChallengeTrackerDao;
+  BpdReflectionDao get bpdReflectionDao => _bpdReflectionDao;
 
   @override
   Future<BpdModuleDb> initModuleDaos() async {
@@ -27,6 +36,10 @@ class BpdModuleDb implements NepanikarModuleDb {
     _bpdDaysDao = await BpdDaysDao(dbService: _dbService).init();
     _bpdSmartGoalsDao = await BpdSmartGoalsDao(dbService: _dbService).init();
     _bpdExpectationsDao = await BpdExpectationsDao(dbService: _dbService).init();
+    _bpdChallengesDao = await BpdChallengesDao(dbService: _dbService).init();
+    _bpdChallengeTrackerDao =
+        await BpdChallengeTrackerDao(dbService: _dbService).init();
+    _bpdReflectionDao = await BpdReflectionDao(dbService: _dbService).init();
     return this;
   }
 
@@ -36,6 +49,9 @@ class BpdModuleDb implements NepanikarModuleDb {
     await _bpdDaysDao.clear();
     await _bpdSmartGoalsDao.clear();
     await _bpdExpectationsDao.clear();
+    await _bpdChallengesDao.clear();
+    await _bpdChallengeTrackerDao.clear();
+    await _bpdReflectionDao.clear();
   }
 
   @override

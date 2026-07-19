@@ -39,8 +39,7 @@ class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
   bool isDarkMode = false;
 
-  ContactsDataManager get _contactsDataManager =>
-      registry.get<ContactsDataManager>();
+  ContactsDataManager get _contactsDataManager => registry.get<ContactsDataManager>();
 
   DatabaseService get _databaseService => registry.get<DatabaseService>();
 
@@ -101,6 +100,20 @@ class _MainScreenState extends State<MainScreen> {
     });
   }
 
+  @override
+  void didUpdateWidget(covariant MainScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // When we're navigated back to `/` with a new target tab (e.g. exiting the
+    // DBT programme), this State is preserved, so react to the changed `extra`
+    // here — otherwise we'd stay on the stale tab.
+    final newIndex = widget.extra?.initIndex;
+    if (newIndex != null && newIndex != oldWidget.extra?.initIndex) {
+      setState(() {
+        _selectedIndex = newIndex;
+      });
+    }
+  }
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -129,7 +142,7 @@ class _MainScreenState extends State<MainScreen> {
           ),
           buildBottomNavigationBarItem(
             svgIconPath: Assets.icons.calendarEvent.path,
-            label: 'BPD',
+            label: 'DBT',
             isSelected: _selectedIndex == 2,
             context: context,
           ),

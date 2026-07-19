@@ -5,6 +5,7 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/providers/mood_heatmap_filter_provider.dart';
 import 'package:nepanikar/screens/home/my_records/tests/test_list_screen.dart';
+import 'package:nepanikar/screens/home/my_records/dbt/dbt_records_screen.dart';
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_records_screen.dart';
 import 'package:nepanikar/screens/home/my_records/food_records/my_records_food_records_list_screen.dart';
 import 'package:nepanikar/screens/home/my_records/journal/my_records_journal_records_screen.dart';
@@ -35,9 +36,7 @@ class MyRecordsScreen extends StatelessWidget {
     final modules = <Widget>[
       LongTile(
         text: context.l10n.depression_mood,
-        image: Assets.illustrations.modules.moodTracker.svg(
-          colorFilter: colorFilter,
-        ),
+        image: Assets.illustrations.modules.moodTracker.svg(colorFilter: colorFilter),
         onTap: () {
           Provider.of<MoodHeatmapFilterProvider>(
             context,
@@ -48,9 +47,7 @@ class MyRecordsScreen extends StatelessWidget {
       ),
       LongTile(
         text: context.l10n.sleep_title,
-        image: Assets.illustrations.modules.sleepTracker.svg(
-          colorFilter: colorFilter,
-        ),
+        image: Assets.illustrations.modules.sleepTracker.svg(colorFilter: colorFilter),
         onTap: () => context.push(const MyRecordsSleepTrackRoute().location),
       ),
       LongTile(
@@ -60,26 +57,23 @@ class MyRecordsScreen extends StatelessWidget {
       ),
       LongTile(
         text: context.l10n.journal,
-        image: Assets.illustrations.modules.journal.svg(
-          colorFilter: colorFilter,
-        ),
-        onTap: () =>
-            context.push(const MyRecordsJournalRecordsRoute().location),
+        image: Assets.illustrations.modules.journal.svg(colorFilter: colorFilter),
+        onTap: () => context.push(const MyRecordsJournalRecordsRoute().location),
       ),
       LongTile(
         text: context.l10n.food_records,
-        image: Assets.illustrations.modules.foodTracker.svg(
-          colorFilter: colorFilter,
-        ),
-        onTap: () =>
-            context.push(const MyRecordsFoodRecordsListRoute().location),
+        image: Assets.illustrations.modules.foodTracker.svg(colorFilter: colorFilter),
+        onTap: () => context.push(const MyRecordsFoodRecordsListRoute().location),
       ),
       LongTile(
         text: 'Tests',
-        image: Assets.illustrations.modules.foodTracker.svg(
-          colorFilter: colorFilter,
-        ),
+        image: Assets.illustrations.modules.foodTracker.svg(colorFilter: colorFilter),
         onTap: () => context.push(const TestListScreenRoute().location),
+      ),
+      LongTile(
+        text: 'DBT program',
+        image: Icon(Icons.self_improvement, size: 32, color: Theme.of(context).primaryColor),
+        onTap: () => context.push(const DbtRecordsRoute().location),
       ),
     ];
 

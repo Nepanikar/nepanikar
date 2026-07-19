@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=390">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+  :root {
+    --primary:#491475; --dark:#280446; --secondary:#4EA3AD; --bg:#FBF6FF;
+    --container:#EDE8F3; --purple200:#E2D2EF; --success:#6FD866; --locked:#D9CCE6;
+  }
+  body { font-family:'Inter',sans-serif; background:var(--bg); width:390px; min-height:844px; color:var(--dark); }
+
+  /* App bar */
+  .appbar { background:var(--primary); color:#fff; padding:14px 20px; display:flex; align-items:center; gap:14px; position:sticky; top:0; z-index:20; }
+  .appbar .back { font-size:22px; opacity:.9; }
+  .appbar .title { font-size:16px; font-weight:800; }
+  .appbar .streak { margin-left:auto; display:flex; align-items:center; gap:6px; background:rgba(255,255,255,.15); border-radius:20px; padding:5px 12px; font-size:13px; font-weight:800; }
+
+  /* Week banner (Duolingo unit header) */
+  .unit { margin:16px 24px 6px; background:linear-gradient(135deg,#5A1D8C 0%,#491475 60%,#3A0F5E 100%); border-radius:16px; padding:16px; color:#fff; box-shadow:0 8px 32px rgba(73,20,117,.25); display:flex; align-items:center; gap:12px; }
+  .unit .txt { flex:1; }
+  .unit .kicker { font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; opacity:.75; }
+  .unit h1 { font-size:18px; font-weight:900; margin:2px 0 8px; }
+  .unit .bar { height:6px; border-radius:6px; background:rgba(255,255,255,.25); overflow:hidden; }
+  .unit .bar span { display:block; height:100%; width:29%; background:var(--success); border-radius:6px; }
+  .unit .days { font-size:11px; font-weight:700; opacity:.8; margin-top:5px; }
+  .unit .book { width:44px; height:44px; border-radius:12px; background:rgba(255,255,255,.15); display:flex; align-items:center; justify-content:center; font-size:20px; }
+
+  /* Path */
+  .path { position:relative; height:730px; }
+  .path svg.line { position:absolute; inset:0; }
+  .node { position:absolute; transform:translate(-50%,0); display:flex; flex-direction:column; align-items:center; width:110px; text-align:center; }
+  .circle { width:62px; height:62px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:900; color:#fff; box-shadow:0 5px 0 rgba(40,4,70,.18); position:relative; }
+  .node small { margin-top:7px; font-size:11px; font-weight:700; color:rgba(40,4,70,.65); line-height:1.3; }
+
+  .done .circle { background:var(--success); box-shadow:0 5px 0 #55B54E; }
+  .done .circle::after { content:"✓"; font-size:26px; }
+
+  .current .circle { width:70px; height:70px; background:var(--primary); box-shadow:0 5px 0 var(--dark); animation:none; }
+  .current .circle::after { content:"★"; font-size:28px; }
+  .ring { position:absolute; width:88px; height:88px; border-radius:50%; border:4px solid rgba(73,20,117,.25); top:-9px; }
+  .today { position:absolute; top:-36px; background:#fff; color:var(--primary); border:2px solid var(--purple200); font-size:11px; font-weight:900; letter-spacing:.06em; padding:4px 12px; border-radius:10px; box-shadow:0 4px 12px rgba(73,20,117,.12); animation:bob 1.6s ease-in-out infinite; }
+  .today::after { content:""; position:absolute; left:50%; bottom:-6px; transform:translateX(-50%) rotate(45deg); width:10px; height:10px; background:#fff; border-right:2px solid var(--purple200); border-bottom:2px solid var(--purple200); }
+  @keyframes bob { 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-5px);} }
+
+  .locked .circle { background:var(--purple200); box-shadow:0 5px 0 var(--locked); color:#B49CC9; }
+  .locked .circle::after { content:"🔒"; font-size:20px; filter:grayscale(.4); opacity:.75; }
+  .locked small { color:rgba(40,4,70,.35); }
+
+  .checkpoint .circle { width:74px; height:74px; border-radius:22px; }
+  .checkpoint.locked .circle::after { content:"🏆"; font-size:28px; }
+
+  .heart { position:absolute; color:var(--secondary); opacity:.5; }
+
+  /* Next week divider */
+  .divider { display:flex; align-items:center; gap:12px; margin:4px 24px 18px; }
+  .divider hr { flex:1; border:none; border-top:2px solid var(--purple200); }
+  .divider span { font-size:12px; font-weight:900; letter-spacing:.06em; color:rgba(40,4,70,.4); text-transform:uppercase; }
+  .unit.next { background:var(--container); color:var(--dark); box-shadow:none; opacity:.85; }
+  .unit.next .kicker, .unit.next .days { opacity:.5; }
+  .unit.next .book { background:var(--purple200); }
+  .path.preview { height:200px; opacity:.75; }
+</style>
+</head>
+<body>
+  <div class="appbar">
+    <span class="back">&larr;</span>
+    <span class="title">Můj program</span>
+    <span class="streak">🔥 3</span>
+    <span class="streak" style="background:rgba(78,163,173,.35)">💙 12</span>
+  </div>
+
+  <div class="unit">
+    <div class="txt">
+      <div class="kicker">Týden 1 · Klíčová dovednost</div>
+      <h1>Úvod do programu + SPOKO</h1>
+      <div class="bar"><span></span></div>
+      <div class="days">2 ze 7 dní hotovo</div>
+    </div>
+    <div class="book">📖</div>
+  </div>
+
+  <div class="path">
+    <svg class="line" width="390" height="730" viewBox="0 0 390 730" fill="none">
+      <path d="M195 55 C 150 95, 120 105, 110 150
+               C 100 195, 88 205, 85 250
+               C 82 300, 120 305, 150 345
+               C 185 390, 230 385, 252 425
+               C 275 465, 288 475, 287 520
+               C 286 570, 230 585, 195 625"
+            stroke="#D9C8EA" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 12"/>
+    </svg>
+
+    <div class="node done" style="left:195px; top:24px;">
+      <div class="circle"></div><small>Den 1 · Představení</small>
+    </div>
+    <div class="node done" style="left:110px; top:119px;">
+      <div class="circle"></div><small>Den 2 · Spánek</small>
+    </div>
+    <div class="node current" style="left:85px; top:215px;">
+      <div class="today">DNES</div>
+      <div class="ring"></div>
+      <div class="circle"></div><small>Den 3 · Potrava</small>
+    </div>
+    <div class="node locked" style="left:150px; top:314px;">
+      <div class="circle"></div><small>Den 4 · Ne omamným látkám</small>
+    </div>
+    <div class="node locked" style="left:252px; top:394px;">
+      <div class="circle"></div><small>Den 5 · Kondice</small>
+    </div>
+    <div class="node locked" style="left:287px; top:489px;">
+      <div class="circle"></div><small>Den 6 · Léčba onemocnění</small>
+    </div>
+    <div class="node locked checkpoint" style="left:195px; top:590px;">
+      <div class="circle"></div><small>Den 7 · Reflexe týdne</small>
+    </div>
+
+    <span class="heart" style="left:315px; top:120px; font-size:18px;">♥</span>
+    <span class="heart" style="left:40px; top:395px; font-size:14px;">♥</span>
+    <span class="heart" style="left:330px; top:600px; font-size:16px;">♥</span>
+    <span class="heart" style="left:150px; top:470px; font-size:12px; opacity:.3;">♥</span>
+  </div>
+
+  <div class="divider"><hr><span>Další týden</span><hr></div>
+
+  <div class="unit next">
+    <div class="txt">
+      <div class="kicker">Týden 2 · Zamčeno</div>
+      <h1>Všímavost</h1>
+      <div class="days">Odemkne se po reflexi 1. týdne</div>
+    </div>
+    <div class="book">🔒</div>
+  </div>
+
+  <div class="path preview">
+    <svg class="line" width="390" height="200" viewBox="0 0 390 200" fill="none">
+      <path d="M195 40 C 160 75, 135 80, 128 125" stroke="#D9C8EA" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 12"/>
+    </svg>
+    <div class="node locked" style="left:195px; top:12px;">
+      <div class="circle"></div><small>Den 1 · Co je všímavost</small>
+    </div>
+    <div class="node locked" style="left:128px; top:98px;">
+      <div class="circle"></div><small>Den 2</small>
+    </div>
+  </div>
+</body>
+</html>

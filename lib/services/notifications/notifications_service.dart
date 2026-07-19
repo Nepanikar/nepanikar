@@ -28,6 +28,8 @@ class NotificationsService {
   static const _basicChannelGroupKey = 'basic_channel_group';
   static const _basicChannelKey = 'basic_channel';
 
+  static const _challengeReminderTitle = 'Připomínka výzvy';
+
   Future<void> init() async {
     await _awesomeNotifications.initialize(
       null, // To use the default app icon.
@@ -66,6 +68,58 @@ class NotificationsService {
     await _router.push(const NotificationSettingsRoute().location);
   }
 
+  /// Requests notification permission if not already granted. Returns whether
+  /// notifications are allowed afterwards. Used before enabling a per-challenge
+  /// reminder from the "Moje výzvy" screen.
+  Future<bool> requestPermissionIfNeeded() async {
+    final allowed = await _awesomeNotifications.isNotificationAllowed();
+    if (allowed) return true;
+    return _awesomeNotifications.requestPermissionToSendNotifications();
+  }
+
+  /// Schedules a daily repeating reminder for a single DBT challenge. The
+  /// [notificationId] is stable per challenge, so it can be cancelled or
+  /// rescheduled on its own via [cancelChallengeReminder].
+  Future<void> scheduleChallengeReminder({
+    required int notificationId,
+    required String challengeText,
+    required int hour,
+    required int minute,
+  }) async {
+    final payload =
+        const AppNotificationData(type: NotificationType.challengeReminder)
+            .toJson();
+    await _awesomeNotifications.cancel(notificationId);
+    await _awesomeNotifications.createNotification(
+      content: NotificationContent(
+        id: notificationId,
+        channelKey: _basicChannelKey,
+        title: _challengeReminderTitle,
+        body: challengeText,
+        badge: 1,
+        payload: {nestedPayloadKey: jsonEncode(payload)},
+      ),
+      schedule: NotificationCalendar(
+        hour: hour,
+        minute: minute,
+        second: 0,
+        repeats: true,
+        allowWhileIdle: true,
+      ),
+    );
+    debugPrint(
+      'NOTIFICATION_SERVICE: Scheduled challenge reminder id "$notificationId" '
+      'at $hour:$minute',
+    );
+  }
+
+  Future<void> cancelChallengeReminder(int notificationId) async {
+    debugPrint(
+      'NOTIFICATION_SERVICE: Cancelling challenge reminder id "$notificationId"',
+    );
+    await _awesomeNotifications.cancel(notificationId);
+  }
+
   // Cancel all scheduled notifications.
   Future<void> cancelAllScheduledNotifications() async {
     debugPrint(
@@ -83,6 +137,8 @@ class NotificationsService {
     final r = math.Random();
     final nowDate = DateTime.now().toDate();
     for (final type in NotificationType.values) {
+      // Challenge reminders are scheduled per-challenge, not via user settings.
+      if (type == NotificationType.challengeReminder) continue;
       final notificationTypeSettings = await _userSettingsDao
           .getNotificationTypeSettings(type);
       if (notificationTypeSettings == null) {
