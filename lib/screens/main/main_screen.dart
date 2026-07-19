@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
-import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/providers/mood_state_provider.dart';
 import 'package:nepanikar/screens/bpd_programme/bpd_landing_screen.dart';
-import 'package:nepanikar/screens/bpd_programme/bpd_programme_screen.dart';
-import 'package:nepanikar/screens/bpd_programme/bpd_weeks_screen.dart';
 import 'package:nepanikar/screens/home/my_records/my_records_screen.dart';
 import 'package:nepanikar/screens/main/contacts_screen.dart';
 import 'package:nepanikar/screens/main/home_screen.dart';
 import 'package:nepanikar/screens/main/settings_screen.dart';
 import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
-import 'package:nepanikar/services/db/user_settings/user_settings_models.dart';
 import 'package:nepanikar/utils/contacts_data_manager.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/bottom_navbar_item.dart';
@@ -55,28 +50,6 @@ class _MainScreenState extends State<MainScreen> {
       ContactsScreen(countryContacts: countryContacts),
       const SettingsScreen(),
     ];
-  }
-
-  Widget _buildBpdScreen() {
-    return FutureBuilder<BpdProgrammeStatus>(
-      future: _userSettingsDao.getBpdProgrammeStatus(),
-      builder: (context, snapshot) {
-        if (!snapshot.hasData) {
-          return const Center(child: CircularProgressIndicator());
-        }
-
-        return _BpdLandingNavigator(userSettingsDao: _userSettingsDao);
-
-        final status = snapshot.data!;
-        if (status.hasStarted) {
-          // Journey started - navigate to full-screen BPD weeks screen
-          return _BpdWeeksNavigator();
-        } else {
-          // Journey not started - navigate to full-screen landing page
-          return _BpdLandingNavigator(userSettingsDao: _userSettingsDao);
-        }
-      },
-    );
   }
 
   @override
@@ -166,35 +139,6 @@ class _MainScreenState extends State<MainScreen> {
         onTap: _onItemTapped,
       ),
     );
-  }
-}
-
-class _BpdWeeksNavigator extends StatefulWidget {
-  const _BpdWeeksNavigator();
-
-  @override
-  State<_BpdWeeksNavigator> createState() => _BpdWeeksNavigatorState();
-}
-
-class _BpdWeeksNavigatorState extends State<_BpdWeeksNavigator> {
-  bool _hasNavigated = false;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    if (!_hasNavigated) {
-      _hasNavigated = true;
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (mounted) {
-          context.push(const BpdWeeksScreenRoute().location);
-        }
-      });
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: CircularProgressIndicator());
   }
 }
 

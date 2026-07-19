@@ -62,24 +62,18 @@ class BpdLandingScreen extends StatelessWidget {
                           color: primaryColor.withOpacity(0.1),
                           shape: BoxShape.circle,
                         ),
-                        child: Icon(
-                          Icons.settings,
-                          size: 50,
-                          color: primaryColor,
-                        ),
+                        child: Icon(Icons.settings, size: 50, color: primaryColor),
                       ),
 
                       const SizedBox(height: 24),
 
                       // Title
                       Text(
-                        'Vaša cesta k stabilite so Stromom Zručností',
+                        'Tvoje cesta ke stabilitě se Stromem dovedností',
                         style: TextStyle(
                           fontSize: 23,
                           fontWeight: FontWeight.bold,
-                          color: isDarkMode
-                              ? Colors.white
-                              : NepanikarColors.dark,
+                          color: isDarkMode ? Colors.white : NepanikarColors.dark,
                         ),
                         textAlign: TextAlign.center,
                       ),
@@ -88,9 +82,9 @@ class BpdLandingScreen extends StatelessWidget {
 
                       // Description
                       Text(
-                        'Vieme, že život s bipolárnou poruchou prináša výzvy. '
-                        'Tento 7-dňový program je navrhnutý ako váš sprievodca k budovaniu '
-                        'odolnosti a lepšiemu zvládaniu nálad.',
+                        'Víme, že život s hraniční poruchou osobnosti přináší výzvy. '
+                        'Tento 7denní program je navržený jako tvůj průvodce k budování '
+                        'odolnosti a lepšímu zvládání nálad.',
                         style: TextStyle(
                           fontSize: 15,
                           color: isDarkMode
@@ -105,17 +99,17 @@ class BpdLandingScreen extends StatelessWidget {
 
                       // Bullet points
                       _buildBulletPoint(
-                        'Budovanie copingových mechanizmov',
-                        'Naučte sa osvedčené techniky na rozpoznanie a zvládanie '
-                            'emocionálnych výziev.',
+                        'Budování copingových mechanismů',
+                        'Nauč se osvědčené techniky na rozpoznání a zvládání '
+                            'emočních výzev.',
                         isDarkMode,
                         primaryColor,
                       ),
                       const SizedBox(height: 20),
                       _buildBulletPoint(
-                        'Stabilizácia nálady',
-                        'Osvojte si každodenné návyky, ktoré podporujú rovnováhu a '
-                            'lepšiemu zvládaniu nálad.',
+                        'Stabilizace nálady',
+                        'Osvoj si každodenní návyky, které podporují rovnováhu a '
+                            'lepší zvládání nálad.',
                         isDarkMode,
                         primaryColor,
                       ),
@@ -135,13 +129,11 @@ class BpdLandingScreen extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: primaryColor,
                     foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                     elevation: 4,
                   ),
                   child: const Text(
-                    'Začať svoju cestu',
+                    'Začít svou cestu',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -153,12 +145,8 @@ class BpdLandingScreen extends StatelessWidget {
               TextButton(
                 onPressed: () => _handleMaybeLater(context),
                 child: Text(
-                  'Možno neskôr',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: primaryColor,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  'Možná později',
+                  style: TextStyle(fontSize: 16, color: primaryColor, fontWeight: FontWeight.w600),
                 ),
               ),
 
@@ -170,12 +158,7 @@ class BpdLandingScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildBulletPoint(
-    String title,
-    String description,
-    bool isDarkMode,
-    Color primaryColor,
-  ) {
+  Widget _buildBulletPoint(String title, String description, bool isDarkMode, Color primaryColor) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -183,10 +166,7 @@ class BpdLandingScreen extends StatelessWidget {
           width: 38,
           height: 38,
           margin: const EdgeInsets.only(top: 2),
-          decoration: BoxDecoration(
-            color: primaryColor.withOpacity(0.2),
-            shape: BoxShape.circle,
-          ),
+          decoration: BoxDecoration(color: primaryColor.withOpacity(0.2), shape: BoxShape.circle),
           child: Icon(Icons.check_circle, color: primaryColor, size: 22),
         ),
         const SizedBox(width: 14),
@@ -207,9 +187,7 @@ class BpdLandingScreen extends StatelessWidget {
                 description,
                 style: TextStyle(
                   fontSize: 13.5,
-                  color: isDarkMode
-                      ? Colors.white70
-                      : NepanikarColors.dark.withOpacity(0.7),
+                  color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.7),
                   height: 1.35,
                 ),
               ),
