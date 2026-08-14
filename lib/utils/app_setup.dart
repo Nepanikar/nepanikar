@@ -5,12 +5,11 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 // ignore: implementation_imports
 import 'package:flutter_localizations/src/utils/date_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/router/go_router_config.dart';
 import 'package:nepanikar/firebase_options.dart';
 import 'package:nepanikar/services/db/database_service.dart';

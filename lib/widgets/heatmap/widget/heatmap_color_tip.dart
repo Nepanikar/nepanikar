@@ -1,6 +1,6 @@
 import 'dart:collection';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/widgets/heatmap/data/heatmap_color.dart';

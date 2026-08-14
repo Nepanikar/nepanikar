@@ -1,10 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/utils/meal_plan_config.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
+
 part 'meal_plan_screen.g.dart';
 
 @TypedGoRoute<MealPlanRoute>(path: '/home/eating-disorder/meal-plan')

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/utils/crashlytics_utils.dart';

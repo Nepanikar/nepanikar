@@ -5,7 +5,7 @@ on:
   pull_request:
 
 env:
-  flutter_version: '3.44.4'
+  flutter_version: '3.47.0'
 
 jobs:
   format:

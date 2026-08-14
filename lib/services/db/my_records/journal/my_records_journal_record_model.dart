@@ -1,10 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/services/db/filters.dart';
 
 part 'my_records_journal_record_model.freezed.dart';
-
 part 'my_records_journal_record_model.g.dart';
 
 enum JournalQuestion { grateful, great, feel, three, improve }

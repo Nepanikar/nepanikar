@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/app_localizations.dart';
 import 'package:nepanikar/services/db/depression/depression_module_db.dart';
 import 'package:nepanikar/services/db/eating_disorder/eating_disorder_module_db.dart';

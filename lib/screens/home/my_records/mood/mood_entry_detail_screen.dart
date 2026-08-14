@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
@@ -12,6 +12,7 @@ import 'package:nepanikar/services/db/my_records/mood_track_dao.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
 import 'package:nepanikar/widgets/mood/chosen_emotions.dart';
 import 'package:provider/provider.dart';
+
 part 'mood_entry_detail_screen.g.dart';
 
 @TypedGoRoute<MoodEntryDetailRoute>(path: '/home/my-records/mood-records/mood-entry')

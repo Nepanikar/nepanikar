@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as m;
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
-import 'package:multi_select_flutter/multi_select_flutter.dart';
+import 'package:material_ui/material_ui.dart';
+//import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
@@ -14,6 +15,7 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/mood/chosen_emotions.dart';
 import 'package:nepanikar/widgets/mood/mood_entry_card.dart';
 import 'package:provider/provider.dart';
+import 'package:multi_dropdown/multi_dropdown.dart';
 part 'search_mood_entry.g.dart';
 
 @TypedGoRoute<SearchMoodEntryRoute>(path: '/home/my-records/search-mood-entry')
@@ -67,7 +69,15 @@ class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntr
   @override
   Widget build(BuildContext context) {
     _emotions = Provider.of<MoodState>(context).emotions;
-    final items = _emotions.map((emotion) => MultiSelectItem<String>(emotion, emotion)).toList();
+    final List<DropdownItem<String>> items = _emotions
+        .map(
+          (emotion) => DropdownItem<String>(
+            label: emotion,
+            value: emotion,
+            selected: _selectedEmotions.contains(emotion),
+          ),
+        )
+        .toList();
 
     const pageHorizontalPadding = EdgeInsets.symmetric(horizontal: 24.0, vertical: 12);
 
@@ -121,41 +131,34 @@ class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntr
                 const SizedBox(height: 15),
                 Container(
                   key: uniqueKey,
-                  child: MultiSelectDialogField(
-                    searchable: true,
-                    items: items,
-                    checkColor: Theme.of(context).brightness == Brightness.dark
-                        ? Theme.of(context).primaryColor
-                        : Colors.white,
-                    backgroundColor: containerColor,
-                    title: Text(context.l10n.emotions),
-                    decoration: BoxDecoration(
-                      color: containerColor,
-                      borderRadius: const BorderRadius.all(Radius.circular(40)),
-                      border: Border.all(color: NepanikarColors.container(context)),
+                  child: m.Material(
+                    type: m.MaterialType.transparency,
+                    child: MultiDropdown<String>(
+                      items: items,
+                      searchEnabled: true,
+                      maxSelections: 9,
+                      dropdownMode: DropdownMode.bottomSheet,
+
+                      onSelectionChange: (values) {
+                        _onEmotionsUpdated(List<String>.from(values));
+                      },
+
+                      fieldDecoration: FieldDecoration(
+                        hintText: context.l10n.search_by_emotions,
+                        hintStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                        backgroundColor: containerColor,
+                        borderRadius: 40,
+                      ),
+
+                      dropdownDecoration: DropdownDecoration(backgroundColor: containerColor),
+
+                      searchDecoration: SearchFieldDecoration(hintText: context.l10n.emotions),
+
+                      dropdownItemDecoration: DropdownItemDecoration(
+                        textColor: textStyleColor,
+                        selectedTextColor: textStyleColor,
+                      ),
                     ),
-                    selectedColor: textStyleColor,
-                    selectedItemsTextStyle: TextStyle(color: textStyleColor),
-                    unselectedColor: textStyleColor,
-                    itemsTextStyle: TextStyle(color: textStyleColor),
-                    buttonIcon: Icon(Icons.arrow_drop_down, color: textStyleColor),
-                    buttonText: Text(
-                      context.l10n.search_by_emotions,
-                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                    ),
-                    onConfirm: (results) {
-                      _onEmotionsUpdated(results.cast<String>());
-                    },
-                    cancelText: Text(
-                      context.l10n.cancel,
-                      style: TextStyle(color: textStyleColor, fontSize: 16),
-                    ),
-                    confirmText: Text(
-                      context.l10n.submit,
-                      style: TextStyle(color: textStyleColor, fontSize: 16),
-                    ),
-                    initialValue: _selectedEmotions,
-                    chipDisplay: MultiSelectChipDisplay.none(),
                   ),
                 ),
                 const SizedBox(height: 5),

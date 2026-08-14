@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
@@ -7,6 +7,7 @@ import 'package:nepanikar/games/breathing/shape_painter.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/helpers/semantics_helpers.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
+
 part 'breathing_game_screen.g.dart';
 
 enum BreathingGameShape { circle, square, triangle }

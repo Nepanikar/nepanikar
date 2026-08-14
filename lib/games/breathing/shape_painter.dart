@@ -1,6 +1,6 @@
 import 'dart:math' as math;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/games/breathing/breathing_game_screen.dart';
 import 'package:polygon/polygon.dart';
 

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/services/db/my_records/food/my_records_food_record_dao.dart';
@@ -8,6 +8,7 @@ import 'package:nepanikar/services/db/my_records/food/my_records_food_record_mod
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_button.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
+
 part 'my_records_food_record_detail_menu_detail_screen.g.dart';
 
 @TypedGoRoute<MyRecordsFoodRecordsDetailMenuDetailRoute>(

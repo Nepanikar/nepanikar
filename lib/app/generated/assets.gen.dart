@@ -739,9 +739,7 @@ class $AssetsIllustrationsGamesSwingGen {
   List<dynamic> get values => [balance, balanceStand, heart, swing];
 }
 
-class Assets {
-  const Assets._();
-
+abstract final class Assets {
   static const $AssetsAnimatedIllustrationsGen animatedIllustrations =
       $AssetsAnimatedIllustrationsGen();
   static const $AssetsAudioGen audio = $AssetsAudioGen();

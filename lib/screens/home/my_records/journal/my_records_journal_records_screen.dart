@@ -1,9 +1,9 @@
 import 'dart:async';
 
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/sizes.dart';
 import 'package:nepanikar/helpers/platform_helpers.dart';
@@ -14,6 +14,7 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/diary/diary_tile.dart';
 import 'package:nepanikar/widgets/empty_records_state_widget.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
+
 part 'my_records_journal_records_screen.g.dart';
 
 @TypedGoRoute<MyRecordsJournalRecordsRoute>(path: '/home/my-records/journal')

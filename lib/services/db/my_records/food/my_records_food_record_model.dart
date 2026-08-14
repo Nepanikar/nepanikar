@@ -1,5 +1,5 @@
 import 'package:collection/collection.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/services/db/filters.dart';

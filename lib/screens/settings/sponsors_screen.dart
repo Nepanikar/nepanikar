@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/widgets/nepanikar_clean_screen_wrapper.dart';
 import 'package:nepanikar/widgets/sponsor_tile.dart';
+
 part 'sponsors_screen.g.dart';
 
 @TypedGoRoute<SponsorsRoute>(path: '/settings/sponsors')

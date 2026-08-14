@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/games/breathing/breathing_exercises_screen.dart';
@@ -8,6 +8,7 @@ import 'package:nepanikar/screens/home/suicidal_thoughts/suicidal_thoughts_plan_
 import 'package:nepanikar/screens/home/suicidal_thoughts/suicidal_thoughts_reasons_no_screen.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
+
 part 'suicidal_thoughts_screen.g.dart';
 
 @TypedGoRoute<SuicidalThoughtsRoute>(path: '/home/suicidal-thoughts')

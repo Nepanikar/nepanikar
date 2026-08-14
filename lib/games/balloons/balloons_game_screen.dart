@@ -3,8 +3,8 @@ import 'dart:io';
 import 'dart:math' as math;
 
 import 'package:collection/collection.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
@@ -13,6 +13,7 @@ import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/utils/lottie_cache_manager.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
+
 part 'balloons_game_screen.g.dart';
 
 @TypedGoRoute<BalloonsGameRoute>(path: '/games/balloons/')

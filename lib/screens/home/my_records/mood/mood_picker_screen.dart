@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as m;
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
-import 'package:multi_select_flutter/multi_select_flutter.dart';
+import 'package:material_ui/material_ui.dart';
+//import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
@@ -15,6 +16,7 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/mood/chosen_emotions.dart';
 import 'package:nepanikar/widgets/mood/mood_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:multi_dropdown/multi_dropdown.dart';
 
 part 'mood_picker_screen.g.dart';
 
@@ -126,7 +128,16 @@ class _MoodPickerScreenState<T extends MoodTrackDao> extends State<MoodPickerScr
     final moodState = Provider.of<MoodState>(context, listen: false);
     emotions = moodState.emotions;
     emotions = translateEmotions(emotions);
-    final items = emotions.map((emotion) => MultiSelectItem<String>(emotion, emotion)).toList();
+
+    final List<DropdownItem<String>> items = emotions
+        .map(
+          (emotion) => DropdownItem<String>(
+            label: emotion,
+            value: emotion,
+            selected: selectedEmotions.contains(emotion),
+          ),
+        )
+        .toList();
 
     String formattedDateForEditing = '';
 
@@ -212,58 +223,38 @@ class _MoodPickerScreenState<T extends MoodTrackDao> extends State<MoodPickerScr
                 child: Row(
                   children: <Widget>[
                     Expanded(
-                      child: MultiSelectDialogField(
-                        key: multiSelectKey,
-                        searchable: true,
-                        items: items,
-                        checkColor: Theme.of(context).brightness == Brightness.dark
-                            ? Theme.of(context).primaryColor
-                            : Colors.white,
-                        backgroundColor: containerColor,
-                        title: Text(context.l10n.emotions),
-                        decoration: BoxDecoration(
-                          color: containerColor,
-                          borderRadius: const BorderRadius.all(Radius.circular(40)),
-                          border: Border.all(color: NepanikarColors.container(context)),
-                        ),
-                        selectedColor: textStyleColor,
-                        selectedItemsTextStyle: TextStyle(color: textStyleColor),
-                        unselectedColor: textStyleColor,
-                        itemsTextStyle: TextStyle(color: textStyleColor),
-                        buttonIcon: Icon(Icons.arrow_drop_down, color: textStyleColor),
-                        buttonText: Text(
-                          context.l10n.select_your_emotions,
-                          style: TextStyle(
-                            color: textStyleColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
+                      child: m.Material(
+                        type: m.MaterialType.transparency,
+                        child: MultiDropdown<String>(
+                          items: items,
+                          searchEnabled: true,
+                          maxSelections: 9,
+                          dropdownMode: DropdownMode.bottomSheet,
+
+                          onSelectionChange: (List<String> values) {
+                            _onEmotionsUpdated(values);
+                          },
+
+                          fieldDecoration: FieldDecoration(
+                            hintText: context.l10n.select_your_emotions,
+                            hintStyle: TextStyle(
+                              color: textStyleColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                            backgroundColor: containerColor,
+                            borderRadius: 40,
+                          ),
+
+                          dropdownDecoration: DropdownDecoration(backgroundColor: containerColor),
+
+                          searchDecoration: SearchFieldDecoration(hintText: context.l10n.emotions),
+
+                          dropdownItemDecoration: DropdownItemDecoration(
+                            textColor: textStyleColor,
+                            selectedTextColor: textStyleColor,
                           ),
                         ),
-                        onConfirm: (results) {
-                          if (results.length <= 9) {
-                            _onEmotionsUpdated(results.cast<String>());
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text(context.l10n.select_up_to_9_emotions)),
-                            );
-                          }
-                        },
-                        cancelText: Text(
-                          context.l10n.cancel,
-                          style: TextStyle(color: textStyleColor, fontSize: 16),
-                        ),
-                        confirmText: Text(
-                          context.l10n.submit,
-                          style: TextStyle(color: textStyleColor, fontSize: 16),
-                        ),
-                        initialValue: selectedEmotions,
-                        chipDisplay: MultiSelectChipDisplay.none(),
-                        validator: (values) {
-                          if (values != null && values.length > 9) {
-                            return context.l10n.select_up_to_9_emotions;
-                          }
-                          return null;
-                        },
                       ),
                     ),
                     IconButton(
