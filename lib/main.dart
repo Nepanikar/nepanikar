@@ -82,6 +82,7 @@ class Nepanikar extends StatelessWidget {
                     routerConfig: _goRouter,
                     builder: (context, child) {
                       return child != null
+                          // ignore: deprecated_member_use
                           ? MaterialUiCompatibilityBridge(
                               child: ScrollConfiguration(
                                 behavior: NepanikarScrollBehavior(),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart' as m;
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:material_ui/material_ui.dart';
-//import 'package:multi_select_flutter/multi_select_flutter.dart';
+import 'package:multi_dropdown/multi_dropdown.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
@@ -16,7 +16,6 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/mood/chosen_emotions.dart';
 import 'package:nepanikar/widgets/mood/mood_picker.dart';
 import 'package:provider/provider.dart';
-import 'package:multi_dropdown/multi_dropdown.dart';
 
 part 'mood_picker_screen.g.dart';
 
@@ -164,8 +163,6 @@ class _MoodPickerScreenState<T extends MoodTrackDao> extends State<MoodPickerScr
       NepanikarColors.container(context),
       NepanikarColors.white,
     );
-
-    final multiSelectKey = GlobalKey<FormFieldState>();
 
     return Scaffold(
       appBar: AppBar(
