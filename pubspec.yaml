@@ -36,7 +36,7 @@ dependencies:
   linkify: ^5.0.0
   lottie: ^3.3.0
   material_ui: any
-  multi_dropdown: ^3.2.1
+  multi_dropdown: ^3.2.2
   nepanikar_contacts_gen:
     path: ./packages/nepanikar_contacts_gen
   package_info_plus: ^10.1.0

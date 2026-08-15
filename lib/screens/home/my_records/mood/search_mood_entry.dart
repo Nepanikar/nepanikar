@@ -1,9 +1,7 @@
-import 'package:flutter/material.dart' as m;
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:multi_dropdown/multi_dropdown.dart';
-//import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
@@ -132,33 +130,30 @@ class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntr
                 const SizedBox(height: 15),
                 Container(
                   key: uniqueKey,
-                  child: m.Material(
-                    type: m.MaterialType.transparency,
-                    child: MultiDropdown<String>(
-                      items: items,
-                      searchEnabled: true,
-                      maxSelections: 9,
-                      dropdownMode: DropdownMode.bottomSheet,
+                  child: MultiDropdown<String>(
+                    items: items,
+                    searchEnabled: true,
+                    maxSelections: 9,
+                    dropdownMode: DropdownMode.bottomSheet,
 
-                      onSelectionChange: (values) {
-                        _onEmotionsUpdated(List<String>.from(values));
-                      },
+                    onSelectionChange: (values) {
+                      _onEmotionsUpdated(List<String>.from(values));
+                    },
 
-                      fieldDecoration: FieldDecoration(
-                        hintText: context.l10n.search_by_emotions,
-                        hintStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                        backgroundColor: containerColor,
-                        borderRadius: 40,
-                      ),
+                    fieldDecoration: FieldDecoration(
+                      hintText: context.l10n.search_by_emotions,
+                      hintStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      backgroundColor: containerColor,
+                      borderRadius: 40,
+                    ),
 
-                      dropdownDecoration: DropdownDecoration(backgroundColor: containerColor),
+                    dropdownDecoration: DropdownDecoration(backgroundColor: containerColor),
 
-                      searchDecoration: SearchFieldDecoration(hintText: context.l10n.emotions),
+                    searchDecoration: SearchFieldDecoration(hintText: context.l10n.emotions),
 
-                      dropdownItemDecoration: DropdownItemDecoration(
-                        textColor: textStyleColor,
-                        selectedTextColor: textStyleColor,
-                      ),
+                    dropdownItemDecoration: DropdownItemDecoration(
+                      textColor: textStyleColor,
+                      selectedTextColor: textStyleColor,
                     ),
                   ),
                 ),
