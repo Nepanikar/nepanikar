@@ -101,6 +101,25 @@
 > Dni 3–6 zdieľajú **`SpokoDayScreen`** (data-driven, 3 strany), obsah v
 > `spoko_day_data.dart`. Deň 2 ostáva samostatný (má navyše SPOKO-model intro stranu).
 
+### Prechod na chat (2026-08-19)
+
+Autorka si všimla, že týždeň 1 sa chová inak ako týždne 2–4: chat mal len Deň 1.
+Edukačné strany celého týždňa sú teraz `ChatDayPage`:
+
+| Deň | Nová strana | Nahradila |
+|-----|-------------|-----------|
+| 2 | `day2_spoko/education_chat_page.dart` | `spoko_intro_page.dart` + `sleep_education_page.dart` — **zlúčené**, deň má 3 strany namiesto 4 |
+| 3–6 | `spoko_day/spoko_education_chat_page.dart` | `spoko_education_page.dart` |
+| 7 | `day7_reflection/recall_chat_page.dart` | `recall_page.dart` |
+
+Formuláre zostali formulármi (výzvy, reflexia, completion). Interaktívne prvky
+idú do chatu ako `ChatRichMessage` — `SpokoRecallList` aj kontaktná karta PPP.
+Copy je byte-identická, string literály sa presunuli.
+
+Overené na zariadení: Deň 2 (celý chat + 1/3 v headeri + dokončenie), Deň 3
+(kontaktná karta ako posledný krok, deep-link na PPP funguje), Deň 7 (odkrývanie
+klepnutím vnútri chatu).
+
 ---
 
 ## Súhrn

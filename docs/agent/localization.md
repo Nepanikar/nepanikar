@@ -57,5 +57,8 @@ pluralMinutes(context, value: n);  pluralSeconds(context, value: n);
 
 - **Contacts / help content**: JSON in `assets/contacts/`, generated from Dart models in
   `packages/nepanikar_contacts_gen/` (run that package's gen script — see `CLAUDE.md`).
-- **BPD programme content**: `assets/bpd/programme_content.json`.
+- **BPD/HPO programme content**: inline **Czech** strings in the day screens and
+  their `dayN_content.dart` files (not ARB, not JSON — it is content, not UI
+  chrome). Authored copy lives in `docs/hpo/source/*.md`. Week-level skill-tree
+  data is in `assets/bpd/bpd_weeks_data.json`.
 - **Psychological tests** (GAD-7, PHQ-9, PSS, BRCS): CSV in `assets/tests/`.

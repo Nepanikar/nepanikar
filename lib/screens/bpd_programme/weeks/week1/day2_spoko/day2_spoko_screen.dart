@@ -3,8 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/day2_spoko/challenge_page.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/day2_spoko/completion_page.dart';
-import 'package:nepanikar/screens/bpd_programme/weeks/week1/day2_spoko/sleep_education_page.dart';
-import 'package:nepanikar/screens/bpd_programme/weeks/week1/day2_spoko/spoko_intro_page.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week1/day2_spoko/education_chat_page.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 
@@ -28,7 +27,8 @@ class Week1Day2SpokoScreen extends StatefulWidget {
 class _Week1Day2SpokoScreenState extends State<Week1Day2SpokoScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
-  static const int _totalPages = 4;
+  // The two education pages merged into one chat page (see education_chat_page).
+  static const int _totalPages = 3;
 
   BpdDaysDao get _bpdDaysDao => registry.get<BpdDaysDao>();
 
@@ -71,8 +71,7 @@ class _Week1Day2SpokoScreenState extends State<Week1Day2SpokoScreen> {
                 physics: const NeverScrollableScrollPhysics(),
                 onPageChanged: (page) => setState(() => _currentPage = page),
                 children: [
-                  Day2SpokoIntroPage(onNext: _nextPage),
-                  Day2SleepEducationPage(onNext: _nextPage),
+                  Week1Day2EducationChatPage(onNext: _nextPage),
                   Day2ChallengePage(onNext: _nextPage),
                   Day2CompletionPage(onComplete: _completeDay),
                 ],

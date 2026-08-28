@@ -1,44 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/theme/colors.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week2/day4_breathing/day4_content.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week2/day4_breathing/intro_chat_page.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week2/day4_breathing/reminder_page.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/day_completion_page.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/day_flow_header.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/technique_menu_page.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 
-import 'package:nepanikar/screens/bpd_programme/weeks/week2/day4_breathing/intro_page.dart';
-import 'package:nepanikar/screens/bpd_programme/weeks/week2/day4_breathing/mindful_breathing_page.dart';
-import 'package:nepanikar/screens/bpd_programme/weeks/week2/day4_breathing/box_breathing_page.dart';
-import 'package:nepanikar/screens/bpd_programme/weeks/week2/day4_breathing/breathing_7_11_page.dart';
-import 'package:nepanikar/screens/bpd_programme/weeks/week2/day4_breathing/reflection_page.dart';
-import 'package:nepanikar/screens/bpd_programme/weeks/week2/day4_breathing/completion_page.dart';
-
 part 'day4_breathing_screen.g.dart';
 
-@TypedGoRoute<Week2Day4BreathingScreenRoute>(
-  path: '/bpd-programme/week/2/day/4',
-)
-class Week2Day4BreathingScreenRoute extends GoRouteData
-    with $Week2Day4BreathingScreenRoute {
+@TypedGoRoute<Week2Day4BreathingScreenRoute>(path: '/bpd-programme/week/2/day/4')
+class Week2Day4BreathingScreenRoute extends GoRouteData with $Week2Day4BreathingScreenRoute {
   const Week2Day4BreathingScreenRoute();
 
   @override
   Widget build(BuildContext context, _) => const Week2Day4BreathingScreen();
 }
 
+/// Week 2, Day 4 — mindful breathing offered as a menu (each option can launch
+/// the app's breathing exercise or its guided video and be saved into the rescue
+/// package), plus the daily mindfulness reminder. Source: §4.
 class Week2Day4BreathingScreen extends StatefulWidget {
   const Week2Day4BreathingScreen({super.key});
 
   @override
-  State<Week2Day4BreathingScreen> createState() =>
-      _Week2Day4BreathingScreenState();
+  State<Week2Day4BreathingScreen> createState() => _Week2Day4BreathingScreenState();
 }
 
 class _Week2Day4BreathingScreenState extends State<Week2Day4BreathingScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
-  final int _totalPages = 6;
-
-  // Selected technique for reflection
-  String? _selectedTechnique;
+  static const int _totalPages = 4;
 
   BpdDaysDao get _bpdDaysDao => registry.get<BpdDaysDao>();
 
@@ -57,11 +52,16 @@ class _Week2Day4BreathingScreenState extends State<Week2Day4BreathingScreen> {
     }
   }
 
+  void _goToPreviousPage() {
+    _pageController.previousPage(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+  }
+
   Future<void> _completeDay() async {
-    await _bpdDaysDao.markDayCompleted(2, 4); // Week 2, Day 4
-    if (mounted) {
-      context.pop();
-    }
+    await _bpdDaysDao.markDayCompleted(2, 4);
+    if (mounted) context.pop();
   }
 
   @override
@@ -76,107 +76,50 @@ class _Week2Day4BreathingScreenState extends State<Week2Day4BreathingScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            // Header with progress
-            _buildHeader(primaryColor, isDarkMode),
-
-            // Page content
+            DayFlowHeader(
+              currentPage: _currentPage,
+              totalPages: _totalPages,
+              onBack: _goToPreviousPage,
+              onClose: () => context.pop(),
+            ),
             Expanded(
               child: PageView(
                 controller: _pageController,
                 physics: const NeverScrollableScrollPhysics(),
-                onPageChanged: (page) {
-                  setState(() {
-                    _currentPage = page;
-                  });
-                },
+                onPageChanged: (page) => setState(() => _currentPage = page),
                 children: [
-                  IntroPage(onNext: _goToNextPage),
-                  MindfulBreathingPage(onNext: _goToNextPage),
-                  BoxBreathingPage(onNext: _goToNextPage),
-                  Breathing711Page(onNext: _goToNextPage),
-                  ReflectionPage(
+                  Week2Day4IntroChatPage(onNext: _goToNextPage),
+                  TechniqueMenuPage(
+                    title: 'Všímavé dýchání',
+                    dayLabel: 'Den 4 • Týden 2',
+                    pickLead: 'Teď si můžeš vybrat z několika možností dechových cvičení.',
+                    techniques: week2Day4Techniques,
+                    sourceLabel: 'Všímavé dýchání',
+                    closingNote:
+                        'Ke zbylým cvičením se můžeš kdykoliv vrátit nebo si je '
+                        'uložit do záchranného balíčku.',
                     onNext: _goToNextPage,
-                    selectedTechnique: _selectedTechnique,
-                    onTechniqueSelected: (technique) {
-                      setState(() {
-                        _selectedTechnique = technique;
-                      });
-                    },
                   ),
-                  CompletionPage(onComplete: _completeDay),
+                  ReminderPage(onNext: _goToNextPage),
+                  DayCompletionPage(
+                    dayNumber: 4,
+                    summary:
+                        'Vyzkoušel/a jsi dechové cvičení a víš, kde ho najdeš '
+                        'příště. Dech máš u sebe vždycky – i ve chvílích, kdy '
+                        'se toho děje moc.',
+                    nextDay: const NextDayTeaser(
+                      title: 'Pauza',
+                      description:
+                          'Zítra si dáme od programu pauzu. Stačí zaznamenat '
+                          'náladu a načerpat síly.',
+                    ),
+                    onComplete: _completeDay,
+                  ),
                 ],
               ),
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildHeader(Color primaryColor, bool isDarkMode) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-      child: Row(
-        children: [
-          // Back button
-          IconButton(
-            icon: Icon(
-              _currentPage == 0 ? Icons.close : Icons.arrow_back,
-              color: isDarkMode ? Colors.white : NepanikarColors.dark,
-              size: 26,
-            ),
-            onPressed: () {
-              if (_currentPage == 0) {
-                context.pop();
-              } else {
-                _pageController.previousPage(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                );
-              }
-            },
-          ),
-
-          // Progress indicator
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                children: List.generate(_totalPages, (index) {
-                  return Expanded(
-                    child: Container(
-                      height: 4,
-                      margin: const EdgeInsets.symmetric(horizontal: 2),
-                      decoration: BoxDecoration(
-                        color: index <= _currentPage
-                            ? primaryColor
-                            : (isDarkMode
-                                  ? Colors.white.withOpacity(0.2)
-                                  : Colors.grey.shade300),
-                        borderRadius: BorderRadius.circular(2),
-                      ),
-                    ),
-                  );
-                }),
-              ),
-            ),
-          ),
-
-          // Page counter
-          Padding(
-            padding: const EdgeInsets.only(right: 8),
-            child: Text(
-              '${_currentPage + 1}/$_totalPages',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                color: isDarkMode
-                    ? Colors.white70
-                    : NepanikarColors.dark.withOpacity(0.7),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

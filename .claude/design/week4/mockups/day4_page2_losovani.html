@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=390">
+<title>W4 D4 2/3 — Připomeňme si techniku</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="_shared.css">
+<style>
+  .drawn {
+    margin-top: 20px; background: #fff; border: 2px solid var(--primary); border-radius: 16px;
+    padding: 20px; box-shadow: 0 8px 32px rgba(73,20,117,.10); text-align: center;
+  }
+  .drawn .tag {
+    display: inline-block; background: var(--purple200); color: var(--primary);
+    font-size: 11px; font-weight: 900; letter-spacing: .06em; padding: 4px 10px;
+    border-radius: 999px; margin-bottom: 12px;
+  }
+  .drawn .big { font-size: 40px; line-height: 1; margin-bottom: 10px; }
+  .drawn h2 { font-size: 21px; font-weight: 800; }
+  .drawn p { font-size: 14px; line-height: 1.5; color: rgba(40,4,70,.7); margin-top: 8px; }
+  .drawn .open {
+    margin-top: 16px; height: 46px; border-radius: 12px; background: var(--primary);
+    color: #fff; font-size: 15px; font-weight: 900;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .again {
+    margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 8px;
+    font-size: 14px; font-weight: 800; color: var(--primary); padding: 12px;
+  }
+  .pool { margin-top: 22px; font-size: 12px; line-height: 1.6; color: rgba(40,4,70,.45); }
+</style>
+</head>
+<body>
+  <div class="hdr">
+    <span class="x">&#10005;</span>
+    <div class="segs"><i class="on"></i><i class="on"></i><i></i></div>
+    <span class="cnt">2/3</span>
+  </div>
+
+  <div class="page">
+    <div class="daylabel">Den 4 &bull; Týden 4</div>
+    <h1>Připomeňme si techniku</h1>
+
+    <p class="lead">Pojďme si teď připomenout jednu z všímavých technik z předchozích týdnů.</p>
+
+    <!-- OQ-2 decided: a button, not an animated wheel. Accessible, screen-reader safe. -->
+    <div class="drawn">
+      <div class="tag">VYLOSOVÁNO</div>
+      <div class="big">&#127765;</div>
+      <h2>Skenování těla</h2>
+      <p>Postupně projdeš pozornost celým tělem od hlavy k chodidlům a všímáš si, co v něm právě je.</p>
+      <div class="open">Otevřít techniku</div>
+    </div>
+
+    <div class="again">&#128260; Vylosovat jinou</div>
+
+    <p class="pool">Losuje se z osmi technik týdne 2 — tří dechových cvičení (Dne 4) a pěti technik všímavosti (Dne 6). Vylosovaná technika otevře stejný detail jako v týdnu 2, takže se dá hned spustit i uložit do záchranného balíčku.</p>
+  </div>
+
+  <div class="footer"><button class="btn ghost">Pokračovat bez cvičení</button></div>
+</body>
+</html>

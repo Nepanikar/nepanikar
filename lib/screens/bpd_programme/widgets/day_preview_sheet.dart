@@ -36,21 +36,13 @@ Future<bool?> showDayPreviewSheet({
     isScrollControlled: true,
     backgroundColor: Colors.transparent,
     barrierColor: Colors.black.withOpacity(0.5),
-    builder: (context) => DayPreviewSheet(
-      data: data,
-      onStart: onStart,
-      onFavoriteToggle: onFavoriteToggle,
-    ),
+    builder: (context) =>
+        DayPreviewSheet(data: data, onStart: onStart, onFavoriteToggle: onFavoriteToggle),
   );
 }
 
 class DayPreviewSheet extends StatelessWidget {
-  const DayPreviewSheet({
-    super.key,
-    required this.data,
-    this.onStart,
-    this.onFavoriteToggle,
-  });
+  const DayPreviewSheet({super.key, required this.data, this.onStart, this.onFavoriteToggle});
 
   final DayPreviewData data;
   final VoidCallback? onStart;
@@ -126,11 +118,7 @@ class DayPreviewSheet extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader(
-    BuildContext context,
-    bool isDarkMode,
-    Color primaryColor,
-  ) {
+  Widget _buildHeader(BuildContext context, bool isDarkMode, Color primaryColor) {
     return Row(
       children: [
         // Day badge
@@ -143,19 +131,11 @@ class DayPreviewSheet extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(
-                Icons.calendar_today_outlined,
-                size: 14,
-                color: primaryColor,
-              ),
+              Icon(Icons.calendar_today_outlined, size: 14, color: primaryColor),
               const SizedBox(width: 6),
               Text(
-                'Deň ${data.dayNumber}',
-                style: TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600,
-                  color: primaryColor,
-                ),
+                'Den ${data.dayNumber}',
+                style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: primaryColor),
               ),
             ],
           ),
@@ -164,11 +144,8 @@ class DayPreviewSheet extends StatelessWidget {
 
         // Week indicator
         Text(
-          'Týždeň ${data.weekNumber}',
-          style: TextStyle(
-            fontSize: 14,
-            color: isDarkMode ? Colors.white54 : Colors.grey.shade500,
-          ),
+          'Týden ${data.weekNumber}',
+          style: TextStyle(fontSize: 14, color: isDarkMode ? Colors.white54 : Colors.grey.shade500),
         ),
 
         const Spacer(),
@@ -196,19 +173,13 @@ class DayPreviewSheet extends StatelessWidget {
         // Estimated time
         Icon(Icons.access_time, size: 18, color: metaColor),
         const SizedBox(width: 6),
-        Text(
-          data.estimatedTime,
-          style: TextStyle(fontSize: 14, color: metaColor),
-        ),
+        Text(data.estimatedTime, style: TextStyle(fontSize: 14, color: metaColor)),
         const SizedBox(width: 24),
 
         // Activity type
         Icon(Icons.description_outlined, size: 18, color: metaColor),
         const SizedBox(width: 6),
-        Text(
-          data.activityType,
-          style: TextStyle(fontSize: 14, color: metaColor),
-        ),
+        Text(data.activityType, style: TextStyle(fontSize: 14, color: metaColor)),
       ],
     );
   }
@@ -225,16 +196,14 @@ class DayPreviewSheet extends StatelessWidget {
           backgroundColor: primaryColor,
           foregroundColor: Colors.white,
           padding: const EdgeInsets.symmetric(vertical: 16),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
           elevation: 0,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              data.isCompleted ? 'Zopakovať deň' : 'Začať deň',
+              data.isCompleted ? 'Zopakovat den' : 'Začít den',
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
             ),
             const SizedBox(width: 8),

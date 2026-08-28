@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=390">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+  :root { --primary:#491475; --dark:#280446; --secondary:#4EA3AD; --bg:#FBF6FF; --container:#EDE8F3; --purple200:#E2D2EF; }
+  body { font-family:'Inter',sans-serif; background:var(--bg); width:390px; min-height:844px; color:var(--dark); display:flex; flex-direction:column; }
+
+  .appbar { background:var(--primary); color:#fff; padding:10px 16px; display:flex; align-items:center; gap:12px; }
+  .appbar .back { font-size:22px; opacity:.9; }
+  .avatar { width:38px; height:38px; border-radius:50%; background:var(--secondary); display:flex; align-items:center; justify-content:center; font-size:18px; flex:none; }
+  .appbar .who b { font-size:15px; font-weight:800; display:block; line-height:1.25; }
+  .appbar .who i { font-style:normal; font-size:11px; opacity:.8; }
+  .appbar .step { margin-left:auto; font-size:12px; font-weight:700; opacity:.85; }
+  .progress { height:4px; background:rgba(73,20,117,.15); }
+  .progress span { display:block; height:100%; width:25%; background:var(--secondary); }
+
+  .chat { flex:1; padding:16px 16px 8px; display:flex; flex-direction:column; gap:4px; }
+  .row { display:flex; gap:8px; align-items:flex-end; margin-top:2px; }
+  .row .avatar { width:30px; height:30px; font-size:14px; visibility:hidden; }
+  .row.tail .avatar { visibility:visible; }
+  .bubble { max-width:290px; background:#fff; border-radius:18px; padding:10px 14px; font-size:14px; line-height:1.5; box-shadow:0 2px 10px rgba(73,20,117,.07); }
+  .row.tail .bubble { border-bottom-left-radius:6px; }
+  .time { font-size:10px; color:rgba(40,4,70,.35); margin:4px 0 10px 38px; }
+  .msgcard { max-width:290px; margin-left:38px; background:var(--purple200); border-left:4px solid var(--primary); border-radius:14px; padding:12px 14px; font-size:13.5px; line-height:1.5; }
+  .msgcard b { display:block; font-size:12px; font-weight:900; color:var(--primary); text-transform:uppercase; letter-spacing:.05em; margin-bottom:6px; }
+  .typing { display:flex; gap:4px; padding:12px 14px; background:#fff; border-radius:18px 18px 18px 6px; width:56px; box-shadow:0 2px 10px rgba(73,20,117,.07); }
+  .typing i { width:7px; height:7px; border-radius:50%; background:var(--purple200); animation:blink 1.2s infinite; }
+  .typing i:nth-child(2){ animation-delay:.2s; } .typing i:nth-child(3){ animation-delay:.4s; }
+  @keyframes blink { 0%,80%,100%{ opacity:.35; transform:translateY(0);} 40%{ opacity:1; transform:translateY(-3px);} }
+
+  .footer { padding:14px 24px 24px; background:var(--bg); }
+  .btn { width:100%; height:52px; border-radius:12px; background:var(--primary); color:#fff; font-family:inherit; font-size:16px; font-weight:900; border:none; box-shadow:0 8px 24px rgba(73,20,117,.25); }
+</style>
+</head>
+<body>
+  <div class="appbar">
+    <span class="back">&larr;</span>
+    <div class="avatar">💜</div>
+    <div class="who"><b>Nepanikař</b><i>průvodce programem</i></div>
+    <span class="step">Den 1 · 1/4</span>
+  </div>
+  <div class="progress"><span></span></div>
+
+  <div class="chat">
+    <div class="row tail"><div class="avatar">💜</div>
+      <div class="bubble">Dostáváme se do druhého týdne programu. Tématem tohoto týdne je <b>všímavost</b>. 🌿</div>
+    </div>
+    <div class="time">9:04</div>
+
+    <div class="row tail"><div class="avatar">💜</div>
+      <div class="bubble">Všímavost je schopnost vědomě zaměřit pozornost na přítomný okamžik. Na to, co právě teď prožíváme, cítíme nebo děláme, a to bez posuzování.</div>
+    </div>
+    <div class="time">9:04</div>
+
+    <div class="msgcard">
+      <b>Není to o „prázdné hlavě"</b>
+      Není to o tom „mít prázdnou hlavu", ale spíš o tom umět si všimnout, co se v nás i kolem nás děje, a zůstat u toho chvíli přítomní.
+    </div>
+    <div class="time">9:05</div>
+
+    <div class="row tail"><div class="avatar">💜</div>
+      <div class="typing"><i></i><i></i><i></i></div>
+    </div>
+  </div>
+
+  <div class="footer"><button class="btn">Pokračovat</button></div>
+</body>
+</html>

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nepanikar/services/db/bpd/bpd_day_models.dart';
+import 'package:nepanikar/services/db/bpd/bpd_unlock_schedule.dart';
+import 'package:nepanikar/services/db/bpd/bpd_weeks_dao.dart';
 import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:sembast/sembast.dart';
@@ -20,9 +22,9 @@ class BpdDaysDao {
   Database get _db => _dbService.database;
 
   static const _storeKeyName = 'bpd_days_progress';
+  static const _daysPerWeek = 7;
 
-  String _generateKey(int weekNumber, int dayNumber) =>
-      'week_${weekNumber}_day_$dayNumber';
+  String _generateKey(int weekNumber, int dayNumber) => 'week_${weekNumber}_day_$dayNumber';
 
   Future<void> saveDayProgress(BpdDayProgress dayProgress) async {
     final key = _generateKey(dayProgress.weekNumber, dayProgress.dayNumber);
@@ -43,20 +45,27 @@ class BpdDaysDao {
     );
 
     final snapshots = await _store.find(_db, finder: finder);
-    return snapshots
-        .map((snapshot) => BpdDayProgress.fromJson(snapshot.value))
-        .toList();
+    return snapshots.map((snapshot) => BpdDayProgress.fromJson(snapshot.value)).toList();
   }
 
   Future<void> markDayCompleted(int weekNumber, int dayNumber) async {
     final dayProgress = await getDayProgress(weekNumber, dayNumber);
     if (dayProgress != null) {
-      final updated = dayProgress.copyWith(
-        isCompleted: true,
-        completedAt: DateTime.now(),
-      );
+      final updated = dayProgress.copyWith(isCompleted: true, completedAt: DateTime.now());
       await saveDayProgress(updated);
     }
+    await _markWeekCompletedIfAllDaysDone(weekNumber);
+  }
+
+  /// Rolls day progress up to the week level. Without this the skill tree can
+  /// never advance: `BpdWeeksDao.markWeekCompleted` has no other caller, so the
+  /// week stays open, the "N ze 7 týdnů hotovo" counter stays at zero and the
+  /// next week never unlocks.
+  Future<void> _markWeekCompletedIfAllDaysDone(int weekNumber) async {
+    final days = await getWeekDaysProgress(weekNumber);
+    if (days.length < _daysPerWeek) return;
+    if (days.any((day) => !day.isCompleted)) return;
+    await registry.get<BpdWeeksDao>().markWeekCompleted(weekNumber);
   }
 
   Future<void> markDayStarted(int weekNumber, int dayNumber) async {
@@ -68,13 +77,12 @@ class BpdDaysDao {
   }
 
   /// Initialize days for a week when it's unlocked
-  Future<void> initializeDaysForWeek(
-    int weekNumber,
-    DateTime weekUnlockDate,
-  ) async {
-    // Create 7 days for the week, each unlocking one day after the previous
+  Future<void> initializeDaysForWeek(int weekNumber, DateTime weekUnlockDate) async {
+    // Create 7 days for the week, each unlocking at midnight of the following
+    // calendar day (see bpd_unlock_schedule.dart). Day 1 lands on the start of
+    // the day the week opened, so it is available straight away.
     for (int dayNumber = 1; dayNumber <= 7; dayNumber++) {
-      final dayUnlockDate = weekUnlockDate.add(Duration(days: dayNumber - 1));
+      final dayUnlockDate = unlockDayAfter(weekUnlockDate, dayNumber - 1);
 
       final dayProgress = BpdDayProgress(
         weekNumber: weekNumber,
@@ -113,9 +121,8 @@ class BpdDaysDao {
         .query(finder: finder)
         .onSnapshots(_db)
         .map(
-          (snapshots) => snapshots
-              .map((snapshot) => BpdDayProgress.fromJson(snapshot.value))
-              .toList(),
+          (snapshots) =>
+              snapshots.map((snapshot) => BpdDayProgress.fromJson(snapshot.value)).toList(),
         );
   }
 }

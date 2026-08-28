@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Týden 4 — Snášení tísně — mockupy</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root { --primary:#491475; --dark:#280446; --secondary:#4EA3AD; --bg:#FBF6FF; --purple200:#E2D2EF; --error:#D86C66; }
+  body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--dark); padding:32px 24px 60px; }
+  .wrap { max-width:1100px; margin:0 auto; }
+  h1 { font-size:30px; font-weight:900; letter-spacing:-.02em; }
+  .sub { font-size:15px; color:rgba(40,4,70,.6); margin-top:8px; line-height:1.6; }
+  .note { margin-top:20px; background:#fff; border-left:4px solid var(--secondary); border-radius:12px; padding:16px 18px; font-size:14px; line-height:1.6; }
+  .note b { color:#2E6A72; }
+  h2 { font-size:16px; font-weight:900; text-transform:uppercase; letter-spacing:.06em; color:var(--primary); margin:36px 0 14px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:20px; }
+  .card { background:#fff; border-radius:16px; overflow:hidden; box-shadow:0 8px 32px rgba(73,20,117,.08); display:flex; flex-direction:column; }
+  .card .meta { padding:14px 16px; }
+  .card .day { font-size:11px; font-weight:900; letter-spacing:.06em; color:var(--primary); }
+  .card .t { font-size:15px; font-weight:800; margin-top:4px; line-height:1.3; }
+  .card .d { font-size:12.5px; line-height:1.5; color:rgba(40,4,70,.6); margin-top:6px; }
+  .card a { display:block; padding:11px 16px; background:var(--purple200); color:var(--primary); font-size:13px; font-weight:900; text-decoration:none; text-align:center; margin-top:auto; }
+  .tag { display:inline-block; font-size:10px; font-weight:900; letter-spacing:.05em; padding:3px 7px; border-radius:5px; margin-top:8px; }
+  .tag.new { background:var(--secondary); color:#fff; }
+  .tag.draft { background:var(--dark); color:#fff; }
+  .tag.oq { background:#FDEEED; color:#B4453E; }
+  /* The table is wider than a phone; it scrolls inside its own box so the page
+     body never scrolls sideways. */
+  .scroller { margin-top:8px; overflow-x:auto; border-radius:12px; background:#fff; }
+  table { width:100%; min-width:520px; border-collapse:collapse; font-size:13.5px; }
+  th, td { text-align:left; padding:11px 14px; border-bottom:1px solid var(--purple200); }
+  th { background:var(--purple200); font-weight:900; font-size:12px; text-transform:uppercase; letter-spacing:.05em; }
+  td:first-child { font-weight:800; }
+  tr:last-child td { border-bottom:none; }
+  code { font-size:12.5px; background:var(--purple200); padding:1px 5px; border-radius:4px; overflow-wrap:anywhere; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Týden 4 — Snášení tísně</h1>
+  <p class="sub">
+    Šesť reprezentatívnych mockupov z 19 strán týždňa. Zámerne nie všetky —
+    ostatné strany opakujú vzor, ktorý už niektorý z týchto šiestich ukazuje.
+    Plán: <code>WEEK4_SCREEN_PLAN.md</code> · stav: <code>TRACKING.md</code> ·
+    text: <code>docs/hpo/source/tyzden-4.md</code>
+  </p>
+
+  <div class="note">
+    <b>Pre Veroniku:</b> všetok český text je <b>doslovne z jej dokumentu</b>.
+    Jediná výnimka je karta na strane TIPS označená
+    <span class="tag draft">NÁVRH · SCHVÁLIT AUTOREM</span> — tú vetu o
+    kontraindikáciách sme napísali my a je otázka, či ju tam chce a v akej
+    formulácii. Rovnako riadok s krízovým kontaktom na Dni 2 je náš návrh.
+  </div>
+
+  <h2>Mockupy</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="meta">
+        <div class="day">DEN 1 · 1/2</div>
+        <div class="t">Edukace o stresu</div>
+        <div class="d">Celá edukácia dňa ako chat. Dve karty zvýrazňujú „distres" a „neznamená to slabost, ale lidskost".</div>
+      </div>
+      <a href="day1_page1_edukace_o_stresu.html">Otevřít</a>
+    </div>
+
+    <div class="card">
+      <div class="meta">
+        <div class="day">DEN 2 · 2/6</div>
+        <div class="t">Kdy tyto dovednosti použít</div>
+        <div class="d">Najcitlivejšia strana týždňa. „Kedy nie" stojí na tej istej strane ako „kedy áno". Pod vetou o nezvratnom kroku je tichý krízový riadok.</div>
+        <span class="tag oq">OQ-5</span>
+      </div>
+      <a href="day2_page2_kdy_pouzit.html">Otevřít</a>
+    </div>
+
+    <div class="card">
+      <div class="meta">
+        <div class="day">DEN 2 · 3/6</div>
+        <div class="t">STOP</div>
+        <div class="d">Vzor pre všetky tri akronymy týždňa. Písmeno v odznaku = existujúci <code>NumberedBenefit</code>, netreba nový widget.</div>
+      </div>
+      <a href="day2_page3_stop.html">Otevřít</a>
+    </div>
+
+    <div class="card">
+      <div class="meta">
+        <div class="day">DEN 2 · 4/6</div>
+        <div class="t">TIPS</div>
+        <div class="d">Ako STOP, plus odkaz na dechové cvičenie u písmena P a naša kontraindikačná karta.</div>
+        <span class="tag draft">NÁVRH</span>
+        <span class="tag oq">OQ-4, OQ-7</span>
+      </div>
+      <a href="day2_page4_tips.html">Otevřít</a>
+    </div>
+
+    <div class="card">
+      <div class="meta">
+        <div class="day">DEN 4 · 2/3</div>
+        <div class="t">Připomeňme si techniku</div>
+        <div class="d">Losovanie tlačidlom namiesto animovaného kola. Stav po vylosovaní; vždy sa dá losovať znova alebo pokračovať bez cvičenia.</div>
+        <span class="tag new">NOVÝ KOMPONENT</span>
+      </div>
+      <a href="day4_page2_losovani.html">Otevřít</a>
+    </div>
+
+    <div class="card">
+      <div class="meta">
+        <div class="day">DEN 5 · 3/5</div>
+        <div class="t">Cvičení UZNÁVÁM, část 1</div>
+        <div class="d">13 z 22 položiek (U/Z/N/Á). Bez počítadla „vybráno X z minimálně Y" — je to záznam toho, čo človek skúsil, nie zadanie.</div>
+        <span class="tag oq">OQ-6</span>
+      </div>
+      <a href="day5_page3_checklist_uznavam.html">Otevřít</a>
+    </div>
+  </div>
+
+  <h2>Strany bez mockupu a prečo</h2>
+  <div class="scroller">
+  <table>
+    <tr><th>Strana</th><th>Prečo nie je nakreslená</th></tr>
+    <tr><td>D2 1/6 — Co se děje v krizi</td><td>Rovnaký chat vzor ako D1 1/2.</td></tr>
+    <tr><td>D2 5/6 — Progresivní svalová relaxace</td><td>Jedno veľké video tlačidlo + veta; vzor prevzatý z detail sheetu týždňa 2.</td></tr>
+    <tr><td>D4 1/3, D5 1/5, D7 1/3</td><td>Chat vzor (D7 recap navyše so zoznamom, ako v týždni 2 a 3).</td></tr>
+    <tr><td>D5 2/5 — UZNÁVÁM: sedm triků</td><td>Rovnaký vzor ako STOP, len 7 písmen namiesto 4.</td></tr>
+    <tr><td>D5 4/5 — Checklist část 2</td><td>Rovnaký vzor ako část 1, zvyšné 9 položiek (V/Á/M).</td></tr>
+    <tr><td>D7 2/3 — Reflexe týdne</td><td>Nezmenený <code>ReflectionQuestionList</code> z týždňov 2 a 3.</td></tr>
+    <tr><td>Completion strany (D1, D2, D4, D5) a D7 3/3</td><td>Nezmenené <code>DayCompletionPage</code> / <code>WeekCompletionPage</code>. Text ešte nemáme (OQ-8).</td></tr>
+    <tr><td>Dni 3 a 6 — pauzy</td><td>Existujúci <code>DayPauseScreen</code>. Ale pozor: dnes vie zobraziť len jeden text na týždeň, a tento týždeň má dva rôzne (W4-02).</td></tr>
+  </table>
+  </div>
+</div>
+</body>
+</html>

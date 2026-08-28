@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=390">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+  :root { --primary:#491475; --dark:#280446; --secondary:#4EA3AD; --bg:#FBF6FF; --container:#EDE8F3; --purple200:#E2D2EF; }
+  body { font-family:'Inter',sans-serif; background:var(--bg); width:390px; min-height:844px; color:var(--dark); display:flex; flex-direction:column; }
+
+  .appbar { background:var(--primary); color:#fff; padding:14px 20px 12px; }
+  .appbar-row { display:flex; align-items:center; gap:14px; }
+  .appbar .back { font-size:22px; opacity:.9; }
+  .appbar .title { font-size:16px; font-weight:800; }
+  .appbar .step { margin-left:auto; font-size:12px; font-weight:700; opacity:.85; }
+  .progress { margin-top:12px; height:5px; border-radius:5px; background:rgba(255,255,255,.25); overflow:hidden; }
+  .progress > span { display:block; height:100%; width:33%; background:#fff; border-radius:5px; }
+
+  .content { flex:1; padding:24px; }
+  h1 { font-size:26px; font-weight:800; line-height:1.15; }
+  .day { font-size:14px; color:rgba(40,4,70,.6); margin:6px 0 20px; }
+  .lead { font-size:14px; line-height:1.6; color:rgba(40,4,70,.85); margin-bottom:12px; }
+  .pick { font-size:14px; font-weight:800; line-height:1.5; margin:16px 0 14px; }
+
+  .card { display:flex; align-items:center; gap:14px; padding:16px; border-radius:12px; border:1.5px solid var(--purple200); background:#fff; margin-bottom:10px; box-shadow:0 2px 10px rgba(73,20,117,.05); }
+  .card .ico { width:44px; height:44px; border-radius:10px; background:rgba(73,20,117,.10); display:flex; align-items:center; justify-content:center; font-size:21px; flex:none; }
+  .card b { font-size:15px; font-weight:800; display:block; }
+  .card .d { font-size:13px; color:rgba(40,4,70,.65); line-height:1.4; margin-top:3px; }
+  .card .arrow { margin-left:auto; font-size:19px; color:rgba(40,4,70,.3); }
+
+  .info { display:flex; gap:10px; align-items:flex-start; background:rgba(73,20,117,.10); border:1px solid rgba(73,20,117,.3); border-radius:12px; padding:14px 16px; margin-top:18px; }
+  .info .i { font-size:18px; }
+  .info .t { font-size:13px; font-weight:900; color:var(--primary); text-transform:uppercase; letter-spacing:.04em; }
+  .info p { font-size:13.5px; line-height:1.5; color:rgba(40,4,70,.8); margin-top:5px; }
+
+  .footer { padding:14px 24px 24px; background:var(--bg); }
+  .btn { width:100%; height:52px; border-radius:12px; background:var(--primary); color:#fff; font-family:inherit; font-size:16px; font-weight:900; border:none; box-shadow:0 8px 24px rgba(73,20,117,.25); }
+</style>
+</head>
+<body>
+  <div class="appbar">
+    <div class="appbar-row"><span class="back">&larr;</span><span class="title">Den 4 · Všímavé dýchání</span><span class="step">1 / 3</span></div>
+    <div class="progress"><span></span></div>
+  </div>
+
+  <div class="content">
+    <h1>Všímavé dýchání</h1>
+    <div class="day">Den 4 • Týden 2</div>
+
+    <p class="lead">Pojďme se dnes krátce zaměřit na všímavé dýchání. To nám pomáhá zastavit se a ukotvit v přítomném okamžiku. Díky soustředění na dech si můžeme všimnout, co se v nás děje, a lépe zvládat stres nebo silné emoce.</p>
+    <p class="lead">Všímavé dýchání může zklidnit tělo a mysl, snížit impulzivní reakce a podporuje sebeovládání.</p>
+
+    <p class="pick">Teď si můžeš vybrat z několika možností dechových cvičení.</p>
+
+    <div class="card">
+      <div class="ico">🌬</div>
+      <div><b>Všímavé dýchání</b><div class="d">Jen pozoruješ svůj dech tak, jak přirozeně plyne</div></div>
+      <span class="arrow">›</span>
+    </div>
+    <div class="card">
+      <div class="ico">⬜</div>
+      <div><b>Dýchání do čtverce</b><div class="d">Nádech 4 – zádrž 4 – výdech 4 – zádrž 4</div></div>
+      <span class="arrow">›</span>
+    </div>
+    <div class="card">
+      <div class="ico">〰️</div>
+      <div><b>Dýchání 7-11</b><div class="d">Krátký nádech, delší výdech – tělo se zklidní</div></div>
+      <span class="arrow">›</span>
+    </div>
+
+    <div class="info">
+      <span class="i">🧰</span>
+      <div>
+        <div class="t">Kdykoliv se můžeš vrátit</div>
+        <p>Ke zbylým cvičením se můžeš kdykoliv vrátit nebo si je uložit do záchranného balíčku.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer"><button class="btn">Pokračovat</button></div>
+</body>
+</html>

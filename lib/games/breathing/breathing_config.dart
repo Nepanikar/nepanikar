@@ -28,11 +28,22 @@ class BreathingPhaseConfig {
     hold2Seconds: 0,
   );
 
+  /// Longer exhale than inhale: 4s in, 6s out (no holds).
+  ///
+  /// Asked for by the HPO programme, Week 4 Day 2 (TIPS → "Pravidelné
+  /// dýchání: zpomal dech – nádech na 4, výdech na 6–8"). Neither `box` nor
+  /// `sevenEleven` matches, and a link that opens a different rhythm than the
+  /// text just promised undoes the instruction.
+  static const slowExhale = BreathingPhaseConfig(
+    inhaleSeconds: 4,
+    hold1Seconds: 0,
+    exhaleSeconds: 6,
+    hold2Seconds: 0,
+  );
+
   /// Returns list of non-zero phase durations in order: [inhale, hold1, exhale, hold2]
   List<int> get phaseDurations {
-    return [inhaleSeconds, hold1Seconds, exhaleSeconds, hold2Seconds]
-        .where((x) => x > 0)
-        .toList();
+    return [inhaleSeconds, hold1Seconds, exhaleSeconds, hold2Seconds].where((x) => x > 0).toList();
   }
 
   /// Total cycle duration in seconds

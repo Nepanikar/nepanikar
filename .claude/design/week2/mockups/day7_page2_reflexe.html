@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=390">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+  :root { --primary:#491475; --dark:#280446; --secondary:#4EA3AD; --bg:#FBF6FF; --container:#EDE8F3; --purple200:#E2D2EF; }
+  body { font-family:'Inter',sans-serif; background:var(--bg); width:390px; min-height:844px; color:var(--dark); display:flex; flex-direction:column; }
+
+  .appbar { background:var(--primary); color:#fff; padding:14px 20px 12px; }
+  .appbar-row { display:flex; align-items:center; gap:14px; }
+  .appbar .back { font-size:22px; opacity:.9; }
+  .appbar .title { font-size:16px; font-weight:800; }
+  .appbar .step { margin-left:auto; font-size:12px; font-weight:700; opacity:.85; }
+  .progress { margin-top:12px; height:5px; border-radius:5px; background:rgba(255,255,255,.25); overflow:hidden; }
+  .progress > span { display:block; height:100%; width:66%; background:#fff; border-radius:5px; }
+
+  .content { flex:1; padding:24px; }
+  .head { display:flex; align-items:center; gap:14px; margin-bottom:14px; }
+  .head .ico { width:48px; height:48px; border-radius:12px; background:var(--purple200); display:flex; align-items:center; justify-content:center; font-size:22px; flex:none; }
+  .head h2 { font-size:21px; font-weight:800; }
+  .hint { font-size:13.5px; line-height:1.5; color:rgba(40,4,70,.65); margin-bottom:22px; }
+
+  .q { margin-bottom:16px; }
+  .q label { display:block; font-size:14px; font-weight:800; line-height:1.4; margin-bottom:8px; }
+  .field { border:1.5px solid rgba(73,20,117,.2); background:#fff; border-radius:12px; padding:14px; min-height:62px; font-size:14px; line-height:1.5; color:rgba(40,4,70,.9); }
+  .field.empty { color:#B9AFC6; }
+
+  .footer { padding:14px 24px 24px; background:var(--bg); }
+  .btn { width:100%; height:52px; border-radius:12px; background:var(--primary); color:#fff; font-family:inherit; font-size:16px; font-weight:900; border:none; box-shadow:0 8px 24px rgba(73,20,117,.25); }
+</style>
+</head>
+<body>
+  <div class="appbar">
+    <div class="appbar-row"><span class="back">&larr;</span><span class="title">Den 7 · Shrnutí týdne</span><span class="step">2 / 3</span></div>
+    <div class="progress"><span></span></div>
+  </div>
+
+  <div class="content">
+    <div class="head">
+      <div class="ico">✎</div>
+      <h2>Reflexe týdne</h2>
+    </div>
+    <p class="hint">Zkus se zamyslet — odpovědi zůstanou uložené, můžeš se k nim vrátit.</p>
+
+    <div class="q">
+      <label>Co pro tebe bylo nejzajímavější? Co ses naučil/a?</label>
+      <div class="field">Že všímavost nemusí být meditace. Nejvíc mi sedlo popisování emocí – pojmenovat to fakt pomohlo.</div>
+    </div>
+
+    <div class="q">
+      <label>Použil/a jsi něco z toho, co ses naučil/a, ve svém životě? Co a kdy?</label>
+      <div class="field">Ve středu v tramvaji, když jsem měla vztek. Dýchání 7-11.</div>
+    </div>
+
+    <div class="q">
+      <label>Kdy ti technika všímavosti pomohla?</label>
+      <div class="field empty">Napiš sem…</div>
+    </div>
+
+    <div class="q">
+      <label>Kdy konkrétně bys tuto dovednost mohl/a využít v dalším týdnu?</label>
+      <div class="field empty">Napiš sem…</div>
+    </div>
+  </div>
+
+  <div class="footer"><button class="btn">Pokračovat</button></div>
+</body>
+</html>

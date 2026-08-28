@@ -20,28 +20,27 @@ Disorder) programme that ships inside the Nepanikař app. The programme is a
 ## Source of content
 
 The canonical content is authored in Czech and delivered as Markdown documents
-(one per week). Week 1 in this documentation is transcribed from
-*"První týden - nová verze"*. The app's runtime copy of the content lives in
-[`assets/bpd/programme_content.json`](../../assets/bpd/programme_content.json).
+(one per week) in [`source/`](source/). Week 1 is transcribed from *"První týden
+- nová verze"*. **Those Markdown files are the source of truth for copy** — the
+app renders it from Dart page widgets and per-day `dayN_content.dart` files.
+There is no runtime content JSON (see
+[implementation-spec.md → Where the content lives](implementation-spec.md#where-the-content-lives)).
 
-> ⚠️ **Content is currently out of sync.** The new Week 1 (SPOKO model, single
-> intro day) does **not** match what is implemented today (separate
-> onboarding / HPO+DBT / SMART / PLEASE days). See
-> [content-reference.md → Week 1](content-reference.md#week-1--introduction-to-the-programme)
-> and [implementation-spec.md → Gap analysis](implementation-spec.md#gap-analysis-new-week-1-vs-current-implementation).
+> **Status (2026-08-03):** Weeks 1 (SPOKO) and 2 (Všímavost) are implemented and
+> match `source/`. Weeks 3–7 have no content yet (TODO GEN-05).
 
 ## Code locations (quick map)
 
 ```
-assets/bpd/programme_content.json              runtime content data
 lib/screens/bpd_programme/                     all programme screens
   bpd_weeks_screen.dart                         week selection carousel
-  bpd_week_detail_screen.dart                   day list + routing per day
-  weeks/weekN/dayX_.../                         per-day screens
-  shared/                                        day_pause, week_review, ...
-lib/screens/bpd_programme/widgets/day_page_base.dart   reusable day-page widgets
-lib/services/db/bpd/                            BpdDaysDao + progress models
+  bpd_week_detail_screen.dart                   day list metadata + routing per day
+  weeks/weekN/dayX_.../                         per-day screens + dayN_content.dart
+  shared/day_pause_screen.dart                  shared rest day
+  widgets/                                      shared day-page building blocks
+lib/services/db/bpd/                            DAOs (progress, challenges, rescue…)
 lib/app/router/routes.dart                     typed routes (codegen)
+assets/bpd/bpd_weeks_data.json                 week-level skill-tree data
 ```
 
 See `CLAUDE.md → "BPD Programme Development"` for the day-screen authoring

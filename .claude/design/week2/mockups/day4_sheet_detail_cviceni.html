@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=390">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+  :root { --primary:#491475; --dark:#280446; --secondary:#4EA3AD; --bg:#FBF6FF; --container:#EDE8F3; --purple200:#E2D2EF; }
+  body { font-family:'Inter',sans-serif; width:390px; min-height:844px; color:var(--dark); position:relative; background:var(--bg); }
+
+  /* ztmavené pozadí = strana s nabídkou pod sheetem */
+  .behind { position:absolute; inset:0; padding:24px; filter:blur(1.5px); opacity:.5; }
+  .behind h1 { font-size:26px; font-weight:800; }
+  .behind .ph { height:14px; background:var(--purple200); border-radius:7px; margin-top:12px; }
+  .behind .ph.s { width:65%; }
+  .behind .cardph { height:76px; background:#fff; border:1.5px solid var(--purple200); border-radius:12px; margin-top:10px; }
+  .scrim { position:absolute; inset:0; background:rgba(40,4,70,.45); }
+
+  .sheet { position:absolute; left:0; right:0; bottom:0; background:var(--bg); border-radius:24px 24px 0 0; padding:12px 24px 28px; box-shadow:0 -8px 40px rgba(40,4,70,.25); }
+  .handle { width:40px; height:4px; border-radius:2px; background:#D9D0E4; margin:0 auto 20px; }
+  .shead { display:flex; align-items:center; gap:14px; margin-bottom:18px; }
+  .shead .ico { width:50px; height:50px; border-radius:12px; background:rgba(73,20,117,.15); display:flex; align-items:center; justify-content:center; font-size:24px; flex:none; }
+  .shead h2 { font-size:22px; font-weight:800; line-height:1.2; }
+  .sheet p.txt { font-size:15px; line-height:1.55; color:rgba(40,4,70,.85); margin-bottom:12px; }
+
+  .btn { width:100%; height:50px; border-radius:12px; font-family:inherit; font-size:16px; font-weight:900; border:none; display:flex; align-items:center; justify-content:center; gap:8px; }
+  .btn.primary { background:var(--primary); color:#fff; box-shadow:0 6px 18px rgba(73,20,117,.22); }
+  .btn.outline { background:transparent; color:var(--primary); border:1.5px solid rgba(73,20,117,.5); height:48px; font-size:15px; margin-top:10px; }
+  .lead { font-size:13px; color:rgba(40,4,70,.6); line-height:1.4; margin:14px 0 6px; }
+</style>
+</head>
+<body>
+  <div class="behind">
+    <h1>Všímavé dýchání</h1>
+    <div class="ph s"></div><div class="ph"></div><div class="ph s"></div>
+    <div class="cardph"></div><div class="cardph"></div><div class="cardph"></div>
+  </div>
+  <div class="scrim"></div>
+
+  <div class="sheet">
+    <div class="handle"></div>
+    <div class="shead">
+      <div class="ico">⬜</div>
+      <h2>Dýchání do čtverce</h2>
+    </div>
+
+    <p class="txt">Nadechuješ se na 4 doby, zadržíš dech na 4 doby, vydechuješ na 4 doby a opět zadržíš na 4 doby. Opakuješ několik kol.</p>
+
+    <button class="btn primary"><span>▶</span> Spustit dechové cvičení</button>
+
+    <div class="lead">Pro zájemce vedené cvičení skrze video:</div>
+    <button class="btn outline"><span>▶</span> Otevřít video</button>
+
+    <button class="btn outline"><span>🧰</span> Uložit do záchranného balíčku</button>
+  </div>
+</body>
+</html>

@@ -14,9 +14,7 @@ class NepanikarColors {
 
   static Color lightness(Color color, double amount) {
     final hsl = HSLColor.fromColor(color);
-    return hsl
-        .withLightness((hsl.lightness + amount).clamp(0.0, 1.0))
-        .toColor();
+    return hsl.withLightness((hsl.lightness + amount).clamp(0.0, 1.0)).toColor();
   }
 
   static Color container(BuildContext context) {
@@ -66,6 +64,15 @@ class NepanikarColors {
   static const secondary = Color(0xff4EA3AD);
   static const error = Color(0xffD86C66);
   static const success = Color(0xff6FD866);
+
+  /// Progress green for the programme skill tree (completed weeks/days).
+  ///
+  /// [success] is a signal colour — as a large filled circle repeated down
+  /// the tree it read as garish next to the purple palette. This is a muted
+  /// green tuned to sit with [defaultPrimary] and [secondary].
+  // TODO: schválit autorem – v brand paletě zelená neexistuje, tento odstín
+  // je navržený, ne schválený.
+  static const progressGreen = Color(0xff429464);
   static const deleteButton = Color(0xff964A4A);
   static const info = Color(0xffFEC786);
   static const filledContainer = Color(0xffEDE8F3);

@@ -80,11 +80,16 @@ class BpdLandingScreen extends StatelessWidget {
 
                       const SizedBox(height: 18),
 
-                      // Description
+                      // Description. Said "7denní" until 2026-08-18 — the
+                      // programme is seven *weeks* (the skill tree right below
+                      // counts "0 ze 7 týdnů"), and this is the first screen a
+                      // new user reads, so it set the wrong expectation about
+                      // the commitment. Not the author's copy; it predates the
+                      // HPO content.
                       Text(
                         'Víme, že život s hraniční poruchou osobnosti přináší výzvy. '
-                        'Tento 7denní program je navržený jako tvůj průvodce k budování '
-                        'odolnosti a lepšímu zvládání nálad.',
+                        'Tento sedmitýdenní program je navržený jako tvůj průvodce '
+                        'k budování odolnosti a lepšímu zvládání nálad.',
                         style: TextStyle(
                           fontSize: 15,
                           color: isDarkMode

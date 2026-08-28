@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/services/db/bpd/bpd_unlock_schedule.dart';
 import 'package:nepanikar/services/db/bpd/bpd_week_models.dart';
 import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/utils/registry.dart';
@@ -32,8 +33,9 @@ class BpdWeeksDao {
       final existingWeek = await _store.record(weekKey).get(_db);
 
       if (existingWeek == null) {
-        // Week unlocks 7 days after previous week (week 1 unlocks immediately)
-        final unlockDate = startedAt.add(Duration(days: (i - 1) * 7));
+        // Week unlocks at midnight, 7 calendar days after the previous week
+        // (week 1 lands on the start of today, so it opens immediately).
+        final unlockDate = unlockDayAfter(startedAt, (i - 1) * 7);
         final weekProgress = BpdWeekProgress(
           weekNumber: i,
           unlockDate: unlockDate,
@@ -71,10 +73,7 @@ class BpdWeeksDao {
 
     if (json != null) {
       final weekProgress = BpdWeekProgress.fromJson(json);
-      final updatedProgress = weekProgress.copyWith(
-        isCompleted: true,
-        completedAt: DateTime.now(),
-      );
+      final updatedProgress = weekProgress.copyWith(isCompleted: true, completedAt: DateTime.now());
       await _store.record(weekKey).put(_db, updatedProgress.toJson());
       debugPrint('BpdWeeksDao: Marked week $weekNumber as completed');
     }
@@ -87,10 +86,7 @@ class BpdWeeksDao {
 
     if (json != null) {
       final weekProgress = BpdWeekProgress.fromJson(json);
-      final updatedProgress = weekProgress.copyWith(
-        isCompleted: false,
-        completedAt: null,
-      );
+      final updatedProgress = weekProgress.copyWith(isCompleted: false, completedAt: null);
       await _store.record(weekKey).put(_db, updatedProgress.toJson());
       debugPrint('BpdWeeksDao: Reset week $weekNumber completion');
     }

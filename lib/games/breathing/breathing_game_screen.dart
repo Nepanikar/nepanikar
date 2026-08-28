@@ -18,7 +18,8 @@ class BreathingGameRoute extends GoRouteData with $BreathingGameRoute {
 
   final BreathingGameShape shape;
 
-  /// Optional preset: 'box' for 4-4-4-4, '7-11' for 7s inhale + 11s exhale
+  /// Optional preset: 'box' for 4-4-4-4, '7-11' for 7s inhale + 11s exhale,
+  /// 'slow-exhale' for 4s inhale + 6s exhale
   final String? preset;
 
   @override
@@ -33,7 +34,8 @@ class BreathingGameScreen extends StatefulWidget {
 
   final BreathingGameShape shape;
 
-  /// Optional preset: 'box' for 4-4-4-4, '7-11' for 7s inhale + 11s exhale
+  /// Optional preset: 'box' for 4-4-4-4, '7-11' for 7s inhale + 11s exhale,
+  /// 'slow-exhale' for 4s inhale + 6s exhale
   final String? preset;
 
   @override
@@ -115,6 +117,8 @@ class _BreathingGameScreenState extends State<BreathingGameScreen>
         _phaseConfig = BreathingPhaseConfig.box;
       case '7-11':
         _phaseConfig = BreathingPhaseConfig.sevenEleven;
+      case 'slow-exhale':
+        _phaseConfig = BreathingPhaseConfig.slowExhale;
       default:
         _phaseConfig = null; // Use default equal phases
     }

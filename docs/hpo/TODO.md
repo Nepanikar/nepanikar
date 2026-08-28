@@ -38,10 +38,11 @@ These change the shape of several tasks. Resolve with the user before W1-02+.
   W1-02..W1-05.*
 - [?] **D2 — Drop PLEASE?** SPOKO replaces the DBT PLEASE model in Week 1. OK to
   remove `day4_please/` screen + `day4Please` route from Week 1? *Affects W1-06.*
-- [x] **D3 — Content single-source.** ✅ **Decided (2026-06-15): keep duplicating
-  for now** (Dart `_weekDaysContent` + JSON), refactor to single JSON source
-  later as the isolated `GEN-01` cleanup, once Week 1 stands. *Affects W1-01,
-  GEN-01.*
+- [x] **D3 — Content single-source.** ✅ **Re-decided (2026-08-03): Dart is the
+  single source.** `assets/bpd/programme_content.json` was never read at runtime,
+  so it was deleted rather than wired up. Content = `docs/hpo/source/*.md`
+  (authored copy) → Dart page widgets + per-day `dayN_content.dart`. *Supersedes
+  the 2026-06-15 "keep duplicating" decision; closes GEN-01.*
 - [?] **D4 — Challenge tracker scope.** SPOKO days link to an optional "future
   challenge" the user tracks over time. Build a real tracker now, or stub the
   deep-link and ship challenges as a today-only pick-list first? *Affects W1-07.*
@@ -141,48 +142,232 @@ Week 2 screens already exist; these tasks bring them to the new version. See
 [content-reference.md → Week 2](content-reference.md#week-2--všímavost-mindfulness)
 and [implementation-spec.md → Week 2 additions](implementation-spec.md#week-2-additions-new-version-vs-current).
 
-- [ ] **W2-01 — Add external links.** Day 1 (muni.cz + YouTube), Day 4 & Day 6
-  per-technique videos. Add a `links[]` field to the relevant pages in
-  `programme_content.json` and render them via the app's URL-launch helper.
-- [ ] **W2-02 — Expand Day 2 observation exercises.** Add Čichem, Chuť, Tělem,
-  Dotek, Napětí (→ 9 items) to the `pozorování` skill page exercises.
-- [ ] **W2-03 — Selectable "pick ≥2 from each" on Days 2–3.** Make exercise lists
-  checkable instead of display-only (track which the user picked).
-- [ ] **W2-04 — SMART tie-in on Day 3 (Efektivně).** Surface the Week 1 SMART
-  goals; depends on GEN-02 / W1-06 persistence.
-- [ ] **W2-05 — Mindfulness notification.** From Day 4: daily *"Čas na
-  všímavost…"* until end of module, then 2×/week in later modules. Implement via
-  `NotificationsService` (AwesomeNotifications) with module-aware scheduling.
-- [ ] **W2-06 — Záchranný balíček (rescue package) save.** Day 4/6 "save to
-  rescue package". Confirm if an existing feature covers it, else design it.
-- [ ] **W2-07 — Day 5 pause = notification + mood record only.** Align the pause
-  day content with the new spec.
+All of Week 2 was reworked on **2026-08-03**. Beyond the tasks below, the audit
+found three things not in this list, all fixed in the same pass:
+
+- Week 2 shipped entirely in **Slovak** while Week 1 is Czech → whole week
+  rewritten in Czech from `source/tyzden-2.md`.
+- **Day 6 was unroutable**: `Week2Day6TechniquesScreenRoute` was annotated and
+  pushed, but missing from `_bpdProgrammeRoutes`, so tapping Day 6 threw.
+- **Day 7 dropped user input**: it routed to the shared `WeekReviewScreen`, which
+  had no `_weekData[2]` (rendered empty) and never persisted its two text fields.
+  That screen was deleted; Week 2 got a real Day 7 (see W2-09).
+
+- [x] **W2-01 — Add external links.** ✅ Day 1 (muni.cz article + YouTube) via
+  `ExternalLinkButton`; Day 4 (3 breathing videos) and Day 6 (body-scan video)
+  inside the technique detail sheets.
+- [x] **W2-02 — Expand Day 2 observation exercises.** ✅ Pozorování 5 → 9
+  (Čichem, Chuť, Tělem, Dotek, Napětí added). Popisování 3 → 5 and Participace
+  3 → 6 were short too; both completed from the source.
+- [x] **W2-03 — Selectable "pick ≥2 from each" on Days 2–3.** ✅ Shared
+  `SkillPracticePage` + `SelectableExerciseTile` + `PickCounterHint`; picks
+  persist via `BpdChallengesDao` with a per-section key.
+- [x] **W2-04 — SMART tie-in on Day 3 (Efektivně).** ✅ `SmartGoalReminder` reads
+  the newest goal from `BpdSmartGoalsDao` and links to "Moje cíle".
+- [~] **W2-05 — Mindfulness notification.** Daily reminder done: opt-in page on
+  Day 4, `NotificationType.mindfulnessReminder`, scheduled through the existing
+  settings-driven loop. **Remaining:** the "2×/week in later modules" downgrade —
+  deliberately deferred, nothing can trigger it until a later module ships
+  (GEN-05). Also fixed on the way: `rescheduleNotifications` used to wipe every
+  per-challenge reminder; it now restores them.
+- [x] **W2-06 — Záchranný balíček.** ✅ No existing feature covered it. New
+  `BpdRescuePackageDao` + `BpdRescueItem` + `RescuePackageScreen` (third tile in
+  *Moje záznamy → DBT program*), saved from the Day 4/6 detail sheets via
+  `RescueSaveButton`.
+- [x] **W2-07 — Day 5 pause = notification + mood record only.** ✅ `DayPauseScreen`
+  now offers a `MoodPickerRoute` deep-link and uses the source's Czech copy.
+- [x] **W2-08 — Day 4 & Day 6 as menus, not walkthroughs.** ✅ The source offers
+  the exercises as a choice; the app forced the user through all of them. Both
+  days now use `TechniqueMenuPage` + detail sheet (Day 4 also launches the
+  existing breathing exercise with the matching shape/preset).
+- [x] **W2-09 — Day 7 summary with persisted reflection.** ✅ New
+  `weeks/week2/day7_summary/`: recap → the source's 4 questions → week
+  completion, answers stored via `BpdReflectionDao(week: 2)`.
 
 ## Cross-cutting / program-wide
 
-- [ ] **GEN-01 — De-duplicate day metadata (optional).**
-  - Make `bpd_week_detail_screen.dart` read the day list from
-    `programme_content.json` instead of the hard-coded `_weekDaysContent` map, so
-    content lives in one place. Depends on: D3.
+- [x] **GEN-01 — De-duplicate day metadata.** ✅ Closed (2026-08-03) the other way
+  round: `programme_content.json` was never loaded at runtime, so it was deleted
+  (with its `pubspec`/`assets.gen` reference) instead of being wired up. The day
+  list stays in `_weekDaysContent`; see D3.
 
 - [~] **GEN-02 — Persisted "first vs last week" answers.** Store created
   (2026-06-15): `BpdExpectationsDao` (`bpd_expectations` store, key `week1_day1`)
   holds Day 1 expectations + goals. **Remaining:** read + display them in the
   final-week screen, and generalise the pattern for other early/late entries.
 
-- [ ] **GEN-03 — Localisation pass.**
-  - Programme copy is currently inline Czech/Slovak strings. Decide whether HPO
-    content goes through `context.l10n` / ARB or stays JSON-driven content (it is
-    content, not UI chrome — likely stays in JSON). Document the choice.
+- [~] **GEN-03 — Localisation pass.** Programme copy is inline **Czech** strings
+  in Dart (Weeks 1–2 are now consistent; the Slovak Week 2 was rewritten
+  2026-08-03). Still to decide: whether it eventually goes through
+  `context.l10n` / ARB. It is content rather than UI chrome, so the current
+  choice is to keep it in Dart alongside `docs/hpo/source/*.md` — revisit if the
+  programme has to ship in more than one language.
+
+- [?] **GEN-06 — Unlock policy.** Asked by the author (2026-08-12).
+  - ✅ **Midnight (done 2026-08-18).** Unlocks used to land at the clock time the
+    user pressed "Začít svou cestu" — start at 23:50 and day 2 arrived at 23:50
+    the next evening. `bpd_unlock_schedule.dart` now floors every unlock to local
+    midnight (flooring *after* adding the days, so DST cannot shift it off the
+    hour). Verified on a clean install: all seven weeks logged at `00:00:00`,
+    exactly 7 days apart.
+  - [?] **No progress gate.** Skipping days 1–3 still opens day 4 on schedule.
+    Should the next day wait until the previous one is completed?
+  - [?] **Weeks are not time-gated at all.** `bpd_weeks_screen.dart:60` opens a
+    week when `kImplementedBpdWeeks` contains it — the `unlockDate` computed by
+    `BpdWeeksDao` is only used for the "Odemkne se …" label on weeks we have not
+    built. So on a fresh install *every implemented week is open at once*, and
+    once GEN-04 removes the DEV hack a user on Week 1 Day 1 could still jump
+    straight into Week 4. Days would gate by time, weeks would not. Decide
+    whether weeks should follow their `unlockDate` too, or whether opening the
+    next week should depend on completing the previous one.
+  - Note the day-level gate is invisible while GEN-04's DEV hack is in.
+
+- [x] **W1-11 — Week 1 education → chat.** ✅ Done 2026-08-19. The author noticed
+  Week 1 behaved differently from Weeks 2–4: only Day 1 used the chat template.
+  Converted Day 2 (`education_chat_page.dart`, merging the SPOKO-model and sleep
+  pages, so the day is 3 pages not 4), Days 3–6 (`spoko_education_chat_page.dart`,
+  shared via `SpokoDayData`) and Day 7 (`recall_chat_page.dart`). Verified on
+  device: Day 2's letter card + `ChatConceptCard` + questions, Day 3's contact
+  card as the last step, Day 7's reveal-on-tap recall inside the chat.
+  - Copy is byte-identical to the deleted pages — the string literals were moved,
+    not retyped.
+
+- [x] **GEN-09 — Delete the dead Week 1 screens.** ✅ Done 2026-08-19.
+  `day2_education/` (7 files) and `day4_please/` (1679 lines) were orphaned and
+  each declared a `@TypedGoRoute` on a path a live screen already owns — mines for
+  anyone adding them to `_bpdProgrammeRoutes`. `day3_smart/` was a different case:
+  **wired but unreachable** (registered routes + a `case _DayRouteType.smart` that
+  no `_weekDaysContent` entry selects), so it needed routes.dart, the enum, the
+  `case` and a build_runner run, not just `rm`. Analyzer 0/0 after.
+  - The two routes `/bpd-programme/smart` and `/bpd-programme/smart/new-goal` no
+    longer exist. Nothing in the app navigated to them; only a hand-typed deep
+    link could have reached them.
+
+- [ ] **GEN-10 — Test titles and questions are inconsistent.** Now that the tests
+  are promoted to a home tile ("Otestuj se", 2026-08-19) this is much more
+  visible. In `assets/tests/tests-data.json` the four names are `BRCS Test`,
+  `Test Depresie (PHQ-9)` (**Slovak**), `PSS Test`, `GAD-7 Test`; and
+  `assets/tests/GAD-7-test.csv` has its questions in **English** while PHQ-9 and
+  BRCS are Czech. Not touched — test wording is clinical content and the author's
+  call, not a formatting fix.
+
+- [ ] **GEN-11 — Duplicate entry point for the tests.** The tests are now on the
+  home grid *and* still a `LongTile` inside Mé záznamy
+  ([my_records_screen.dart](../../lib/screens/home/my_records/my_records_screen.dart)),
+  where that tile is labelled `'Tests'` (hardcoded English) and reuses
+  `foodTracker.svg` — the same artwork as "Meal records" right above it. Ask the
+  author whether the records entry should go now that the home tile exists; if it
+  stays, it needs its own label and icon.
+
+- [ ] **GEN-08 — Approve the programme green.** The skill tree and every
+  completion check used `NepanikarColors.success` (`#6FD866`); the author called it
+  "křiklavá" and asked for "naše zelená". There is no brand green — `success` is
+  the only green in the palette and none of the SVG assets contain one (the brand
+  is purple + teal `#4EA3AD`). So `progressGreen` (`#429464`, a muted green tuned
+  to sit with the purple) was added to `colors.dart` and used everywhere the
+  programme shows completion. **That hex is proposed, not approved** — it is
+  marked `// TODO: schválit autorem` in the palette.
+  - Done when: the author confirms the shade (or supplies the real one). It is a
+    single constant, so changing it is a one-line edit.
+  - If the intent was actually the teal accent rather than a green, `secondary`
+    is already in the palette.
+
+- [ ] **GEN-07 — Notification when a new day/week unlocks.** There is none.
+  `NotificationType` has `moodReminder`, `sleepRateReminder` (settings-driven),
+  `challengeReminder` (per tracked challenge) and `mindfulnessReminder` (opted
+  into on W2 D4). Nothing fires when the programme opens the next lesson, so a
+  user who does not open the app never learns it is waiting. Needs: a schedule
+  hooked to `unlockDate`, a payload routing to the week detail, and **copy from
+  the author** — the existing programme notifications use her verbatim wording
+  (e.g. `mindfulnessReminderBody`), so this one should too.
 
 - [ ] **GEN-04 — Remove DEV unlock-all hack before release.**
   - `bpd_week_detail_screen.dart` calls `unlockAllDaysInWeek(...)` "for testing".
     Gate behind a debug flag or remove. (See line ~211.)
 
-- [ ] **GEN-05 — Author Weeks 3–7.**
-  - Content not yet delivered. For each new week: add to JSON, add
-    `_weekDaysContent[n]`, add per-day screens/routes. Add the week to
-    content-reference.md as its source doc arrives.
+- [~] **GEN-05 — Author Weeks 3–7.**
+  - **Week 3 (Emoční regulace) delivered and implemented 2026-08-06.** Source
+    verbatim in [source/tyzden-3.md](source/tyzden-3.md), summarised in
+    content-reference.md, planned in `.claude/design/week3/WEEK3_SCREEN_PLAN.md`,
+    state in `.claude/design/week3/TRACKING.md`. All 7 days coded (25 pages),
+    `kImplementedBpdWeeks = {1, 2, 3}`, analyzer clean. Runtime verification
+    still outstanding.
+  - **Week 4 (Snášení tísně) delivered 2026-08-12, planned, not implemented.**
+    Source verbatim in [source/tyzden-4.md](source/tyzden-4.md), summarised in
+    content-reference.md, planned in `.claude/design/week4/WEEK4_SCREEN_PLAN.md`,
+    state in `.claude/design/week4/TRACKING.md`. 19 pages, two rest days on reuse.
+    Blocked on W4-01 (author decisions) and W4-02 (pause copy keying).
+  - Weeks 5–7: content not yet delivered. For each new week: source file →
+    content-reference.md → `plan-screens` → `design-screen` → `implement-screen`,
+    then `_weekDaysContent[n]` + `kImplementedBpdWeeks` + per-day routes.
+
+- [x] **W3-01 — Content gaps for the author (Week 3).** ✅ Closed 2026-08-06.
+  Day 4 stays reading-only (author's decision — implemented as a single chat
+  flow), Day 5 reuses the SPOKO recall from Week 1, and the missing Day 3
+  worksheet example was drafted by us. The `ZÁKLADNÍ EMOCE` infographic covers
+  six of the ten emotions and is now captioned as an illustration of those six
+  (OQ-4). Superseded by W3-02.
+
+- [ ] **W3-02 — Author review of invented Week 3 copy.** Everything marked
+  `// TODO: schválit autorem` in `weeks/week3/`: completion lines for Days 1, 3,
+  4 and 5 (the source has none) and — more importantly — the **worked example
+  for the Day 3 `OVĚŘOVÁNÍ FAKTŮ` worksheet**. Day 2's example is the author's;
+  Day 3's is ours, and users read a worked example as a model for how to think
+  about their own situation, so it should not ship unreviewed.
+
+- [?] **W4-01 — Content decisions for the author (Week 4).** Week 4 landed
+  2026-08-12 and is planned (`.claude/design/week4/WEEK4_SCREEN_PLAN.md`); eight of
+  its twelve open questions need the author. In rough order of impact:
+  1. **Contraindications (OQ-4).** TIPS "Teplota" asks the user to immerse their
+     face in cold water *and hold their breath*, and "Intenzivní cvičení" asks for
+     30 squats/push-ups. Cold-water immersion with breath-holding deliberately
+     slows the heart, and intense exercise can be a compensatory behaviour — the
+     app has both an eating-disorder and a self-harm module, so it reaches that
+     audience. Proposal: one sentence of caution, repeated on Day 5's "Á – Aktivace
+     smyslů". This edits authored clinical copy, so it is her call, not ours.
+  2. **"Tři klíčové dovednosti" (OQ-12).** Day 2 promises three and delivers two;
+     UZNÁVÁM arrives on Day 5. Reword, or add "třetí si ukážeme ve dni 5".
+  3. **UZNÁVÁM letters (OQ-10).** The short list ("Ú-silím", "Ná-hledem",
+     "A-ktivní") disagrees with the checklist ("U – Úsilí", "N – Náhled",
+     "Á – Aktivní obrana"). The checklist matches U-Z-N-Á-V-Á-M.
+  4. **Crisis contact on Day 2 (OQ-5).** Whether the "neudělat nic, co nejde vzít
+     zpátky" page carries a quiet deep-link to the crisis contacts, and in what
+     words.
+  5. **Day 4 draw (OQ-2, OQ-3).** Real spinning wheel or a "Vylosovat" button, and
+     which Week 2 techniques are in the pool (the 8 named ones, or all 37 exercises).
+  6. **Completion lines (OQ-8)** for Days 1, 2, 4, 5 and the Day 7 recap list — the
+     source has none. We will draft them in her tone, marked
+     `// TODO: schválit autorem`, as in Week 3.
+  7. **Typos (OQ-9)** left verbatim on purpose: "známáé" (Day 4), "zklidňuje
+     nervový systému" (TIPS P), "zastav se na chvíli -  nic nedělej" (STOP S).
+  - Done when: each decision is recorded in the plan's OQ table and the affected
+    pages lose their ⚠️ in `.claude/design/week4/TRACKING.md`.
+
+- [x] **W4-02 — `DayPauseScreen` copy keyed by (week, day).** ✅ Done 2026-08-12.
+  `_pauseCopyByDay` (a `Map<(int, int), String>`) is consulted first, then the
+  week-level `_pauseCopy`, then Week 2's text. Verified on device: Week 4 Day 3
+  and Day 6 each render their own paragraph. Original problem below.
+  Week 4 is the
+  first week with **two** rest days (3 and 6) and they have different authored
+  wording. `_pauseCopy` in
+  [day_pause_screen.dart](../../lib/screens/bpd_programme/shared/day_pause_screen.dart)
+  is a `Map<int, String>` keyed by week, and `dayNumber` is already a parameter but
+  unused for copy — so as it stands Day 6 would silently render Day 3's text and one
+  of the author's two paragraphs would never be seen by anyone.
+  - Done when: both Week 4 rest days show their own text, Weeks 2–3 are unchanged,
+    and the week-level fallback still covers unauthored weeks.
+
+- [x] **W3-03 — Verify Week 3 on a device.** ✅ Done 2026-08-12. All seven days
+  walked; the Day 2 worksheet kept "hadka s kamaradem" across leaving without
+  completing; "Chci zbořit i ostatní mýty" reveals the remaining myths and the
+  per-myth "Zobrazit příklad" toggles the author's counter-sentence; the tree
+  rolled up to **"2 ze 7 týdnů hotovo"**. No defects found — unlike Week 2.
+
+- [x] **W1-10 — Verify Week 1 on a device.** ✅ Done 2026-08-12. Week 1 had never
+  been run despite three blind fixes. All seven days open, no Flutter exceptions
+  or overflows in logcat during the sweep, day list and SPOKO pages are Czech, and
+  the Day 7 reflection survived leaving without completing — so the
+  `ReflectionAutosave` fix is confirmed on Week 1 too.
 
 ---
 

@@ -37,7 +37,7 @@ class Day2CompletionPage extends StatelessWidget {
                           width: 38,
                           height: 38,
                           decoration: BoxDecoration(
-                            color: NepanikarColors.success,
+                            color: NepanikarColors.progressGreen,
                             shape: BoxShape.circle,
                             border: Border.all(
                               color: isDarkMode

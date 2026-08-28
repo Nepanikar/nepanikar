@@ -21,7 +21,6 @@ class DayPageBase extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final primaryColor = Theme.of(context).primaryColor;
     final effectiveButtonColor = buttonColor ?? primaryColor;
 
@@ -40,9 +39,7 @@ class DayPageBase extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: effectiveButtonColor,
                   foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                   elevation: 2,
                 ),
                 child: buttonIcon != null
@@ -53,19 +50,13 @@ class DayPageBase extends StatelessWidget {
                           const SizedBox(width: 8),
                           Text(
                             buttonText,
-                            style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                           ),
                         ],
                       )
                     : Text(
                         buttonText,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                       ),
               ),
             ),
@@ -78,12 +69,7 @@ class DayPageBase extends StatelessWidget {
 
 /// Header with icon and title for education sections.
 class SectionHeader extends StatelessWidget {
-  const SectionHeader({
-    super.key,
-    required this.icon,
-    required this.title,
-    this.subtitle,
-  });
+  const SectionHeader({super.key, required this.icon, required this.title, this.subtitle});
 
   final IconData icon;
   final String title;
@@ -119,10 +105,7 @@ class SectionHeader extends StatelessWidget {
                 ),
               ),
               if (subtitle != null)
-                Text(
-                  subtitle!,
-                  style: TextStyle(fontSize: 14, color: primaryColor),
-                ),
+                Text(subtitle!, style: TextStyle(fontSize: 14, color: primaryColor)),
             ],
           ),
         ),
@@ -158,9 +141,7 @@ class FeatureCard extends StatelessWidget {
         color: isDarkMode ? Colors.white.withOpacity(0.05) : Colors.white,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: isDarkMode
-              ? Colors.white.withOpacity(0.1)
-              : Colors.grey.shade200,
+          color: isDarkMode ? Colors.white.withOpacity(0.1) : Colors.grey.shade200,
         ),
       ),
       child: Row(
@@ -192,9 +173,7 @@ class FeatureCard extends StatelessWidget {
                   description,
                   style: TextStyle(
                     fontSize: 13,
-                    color: isDarkMode
-                        ? Colors.white60
-                        : NepanikarColors.dark.withOpacity(0.6),
+                    color: isDarkMode ? Colors.white60 : NepanikarColors.dark.withOpacity(0.6),
                   ),
                 ),
               ],
@@ -230,9 +209,7 @@ class NumberedBenefit extends StatelessWidget {
         color: isDarkMode ? Colors.white.withOpacity(0.05) : Colors.white,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: isDarkMode
-              ? Colors.white.withOpacity(0.1)
-              : Colors.grey.shade200,
+          color: isDarkMode ? Colors.white.withOpacity(0.1) : Colors.grey.shade200,
         ),
       ),
       child: Row(
@@ -240,10 +217,7 @@ class NumberedBenefit extends StatelessWidget {
           Container(
             width: 36,
             height: 36,
-            decoration: BoxDecoration(
-              color: primaryColor,
-              shape: BoxShape.circle,
-            ),
+            decoration: BoxDecoration(color: primaryColor, shape: BoxShape.circle),
             child: Center(
               child: Text(
                 number,
@@ -273,9 +247,7 @@ class NumberedBenefit extends StatelessWidget {
                   description,
                   style: TextStyle(
                     fontSize: 13,
-                    color: isDarkMode
-                        ? Colors.white60
-                        : NepanikarColors.dark.withOpacity(0.6),
+                    color: isDarkMode ? Colors.white60 : NepanikarColors.dark.withOpacity(0.6),
                   ),
                 ),
               ],
@@ -325,11 +297,7 @@ class InfoBox extends StatelessWidget {
               const SizedBox(width: 8),
               Text(
                 title,
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: effectiveColor,
-                ),
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: effectiveColor),
               ),
             ],
           ),
@@ -338,9 +306,7 @@ class InfoBox extends StatelessWidget {
             text,
             style: TextStyle(
               fontSize: 14,
-              color: isDarkMode
-                  ? Colors.white70
-                  : NepanikarColors.dark.withOpacity(0.8),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.8),
               height: 1.4,
             ),
           ),

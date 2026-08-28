@@ -209,59 +209,69 @@ Files using code generation follow the `part`/`part of` pattern:
 
 ## BPD Programme Development
 
+> Detailed reference: **`docs/hpo/`** — `README.md` (index), `content-reference.md`
+> (what the user goes through), `implementation-spec.md` (how it maps to code),
+> `TODO.md` (backlog), `source/*.md` (verbatim Czech copy = source of truth).
+>
+> **Before working on a programme week, read `.claude/`** — it holds the screen
+> pipeline and its state, and skipping it means redoing work:
+> - `.claude/skills/` — `plan-screens` → `design-screen` → `implement-screen`
+>   (orchestrated by `build-screens`). **`.claude/skills/LESSONS.md` is
+>   mandatory:** read the OPEN lessons before you start, add a retrospective when
+>   you finish.
+> - `.claude/design/week<N>/` — `WEEK<N>_SCREEN_PLAN.md` (per-page plan) +
+>   `TRACKING.md` (what is designed / implemented) + `mockups/*.html`.
+>   Preview them via `.claude/launch.json` (`week1-mockups`, `week2-mockups`).
+> - `.claude/design/DESIGN_PROMPTS.md` — design tokens + approved component
+>   concepts (chat feed, skill tree). Education days use the **chat** template.
+> - `.claude/obrazovky_prehlad.md` — screen-level implementation overview.
+> - `.claude/data/TYZDEN_<N>_VYPLNENY.txt` — the author's structured working copy
+>   (Slovak). Superseded by `docs/hpo/source/*.md` for anything shipped.
+
 ### Structure
 ```
 lib/screens/bpd_programme/
 ├── bpd_weeks_screen.dart       # Week selection carousel
-├── bpd_week_detail_screen.dart # Days list for a week
-├── days/                       # Individual day screens
-│   └── day2_education_screen.dart
-└── smart/                      # SMART goals feature
-    ├── smart_education_screen.dart
-    └── smart_goal_form_screen.dart
-
-lib/screens/bpd_programme/widgets/
-├── day_preview_sheet.dart      # Bottom sheet for day preview
-└── day_page_base.dart          # Reusable widgets for day pages
+├── bpd_week_detail_screen.dart # Day list metadata (_weekDaysContent) + routing
+├── weeks/weekN/dayX_.../       # Per-day screens + dayN_content.dart (the copy)
+├── shared/day_pause_screen.dart
+└── widgets/                    # Shared day-page building blocks
 
 assets/bpd/
-└── programme_content.json      # All programme content data
+└── bpd_weeks_data.json         # Week-level skill-tree data (the only runtime JSON)
 ```
 
 ### Content Data
-Programme content is in `assets/bpd/programme_content.json`. Use this for:
-- Day titles, descriptions, estimated times
-- Page content for education days
-- Consistency across the app
+Programme copy lives in **Dart**: the day screens and their `dayN_content.dart`
+files, taken verbatim from `docs/hpo/source/*.md`. There is no runtime content
+JSON (`programme_content.json` was deleted 2026-08-03 — it was never read).
+Day titles/descriptions/times for the day list live in `_weekDaysContent`.
 
-### Reusable Widgets (lib/screens/bpd_programme/widgets/day_page_base.dart)
-- `DayPageBase` - Scrollable content with fixed bottom button
-- `SectionHeader` - Icon + title header for sections
-- `FeatureCard` - Card with icon, title, description
-- `NumberedBenefit` - Numbered list item with title/description
-- `InfoBox` - Highlighted info box with icon
+### Reusable Widgets (lib/screens/bpd_programme/widgets/)
+- `day_page_base.dart` — `DayPageBase` (scrollable content + fixed button),
+  `SectionHeader`, `FeatureCard`, `NumberedBenefit`, `InfoBox`
+- `day_flow_header.dart` — progress header for a multi-page day
+- `skills_intro_page.dart` / `skill_practice_page.dart` — skills-day pages with
+  a "pick ≥2" exercise menu (picks persisted)
+- `technique_menu_page.dart` — "pick one from the menu" + detail sheet
+- `selectable_exercise_tile.dart`, `external_link_button.dart`,
+  `rescue_save_button.dart`, `reflection_fields.dart`
+- `day_completion_page.dart` / `week_completion_page.dart` — closing pages
+- `day_preview_sheet.dart` — bottom sheet for the day preview
 
-### Route Types in bpd_week_detail_screen.dart
-```dart
-enum _DayRouteType {
-  regular,        // Generic day content
-  onboarding,     // Day 1 onboarding flow
-  day2Education,  // Day 2 HPO+DBT education
-  smart,          // SMART goals (Day 3)
-  pause,          // Rest days (5, 6)
-  summary,        // Week summary (Day 7)
-}
-```
+Prefer composing a day from these over writing bespoke pages.
 
 ### Adding a New Day Screen
-1. Create `lib/screens/bpd_programme/days/dayX_screen.dart`
-2. Add route to `lib/app/router/routes.dart`:
+1. Create `lib/screens/bpd_programme/weeks/weekN/dayX_.../dayX_screen.dart` and a
+   `dayX_content.dart` with the verbatim copy.
+2. Add the route to `lib/app/router/routes.dart`:
    - Import the screen
-   - Add TypedGoRoute to `_bpdProgrammeRoutes`
+   - **Add the TypedGoRoute to `_bpdProgrammeRoutes`** — annotating the screen
+     alone is not enough; without this entry the day is unroutable at runtime.
 3. Run `flutter pub run build_runner build -d`
 4. If build_runner fails to generate .g.dart, create manually (copy from existing)
-5. Add route type to enum in `bpd_week_detail_screen.dart`
-6. Add case to switch in `_handleDayTap`
+5. Add route type to `_DayRouteType` in `bpd_week_detail_screen.dart`
+6. Add case to switch in `_handleDayTap` and the entry in `_weekDaysContent`
 
 ---
 

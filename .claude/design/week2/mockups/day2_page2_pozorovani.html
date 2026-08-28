@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=390">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+  :root { --primary:#491475; --dark:#280446; --secondary:#4EA3AD; --bg:#FBF6FF; --container:#EDE8F3; --purple200:#E2D2EF; }
+  body { font-family:'Inter',sans-serif; background:var(--bg); width:390px; min-height:844px; color:var(--dark); display:flex; flex-direction:column; }
+
+  .appbar { background:var(--primary); color:#fff; padding:14px 20px 12px; }
+  .appbar-row { display:flex; align-items:center; gap:14px; }
+  .appbar .back { font-size:22px; opacity:.9; }
+  .appbar .title { font-size:16px; font-weight:800; }
+  .appbar .step { margin-left:auto; font-size:12px; font-weight:700; opacity:.85; }
+  .progress { margin-top:12px; height:5px; border-radius:5px; background:rgba(255,255,255,.25); overflow:hidden; }
+  .progress > span { display:block; height:100%; width:40%; background:#fff; border-radius:5px; }
+
+  .content { flex:1; padding:24px; }
+  .head { display:flex; align-items:center; gap:14px; margin-bottom:18px; }
+  .head .ico { width:48px; height:48px; border-radius:12px; background:var(--purple200); display:flex; align-items:center; justify-content:center; font-size:24px; flex:none; }
+  .head h2 { font-size:21px; font-weight:800; line-height:1.2; }
+  .head .sub { font-size:13px; color:var(--primary); font-weight:600; }
+  .edu { font-size:14px; line-height:1.6; color:rgba(40,4,70,.85); margin-bottom:16px; }
+  .pick { font-size:14px; font-weight:800; line-height:1.5; margin-bottom:12px; }
+  .counter { display:flex; align-items:center; gap:6px; font-size:13px; font-weight:700; color:var(--primary); margin-bottom:12px; }
+  .checks { display:flex; flex-direction:column; gap:8px; }
+  .chk { display:flex; gap:12px; padding:12px 14px; border-radius:12px; border:1.5px solid var(--purple200); background:#fff; }
+  .chk .box { flex:0 0 22px; height:22px; border-radius:6px; border:2px solid var(--purple200); margin-top:1px; }
+  .chk.sel { border-color:var(--primary); background:rgba(73,20,117,.07); }
+  .chk.sel .box { background:var(--primary); border-color:var(--primary); position:relative; }
+  .chk.sel .box::after { content:'✓'; color:#fff; font-size:14px; font-weight:900; position:absolute; top:-3px; left:3px; }
+  .chk .t { font-size:14.5px; font-weight:700; line-height:1.3; display:flex; align-items:center; gap:7px; }
+  .chk .t em { font-style:normal; font-size:15px; }
+  .chk .d { font-size:13px; line-height:1.45; color:rgba(40,4,70,.65); margin-top:4px; }
+  .fade { height:56px; background:linear-gradient(to bottom, rgba(251,246,255,0), var(--bg)); margin-top:-56px; position:relative; }
+
+  .footer { padding:14px 24px 24px; background:var(--bg); }
+  .btn { width:100%; height:52px; border-radius:12px; background:var(--primary); color:#fff; font-family:inherit; font-size:16px; font-weight:900; border:none; box-shadow:0 8px 24px rgba(73,20,117,.25); }
+</style>
+</head>
+<body>
+  <div class="appbar">
+    <div class="appbar-row"><span class="back">&larr;</span><span class="title">Den 2 · Co dovednosti</span><span class="step">2 / 5</span></div>
+    <div class="progress"><span></span></div>
+  </div>
+
+  <div class="content">
+    <div class="head">
+      <div class="ico">👁</div>
+      <div><h2>Pozorování</h2><div class="sub">Co dovednost 1/3</div></div>
+    </div>
+
+    <p class="edu">Jen si všímám toho, co se děje. To může být dech, tělesný pocit, myšlenka nebo něco kolem mě. Nehodnotím to, jen to zaznamenám, jako bych byl třeba fotograf.</p>
+
+    <p class="pick">Vyber si alespoň dvě krátká cvičení z nabídky pro trénink pozorování. Nemusí to být dnes. Úplně stačí kdykoliv během dnešního dne.</p>
+
+    <div class="counter"><span>✓</span> Vybráno 2 z minimálně 2</div>
+
+    <div class="checks">
+      <div class="chk sel"><span class="box"></span><div>
+        <div class="t"><em>👁</em>Očima</div>
+        <div class="d">Zastav se a věnuj pozornost tomu, co vidíš. Můžeš se dívat na oblohu, stromy nebo na nějaký drobný detail (list, květ, kámen) a vnímat ho opravdu pozorně.</div>
+      </div></div>
+      <div class="chk"><span class="box"></span><div>
+        <div class="t"><em>👂</em>Ušima</div>
+        <div class="d">Jen naslouchej. Soustřeď se na zvuky kolem sebe – jejich rytmus, výšku nebo pauzy mezi nimi. Můžeš to zkusit i u hudby.</div>
+      </div></div>
+      <div class="chk"><span class="box"></span><div>
+        <div class="t"><em>🌸</em>Čichem</div>
+        <div class="d">Vnímej vůně ve svém okolí – jídlo, nápoje, květiny nebo jen vzduch venku.</div>
+      </div></div>
+      <div class="chk sel"><span class="box"></span><div>
+        <div class="t"><em>🍽</em>Chuť</div>
+        <div class="d">Jez vědomě. Zkus si dát sousto a všímat si každé chuti a změny, jak se vyvíjí v ústech.</div>
+      </div></div>
+      <div class="chk"><span class="box"></span><div>
+        <div class="t"><em>🧍</em>Tělem</div>
+        <div class="d">Když máš nutkání něco udělat, zastav se a všimni si, jak se to nutkání projevuje v těle. Zkus to jen pozorovat, aniž bys hned jednal/a.</div>
+      </div></div>
+      <div class="chk"><span class="box"></span><div>
+        <div class="t"><em>✋</em>Dotek</div>
+        <div class="d">Vnímej, jaké to je, když se chodidla dotýkají země při chůzi, když sedíš na židli nebo když se tě oblečení dotýká na kůži.</div>
+      </div></div>
+    </div>
+  </div>
+  <div class="fade"></div>
+
+  <div class="footer"><button class="btn">Pokračovat</button></div>
+</body>
+</html>

@@ -14,11 +14,8 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
 part 'notification_settings_screen.g.dart';
 
-@TypedGoRoute<NotificationSettingsRoute>(
-  path: '/settings/notification-settings',
-)
-class NotificationSettingsRoute extends GoRouteData
-    with $NotificationSettingsRoute {
+@TypedGoRoute<NotificationSettingsRoute>(path: '/settings/notification-settings')
+class NotificationSettingsRoute extends GoRouteData with $NotificationSettingsRoute {
   const NotificationSettingsRoute();
 
   @override
@@ -30,8 +27,7 @@ class NotificationSettingsScreen extends StatelessWidget {
 
   UserSettingsDao get _userSettingsDao => registry.get<UserSettingsDao>();
 
-  NotificationsService get _notificationsService =>
-      registry.get<NotificationsService>();
+  NotificationsService get _notificationsService => registry.get<NotificationsService>();
 
   FirebaseAnalytics get _analytics => registry.get<FirebaseAnalytics>();
 
@@ -46,10 +42,7 @@ class NotificationSettingsScreen extends StatelessWidget {
         name: 'notification_settings_type_enabled',
         parameters: {'notification_type': notificationType.name},
       );
-      await _userSettingsDao.updateNotificationTypeSettings(
-        notificationType,
-        reminderTime,
-      );
+      await _userSettingsDao.updateNotificationTypeSettings(notificationType, reminderTime);
     } else {
       await _analytics.logEvent(
         name: 'notification_settings_type_disabled',
@@ -73,9 +66,7 @@ class NotificationSettingsScreen extends StatelessWidget {
         return Theme(
           data: Theme.of(context).copyWith(
             textButtonTheme: TextButtonThemeData(
-              style: TextButton.styleFrom(
-                foregroundColor: Theme.of(context).colorScheme.onSurface,
-              ),
+              style: TextButton.styleFrom(foregroundColor: Theme.of(context).colorScheme.onSurface),
             ),
           ),
           child: child!,
@@ -88,14 +79,10 @@ class NotificationSettingsScreen extends StatelessWidget {
         name: 'notification_settings_time_changed',
         parameters: {
           'notification_type': notificationType.name,
-          'new_reminder_time':
-              '${newReminderTime.hour}h:${newReminderTime.minute}m',
+          'new_reminder_time': '${newReminderTime.hour}h:${newReminderTime.minute}m',
         },
       );
-      await _userSettingsDao.updateNotificationTypeSettings(
-        notificationType,
-        newReminderTime,
-      );
+      await _userSettingsDao.updateNotificationTypeSettings(notificationType, newReminderTime);
       await _notificationsService.rescheduleNotifications(l10n);
     }
   }
@@ -110,11 +97,9 @@ class NotificationSettingsScreen extends StatelessWidget {
         }
 
         final notificationTypeSettings = snapshot.data ?? [];
-        // Challenge reminders are managed per-challenge from "Moje výzvy",
-        // not from this global settings list.
-        final settingsTypes = NotificationType.values
-            .where((t) => t != NotificationType.challengeReminder)
-            .toList();
+        // Programme-managed reminders (per-challenge from "Moje výzvy",
+        // mindfulness from the programme) are not part of this global list.
+        final settingsTypes = NotificationType.settingsVisibleValues;
         return NepanikarScreenWrapper(
           appBarTitle: context.l10n.notifications,
           isCardStackLayout: true,
@@ -143,9 +128,7 @@ class NotificationSettingsScreen extends StatelessWidget {
     NotificationTypeSettings? notificationTypeSettings,
   ) {
     final l10n = context.l10n;
-    final settingsTypesCount = NotificationType.values
-        .where((t) => t != NotificationType.challengeReminder)
-        .length;
+    final settingsTypesCount = NotificationType.settingsVisibleValues.length;
     final isLast = i == settingsTypesCount - 1;
     final reminderTime = notificationTypeSettings != null
         ? TimeOfDay(
@@ -164,8 +147,7 @@ class NotificationSettingsScreen extends StatelessWidget {
           trailing: Switch(
             activeTrackColor: Theme.of(context).highlightColor,
             value: notificationTypeSettings != null,
-            onChanged: (v) =>
-                _onSwitchChanged(l10n, notificationType, v, reminderTime),
+            onChanged: (v) => _onSwitchChanged(l10n, notificationType, v, reminderTime),
           ),
         ),
         AnimatedSwitcher(
@@ -184,19 +166,12 @@ class NotificationSettingsScreen extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                   ),
-                  onTap: () async => await _onTimeChanged(
-                    context,
-                    notificationType,
-                    reminderTime,
-                  ),
+                  onTap: () async => await _onTimeChanged(context, notificationType, reminderTime),
                 )
               : const SizedBox.shrink(),
         ),
         if (!isLast)
-          const Padding(
-            padding: EdgeInsets.only(top: 8),
-            child: NepanikarHorizontalDivider(),
-          ),
+          const Padding(padding: EdgeInsets.only(top: 8), child: NepanikarHorizontalDivider()),
       ],
     );
   }

@@ -108,7 +108,7 @@ class SkillTreeBanner extends StatelessWidget {
                     value: progress,
                     minHeight: 6,
                     backgroundColor: Colors.white.withOpacity(0.25),
-                    valueColor: const AlwaysStoppedAnimation<Color>(NepanikarColors.success),
+                    valueColor: const AlwaysStoppedAnimation<Color>(NepanikarColors.progressGreen),
                   ),
                 ),
                 const SizedBox(height: 5),
@@ -227,8 +227,8 @@ class _SkillTreeNode extends StatelessWidget {
     final Color shadowColor;
     switch (node.state) {
       case SkillTreeNodeState.completed:
-        fillColor = NepanikarColors.success;
-        shadowColor = NepanikarColors.lightness(NepanikarColors.success, -0.12);
+        fillColor = NepanikarColors.progressGreen;
+        shadowColor = NepanikarColors.lightness(NepanikarColors.progressGreen, -0.12);
       case SkillTreeNodeState.current:
       case SkillTreeNodeState.available:
         fillColor = primaryColor;

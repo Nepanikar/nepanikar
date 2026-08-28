@@ -9,23 +9,32 @@ import 'package:nepanikar/games/math/math_game_screen.dart';
 import 'package:nepanikar/games/plants/plants_game_screen.dart';
 import 'package:nepanikar/games/relaxation/relaxation_screen.dart';
 import 'package:nepanikar/games/relaxation/relaxations_list_screen.dart';
-import 'package:nepanikar/screens/bpd_programme/weeks/week1/day1_onboarding/day1_onboarding_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/bpd_landing_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/bpd_programme_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/bpd_week_detail_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/bpd_weeks_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/shared/day_pause_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week1/day1_onboarding/day1_onboarding_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/day2_spoko/day2_spoko_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/day7_reflection/day7_reflection_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/spoko_day/spoko_day_screen.dart';
-import 'package:nepanikar/screens/bpd_programme/shared/day_pause_screen.dart';
-import 'package:nepanikar/screens/bpd_programme/shared/week_review_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week2/day1_mindfulness_intro/day1_mindfulness_intro_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week2/day2_what_skills/day2_what_skills_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week2/day3_how_skills/day3_how_skills_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week2/day4_breathing/day4_breathing_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week2/day6_techniques/day6_techniques_screen.dart';
-import 'package:nepanikar/screens/bpd_programme/weeks/week1/day3_smart/smart_education_screen.dart';
-import 'package:nepanikar/screens/bpd_programme/weeks/week1/day3_smart/smart_goal_form_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week2/day7_summary/day7_summary_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week3/day1_emotions/day1_emotions_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week3/day2_describe/day2_describe_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week3/day3_check_facts/day3_check_facts_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week3/day4_opposite_action/day4_opposite_action_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week3/day5_spoko_recall/day5_spoko_recall_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week3/day7_summary/day7_summary_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week4/day1_stress/day1_stress_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week4/day2_crisis_skills/day2_crisis_skills_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week4/day4_mindfulness_stress/day4_mindfulness_stress_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week4/day5_uznavam/day5_uznavam_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week4/day7_summary/day7_summary_screen.dart';
 import 'package:nepanikar/screens/contacts/chat_contacts_screen.dart';
 import 'package:nepanikar/screens/contacts/crisis_message_screen.dart';
 import 'package:nepanikar/screens/contacts/eating_disorder_contacts_screen.dart';
@@ -64,6 +73,7 @@ import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_add_scr
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_detail_screen.dart';
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_edit_screen.dart';
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_records_screen.dart';
+import 'package:nepanikar/screens/home/my_records/emotion_dictionary/emotion_dictionary_screen.dart';
 import 'package:nepanikar/screens/home/my_records/food_records/my_records_food_record_detail_menu_detail_screen.dart';
 import 'package:nepanikar/screens/home/my_records/food_records/my_records_food_record_detail_menu_list_screen.dart';
 import 'package:nepanikar/screens/home/my_records/food_records/my_records_food_records_list_screen.dart';
@@ -78,6 +88,7 @@ import 'package:nepanikar/screens/home/my_records/mood/mood_track_screen.dart';
 import 'package:nepanikar/screens/home/my_records/mood/search_mood_entry.dart';
 import 'package:nepanikar/screens/home/my_records/my_records_screen.dart';
 import 'package:nepanikar/screens/home/my_records/my_records_sleep_track_screen.dart';
+import 'package:nepanikar/screens/home/my_records/rescue_package/rescue_package_screen.dart';
 import 'package:nepanikar/screens/home/my_records/tests/test_detail_screen.dart';
 import 'package:nepanikar/screens/home/my_records/tests/test_list_screen.dart';
 import 'package:nepanikar/screens/home/my_records/tests/test_result_screen.dart';
@@ -123,9 +134,7 @@ class MainRoute extends GoRouteData with $MainRoute {
 }
 
 const _settingsRoutes = <TypedGoRoute<GoRouteData>>[
-  TypedGoRoute<NotificationSettingsRoute>(
-    path: 'settings/notification-settings',
-  ),
+  TypedGoRoute<NotificationSettingsRoute>(path: 'settings/notification-settings'),
   TypedGoRoute<SponsorsRoute>(path: 'settings/sponsors'),
   TypedGoRoute<AboutAppRoute>(path: 'settings/about-app'),
   TypedGoRoute<ExportRoute>(path: 'settings/export'),
@@ -169,15 +178,9 @@ const _homeRoutes = <TypedGoRoute<GoRouteData>>[
 const _depressionRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<DepressionRoute>(path: 'home/depression'),
   TypedGoRoute<DepressionTipsAppRoute>(path: 'home/depression/tips'),
-  TypedGoRoute<DepressionActivityPlanRoute>(
-    path: 'home/depression/activity-plan',
-  ),
-  TypedGoRoute<DepressionNiceMadeHappyRoute>(
-    path: 'home/depression/nice-made-happy',
-  ),
-  TypedGoRoute<DepressionPraiseMyAchievementsRoute>(
-    path: 'home/depression/praise-my-achievements',
-  ),
+  TypedGoRoute<DepressionActivityPlanRoute>(path: 'home/depression/activity-plan'),
+  TypedGoRoute<DepressionNiceMadeHappyRoute>(path: 'home/depression/nice-made-happy'),
+  TypedGoRoute<DepressionPraiseMyAchievementsRoute>(path: 'home/depression/praise-my-achievements'),
 ];
 
 const _selfHarmRoutes = <TypedGoRoute<GoRouteData>>[
@@ -191,69 +194,41 @@ const _selfHarmRoutes = <TypedGoRoute<GoRouteData>>[
 const _suicidalThoughtsRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<SuicidalThoughtsRoute>(path: 'home/suicidal-thoughts'),
   TypedGoRoute<SuicidalThoughtsPlanRoute>(path: 'home/suicidal-thoughts/plan'),
-  TypedGoRoute<SuicidalThoughtsReasonsNoRoute>(
-    path: 'home/suicidal-thoughts/reasons-no',
-  ),
+  TypedGoRoute<SuicidalThoughtsReasonsNoRoute>(path: 'home/suicidal-thoughts/reasons-no'),
 ];
 
 const _eatingDisorderRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<EatingDisorderRoute>(path: 'home/eating-disorder'),
   ..._eatingDisorderTipsRoutes,
   ..._eatingDisorderTasksRoutes,
-  TypedGoRoute<EatingDisorderSamplesRoute>(
-    path: 'home/eating-disorder/samples',
-  ),
-  TypedGoRoute<EatingDisorderDistractionsRoute>(
-    path: 'home/eating-disorder/distraction',
-  ),
+  TypedGoRoute<EatingDisorderSamplesRoute>(path: 'home/eating-disorder/samples'),
+  TypedGoRoute<EatingDisorderDistractionsRoute>(path: 'home/eating-disorder/distraction'),
   TypedGoRoute<MealPlanRoute>(path: 'home/eating-disorder/meal-plan'),
-  TypedGoRoute<EatingDisorderContactsRoute>(
-    path: 'home/eating-disorder/contacts',
-  ),
+  TypedGoRoute<EatingDisorderContactsRoute>(path: 'home/eating-disorder/contacts'),
 ];
 
 const _eatingDisorderTasksRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<EatingDisorderTasksRoute>(path: 'home/eating-disorder/tasks'),
-  TypedGoRoute<EatingDisorderFoodCreativeRoute>(
-    path: 'home/eating-disorder/tasks/food-creative',
-  ),
+  TypedGoRoute<EatingDisorderFoodCreativeRoute>(path: 'home/eating-disorder/tasks/food-creative'),
   TypedGoRoute<EatingDisorderFoodMotivationRoute>(
     path: 'home/eating-disorder/tasks/food-motivation',
   ),
   TypedGoRoute<EatingDisorderFoodChallengesRoute>(
     path: 'home/eating-disorder/tasks/food-challenges',
   ),
-  TypedGoRoute<EatingDisorderLikeOnMyselfRoute>(
-    path: 'home/eating-disorder/tasks/like-on-myself',
-  ),
-  TypedGoRoute<EatingDisorderFoodILikeRoute>(
-    path: 'home/eating-disorder/tasks/food-i-like',
-  ),
-  TypedGoRoute<EatingDisorderFoodAfraidOfRoute>(
-    path: 'home/eating-disorder/tasks/food-afraid-of',
-  ),
+  TypedGoRoute<EatingDisorderLikeOnMyselfRoute>(path: 'home/eating-disorder/tasks/like-on-myself'),
+  TypedGoRoute<EatingDisorderFoodILikeRoute>(path: 'home/eating-disorder/tasks/food-i-like'),
+  TypedGoRoute<EatingDisorderFoodAfraidOfRoute>(path: 'home/eating-disorder/tasks/food-afraid-of'),
 ];
 
 const _eatingDisorderTipsRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<EatingDisorderTipsRoute>(path: 'home/eating-disorder/tips'),
-  TypedGoRoute<EatingDisorderTipsFigureAppRoute>(
-    path: 'home/eating-disorder/tips/figure',
-  ),
-  TypedGoRoute<EatingDisorderTipsRemorseAppRoute>(
-    path: 'home/eating-disorder/tips/remorse',
-  ),
-  TypedGoRoute<EatingDisorderTipsOvereatAppRoute>(
-    path: 'home/eating-disorder/tips/overeat',
-  ),
-  TypedGoRoute<EatingDisorderTipsVomitAppRoute>(
-    path: 'home/eating-disorder/tips/vomit',
-  ),
-  TypedGoRoute<EatingDisorderTipsFailAppRoute>(
-    path: 'home/eating-disorder/tips/fail',
-  ),
-  TypedGoRoute<EatingDisorderTipsGeneralAppRoute>(
-    path: 'home/eating-disorder/tips/general',
-  ),
+  TypedGoRoute<EatingDisorderTipsFigureAppRoute>(path: 'home/eating-disorder/tips/figure'),
+  TypedGoRoute<EatingDisorderTipsRemorseAppRoute>(path: 'home/eating-disorder/tips/remorse'),
+  TypedGoRoute<EatingDisorderTipsOvereatAppRoute>(path: 'home/eating-disorder/tips/overeat'),
+  TypedGoRoute<EatingDisorderTipsVomitAppRoute>(path: 'home/eating-disorder/tips/vomit'),
+  TypedGoRoute<EatingDisorderTipsFailAppRoute>(path: 'home/eating-disorder/tips/fail'),
+  TypedGoRoute<EatingDisorderTipsGeneralAppRoute>(path: 'home/eating-disorder/tips/general'),
 ];
 
 const _myRecordsRoutes = <TypedGoRoute<GoRouteData>>[
@@ -262,14 +237,14 @@ const _myRecordsRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<MoodPickerRoute>(path: 'home/my-records/mood-picker'),
   TypedGoRoute<MoodRecordsRoute>(path: 'home/my-records/mood-records'),
   TypedGoRoute<SearchMoodEntryRoute>(path: 'home/my-records/search-mood-entry'),
-  TypedGoRoute<MoodEntryDetailRoute>(
-    path: 'home/my-records/mood-records/mood-entry',
-  ),
+  TypedGoRoute<MoodEntryDetailRoute>(path: 'home/my-records/mood-records/mood-entry'),
   TypedGoRoute<MyRecordsSleepTrackRoute>(path: 'home/my-records/sleep-track'),
   TypedGoRoute<MyChallengesRoute>(path: 'home/my-records/challenges'),
   TypedGoRoute<DbtRecordsRoute>(path: 'home/my-records/dbt'),
   TypedGoRoute<MyGoalsRoute>(path: 'home/my-records/goals'),
   TypedGoRoute<SmartGoalFormRoute>(path: 'home/my-records/goals/new'),
+  TypedGoRoute<RescuePackageRoute>(path: 'home/my-records/rescue-package'),
+  TypedGoRoute<EmotionDictionaryRoute>(path: 'home/my-records/emotion-dictionary'),
 
   // Diary
   TypedGoRoute<MyRecordsDiaryRecordsRoute>(path: 'home/my-records/diary'),
@@ -279,14 +254,10 @@ const _myRecordsRoutes = <TypedGoRoute<GoRouteData>>[
 
   // Journal
   TypedGoRoute<MyRecordsJournalRecordsRoute>(path: 'home/my-records/journal'),
-  TypedGoRoute<MyRecordsJournalDetailRoute>(
-    path: 'home/my-records/journal-detail',
-  ),
+  TypedGoRoute<MyRecordsJournalDetailRoute>(path: 'home/my-records/journal-detail'),
 
   // Food records
-  TypedGoRoute<MyRecordsFoodRecordsListRoute>(
-    path: 'home/my-records/food-records',
-  ),
+  TypedGoRoute<MyRecordsFoodRecordsListRoute>(path: 'home/my-records/food-records'),
   TypedGoRoute<MyRecordsFoodRecordsDetailMenuListRoute>(
     path: 'home/my-records/food-records/detail',
   ),
@@ -298,57 +269,42 @@ const _myRecordsRoutes = <TypedGoRoute<GoRouteData>>[
 const _myRecordsTestRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<TestListScreenRoute>(path: 'home/my-records/tests'),
   TypedGoRoute<TestScreenRoute>(path: 'home/my-records/tests/:testId'),
-  TypedGoRoute<TestDetailScreenRoute>(
-    path: 'home/my-records/tests/test-detail/:testId',
-  ),
-  TypedGoRoute<TestResultScreenRoute>(
-    path: 'home/my-records/test-result/:testId/:completedAt',
-  ),
+  TypedGoRoute<TestDetailScreenRoute>(path: 'home/my-records/tests/test-detail/:testId'),
+  TypedGoRoute<TestResultScreenRoute>(path: 'home/my-records/test-result/:testId/:completedAt'),
 ];
 
 const _bpdProgrammeRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<BpdLandingScreenRoute>(path: 'bpd-programme/landing'),
   TypedGoRoute<BpdProgrammeScreenRoute>(path: 'bpd-programme'),
   TypedGoRoute<BpdWeeksScreenRoute>(path: 'bpd-programme/weeks'),
-  TypedGoRoute<BpdWeekDetailScreenRoute>(
-    path: 'bpd-programme/week/:weekNumber',
-  ),
-  TypedGoRoute<Day1OnboardingScreenRoute>(
-    path: 'bpd-programme/day-onboarding',
-  ),
+  TypedGoRoute<BpdWeekDetailScreenRoute>(path: 'bpd-programme/week/:weekNumber'),
+  TypedGoRoute<Day1OnboardingScreenRoute>(path: 'bpd-programme/day-onboarding'),
   // Day content screens - Week 1 (SPOKO)
   TypedGoRoute<Week1Day2SpokoScreenRoute>(path: 'bpd-programme/week/1/day/2'),
   TypedGoRoute<Week1Day3PotravaScreenRoute>(path: 'bpd-programme/week/1/day/3'),
   TypedGoRoute<Week1Day4LatkyScreenRoute>(path: 'bpd-programme/week/1/day/4'),
   TypedGoRoute<Week1Day5KondiceScreenRoute>(path: 'bpd-programme/week/1/day/5'),
-  TypedGoRoute<Week1Day6OnemocneniScreenRoute>(
-    path: 'bpd-programme/week/1/day/6',
-  ),
-  TypedGoRoute<Week1Day7ReflexeScreenRoute>(
-    path: 'bpd-programme/week/1/day/7',
-  ),
+  TypedGoRoute<Week1Day6OnemocneniScreenRoute>(path: 'bpd-programme/week/1/day/6'),
+  TypedGoRoute<Week1Day7ReflexeScreenRoute>(path: 'bpd-programme/week/1/day/7'),
   // Day content screens - Week 2 (Mindfulness)
-  TypedGoRoute<Week2Day1MindfulnessIntroScreenRoute>(
-    path: 'bpd-programme/week/2/day/1',
-  ),
-  TypedGoRoute<Week2Day2WhatSkillsScreenRoute>(
-    path: 'bpd-programme/week/2/day/2',
-  ),
-  TypedGoRoute<Week2Day3HowSkillsScreenRoute>(
-    path: 'bpd-programme/week/2/day/3',
-  ),
-  TypedGoRoute<Week2Day4BreathingScreenRoute>(
-    path: 'bpd-programme/week/2/day/4',
-  ),
+  TypedGoRoute<Week2Day1MindfulnessIntroScreenRoute>(path: 'bpd-programme/week/2/day/1'),
+  TypedGoRoute<Week2Day2WhatSkillsScreenRoute>(path: 'bpd-programme/week/2/day/2'),
+  TypedGoRoute<Week2Day3HowSkillsScreenRoute>(path: 'bpd-programme/week/2/day/3'),
+  TypedGoRoute<Week2Day4BreathingScreenRoute>(path: 'bpd-programme/week/2/day/4'),
+  TypedGoRoute<Week2Day6TechniquesScreenRoute>(path: 'bpd-programme/week/2/day/6'),
+  TypedGoRoute<Week2Day7SummaryScreenRoute>(path: 'bpd-programme/week/2/day/7'),
+  // Day content screens - Week 3 (Emoční regulace)
+  TypedGoRoute<Week3Day1EmotionsScreenRoute>(path: 'bpd-programme/week/3/day/1'),
+  TypedGoRoute<Week3Day2DescribeScreenRoute>(path: 'bpd-programme/week/3/day/2'),
+  TypedGoRoute<Week3Day3CheckFactsScreenRoute>(path: 'bpd-programme/week/3/day/3'),
+  TypedGoRoute<Week3Day4OppositeActionScreenRoute>(path: 'bpd-programme/week/3/day/4'),
+  TypedGoRoute<Week3Day5SpokoRecallScreenRoute>(path: 'bpd-programme/week/3/day/5'),
+  TypedGoRoute<Week3Day7SummaryScreenRoute>(path: 'bpd-programme/week/3/day/7'),
+  TypedGoRoute<Week4Day1StressScreenRoute>(path: 'bpd-programme/week/4/day/1'),
+  TypedGoRoute<Week4Day2CrisisSkillsScreenRoute>(path: 'bpd-programme/week/4/day/2'),
+  TypedGoRoute<Week4Day4MindfulnessScreenRoute>(path: 'bpd-programme/week/4/day/4'),
+  TypedGoRoute<Week4Day5UznavamScreenRoute>(path: 'bpd-programme/week/4/day/5'),
+  TypedGoRoute<Week4Day7SummaryScreenRoute>(path: 'bpd-programme/week/4/day/7'),
   // Pause day (reusable for any week/day)
-  TypedGoRoute<DayPauseScreenRoute>(
-    path: 'bpd-programme/week/:weekNumber/day/:dayNumber/pause',
-  ),
-  // Week review/summary
-  TypedGoRoute<WeekReviewScreenRoute>(
-    path: 'bpd-programme/week/:weekNumber/review',
-  ),
-  // SMART technique
-  TypedGoRoute<SmartEducationScreenRoute>(path: 'bpd-programme/smart'),
-  TypedGoRoute<SmartGoalFormScreenRoute>(path: 'bpd-programme/smart/new-goal'),
+  TypedGoRoute<DayPauseScreenRoute>(path: 'bpd-programme/week/:weekNumber/day/:dayNumber/pause'),
 ];

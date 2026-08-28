@@ -4,7 +4,7 @@ import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/spoko_day/spoko_challenge_page.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/spoko_day/spoko_completion_page.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/spoko_day/spoko_day_data.dart';
-import 'package:nepanikar/screens/bpd_programme/weeks/week1/spoko_day/spoko_education_page.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week1/spoko_day/spoko_education_chat_page.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 
@@ -99,7 +99,7 @@ class _SpokoDayScreenState extends State<SpokoDayScreen> {
                 physics: const NeverScrollableScrollPhysics(),
                 onPageChanged: (page) => setState(() => _currentPage = page),
                 children: [
-                  SpokoEducationPage(data: widget.data, onNext: _nextPage),
+                  SpokoEducationChatPage(data: widget.data, onNext: _nextPage),
                   SpokoChallengePage(data: widget.data, onNext: _nextPage),
                   SpokoCompletionPage(data: widget.data, onComplete: _completeDay),
                 ],

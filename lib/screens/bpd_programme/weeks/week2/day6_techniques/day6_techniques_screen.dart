@@ -1,30 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/theme/colors.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week2/day6_techniques/day6_content.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/day_completion_page.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/day_flow_header.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/technique_menu_page.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 
-import 'package:nepanikar/screens/bpd_programme/weeks/week2/day6_techniques/intro_page.dart';
-import 'package:nepanikar/screens/bpd_programme/weeks/week2/day6_techniques/body_scan_page.dart';
-import 'package:nepanikar/screens/bpd_programme/weeks/week2/day6_techniques/mindful_walking_page.dart';
-import 'package:nepanikar/screens/bpd_programme/weeks/week2/day6_techniques/mindful_eating_page.dart';
-import 'package:nepanikar/screens/bpd_programme/weeks/week2/day6_techniques/mindful_listening_page.dart';
-import 'package:nepanikar/screens/bpd_programme/weeks/week2/day6_techniques/five_senses_page.dart';
-import 'package:nepanikar/screens/bpd_programme/weeks/week2/day6_techniques/completion_page.dart';
-
 part 'day6_techniques_screen.g.dart';
 
-@TypedGoRoute<Week2Day6TechniquesScreenRoute>(
-  path: '/bpd-programme/week/2/day/6',
-)
-class Week2Day6TechniquesScreenRoute extends GoRouteData
-    with $Week2Day6TechniquesScreenRoute {
+@TypedGoRoute<Week2Day6TechniquesScreenRoute>(path: '/bpd-programme/week/2/day/6')
+class Week2Day6TechniquesScreenRoute extends GoRouteData with $Week2Day6TechniquesScreenRoute {
   const Week2Day6TechniquesScreenRoute();
 
   @override
   Widget build(BuildContext context, _) => const Week2Day6TechniquesScreen();
 }
 
+/// Week 2, Day 6 — mindfulness techniques offered as a menu: pick one to try
+/// today, keep the rest for later or save them into the rescue package.
+/// Source: §6.
 class Week2Day6TechniquesScreen extends StatefulWidget {
   const Week2Day6TechniquesScreen({super.key});
 
@@ -35,7 +31,7 @@ class Week2Day6TechniquesScreen extends StatefulWidget {
 class _Week2Day6TechniquesScreenState extends State<Week2Day6TechniquesScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
-  final int _totalPages = 7;
+  static const int _totalPages = 2;
 
   BpdDaysDao get _bpdDaysDao => registry.get<BpdDaysDao>();
 
@@ -54,11 +50,16 @@ class _Week2Day6TechniquesScreenState extends State<Week2Day6TechniquesScreen> {
     }
   }
 
+  void _goToPreviousPage() {
+    _pageController.previousPage(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+  }
+
   Future<void> _completeDay() async {
-    await _bpdDaysDao.markDayCompleted(2, 6); // Week 2, Day 6
-    if (mounted) {
-      context.pop();
-    }
+    await _bpdDaysDao.markDayCompleted(2, 6);
+    if (mounted) context.pop();
   }
 
   @override
@@ -73,98 +74,48 @@ class _Week2Day6TechniquesScreenState extends State<Week2Day6TechniquesScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            // Header with progress
-            _buildHeader(primaryColor, isDarkMode),
-
-            // Page content
+            DayFlowHeader(
+              currentPage: _currentPage,
+              totalPages: _totalPages,
+              onBack: _goToPreviousPage,
+              onClose: () => context.pop(),
+            ),
             Expanded(
               child: PageView(
                 controller: _pageController,
                 physics: const NeverScrollableScrollPhysics(),
-                onPageChanged: (page) {
-                  setState(() {
-                    _currentPage = page;
-                  });
-                },
+                onPageChanged: (page) => setState(() => _currentPage = page),
                 children: [
-                  IntroPage(onNext: _goToNextPage),
-                  BodyScanPage(onNext: _goToNextPage),
-                  MindfulWalkingPage(onNext: _goToNextPage),
-                  MindfulEatingPage(onNext: _goToNextPage),
-                  MindfulListeningPage(onNext: _goToNextPage),
-                  FiveSensesPage(onNext: _goToNextPage),
-                  CompletionPage(onComplete: _completeDay),
+                  TechniqueMenuPage(
+                    title: 'Techniky všímavosti',
+                    dayLabel: 'Den 6 • Týden 2',
+                    leadParagraphs: const ['Dnes rozšíříme naši znalost všímavých technik.'],
+                    pickLead:
+                        'Můžeš si vybrat jedno cvičení z nabídky, které dnes '
+                        'vyzkoušíš. Zbytek si můžeš nechat na jindy.',
+                    techniques: week2Day6Techniques,
+                    sourceLabel: 'Techniky všímavosti',
+                    closingNote:
+                        'Cvičení, které si chceš nechat po ruce, si ulož do '
+                        'záchranného balíčku.',
+                    onNext: _goToNextPage,
+                  ),
+                  DayCompletionPage(
+                    dayNumber: 6,
+                    summary:
+                        'Máš v rukou pět technik všímavosti. Nemusíš zvládnout '
+                        'všechny – stačí ta jedna, která ti dnes sedla.',
+                    nextDay: const NextDayTeaser(
+                      title: 'Shrnutí týdne',
+                      description: 'Zítra se ohlédneme za celým týdnem všímavosti.',
+                    ),
+                    onComplete: _completeDay,
+                  ),
                 ],
               ),
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildHeader(Color primaryColor, bool isDarkMode) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-      child: Row(
-        children: [
-          // Back button
-          IconButton(
-            icon: Icon(
-              _currentPage == 0 ? Icons.close : Icons.arrow_back,
-              color: isDarkMode ? Colors.white : NepanikarColors.dark,
-              size: 26,
-            ),
-            onPressed: () {
-              if (_currentPage == 0) {
-                context.pop();
-              } else {
-                _pageController.previousPage(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                );
-              }
-            },
-          ),
-
-          // Progress indicator
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                children: List.generate(_totalPages, (index) {
-                  return Expanded(
-                    child: Container(
-                      height: 4,
-                      margin: const EdgeInsets.symmetric(horizontal: 2),
-                      decoration: BoxDecoration(
-                        color: index <= _currentPage
-                            ? primaryColor
-                            : (isDarkMode
-                                  ? Colors.white.withOpacity(0.2)
-                                  : Colors.grey.shade300),
-                        borderRadius: BorderRadius.circular(2),
-                      ),
-                    ),
-                  );
-                }),
-              ),
-            ),
-          ),
-
-          // Page counter
-          Padding(
-            padding: const EdgeInsets.only(right: 8),
-            child: Text(
-              '${_currentPage + 1}/$_totalPages',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.7),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

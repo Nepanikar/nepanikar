@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/day7_reflection/completion_page.dart';
-import 'package:nepanikar/screens/bpd_programme/weeks/week1/day7_reflection/recall_page.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week1/day7_reflection/recall_chat_page.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/day7_reflection/reflection_page.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/reflection_autosave.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
-import 'package:nepanikar/services/db/bpd/bpd_reflection_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 
 part 'day7_reflection_screen.g.dart';
@@ -27,7 +27,8 @@ class Week1Day7ReflectionScreen extends StatefulWidget {
   State<Week1Day7ReflectionScreen> createState() => _Week1Day7ReflectionScreenState();
 }
 
-class _Week1Day7ReflectionScreenState extends State<Week1Day7ReflectionScreen> {
+class _Week1Day7ReflectionScreenState extends State<Week1Day7ReflectionScreen>
+    with ReflectionAutosave<Week1Day7ReflectionScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
   static const int _totalPages = 3;
@@ -36,25 +37,17 @@ class _Week1Day7ReflectionScreenState extends State<Week1Day7ReflectionScreen> {
   final _controllers = List.generate(4, (_) => TextEditingController());
 
   BpdDaysDao get _bpdDaysDao => registry.get<BpdDaysDao>();
-  BpdReflectionDao get _reflectionDao => registry.get<BpdReflectionDao>();
 
   @override
   void initState() {
     super.initState();
-    _loadSaved();
-  }
-
-  Future<void> _loadSaved() async {
-    final saved = await _reflectionDao.getReflection(weekNumber: _weekNumber);
-    if (!mounted || saved.isEmpty) return;
-    for (var i = 0; i < _controllers.length && i < saved.length; i++) {
-      _controllers[i].text = saved[i];
-    }
+    initReflectionAutosave(weekNumber: _weekNumber, controllers: _controllers);
   }
 
   @override
   void dispose() {
     _pageController.dispose();
+    // Runs before the mixin's dispose, which only flushes cached strings.
     for (final c in _controllers) {
       c.dispose();
     }
@@ -71,10 +64,7 @@ class _Week1Day7ReflectionScreenState extends State<Week1Day7ReflectionScreen> {
   }
 
   Future<void> _completeWeek() async {
-    await _reflectionDao.saveReflection(
-      weekNumber: _weekNumber,
-      answers: _controllers.map((c) => c.text.trim()).toList(),
-    );
+    await saveReflectionNow();
     await _bpdDaysDao.markDayCompleted(_weekNumber, 7);
     if (mounted) context.pop();
   }
@@ -98,7 +88,7 @@ class _Week1Day7ReflectionScreenState extends State<Week1Day7ReflectionScreen> {
                 physics: const NeverScrollableScrollPhysics(),
                 onPageChanged: (page) => setState(() => _currentPage = page),
                 children: [
-                  Day7RecallPage(onNext: _nextPage),
+                  Day7RecallChatPage(onNext: _nextPage),
                   Day7ReflectionPage(controllers: _controllers, onNext: _nextPage),
                   Day7CompletionPage(onComplete: _completeWeek),
                 ],
