@@ -127,7 +127,7 @@ class _DrawnCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: isDarkMode ? Colors.white.withOpacity(0.05) : Colors.white,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: primaryColor, width: 2),
+        border: Border.all(color: isDarkMode ? Colors.white54 : primaryColor, width: 2),
       ),
       child: Column(
         children: [
@@ -143,12 +143,12 @@ class _DrawnCard extends StatelessWidget {
                 fontSize: 11,
                 fontWeight: FontWeight.w900,
                 letterSpacing: 0.6,
-                color: primaryColor,
+                color: isDarkMode ? Colors.white : primaryColor,
               ),
             ),
           ),
           const SizedBox(height: 14),
-          Icon(technique.icon, size: 38, color: primaryColor),
+          Icon(technique.icon, size: 38, color: isDarkMode ? Colors.white : primaryColor),
           const SizedBox(height: 10),
           Text(
             technique.title,

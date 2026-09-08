@@ -23,13 +23,17 @@ class ExternalLinkButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
+    // On the dark scaffold the primary purple sits too close to the background,
+    // so the label and border have to lighten instead.
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final foreground = isDarkMode ? Colors.white : primaryColor;
 
     return OutlinedButton(
       onPressed: () => launchUrLink(url, launchMode: LaunchMode.externalApplication),
       style: OutlinedButton.styleFrom(
-        foregroundColor: primaryColor,
+        foregroundColor: foreground,
         minimumSize: const Size(double.infinity, 48),
-        side: BorderSide(color: primaryColor.withOpacity(0.5), width: 1.5),
+        side: BorderSide(color: foreground.withOpacity(0.5), width: 1.5),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
       child: Row(
@@ -63,6 +67,8 @@ class ExternalLinkText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final foreground = isDarkMode ? Colors.white : primaryColor;
 
     return InkWell(
       onTap: () => launchUrLink(url, launchMode: LaunchMode.externalApplication),
@@ -71,7 +77,7 @@ class ExternalLinkText extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 6),
         child: Row(
           children: [
-            Icon(icon, size: 18, color: primaryColor),
+            Icon(icon, size: 18, color: foreground),
             const SizedBox(width: 8),
             Expanded(
               child: Text(
@@ -79,9 +85,9 @@ class ExternalLinkText extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
-                  color: primaryColor,
+                  color: foreground,
                   decoration: TextDecoration.underline,
-                  decorationColor: primaryColor.withOpacity(0.4),
+                  decorationColor: foreground.withOpacity(0.4),
                 ),
               ),
             ),

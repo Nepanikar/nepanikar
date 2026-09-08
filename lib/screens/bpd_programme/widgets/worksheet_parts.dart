@@ -47,7 +47,11 @@ class WorksheetNumberedSection extends StatelessWidget {
               ),
               child: Text(
                 '$number',
-                style: TextStyle(fontSize: 13, fontWeight: FontWeight.w800, color: primaryColor),
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w800,
+                  color: isDarkMode ? Colors.white : primaryColor,
+                ),
               ),
             ),
             const SizedBox(width: 10),
@@ -287,7 +291,11 @@ class WorksheetExampleCard extends StatelessWidget {
               padding: const EdgeInsets.all(14),
               child: Row(
                 children: [
-                  Icon(Icons.lightbulb_outline, size: 18, color: primaryColor),
+                  Icon(
+                    Icons.lightbulb_outline,
+                    size: 18,
+                    color: isDarkMode ? Colors.white : primaryColor,
+                  ),
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
@@ -295,14 +303,14 @@ class WorksheetExampleCard extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w700,
-                        color: primaryColor,
+                        color: isDarkMode ? Colors.white : primaryColor,
                       ),
                     ),
                   ),
                   Icon(
                     isOpen ? Icons.expand_less : Icons.expand_more,
                     size: 20,
-                    color: primaryColor,
+                    color: isDarkMode ? Colors.white : primaryColor,
                   ),
                 ],
               ),

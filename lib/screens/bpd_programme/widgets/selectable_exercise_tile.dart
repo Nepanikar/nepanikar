@@ -56,7 +56,7 @@ class SelectableExerciseTile extends StatelessWidget {
                   Row(
                     children: [
                       if (icon != null) ...[
-                        Icon(icon, size: 17, color: primaryColor),
+                        Icon(icon, size: 17, color: isDarkMode ? Colors.white : primaryColor),
                         const SizedBox(width: 7),
                       ],
                       Expanded(

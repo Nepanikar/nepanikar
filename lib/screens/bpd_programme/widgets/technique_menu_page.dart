@@ -192,10 +192,14 @@ class _TechniqueCard extends StatelessWidget {
               width: 44,
               height: 44,
               decoration: BoxDecoration(
-                color: primaryColor.withOpacity(0.12),
+                color: isDarkMode ? Colors.white.withOpacity(0.12) : primaryColor.withOpacity(0.12),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Icon(technique.icon, color: primaryColor, size: 22),
+              child: Icon(
+                technique.icon,
+                color: isDarkMode ? Colors.white : primaryColor,
+                size: 22,
+              ),
             ),
             const SizedBox(width: 14),
             Expanded(
@@ -290,10 +294,16 @@ class _TechniqueDetailSheet extends StatelessWidget {
                     width: 50,
                     height: 50,
                     decoration: BoxDecoration(
-                      color: primaryColor.withOpacity(0.15),
+                      color: isDarkMode
+                          ? Colors.white.withOpacity(0.15)
+                          : primaryColor.withOpacity(0.15),
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: Icon(technique.icon, color: primaryColor, size: 26),
+                    child: Icon(
+                      technique.icon,
+                      color: isDarkMode ? Colors.white : primaryColor,
+                      size: 26,
+                    ),
                   ),
                   const SizedBox(width: 14),
                   Expanded(

@@ -86,10 +86,10 @@ class SectionHeader extends StatelessWidget {
           width: 48,
           height: 48,
           decoration: BoxDecoration(
-            color: primaryColor.withOpacity(0.15),
+            color: isDarkMode ? Colors.white.withOpacity(0.15) : primaryColor.withOpacity(0.15),
             borderRadius: BorderRadius.circular(12),
           ),
-          child: Icon(icon, color: primaryColor, size: 26),
+          child: Icon(icon, color: isDarkMode ? Colors.white : primaryColor, size: 26),
         ),
         const SizedBox(width: 14),
         Expanded(
@@ -105,7 +105,10 @@ class SectionHeader extends StatelessWidget {
                 ),
               ),
               if (subtitle != null)
-                Text(subtitle!, style: TextStyle(fontSize: 14, color: primaryColor)),
+                Text(
+                  subtitle!,
+                  style: TextStyle(fontSize: 14, color: isDarkMode ? Colors.white70 : primaryColor),
+                ),
             ],
           ),
         ),
@@ -278,7 +281,9 @@ class InfoBox extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final primaryColor = Theme.of(context).primaryColor;
-    final effectiveColor = color ?? primaryColor;
+    // An explicit colour from the caller is deliberate; the default accent has
+    // to lighten, because the dark scaffold is built from the primary colour.
+    final effectiveColor = color ?? (isDarkMode ? Colors.white : primaryColor);
 
     return Container(
       width: double.infinity,

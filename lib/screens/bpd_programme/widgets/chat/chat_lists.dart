@@ -70,10 +70,16 @@ class ChatFeatureList extends StatelessWidget {
                       width: 32,
                       height: 32,
                       decoration: BoxDecoration(
-                        color: primaryColor.withOpacity(0.12),
+                        color: isDarkMode
+                            ? Colors.white.withOpacity(0.12)
+                            : primaryColor.withOpacity(0.12),
                         borderRadius: BorderRadius.circular(9),
                       ),
-                      child: Icon(item.icon, size: 17, color: primaryColor),
+                      child: Icon(
+                        item.icon,
+                        size: 17,
+                        color: isDarkMode ? Colors.white : primaryColor,
+                      ),
                     ),
                     const SizedBox(width: 10),
                     Expanded(

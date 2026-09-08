@@ -131,11 +131,19 @@ class DayPreviewSheet extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(Icons.calendar_today_outlined, size: 14, color: primaryColor),
+              Icon(
+                Icons.calendar_today_outlined,
+                size: 14,
+                color: isDarkMode ? Colors.white : primaryColor,
+              ),
               const SizedBox(width: 6),
               Text(
                 'Den ${data.dayNumber}',
-                style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: primaryColor),
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
+                  color: isDarkMode ? Colors.white : primaryColor,
+                ),
               ),
             ],
           ),

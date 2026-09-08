@@ -46,6 +46,9 @@ class DayCompletionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final primaryColor = Theme.of(context).primaryColor;
+    // The dark scaffold is itself built from the primary colour, so anything
+    // tinted with it disappears; the accents have to lighten instead.
+    final accent = isDarkMode ? Colors.white : primaryColor;
 
     return DayPageBase(
       buttonText: buttonText,
@@ -77,7 +80,7 @@ class DayCompletionPage extends StatelessWidget {
           Text(
             'Den $dayNumber dokončen',
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: primaryColor),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: accent),
           ),
           const SizedBox(height: 24),
           Text(
@@ -96,21 +99,17 @@ class DayCompletionPage extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: primaryColor.withOpacity(0.1),
+                color: accent.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: primaryColor.withOpacity(0.3)),
+                border: Border.all(color: accent.withOpacity(0.3)),
               ),
               child: Column(
                 children: [
-                  Icon(Icons.arrow_forward, color: primaryColor, size: 28),
+                  Icon(Icons.arrow_forward, color: accent, size: 28),
                   const SizedBox(height: 12),
                   Text(
                     'Zítra',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: primaryColor,
-                    ),
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: accent),
                   ),
                   const SizedBox(height: 4),
                   Text(

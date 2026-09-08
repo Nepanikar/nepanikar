@@ -47,15 +47,17 @@ class _RescueSaveButtonState extends State<RescueSaveButton> {
   @override
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final foreground = isDarkMode ? Colors.white : primaryColor;
     final isSaved = _isSaved ?? false;
 
     return OutlinedButton(
       onPressed: _isSaved == null ? null : _toggle,
       style: OutlinedButton.styleFrom(
-        foregroundColor: primaryColor,
-        backgroundColor: isSaved ? primaryColor.withOpacity(0.1) : null,
+        foregroundColor: foreground,
+        backgroundColor: isSaved ? foreground.withOpacity(0.1) : null,
         minimumSize: const Size(double.infinity, 48),
-        side: BorderSide(color: primaryColor.withOpacity(0.5), width: 1.5),
+        side: BorderSide(color: foreground.withOpacity(0.5), width: 1.5),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
       child: Row(

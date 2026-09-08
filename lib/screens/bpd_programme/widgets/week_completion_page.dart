@@ -28,6 +28,8 @@ class WeekCompletionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final primaryColor = Theme.of(context).primaryColor;
+    // The dark scaffold is built from the primary colour, so accents lighten.
+    final accent = isDarkMode ? Colors.white : primaryColor;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -45,10 +47,10 @@ class WeekCompletionPage extends StatelessWidget {
                           width: 120,
                           height: 120,
                           decoration: BoxDecoration(
-                            color: primaryColor.withOpacity(0.15),
+                            color: accent.withOpacity(0.15),
                             shape: BoxShape.circle,
                           ),
-                          child: Icon(Icons.celebration, size: 58, color: primaryColor),
+                          child: Icon(Icons.celebration, size: 58, color: accent),
                         ),
                         Container(
                           width: 38,
@@ -80,11 +82,7 @@ class WeekCompletionPage extends StatelessWidget {
                     const SizedBox(height: 8),
                     Text(
                       heading,
-                      style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                        color: primaryColor,
-                      ),
+                      style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: accent),
                     ),
                     const SizedBox(height: 16),
                     Text(

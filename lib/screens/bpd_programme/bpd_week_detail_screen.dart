@@ -964,9 +964,9 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
         child: Container(
           decoration: BoxDecoration(
             color: isCompleted
-                ? primaryColor.withOpacity(0.1)
+                ? (isDarkMode ? Colors.white.withOpacity(0.07) : primaryColor.withOpacity(0.1))
                 : (isActive
-                      ? Colors.white
+                      ? (isDarkMode ? Colors.white.withOpacity(0.12) : Colors.white)
                       : (isDarkMode ? Colors.white.withOpacity(0.05) : Colors.white)),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
@@ -1006,9 +1006,7 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
                               fontWeight: FontWeight.w600,
                               color: isLocked
                                   ? (isDarkMode ? Colors.white38 : Colors.grey.shade400)
-                                  : (isCompleted
-                                        ? primaryColor
-                                        : (isDarkMode ? Colors.white : primaryColor)),
+                                  : (isDarkMode ? Colors.white : primaryColor),
                             ),
                           ),
                         ],
@@ -1032,7 +1030,7 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
                       child: Icon(
                         isCompleted ? Icons.check : (isActive ? Icons.play_arrow : Icons.lock),
                         color: isCompleted
-                            ? primaryColor
+                            ? (isDarkMode ? Colors.white : primaryColor)
                             : (isActive
                                   ? Colors.white
                                   : (isDarkMode ? Colors.white38 : Colors.grey.shade400)),
