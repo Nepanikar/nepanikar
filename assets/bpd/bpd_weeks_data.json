@@ -26,20 +26,20 @@
     },
     {
       "weekNumber": 5,
-      "titleKey": "Mezilidské vztahy",
-      "descriptionKey": "week_5_interpersonal_effectiveness_description",
+      "titleKey": "Impulzivní chování",
+      "descriptionKey": "week_5_impulsive_behaviour_description",
       "iconPath": null
     },
     {
       "weekNumber": 6,
-      "titleKey": "Sebepojetí",
-      "descriptionKey": "week_6_self_concept_description",
+      "titleKey": "Mezilidské vztahy a sebepojetí",
+      "descriptionKey": "week_6_relationships_and_self_esteem_description",
       "iconPath": null
     },
     {
       "weekNumber": 7,
-      "titleKey": "Shrnutí programu",
-      "descriptionKey": "week_7_review_description",
+      "titleKey": "Závěr programu",
+      "descriptionKey": "week_7_conclusion_description",
       "iconPath": null
     }
   ]

@@ -11,12 +11,17 @@ class WeekCompletionPage extends StatelessWidget {
     required this.onComplete,
     this.heading = 'Gratulujeme!',
     this.buttonText = 'Dokončit týden',
+    this.eyebrow,
   });
 
   final int weekNumber;
   final String praise;
   final String heading;
   final String buttonText;
+
+  /// Small label above the heading. Defaults to "TÝDEN n DOKONČEN"; Week 7
+  /// overrides it because that screen ends the whole programme, not a week.
+  final String? eyebrow;
   final VoidCallback onComplete;
 
   @override
@@ -64,7 +69,7 @@ class WeekCompletionPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 24),
                     Text(
-                      'TÝDEN $weekNumber DOKONČEN',
+                      eyebrow ?? 'TÝDEN $weekNumber DOKONČEN',
                       style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,

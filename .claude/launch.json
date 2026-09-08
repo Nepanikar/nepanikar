@@ -4,20 +4,50 @@
     {
       "name": "week1-mockups",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8099", "--directory", ".claude/design/week1/mockups"],
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8099",
+        "--directory",
+        ".claude/design/week1/mockups"
+      ],
       "port": 8099
     },
     {
       "name": "week2-mockups",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8098", "--directory", ".claude/design/week2/mockups"],
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8098",
+        "--directory",
+        ".claude/design/week2/mockups"
+      ],
       "port": 8098
     },
     {
       "name": "week4-mockups",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8097", "--directory", ".claude/design/week4/mockups"],
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8097",
+        "--directory",
+        ".claude/design/week4/mockups"
+      ],
       "port": 8097
+    },
+    {
+      "name": "week5-mockups",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8096",
+        "--directory",
+        ".claude/design/week5/mockups"
+      ],
+      "port": 8096
     }
   ]
 }

@@ -25,6 +25,19 @@ import 'package:nepanikar/screens/bpd_programme/weeks/week4/day2_crisis_skills/d
 import 'package:nepanikar/screens/bpd_programme/weeks/week4/day4_mindfulness_stress/day4_mindfulness_stress_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week4/day5_uznavam/day5_uznavam_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week4/day7_summary/day7_summary_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week5/day1_impulsivity/day1_impulsivity_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week5/day2_life_threatening/day2_life_threatening_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week5/day4_prevention/day4_prevention_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week5/day5_mindfulness/day5_mindfulness_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week5/day7_summary/day7_summary_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week6/day1_relationships/day1_relationships_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week6/day2_communication/day2_communication_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week6/day3_je_vyzva/day3_je_vyzva_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week6/day5_self_esteem/day5_self_esteem_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week6/day7_summary/day7_summary_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week7/day1_appreciation/day1_appreciation_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week7/day7_conclusion/day7_conclusion_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week7/recap_days/week7_recap_day_screen.dart';
 import 'package:nepanikar/screens/home/my_records/dbt/dbt_records_screen.dart';
 import 'package:nepanikar/services/db/bpd/bpd_day_models.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
@@ -36,7 +49,7 @@ part 'bpd_week_detail_screen.g.dart';
 /// Weeks that already have implemented day content. The weeks skill tree
 /// unlocks only these; the rest stay locked until their content is built
 /// (keep in sync with `_weekDaysContent` below).
-const Set<int> kImplementedBpdWeeks = {1, 2, 3, 4};
+const Set<int> kImplementedBpdWeeks = {1, 2, 3, 4, 5, 6, 7};
 
 /// Route type for different day content screens
 enum _DayRouteType {
@@ -69,6 +82,26 @@ enum _DayRouteType {
   week4Day4Mindfulness,
   week4Day5Uznavam,
   week4Day7Summary,
+  // Week 5 - Impulzivní chování
+  week5Day1Impulsivity,
+  week5Day2LifeThreatening,
+  week5Day4Prevention,
+  week5Day5Mindfulness,
+  week5Day7Summary,
+  // Week 6 - Mezilidské vztahy a sebepojetí
+  week6Day1Relationships,
+  week6Day2Communication,
+  week6Day3JeVyzva,
+  week6Day5SelfEsteem,
+  week6Day7Summary,
+  // Week 7 - Závěr programu
+  week7Day1Appreciation,
+  week7Day2Mindfulness,
+  week7Day3Emotions,
+  week7Day4Distress,
+  week7Day5Impulsivity,
+  week7Day6Relationships,
+  week7Day7Conclusion,
 }
 
 @TypedGoRoute<BpdWeekDetailScreenRoute>(path: '/bpd-programme/week/:weekNumber')
@@ -332,6 +365,203 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
         routeType: _DayRouteType.week4Day7Summary,
       ),
     ],
+    5: [
+      const _DayContentData(
+        title: 'Edukace o impulzivitě',
+        description:
+            'Proč jednáme rychle a bez rozmyslu — a co s tím. Rozebereš si jednu '
+            'svoji situaci krok za krokem řetězovou analýzou.',
+        estimatedTime: '20-25 min',
+        activityType: 'Edukace + Cvičení',
+        routeType: _DayRouteType.week5Day1Impulsivity,
+      ),
+      const _DayContentData(
+        title: 'Život ohrožující chování',
+        // The day is voluntary and the source says so first; the list entry
+        // has to say it too, because this is read before the warning.
+        description:
+            'Citlivé téma, dnešek je dobrovolný. Technika STOP a vlastní seznam '
+            'toho, co udělat místo ublížení si.',
+        estimatedTime: '15 min',
+        activityType: 'Edukace + Technika',
+        routeType: _DayRouteType.week5Day2LifeThreatening,
+      ),
+      const _DayContentData(
+        title: 'Pauza',
+        description:
+            'Po včerejším dni může být přirozené cítit únavu. Dovol si zpomalit '
+            'a postarat se o sebe s laskavostí.',
+        estimatedTime: '2 min',
+        activityType: 'Odpočinek',
+        routeType: _DayRouteType.pause,
+      ),
+      const _DayContentData(
+        title: 'Plánování a prevence',
+        description:
+            'Vlastní plán pro chvíle, kdy přijde silné nutkání — spouštěče, '
+            'bezpečnostní kroky, kontakty a každodenní péče.',
+        estimatedTime: '15-20 min',
+        activityType: 'Cvičení',
+        routeType: _DayRouteType.week5Day4Prevention,
+      ),
+      const _DayContentData(
+        title: 'Všímavost',
+        description:
+            'Jak všímavost pomáhá zastavit se dřív, než impulz převezme řízení. '
+            'Na konci si techniku vylosuješ nebo vybereš.',
+        estimatedTime: '10 min',
+        activityType: 'Edukace + Cvičení',
+        routeType: _DayRouteType.week5Day5Mindfulness,
+      ),
+      const _DayContentData(
+        title: 'Pauza',
+        description: 'Dnešek bude dnem odpočinku. I pauza je součástí cesty vpřed.',
+        estimatedTime: '2 min',
+        activityType: 'Odpočinek',
+        routeType: _DayRouteType.pause,
+      ),
+      const _DayContentData(
+        title: 'Shrnutí týdne',
+        description:
+            'Uzavíráme pátý týden. Zamyslíš se nad tím, co ti nejvíc dalo, co se '
+            'ti podařilo použít a kde se dovednost nabídne dál.',
+        estimatedTime: '5-10 min',
+        activityType: 'Reflexe',
+        routeType: _DayRouteType.week5Day7Summary,
+      ),
+    ],
+    6: [
+      const _DayContentData(
+        title: 'Edukace o vztazích',
+        description:
+            'Proč jsou vztahy těžké a jaké mýty nám v nich brání. Dvacet čtyři '
+            'přesvědčení, která si zkusíš zpochybnit vlastními slovy.',
+        estimatedTime: '15-20 min',
+        activityType: 'Edukace + Cvičení',
+        routeType: _DayRouteType.week6Day1Relationships,
+      ),
+      const _DayContentData(
+        title: 'Dovednosti pro komunikaci s druhými',
+        description:
+            'PSANÍČKo — sedm kroků, jak požádat o svoje nebo odmítnout tak, aby '
+            'tě druhý slyšel. Na konci si to zkusíš na vlastní situaci.',
+        estimatedTime: '15-20 min',
+        activityType: 'Edukace + Cvičení',
+        routeType: _DayRouteType.week6Day2Communication,
+      ),
+      // The source gives this day no title (it starts at a bare "3."), so the
+      // name here is ours — WEEK6_SCREEN_PLAN.md → OQ-4.
+      const _DayContentData(
+        title: 'Je VýZVa a všímavost ve vztazích',
+        description:
+            'Jak zůstat laskavý/á, pozorný/á a chápavý/á i ve chvíli, kdy jsi '
+            'rozrušený/á. Na konci si vybereš všímavé cvičení.',
+        estimatedTime: '10-15 min',
+        activityType: 'Edukace + Cvičení',
+        routeType: _DayRouteType.week6Day3JeVyzva,
+      ),
+      const _DayContentData(
+        title: 'Pauza',
+        description:
+            'Dnes program vynecháme. Máš za sebou skvělý pokrok a zasloužíš si '
+            'chvilku odpočinku.',
+        estimatedTime: '2 min',
+        activityType: 'Odpočinek',
+        routeType: _DayRouteType.pause,
+      ),
+      const _DayContentData(
+        title: 'Sebeúcta',
+        description:
+            'neZOUFej — jak chránit své hranice bez zbytečných omluv. Zkusíš to '
+            'na situaci, kdy na tebe někdo tlačí nebo tě kritizuje.',
+        estimatedTime: '15-20 min',
+        activityType: 'Edukace + Cvičení',
+        routeType: _DayRouteType.week6Day5SelfEsteem,
+      ),
+      const _DayContentData(
+        title: 'Pauza',
+        description:
+            'Dnes si dopřej volno. Zasloužíš si vypnout a nechat všechno, co se '
+            'Ti povedlo, trochu doznít.',
+        estimatedTime: '2 min',
+        activityType: 'Odpočinek',
+        routeType: _DayRouteType.pause,
+      ),
+      const _DayContentData(
+        title: 'Shrnutí týdne',
+        description:
+            'Uzavíráme šestý týden. Zamyslíš se nad tím, co ti nejvíc dalo, co '
+            'se ti podařilo použít a kde se dovednost nabídne dál.',
+        estimatedTime: '5-10 min',
+        activityType: 'Reflexe',
+        routeType: _DayRouteType.week6Day7Summary,
+      ),
+    ],
+    // Week 7 is the only week with no rest day - every one of its seven days
+    // has content, and the last one ends the whole programme.
+    7: [
+      const _DayContentData(
+        title: 'Ocenění',
+        description:
+            'Napíšeš si, na co jsi pyšný/á, a vrátíš se ke SMART cílům, které '
+            'sis dal/a v prvním týdnu.',
+        estimatedTime: '15-20 min',
+        activityType: 'Reflexe',
+        routeType: _DayRouteType.week7Day1Appreciation,
+      ),
+      const _DayContentData(
+        title: 'Všímavost',
+        description:
+            'Vybereš si všímavé cvičení, které ti během programu nejvíc sedlo, '
+            'a zopakuješ si ho.',
+        estimatedTime: '10 min',
+        activityType: 'Cvičení',
+        routeType: _DayRouteType.week7Day2Mindfulness,
+      ),
+      const _DayContentData(
+        title: 'Emoční regulace',
+        description:
+            'Ohlédnutí za prací s emocemi — a výběr toho, co si chceš '
+            'procvičit znovu.',
+        estimatedTime: '10 min',
+        activityType: 'Shrnutí + Cvičení',
+        routeType: _DayRouteType.week7Day3Emotions,
+      ),
+      const _DayContentData(
+        title: 'Snášení tísně',
+        description:
+            'STOP, TIPS a UZNÁVÁM — připomeneš si, co ti v krizi fungovalo '
+            'nejlépe.',
+        estimatedTime: '10 min',
+        activityType: 'Shrnutí + Cvičení',
+        routeType: _DayRouteType.week7Day4Distress,
+      ),
+      const _DayContentData(
+        title: 'Impulzivita',
+        description:
+            'Řetězová analýza a STOP — co ti pomohlo zastavit se dřív, než '
+            'zareagoval impulz.',
+        estimatedTime: '10 min',
+        activityType: 'Shrnutí + Cvičení',
+        routeType: _DayRouteType.week7Day5Impulsivity,
+      ),
+      const _DayContentData(
+        title: 'Mezilidské vztahy a sebeúcta',
+        description: 'PSANÍČKo, Je VýZVa a neZOUFej — poslední ohlédnutí před závěrem.',
+        estimatedTime: '10 min',
+        activityType: 'Shrnutí + Cvičení',
+        routeType: _DayRouteType.week7Day6Relationships,
+      ),
+      const _DayContentData(
+        title: 'Shrnutí a ohlédnutí',
+        description:
+            'Poslední den programu. Vybereš si tři dovednosti, které si '
+            'odnášíš do života, a uzavřeš celou cestu.',
+        estimatedTime: '15-20 min',
+        activityType: 'Reflexe',
+        routeType: _DayRouteType.week7Day7Conclusion,
+      ),
+    ],
   };
 
   @override
@@ -517,6 +747,74 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
             });
           case _DayRouteType.week4Day7Summary:
             const Week4Day7SummaryScreenRoute().push(context).then((_) {
+              _loadDaysProgress();
+            });
+          case _DayRouteType.week5Day1Impulsivity:
+            const Week5Day1ImpulsivityScreenRoute().push(context).then((_) {
+              _loadDaysProgress();
+            });
+          case _DayRouteType.week5Day2LifeThreatening:
+            const Week5Day2LifeThreateningScreenRoute().push(context).then((_) {
+              _loadDaysProgress();
+            });
+          case _DayRouteType.week5Day4Prevention:
+            const Week5Day4PreventionScreenRoute().push(context).then((_) {
+              _loadDaysProgress();
+            });
+          case _DayRouteType.week5Day5Mindfulness:
+            const Week5Day5MindfulnessScreenRoute().push(context).then((_) {
+              _loadDaysProgress();
+            });
+          case _DayRouteType.week5Day7Summary:
+            const Week5Day7SummaryScreenRoute().push(context).then((_) {
+              _loadDaysProgress();
+            });
+          case _DayRouteType.week6Day1Relationships:
+            const Week6Day1RelationshipsScreenRoute().push(context).then((_) {
+              _loadDaysProgress();
+            });
+          case _DayRouteType.week6Day2Communication:
+            const Week6Day2CommunicationScreenRoute().push(context).then((_) {
+              _loadDaysProgress();
+            });
+          case _DayRouteType.week6Day3JeVyzva:
+            const Week6Day3JeVyzvaScreenRoute().push(context).then((_) {
+              _loadDaysProgress();
+            });
+          case _DayRouteType.week6Day5SelfEsteem:
+            const Week6Day5SelfEsteemScreenRoute().push(context).then((_) {
+              _loadDaysProgress();
+            });
+          case _DayRouteType.week6Day7Summary:
+            const Week6Day7SummaryScreenRoute().push(context).then((_) {
+              _loadDaysProgress();
+            });
+          case _DayRouteType.week7Day1Appreciation:
+            const Week7Day1AppreciationScreenRoute().push(context).then((_) {
+              _loadDaysProgress();
+            });
+          case _DayRouteType.week7Day2Mindfulness:
+            const Week7Day2MindfulnessScreenRoute().push(context).then((_) {
+              _loadDaysProgress();
+            });
+          case _DayRouteType.week7Day3Emotions:
+            const Week7Day3EmotionsScreenRoute().push(context).then((_) {
+              _loadDaysProgress();
+            });
+          case _DayRouteType.week7Day4Distress:
+            const Week7Day4DistressScreenRoute().push(context).then((_) {
+              _loadDaysProgress();
+            });
+          case _DayRouteType.week7Day5Impulsivity:
+            const Week7Day5ImpulsivityScreenRoute().push(context).then((_) {
+              _loadDaysProgress();
+            });
+          case _DayRouteType.week7Day6Relationships:
+            const Week7Day6RelationshipsScreenRoute().push(context).then((_) {
+              _loadDaysProgress();
+            });
+          case _DayRouteType.week7Day7Conclusion:
+            const Week7Day7ConclusionScreenRoute().push(context).then((_) {
               _loadDaysProgress();
             });
           case _DayRouteType.pause:

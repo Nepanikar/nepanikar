@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Týden 5 — Impulzivní chování — mockupy</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Inter',system-ui,sans-serif; background:#FBF6FF; color:#280446; padding:28px 22px 60px; max-width:900px; margin:0 auto; }
+  h1 { font-size:26px; letter-spacing:-.02em; }
+  .sub { font-size:14px; color:rgba(40,4,70,.6); margin-top:6px; line-height:1.55; }
+  h2 { font-size:16px; margin:28px 0 10px; }
+  table { width:100%; table-layout:fixed; border-collapse:collapse; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 2px 10px rgba(73,20,117,.07); }
+  td, th { overflow-wrap:anywhere; }  /* long file names must not widen the page */
+  th, td { text-align:left; padding:10px 12px; font-size:13px; border-bottom:1px solid #EDE8F3; vertical-align:top; }
+  th { background:#EDE8F3; font-size:11px; letter-spacing:.06em; text-transform:uppercase; }
+  tr:last-child td { border-bottom:none; }
+  a { color:#491475; font-weight:700; }
+  .no { color:rgba(40,4,70,.45); }
+  .warn { background:#FDEEED; border-left:4px solid #D86C66; border-radius:12px; padding:14px; margin-top:18px; font-size:13.5px; line-height:1.55; }
+  .warn b { color:#B4453E; }
+</style>
+</head>
+<body>
+
+<h1>Týden 5 — Impulzivní chování</h1>
+<p class="sub">
+  Plán: <code>.claude/design/week5/WEEK5_SCREEN_PLAN.md</code> &middot;
+  zdroj (verbatim): <code>docs/hpo/source/tyzden-5.md</code><br>
+  Nakresleno <b>6 z 18 stran</b> — záměrně reprezentativní výběr. Ostatní strany
+  opakují vzor, který některá z těchto šesti (nebo mockupy týdne 2/4) už ukazuje;
+  u každé je důvod uvedený níže.<br>
+  Hlavička i karty odpovídají tomu, co aplikace <i>skutečně</i> vykresluje
+  (<code>DayFlowHeader</code>), ne staršímu chat-appbaru z mockupů týdne 2.
+</p>
+
+<div class="warn">
+  <b>Dvě rozhodnutí blokují Den 2:</b>
+  <b>OQ-1</b> — co se stane, když někdo dobrovolný den přeskočí, a
+  <b>OQ-2</b> — které ze dvou znění techniky STOP platí (týden 4 vs. týden 5).
+  Obojí je vidět v mockupech <a href="day2_page1_upozorneni.html">1/5</a> a
+  <a href="day2_page3_stop_konflikt.html">3/5</a>.
+</div>
+
+<h2>Den 1 — Edukace o impulzivitě (5 stran)</h2>
+<table>
+  <tr><th>Strana</th><th>Typ</th><th>Mockup</th></tr>
+  <tr><td>1/5 Co je impulzivita</td><td>chat</td><td class="no">➖ chat vzor už ukazují týdny 2 a 4</td></tr>
+  <tr><td>2/5 Analýza chování</td><td>chat</td><td class="no">➖ chat + číslovaný seznam, stejný vzor</td></tr>
+  <tr><td>3/5 Řetězová analýza</td><td>worksheet</td><td><a href="day1_page3_retezova_analyza.html">day1_page3_retezova_analyza.html</a></td></tr>
+  <tr><td>4/5 Analýza chybějících článků</td><td>větvení</td><td><a href="day1_page4_chybejici_clanky.html">day1_page4_chybejici_clanky.html</a> — jediná nová komponenta týdne</td></tr>
+  <tr><td>5/5 Completion</td><td>completion</td><td class="no">➖ nezměněná <code>DayCompletionPage</code></td></tr>
+</table>
+
+<h2>Den 2 — Život ohrožující chování (5 stran)</h2>
+<table>
+  <tr><th>Strana</th><th>Typ</th><th>Mockup</th></tr>
+  <tr><td>1/5 Upozornění a dobrovolnost</td><td>chat</td><td><a href="day2_page1_upozorneni.html">day2_page1_upozorneni.html</a> — OQ-1</td></tr>
+  <tr><td>2/5 Co to je</td><td>chat</td><td class="no">➖ chat vzor</td></tr>
+  <tr><td>3/5 STOP</td><td>akronym</td><td><a href="day2_page3_stop_konflikt.html">day2_page3_stop_konflikt.html</a> — OQ-2, obě znění vedle sebe</td></tr>
+  <tr><td>4/5 Mých 5 činností</td><td>seznam</td><td><a href="day2_page4_pet_cinnosti.html">day2_page4_pet_cinnosti.html</a></td></tr>
+  <tr><td>5/5 Completion + péče</td><td>completion</td><td class="no">➖ <code>DayCompletionPage</code> + dva odkazy</td></tr>
+</table>
+
+<h2>Den 3 a Den 6 — Pauzy</h2>
+<table>
+  <tr><th>Den</th><th>Typ</th><th>Mockup</th></tr>
+  <tr><td>3 &amp; 6</td><td>🔁 <code>DayPauseScreen</code></td><td class="no">➖ beze změny widgetu; stačí dva záznamy textu (ověřeno v kódu)</td></tr>
+</table>
+
+<h2>Den 4 — Plánování a prevence (2 strany)</h2>
+<table>
+  <tr><th>Strana</th><th>Typ</th><th>Mockup</th></tr>
+  <tr><td>1/2 Plánování a prevence</td><td>worksheet</td><td><a href="day4_page1_planovani_prevence.html">day4_page1_planovani_prevence.html</a> — OQ-6</td></tr>
+  <tr><td>2/2 Completion</td><td>completion</td><td class="no">➖ nezměněná <code>DayCompletionPage</code></td></tr>
+</table>
+
+<h2>Den 5 — Všímavost (3 strany)</h2>
+<table>
+  <tr><th>Strana</th><th>Typ</th><th>Mockup</th></tr>
+  <tr><td>1/3 Všímavost u impulzivity</td><td>chat</td><td class="no">➖ chat vzor</td></tr>
+  <tr><td>2/3 Vyzkoušej si techniku</td><td>losování</td><td class="no">➖ shodné s týdnem 4, dnem 4 (<code>week4/mockups/day4_page2_losovani.html</code>)</td></tr>
+  <tr><td>3/3 Completion</td><td>completion</td><td class="no">➖ nezměněná <code>DayCompletionPage</code></td></tr>
+</table>
+
+<h2>Den 7 — Shrnutí (3 strany)</h2>
+<table>
+  <tr><th>Strana</th><th>Typ</th><th>Mockup</th></tr>
+  <tr><td>1/3 Uzavíráme pátý týden</td><td>chat recap</td><td class="no">➖ vzor W2/W3/W4 den 7</td></tr>
+  <tr><td>2/3 Reflexe týdne</td><td>reflexe</td><td class="no">➖ nezměněný <code>ReflectionQuestionList</code></td></tr>
+  <tr><td>3/3 Týden dokončen</td><td>completion</td><td class="no">➖ nezměněná <code>WeekCompletionPage</code></td></tr>
+</table>
+
+<p class="sub" style="margin-top:26px">
+  Vše, co je v mockupech označené jako <b>NÁVRH · SCHVÁLIT AUTOREM</b>, jsme
+  napsali my — ve zdroji to není. Ostatní text je doslovný; ověřuje ho skript
+  <code>python .claude/design/week5/verify_verbatim.py</code>, který porovnává
+  každou citaci znak po znaku proti <code>tyzden-5.md</code>.
+</p>
+
+</body>
+</html>

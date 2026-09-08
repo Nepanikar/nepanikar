@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>W5 D1 4/5 — Analýza chybějících článků</title>
+<link rel="stylesheet" href="_shared.css">
+</head>
+<body>
+
+<div class="hdr">
+  <span class="x">&#10005;</span>
+  <span class="segs"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span>
+  <span class="cnt">4/5</span>
+</div>
+
+<div class="page">
+  <div class="daylabel">Den 1 &middot; Impulzivní chování</div>
+  <h1>Analýza chybějících článků</h1>
+  <p class="lead">Pomocí těchto otázek můžeš zjistit, proč se ti nepodařilo použít dovednost nebo chovat se tak, jak jsi potřeboval/a.</p>
+
+  <!-- Answered questions collapse to one line so the chain stays readable. -->
+  <div class="qcard done">
+    <div class="qt">Věděl/a jsi, jaké chování nebo dovednost bylo potřeba použít?</div>
+    <div class="answered" style="margin-top:6px">Ano &nbsp;&#9662;</div>
+  </div>
+
+  <div class="chain"><i></i><span>2 ze 4</span><i></i></div>
+
+  <div class="qcard">
+    <div class="qn">OTÁZKA 2</div>
+    <div class="qt">Byl/a jsi ochotný/á chovat se efektivně?</div>
+    <div class="seg"><span>Ano</span><span class="on">Ne</span></div>
+
+    <!-- "Ne" opens two fields and the chain ends here — exactly as the source. -->
+    <div class="branch">
+      <div class="wsfield">
+        <div class="lbl">Co ti bránilo v ochotě?</div>
+        <div class="box2 filled" style="margin-top:8px">Měla jsem pocit, že to stejně nezvládnu.</div>
+        <div class="exline">&#9656;&nbsp; Příklady</div>
+      </div>
+      <div class="wsfield">
+        <div class="lbl">Jak to můžeš příště vyřešit?</div>
+        <div class="box2 ph" style="margin-top:8px">Napiš, co by mohlo pomoct&hellip;</div>
+        <div class="exline">&#9662;&nbsp; Příklady</div>
+        <!-- The source's parenthesised hints live here, not in the placeholder:
+             a placeholder disappears the moment the user starts typing. -->
+        <div class="exbody">např. radikální přijetí, pro a proti, opposite action</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chain"><i></i><span>Řetěz končí &mdash; další otázky se ptají jen tehdy, když je odpověď „ano“</span><i></i></div>
+</div>
+
+<div class="footer">
+  <button class="btn">Pokračovat</button>
+</div>
+
+</body>
+</html>

@@ -23,6 +23,7 @@ class DayCompletionPage extends StatelessWidget {
     required this.onComplete,
     this.heading = 'Výborně!',
     this.nextDay,
+    this.extraContent,
     this.buttonText = 'Dokončit den',
   });
 
@@ -31,6 +32,14 @@ class DayCompletionPage extends StatelessWidget {
   final String heading;
   final String buttonText;
   final NextDayTeaser? nextDay;
+
+  /// Rendered between the summary and the next-day teaser.
+  ///
+  /// Week 5 Day 2 closes on life-threatening behaviour and the source offers two
+  /// places to go for care. They belong above the teaser, not below it: someone
+  /// who is leaving after that day will not scroll past "Zítra" to find help.
+  final Widget? extraContent;
+
   final VoidCallback onComplete;
 
   @override
@@ -80,6 +89,7 @@ class DayCompletionPage extends StatelessWidget {
               color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.8),
             ),
           ),
+          if (extraContent != null) ...[const SizedBox(height: 24), extraContent!],
           if (nextDay != null) ...[
             const SizedBox(height: 32),
             Container(

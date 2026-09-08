@@ -61,6 +61,20 @@ class BpdRescueItem {
     'eat': Icons.restaurant,
     'listen': Icons.hearing,
     'senses': Icons.auto_awesome,
+    // Week 4 saved STOP as 'pause' and progressive relaxation as 'spa', and
+    // Week 5 saves the user's own relief list as 'list' — without entries here
+    // all three fall back to the generic icon.
+    'pause': Icons.back_hand_outlined,
+    'spa': Icons.spa_outlined,
+    'list': Icons.checklist_outlined,
+    // Week 6's three acronyms.
+    'talk': Icons.forum_outlined,
+    'heart': Icons.volunteer_activism_outlined,
+    'shield': Icons.shield_moon_outlined,
+    // Week 7's recap menus can save week 3 and week 5 skills too.
+    'facts': Icons.fact_check_outlined,
+    'swap': Icons.swap_horiz,
+    'chain': Icons.timeline_outlined,
   };
 
   Map<String, dynamic> toMap() => {

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>W5 D2 1/5 — Upozornění a dobrovolnost</title>
+<link rel="stylesheet" href="_shared.css">
+</head>
+<body>
+
+<div class="hdr">
+  <span class="x">&#10005;</span>
+  <span class="segs"><i class="on"></i><i></i><i></i><i></i><i></i></span>
+  <span class="cnt">1/5</span>
+</div>
+
+<div class="chat">
+  <div class="stamp">Den 2 &middot; Život ohrožující chování</div>
+
+  <!-- Deliberately NOT a red banner and NOT a modal: an alarm turns people away
+       from the very day that offers them help. The warning keeps the calm tone
+       the source itself uses. -->
+  <div class="row">
+    <span class="av">&#128172;</span>
+    <div class="bubble">Dnešní téma může být pro někoho citlivé, na což bychom chtěli dopředu upozornit. Budeme se bavit o život ohrožujícím chování.</div>
+  </div>
+
+  <div class="row">
+    <span class="av" style="visibility:hidden"></span>
+    <div class="bubble">Pro někoho to vůbec nemusí být téma, proto je dnešní sekce dobrovolná. Pro jiné to může být naopak téma nepříjemné.</div>
+  </div>
+
+  <div class="row">
+    <span class="av" style="visibility:hidden"></span>
+    <div class="bubble">Máme pro to pochopení a přijde nám důležité říct, že na to nejsi sám.</div>
+  </div>
+
+  <div class="row">
+    <span class="av" style="visibility:hidden"></span>
+    <div class="bubble">Pokud by ses necítil dobře a chtěl by ses se svými pocity někomu svěřit, můžeš nahlédnout do kontaktů, které jsou pro takové chvíle k dispozici.</div>
+  </div>
+
+  <!-- "(proklik do Nepanikař kontaktů)" → CrisisCenterContactsRoute, the same
+       target Week 4 Day 2 already uses. Part of the message, not a floating banner. -->
+  <div class="crisis">&#9742;&nbsp; Kontakty pro těžké chvíle &nbsp;&rsaquo;</div>
+</div>
+
+<div class="footer">
+  <button class="btn">Pokračovat</button>
+  <!-- OQ-1: the source says the day is voluntary but never says what skipping
+       does. Without this the week sticks at 6/7 and Day 3 greets the user with
+       "po včerejším dni". Label below is OUR draft. -->
+  <div class="draft" style="margin-top:10px">
+    <button class="btn ghost">Přeskočit dnešek</button>
+  </div>
+</div>
+
+</body>
+</html>

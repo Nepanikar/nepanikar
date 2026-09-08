@@ -191,10 +191,16 @@ found three things not in this list, all fixed in the same pass:
   (with its `pubspec`/`assets.gen` reference) instead of being wired up. The day
   list stays in `_weekDaysContent`; see D3.
 
-- [~] **GEN-02 — Persisted "first vs last week" answers.** Store created
-  (2026-06-15): `BpdExpectationsDao` (`bpd_expectations` store, key `week1_day1`)
-  holds Day 1 expectations + goals. **Remaining:** read + display them in the
-  final-week screen, and generalise the pattern for other early/late entries.
+- [x] **GEN-02 — Persisted "first vs last week" answers.** ✅ Done 2026-08-29.
+  Week 7 Day 1 reads the SMART goals back through the new `SmartGoalsReview`
+  widget: each goal from Week 1 comes back with all five of its lines plus a
+  field asking how to carry it forward, saved through the existing
+  `BpdWorksheetDao` (no new store). Verified on device end to end — a goal
+  entered in Week 1 Day 1 reappeared in Week 7 Day 1, and the empty state
+  covers anyone who never set one. The S/M/A/R/T labels deliberately match
+  Week 1's wording ("Adekvátní", "Termínovaný"), not the textbook ones.
+  Still open: `BpdExpectationsDao` (Day 1 expectations) is written but never
+  read back anywhere.
 
 - [~] **GEN-03 — Localisation pass.** Programme copy is inline **Czech** strings
   in Dart (Weeks 1–2 are now consistent; the Slovak Week 2 was rewritten
@@ -297,9 +303,23 @@ found three things not in this list, all fixed in the same pass:
     content-reference.md, planned in `.claude/design/week4/WEEK4_SCREEN_PLAN.md`,
     state in `.claude/design/week4/TRACKING.md`. 19 pages, two rest days on reuse.
     Blocked on W4-01 (author decisions) and W4-02 (pause copy keying).
-  - Weeks 5–7: content not yet delivered. For each new week: source file →
-    content-reference.md → `plan-screens` → `design-screen` → `implement-screen`,
-    then `_weekDaysContent[n]` + `kImplementedBpdWeeks` + per-day routes.
+  - **Week 5 (Impulzivní chování) delivered 2026-08-28, planned and designed.**
+    Source verbatim in [source/tyzden-5.md](source/tyzden-5.md), planned in
+    `.claude/design/week5/WEEK5_SCREEN_PLAN.md`, state in
+    `.claude/design/week5/TRACKING.md`, 6 representative mockups. 18 pages, two
+    rest days on reuse. Day 2 blocked on W5-01 (OQ-1, OQ-2); the rest is codeable.
+  - **Week 6 (Mezilidské vztahy a sebepojetí) delivered 2026-08-29, planned and
+    implemented.** Source verbatim in [source/tyzden-6.md](source/tyzden-6.md),
+    planned in `.claude/design/week6/WEEK6_SCREEN_PLAN.md`, state in
+    `.claude/design/week6/TRACKING.md`. 19 pages, two rest days on reuse, and the
+    first week that needed **no new component at all**. Nothing blocks it; nine
+    author questions tracked as W6-01.
+  - **Week 7 (Závěr programu) delivered 2026-08-29, planned and implemented.**
+    Source verbatim in [source/tyzden-7.md](source/tyzden-7.md), planned in
+    `.claude/design/week7/WEEK7_SCREEN_PLAN.md`, state in
+    `.claude/design/week7/TRACKING.md`. 24 pages, no rest day, and the only
+    week that reads back what the user wrote in Week 1. **All seven weeks are
+    now implemented** (`kImplementedBpdWeeks = {1..7}`).
 
 - [x] **W3-01 — Content gaps for the author (Week 3).** ✅ Closed 2026-08-06.
   Day 4 stays reading-only (author's decision — implemented as a single chat
@@ -356,6 +376,140 @@ found three things not in this list, all fixed in the same pass:
   of the author's two paragraphs would never be seen by anyone.
   - Done when: both Week 4 rest days show their own text, Weeks 2–3 are unchanged,
     and the week-level fallback still covers unauthored weeks.
+
+- [x] **GEN-09 — Kontrast v tmavom režime naprieč BPD programom.** ✅ Opravené
+  2026-09-07. Prvý poriadny prechod v tmavom režime odhalil **6 defektov**, všetky
+  ten istý vzor: `primaryColor` použitá ako *popredie*, hoci v tmavom režime je
+  scaffold `containerColor(primaryColor)` — fialová na fialovej. Najhorší:
+  **zoznam dní bol úplne prázdny** (biely text na natvrdo `Colors.white` karte),
+  čo platilo pre **všetkých sedem týždňov**. Opravené v `bpd_week_detail_screen`,
+  `day_completion_page`, `week_completion_page`, `technique_menu_page`,
+  `external_link_button`, `rescue_save_button`, `day_page_base`
+  (`SectionHeader` + `InfoBox`), `worksheet_parts`, `chat_lists`,
+  `day_preview_sheet`, `selectable_exercise_tile`, `technique_randomiser`.
+  Pozadia (`BoxDecoration(color: primaryColor)` s bielym textom) sa zámerne
+  nemenili. Overené na zariadení na týždni 7; analyzer 0/0.
+  **Zostáva:** preklikať **svetlý** režim (vetvy sú `isDarkMode ? ... : ...`,
+  takže svetlá vetva je znakovo pôvodná, ale overená nebola) a **týždne 1–6
+  v tmavom režime**. Detaily v `.claude/design/week7/TRACKING.md`.
+
+- [?] **GEN-10 — Oslavná obrazovka týždňa sa viaže na Deň 7, nie na dokončenie
+  týždňa.** `WeekCompletionPage` je posledná strana Dňa 7. Kto spraví Deň 7 skôr
+  než ostatné dni (systém to dovolí), uvidí ju vtedy — a po doplnení posledného
+  chýbajúceho dňa sa už nezobrazí, appka len vráti zoznam dní. Overené na
+  týždni 7 dňa 2026-09-07. → Otázka pre autorku: má sa oslava viazať na
+  **dokončenie všetkých siedmich dní**? Ak áno, presunúť ju zo `dayN` flow do
+  `bpd_week_detail_screen`, kde sa už dokončenosť týždňa počíta.
+
+- [?] **W7-01 — Content decisions for the author (Week 7).** The final week
+  landed 2026-08-29 and is fully implemented. Nothing blocks it, but it has the
+  most content gaps of any week:
+  1. **The recaps name three skills the programme never taught (OQ-1).** Checked
+     with a grep across `source/tyzden-1..6.md`: **PODPORA** (Day 4) appears
+     nowhere else in the programme at all; **coping ahead** (Day 3) and
+     **radikální přijetí** (Day 4) appear only as parenthesised examples inside
+     Week 5's missing-links exercise. Day 3 also credits emotional regulation
+     with "zmírňovat citlivost na stresory", which is SPOKO from Week 1. The
+     recap paragraphs ship verbatim, but the practice menus list only skills that
+     exist — offering PODPORA would send someone to an empty page. Either drop
+     them from the recap or add them to the week that should have taught them.
+  2. **Typos left verbatim (OQ-2):** "Věříme, že Ti dovednosti z můžou přinést
+     úlevu" (Day 3 — a word is missing, this one changes the meaning),
+     "pSANÍČKoa nenásilnou komunikaci" and "JeVýZVa" without a space (Day 6),
+     "Za těch sedm týdnu" (Day 7).
+  3. **Should the three take-away skills go into the rescue package (OQ-3)?**
+     Implemented as yes — it is the single most valuable output of the programme
+     and belongs somewhere reachable after it ends.
+  4. **One-line skill summaries in the recap menus (OQ-4)** are ours; the source
+     names the skills but never describes them in a sentence.
+  5. **Empty state of the SMART review (OQ-5)** — what someone sees who never set
+     a goal in Week 1. Ours, marked TODO.
+  6. **"Program dokončen" on the last screen (OQ-6)** — `WeekCompletionPage` said
+     "Týden dokončen", which undersells the end of seven weeks. Ours.
+  7. **Day 1 asks for "3–5 věcí" (OQ-7)** — implemented as five optional boxes.
+  8. **Week title (OQ-8)** — the data file said "Shrnutí programu", the source
+     says "Závěr programu". Fixed to match the source.
+  - Done when: each decision is recorded in the plan's OQ table and the affected
+    rows lose their ⚠️ in `.claude/design/week7/TRACKING.md`.
+
+- [?] **W6-01 — Content decisions for the author (Week 6).** Week 6 landed
+  2026-08-29, is planned (`.claude/design/week6/WEEK6_SCREEN_PLAN.md`) and fully
+  implemented. **Nothing here blocks code** — unlike Week 5 — but nine things
+  need her eye. In order of impact:
+  1. **Twenty-four myths with no counter-statements (OQ-1).** In Week 3 she wrote
+     a "busted" version of every myth, which the app reveals when someone is
+     stuck. Week 6 says only "(nechat prostor na vepsání pravdivé formulace)", so
+     twenty-four fields ship with no help at all and most will stay empty.
+     Proposal: counter-statements for at least the first four of each group,
+     which are the ones shown before "Chci zpochybnit i další mýty".
+  2. **Broken formatting we had to interpret (OQ-2).** Four places, all recorded
+     in the Dart doc comments: (a) Day 5's "**O – bez zbytečných Omluv**" is glued
+     onto the end of the "Z" instruction with no line break — split at the obvious
+     intent; (b) "U – **Upřímnosts**" had a stray trailing "s" — dropped;
+     (c) Day 3's "Va – VAlidace" reads "**uznejříkáuznej** pocity a názory" — kept
+     as "uznej"; (d) an empty bullet between "Vý" and "Z". Typos left verbatim:
+     "časo" (Day 1), "se tyto dovednosti zaměřuje" (Day 1).
+  3. **Day 3 has no title (OQ-4).** Every other day has one. Ours: "Je VýZVa
+     a všímavost ve vztazích".
+  4. **Three "(infografika)" notes (OQ-3)** — PSANÍČKo, Je VýZVa, neZOUFej. We
+     have no artwork; the acronym page (letter + word + instruction) stands in.
+     If she wants a real graphic, it has to be supplied.
+  5. **Day 3 asks the user to *choose* a mindfulness technique (OQ-5)** where
+     Week 5 asked to *draw* one. Implemented as a menu here and a draw there,
+     matching each source — worth confirming that difference is deliberate.
+  6. **Day 7 recap items (OQ-6)** are ours, marked `// TODO: schválit autorem`.
+  7. **Day 4's pause text is word for word Week 3's (OQ-8)**, and Day 7's three
+     reflection questions are word for word Week 4's (OQ-9). Both are almost
+     certainly intentional repetition, but nobody has confirmed it.
+  - Done when: each decision is recorded in the plan's OQ table and the affected
+    rows lose their ⚠️ in `.claude/design/week6/TRACKING.md`.
+
+- [ ] **W5-02 — Week titles in `bpd_weeks_data.json` may not match the delivered
+  content.** Week 5 was titled "Mezilidské vztahy" there — standard DBT ordering —
+  while the author's Week 5 is "Impulzivní chování". **Confirmed a second time on
+  Week 6 (2026-08-29):** the file said "Sebepojetí", the delivered content is
+  "Mezilidské vztahy a sebepojetí". Both fixed. **Week 7 is still a guess**
+  ("Shrnutí programu") and nothing checks it, so the tree can still label a module
+  something the content is not.
+  - Done when: Week 7's `titleKey` is checked against its source on delivery, or
+    the tree stops showing a title for weeks that have no source file.
+
+- [?] **W5-01 — Content decisions for the author (Week 5).** Week 5 landed
+  2026-08-28 and is planned (`.claude/design/week5/WEEK5_SCREEN_PLAN.md`). Twelve
+  open questions; **two block Day 2 and cannot be worked around.** In order of
+  impact:
+  1. **STOP has two different wordings (OQ-2, blocking).** Week 4 Day 2 already
+     teaches it in Czech ("T – Tah zpátky", "O – Obhlédni situaci", "P – Postupuj
+     všímavě"); Week 5 Day 2 teaches it in English with a Czech gloss ("T – Take a
+     step back (ustup)"). A user who did Week 4 meets the same technique twice,
+     worded differently, which reads as an app bug. Both variants are shown side by
+     side in `mockups/day2_page3_stop_konflikt.html`. Recommendation: keep Week 4's
+     — it already ships and sits in users' rescue packages.
+  2. **What "dobrovolná sekce" actually does (OQ-1, blocking).** Day 2 says it is
+     voluntary but never says what skipping means. Left as is, a skipped day holds
+     the week at 6/7 and Day 3 opens with "Po včerejším dni…", which will not match
+     what the user did. Proposal: skipping marks the day done; we need her wording
+     for the button and the confirmation.
+  3. **Day 1 asks for an exposure with no warning (OQ-3).** The user recalls and
+     dissects their own impulsive episode — the six-step list explicitly includes
+     "život ohrožující chování" — while Day 2, the *gentler* of the two, is the one
+     that carries the trigger warning. Proposal: one sentence before the worksheet,
+     and move "Tento worksheet můžete vyplnit pomalu" above the fields.
+  4. **Day 4 has no intro at all (OQ-6).** It opens straight into a ten-field
+     worksheet with no educational sentence; the field labels would be ours.
+     2–3 sentences from her, plus label approval.
+  5. **Mixed tykání/vykání (OQ-5).** The Day 1 challenge and both worksheets use
+     vykání ("vzpomeňte si", "Napište si"); the rest of the programme uses tykání.
+  6. **Day 5 asks for two different interactions (OQ-9)** — "prostor vybrat si"
+     (a menu) and "kolo štěstí" (a draw). Proposal: draw primary, pick secondary,
+     matching the Week 4 decision.
+  7. **Day 7 recap (OQ-10)** and the Day 2/4 completion lines — the source has
+     none; we draft them marked `// TODO: schválit autorem`, as in Weeks 3–4.
+  8. **Typos left verbatim on purpose (OQ-4):** "zaátek" (Day 1 completion),
+     "alepsoň" and "co by Ti mohli" (Day 2), an unpaired quote in "průběh
+     událostí“", double spaces in "Jeden z  DBT nástrojů", "apod" without a period.
+  - Done when: each decision is recorded in the plan's OQ table and the affected
+    pages lose their ⚠️ in `.claude/design/week5/TRACKING.md`.
 
 - [x] **W3-03 — Verify Week 3 on a device.** ✅ Done 2026-08-12. All seven days
   walked; the Day 2 worksheet kept "hadka s kamaradem" across leaving without

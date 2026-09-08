@@ -25,11 +25,19 @@ class ChatDayPage extends StatefulWidget {
     required this.steps,
     required this.onCompleted,
     this.defaultButtonLabel = 'Pokračovat',
+    this.secondaryAction,
   });
 
   final List<ChatStep> steps;
   final VoidCallback onCompleted;
   final String defaultButtonLabel;
+
+  /// Optional second action under the main button, shown on every step.
+  ///
+  /// Week 5 Day 2 is the programme's only voluntary day, and the source says so
+  /// in its first sentence — so the way out has to be there from the first
+  /// screen, not only once the user has read the whole warning.
+  final Widget? secondaryAction;
 
   @override
   State<ChatDayPage> createState() => _ChatDayPageState();
@@ -99,7 +107,19 @@ class _ChatDayPageState extends State<ChatDayPage> {
               ],
             ),
           ),
-          Padding(padding: const EdgeInsets.only(bottom: 32), child: _buildButton(context)),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 32),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                _buildButton(context),
+                if (widget.secondaryAction != null) ...[
+                  const SizedBox(height: 8),
+                  widget.secondaryAction!,
+                ],
+              ],
+            ),
+          ),
         ],
       ),
     );

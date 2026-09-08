@@ -57,6 +57,26 @@ class DayPauseScreen extends StatelessWidget {
         'velký kus práce – je vidět, kolik energie, odvahy a odhodlání do toho '
         'dáváš. Dnes si můžeš s klidem odpočinout a nechat své pokroky v klidu '
         '„doznít“.',
+    // Week 5 rests twice as well (tyzden-5.md §3 and §6). Day 3 refers to "the
+    // day before", which is the voluntary Day 2 — see WEEK5_SCREEN_PLAN.md OQ-1.
+    (5, 3):
+        'Po včerejším dni může být přirozené cítit únavu. Dovol si zpomalit a '
+        'postarat se o sebe s laskavostí. Každý krok, i ten odpočinkový, je '
+        'důležitou součástí cesty. Proto si dnes dáme od programu pauzu.',
+    (5, 6):
+        'Dnešek bude dnem odpočinku. Zasloužíš si ho – Tvoje vytrvalost, '
+        'otevřenost a snaha jdou opravdu vidět. I pauza je součástí cesty vpřed, '
+        'pomáhá tělu i mysli zpracovat všechno, co už máš za sebou.',
+    // Week 6 (tyzden-6.md §4 and §6). Day 4's text is word for word Week 3's —
+    // the author repeated it, so it is spelled out here rather than left to the
+    // week-level fallback, which would have shown Week 2's instead.
+    (6, 4):
+        'Dnes program vynecháme. Máš za sebou skvělý pokrok a zasloužíš si '
+        'chvilku odpočinku.',
+    (6, 6):
+        'Dnes si dopřej volno. Máš za sebou spoustu práce a je vidět, kolik do '
+        'toho dáváš. Zasloužíš si vypnout, nabrat dech a nechat všechno, co se '
+        'Ti povedlo, trochu doznít.',
   };
 
   String get _pauseText =>

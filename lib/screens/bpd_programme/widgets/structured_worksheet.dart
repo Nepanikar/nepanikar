@@ -50,6 +50,20 @@ class WorksheetSection {
   final List<WorksheetField> fields;
 }
 
+/// Lets the page around a [StructuredWorksheet] drop text into it.
+///
+/// Week 5 Day 2 shows the author's ten example activities as tappable chips and
+/// a tap has to land in a field — the page cannot reach the worksheet's
+/// controllers, which are private to its state, so it asks through this.
+class WorksheetInsertController {
+  void Function(String text)? _insertIntoFirstEmpty;
+
+  /// Writes [text] into the first empty field. Does nothing when every field is
+  /// already filled — overwriting what someone wrote would be worse than a
+  /// tap that appears to do nothing.
+  void insertIntoFirstEmpty(String text) => _insertIntoFirstEmpty?.call(text);
+}
+
 /// The programme's long-form worksheets (Week 3 Day 2 and Day 3).
 ///
 /// Autosaves edits within half a second and reloads on open, because these are
@@ -66,6 +80,7 @@ class StructuredWorksheet extends StatefulWidget {
     this.exampleNote,
     this.visibleSectionLimit,
     this.revealMoreLabel,
+    this.insertController,
   });
 
   final String worksheetId;
@@ -88,6 +103,10 @@ class StructuredWorksheet extends StatefulWidget {
   /// approved yet.
   final String? exampleNote;
 
+  /// Optional hook letting the surrounding page fill a field — see
+  /// [WorksheetInsertController].
+  final WorksheetInsertController? insertController;
+
   @override
   State<StructuredWorksheet> createState() => _StructuredWorksheetState();
 }
@@ -108,6 +127,7 @@ class _StructuredWorksheetState extends State<StructuredWorksheet> {
         _controllers[field.id] = TextEditingController();
       }
     }
+    widget.insertController?._insertIntoFirstEmpty = _insertIntoFirstEmpty;
     _loadSaved();
   }
 
@@ -125,6 +145,15 @@ class _StructuredWorksheetState extends State<StructuredWorksheet> {
     }
   }
 
+  void _insertIntoFirstEmpty(String text) {
+    for (final controller in _controllers.values) {
+      if (controller.text.trim().isEmpty) {
+        controller.text = text;
+        return;
+      }
+    }
+  }
+
   void _scheduleSave() => _saveDebounce.run(_save);
   final _saveDebounce = _Debouncer(const Duration(milliseconds: 500));
 
@@ -136,6 +165,7 @@ class _StructuredWorksheetState extends State<StructuredWorksheet> {
   @override
   void dispose() {
     _saveDebounce.cancel();
+    widget.insertController?._insertIntoFirstEmpty = null;
     for (final controller in _controllers.values) {
       controller.removeListener(_scheduleSave);
     }
