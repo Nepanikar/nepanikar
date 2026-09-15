@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:go_router/go_router.dart';
@@ -14,6 +16,7 @@ import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/utils/contacts_data_manager.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/bottom_navbar_item.dart';
+import 'package:nepanikar/widgets/notifications/notification_opt_in_dialog.dart';
 import 'package:provider/provider.dart';
 
 class MainPageExtra {
@@ -72,6 +75,12 @@ class _MainScreenState extends State<MainScreen> {
     moodState.init();
     setState(() {
       _selectedIndex = widget.extra?.initIndex ?? _selectedIndex;
+    });
+    // Offer notifications only once the first frame is up: asking over a splash
+    // screen gives the person nothing to judge the request against, and the OS
+    // grants a single chance to ask (see maybeOfferNotifications).
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) unawaited(maybeOfferNotifications(context));
     });
   }
 

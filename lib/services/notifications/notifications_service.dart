@@ -9,6 +9,8 @@ import 'package:nepanikar/app/l10n/app_localizations.dart';
 import 'package:nepanikar/helpers/date_helpers.dart';
 import 'package:nepanikar/screens/settings/notification_settings_screen.dart';
 import 'package:nepanikar/services/db/bpd/bpd_challenge_tracker_dao.dart';
+import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
+import 'package:nepanikar/services/db/bpd/bpd_weeks_dao.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/services/notifications/app_notification_data_model.dart';
 import 'package:nepanikar/services/notifications/notification_controller.dart';
@@ -53,6 +55,9 @@ class NotificationsService {
       onDismissActionReceivedMethod: NotificationController.onDismissActionReceivedMethod,
     );
   }
+
+  /// Whether the OS currently lets the app post notifications.
+  Future<bool> get isNotificationAllowed => _awesomeNotifications.isNotificationAllowed();
 
   Future<void> checkPermission() async {
     final hasPermission = await _awesomeNotifications.isNotificationAllowed();
@@ -199,6 +204,84 @@ class NotificationsService {
     }
   }
 
+  /// Days of the week the mindfulness reminder keeps after the mindfulness
+  /// module is over.
+  ///
+  /// The source asks for "2x týdně ve zbylých modulech" without naming days
+  /// (docs/hpo/source/tyzden-2.md §3), so midweek + weekend is ours: it splits
+  /// the week roughly in half instead of putting both on consecutive days.
+  static const _mindfulnessTaperWeekdays = <int>[DateTime.wednesday, DateTime.sunday];
+
+  /// The mindfulness module is Week 2; completing it is what drops the reminder
+  /// from daily to twice a week.
+  static const _mindfulnessModuleWeek = 2;
+
+  Future<bool> _isMindfulnessModuleOver() async {
+    if (!registry.isRegistered<BpdWeeksDao>()) return false;
+    final week = await registry.get<BpdWeeksDao>().getWeekProgress(_mindfulnessModuleWeek);
+    return week?.isCompleted ?? false;
+  }
+
+  /// Announces each programme day that opens within the scheduling horizon.
+  ///
+  /// Days unlock at midnight, which is no time to be told about it, so the
+  /// notification lands at [_unlockNotificationHour] on the unlock day. The id
+  /// is derived from the week and day, so re-running this never stacks up
+  /// duplicates for the same day.
+  Future<void> _scheduleProgrammeUnlockReminders(int scheduleAheadDays) async {
+    if (!registry.isRegistered<BpdDaysDao>()) return;
+    if (!(await _userSettingsDao.getBpdProgrammeStatus()).hasStarted) return;
+
+    final daysDao = registry.get<BpdDaysDao>();
+    final now = DateTime.now();
+    final horizon = now.add(Duration(days: scheduleAheadDays));
+
+    for (var week = 1; week <= BpdWeeksDao.totalWeeks; week++) {
+      for (final day in await daysDao.getWeekDaysProgress(week)) {
+        if (day.isCompleted) continue;
+        final fireAt = day.unlockDate.copyWith(
+          hour: _unlockNotificationHour,
+          minute: 0,
+          second: 0,
+          millisecond: 0,
+          microsecond: 0,
+        );
+        // Already past, or too far out to be worth holding a slot for.
+        if (fireAt.isBefore(now) || fireAt.isAfter(horizon)) continue;
+
+        final isWeekOpening = day.dayNumber == 1;
+        await _awesomeNotifications.createNotification(
+          content: NotificationContent(
+            id: _unlockNotificationId(week, day.dayNumber),
+            channelKey: _basicChannelKey,
+            title: isWeekOpening
+                ? NotificationType.programmeUnlockWeekTitle
+                : NotificationType.programmeUnlockDayTitle,
+            body: isWeekOpening
+                ? NotificationType.programmeUnlockWeekBody
+                : NotificationType.programmeUnlockDayBody,
+            badge: 1,
+            payload: {
+              nestedPayloadKey: jsonEncode(
+                const AppNotificationData(type: NotificationType.programmeUnlock).toJson(),
+              ),
+            },
+          ),
+          schedule: NotificationCalendar.fromDate(date: fireAt),
+        );
+        debugPrint(
+          'NOTIFICATION_SERVICE: Scheduled unlock reminder for week $week '
+          'day ${day.dayNumber} at $fireAt',
+        );
+      }
+    }
+  }
+
+  /// Stable per day, and far from the random ids the settings-driven loop uses.
+  static int _unlockNotificationId(int week, int day) => 9000000 + week * 100 + day;
+
+  static const _unlockNotificationHour = 9;
+
   /// Schedule notification ahead for 7 days.
   Future<void> rescheduleNotifications(AppLocalizations l10n) async {
     // Cancel all scheduled notifications.
@@ -206,11 +289,17 @@ class NotificationsService {
     // ...then bring back the reminders that are not driven by user settings.
     await _restoreChallengeReminders();
 
+    const scheduleAheadDays = 8;
+    await _scheduleProgrammeUnlockReminders(scheduleAheadDays);
+    final mindfulnessTapered = await _isMindfulnessModuleOver();
+
     final r = math.Random();
     final nowDate = DateTime.now().toDate();
     for (final type in NotificationType.values) {
-      // Challenge reminders are scheduled per-challenge, not via user settings.
-      if (type == NotificationType.challengeReminder) continue;
+      // Programme-managed types schedule themselves above, not from settings.
+      if (type == NotificationType.challengeReminder || type == NotificationType.programmeUnlock) {
+        continue;
+      }
       final notificationTypeSettings = await _userSettingsDao.getNotificationTypeSettings(type);
       if (notificationTypeSettings == null) {
         // No settings for this type, skip scheduling.
@@ -224,7 +313,6 @@ class NotificationsService {
       final notificationBodyMessage = type.getBodyMessage(l10n);
       final customDataPayload = AppNotificationData(type: type).toJson();
 
-      const scheduleAheadDays = 8;
       final isTodayTypeAlreadyTracked = await type.isTodayAlreadyTracked();
       final sevenDaysAheadList = !isTodayTypeAlreadyTracked
           ? List.generate(scheduleAheadDays, (i) => nowDate.add(Duration(days: i)))
@@ -232,6 +320,14 @@ class NotificationsService {
 
       // Schedule notifications for each day, including today if needed.
       for (final date in sevenDaysAheadList) {
+        // W2-05: the mindfulness reminder is daily only while the mindfulness
+        // module runs. Once Week 2 is done the source drops it to twice a week,
+        // so most days simply get no notification scheduled.
+        if (type == NotificationType.mindfulnessReminder &&
+            mindfulnessTapered &&
+            !_mindfulnessTaperWeekdays.contains(date.weekday)) {
+          continue;
+        }
         // TODO: There is a chance that it will generate already existing id. But since
         // we schedule it only for 7 days ahead, it should be fine.
         final randomId = r.nextInt(10000000);

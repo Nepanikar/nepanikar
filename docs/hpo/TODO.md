@@ -164,6 +164,19 @@ found three things not in this list, all fixed in the same pass:
   persist via `BpdChallengesDao` with a per-section key.
 - [x] **W2-04 — SMART tie-in on Day 3 (Efektivně).** ✅ `SmartGoalReminder` reads
   the newest goal from `BpdSmartGoalsDao` and links to "Moje cíle".
+- [x] **W2-05 — Mindfulness notification.** ✅ Done 2026-09-15. Opt-in page on
+  Day 4, `NotificationType.mindfulnessReminder`, scheduled through the existing
+  settings-driven loop. The **"2×/week in later modules" taper now works**: the
+  mindfulness module counts as over once Week 2 is marked complete
+  (`_isMindfulnessModuleOver`), after which `rescheduleNotifications` skips every
+  day that is not in `_mindfulnessTaperWeekdays` (Wednesday + Sunday). The source
+  asks for "2x týdně" without naming days, so the pair is ours — midweek plus
+  weekend, rather than two days running. Also fixed earlier on the way:
+  `rescheduleNotifications` used to wipe every per-challenge reminder; it now
+  restores them.
+  - Not verified on a device: it needs a database with Week 2 completed, and
+    proving a *missing* notification takes a week of wall-clock or a faked clock.
+
 - [x] **W2-06 — Záchranný balíček.** ✅ No existing feature covered it. New
   `BpdRescuePackageDao` + `BpdRescueItem` + `RescuePackageScreen` (third tile in
   *Moje záznamy → DBT program*), saved from the Day 4/6 detail sheets via
@@ -272,6 +285,26 @@ found three things not in this list, all fixed in the same pass:
   - If the intent was actually the teal accent rather than a green, `secondary`
     is already in the palette.
 
+- [x] **GEN-07 — Notification when a new day/week unlocks.** ✅ Done 2026-09-15.
+  New `NotificationType.programmeUnlock`, scheduled by the programme (hidden from
+  the notification settings screen, like the other two). Days unlock at midnight,
+  which is no hour to be told anything, so it fires at **09:00 on the unlock
+  day**. `_scheduleProgrammeUnlockReminders` walks the days inside the same
+  8-day horizon the settings loop uses, skips completed ones, and derives the id
+  from week+day so re-running never stacks duplicates. A tap opens the skill
+  tree — right whichever day opened, and it needs no week number in the payload.
+  - **The copy is ours** — the source never asked for this notification, so
+    there was nothing of the author's to quote. Day: "Nový den je připravený /
+    Čeká na tebe další den. Až budeš mít chvíli." Week (day 1 of a week): "Nový
+    týden se otevřel / Začíná nový týden programu. Podívej se, co tě čeká."
+    Marked `TODO: schválit autorem` in `notification_type.dart`; it is on the
+    author's question list.
+  - Deliberately always on while the programme runs, rather than an opt-in:
+    the whole point is to reach someone who is not opening the app. If that
+    turns out to be too much, it becomes a settings-visible type — a one-line
+    change to `isProgrammeManaged`.
+  - Not verified on a device.
+
 - [x] **GEN-12 — Access code for the programme.** ✅ Done 2026-09-15. The DBT
   programme runs as a closed pilot, so it is hidden until someone enters a code:
   neither the home tile nor the bottom-bar tab exist before that. The code is
@@ -296,6 +329,23 @@ found three things not in this list, all fixed in the same pass:
     `app_en.arb`; the rest of the languages come from Localazy. The access
     code itself is not a string to translate.
   - Not verified on a device.
+
+- [x] **GEN-13 — Ask for notification permission on launch.** ✅ Done 2026-09-15.
+  `maybeOfferNotifications` shows a short in-app dialog ("Zapnout upozornění?")
+  after the first frame and only reaches for the OS permission dialog if the
+  answer is yes. The OS grants **one** chance to ask, and a cold prompt over a
+  splash screen spends it on a decision the person has no basis for; a "no"
+  there can then only be undone in the system settings.
+  - Asked once per install: `UserSettingsDao.markNotificationPermissionAsked`
+    records the offer whatever the answer was. Settings → Upozornění stays open
+    to anyone who declined.
+  - `POST_NOTIFICATIONS` is not in the app manifest but arrives via
+    `awesome_notifications` at manifest-merge time (checked in the merged
+    manifest); with `targetSdkVersion 36` the runtime request is required.
+  - Dialog copy is ours and localised: `notifications_opt_in_*` in
+    `app_cs.arb` + `app_en.arb`, other languages via Localazy.
+  - Not verified on a device — the interesting path is what happens on
+    "Teď ne" and on a second launch.
 
 - [ ] **GEN-04 — Remove DEV unlock-all hack before release.**
   - `bpd_week_detail_screen.dart` calls `unlockAllDaysInWeek(...)` "for testing".

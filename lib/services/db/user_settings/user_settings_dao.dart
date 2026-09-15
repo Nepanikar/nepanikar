@@ -32,6 +32,7 @@ class UserSettingsDao {
   static const _notificationKeyPrefix = 'notification_type_';
   static const _bpdProgrammeStatusKey = 'bpd_programme_status';
   static const _bpdProgrammeUnlockedKey = 'bpd_programme_unlocked';
+  static const _notifPermissionAskedKey = 'notification_permission_asked';
 
   /// The store holds JSON maps, so the unlocked flag is a one-field record
   /// rather than a bare bool.
@@ -146,6 +147,22 @@ class UserSettingsDao {
     final json = await _store.record(_getNotificationKey(type)).get(_db);
     if (json == null) return null;
     return NotificationTypeSettings.fromJson(json);
+  }
+
+  /// Whether the app has already offered to turn notifications on.
+  ///
+  /// The OS grants exactly one chance to show its permission dialog, so this
+  /// records that the offer was made — whatever the answer was. Someone who
+  /// said no is never asked again on launch; Settings → Notifications stays
+  /// open to them.
+  Future<bool> hasAskedNotificationPermission() async {
+    final record = await _store.record(_notifPermissionAskedKey).get(_db);
+    return record?['asked'] == true;
+  }
+
+  Future<void> markNotificationPermissionAsked() async {
+    debugPrint('UserSettingsDao: Marking the notification permission offer as made');
+    await _store.record(_notifPermissionAskedKey).put(_db, <String, dynamic>{'asked': true});
   }
 
   /// Unlocks the DBT programme after someone entered the access code.
