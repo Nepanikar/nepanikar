@@ -9,12 +9,14 @@ import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/helpers/contact_action_helpers.dart';
+import 'package:nepanikar/screens/bpd_programme/bpd_unlock_dialog.dart';
 import 'package:nepanikar/screens/settings/about_app_screen.dart';
 import 'package:nepanikar/screens/settings/export_screen.dart';
 import 'package:nepanikar/screens/settings/languages_screen.dart';
 import 'package:nepanikar/screens/settings/sponsors_screen.dart';
 import 'package:nepanikar/screens/settings/theme_screen.dart';
 import 'package:nepanikar/services/db/database_service.dart';
+import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/services/notifications/notifications_service.dart';
 import 'package:nepanikar/utils/app_config.dart';
 import 'package:nepanikar/utils/extensions.dart';
@@ -37,8 +39,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   DatabaseService get _databaseService => registry.get<DatabaseService>();
 
-  NotificationsService get _notificationsService =>
-      registry.get<NotificationsService>();
+  NotificationsService get _notificationsService => registry.get<NotificationsService>();
+
+  UserSettingsDao get _userSettingsDao => registry.get<UserSettingsDao>();
 
   @override
   Widget build(BuildContext context) {
@@ -58,24 +61,37 @@ class _SettingsScreenState extends State<SettingsScreen> {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(16),
             child: Material(
-              color: isDarkMode
-                  ? NepanikarColors.container(context)
-                  : NepanikarColors.white,
+              color: isDarkMode ? NepanikarColors.container(context) : NepanikarColors.white,
               borderRadius: BorderRadius.circular(16),
               child: Column(
                 children: [
                   _SettingsMenuItem(
                     hideTopSeparator: true,
-                    leading: Assets.icons.notificationBell.svg(
-                      colorFilter: colorFilter,
-                    ),
+                    leading: Assets.icons.notificationBell.svg(colorFilter: colorFilter),
                     onTap: _notificationsService.checkPermission,
                     text: context.l10n.notifications,
                   ),
+                  // The DBT programme is a closed pilot: this is the only way
+                  // in. Once unlocked the row disappears — there is nothing
+                  // left to do with it, and leaving it would suggest the code
+                  // has to be kept.
+                  StreamBuilder<bool>(
+                    stream: _userSettingsDao.bpdProgrammeUnlockedStream,
+                    builder: (context, snapshot) {
+                      if (snapshot.data ?? false) return const SizedBox.shrink();
+                      return _SettingsMenuItem(
+                        leading: Assets.illustrations.modules.homework.svg(
+                          colorFilter: colorFilter,
+                          height: 24,
+                          width: 24,
+                        ),
+                        text: context.l10n.bpd_unlock_title,
+                        onTap: () => showBpdUnlockDialog(context),
+                      );
+                    },
+                  ),
                   _SettingsMenuItem(
-                    leading: Assets.icons.deleteData.svg(
-                      colorFilter: colorFilter,
-                    ),
+                    leading: Assets.icons.deleteData.svg(colorFilter: colorFilter),
                     text: context.l10n.reset_inputs,
                     onTap: () {
                       context.showOkCancelNepanikarDialog(
@@ -87,14 +103,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           final l10n = context.l10n;
                           await _databaseService.clearAll();
                           await _databaseService.preloadDefaultData(l10n);
-                          await _notificationsService
-                              .cancelAllScheduledNotifications();
+                          await _notificationsService.cancelAllScheduledNotifications();
                           if (mounted && context.mounted) {
                             context.hideCurrentSnackBar();
                             context.showSuccessSnackbar(
                               text: context.l10n.delete_success,
-                              leading: Assets.icons.checkmarks.checkCircular
-                                  .svg(),
+                              leading: Assets.icons.checkmarks.checkCircular.svg(),
                             );
                           }
                         },
@@ -117,32 +131,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ),
                   if (!Platform.isIOS)
                     _SettingsMenuItem(
-                      leading: Assets.icons.donate.svg(
-                        colorFilter: colorFilter,
-                      ),
+                      leading: Assets.icons.donate.svg(colorFilter: colorFilter),
                       text: context.l10n.support_us,
                       onTap: () => launchUrLink(AppConstants.nepanikarDonate),
                     ),
                   _SettingsMenuItem(
-                    leading: Assets.icons.exportData.svg(
-                      colorFilter: colorFilter,
-                    ),
+                    leading: Assets.icons.exportData.svg(colorFilter: colorFilter),
                     onTap: () {
                       context.push(const ExportRoute().location);
                     },
                     text: context.l10n.import_export,
                   ),
                   _SettingsMenuItem(
-                    leading: Assets.icons.aboutApp.svg(
-                      colorFilter: colorFilter,
-                    ),
+                    leading: Assets.icons.aboutApp.svg(colorFilter: colorFilter),
                     text: context.l10n.about_app,
                     onTap: () => context.push(const AboutAppRoute().location),
                   ),
                   _SettingsMenuItem(
-                    leading: Assets.icons.language.svg(
-                      colorFilter: colorFilter,
-                    ),
+                    leading: Assets.icons.language.svg(colorFilter: colorFilter),
                     text: context.l10n.language,
                     onTap: () => context.push(const LanguagesRoute().location),
                   ),
@@ -154,9 +160,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   _SettingsMenuItem(
                     leading: Icon(
                       Icons.shield_outlined,
-                      color: isDarkMode
-                          ? Colors.white
-                          : NepanikarColors.primary(context),
+                      color: isDarkMode ? Colors.white : NepanikarColors.primary(context),
                     ),
                     text: context.l10n.support,
                     onTap: () => context.push(const SponsorsRoute().location),
@@ -174,10 +178,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20.0,
-                        vertical: 16,
-                      ),
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16),
                       child: Row(
                         children: [
                           ExcludeSemantics(
@@ -192,11 +193,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           const Spacer(),
                           SemanticsWidgetButton(
                             label: '${context.l10n.follow_us}: Web',
-                            onTap: () =>
-                                launchUrLink(AppConstants.nepanikarWeb),
-                            child: Assets.icons.globe.svg(
-                              colorFilter: colorFilter,
-                            ),
+                            onTap: () => launchUrLink(AppConstants.nepanikarWeb),
+                            child: Assets.icons.globe.svg(colorFilter: colorFilter),
                           ),
                           const SizedBox(width: 27),
                           SemanticsWidgetButton(
@@ -205,9 +203,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               AppConstants.nepanikarInstagram,
                               launchMode: LaunchMode.externalApplication,
                             ),
-                            child: Assets.icons.instagram.svg(
-                              colorFilter: colorFilter,
-                            ),
+                            child: Assets.icons.instagram.svg(colorFilter: colorFilter),
                           ),
                           const SizedBox(width: 27),
                           SemanticsWidgetButton(
@@ -216,9 +212,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               AppConstants.nepanikarFacebook,
                               launchMode: LaunchMode.externalApplication,
                             ),
-                            child: Assets.icons.facebook.svg(
-                              colorFilter: colorFilter,
-                            ),
+                            child: Assets.icons.facebook.svg(colorFilter: colorFilter),
                           ),
                         ],
                       ),
@@ -265,9 +259,7 @@ class _SettingsMenuItem extends StatelessWidget {
                           Theme.of(context).primaryColor,
                         ).shade700,
                       ))
-              : (hideTopSeparator
-                    ? BorderSide.none
-                    : const BorderSide(color: Color(0xffF2F2F5))),
+              : (hideTopSeparator ? BorderSide.none : const BorderSide(color: Color(0xffF2F2F5))),
         ),
       ),
       child: InkWell(
@@ -280,10 +272,7 @@ class _SettingsMenuItem extends StatelessWidget {
               Flexible(
                 child: Row(
                   children: [
-                    if (leading != null) ...[
-                      leading!,
-                      const SizedBox(width: 16),
-                    ],
+                    if (leading != null) ...[leading!, const SizedBox(width: 16)],
                     Flexible(
                       child: Text(
                         text,

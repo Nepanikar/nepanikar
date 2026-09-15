@@ -21,6 +21,18 @@ class MainPageExtra {
   int initIndex;
 }
 
+/// Index of the DBT tab within [mainTabs].
+///
+/// Tab indices are also route indices and are what `MainPageExtra.initIndex`
+/// means, so they must not shift when a tab is hidden.
+const bpdTabIndex = 2;
+
+/// Every tab, in bar order. Index == the value `MainPageExtra.initIndex` takes.
+const mainTabs = [0, 1, bpdTabIndex, 3, 4];
+
+/// The bar as seen before the DBT programme is unlocked.
+const tabsWithoutBpd = [0, 1, 3, 4];
+
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key, this.extra});
 
@@ -93,51 +105,75 @@ class _MainScreenState extends State<MainScreen> {
     });
   }
 
+  BottomNavigationBarItem _navItem(BuildContext context, int tab, int selected) {
+    final isSelected = tab == selected;
+    switch (tab) {
+      case bpdTabIndex:
+        return buildBottomNavigationBarItem(
+          svgIconPath: Assets.icons.calendarEvent.path,
+          label: 'DBT',
+          isSelected: isSelected,
+          context: context,
+        );
+      case 1:
+        return buildBottomNavigationBarItem(
+          svgIconPath: Assets.icons.calendarEvent.path,
+          label: context.l10n.records,
+          isSelected: isSelected,
+          context: context,
+        );
+      case 3:
+        return buildBottomNavigationBarItem(
+          svgIconPath: Assets.icons.phone.path,
+          label: context.l10n.contacts_module,
+          isSelected: isSelected,
+          context: context,
+        );
+      case 4:
+        return buildBottomNavigationBarItem(
+          svgIconPath: Assets.icons.settings.path,
+          label: context.l10n.settings,
+          isSelected: isSelected,
+          context: context,
+        );
+      default:
+        return buildBottomNavigationBarItem(
+          svgIconPath: Assets.icons.home.path,
+          label: context.l10n.home,
+          isSelected: isSelected,
+          context: context,
+        );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
-    return Scaffold(
-      body: _routes.elementAt(_selectedIndex),
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          buildBottomNavigationBarItem(
-            svgIconPath: Assets.icons.home.path,
-            label: context.l10n.home,
-            isSelected: _selectedIndex == 0,
-            context: context,
+    return StreamBuilder<bool>(
+      stream: _userSettingsDao.bpdProgrammeUnlockedStream,
+      builder: (context, snapshot) {
+        // The DBT programme is a closed pilot, so its tab is absent until the
+        // access code is entered. Route indices stay fixed either way — every
+        // `MainPageExtra(initIndex:)` in the app is written against them — and
+        // only which of them are shown changes.
+        final visibleTabs = (snapshot.data ?? false) ? mainTabs : tabsWithoutBpd;
+        // A stale initIndex pointing at the hidden tab must not strand anyone
+        // on a blank screen.
+        final selected = visibleTabs.contains(_selectedIndex) ? _selectedIndex : 0;
+
+        return Scaffold(
+          body: _routes.elementAt(selected),
+          bottomNavigationBar: BottomNavigationBar(
+            items: [for (final tab in visibleTabs) _navItem(context, tab, selected)],
+            currentIndex: visibleTabs.indexOf(selected),
+            showUnselectedLabels: true,
+            type: BottomNavigationBarType.fixed,
+            elevation: 0,
+            onTap: (visibleIndex) => _onItemTapped(visibleTabs[visibleIndex]),
           ),
-          buildBottomNavigationBarItem(
-            svgIconPath: Assets.icons.calendarEvent.path,
-            label: context.l10n.records,
-            isSelected: _selectedIndex == 1,
-            context: context,
-          ),
-          buildBottomNavigationBarItem(
-            svgIconPath: Assets.icons.calendarEvent.path,
-            label: 'DBT',
-            isSelected: _selectedIndex == 2,
-            context: context,
-          ),
-          buildBottomNavigationBarItem(
-            svgIconPath: Assets.icons.phone.path,
-            label: context.l10n.contacts_module,
-            isSelected: _selectedIndex == 3,
-            context: context,
-          ),
-          buildBottomNavigationBarItem(
-            svgIconPath: Assets.icons.settings.path,
-            label: context.l10n.settings,
-            isSelected: _selectedIndex == 4,
-            context: context,
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        showUnselectedLabels: true,
-        type: BottomNavigationBarType.fixed,
-        elevation: 0,
-        onTap: _onItemTapped,
-      ),
+        );
+      },
     );
   }
 }

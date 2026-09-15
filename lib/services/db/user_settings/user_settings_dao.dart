@@ -31,6 +31,13 @@ class UserSettingsDao {
   static const _languageKey = 'language';
   static const _notificationKeyPrefix = 'notification_type_';
   static const _bpdProgrammeStatusKey = 'bpd_programme_status';
+  static const _bpdProgrammeUnlockedKey = 'bpd_programme_unlocked';
+
+  /// The store holds JSON maps, so the unlocked flag is a one-field record
+  /// rather than a bare bool.
+  static const _unlockedRecord = <String, dynamic>{'unlocked': true};
+
+  static bool _isUnlocked(Map<String, dynamic>? record) => record?['unlocked'] == true;
   static const _bpdUserProfileKey = 'bpd_user_profile';
 
   Future<void> saveThemeMode(ThemeMode themeMode) async {
@@ -58,9 +65,7 @@ class UserSettingsDao {
   Future<void> saveMainColor(Color mainColor) async {
     final mainColorInt = mainColor.toARGB32();
     debugPrint('UserSettingsDao: Changing primary color to: $mainColorInt');
-    await _store.record(_mainColorKey).put(_db, <String, dynamic>{
-      'color': mainColorInt,
-    });
+    await _store.record(_mainColorKey).put(_db, <String, dynamic>{'color': mainColorInt});
   }
 
   Future<Color> getMainColor() async {
@@ -69,12 +74,11 @@ class UserSettingsDao {
     return Color(json['color'] as int);
   }
 
-  Stream<Color> get mainColorStream =>
-      _store.record(_mainColorKey).onSnapshot(_db).map((snapshot) {
-        final value = snapshot?.value;
-        if (value == null) return NepanikarColors.defaultPrimary;
-        return Color(value['color'] as int);
-      }).asBroadcastStream();
+  Stream<Color> get mainColorStream => _store.record(_mainColorKey).onSnapshot(_db).map((snapshot) {
+    final value = snapshot?.value;
+    if (value == null) return NepanikarColors.defaultPrimary;
+    return Color(value['color'] as int);
+  }).asBroadcastStream();
 
   String _getNotificationKey(NotificationType type) =>
       '$_notificationKeyPrefix${type.name.toLowerCase()}';
@@ -110,21 +114,14 @@ class UserSettingsDao {
           .asBroadcastStream()
         ..listen((event) => _locale = event);
 
-  Future<void> updateNotificationTypeSettings(
-    NotificationType type,
-    TimeOfDay timeOfDay,
-  ) async {
+  Future<void> updateNotificationTypeSettings(NotificationType type, TimeOfDay timeOfDay) async {
     final notifSettings = NotificationTypeSettings(
       type: type,
       scheduledHour: timeOfDay.hour,
       scheduledMinute: timeOfDay.minute,
     );
-    debugPrint(
-      'UserSettingsDao: Changing notification settings to: $notifSettings',
-    );
-    await _store
-        .record(_getNotificationKey(type))
-        .put(_db, notifSettings.toJson());
+    debugPrint('UserSettingsDao: Changing notification settings to: $notifSettings');
+    await _store.record(_getNotificationKey(type)).put(_db, notifSettings.toJson());
   }
 
   Future<void> removeNotificationTypeSettings(NotificationType type) async {
@@ -132,37 +129,61 @@ class UserSettingsDao {
     await _store.record(_getNotificationKey(type)).delete(_db);
   }
 
-  Stream<List<NotificationTypeSettings>> get notificationTypeSettingsStream =>
-      _store
-          .query(
-            finder: Finder(
-              filter: Filter.or(
-                NotificationType.values
-                    .map((type) => Filter.byKey(_getNotificationKey(type)))
-                    .toList(),
-              ),
-            ),
-          )
-          .onSnapshots(_db)
-          .map(
-            (snapshots) => snapshots
-                .map((s) => NotificationTypeSettings.fromJson(s.value))
-                .toList(),
-          );
+  Stream<List<NotificationTypeSettings>> get notificationTypeSettingsStream => _store
+      .query(
+        finder: Finder(
+          filter: Filter.or(
+            NotificationType.values.map((type) => Filter.byKey(_getNotificationKey(type))).toList(),
+          ),
+        ),
+      )
+      .onSnapshots(_db)
+      .map(
+        (snapshots) => snapshots.map((s) => NotificationTypeSettings.fromJson(s.value)).toList(),
+      );
 
-  Future<NotificationTypeSettings?> getNotificationTypeSettings(
-    NotificationType type,
-  ) async {
+  Future<NotificationTypeSettings?> getNotificationTypeSettings(NotificationType type) async {
     final json = await _store.record(_getNotificationKey(type)).get(_db);
     if (json == null) return null;
     return NotificationTypeSettings.fromJson(json);
   }
+
+  /// Unlocks the DBT programme after someone entered the access code.
+  ///
+  /// What is stored is the unlocked state, not the code, so changing
+  /// `kBpdAccessCode` later never locks anyone back out.
+  Future<void> unlockBpdProgramme() async {
+    debugPrint('UserSettingsDao: Unlocking the BPD programme');
+    await _store.record(_bpdProgrammeUnlockedKey).put(_db, _unlockedRecord);
+  }
+
+  Future<bool> isBpdProgrammeUnlocked() async {
+    final record = await _store.record(_bpdProgrammeUnlockedKey).get(_db);
+    if (_isUnlocked(record)) return true;
+    // Anyone already walking the programme when the gate was introduced keeps
+    // their access — re-locking them would hide their own entries from them.
+    return (await getBpdProgrammeStatus()).hasStarted;
+  }
+
+  /// Whether the programme (its home tile and its tab) should be visible.
+  ///
+  /// Falls back to `hasStarted` on every emission rather than migrating the
+  /// old records once, so the grandfathering also covers a database restored
+  /// from a backup made before the gate existed.
+  Stream<bool> get bpdProgrammeUnlockedStream =>
+      _store.record(_bpdProgrammeUnlockedKey).onSnapshot(_db).asyncMap((snapshot) async {
+        if (_isUnlocked(snapshot?.value)) return true;
+        return (await getBpdProgrammeStatus()).hasStarted;
+      }).asBroadcastStream();
 
   Future<void> markBpdProgrammeStarted() async {
     final now = DateTime.now();
     final status = BpdProgrammeStatus(hasStarted: true, startedAt: now);
     debugPrint('UserSettingsDao: Marking BPD Programme as started');
     await _store.record(_bpdProgrammeStatusKey).put(_db, status.toJson());
+    // Starting implies unlocked; keeps the stream truthful without waiting for
+    // the `hasStarted` fallback.
+    await _store.record(_bpdProgrammeUnlockedKey).put(_db, _unlockedRecord);
 
     // Initialize weeks with time-based unlock
     final bpdWeeksDao = registry.get<BpdWeeksDao>();
@@ -188,12 +209,8 @@ class UserSettingsDao {
       pronoun: profile.pronoun,
       createdAt: profile.createdAt ?? DateTime.now(),
     );
-    debugPrint(
-      'UserSettingsDao: Saving BPD user profile: ${profileWithTimestamp.name}',
-    );
-    await _store
-        .record(_bpdUserProfileKey)
-        .put(_db, profileWithTimestamp.toJson());
+    debugPrint('UserSettingsDao: Saving BPD user profile: ${profileWithTimestamp.name}');
+    await _store.record(_bpdUserProfileKey).put(_db, profileWithTimestamp.toJson());
   }
 
   Future<BpdUserProfile?> getBpdUserProfile() async {

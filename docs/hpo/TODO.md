@@ -164,12 +164,6 @@ found three things not in this list, all fixed in the same pass:
   persist via `BpdChallengesDao` with a per-section key.
 - [x] **W2-04 — SMART tie-in on Day 3 (Efektivně).** ✅ `SmartGoalReminder` reads
   the newest goal from `BpdSmartGoalsDao` and links to "Moje cíle".
-- [~] **W2-05 — Mindfulness notification.** Daily reminder done: opt-in page on
-  Day 4, `NotificationType.mindfulnessReminder`, scheduled through the existing
-  settings-driven loop. **Remaining:** the "2×/week in later modules" downgrade —
-  deliberately deferred, nothing can trigger it until a later module ships
-  (GEN-05). Also fixed on the way: `rescheduleNotifications` used to wipe every
-  per-challenge reminder; it now restores them.
 - [x] **W2-06 — Záchranný balíček.** ✅ No existing feature covered it. New
   `BpdRescuePackageDao` + `BpdRescueItem` + `RescuePackageScreen` (third tile in
   *Moje záznamy → DBT program*), saved from the Day 4/6 detail sheets via
@@ -278,14 +272,30 @@ found three things not in this list, all fixed in the same pass:
   - If the intent was actually the teal accent rather than a green, `secondary`
     is already in the palette.
 
-- [ ] **GEN-07 — Notification when a new day/week unlocks.** There is none.
-  `NotificationType` has `moodReminder`, `sleepRateReminder` (settings-driven),
-  `challengeReminder` (per tracked challenge) and `mindfulnessReminder` (opted
-  into on W2 D4). Nothing fires when the programme opens the next lesson, so a
-  user who does not open the app never learns it is waiting. Needs: a schedule
-  hooked to `unlockDate`, a payload routing to the week detail, and **copy from
-  the author** — the existing programme notifications use her verbatim wording
-  (e.g. `mindfulnessReminderBody`), so this one should too.
+- [x] **GEN-12 — Access code for the programme.** ✅ Done 2026-09-15. The DBT
+  programme runs as a closed pilot, so it is hidden until someone enters a code:
+  neither the home tile nor the bottom-bar tab exist before that. The code is
+  entered in Settings → "Odemknout DBT program", which is the only way in and
+  disappears once used.
+  - `kBpdAccessCode` in `lib/screens/bpd_programme/bpd_access_code.dart` — one
+    shared code, 12 random characters (~55 bits) from an alphabet that leaves
+    out `0/O`, `1/I/L`, `5/S`, `2/Z`, `8/B`. Matching ignores case and every
+    non-alphanumeric character, so dashes and spaces are optional.
+    **It is a gate, not protection:** the string ships in the APK and can be
+    read out of it. Changing it needs a new build and does not re-lock anyone,
+    because what is persisted is the unlocked state
+    (`UserSettingsDao.unlockBpdProgramme`), not the code.
+  - Anyone who had already started the programme stays in — the stream falls
+    back to `hasStarted`, so an existing user is never locked away from their
+    own entries, including after restoring an older backup.
+  - Tab indices deliberately did **not** shift: `mainTabs` / `tabsWithoutBpd`
+    in `main_screen.dart` map a visible bar position back to a route index, so
+    every `MainPageExtra(initIndex:)` in the app keeps its meaning. Both bars
+    (`main_screen.dart` and `nepanikar_screen_wrapper.dart`) use the same lists.
+  - UI copy is localised: `bpd_unlock_*` in `app_cs.arb` (template) and
+    `app_en.arb`; the rest of the languages come from Localazy. The access
+    code itself is not a string to translate.
+  - Not verified on a device.
 
 - [ ] **GEN-04 — Remove DEV unlock-all hack before release.**
   - `bpd_week_detail_screen.dart` calls `unlockAllDaysInWeek(...)` "for testing".
