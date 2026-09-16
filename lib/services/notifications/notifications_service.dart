@@ -10,6 +10,7 @@ import 'package:nepanikar/helpers/date_helpers.dart';
 import 'package:nepanikar/screens/settings/notification_settings_screen.dart';
 import 'package:nepanikar/services/db/bpd/bpd_challenge_tracker_dao.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
+import 'package:nepanikar/services/db/bpd/bpd_unlock_schedule.dart';
 import 'package:nepanikar/services/db/bpd/bpd_weeks_dao.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/services/notifications/app_notification_data_model.dart';
@@ -224,35 +225,49 @@ class NotificationsService {
 
   /// Announces each programme day that opens within the scheduling horizon.
   ///
-  /// Days unlock at midnight, which is no time to be told about it, so the
-  /// notification lands at [_unlockNotificationHour] on the unlock day. The id
-  /// is derived from the week and day, so re-running this never stacks up
-  /// duplicates for the same day.
+  /// Derived from the **week** unlock dates, not from day records: those are
+  /// written lazily, the first time someone opens that week's detail screen
+  /// (`_loadDaysProgress`). Reading them here scheduled nothing at all — the
+  /// week whose opening most needs announcing is precisely the one the user has
+  /// not opened yet. Week rows, by contrast, exist for all seven weeks from the
+  /// moment the programme starts.
+  ///
+  /// Unlocks land at midnight, which is no time to be told about anything, so
+  /// the notification fires at [_unlockNotificationHour] on the unlock day. Ids
+  /// derive from week and day, so re-running this never stacks duplicates.
   Future<void> _scheduleProgrammeUnlockReminders(int scheduleAheadDays) async {
-    if (!registry.isRegistered<BpdDaysDao>()) return;
+    if (!registry.isRegistered<BpdWeeksDao>()) return;
     if (!(await _userSettingsDao.getBpdProgrammeStatus()).hasStarted) return;
 
-    final daysDao = registry.get<BpdDaysDao>();
     final now = DateTime.now();
     final horizon = now.add(Duration(days: scheduleAheadDays));
+    final weeks = await registry.get<BpdWeeksDao>().getAllWeeksProgress();
+    final daysDao = registry.isRegistered<BpdDaysDao>() ? registry.get<BpdDaysDao>() : null;
 
-    for (var week = 1; week <= BpdWeeksDao.totalWeeks; week++) {
-      for (final day in await daysDao.getWeekDaysProgress(week)) {
-        if (day.isCompleted) continue;
-        final fireAt = day.unlockDate.copyWith(
-          hour: _unlockNotificationHour,
-          minute: 0,
-          second: 0,
-          millisecond: 0,
-          microsecond: 0,
-        );
+    for (final week in weeks) {
+      if (week.isCompleted) continue;
+      // Day records may not exist yet; when they do, a finished day needs no
+      // announcement.
+      final done = <int>{};
+      if (daysDao != null) {
+        for (final day in await daysDao.getWeekDaysProgress(week.weekNumber)) {
+          if (day.isCompleted) done.add(day.dayNumber);
+        }
+      }
+
+      for (var dayNumber = 1; dayNumber <= _daysPerWeek; dayNumber++) {
+        if (done.contains(dayNumber)) continue;
+        final fireAt = unlockDayAfter(
+          week.unlockDate,
+          dayNumber - 1,
+        ).copyWith(hour: _unlockNotificationHour);
         // Already past, or too far out to be worth holding a slot for.
         if (fireAt.isBefore(now) || fireAt.isAfter(horizon)) continue;
 
-        final isWeekOpening = day.dayNumber == 1;
+        final isWeekOpening = dayNumber == 1;
         await _awesomeNotifications.createNotification(
           content: NotificationContent(
-            id: _unlockNotificationId(week, day.dayNumber),
+            id: _unlockNotificationId(week.weekNumber, dayNumber),
             channelKey: _basicChannelKey,
             title: isWeekOpening
                 ? NotificationType.programmeUnlockWeekTitle
@@ -270,12 +285,14 @@ class NotificationsService {
           schedule: NotificationCalendar.fromDate(date: fireAt),
         );
         debugPrint(
-          'NOTIFICATION_SERVICE: Scheduled unlock reminder for week $week '
-          'day ${day.dayNumber} at $fireAt',
+          'NOTIFICATION_SERVICE: Scheduled unlock reminder for week '
+          '${week.weekNumber} day $dayNumber at $fireAt',
         );
       }
     }
   }
+
+  static const _daysPerWeek = 7;
 
   /// Stable per day, and far from the random ids the settings-driven loop uses.
   static int _unlockNotificationId(int week, int day) => 9000000 + week * 100 + day;

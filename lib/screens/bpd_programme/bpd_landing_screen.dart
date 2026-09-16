@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/router/routes.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
+import 'package:nepanikar/services/notifications/notifications_service.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/bpd_weeks_screen.dart';
 import 'package:nepanikar/screens/main/main_screen.dart';
@@ -23,7 +25,13 @@ class BpdLandingScreen extends StatelessWidget {
   UserSettingsDao get _userSettingsDao => registry.get<UserSettingsDao>();
 
   Future<void> _handleStartJourney(BuildContext context) async {
+    final l10n = context.l10n;
     await _userSettingsDao.markBpdProgrammeStarted();
+    // The week unlock dates only exist once the programme has started, so this
+    // is the first moment the day/week reminders can be scheduled. Without it
+    // they wait for some unrelated reschedule (a mood pick, a settings change)
+    // and a user who just starts and closes the app is never told a day opened.
+    await registry.get<NotificationsService>().rescheduleNotifications(l10n);
     // Navigate to BPD weeks screen
     if (context.mounted) {
       context.go(const BpdWeeksScreenRoute().location);
