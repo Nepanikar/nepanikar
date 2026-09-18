@@ -303,6 +303,20 @@ class NotificationsService {
   Future<void> rescheduleNotifications(AppLocalizations l10n) async {
     // Cancel all scheduled notifications.
     await cancelAllScheduledNotifications();
+
+    // Every `createNotification` below throws PlatformException
+    // (INSUFFICIENT_PERMISSIONS) when the OS permission is missing, and that
+    // exception escapes into whatever asked for the reschedule. It cost the
+    // "Začít svou cestu" button its navigation: the programme was marked
+    // started, the weeks were initialised, and then this threw before
+    // `context.go`, so anyone who declined notifications tapped Start and
+    // watched nothing happen. Cancelling above is still right — permission can
+    // be revoked while notifications sit in the queue.
+    if (!await isNotificationAllowed) {
+      debugPrint('NOTIFICATION_SERVICE: Notifications not permitted, nothing to schedule.');
+      return;
+    }
+
     // ...then bring back the reminders that are not driven by user settings.
     await _restoreChallengeReminders();
 

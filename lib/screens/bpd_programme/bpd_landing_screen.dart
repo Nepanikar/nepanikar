@@ -7,6 +7,7 @@ import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/bpd_weeks_screen.dart';
 import 'package:nepanikar/screens/main/main_screen.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
+import 'package:nepanikar/utils/crashlytics_utils.dart';
 import 'package:nepanikar/utils/registry.dart';
 
 part 'bpd_landing_screen.g.dart';
@@ -31,7 +32,19 @@ class BpdLandingScreen extends StatelessWidget {
     // is the first moment the day/week reminders can be scheduled. Without it
     // they wait for some unrelated reschedule (a mood pick, a settings change)
     // and a user who just starts and closes the app is never told a day opened.
-    await registry.get<NotificationsService>().rescheduleNotifications(l10n);
+    //
+    // Scheduling is incidental to what the button promises, so it never gets to
+    // decide whether the person reaches the programme. `rescheduleNotifications`
+    // already refuses politely when permission is missing; this catches the rest.
+    try {
+      await registry.get<NotificationsService>().rescheduleNotifications(l10n);
+    } catch (e, s) {
+      await logExceptionToCrashlytics(
+        e,
+        s,
+        logMessage: 'BPD_LANDING: Could not schedule reminders on programme start',
+      );
+    }
     // Navigate to BPD weeks screen
     if (context.mounted) {
       context.go(const BpdWeeksScreenRoute().location);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/services/analytics/bpd_analytics.dart';
 import 'package:nepanikar/services/db/bpd/bpd_unlock_schedule.dart';
 import 'package:nepanikar/services/db/bpd/bpd_week_models.dart';
 import 'package:nepanikar/services/db/database_service.dart';
@@ -76,6 +77,11 @@ class BpdWeeksDao {
       final updatedProgress = weekProgress.copyWith(isCompleted: true, completedAt: DateTime.now());
       await _store.record(weekKey).put(_db, updatedProgress.toJson());
       debugPrint('BpdWeeksDao: Marked week $weekNumber as completed');
+      // First completion only — this is called again on every day re-walk once
+      // the week is full.
+      if (!weekProgress.isCompleted) {
+        await BpdAnalytics.logWeekCompleted(weekNumber);
+      }
     }
   }
 

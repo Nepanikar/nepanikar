@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/theme/colors.dart';
+import 'package:nepanikar/screens/bpd_programme/bpd_research.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_messages.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/external_link_button.dart';
 import 'package:nepanikar/services/db/bpd/bpd_user_profile_model.dart';
 
 /// Page 1/7 — Welcome + how the programme works + name/pronoun, in chat form
@@ -144,6 +146,42 @@ class _Day1WelcomeChatPageState extends State<Day1WelcomeChatPage> {
                   'která si můžete projít dobrovolně. Chtěli bychom Vás v tom však '
                   'povzbudit. Čím více energie do programu věnujete během následujících '
                   'společných sedmi týdnu, tím lépe Vám může být do budoucna.',
+            ),
+          ],
+        ),
+        // Ours, not the author's copy: the pilot study did not exist when she
+        // wrote the introduction. It sits here, one step before the name form,
+        // so it is read after the programme has been explained and before
+        // anyone has invested anything in it. Facts and wording follow the
+        // entry form itself — see bpd_research.dart.
+        const ChatStep(
+          messages: [
+            ChatBotBubble(
+              showAvatar: true,
+              text:
+                  'Ještě jedna věc, než začneme. Tento průvodce je zatím v pilotním '
+                  'testování — vznikl na Psychologickém ústavu Filozofické fakulty '
+                  'Masarykovy univerzity a právě teď ověřujeme, jak funguje v praxi.',
+            ),
+            ChatBotBubble(
+              text:
+                  'Součástí je krátký vstupní dotazník, vyplnění zabere 7–10 minut. '
+                  'Zároveň v něm potvrdíte souhlas s účastí ve výzkumu. Po sedmi '
+                  'týdnech Vám e-mailem přijde odkaz na výstupní dotazník.',
+            ),
+            ChatRichMessage(
+              child: ExternalLinkButton(
+                label: 'Otevřít vstupní dotazník',
+                url: bpdResearchEntryFormUrl,
+                icon: Icons.assignment_outlined,
+              ),
+            ),
+            ChatBotBubble(
+              showAvatar: true,
+              text:
+                  'Účast je zcela dobrovolná a můžete ji kdykoli bez udání důvodu '
+                  'ukončit. S dotazy se můžete obrátit na Kláru Pytelovou na adrese '
+                  '$bpdResearchContactEmail.',
             ),
           ],
         ),

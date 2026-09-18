@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/services/analytics/bpd_analytics.dart';
 import 'package:nepanikar/services/db/bpd/bpd_day_models.dart';
 import 'package:nepanikar/services/db/bpd/bpd_unlock_schedule.dart';
 import 'package:nepanikar/services/db/bpd/bpd_weeks_dao.dart';
@@ -53,6 +54,11 @@ class BpdDaysDao {
     if (dayProgress != null) {
       final updated = dayProgress.copyWith(isCompleted: true, completedAt: DateTime.now());
       await saveDayProgress(updated);
+      // Only the first completion counts. Days can be re-walked freely, and
+      // counting a re-read as progress would bend the pilot's drop-off curve.
+      if (!dayProgress.isCompleted) {
+        await BpdAnalytics.logDayCompleted(weekNumber, dayNumber);
+      }
     }
     await _markWeekCompletedIfAllDaysDone(weekNumber);
   }

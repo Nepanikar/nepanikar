@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/helpers/localization_helpers.dart';
+import 'package:nepanikar/services/analytics/bpd_analytics.dart';
 import 'package:nepanikar/services/db/bpd/bpd_user_profile_model.dart';
 import 'package:nepanikar/services/db/bpd/bpd_weeks_dao.dart';
 import 'package:nepanikar/services/db/database_service.dart';
@@ -195,6 +196,10 @@ class UserSettingsDao {
 
   Future<void> markBpdProgrammeStarted() async {
     final now = DateTime.now();
+    // The landing screen shows "Začít svou cestu" on every visit, so this runs
+    // again for people who are already walking the programme. Only the first
+    // time is a start.
+    final wasAlreadyStarted = (await getBpdProgrammeStatus()).hasStarted;
     final status = BpdProgrammeStatus(hasStarted: true, startedAt: now);
     debugPrint('UserSettingsDao: Marking BPD Programme as started');
     await _store.record(_bpdProgrammeStatusKey).put(_db, status.toJson());
@@ -205,6 +210,8 @@ class UserSettingsDao {
     // Initialize weeks with time-based unlock
     final bpdWeeksDao = registry.get<BpdWeeksDao>();
     await bpdWeeksDao.initializeWeeks(now);
+
+    if (!wasAlreadyStarted) await BpdAnalytics.logProgrammeStarted();
   }
 
   Future<BpdProgrammeStatus> getBpdProgrammeStatus() async {
