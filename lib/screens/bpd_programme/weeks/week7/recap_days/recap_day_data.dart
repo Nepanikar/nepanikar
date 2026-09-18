@@ -9,10 +9,11 @@
 /// screen rather than five near-identical ones (the pattern Week 1's SPOKO days
 /// established).
 ///
-/// **The menus list only skills the programme actually taught.** The author's
-/// recap paragraphs also name "PODPORA", "coping ahead" and "radikální přijetí",
-/// none of which appear anywhere in weeks 1–6 — offering them here would send
-/// the user somewhere empty. Tracked as W7-01 → OQ-1.
+/// **The menus list only skills the programme actually taught.** The recap
+/// paragraphs used to name "PODPORA", "coping ahead" and "radikální přijetí"
+/// too, none of which appear anywhere in weeks 1–6; the author had them struck
+/// from the recaps (2026-09-18) rather than added to the earlier weeks, so the
+/// text and the menus now agree.
 ///
 /// Every detail text is assembled from the constants the original day already
 /// ships, so the wording a user re-reads here is byte-identical to the wording
@@ -233,7 +234,7 @@ final week7Day3 = Week7RecapDay(
     'Pro zvládání silných emocí jsme používali mindfulness, praktické nástroje '
         'pro okamžité uklidnění a manuály krok za krokem. Dále jsme se učili '
         'zmírňovat citlivost na stresory a připravovat se na náročné situace '
-        'dopředu pomocí plánů coping ahead.',
+        'dopředu.',
   ],
   pickLead: 'Teď si vyber, co z těchto nástrojů chceš procvičit, zopakovat a '
       'posílit, podle toho, co ti právě teď nejvíc pomáhá.',
@@ -260,10 +261,9 @@ final week7Day4 = Week7RecapDay(
         'reagovat různě na krátkodobé i dlouhodobé stresory.',
     'Připomněli jsme si TIPS techniku – rychlé fyziologické strategie ke '
         'snížení intenzivní emoční aktivace, UZNÁVÁM pro krátkodobé zvládnutí '
-        'nepříjemných emocí, PODPORA pro situace, kdy nelze okamžitě změnit '
-        'okolnosti, STOP techniku pro vědomé zastavení reakce a uzemňovací '
-        'cvičení pomocí pěti smyslů a body scan. Dále jsme si připomněli '
-        'radikální přijetí a využití všímavosti k uklidnění mysli.',
+        'nepříjemných emocí, STOP techniku pro vědomé zastavení reakce a '
+        'uzemňovací cvičení pomocí pěti smyslů a body scan. Dále jsme si '
+        'připomněli využití všímavosti k uklidnění mysli.',
   ],
   pickLead: 'Teď si vyber, co z těchto nástrojů chceš procvičit nebo zopakovat '
       'podle toho, co ti právě teď nejvíc pomáhá.',

@@ -33,8 +33,7 @@ class Week5Day2LifeThreateningScreenRoute extends GoRouteData
 ///
 /// The one day the source itself declares optional, so it is also the one day
 /// with a way out on every screen. Skipping marks it done rather than leaving
-/// the week stuck at 6/7 — see WEEK5_SCREEN_PLAN.md → OQ-1, which is still the
-/// author's call.
+/// the week stuck at 6/7 — the author's call (2026-09-18).
 class Week5Day2LifeThreateningScreen extends StatefulWidget {
   const Week5Day2LifeThreateningScreen({super.key});
 
@@ -77,8 +76,8 @@ class _Week5Day2LifeThreateningScreenState extends State<Week5Day2LifeThreatenin
     if (mounted) context.pop();
   }
 
-  /// Skipping counts as done. Anything else and the week can never reach 7/7,
-  /// while Day 3 still opens with "Po včerejším dni…".
+  /// Skipping counts as done — the author's call. Anything else and the week
+  /// could never reach 7/7 for someone who, quite reasonably, sat this one out.
   Future<void> _skipDay() async {
     await _bpdDaysDao.markDayCompleted(5, 2);
     if (!mounted) return;

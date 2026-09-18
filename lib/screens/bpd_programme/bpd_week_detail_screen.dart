@@ -388,9 +388,11 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
       ),
       const _DayContentData(
         title: 'Pauza',
+        // Day-agnostic: Day 2 is voluntary, so this must read the same whether
+        // or not it was taken.
         description:
-            'Po včerejším dni může být přirozené cítit únavu. Dovol si zpomalit '
-            'a postarat se o sebe s laskavostí.',
+            'Máš za sebou velký kus cesty a je přirozené cítit únavu. Dovol si '
+            'zpomalit a postarat se o sebe s laskavostí.',
         estimatedTime: '2 min',
         activityType: 'Odpočinek',
         routeType: _DayRouteType.pause,
@@ -449,10 +451,11 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
         activityType: 'Edukace + Cvičení',
         routeType: _DayRouteType.week6Day2Communication,
       ),
-      // The source gives this day no title (it starts at a bare "3."), so the
-      // name here is ours — WEEK6_SCREEN_PLAN.md → OQ-4.
+      // The source gives this day no title (it starts at a bare "3."); the
+      // author named it afterwards (2026-09-18). "Je VýZVa" is the acronym, so
+      // the capitalisation is hers and deliberate.
       const _DayContentData(
-        title: 'Je VýZVa a všímavost ve vztazích',
+        title: 'Dovednost Je VýZVa',
         description:
             'Jak zůstat laskavý/á, pozorný/á a chápavý/á i ve chvíli, kdy jsi '
             'rozrušený/á. Na konci si vybereš všímavé cvičení.',

@@ -57,12 +57,15 @@ class DayPauseScreen extends StatelessWidget {
         'velký kus práce – je vidět, kolik energie, odvahy a odhodlání do toho '
         'dáváš. Dnes si můžeš s klidem odpočinout a nechat své pokroky v klidu '
         '„doznít“.',
-    // Week 5 rests twice as well (tyzden-5.md §3 and §6). Day 3 refers to "the
-    // day before", which is the voluntary Day 2 — see WEEK5_SCREEN_PLAN.md OQ-1.
+    // Week 5 rests twice as well (tyzden-5.md §3 and §6). Day 3 used to open
+    // with "Po včerejším dni", which reads wrong for anyone who skipped the
+    // voluntary Day 2; the author replaced it with this day-agnostic wording
+    // (2026-09-18).
     (5, 3):
-        'Po včerejším dni může být přirozené cítit únavu. Dovol si zpomalit a '
-        'postarat se o sebe s laskavostí. Každý krok, i ten odpočinkový, je '
-        'důležitou součástí cesty. Proto si dnes dáme od programu pauzu.',
+        'V průvodci máš za sebou velký kus cesty a je přirozené cítit únavu. '
+        'Dovol si zpomalit a postarat se o sebe s laskavostí. Každý krok, i ten '
+        'odpočinkový, je důležitou součástí cesty. Proto si dnes dáme od '
+        'průvodce pauzu.',
     (5, 6):
         'Dnešek bude dnem odpočinku. Zasloužíš si ho – Tvoje vytrvalost, '
         'otevřenost a snaha jdou opravdu vidět. I pauza je součástí cesty vpřed, '

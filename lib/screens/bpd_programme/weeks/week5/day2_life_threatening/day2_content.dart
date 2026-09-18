@@ -31,8 +31,8 @@ const day2Warning = <String>[
       'můžeš nahlédnout do kontaktů, které jsou pro takové chvíle k dispozici.',
 ];
 
-/// Ours. The source says the day is optional but never says what skipping does.
-// TODO: schválit autorem (WEEK5_SCREEN_PLAN.md → OQ-1)
+/// Ours. The source says the day is optional but never says what skipping
+/// does; the author confirmed the behaviour (2026-09-18).
 const day2SkipLabel = 'Přeskočit dnešek';
 const day2SkipConfirmation = 'Dnešek jsme přeskočili. Zítra pokračujeme.';
 const day2CrisisLinkLabel = 'Kontakty pro těžké chvíle';
@@ -66,21 +66,21 @@ const day2StopLead = <String>[
       'šanci vybrat si jinou cestu.',
 ];
 
-/// Verbatim from **this** week's source, which words the letters in English
-/// with a Czech gloss — Week 4 Day 2 words the same technique entirely in Czech
-/// ("T – Tah zpátky"). That disagreement is the author's to resolve; we ship
-/// her week-5 text rather than silently substituting her week-4 text.
-// TODO: schválit autorem — sjednotit se zněním z týdne 4
-// (WEEK5_SCREEN_PLAN.md → OQ-2)
+/// The Czech wording from Week 4 Day 2, not this week's source.
+///
+/// The source words the letters in English with a Czech gloss, which would have
+/// shown the same technique two different ways — and people have the week-4
+/// version saved in their rescue packages already. The author chose Czech for
+/// both (2026-09-18).
 const day2StopLetters = <AcronymLetter>[
-  ('S', 'Stop (zastav se)', 'nic nedělej, nic neříkej.'),
-  ('T', 'Take a step back (ustup)', 'doslova se nadechni a udělej krok zpět, dej si čas.'),
-  ('O', 'Observe (pozoruj)', 'co se právě děje? jaké máš pocity, myšlenky, co říká okolí?'),
+  ('S', 'Stop!', 'zastav se na chvíli -  nic nedělej, nic neříkej.'),
+  ('T', 'Tah zpátky', 'udělej krok zpět, dej si čas.'),
+  ('O', 'Obhlédni situaci', 'co se právě děje? jaké máš pocity, myšlenky, co říká okolí?'),
   (
     'P',
-    'Proceed mindfully (pokračuj vědomě)',
+    'Postupuj všímavě',
     'rozhodni se, co ti v té situaci nejvíc pomůže – ne co chce emoce, ale co '
-        'dává smysl.',
+        'dává smysl, co je efektivní.',
   ),
 ];
 

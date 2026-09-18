@@ -98,7 +98,7 @@ class _Week6Day2CommunicationScreenState extends State<Week6Day2CommunicationScr
                     dayNumber: 2,
                     summary: day2CompletionText,
                     nextDay: const NextDayTeaser(
-                      title: 'Je VýZVa a všímavost ve vztazích',
+                      title: 'Dovednost Je VýZVa',
                       description:
                           'Jak zůstat laskavý/á a pozorný/á i ve chvíli, kdy '
                           'jsi rozrušený/á.',

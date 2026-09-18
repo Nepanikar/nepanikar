@@ -464,15 +464,14 @@ found three things not in this list, all fixed in the same pass:
 - [?] **W7-01 — Content decisions for the author (Week 7).** The final week
   landed 2026-08-29 and is fully implemented. Nothing blocks it, but it has the
   most content gaps of any week:
-  1. **The recaps name three skills the programme never taught (OQ-1).** Checked
-     with a grep across `source/tyzden-1..6.md`: **PODPORA** (Day 4) appears
-     nowhere else in the programme at all; **coping ahead** (Day 3) and
-     **radikální přijetí** (Day 4) appear only as parenthesised examples inside
-     Week 5's missing-links exercise. Day 3 also credits emotional regulation
-     with "zmírňovat citlivost na stresory", which is SPOKO from Week 1. The
-     recap paragraphs ship verbatim, but the practice menus list only skills that
-     exist — offering PODPORA would send someone to an empty page. Either drop
-     them from the recap or add them to the week that should have taught them.
+  1. ✅ **The recaps name three skills the programme never taught (OQ-1).**
+     **Answered 2026-09-18: struck from the recaps.** **PODPORA** appeared
+     nowhere else in the programme at all; **coping ahead** and **radikální
+     přijetí** only as parenthesised examples inside Week 5's missing-links
+     exercise. Day 3's and Day 4's paragraphs no longer name them, so the text
+     and the practice menus finally agree. Day 3 still credits emotional
+     regulation with "zmírňovat citlivost na stresory", which is SPOKO from
+     Week 1 — left as written.
   2. **Typos left verbatim (OQ-2):** "Věříme, že Ti dovednosti z můžou přinést
      úlevu" (Day 3 — a word is missing, this one changes the meaning),
      "pSANÍČKoa nenásilnou komunikaci" and "JeVýZVa" without a space (Day 6),
@@ -496,12 +495,15 @@ found three things not in this list, all fixed in the same pass:
   2026-08-29, is planned (`.claude/design/week6/WEEK6_SCREEN_PLAN.md`) and fully
   implemented. **Nothing here blocks code** — unlike Week 5 — but nine things
   need her eye. In order of impact:
-  1. **Twenty-four myths with no counter-statements (OQ-1).** In Week 3 she wrote
-     a "busted" version of every myth, which the app reveals when someone is
-     stuck. Week 6 says only "(nechat prostor na vepsání pravdivé formulace)", so
-     twenty-four fields ship with no help at all and most will stay empty.
-     Proposal: counter-statements for at least the first four of each group,
-     which are the ones shown before "Chci zpochybnit i další mýty".
+  1. ⏳ **Twenty-four myths with no counter-statements (OQ-1).** In Week 3 she
+     wrote a "busted" version of every myth, which the app reveals when someone
+     is stuck. Week 6 says only "(nechat prostor na vepsání pravdivé
+     formulace)", so twenty-four fields ship with no help at all and most will
+     stay empty. **Answered 2026-09-18: she is writing all twenty-four**, to be
+     shown the Week 3 way (tap to reveal). **Waiting on her file.** No new widget
+     is needed — pair each myth with its counter-statement the way
+     `EmotionMyth` does and pass it as `WorksheetField.example`; the reveal is
+     already built.
   2. **Broken formatting we had to interpret (OQ-2).** Four places, all recorded
      in the Dart doc comments: (a) Day 5's "**O – bez zbytečných Omluv**" is glued
      onto the end of the "Z" instruction with no line break — split at the obvious
@@ -509,8 +511,10 @@ found three things not in this list, all fixed in the same pass:
      (c) Day 3's "Va – VAlidace" reads "**uznejříkáuznej** pocity a názory" — kept
      as "uznej"; (d) an empty bullet between "Vý" and "Z". Typos left verbatim:
      "časo" (Day 1), "se tyto dovednosti zaměřuje" (Day 1).
-  3. **Day 3 has no title (OQ-4).** Every other day has one. Ours: "Je VýZVa
-     a všímavost ve vztazích".
+  3. ✅ **Day 3 has no title (OQ-4).** Every other day has one. **Answered
+     2026-09-18: "Dovednost Je VýZVa"** — the capitalisation is hers, "Je VýZVa"
+     being the acronym. Replaced our stand-in "Je VýZVa a všímavost ve vztazích"
+     in the day list and in Day 2's next-day teaser.
   4. **Three "(infografika)" notes (OQ-3)** — PSANÍČKo, Je VýZVa, neZOUFej. We
      have no artwork; the acronym page (letter + word + instruction) stands in.
      If she wants a real graphic, it has to be supplied.
@@ -538,26 +542,29 @@ found three things not in this list, all fixed in the same pass:
   2026-08-28 and is planned (`.claude/design/week5/WEEK5_SCREEN_PLAN.md`). Twelve
   open questions; **two block Day 2 and cannot be worked around.** In order of
   impact:
-  1. **STOP has two different wordings (OQ-2, blocking).** Week 4 Day 2 already
+  1. ✅ **STOP has two different wordings (OQ-2, was blocking).** Week 4 Day 2
      teaches it in Czech ("T – Tah zpátky", "O – Obhlédni situaci", "P – Postupuj
-     všímavě"); Week 5 Day 2 teaches it in English with a Czech gloss ("T – Take a
-     step back (ustup)"). A user who did Week 4 meets the same technique twice,
-     worded differently, which reads as an app bug. Both variants are shown side by
-     side in `mockups/day2_page3_stop_konflikt.html`. Recommendation: keep Week 4's
-     — it already ships and sits in users' rescue packages.
-  2. **What "dobrovolná sekce" actually does (OQ-1, blocking).** Day 2 says it is
-     voluntary but never says what skipping means. Left as is, a skipped day holds
-     the week at 6/7 and Day 3 opens with "Po včerejším dni…", which will not match
-     what the user did. Proposal: skipping marks the day done; we need her wording
-     for the button and the confirmation.
+     všímavě"); Week 5 Day 2 taught it in English with a Czech gloss ("T – Take a
+     step back (ustup)"), so anyone who did Week 4 met the same technique twice,
+     worded differently. **Answered 2026-09-18: Czech everywhere.** Week 5 Day 2
+     now carries Week 4's letters verbatim; the rescue-package id was already
+     shared, so nobody's saved copy changed.
+  2. ✅ **What "dobrovolná sekce" actually does (OQ-1, was blocking).** Day 2
+     says it is voluntary but never said what skipping means. **Answered
+     2026-09-18: skipping marks the day done**, so the week can still reach 7/7,
+     **and Day 3's opening is now day-agnostic** — her replacement text drops
+     "Po včerejším dni…", which would not have matched what a skipper did. The
+     button and confirmation wording stayed ours.
   3. **Day 1 asks for an exposure with no warning (OQ-3).** The user recalls and
      dissects their own impulsive episode — the six-step list explicitly includes
      "život ohrožující chování" — while Day 2, the *gentler* of the two, is the one
      that carries the trigger warning. Proposal: one sentence before the worksheet,
      and move "Tento worksheet můžete vyplnit pomalu" above the fields.
-  4. **Day 4 has no intro at all (OQ-6).** It opens straight into a ten-field
-     worksheet with no educational sentence; the field labels would be ours.
-     2–3 sentences from her, plus label approval.
+  4. ✅ **Day 4 has no intro at all (OQ-6).** It opened straight into a
+     ten-field worksheet with no educational sentence. **Answered 2026-09-18:
+     she wrote the intro** ("Dnes se zaměříme na plánování a prevenci náročných
+     chvil…"), which replaced our stand-in. The field labels are still ours and
+     still unapproved.
   5. **Mixed tykání/vykání (OQ-5).** The Day 1 challenge and both worksheets use
      vykání ("vzpomeňte si", "Napište si"); the rest of the programme uses tykání.
   6. **Day 5 asks for two different interactions (OQ-9)** — "prostor vybrat si"

@@ -9,8 +9,8 @@
 ///   the source — an editing artefact, kept as "uznej";
 /// * an empty bullet sits between "Vý" and "Z" and is simply absent here.
 ///
-/// The day itself has no title in the source (it starts at a bare "3."), so the
-/// name in the day list is ours — OQ-4.
+/// The day itself has no title in the source (it starts at a bare "3."); the
+/// author supplied "Dovednost Je VýZVa" later — see `bpd_week_detail_screen`.
 library;
 
 import 'package:nepanikar/screens/bpd_programme/widgets/acronym_skill_page.dart';

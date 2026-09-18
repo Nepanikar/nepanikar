@@ -4,21 +4,22 @@
 ///
 /// Copy verbatim from `docs/hpo/source/tyzden-5.md` §4.
 ///
-/// The source gives this day five headings and ten instructions and nothing
-/// else — no introduction, no closing beyond one sentence. The headings are
-/// hers; the field labels are ours, because an instruction in the imperative
-/// ("Napište si situace…") is not a label. See WEEK5_SCREEN_PLAN.md → OQ-6.
+/// The source gave this day five headings and ten instructions and nothing
+/// else — the introduction below came later, from the author (2026-09-18). The
+/// headings are hers; the field labels are ours, because an instruction in the
+/// imperative ("Napište si situace…") is not a label.
 library;
 
 import 'package:nepanikar/screens/bpd_programme/widgets/structured_worksheet.dart';
 
 const day4WorksheetId = 'week5_day4_prevention';
 
-/// Ours — the day would otherwise open straight into ten empty fields.
-// TODO: schválit autorem (OQ-6)
+/// The author's, written to replace the bare worksheet opening.
 const day4Intro =
-    'Dnes si připravíš vlastní plán pro chvíle, kdy přijde silný impulz. '
-    'Nemusíš vyplnit všechno najednou – vrátit se k němu můžeš kdykoliv.';
+    'Dnes se zaměříme na plánování a prevenci náročných chvil. Mít předem '
+    'promyšlené konkrétní kroky a bezpečné alternativy ti pomůže ve chvíli, kdy '
+    'přijdou silné emoce nebo impulzy. Vyplň si následující bezpečnostní plán '
+    'vlastním tempem – poslouží ti jako tvá osobní záchranná síť do kapsy.';
 
 /// Section titles and intros are verbatim; `label` is ours (OQ-6).
 const day4PreventionWorksheet = <WorksheetSection>[
