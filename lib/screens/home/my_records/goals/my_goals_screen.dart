@@ -70,7 +70,7 @@ class MyGoalsScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 44, bottom: 14),
                   child: Text(
-                    'Cíle, které sis v programu stanovil/a metodou SMART.',
+                    'Cíle, které sis v průvodci stanovil/a metodou SMART.',
                     style: TextStyle(
                       fontSize: 14,
                       height: 1.45,
@@ -320,7 +320,7 @@ class _EmptyState extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'Až si v programu stanovíš svůj SMART cíl, objeví se tady a budeš '
+            'Až si v průvodci stanovíš svůj SMART cíl, objeví se tady a budeš '
             'se k němu moct kdykoliv vrátit.',
             textAlign: TextAlign.center,
             style: TextStyle(

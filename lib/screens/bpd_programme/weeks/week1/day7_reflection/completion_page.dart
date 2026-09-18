@@ -10,7 +10,7 @@ class Day7CompletionPage extends StatelessWidget {
   static const _praise =
       'Gratulujeme k dokončení prvního týdne! Zvládnout úvodní dny a zmapovat '
       'si tolik důležitých oblastí svého života je skvělý úspěch. Chceme ocenit '
-      'tvou vytrvalost a otevřenost, se kterou k programu přistupuješ. První '
+      'tvou vytrvalost a otevřenost, se kterou k průvodci přistupuješ. První '
       'milník je úspěšně za tebou. Užij si zasloužené volno a příští týden '
       'budeme společně pokračovat dál.';
 

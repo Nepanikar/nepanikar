@@ -104,19 +104,6 @@ class BpdDaysDao {
     await _store.delete(_db);
   }
 
-  /// Unlock all days in a week (for development/testing purposes)
-  Future<void> unlockAllDaysInWeek(int weekNumber) async {
-    final days = await getWeekDaysProgress(weekNumber);
-    final now = DateTime.now();
-
-    for (final day in days) {
-      // Set unlock date to now so all days are immediately accessible
-      final updated = day.copyWith(unlockDate: now);
-      await saveDayProgress(updated);
-    }
-    debugPrint('BpdDaysDao: Unlocked all days in week $weekNumber');
-  }
-
   Stream<List<BpdDayProgress>> watchWeekDaysProgress(int weekNumber) {
     final finder = Finder(
       filter: Filter.equals('weekNumber', weekNumber),

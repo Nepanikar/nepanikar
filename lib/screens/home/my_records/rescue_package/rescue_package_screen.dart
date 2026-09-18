@@ -51,7 +51,7 @@ class RescuePackageScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 44, bottom: 14),
                   child: Text(
-                    'Cvičení, která sis uložil/a v programu. Vrať se k nim, '
+                    'Cvičení, která sis uložil/a v průvodci. Vrať se k nim, '
                     'kdykoliv je budeš potřebovat.',
                     style: TextStyle(
                       fontSize: 14,
@@ -192,7 +192,7 @@ class _EmptyState extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'Až si v programu uložíš nějaké cvičení, najdeš ho tady — po ruce '
+            'Až si v průvodci uložíš nějaké cvičení, najdeš ho tady — po ruce '
             'na chvíle, kdy ho budeš potřebovat.',
             textAlign: TextAlign.center,
             style: TextStyle(

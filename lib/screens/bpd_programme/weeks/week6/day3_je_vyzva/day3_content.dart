@@ -65,7 +65,7 @@ const day3MindfulnessIntro = <String>[
   'I když hlavním cílem týdne jsou dovednosti pro efektivní komunikaci, '
       'všímavost je skvělý nástroj, který podporuje všechny tyto dovednosti. Je '
       'užitečné se k němu pravidelně vracet, protože čím častěji cvičíme vědomou '
-      'pozornost, tím snazší je zůstat klidný/á, soustředěný/á a konstruktivní '
+      'pozornost, tím snazší je zůstat soustředěný/á a konstruktivní '
       've vztazích s ostatními.',
 ];
 

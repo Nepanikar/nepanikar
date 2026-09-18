@@ -38,7 +38,7 @@ class Day1GoalsExpectationsPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 24),
-          _FieldLabel(text: 'S jakým očekáváním vstupuješ do programu?', color: bodyColor),
+          _FieldLabel(text: 'S jakým očekáváním vstupuješ do průvodce?', color: bodyColor),
           const SizedBox(height: 8),
           _MultilineField(
             controller: expectationsController,
@@ -46,7 +46,7 @@ class Day1GoalsExpectationsPage extends StatelessWidget {
             isDarkMode: isDarkMode,
           ),
           const SizedBox(height: 20),
-          _FieldLabel(text: 'Jakých cílů chceš během programu dosáhnout?', color: bodyColor),
+          _FieldLabel(text: 'Jakých cílů chceš během průvodce dosáhnout?', color: bodyColor),
           const SizedBox(height: 8),
           _MultilineField(
             controller: goalsController,

@@ -73,7 +73,7 @@ const day1Obstacles = <(String, String)>[
 ];
 
 const day1ObstaclesGoodNews =
-    'Dobrá zpráva je, že právě dovednosti, které se v programu naučíš, '
+    'Dobrá zpráva je, že právě dovednosti, které se v průvodci naučíš, '
     'pomáhají tyto překážky překonat.';
 
 /// The twenty myths with the author's counter-statements, in source order.

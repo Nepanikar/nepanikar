@@ -229,11 +229,12 @@ found three things not in this list, all fixed in the same pass:
     week when `kImplementedBpdWeeks` contains it — the `unlockDate` computed by
     `BpdWeeksDao` is only used for the "Odemkne se …" label on weeks we have not
     built. So on a fresh install *every implemented week is open at once*, and
-    once GEN-04 removes the DEV hack a user on Week 1 Day 1 could still jump
-    straight into Week 4. Days would gate by time, weeks would not. Decide
-    whether weeks should follow their `unlockDate` too, or whether opening the
-    next week should depend on completing the previous one.
-  - Note the day-level gate is invisible while GEN-04's DEV hack is in.
+    a user on Week 1 Day 1 can still open Week 4's day list. **Since GEN-04
+    (2026-09-18) its days are at least locked**: day records now derive from the
+    week's own `unlockDate`, so a week opened early shows seven locked days and
+    a countdown rather than seven usable ones. The week itself is still
+    browsable. Decide whether that preview is wanted, or whether the tree should
+    follow `unlockDate` too.
 
 - [x] **W1-11 — Week 1 education → chat.** ✅ Done 2026-08-19. The author noticed
   Week 1 behaved differently from Weeks 2–4: only Day 1 used the chat template.
@@ -347,10 +348,17 @@ found three things not in this list, all fixed in the same pass:
   - Not verified on a device — the interesting path is what happens on
     "Teď ne" and on a second launch.
 
-- [ ] **GEN-04 — Remove DEV unlock-all hack before release.**
-  - `bpd_week_detail_screen.dart` calls `unlockAllDaysInWeek(...)` "for testing".
-    Gate behind a debug flag or remove. (See line ~211.)
-
+- [x] **GEN-04 — Remove the DEV day unlock.** ✅ Done 2026-09-18, ahead of the
+  pilot release. `_loadDaysProgress` called `unlockAllDaysInWeek` on every open,
+  which set every day's unlock date to now — the seven-week pacing the study
+  depends on did not exist. The DAO method is gone, not just its caller.
+  - Fixed with it: day records were initialised from `DateTime.now()` instead of
+    the week's own `unlockDate`, so opening a week late pushed its whole
+    seven-day schedule out by however late you were. The DEV unlock had been
+    masking this the entire time.
+  - Consequence for testing: a fresh install now only opens week 1, and the rest
+    arrive weekly. Walking a later week on a device needs the database edited or
+    the clock moved.
 - [~] **GEN-05 — Author Weeks 3–7.**
   - **Week 3 (Emoční regulace) delivered and implemented 2026-08-06.** Source
     verbatim in [source/tyzden-3.md](source/tyzden-3.md), summarised in
@@ -526,18 +534,20 @@ found three things not in this list, all fixed in the same pass:
   - Done when: each decision is recorded in the plan's OQ table and the affected
     rows lose their ⚠️ in `.claude/design/week6/TRACKING.md`.
 
-- [ ] **GEN-14 — "program" → "průvodce" is half applied.** The author renamed
-  the programme in every new file she has sent: Week 5 Day 3's pause text (live
-  since 2026-09-18) and all three of Week 6's occurrences say "průvodce", while
-  the rest of the app — roughly 85 more, across weeks 1–4 and 7, plus the "DBT
-  program" app-bar title — still says "program". The new .docx set for weeks 5–7
-  carries the same rename, so it is clearly her intent and not a slip.
-  **A partly renamed app reads as a bug**, so this is worth doing in one pass
-  rather than file by file.
-  - Care needed: `program` also appears in route names, widget names and the app
-    bar title, so this is not a blind find-and-replace over `lib/`.
-  - Done when: every user-facing occurrence inside the programme says
-    "průvodce", or the author confirms she wants "program" kept.
+- [x] **GEN-14 — "program" → "průvodce".** ✅ Done 2026-09-18. 134 strings in
+  56 files, plus the skill tree's "Závěr průvodce" in `bpd_weeks_data.json` and
+  the `bpd_unlock_title` ARB string. Applied only inside Dart string literals,
+  so identifiers, imports and the `/bpd-programme/` routes are untouched — they
+  spell it "programme" and never appear on screen.
+  - Czech declines the two differently ("průvodce" is a soft animate masculine),
+    so the case was read off the preposition: `v`/`k` → "průvodci", everything
+    else → "průvodce". Verified by reading all 134 replacements.
+  - The landing screen needed a rewrite rather than a substitution: "Tento
+    sedmitýdenní program je navržený jako tvůj průvodce" would have said
+    "průvodce" twice. Not the author's copy, so ours to reword.
+  - `docs/hpo/source/*.md` keeps her original wording, including "program" in
+    the older weeks. The sources are the record of what she sent, not of what
+    ships.
 
 - [ ] **W5-02 — Week titles in `bpd_weeks_data.json` may not match the delivered
   content.** Week 5 was titled "Mezilidské vztahy" there — standard DBT ordering —
@@ -610,4 +620,4 @@ found three things not in this list, all fixed in the same pass:
 3. W1-01 → W1-02 (wire data + day list).
 4. W1-03 → W1-06 (Day 1 flow).
 5. W1-09 (reflection).
-6. GEN-04 before any release; GEN-01/02/03 as cleanup; GEN-05 when content lands.
+6. ~~GEN-04 before any release~~ (done); GEN-01/02/03 as cleanup; GEN-05 when content lands.

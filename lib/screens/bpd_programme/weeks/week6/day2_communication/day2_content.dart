@@ -190,4 +190,4 @@ const day2PsanickoExample = <(String, String)>[
 // ─────────────────────────────────────────────────────────────────────────────
 
 const day2CompletionText =
-    'Skvěle, že se do programu pořád pouštíš. Pro dnešní den je to všechno.';
+    'Skvěle, že se do průvodce pořád pouštíš. Pro dnešní den je to všechno.';

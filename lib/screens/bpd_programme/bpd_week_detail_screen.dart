@@ -41,6 +41,7 @@ import 'package:nepanikar/screens/bpd_programme/weeks/week7/recap_days/week7_rec
 import 'package:nepanikar/screens/home/my_records/dbt/dbt_records_screen.dart';
 import 'package:nepanikar/services/db/bpd/bpd_day_models.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
+import 'package:nepanikar/services/db/bpd/bpd_weeks_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/bpd_help_button.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_preview_sheet.dart';
@@ -135,9 +136,9 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
   final Map<int, List<_DayContentData>> _weekDaysContent = {
     1: [
       const _DayContentData(
-        title: 'Představení programu',
+        title: 'Představení průvodce',
         description:
-            'Vítej v programu! Seznámíš se s tím, co tě čeká během následujících 7 týdnů, dozvíš se něco o HPO a DBT, zaznamenáš si svou náladu a nastavíš si první SMART cíl.',
+            'Vítej v průvodci! Seznámíš se s tím, co tě čeká během následujících 7 týdnů, dozvíš se něco o HPO a DBT, zaznamenáš si svou náladu a nastavíš si první SMART cíl.',
         estimatedTime: '15-20 min',
         activityType: 'Úvod',
         routeType: _DayRouteType.onboarding,
@@ -228,7 +229,7 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
       const _DayContentData(
         title: 'Pauza',
         description:
-            'Dnešek bude ve znamení pauzy od programu. Už teď máš za sebou spoustu skvělé práce – využij dnešní den k regeneraci.',
+            'Dnešek bude ve znamení pauzy od průvodce. Už teď máš za sebou spoustu skvělé práce – využij dnešní den k regeneraci.',
         estimatedTime: '2 min',
         activityType: 'Odpočinek',
         routeType: _DayRouteType.pause,
@@ -270,7 +271,7 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
       const _DayContentData(
         title: 'Ověřování faktů',
         description:
-            'Mezi událostí a emocí stojí myšlenka. Když ověříš fakta, můžeš změnit i to, co cítíš. Čeká tě nejdelší cvičení programu – ale nemusíš ho stihnout naráz.',
+            'Mezi událostí a emocí stojí myšlenka. Když ověříš fakta, můžeš změnit i to, co cítíš. Čeká tě nejdelší cvičení průvodce – ale nemusíš ho stihnout naráz.',
         estimatedTime: '15-20 min',
         activityType: 'Edukace + Cvičení',
         routeType: _DayRouteType.week3Day3CheckFacts,
@@ -294,7 +295,7 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
       const _DayContentData(
         title: 'Pauza',
         description:
-            'Dnes program vynecháme. Máš za sebou skvělý pokrok a zasloužíš si chvilku odpočinku.',
+            'Dnes průvodce vynecháme. Máš za sebou skvělý pokrok a zasloužíš si chvilku odpočinku.',
         estimatedTime: '2 min',
         activityType: 'Odpočinek',
         routeType: _DayRouteType.pause,
@@ -328,7 +329,7 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
       const _DayContentData(
         title: 'Pauza',
         description:
-            'Dnes program vynecháme. Udělal/a jsi velký pokrok a zasloužíš si chvíli klidu pro načerpání nové energie.',
+            'Dnes průvodce vynecháme. Udělal/a jsi velký pokrok a zasloužíš si chvíli klidu pro načerpání nové energie.',
         estimatedTime: '2 min',
         activityType: 'Odpočinek',
         routeType: _DayRouteType.pause,
@@ -352,7 +353,7 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
       const _DayContentData(
         title: 'Pauza',
         description:
-            'Dnes si dopřejeme volnější den bez programu. Máš za sebou opravdu velký kus práce.',
+            'Dnes si dopřejeme volnější den bez průvodce. Máš za sebou opravdu velký kus práce.',
         estimatedTime: '2 min',
         activityType: 'Odpočinek',
         routeType: _DayRouteType.pause,
@@ -467,7 +468,7 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
       const _DayContentData(
         title: 'Pauza',
         description:
-            'Dnes program vynecháme. Máš za sebou skvělý pokrok a zasloužíš si '
+            'Dnes průvodce vynecháme. Máš za sebou skvělý pokrok a zasloužíš si '
             'chvilku odpočinku.',
         estimatedTime: '2 min',
         activityType: 'Odpočinek',
@@ -516,7 +517,7 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
       const _DayContentData(
         title: 'Všímavost',
         description:
-            'Vybereš si všímavé cvičení, které ti během programu nejvíc sedlo, '
+            'Vybereš si všímavé cvičení, které ti během průvodce nejvíc sedlo, '
             'a zopakuješ si ho.',
         estimatedTime: '10 min',
         activityType: 'Cvičení',
@@ -559,7 +560,7 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
       const _DayContentData(
         title: 'Shrnutí a ohlédnutí',
         description:
-            'Poslední den programu. Vybereš si tři dovednosti, které si '
+            'Poslední den průvodce. Vybereš si tři dovednosti, které si '
             'odnášíš do života, a uzavřeš celou cestu.',
         estimatedTime: '15-20 min',
         activityType: 'Reflexe',
@@ -590,13 +591,17 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
     try {
       final daysProgress = await _bpdDaysDao.getWeekDaysProgress(widget.weekNumber);
 
-      // If no days exist, initialize them
+      // Day records are created the first time this screen opens. They have to
+      // hang off the week's own unlock date, not off today: someone who opens
+      // week 3 four days late would otherwise push its whole seven-day
+      // schedule four days out, and every later week with it.
       if (daysProgress.isEmpty) {
-        await _bpdDaysDao.initializeDaysForWeek(widget.weekNumber, DateTime.now());
+        final week = await registry.get<BpdWeeksDao>().getWeekProgress(widget.weekNumber);
+        await _bpdDaysDao.initializeDaysForWeek(
+          widget.weekNumber,
+          week?.unlockDate ?? DateTime.now(),
+        );
       }
-
-      // DEV: Unlock all days in week 1 for testing
-      await _bpdDaysDao.unlockAllDaysInWeek(widget.weekNumber);
 
       final newDaysProgress = await _bpdDaysDao.getWeekDaysProgress(widget.weekNumber);
       if (mounted) {
@@ -902,7 +907,7 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
                     ),
                     const SizedBox(width: 8),
                     const Text(
-                      'DBT program',
+                      'DBT průvodce',
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
@@ -912,7 +917,7 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
                     const Spacer(),
                     IconButton(
                       icon: const Icon(Icons.self_improvement, color: Colors.white, size: 24),
-                      tooltip: 'DBT program',
+                      tooltip: 'DBT průvodce',
                       onPressed: () => const DbtRecordsRoute().push<void>(context),
                     ),
                     const Padding(

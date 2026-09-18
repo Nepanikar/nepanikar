@@ -10,7 +10,7 @@ import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_lists.dart';
 /// Opening messages — what this week is about and what mindfulness is (§1,
 /// bullet 1, split into bubbles at the source's own sentence breaks).
 const day1IntroChat = <String>[
-  'Dostáváme se do druhého týdne programu. Tématem tohoto týdne je všímavost.',
+  'Dostáváme se do druhého týdne průvodce. Tématem tohoto týdne je všímavost.',
   'Všímavost je schopnost vědomě zaměřit pozornost na přítomný okamžik. Na to, '
       'co právě teď prožíváme, cítíme nebo děláme, a to bez posuzování.',
 ];

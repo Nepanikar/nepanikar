@@ -210,7 +210,7 @@ class Week7Day7ThreeSkillsPage extends StatelessWidget {
             icon: Icons.medical_services_outlined,
             title: 'Zůstanou ti po ruce',
             text: 'Tvoje tři dovednosti se uloží do záchranného balíčku, kde je '
-                'najdeš i po skončení programu.',
+                'najdeš i po skončení průvodce.',
           ),
           const SizedBox(height: 16),
         ],

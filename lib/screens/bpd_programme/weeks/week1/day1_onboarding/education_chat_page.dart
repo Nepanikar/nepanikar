@@ -28,7 +28,7 @@ class Day1EducationChatPage extends StatelessWidget {
               text:
                   'Dnešní den bude ještě trochu informační. Dozvíš se něco málo o '
                   'hraniční poruše osobnosti a taky o dialekticko-behaviorální terapii, '
-                  'kterou je tento program inspirovaný. 📚',
+                  'kterou je tento průvodce inspirovaný. 📚',
             ),
           ],
         ),
@@ -53,9 +53,9 @@ class Day1EducationChatPage extends StatelessWidget {
           messages: [
             ChatInfoCard(
               icon: Icons.favorite_border,
-              title: 'Pro koho je program',
+              title: 'Pro koho je průvodce',
               text:
-                  'Tento program je určený nejen lidem s diagnostikovanou hraniční '
+                  'Tento průvodce je určený nejen lidem s diagnostikovanou hraniční '
                   'poruchou osobnosti, ale také těm, kteří jen vnímají nějaké obtíže v '
                   'oblasti emocí, impulzivity nebo vztahů. Cílem není nálepkovat ani '
                   'stigmatizovat, ale nabídnout nástroje a strategie, které mohou pomoci '
@@ -68,7 +68,7 @@ class Day1EducationChatPage extends StatelessWidget {
             ChatBotBubble(
               showAvatar: true,
               text:
-                  'A teď se pojďme podívat na DBT, kterou je tento program '
+                  'A teď se pojďme podívat na DBT, kterou je tento průvodce '
                   'inspirovaný. 👇',
             ),
             ChatConceptCard(

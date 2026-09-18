@@ -184,7 +184,7 @@ class _SmartGoalReminderState extends State<SmartGoalReminder> {
           const SizedBox(height: 8),
           Text(
             'Zkus se zaměřit na to, jestli je tvoje chování efektivní vůči '
-            'SMART cílům, co jsme spolu nastavili na začátku programu.',
+            'SMART cílům, co jsme spolu nastavili na začátku průvodce.',
             style: TextStyle(
               fontSize: 14,
               height: 1.45,

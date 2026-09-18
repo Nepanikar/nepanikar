@@ -71,7 +71,7 @@ class MyRecordsScreen extends StatelessWidget {
         onTap: () => context.push(const TestListScreenRoute().location),
       ),
       LongTile(
-        text: 'DBT program',
+        text: 'DBT průvodce',
         image: Icon(Icons.self_improvement, size: 32, color: Theme.of(context).primaryColor),
         onTap: () => context.push(const DbtRecordsRoute().location),
       ),

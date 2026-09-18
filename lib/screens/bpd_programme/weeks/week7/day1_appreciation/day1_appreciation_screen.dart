@@ -102,7 +102,7 @@ class _Week7Day1AppreciationScreenState extends State<Week7Day1AppreciationScree
                     nextDay: const NextDayTeaser(
                       title: 'Všímavost',
                       description:
-                          'Vybereš si cvičení, které ti během programu '
+                          'Vybereš si cvičení, které ti během průvodce '
                           'nejvíc sedlo, a zopakuješ si ho.',
                     ),
                     onComplete: _completeDay,

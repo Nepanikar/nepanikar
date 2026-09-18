@@ -57,7 +57,7 @@ class _Day1WelcomeChatPageState extends State<Day1WelcomeChatPage> {
             ChatBotBubble(
               showAvatar: true,
               text:
-                  'Právě jste otevřeli program, který byl vytvořen pro lidi učící se '
+                  'Právě jste otevřeli průvodce, který byl vytvořen pro lidi učící se '
                   'zvládat projevy hraniční poruchy osobnosti. Je ale i pro ty, kteří mají '
                   'obecně potíže v oblasti emocí, stresu, impulzivního chování a '
                   'mezilidských vztahů, včetně toho sami se sebou.',
@@ -68,14 +68,14 @@ class _Day1WelcomeChatPageState extends State<Day1WelcomeChatPage> {
           messages: [
             ChatBotBubble(
               text:
-                  'Program může uživateli poskytnout řadu nástrojů a strategií, pro '
+                  'Průvodce může uživateli poskytnout řadu nástrojů a strategií, pro '
                   'které byly inspirací ověřené metody dialekticko-behaviorální terapie '
-                  '(DBT). Více o DBT se můžete dozvědět v začátku programu.',
+                  '(DBT). Více o DBT se můžete dozvědět v začátku průvodce.',
             ),
             ChatBotBubble(
               showAvatar: true,
               text:
-                  'Nabité dovednosti z programu Vám mohou pomoci lépe porozumět svým '
+                  'Nabité dovednosti z průvodce Vám mohou pomoci lépe porozumět svým '
                   'emocím, regulovat impulsy, zlepšit komunikaci s ostatními a vztah sám '
                   'se sebou.',
             ),
@@ -83,7 +83,7 @@ class _Day1WelcomeChatPageState extends State<Day1WelcomeChatPage> {
               icon: Icons.info_outline,
               title: 'Důležité',
               text:
-                  'Přijde nám důležité říct, že program nenahrazuje terapii. Může být '
+                  'Přijde nám důležité říct, že průvodce nenahrazuje terapii. Může být '
                   'však dobrým pomocníkem pro ty, kteří z jakéhokoliv důvodu na terapii '
                   'jít nemohou nebo nechtějí nebo čekají na svůj termín.',
             ),
@@ -94,15 +94,15 @@ class _Day1WelcomeChatPageState extends State<Day1WelcomeChatPage> {
             ChatBotBubble(
               showAvatar: true,
               text:
-                  'Program trvá 7 týdnů. Je žádoucí, aby byl plněn každodenně, není to '
-                  'však nutnou podmínkou. Program obsahuje zejména praktická cvičení, ale '
+                  'Průvodce trvá 7 týdnů. Je žádoucí, aby byl plněn každodenně, není to '
+                  'však nutnou podmínkou. Průvodce obsahuje zejména praktická cvičení, ale '
                   'i jednoduchá vysvětlení různých souvisejících jevů, které se mohou v '
                   'našich životech objevovat. Jeho plnění zabere v průměru 5-20 minut '
                   'denně.',
             ),
             ChatStatsRow(
               stats: [
-                ('7', 'týdnů programu'),
+                ('7', 'týdnů průvodce'),
                 ('5–20', 'minut denně'),
                 ('1', 'klíčová dovednost týdně'),
               ],
@@ -127,7 +127,7 @@ class _Day1WelcomeChatPageState extends State<Day1WelcomeChatPage> {
               text:
                   'Týden obvykle začne nějakým poučením o dané oblasti, aby dávalo '
                   'smysl, na co se v daném týdnu budeme zaměřovat a proč. V dalších dnech '
-                  'se postupně budeme učit novým dovednostem, které Vám v programu '
+                  'se postupně budeme učit novým dovednostem, které Vám v průvodci '
                   'zůstanou jako opora do každodenních situací. Konec týdne bude vždy '
                   'věnován shrnutí a zamyšlení nad tím, co jsme se naučili a co je pro '
                   'Vás užitečné.',
@@ -137,14 +137,14 @@ class _Day1WelcomeChatPageState extends State<Day1WelcomeChatPage> {
                   'Možná to zní teď složitě a náročně, ale není třeba se obávat. '
                   'Cvičení jsou dávkována tak, aby pro Vás nebyla příliš zahlcující. V '
                   'každém týdnu bude jedna klíčová dovednost, kterou bude žádoucí si '
-                  'během týdne v rámci programu projít a zkusit si připravená cvičení.',
+                  'během týdne v rámci průvodce projít a zkusit si připravená cvičení.',
             ),
             ChatBotBubble(
               showAvatar: true,
               text:
-                  'Zároveň program obsahuje v každém týdnu i další cvičení a témata, '
+                  'Zároveň průvodce obsahuje v každém týdnu i další cvičení a témata, '
                   'která si můžete projít dobrovolně. Chtěli bychom Vás v tom však '
-                  'povzbudit. Čím více energie do programu věnujete během následujících '
+                  'povzbudit. Čím více energie do průvodce věnujete během následujících '
                   'společných sedmi týdnu, tím lépe Vám může být do budoucna.',
             ),
           ],
@@ -192,7 +192,7 @@ class _Day1WelcomeChatPageState extends State<Day1WelcomeChatPage> {
             const ChatBotBubble(
               showAvatar: true,
               text:
-                  'Dává to smysl? Věříme, že ano. 💜 Zezačátku, než se do programu '
+                  'Dává to smysl? Věříme, že ano. 💜 Zezačátku, než se do průvodce '
                   'pustíme, zajímá nás Vaše křestní jméno a jak chcete, aby Vás Nepanikař '
                   'oslovovalo.',
             ),

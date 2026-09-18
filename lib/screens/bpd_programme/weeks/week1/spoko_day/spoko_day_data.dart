@@ -220,7 +220,7 @@ const spokoDay5Kondice = SpokoDayData(
   completionPraise:
       'Každé protažení, procházka nebo jen vědomé uvolnění napětí má obrovský '
       'smysl pro tvou psychickou pohodu. Děkujeme za tvou energii, kterou do '
-      'programu vkládáš.',
+      'průvodce vkládáš.',
 );
 
 // ── Day 6 — Léčba Onemocnění (verbatim, source: tyzden-1.md §6) ─────────────

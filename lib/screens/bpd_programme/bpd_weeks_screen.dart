@@ -154,7 +154,7 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
     final textColor = isDarkMode ? Colors.white : NepanikarColors.dark;
     final isImplemented = kImplementedBpdWeeks.contains(weekProgress.weekNumber);
     final subtitle = isImplemented
-        ? 'Tento týden je zatím zamčený. Program se odemyká postupně, týden po týdnu.'
+        ? 'Tento týden je zatím zamčený. Průvodce se odemyká postupně, týden po týdnu.'
         : 'Obsah tohoto týdne pro tebe ještě připravujeme.';
     final unlockIcon = isImplemented ? Icons.calendar_today : Icons.update;
     final unlockText = isImplemented
@@ -307,7 +307,7 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
                     children: [
                       // Centered title
                       const Text(
-                        'DBT program',
+                        'DBT průvodce',
                         style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
@@ -363,7 +363,7 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
     final bannerWeek = currentWeek ?? _weeksProgress.last;
 
     return SkillTreeBanner(
-      kicker: 'DBT program · Týden ${bannerWeek.weekNumber}',
+      kicker: 'DBT průvodce · Týden ${bannerWeek.weekNumber}',
       title: _weekTitle(bannerWeek.weekNumber),
       progress: _weeksProgress.isEmpty ? 0 : completedCount / _weeksProgress.length,
       progressLabel: '$completedCount ze ${_weeksProgress.length} týdnů hotovo',

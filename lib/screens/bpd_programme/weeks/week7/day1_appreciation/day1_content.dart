@@ -13,7 +13,7 @@ import 'package:nepanikar/screens/bpd_programme/widgets/structured_worksheet.dar
 
 /// Bullet 1, split in two: it is one long sentence plus one longer one.
 const day1Opening = <String>[
-  'Dnes začínáme závěrečný týden programu, který je věnovaný shrnutí, reflexi a '
+  'Dnes začínáme závěrečný týden průvodce, který je věnovaný shrnutí, reflexi a '
       'ocenění toho, co ses během předchozích týdnů naučil/a.',
   'Bude to příležitost se zastavit, podívat se zpět na své pokroky a uvědomit '
       'si, co ti fungovalo nejlépe, co tě posunulo dál a co chceš dál používat '
@@ -27,7 +27,7 @@ const day1Opening = <String>[
 const day1ProudWorksheetId = 'week7_day1_proud';
 
 const day1ProudLead =
-    'Teď si najdi chvíli a zamysli se nad tím, co se ti během programu podařilo '
+    'Teď si najdi chvíli a zamysli se nad tím, co se ti během průvodce podařilo '
     'nebo co ses naučil/a. Napiš 3–5 věcí, na které jsi pyšný/á. U každé věci '
     'napiš, proč je pro tebe důležitá a jak ti pomáhá v každodenním životě. '
     'Tento krok ti pomůže uvědomit si své pokroky a posílit motivaci pokračovat '
@@ -73,7 +73,7 @@ const day1SmartWorksheetId = 'week7_day1_smart_review';
 /// The author's instruction, split so her reassurance can stand on its own card
 /// above the list of goals rather than being buried under it.
 const day1SmartLead =
-    'Teď si otevři své SMART cíle, které jsi si stanovil/a na začátku programu. '
+    'Teď si otevři své SMART cíle, které jsi si stanovil/a na začátku průvodce. '
     'Podívej se na každý cíl a zhodnoť, co se ti podařilo splnit, co jen '
     'částečně a co se nepodařilo.';
 
@@ -86,7 +86,7 @@ const day1SmartReassurance =
 const day1SmartTask =
     'Zamysli se, co ti pomohlo a co tě brzdilo, a u každého cíle si napiš, jak '
     'ho chceš dál využívat nebo případně upravit, aby ti sloužil i po skončení '
-    'programu.';
+    'průvodce.';
 
 const day1SmartFieldLabel = 'Jak ho chceš dál využívat nebo upravit?';
 
@@ -97,12 +97,12 @@ const day1SmartFieldLabel = 'Jak ho chceš dál využívat nebo upravit?';
 const day1SmartEmptyTitle = 'Žádné cíle tu zatím nejsou';
 const day1SmartEmpty =
     'Vypadá to, že sis v prvním týdnu SMART cíl nezapsal/a — a to je v pořádku. '
-    'Můžeš si ho stanovit i teď, na konci programu; poslouží ti stejně dobře.';
+    'Můžeš si ho stanovit i teď, na konci průvodce; poslouží ti stejně dobře.';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Page 4/4 — completion
 // ─────────────────────────────────────────────────────────────────────────────
 
 const day1CompletionText =
-    'Na další část se zaměříme zítra :) Program už se pomalu blíží ke konci, tak '
+    'Na další část se zaměříme zítra :) Průvodce už se pomalu blíží ke konci, tak '
     'zkus ještě vytrvat';

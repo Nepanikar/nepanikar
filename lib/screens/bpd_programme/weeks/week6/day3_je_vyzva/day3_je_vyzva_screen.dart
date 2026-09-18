@@ -110,7 +110,7 @@ class _Week6Day3JeVyzvaScreenState extends State<Week6Day3JeVyzvaScreen> {
                     summary: day3CompletionText,
                     nextDay: const NextDayTeaser(
                       title: 'Pauza',
-                      description: 'Zítra si dáme od programu volno.',
+                      description: 'Zítra si dáme od průvodce volno.',
                     ),
                     onComplete: _completeDay,
                   ),

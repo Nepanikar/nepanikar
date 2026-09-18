@@ -110,7 +110,7 @@ class _Week2Day4BreathingScreenState extends State<Week2Day4BreathingScreen> {
                     nextDay: const NextDayTeaser(
                       title: 'Pauza',
                       description:
-                          'Zítra si dáme od programu pauzu. Stačí zaznamenat '
+                          'Zítra si dáme od průvodce pauzu. Stačí zaznamenat '
                           'náladu a načerpat síly.',
                     ),
                     onComplete: _completeDay,

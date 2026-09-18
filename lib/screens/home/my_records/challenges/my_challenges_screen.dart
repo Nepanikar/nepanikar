@@ -149,7 +149,7 @@ class _MyChallengesScreenState extends State<MyChallengesScreen> {
                 Padding(
                   padding: const EdgeInsets.only(top: 44, bottom: 14),
                   child: Text(
-                    'Výzvy, které sis vybral/a v programu. Odškrtávej si je '
+                    'Výzvy, které sis vybral/a v průvodci. Odškrtávej si je '
                     'každý den a nastav si připomínku.',
                     style: TextStyle(
                       fontSize: 14,
@@ -304,7 +304,7 @@ class _EmptyState extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'Až si v programu vybereš nějakou výzvu, objeví se tady a budeš '
+            'Až si v průvodci vybereš nějakou výzvu, objeví se tady a budeš '
             'si ji moct odškrtávat každý den.',
             textAlign: TextAlign.center,
             style: TextStyle(

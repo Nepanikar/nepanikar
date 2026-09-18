@@ -137,7 +137,7 @@ class _Week5Day2LifeThreateningScreenState extends State<Week5Day2LifeThreatenin
                       title: 'Pauza',
                       description:
                           'Po dnešku je únava přirozená. Zítra si dáme od '
-                          'programu volno.',
+                          'průvodce volno.',
                     ),
                     // Advances rather than finishing: the safety page below is
                     // the last thing this day shows, whichever way it was
@@ -515,7 +515,7 @@ class _RescueHint extends StatelessWidget {
             const SizedBox(width: 10),
             Expanded(
               child: Text(
-                'Seznam se uloží do záchranného balíčku, kde ho najdeš i bez programu.',
+                'Seznam se uloží do záchranného balíčku, kde ho najdeš i bez průvodce.',
                 style: TextStyle(
                   fontSize: 13,
                   height: 1.45,

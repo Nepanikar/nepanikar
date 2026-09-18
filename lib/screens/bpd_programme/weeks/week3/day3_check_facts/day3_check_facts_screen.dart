@@ -209,7 +209,7 @@ class Day3WorksheetPage extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'Je to nejdelší cvičení v programu. Nemusíš ho zvládnout '
+            'Je to nejdelší cvičení v průvodci. Nemusíš ho zvládnout '
             'najednou — co napíšeš, zůstane uložené.',
             style: TextStyle(
               fontSize: 13,

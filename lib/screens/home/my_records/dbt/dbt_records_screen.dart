@@ -28,7 +28,7 @@ class DbtRecordsScreen extends StatelessWidget {
     final primaryColor = Theme.of(context).primaryColor;
 
     return NepanikarScreenWrapper(
-      appBarTitle: 'DBT program',
+      appBarTitle: 'DBT průvodce',
       children: [
         LongTile(
           text: 'Moje výzvy',

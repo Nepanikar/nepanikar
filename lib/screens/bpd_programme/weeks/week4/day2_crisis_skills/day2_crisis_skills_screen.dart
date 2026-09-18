@@ -100,7 +100,7 @@ class _Week4Day2CrisisSkillsScreenState extends State<Week4Day2CrisisSkillsScree
                     nextDay: const NextDayTeaser(
                       title: 'Pauza',
                       description:
-                          'Zítra program vynecháme — máš za sebou náročný den '
+                          'Zítra průvodce vynecháme — máš za sebou náročný den '
                           'a zasloužíš si chvíli klidu.',
                     ),
                     onComplete: _completeDay,

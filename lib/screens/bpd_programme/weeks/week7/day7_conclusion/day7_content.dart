@@ -13,9 +13,9 @@ import 'package:nepanikar/screens/bpd_programme/widgets/structured_worksheet.dar
 // ─────────────────────────────────────────────────────────────────────────────
 
 const day7Opening = <String>[
-  'Gratuluji, že jsi došel/a až sem. Absolvování celého programu je obrovský kus '
+  'Gratuluji, že jsi došel/a až sem. Absolvování celého průvodce je obrovský kus '
       'práce a každý krok, i ty nejmenší pokroky, mají svou hodnotu.',
-  'Můžeš si na chvíli zastavit a opravdu ocenit, co vše jsi během programu '
+  'Můžeš si na chvíli zastavit a opravdu ocenit, co vše jsi během průvodce '
       'zvládl/a.',
 ];
 
@@ -26,7 +26,7 @@ const day7Opening = <String>[
 const day7SkillsWorksheetId = 'week7_day7_three_skills';
 
 const day7SkillsLead =
-    'Zamysli se, které tři dovednosti nebo techniky z programu chceš odnést do '
+    'Zamysli se, které tři dovednosti nebo techniky z průvodce chceš odnést do '
     'svého života a pravidelně je používat. Napiš si je a přemýšlej, jak je '
     'můžeš integrovat do každodenního života. Tyto tři dovednosti ti mohou '
     'pomoci zvládat stres, emoce, impulzivitu i vztahy s ostatními.';
@@ -69,14 +69,14 @@ const day7MindfulnessReminder =
 /// not copy. It becomes the card directly below the message, never at the foot
 /// of the page: this is the last screen of the programme.
 const day7SupportText =
-    'Pokud bys potřeboval/a podporu i po skončení programu, můžeš využít kontakty '
-    'na krizové linky, terapeuty nebo online zdroje, které jsme během programu '
+    'Pokud bys potřeboval/a podporu i po skončení průvodce, můžeš využít kontakty '
+    'na krizové linky, terapeuty nebo online zdroje, které jsme během průvodce '
     'sdíleli. Tyto zdroje jsou tu pro tebe kdykoli budeš potřebovat.';
 
 const day7ContactsLinkLabel = 'Kontakty, když budeš potřebovat';
 
 const day7JustTheBeginning =
-    'Program je jen začátek a každý krok, který jsi udělal/a během něj, se '
+    'Průvodce je jen začátek a každý krok, který jsi udělal/a během něj, se '
     'počítá. Představ si, jak tyto tři dovednosti použiješ příští týden, příští '
     'měsíc nebo v konkrétní situaci. To ti pomůže udržet si pokrok a rozvíjet '
     'ho dál.';
@@ -88,7 +88,7 @@ const day7JustTheBeginning =
 const day7ClosingWorksheetId = 'week7_day7_closing';
 
 const day7ClosingLead =
-    'Na závěr si můžeš krátce zaznamenat, co si z programu odnášíš, co tě '
+    'Na závěr si můžeš krátce zaznamenat, co si z průvodce odnášíš, co tě '
     'nejvíce posunulo a čeho si na sobě nejvíce ceníš. Toto shrnutí ti může '
     'posloužit jako připomenutí tvých pokroků a motivace pokračovat dál.';
 
@@ -111,7 +111,7 @@ const day7ClosingWorksheet = <WorksheetSection>[
 
 /// Verbatim, including "Za těch sedm týdnu" (OQ-2).
 const day7FinalPraise =
-    'Na závěr Ti patří obrovské ocenění, že do programu jdeš. Za těch sedm týdnu '
+    'Na závěr Ti patří obrovské ocenění, že do průvodce jdeš. Za těch sedm týdnu '
     'bylo uděláno spoustu práce, která do budoucna může hodně pomoci v cestě ke '
     'spokojenému životu. Přejeme Ti hodně sil i podobného odhodlání na celé '
     'cestě životem.';
@@ -119,5 +119,5 @@ const day7FinalPraise =
 /// `WeekCompletionPage` says "Týden dokončen" by default. After seven weeks
 /// that undersells the moment, so the last screen of the programme says so.
 // TODO: schválit autorem (WEEK7_SCREEN_PLAN.md → OQ-6)
-const day7FinalHeading = 'Program dokončen!';
-const day7FinalButton = 'Dokončit program';
+const day7FinalHeading = 'Průvodce dokončen!';
+const day7FinalButton = 'Dokončit průvodce';

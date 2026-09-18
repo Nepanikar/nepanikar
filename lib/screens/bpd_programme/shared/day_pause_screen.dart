@@ -42,7 +42,7 @@ class DayPauseScreen extends StatelessWidget {
         'přístup je inspirativní! Využij dnešní den k '
         'regeneraci a načerpej síly na další kroky.',
     3:
-        'Dnes program vynecháme. Máš za sebou skvělý pokrok '
+        'Dnes průvodce vynecháme. Máš za sebou skvělý pokrok '
         'a zasloužíš si chvilku odpočinku.',
   };
 
@@ -51,10 +51,10 @@ class DayPauseScreen extends StatelessWidget {
   /// map the second one would silently render the first one's text.
   static const _pauseCopyByDay = <(int, int), String>{
     (4, 3):
-        'Dnes program vynecháme. Udělal/a jsi velký pokrok '
+        'Dnes průvodce vynecháme. Udělal/a jsi velký pokrok '
         'a zasloužíš si chvíli klidu pro načerpání nové energie.',
     (4, 6):
-        'Dnes si dopřejeme volnější den bez programu. Máš za sebou opravdu '
+        'Dnes si dopřejeme volnější den bez průvodce. Máš za sebou opravdu '
         'velký kus práce – je vidět, kolik energie, odvahy a odhodlání do toho '
         'dáváš. Dnes si můžeš s klidem odpočinout a nechat své pokroky v klidu '
         '„doznít“.',
@@ -75,7 +75,7 @@ class DayPauseScreen extends StatelessWidget {
     // the author repeated it, so it is spelled out here rather than left to the
     // week-level fallback, which would have shown Week 2's instead.
     (6, 4):
-        'Dnes program vynecháme. Máš za sebou skvělý pokrok a zasloužíš si '
+        'Dnes průvodce vynecháme. Máš za sebou skvělý pokrok a zasloužíš si '
         'chvilku odpočinku.',
     (6, 6):
         'Dnes si dopřej volno. Máš za sebou spoustu práce a je vidět, kolik do '

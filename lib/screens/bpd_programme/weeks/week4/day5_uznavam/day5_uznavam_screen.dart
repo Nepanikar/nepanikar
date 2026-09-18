@@ -125,7 +125,7 @@ class _Week4Day5UznavamScreenState extends State<Week4Day5UznavamScreen> {
                     nextDay: const NextDayTeaser(
                       title: 'Pauza',
                       description:
-                          'Zítra volnější den bez programu — máš za sebou '
+                          'Zítra volnější den bez průvodce — máš za sebou '
                           'opravdu velký kus práce.',
                     ),
                     onComplete: _completeDay,

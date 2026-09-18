@@ -60,7 +60,7 @@ enum NotificationType {
   /// Used instead of [programmeUnlockDayBody] when the day that opens is
   /// the first of a week — that is a bigger moment than an ordinary day.
   /// TODO: schválit autorem
-  static const programmeUnlockWeekBody = 'Začíná nový týden programu. Podívej se, co tě čeká.';
+  static const programmeUnlockWeekBody = 'Začíná nový týden průvodce. Podívej se, co tě čeká.';
 
   static const programmeUnlockDayTitle = 'Nový den je připravený';
   static const programmeUnlockWeekTitle = 'Nový týden se otevřel';
@@ -148,7 +148,7 @@ enum NotificationType {
       case NotificationType.mindfulnessReminder:
         return 'Všímavost';
       case NotificationType.programmeUnlock:
-        return 'Nový den v programu';
+        return 'Nový den v průvodci';
     }
   }
 }

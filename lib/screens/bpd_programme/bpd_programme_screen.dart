@@ -19,7 +19,7 @@ class BpdProgrammeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NepanikarScreenWrapper(
-      appBarTitle: 'DBT program',
+      appBarTitle: 'DBT průvodce',
       showBottomNavbar: true,
       children: [
         const SizedBox(height: 40),

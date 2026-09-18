@@ -75,7 +75,7 @@ class HomeScreen extends StatelessWidget {
       HomeTile(
         // Hardcoded like the bottom bar's 'DBT' label — programme copy lives in
         // Dart, not ARB (see docs/hpo/TODO.md → GEN-03).
-        text: 'DBT program',
+        text: 'DBT průvodce',
         // TODO: temporary artwork — there is no DBT module illustration yet.
         image: Assets.illustrations.modules.homework.svg(colorFilter: colorFilter),
         location: bpdLocation,

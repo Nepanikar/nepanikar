@@ -52,7 +52,7 @@ class Week3DictionaryPage extends StatelessWidget {
             title: 'Najdeš ho i později',
             text:
                 '$emotionDictionaryIntro Slovník máš uložený v Mých záznamech '
-                'v sekci DBT program.',
+                'v sekci DBT průvodce.',
           ),
           const SizedBox(height: 18),
           const LinkLeadText('Chci vědět víc:'),

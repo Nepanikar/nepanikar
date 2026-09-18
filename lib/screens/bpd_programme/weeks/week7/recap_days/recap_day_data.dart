@@ -198,11 +198,11 @@ final week7Day2 = Week7RecapDay(
   title: 'Všímavost',
   recapParagraphs: const [
     'Teď přejdeme ke všímavosti. Tento den můžeš využít k tomu, aby ses '
-        'zamyslel/a nad tím, co ti během programu fungovalo, co bys chtěl/a '
+        'zamyslel/a nad tím, co ti během průvodce fungovalo, co bys chtěl/a '
         'osvěžit a vyzkoušet znovu.',
     'Vyber si z nabídky všímavých cvičení to, které ti právě teď nejvíc '
         'vyhovuje, a věnuj mu chvíli pozornosti. Může to být krátká meditace, '
-        'vědomý dech, body scan nebo jiné cvičení, které jsi během programu '
+        'vědomý dech, body scan nebo jiné cvičení, které jsi během průvodce '
         'poznal/a a chceš si ho zopakovat. Důležité je, že máš možnost si '
         'vybrat a zkusit to tak, jak ti to nejvíc pomáhá.',
   ],
@@ -223,9 +223,9 @@ final week7Day3 = Week7RecapDay(
   title: 'Emoční regulace',
   recapParagraphs: const [
     'Teď se zaměříme na emoční regulaci a připomeneme si, co jsme se během '
-        'programu naučili. Můžeš se zastavit a zamyslet se, které techniky ti '
+        'průvodce naučili. Můžeš se zastavit a zamyslet se, které techniky ti '
         'fungovaly nejlépe, a které bys chtěl/a osvěžit nebo vyzkoušet znovu.',
-    'Během programu jsme se učili, co jsou emoce a k čemu slouží, jak je '
+    'Během průvodce jsme se učili, co jsou emoce a k čemu slouží, jak je '
         'pojmenovávat a přesně rozpoznávat. Naučili jsme se měnit naši reakci '
         'na emoce, například pomocí dovednosti opposite action, která pomáhá '
         'jednat opačně než emoce velí, pokud emoce není užitečná nebo '
@@ -255,7 +255,7 @@ final week7Day4 = Week7RecapDay(
   title: 'Snášení tísně',
   recapParagraphs: const [
     'Teď se zaměříme na zvládání stresu a připomeneme si, co jsme se během '
-        'programu naučili. Můžeš se zastavit a zamyslet se, které techniky ti '
+        'průvodce naučili. Můžeš se zastavit a zamyslet se, které techniky ti '
         'fungovaly nejlépe a které bys chtěl/a osvěžit nebo znovu vyzkoušet.',
     'Učili jsme se, co je stres, jak ovlivňuje tělo a mysl, a proč je normální '
         'reagovat různě na krátkodobé i dlouhodobé stresory.',
@@ -282,7 +282,7 @@ final week7Day5 = Week7RecapDay(
   title: 'Impulzivita',
   recapParagraphs: const [
     'Dnes se zaměříme na impulzivní chování a připomeneme si, co jsme se '
-        'naučili během programu. Můžeš se zastavit a zamyslet se, které '
+        'naučili během průvodce. Můžeš se zastavit a zamyslet se, které '
         'strategie ti fungovaly nejlépe a které bys chtěl/a osvěžit nebo '
         'vyzkoušet znovu.',
     'Učili jsme se o biologických příčinách impulzivity, o tom, proč jsou '
@@ -325,6 +325,6 @@ final week7Day6 = Week7RecapDay(
   completionText: 'Předposlední den máš za sebou, díky za Tvoji píli!',
   nextDay: const NextDayTeaser(
     title: 'Shrnutí a ohlédnutí',
-    description: 'Poslední den programu. Vybereš si tři dovednosti do života.',
+    description: 'Poslední den průvodce. Vybereš si tři dovednosti do života.',
   ),
 );

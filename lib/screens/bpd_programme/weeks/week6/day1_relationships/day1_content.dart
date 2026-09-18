@@ -31,7 +31,7 @@ const day1Effectiveness = <String>[
       'posilovat ty stávající a zvládat konfliktní situace. Učí, jak umět jasně '
       'požádat o to, co potřebuješ, a také jak říci „ne“ tam, kde je to pro tebe '
       'důležité.',
-  'V rámci tohoto programu se tyto dovednosti zaměřuje hlavně na to, jak '
+  'V rámci tohoto průvodce se tyto dovednosti zaměřuje hlavně na to, jak '
       'dosahovat svých cílů ve vztazích – tedy jak získat od druhých to, co '
       'potřebuješ, aniž by tím trpěly samotné vztahy nebo tvoje sebeúcta.',
 ];

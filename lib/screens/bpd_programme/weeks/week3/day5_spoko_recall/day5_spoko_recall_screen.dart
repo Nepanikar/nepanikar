@@ -100,7 +100,7 @@ class _Week3Day5SpokoRecallScreenState extends State<Week3Day5SpokoRecallScreen>
                         'kterém všechno ostatní stojí.',
                     nextDay: const NextDayTeaser(
                       title: 'Pauza',
-                      description: 'Zítra program vynecháme. Zasloužíš si chvilku odpočinku.',
+                      description: 'Zítra průvodce vynecháme. Zasloužíš si chvilku odpočinku.',
                     ),
                     onComplete: _completeDay,
                   ),

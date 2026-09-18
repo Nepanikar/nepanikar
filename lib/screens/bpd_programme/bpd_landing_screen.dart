@@ -72,10 +72,7 @@ class BpdLandingScreen extends StatelessWidget {
             children: [
               // This screen has no app bar, so the help button gets its own
               // row rather than being the one place in the module without it.
-              const Align(
-                alignment: Alignment.centerRight,
-                child: BpdHelpButton(size: 36),
-              ),
+              const Align(alignment: Alignment.centerRight, child: BpdHelpButton(size: 36)),
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
@@ -116,8 +113,8 @@ class BpdLandingScreen extends StatelessWidget {
                       // HPO content.
                       Text(
                         'Víme, že život s hraniční poruchou osobnosti přináší výzvy. '
-                        'Tento sedmitýdenní program je navržený jako tvůj průvodce '
-                        'k budování odolnosti a lepšímu zvládání nálad.',
+                        'Tento sedmitýdenní průvodce tě provede budováním '
+                        'odolnosti a lepším zvládáním nálad.',
                         style: TextStyle(
                           fontSize: 15,
                           color: isDarkMode

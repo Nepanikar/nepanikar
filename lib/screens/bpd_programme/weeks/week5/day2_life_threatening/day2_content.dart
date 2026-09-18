@@ -52,7 +52,7 @@ const day2NotWeakness =
     'Je důležité pochopit, že život ohrožující chování není známka slabé vůle '
     'nebo „špatného charakteru“ – jde o reakci mozku a emocí, která se u '
     'některých lidí rozvíjí častěji, zejména u těch, kdo mají intenzivní nebo '
-    'těžko zvládnutelné emoce. Cílem programu je nabídnout bezpečné a efektivní '
+    'těžko zvládnutelné emoce. Cílem průvodce je nabídnout bezpečné a efektivní '
     'alternativy, jak s těmito impulzy zacházet a zvládat je bez ubližování '
     'sobě samému.';
 
