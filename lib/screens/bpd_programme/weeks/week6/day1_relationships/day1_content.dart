@@ -64,8 +64,15 @@ const day1NeedsMythsTitle = 'Mýty, které brání v prosazování vlastních po
 const day1RelationshipsMythsTitle = 'Mýty, které brání v budování vztahů a respektu k sobě';
 
 /// The source's instruction for both groups: "(nechat prostor na vepsání
-/// pravdivé formulace)".
+/// pravdivé formulace, protipříklad zobrazit v nápovědě)".
 const day1MythFieldLabel = 'Jak to je ve skutečnosti?';
+
+/// A myth and the author's counter-statement, which the field reveals on tap.
+///
+/// A record rather than a class, since the pair is only ever read. The fields
+/// are named, unlike [AcronymLetter]'s: two bare strings in a row give a call
+/// site no way to show which of them is the myth.
+typedef RelationshipMyth = ({String myth, String busted});
 
 /// How many myths are offered before the user has to ask for the rest.
 ///
@@ -76,44 +83,122 @@ const day1MythsOfferedCount = 4;
 
 const day1MythsRevealLabel = 'Chci zpochybnit i další mýty';
 
-/// Twelve myths, verbatim and in source order.
+/// Twelve myths with the author's counter-statements, verbatim and in source
+/// order.
 ///
-/// Unlike Week 3 the author wrote no counter-statements for these, so there is
-/// nothing to reveal as a worked example — tracked as OQ-1.
-const day1NeedsMyths = <String>[
-  'Nezasloužím si dostat to, co chci nebo potřebuji.',
-  'Když o něco požádám, ukážu tím, že jsem slabý člověk.',
-  'Musím předem vědět, že druhý řekne ano, než vůbec požádám.',
-  'Pokud o něco požádám nebo řeknu ne, nevydržím, když se na mě někdo naštve.',
-  'Když mi někdo řekne ne, zničí mě to.',
-  'Požádat o něco je tlačivé, sobecké nebo špatné.',
-  'Říct ne je vždycky sobecké.',
-  'Měl(a) bych být ochotný/á obětovat své potřeby pro ostatní.',
-  'Pokud si neumím poradit sám/sama, znamená to, že jsem neschopný/á.',
-  'Problém je jen v mé hlavě – kdybych myslel/a jinak, nemusel/a bych tím '
-      'obtěžovat ostatní.',
-  'Pokud nemám to, co chci nebo potřebuji, je to jedno – vlastně mi na tom '
-      'nezáleží.',
-  'Umět používat dovednosti je známka slabosti.',
+/// The counter-statements arrived later than the myths (2026-09-18): the first
+/// version of Week 6 left twenty-four fields with no help at all, which Week 3
+/// had never done. They are revealed on tap, exactly as Week 3's are.
+const day1NeedsMyths = <RelationshipMyth>[
+  (
+    myth: 'Nezasloužím si dostat to, co chci nebo potřebuji.',
+    busted: 'Každý člověk má základní lidské potřeby a má právo vyjádřit, co potřebuje.',
+  ),
+  (
+    myth: 'Když o něco požádám, ukážu tím, že jsem slabý člověk.',
+    busted: 'Říct si o pomoc vyžaduje odvahu a je to projev síly, ne slabosti.',
+  ),
+  (
+    myth: 'Musím předem vědět, že druhý řekne ano, než vůbec požádám.',
+    busted: 'Nemusím znát výsledek předem; odmítnutí je přirozené riziko, které mohu zvládnout.',
+  ),
+  (
+    myth: 'Pokud o něco požádám nebo řeknu ne, nevydržím, když se na mě někdo naštve.',
+    busted:
+        'Nespokojenost druhých je nepříjemná, ale dokážu ji ustát, aniž bych ztratil/a sám/sama '
+        'sebe.',
+  ),
+  (
+    myth: 'Když mi někdo řekne ne, zničí mě to.',
+    busted: 'Odmítnutí bolí, ale neznamená konec světa ani to, že jsem bezcenný/á.',
+  ),
+  (
+    myth: 'Požádat o něco je tlačivé, sobecké nebo špatné.',
+    busted: 'Vyjádřit své přání není sobectví, dává to druhému šanci mi porozumět.',
+  ),
+  (
+    myth: 'Říct ne je vždycky sobecké.',
+    busted: 'Říct „ne“ druhým často znamená říct „ano“ svému duševnímu zdraví a kapacitě.',
+  ),
+  (
+    myth: 'Měl(a) bych být ochotný/á obětovat své potřeby pro ostatní.',
+    busted: 'Dlouhodobé obětování vede k vyhoření a zášti; vztah potřebuje rovnováhu.',
+  ),
+  (
+    myth: 'Pokud si neumím poradit sám/sama, znamená to, že jsem neschopný/á.',
+    busted: 'Nikdo neumí a nezvládá všechno sám; spolupráce je normální součástí života.',
+  ),
+  (
+    myth:
+        'Problém je jen v mé hlavě – kdybych myslel/a jinak, nemusel/a bych tím obtěžovat ostatní.',
+    busted: 'Mé pocity a potíže jsou reálné a sdílet je s blízkými neznamená někoho obtěžovat.',
+  ),
+  (
+    myth: 'Pokud nemám to, co chci nebo potřebuji, je to jedno – vlastně mi na tom nezáleží.',
+    busted: 'Předstírat nezájem je jen obrana před zklamáním; na mých potřebách záleží.',
+  ),
+  (
+    myth: 'Umět používat dovednosti je známka slabosti.',
+    busted: 'Používání dovedností je vědomá práce na sobě a projev vysoké emoční zralosti.',
+  ),
 ];
 
-const day1RelationshipsMyths = <String>[
-  'Neměl(a) bych muset o něco žádat (nebo říkat ne); ostatní by měli vědět, co '
-      'chci, a udělat to.',
-  'Ostatní by měli vědět, že jejich chování zraňuje mé pocity; neměl(a) bych '
-      'jim to muset říkat.',
-  'Neměl(a) bych muset vyjednávat nebo pracovat na tom, abych dostal(a), co chci.',
-  'Ostatní by měli být ochotní udělat pro mě víc.',
-  'Ostatní by mě měli mít rádi, schvalovat mě a podporovat mě.',
-  'Nezaslouží si, abych k nim byl(a) laskavý/á nebo se k nim choval(a) dobře.',
-  'Nejdůležitější je, abych dostal(a), co chci, když to chci.',
-  'Nemusím být férový/á, laskavý/á nebo zdvořilý/á, pokud se ostatní tak '
-      'nechovají ke mně.',
-  'Pomsta bude skvělá; stojí za všechny negativní následky.',
-  'Jen slaboši mají hodnoty.',
-  'Každý lže.',
-  'Získat to, co chci, je důležitější než způsob, jakým to získám; účel světí '
-      'prostředky.',
+/// The second twelve, same shape and same source revision as [day1NeedsMyths].
+const day1RelationshipsMyths = <RelationshipMyth>[
+  (
+    myth:
+        'Neměl(a) bych muset o něco žádat (nebo říkat ne); ostatní by měli vědět, co chci, a '
+        'udělat to.',
+    busted: 'Lidé neumí číst myšlenky; je mou odpovědností říct, co potřebuji.',
+  ),
+  (
+    myth:
+        'Ostatní by měli vědět, že jejich chování zraňuje mé pocity; neměl(a) bych jim to muset '
+        'říkat.',
+    busted: 'Každý vnímá situace jinak; otevřená komunikace je jediná cesta, jak to vyjasnit.',
+  ),
+  (
+    myth: 'Neměl(a) bych muset vyjednávat nebo pracovat na tom, abych dostal(a), co chci.',
+    busted: 'Kompromisy a vyjednávání jsou přirozeným základem každého zdravého vztahu.',
+  ),
+  (
+    myth: 'Ostatní by měli být ochotní udělat pro mě víc.',
+    busted: 'Druzí mají své vlastní limity a hranice, které musím respektovat stejně jako ty své.',
+  ),
+  (
+    myth: 'Ostatní by mě měli mít rádi, schvalovat mě a podporovat mě.',
+    busted: 'Nemusím se líbit všem; má hodnota nezávisí na tom, zda mě každý schvaluje.',
+  ),
+  (
+    myth: 'Nezaslouží si, abych k nim byl(a) laskavý/á nebo se k nim choval(a) dobře.',
+    busted: 'Můj respekt k druhým odráží mé vlastní hodnoty, ne chování druhé strany.',
+  ),
+  (
+    myth: 'Nejdůležitější je, abych dostal(a), co chci, když to chci.',
+    busted: 'Krátkodobé prosazení za každou cenu často ničí vztahy i dlouhodobé cíle.',
+  ),
+  (
+    myth: 'Nemusím být férový/á, laskavý/á nebo zdvořilý/á, pokud se ostatní tak nechovají ke mně.',
+    busted:
+        'Reagovat na neférovost stejnou mincí situaci jen eskaluje; zachovat klid chrání mou '
+        'sebeúctu.',
+  ),
+  (
+    myth: 'Pomsta bude skvělá; stojí za všechny negativní následky.',
+    busted: 'Pomsta přináší jen krátkou iluzi úlevy, ale dlouhodobě prohlubuje bolest a výčitky.',
+  ),
+  (
+    myth: 'Jen slaboši mají hodnoty.',
+    busted: 'Držet se svých hodnot i v těžkých chvílích vyžaduje obrovskou vnitřní sílu.',
+  ),
+  (
+    myth: 'Každý lže.',
+    busted: 'Lidé dělají chyby, ale generalizace „všichni lžou“ brání budovat jakoukoli důvěru.',
+  ),
+  (
+    myth: 'Získat to, co chci, je důležitější než způsob, jakým to získám; účel světí prostředky.',
+    busted: 'Způsob, jakým jednáme, určuje naši sebeúctu i kvalitu našich vztahů.',
+  ),
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────

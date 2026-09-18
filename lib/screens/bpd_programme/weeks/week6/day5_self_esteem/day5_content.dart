@@ -115,7 +115,7 @@ const day5NezoufejWorksheet = <WorksheetSection>[
       WorksheetField(
         id: 'u',
         label: 'U – Upřímnost',
-        hint: 'jak můžeš upřímně a klidně vyjádřit své pocity a potřeby?',
+        hint: 'jak můžeš upřímně vyjádřit své pocity a potřeby?',
       ),
     ],
   ),

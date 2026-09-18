@@ -495,15 +495,13 @@ found three things not in this list, all fixed in the same pass:
   2026-08-29, is planned (`.claude/design/week6/WEEK6_SCREEN_PLAN.md`) and fully
   implemented. **Nothing here blocks code** — unlike Week 5 — but nine things
   need her eye. In order of impact:
-  1. ⏳ **Twenty-four myths with no counter-statements (OQ-1).** In Week 3 she
-     wrote a "busted" version of every myth, which the app reveals when someone
-     is stuck. Week 6 says only "(nechat prostor na vepsání pravdivé
-     formulace)", so twenty-four fields ship with no help at all and most will
-     stay empty. **Answered 2026-09-18: she is writing all twenty-four**, to be
-     shown the Week 3 way (tap to reveal). **Waiting on her file.** No new widget
-     is needed — pair each myth with its counter-statement the way
-     `EmotionMyth` does and pass it as `WorksheetField.example`; the reveal is
-     already built.
+  1. ✅ **Twenty-four myths with no counter-statements (OQ-1).** Week 6 used to
+     say only "(nechat prostor na vepsání pravdivé formulace)", so twenty-four
+     fields shipped with no help at all. **Delivered 2026-09-18** in
+     `Šestý týden - nová verze`, which adds a `Protipříklad` to every one and
+     asks for them "v nápovědě". Shipped as `RelationshipMyth` records fed to
+     `WorksheetField.example`, revealed on tap exactly as Week 3's are. The
+     twenty-four myths themselves are unchanged, word for word.
   2. **Broken formatting we had to interpret (OQ-2).** Four places, all recorded
      in the Dart doc comments: (a) Day 5's "**O – bez zbytečných Omluv**" is glued
      onto the end of the "Z" instruction with no line break — split at the obvious
@@ -527,6 +525,19 @@ found three things not in this list, all fixed in the same pass:
      certainly intentional repetition, but nobody has confirmed it.
   - Done when: each decision is recorded in the plan's OQ table and the affected
     rows lose their ⚠️ in `.claude/design/week6/TRACKING.md`.
+
+- [ ] **GEN-14 — "program" → "průvodce" is half applied.** The author renamed
+  the programme in every new file she has sent: Week 5 Day 3's pause text (live
+  since 2026-09-18) and all three of Week 6's occurrences say "průvodce", while
+  the rest of the app — roughly 85 more, across weeks 1–4 and 7, plus the "DBT
+  program" app-bar title — still says "program". The new .docx set for weeks 5–7
+  carries the same rename, so it is clearly her intent and not a slip.
+  **A partly renamed app reads as a bug**, so this is worth doing in one pass
+  rather than file by file.
+  - Care needed: `program` also appears in route names, widget names and the app
+    bar title, so this is not a blind find-and-replace over `lib/`.
+  - Done when: every user-facing occurrence inside the programme says
+    "průvodce", or the author confirms she wants "program" kept.
 
 - [ ] **W5-02 — Week titles in `bpd_weeks_data.json` may not match the delivered
   content.** Week 5 was titled "Mezilidské vztahy" there — standard DBT ordering —

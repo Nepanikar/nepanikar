@@ -20,7 +20,7 @@ import 'package:nepanikar/screens/bpd_programme/widgets/structured_worksheet.dar
 const day2Opening = <String>[
   'Dnešní den je zaměřený na dovednosti, které ti pomohou komunikovat s druhými '
       'lidmi tak, abys dokázal jasně a s respektem vyjádřit své potřeby, a '
-      'přitom udržel dobré vztahy a vlastní sebeúctu.',
+      'udržet dobré vztahy či vlastní sebeúctu.',
   'Patří sem nástroje, které ti ukážou, jak říkat věci otevřeně a nenásilně, '
       'jak prosazovat své cíle, ale zároveň zůstat ohleduplný k ostatním. Díky '
       'tomu se můžeš cítit jistější v mezilidských situacích a postupně si '
@@ -34,7 +34,7 @@ const day2Intro = <String>[
       'povede ke konfliktu.',
   'PSANÍČKo je jednoduchý postup, který ti pomůže mluvit otevřeně a přitom '
       'respektujícím způsobem. Díky němu se můžeš naučit vyjádřit své potřeby '
-      'tak, aby tě druzí slyšeli, a zároveň si udržel vztahy i vlastní sebeúctu. '
+      'tak, aby tě druzí slyšeli. '
       'Co znamenají jednotlivá písmena PSANÍČKo?',
 ];
 
@@ -46,11 +46,11 @@ const day2Intro = <String>[
 /// `NumberedBenefit.number` is a `String`.
 const day2PsanickoLetters = <AcronymLetter>[
   ('P', 'Popis', 'Jasně a věcně popiš situaci.'),
-  ('S', 'Sdělení', 'Řekni, co cítíš a co potřebuješ.'),
+  ('S', 'Sdělení', 'Řekni, co cítíš a co si myslíš.'),
   ('A', 'Asertivita', 'Otevřeně požádej nebo řekni ne.'),
-  ('N', 'Nabídka', 'Vysvětli, proč se vyplatí vyhovět tvému požadavku.'),
-  ('Í', 'Impozantně', 'Drž se svého cíle, nenech se odběhnout.'),
-  ('Č', 'Cílevědomě', 'Vystup klidně a s jistotou.'),
+  ('N', 'Nabídka', 'Vysvětli, proč se druhému člověku vyplatí vyhovět tvému požadavku.'),
+  ('Í', 'Impozantně', 'Drž se svého cíle, nenech se od něj odvést.'),
+  ('Č', 'Cílevědomě', 'Vystupuj klidně a s jistotou.'),
   ('Ko', 'Komunikace', 'Buď připraven komunikovat a najít kompromis.'),
 ];
 
@@ -98,7 +98,7 @@ const day2PsanickoWorksheet = <WorksheetSection>[
   WorksheetSection(
     title: 'S – Sdělení',
     fields: [
-      WorksheetField(id: 's', label: 'S – Sdělení', hint: 'Řekni, co cítíš a co potřebuješ.'),
+      WorksheetField(id: 's', label: 'S – Sdělení', hint: 'Řekni, co cítíš a co si myslíš.'),
     ],
   ),
   WorksheetSection(
@@ -117,7 +117,7 @@ const day2PsanickoWorksheet = <WorksheetSection>[
       WorksheetField(
         id: 'n',
         label: 'N – Nabídka',
-        hint: 'Vysvětli, proč se vyplatí vyhovět tvému požadavku.',
+        hint: 'Vysvětli, proč se druhému člověku vyplatí vyhovět tvému požadavku.',
       ),
     ],
   ),
@@ -127,7 +127,7 @@ const day2PsanickoWorksheet = <WorksheetSection>[
       WorksheetField(
         id: 'i',
         label: 'Í – Impozantně',
-        hint: 'Drž se svého cíle, nenech se odběhnout.',
+        hint: 'Drž se svého cíle, nenech se od něj odvést.',
       ),
     ],
   ),
@@ -137,7 +137,7 @@ const day2PsanickoWorksheet = <WorksheetSection>[
       WorksheetField(
         id: 'c',
         label: 'Č – Cílevědomě',
-        hint: 'Vystup klidně a s jistotou.',
+        hint: 'Vystupuj klidně a s jistotou.',
       ),
     ],
   ),
@@ -179,8 +179,9 @@ const day2PsanickoExample = <(String, String)>[
   ),
   (
     'Ko - komunikace',
-    '„Pokud jsi rozrušený/á, můžeme rozhovor přerušit a vrátit se k němu později, '
-        'až se uklidníme.“',
+    '„Záleží mi na tom, abychom se domluvili. Pojďme se teď bavit čistě o tom, co '
+        'přesně potřebujeme vyřešit, a urážky nechme stranou. Jaký návrh řešení by pro '
+        'druhou stranu dával smysl?“',
   ),
 ];
 

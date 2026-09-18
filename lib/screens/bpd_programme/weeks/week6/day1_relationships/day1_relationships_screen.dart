@@ -31,8 +31,7 @@ class Week6Day1RelationshipsScreen extends StatefulWidget {
   const Week6Day1RelationshipsScreen({super.key});
 
   @override
-  State<Week6Day1RelationshipsScreen> createState() =>
-      _Week6Day1RelationshipsScreenState();
+  State<Week6Day1RelationshipsScreen> createState() => _Week6Day1RelationshipsScreenState();
 }
 
 class _Week6Day1RelationshipsScreenState extends State<Week6Day1RelationshipsScreen> {
@@ -139,7 +138,9 @@ class Week6Day1EducationPage extends StatelessWidget {
       onCompleted: onNext,
       steps: [
         for (var i = 0; i < day1Opening.length; i++)
-          ChatStep(messages: [ChatBotBubble(text: day1Opening[i], showAvatar: i == 0)]),
+          ChatStep(
+            messages: [ChatBotBubble(text: day1Opening[i], showAvatar: i == 0)],
+          ),
         for (var i = 0; i < day1Effectiveness.length; i++)
           ChatStep(
             messages: [ChatBotBubble(text: day1Effectiveness[i], showAvatar: i == 0)],
@@ -178,7 +179,7 @@ class Week6MythsPage extends StatelessWidget {
 
   final String title;
   final String worksheetId;
-  final List<String> myths;
+  final List<RelationshipMyth> myths;
   final VoidCallback onNext;
 
   @override
@@ -215,9 +216,17 @@ class Week6MythsPage extends StatelessWidget {
             sections: [
               for (var i = 0; i < myths.length; i++)
                 WorksheetSection(
-                  title: myths[i],
+                  title: myths[i].myth,
                   style: WorksheetSectionStyle.myth,
-                  fields: [WorksheetField(id: 'myth_$i', label: day1MythFieldLabel)],
+                  fields: [
+                    WorksheetField(
+                      id: 'myth_$i',
+                      label: day1MythFieldLabel,
+                      // Revealed on tap, so someone who is stuck has a way
+                      // through without being handed the answer first.
+                      example: myths[i].busted,
+                    ),
+                  ],
                 ),
             ],
           ),

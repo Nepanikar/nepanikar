@@ -35,12 +35,12 @@ const day3JeVyzvaLetters = <AcronymLetter>[
   (
     'Je',
     'JEmné způsoby',
-    'chovej se klidně a laskavě, vyhýbej se kritice, obviňování nebo urážkám',
+    'chovej se laskavě, vyhýbej se kritice, obviňování nebo urážkám',
   ),
   (
     'Vý',
     'přátelské VYstupování',
-    'komunikuj klidně a přátelsky, používej humor nebo lehkost, aby situace '
+    'komunikuj přátelsky, používej humor nebo lehkost, aby situace '
         'nebyla napjatá',
   ),
   ('Z', 'Zájem', 'projevuj zájem o druhou osobu, poslouchej ji a vnímej, co říká'),
