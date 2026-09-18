@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/bpd_week_detail_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/bpd_help_button.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/skill_tree.dart';
 import 'package:nepanikar/screens/main/main_screen.dart';
 import 'package:nepanikar/services/bpd_weeks_data_manager.dart';
@@ -319,6 +320,13 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
                         child: IconButton(
                           icon: const Icon(Icons.close, color: Colors.white, size: 28),
                           onPressed: _exitToMain,
+                        ),
+                      ),
+                      const Align(
+                        alignment: Alignment.centerRight,
+                        child: Padding(
+                          padding: EdgeInsets.only(right: 12),
+                          child: BpdHelpButton(onDarkBackground: true, size: 36),
                         ),
                       ),
                     ],

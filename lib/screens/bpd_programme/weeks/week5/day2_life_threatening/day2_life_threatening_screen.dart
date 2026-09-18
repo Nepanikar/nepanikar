@@ -45,7 +45,7 @@ class Week5Day2LifeThreateningScreen extends StatefulWidget {
 class _Week5Day2LifeThreateningScreenState extends State<Week5Day2LifeThreateningScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
-  static const int _totalPages = 5;
+  static const int _totalPages = 6;
 
   BpdDaysDao get _bpdDaysDao => registry.get<BpdDaysDao>();
 
@@ -71,20 +71,35 @@ class _Week5Day2LifeThreateningScreenState extends State<Week5Day2LifeThreatenin
     );
   }
 
-  Future<void> _completeDay() async {
+  /// True when the day was skipped from the warning page rather than walked.
+  bool _wasSkipped = false;
+
+  /// Leaves the day. The only exit that marks it done, so both the walked and
+  /// the skipped route pass through the safety page first.
+  Future<void> _finishDay() async {
     await _bpdDaysDao.markDayCompleted(5, 2);
-    if (mounted) context.pop();
+    if (!mounted) return;
+    if (_wasSkipped) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text(day2SkipConfirmation)));
+    }
+    context.pop();
   }
 
   /// Skipping counts as done — the author's call. Anything else and the week
   /// could never reach 7/7 for someone who, quite reasonably, sat this one out.
-  Future<void> _skipDay() async {
-    await _bpdDaysDao.markDayCompleted(5, 2);
-    if (!mounted) return;
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(const SnackBar(content: Text(day2SkipConfirmation)));
-    context.pop();
+  ///
+  /// It jumps to the safety page instead of leaving outright: someone who backs
+  /// out of the life-threatening day is the last person who should be shown the
+  /// door without being told where help is.
+  void _skipDay() {
+    setState(() => _wasSkipped = true);
+    _pageController.animateToPage(
+      _totalPages - 1,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
   }
 
   @override
@@ -118,15 +133,18 @@ class _Week5Day2LifeThreateningScreenState extends State<Week5Day2LifeThreatenin
                   DayCompletionPage(
                     dayNumber: 2,
                     summary: day2CompletionText,
-                    extraContent: const Week5Day2CareLinks(),
                     nextDay: const NextDayTeaser(
                       title: 'Pauza',
                       description:
                           'Po dnešku je únava přirozená. Zítra si dáme od '
                           'programu volno.',
                     ),
-                    onComplete: _completeDay,
+                    // Advances rather than finishing: the safety page below is
+                    // the last thing this day shows, whichever way it was
+                    // reached.
+                    onComplete: _goToNextPage,
                   ),
+                  Week5Day2SafetyPage(onDone: _finishDay),
                 ],
               ),
             ),
@@ -514,6 +532,63 @@ class _RescueHint extends StatelessWidget {
 
 /// Shown on the completion page: the source's two care links, above the thanks
 /// so that someone who is leaving does not have to scroll to find them.
+/// Page 6/6 — the safety screen, the last thing this day shows.
+///
+/// Asked for by the study's supervisors: the day discusses life-threatening
+/// behaviour, and someone can be left unsettled by it after they have closed
+/// the app. Both ways out of the day lead here — walking it and skipping it —
+/// and the day is only marked done once this page is dismissed.
+///
+/// Deliberately plain: no alarm colours, no warning icon. Someone who is
+/// already overwhelmed does not need the app to look alarmed at them.
+class Week5Day2SafetyPage extends StatelessWidget {
+  const Week5Day2SafetyPage({super.key, required this.onDone});
+
+  final VoidCallback onDone;
+
+  @override
+  Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
+    return DayPageBase(
+      buttonText: day2SafetyButtonLabel,
+      onButtonPressed: onDone,
+      content: Column(
+        children: [
+          const SizedBox(height: 56),
+          Container(
+            width: 84,
+            height: 84,
+            decoration: BoxDecoration(
+              color: NepanikarColors.secondary.withOpacity(isDarkMode ? 0.25 : 0.12),
+              shape: BoxShape.circle,
+            ),
+            child: const Icon(
+              Icons.support_agent_outlined,
+              size: 42,
+              color: NepanikarColors.secondary,
+            ),
+          ),
+          const SizedBox(height: 28),
+          Text(
+            day2SafetyMessage,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 17,
+              height: 1.55,
+              fontWeight: FontWeight.w600,
+              color: isDarkMode ? Colors.white : NepanikarColors.dark,
+            ),
+          ),
+          const SizedBox(height: 32),
+          const Week5Day2CareLinks(),
+          const SizedBox(height: 24),
+        ],
+      ),
+    );
+  }
+}
+
 class Week5Day2CareLinks extends StatelessWidget {
   const Week5Day2CareLinks({super.key});
 

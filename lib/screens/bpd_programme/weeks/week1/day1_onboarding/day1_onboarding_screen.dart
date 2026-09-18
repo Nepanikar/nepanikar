@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/theme/colors.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/bpd_help_button.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/day1_onboarding/day1_completion_page.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/day1_onboarding/education_chat_page.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/day1_onboarding/goals_expectations_page.dart';
@@ -277,16 +278,17 @@ class _Day1OnboardingScreenState extends State<Day1OnboardingScreen> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(right: 8),
-            child: Text(
-              '${_currentPage + 1}/$_totalPages',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.7),
-              ),
+          Text(
+            '${_currentPage + 1}/$_totalPages',
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.7),
             ),
+          ),
+          const Padding(
+            padding: EdgeInsets.only(left: 10, right: 6),
+            child: BpdHelpButton(size: 34),
           ),
         ],
       ),

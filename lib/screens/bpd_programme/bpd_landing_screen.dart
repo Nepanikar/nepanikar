@@ -5,6 +5,7 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/services/notifications/notifications_service.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/bpd_weeks_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/bpd_help_button.dart';
 import 'package:nepanikar/screens/main/main_screen.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/utils/crashlytics_utils.dart';
@@ -69,6 +70,12 @@ class BpdLandingScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 20.0),
           child: Column(
             children: [
+              // This screen has no app bar, so the help button gets its own
+              // row rather than being the one place in the module without it.
+              const Align(
+                alignment: Alignment.centerRight,
+                child: BpdHelpButton(size: 36),
+              ),
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(

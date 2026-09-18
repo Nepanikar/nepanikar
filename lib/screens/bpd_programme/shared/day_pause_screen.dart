@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/theme/colors.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/bpd_help_button.dart';
 import 'package:nepanikar/screens/home/my_records/mood/mood_picker_screen.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
@@ -220,7 +221,12 @@ class DayPauseScreen extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
           ),
-          const SizedBox(width: 48), // Balance for close button
+          // Sits where the close button's spacer used to, so the title stays
+          // centred.
+          const Padding(
+            padding: EdgeInsets.only(right: 6),
+            child: BpdHelpButton(size: 34),
+          ),
         ],
       ),
     );

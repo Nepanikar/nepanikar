@@ -42,6 +42,7 @@ import 'package:nepanikar/screens/home/my_records/dbt/dbt_records_screen.dart';
 import 'package:nepanikar/services/db/bpd/bpd_day_models.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/bpd_help_button.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_preview_sheet.dart';
 
 part 'bpd_week_detail_screen.g.dart';
@@ -913,6 +914,10 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
                       icon: const Icon(Icons.self_improvement, color: Colors.white, size: 24),
                       tooltip: 'DBT program',
                       onPressed: () => const DbtRecordsRoute().push<void>(context),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 4, right: 8),
+                      child: BpdHelpButton(onDarkBackground: true, size: 36),
                     ),
                   ],
                 ),

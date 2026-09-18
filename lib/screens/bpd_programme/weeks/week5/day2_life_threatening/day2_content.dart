@@ -134,6 +134,18 @@ const day2CareLead =
     'Pokud je pro tebe život ohrožující chování náročným tématem, můžeš jej '
     'opečovat zde';
 
+/// Page 6/6 — the safety screen the study's supervisors asked for.
+///
+/// Not from the source: written by the researcher after an ethics review with
+/// her supervisor and Mgr. Horký (2026-09-18), because this is the day that can
+/// leave someone unsettled after they close the app.
+const day2SafetyMessage =
+    'V náročných chvílích nemusíš být na nic bez pomoci. Pokud cítíš zahlcení, '
+    'silný tlak nebo úzkost, spojit se s odborníky je naprosto v pořádku – '
+    'stačí jeden klik.';
+
+const day2SafetyButtonLabel = 'Rozumím, zavřít den';
+
 const day2CompletionText =
     'Dnes to mohlo být náročné. Díky že se pouštíš i do takových témat, chce to '
     'velkou odvahu.';

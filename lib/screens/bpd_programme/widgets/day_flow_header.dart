@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/theme/colors.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/bpd_help_button.dart';
 
-/// Header of a multi-page day flow: close/back button, segmented progress bar
-/// and an `n/N` counter.
+/// Header of a multi-page day flow: close/back button, segmented progress bar,
+/// an `n/N` counter and the help button.
 ///
 /// Every HPO day screen repeated this ~55-line widget; new and reworked day
 /// screens use this shared one instead.
@@ -63,16 +64,19 @@ class DayFlowHeader extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(right: 8),
-            child: Text(
-              '${currentPage + 1}/$totalPages',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.7),
-              ),
+          Text(
+            '${currentPage + 1}/$totalPages',
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.7),
             ),
+          ),
+          // Help is one tap away on every page of every day — see
+          // [BpdHelpButton] for why it is not limited to the hard topics.
+          const Padding(
+            padding: EdgeInsets.only(left: 10, right: 6),
+            child: BpdHelpButton(size: 34),
           ),
         ],
       ),

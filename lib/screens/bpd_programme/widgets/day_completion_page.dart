@@ -33,11 +33,11 @@ class DayCompletionPage extends StatelessWidget {
   final String buttonText;
   final NextDayTeaser? nextDay;
 
-  /// Rendered between the summary and the next-day teaser.
+  /// Rendered between the summary and the next-day teaser, so that anything
+  /// urgent sits above "Zítra" rather than below it.
   ///
-  /// Week 5 Day 2 closes on life-threatening behaviour and the source offers two
-  /// places to go for care. They belong above the teaser, not below it: someone
-  /// who is leaving after that day will not scroll past "Zítra" to find help.
+  /// Unused since Week 5 Day 2's care links moved onto its own safety page,
+  /// which comes after this one and is therefore read rather than scrolled past.
   final Widget? extraContent;
 
   final VoidCallback onComplete;
