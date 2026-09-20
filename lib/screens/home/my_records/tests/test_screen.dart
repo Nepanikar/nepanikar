@@ -86,9 +86,7 @@ class _TestScreenState extends State<TestScreen> {
     try {
       final String csvData = await rootBundle.loadString(path);
 
-      final List<List<dynamic>> csvTable = const CsvToListConverter().convert(
-        csvData,
-      );
+      final List<List<dynamic>> csvTable = const CsvToListConverter().convert(csvData);
 
       final dataRows = csvTable.skip(1);
 
@@ -108,9 +106,7 @@ class _TestScreenState extends State<TestScreen> {
           );
         }).toList();
 
-        loadedQuestions.add(
-          Question(id: questionId, text: questionText, answers: answers),
-        );
+        loadedQuestions.add(Question(id: questionId, text: questionText, answers: answers));
       }
     } catch (e) {
       if (kDebugMode) {
@@ -173,10 +169,7 @@ class _TestScreenState extends State<TestScreen> {
 
   PreferredSizeWidget _buildAppBarBottom() {
     if (_totalQuestions == 0) {
-      return const PreferredSize(
-        preferredSize: Size.fromHeight(0.0),
-        child: SizedBox.shrink(),
-      );
+      return const PreferredSize(preferredSize: Size.fromHeight(0.0), child: SizedBox.shrink());
     }
 
     final double progress = (_currentQuestionIndex + 1) / _totalQuestions;
@@ -203,9 +196,7 @@ class _TestScreenState extends State<TestScreen> {
             LinearProgressIndicator(
               value: progress,
               backgroundColor: NepanikarColors.white.withValues(alpha: 0.9),
-              valueColor: const AlwaysStoppedAnimation<Color>(
-                Color(0xFFB794F6),
-              ),
+              valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFFB794F6)),
               minHeight: 4,
             ),
           ],
@@ -248,9 +239,7 @@ class _TestScreenState extends State<TestScreen> {
 
   Widget _buildFixedBottomButton(BuildContext context) {
     final bool isLastQuestion = _currentQuestionIndex == _totalQuestions - 1;
-    final String buttonText = isLastQuestion
-        ? 'Finish'
-        : 'Next'; // TODO: Localize this
+    final String buttonText = isLastQuestion ? 'Finish' : 'Next'; // TODO: Localize this
     final bool isFirstQuestion = _currentQuestionIndex == 0;
 
     return Padding(
@@ -267,9 +256,7 @@ class _TestScreenState extends State<TestScreen> {
                   width: 1.5,
                 ),
                 minimumSize: const Size(110, 56),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
               ),
               child: const Text(
                 'Back',
@@ -287,17 +274,12 @@ class _TestScreenState extends State<TestScreen> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: NepanikarColors.defaultPrimary,
                   foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                   elevation: 4,
                 ),
                 child: Text(
                   buttonText,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -312,11 +294,7 @@ class _TestScreenState extends State<TestScreen> {
     // TODO: Localize this
     if (_questions == null) {
       return const Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(
-            color: NepanikarColors.defaultPrimary,
-          ),
-        ),
+        body: Center(child: CircularProgressIndicator(color: NepanikarColors.defaultPrimary)),
       );
     }
 
@@ -340,10 +318,7 @@ class _TestScreenState extends State<TestScreen> {
               child: _buildQuizContent(),
             ),
 
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: _buildFixedBottomButton(context),
-            ),
+            Align(alignment: Alignment.bottomCenter, child: _buildFixedBottomButton(context)),
           ],
         ),
       ),
@@ -376,9 +351,7 @@ class AnswerOption extends StatelessWidget {
               : NepanikarColors.white,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: isSelected
-                ? NepanikarColors.defaultPrimary
-                : Colors.grey.shade300,
+            color: isSelected ? NepanikarColors.defaultPrimary : Colors.grey.shade300,
             width: isSelected ? 2 : 1.5,
           ),
         ),
@@ -390,9 +363,7 @@ class AnswerOption extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
-                  color: isSelected
-                      ? NepanikarColors.defaultPrimary
-                      : Colors.grey.shade400,
+                  color: isSelected ? NepanikarColors.defaultPrimary : Colors.grey.shade400,
                   width: 2,
                 ),
                 color: Colors.white,
@@ -417,9 +388,7 @@ class AnswerOption extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
-                  color: isSelected
-                      ? NepanikarColors.defaultPrimary
-                      : NepanikarColors.dark,
+                  color: isSelected ? NepanikarColors.defaultPrimary : NepanikarColors.dark,
                 ),
               ),
             ),

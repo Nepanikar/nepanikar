@@ -48,11 +48,7 @@ class BpdHelpButton extends StatelessWidget {
             child: SizedBox(
               width: size,
               height: size,
-              child: Icon(
-                Icons.support_agent_outlined,
-                size: size * 0.55,
-                color: Colors.white,
-              ),
+              child: Icon(Icons.support_agent_outlined, size: size * 0.55, color: Colors.white),
             ),
           ),
         ),

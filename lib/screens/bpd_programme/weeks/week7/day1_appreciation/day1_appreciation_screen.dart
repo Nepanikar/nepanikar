@@ -15,8 +15,7 @@ import 'package:nepanikar/utils/registry.dart';
 part 'day1_appreciation_screen.g.dart';
 
 @TypedGoRoute<Week7Day1AppreciationScreenRoute>(path: '/bpd-programme/week/7/day/1')
-class Week7Day1AppreciationScreenRoute extends GoRouteData
-    with $Week7Day1AppreciationScreenRoute {
+class Week7Day1AppreciationScreenRoute extends GoRouteData with $Week7Day1AppreciationScreenRoute {
   const Week7Day1AppreciationScreenRoute();
 
   @override
@@ -31,8 +30,7 @@ class Week7Day1AppreciationScreen extends StatefulWidget {
   const Week7Day1AppreciationScreen({super.key});
 
   @override
-  State<Week7Day1AppreciationScreen> createState() =>
-      _Week7Day1AppreciationScreenState();
+  State<Week7Day1AppreciationScreen> createState() => _Week7Day1AppreciationScreenState();
 }
 
 class _Week7Day1AppreciationScreenState extends State<Week7Day1AppreciationScreen> {
@@ -205,10 +203,7 @@ class Week7Day1SmartReviewPage extends StatelessWidget {
             subtitle: 'Den 1 • Týden 7',
           ),
           const SizedBox(height: 14),
-          Text(
-            day1SmartLead,
-            style: TextStyle(fontSize: 14, height: 1.55, color: secondary),
-          ),
+          Text(day1SmartLead, style: TextStyle(fontSize: 14, height: 1.55, color: secondary)),
           const SizedBox(height: 14),
           // The author's reassurance sits above the goals, not below them: this
           // is the one page where someone meets what they promised themselves
@@ -219,10 +214,7 @@ class Week7Day1SmartReviewPage extends StatelessWidget {
             text: day1SmartReassurance,
           ),
           const SizedBox(height: 14),
-          Text(
-            day1SmartTask,
-            style: TextStyle(fontSize: 14, height: 1.55, color: secondary),
-          ),
+          Text(day1SmartTask, style: TextStyle(fontSize: 14, height: 1.55, color: secondary)),
           const SizedBox(height: 18),
           const SmartGoalsReview(
             worksheetId: day1SmartWorksheetId,

@@ -7,8 +7,7 @@ DateTime getNowDateUtc() {
 }
 
 extension DateTimeExt on DateTime {
-  DateTime toDate() =>
-      isUtc ? DateTime.utc(year, month, day) : DateTime(year, month, day);
+  DateTime toDate() => isUtc ? DateTime.utc(year, month, day) : DateTime(year, month, day);
 
   DateTime toUtcDate() => DateTime.utc(year, month, day);
 }

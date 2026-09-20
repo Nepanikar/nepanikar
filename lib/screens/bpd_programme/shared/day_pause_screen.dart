@@ -223,10 +223,7 @@ class DayPauseScreen extends StatelessWidget {
           ),
           // Sits where the close button's spacer used to, so the title stays
           // centred.
-          const Padding(
-            padding: EdgeInsets.only(right: 6),
-            child: BpdHelpButton(size: 34),
-          ),
+          const Padding(padding: EdgeInsets.only(right: 6), child: BpdHelpButton(size: 34)),
         ],
       ),
     );

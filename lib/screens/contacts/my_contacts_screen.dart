@@ -28,8 +28,7 @@ class MyContactsRecordsRoute extends GoRouteData with $MyContactsRecordsRoute {
 class MyContactsRecordsScreen extends StatelessWidget {
   const MyContactsRecordsScreen();
 
-  MyContactsRecordsDao get _myContactsRecordsDao =>
-      registry.get<MyContactsRecordsDao>();
+  MyContactsRecordsDao get _myContactsRecordsDao => registry.get<MyContactsRecordsDao>();
 
   Future<void> _onItemAdd(BuildContext context) async {
     context.semanticsAnnounce(context.l10n.record_added_announce);
@@ -71,15 +70,10 @@ class MyContactsRecordsScreen extends StatelessWidget {
             final data = snapshot.data ?? const {};
             return Stack(
               children: [
-                const AppBarOverflowContent(
-                  appBarDescription: '',
-                  isCardStackLayout: false,
-                ),
+                const AppBarOverflowContent(appBarDescription: '', isCardStackLayout: false),
                 if (data.isEmpty)
                   Padding(
-                    padding: EdgeInsets.only(
-                      bottom: context.screenHeight * 0.3,
-                    ),
+                    padding: EdgeInsets.only(bottom: context.screenHeight * 0.3),
                     child: const EmptyRecordsStateWidget(),
                   )
                 else
@@ -91,9 +85,7 @@ class MyContactsRecordsScreen extends StatelessWidget {
                       return Padding(
                         padding: EdgeInsets.only(
                           top: 8,
-                          bottom: isLast
-                              ? NepanikarSizes.fabBottomPadding + 20
-                              : 0,
+                          bottom: isLast ? NepanikarSizes.fabBottomPadding + 20 : 0,
                         ),
                         child: MyContactTile(id: item.key, record: item.value),
                       );

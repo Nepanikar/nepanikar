@@ -19,8 +19,7 @@ class RelaxationRoute extends GoRouteData with $RelaxationRoute {
   final RelaxationType relaxationType;
 
   @override
-  Widget build(BuildContext context, _) =>
-      RelaxationScreen(relaxationType: relaxationType);
+  Widget build(BuildContext context, _) => RelaxationScreen(relaxationType: relaxationType);
 }
 
 class RelaxationScreen extends StatefulWidget {
@@ -131,9 +130,7 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
                     description!,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: NepanikarColors.primarySwatch(
-                        Theme.of(context).primaryColor,
-                      ).shade50,
+                      color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade50,
                     ),
                   ),
                 ),
@@ -167,12 +164,8 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
                         width: 86,
                         height: 86,
                         child: Icon(
-                          isPlaying
-                              ? Icons.pause_rounded
-                              : Icons.play_arrow_rounded,
-                          semanticLabel: isPlaying
-                              ? context.l10n.stop
-                              : context.l10n.start,
+                          isPlaying ? Icons.pause_rounded : Icons.play_arrow_rounded,
+                          semanticLabel: isPlaying ? context.l10n.stop : context.l10n.start,
                           size: 40,
                           color: NepanikarColors.primary(context),
                         ),
@@ -186,10 +179,7 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 28.0,
-                vertical: 50,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 28.0, vertical: 50),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -209,9 +199,7 @@ class _RelaxationScreenState extends State<RelaxationScreen> {
                       onChanged: (double value) {
                         if (mounted) {
                           setState(() {
-                            sliderPosition = Duration(
-                              milliseconds: value.toInt(),
-                            );
+                            sliderPosition = Duration(milliseconds: value.toInt());
                           });
                         }
                         player.seek(Duration(milliseconds: value.toInt()));

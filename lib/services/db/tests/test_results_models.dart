@@ -14,8 +14,7 @@ abstract class TestResult with _$TestResult {
 
   const TestResult._();
 
-  factory TestResult.fromJson(Map<String, Object?> json) =>
-      _$TestResultFromJson(json);
+  factory TestResult.fromJson(Map<String, Object?> json) => _$TestResultFromJson(json);
 }
 
 @freezed
@@ -28,6 +27,5 @@ abstract class TestAnswer with _$TestAnswer {
 
   const TestAnswer._();
 
-  factory TestAnswer.fromJson(Map<String, Object?> json) =>
-      _$TestAnswerFromJson(json);
+  factory TestAnswer.fromJson(Map<String, Object?> json) => _$TestAnswerFromJson(json);
 }

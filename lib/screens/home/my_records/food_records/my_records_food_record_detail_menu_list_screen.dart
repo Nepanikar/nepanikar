@@ -20,9 +20,7 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
 part 'my_records_food_record_detail_menu_list_screen.g.dart';
 
-@TypedGoRoute<MyRecordsFoodRecordsDetailMenuListRoute>(
-  path: '/home/my-records/food-records/detail',
-)
+@TypedGoRoute<MyRecordsFoodRecordsDetailMenuListRoute>(path: '/home/my-records/food-records/detail')
 class MyRecordsFoodRecordsDetailMenuListRoute extends GoRouteData
     with $MyRecordsFoodRecordsDetailMenuListRoute {
   const MyRecordsFoodRecordsDetailMenuListRoute();
@@ -50,8 +48,7 @@ class _MyRecordsFoodRecordsDetailMenuListScreenState
   late final Stream<DailyFoodRecord?> _dailyFoodRecordStream;
   final analytics = registry<FirebaseAnalytics>();
 
-  MyRecordsFoodRecordDao get _myRecordsFoodRecordDao =>
-      registry.get<MyRecordsFoodRecordDao>();
+  MyRecordsFoodRecordDao get _myRecordsFoodRecordDao => registry.get<MyRecordsFoodRecordDao>();
 
   @override
   void initState() {
@@ -70,14 +67,9 @@ class _MyRecordsFoodRecordsDetailMenuListScreenState
       horizontalTitleGap: 0,
       leading: Checkbox(
         value: foodRecord.getIsFoodTaken(foodType),
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(4.0)),
-        ),
-        onChanged: (_) => _myRecordsFoodRecordDao.updateMenuTakenState(
-          widget.id,
-          foodRecord,
-          foodType,
-        ),
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(4.0))),
+        onChanged: (_) =>
+            _myRecordsFoodRecordDao.updateMenuTakenState(widget.id, foodRecord, foodType),
       ),
       title: Text(
         foodType.getLabel(context),
@@ -93,19 +85,14 @@ class _MyRecordsFoodRecordsDetailMenuListScreenState
           children: [
             Text(
               context.l10n.note_detail,
-              style: NepanikarFonts.bodySmallMedium.copyWith(
-                color: Theme.of(context).hintColor,
-              ),
+              style: NepanikarFonts.bodySmallMedium.copyWith(color: Theme.of(context).hintColor),
             ),
             const SizedBox(width: 4),
             ExcludeSemantics(
               child: Assets.icons.navigation.arrowRight.svg(
                 width: 16,
                 height: 16,
-                colorFilter: ColorFilter.mode(
-                  NepanikarColors.primary(context),
-                  BlendMode.srcIn,
-                ),
+                colorFilter: ColorFilter.mode(NepanikarColors.primary(context), BlendMode.srcIn),
               ),
             ),
           ],
@@ -137,11 +124,8 @@ class _MyRecordsFoodRecordsDetailMenuListScreenState
             const SizedBox(height: 8),
             NepanikarDatePicker(
               initialDate: dailyFoodRecord.dateTime,
-              onPick: (date) => _myRecordsFoodRecordDao.updateRecordDate(
-                widget.id,
-                dailyFoodRecord,
-                date,
-              ),
+              onPick: (date) =>
+                  _myRecordsFoodRecordDao.updateRecordDate(widget.id, dailyFoodRecord, date),
             ),
             const SizedBox(height: 24),
             const NepanikarHorizontalDivider(),
@@ -168,9 +152,7 @@ class _MyRecordsFoodRecordsDetailMenuListScreenState
                   text: context.l10n.really_remove,
                   onPrimaryBtnTap: (context) async {
                     final goRouter = GoRouter.of(context);
-                    context.semanticsAnnounce(
-                      context.l10n.record_deleted_announce,
-                    );
+                    context.semanticsAnnounce(context.l10n.record_deleted_announce);
                     await _myRecordsFoodRecordDao.deleteRecord(widget.id);
                     unawaited(analytics.logEvent(name: 'delete_food_record'));
                     goRouter.pop();

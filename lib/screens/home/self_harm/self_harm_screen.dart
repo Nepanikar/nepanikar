@@ -31,37 +31,27 @@ class SelfHarmScreen extends StatelessWidget {
     final modules = <Widget>[
       LongTile(
         text: context.l10n.self_harm_tips,
-        image: Assets.illustrations.modules.whatCanHelpMe.svg(
-          colorFilter: colorFilter,
-        ),
+        image: Assets.illustrations.modules.whatCanHelpMe.svg(colorFilter: colorFilter),
         onTap: () => context.push(const SelfHarmTipsRoute().location),
       ),
       LongTile(
         text: context.l10n.self_harm_helped,
-        image: Assets.illustrations.modules.whatHelpedMe.svg(
-          colorFilter: colorFilter,
-        ),
+        image: Assets.illustrations.modules.whatHelpedMe.svg(colorFilter: colorFilter),
         onTap: () => context.push(const SelfHarmHelpedRoute().location),
       ),
       LongTile(
         text: context.l10n.plan,
-        image: Assets.illustrations.modules.emergencyPlan.svg(
-          colorFilter: colorFilter,
-        ),
+        image: Assets.illustrations.modules.emergencyPlan.svg(colorFilter: colorFilter),
         onTap: () => context.push(const SelfHarmPlanRoute().location),
       ),
       LongTile(
         text: context.l10n.self_harm_timer,
-        image: Assets.illustrations.modules.successTracker.svg(
-          colorFilter: colorFilter,
-        ),
+        image: Assets.illustrations.modules.successTracker.svg(colorFilter: colorFilter),
         onTap: () => context.push(const SelfHarmTimerRoute().location),
       ),
       LongTile(
         text: context.l10n.breath,
-        image: Assets.illustrations.modules.breathing.svg(
-          colorFilter: colorFilter,
-        ),
+        image: Assets.illustrations.modules.breathing.svg(colorFilter: colorFilter),
         onTap: () => context.push(const BreathingExercisesRoute().location),
       ),
     ];

@@ -14,13 +14,11 @@ abstract class BpdWeekProgress with _$BpdWeekProgress {
 
   const BpdWeekProgress._();
 
-  factory BpdWeekProgress.fromJson(Map<String, Object?> json) =>
-      _$BpdWeekProgressFromJson(json);
+  factory BpdWeekProgress.fromJson(Map<String, Object?> json) => _$BpdWeekProgressFromJson(json);
 
   /// Check if this week is currently unlocked based on current date
   bool isUnlocked() {
-    return DateTime.now().isAfter(unlockDate) ||
-        DateTime.now().isAtSameMomentAs(unlockDate);
+    return DateTime.now().isAfter(unlockDate) || DateTime.now().isAtSameMomentAs(unlockDate);
   }
 }
 
@@ -35,6 +33,5 @@ abstract class BpdWeekData with _$BpdWeekData {
 
   const BpdWeekData._();
 
-  factory BpdWeekData.fromJson(Map<String, Object?> json) =>
-      _$BpdWeekDataFromJson(json);
+  factory BpdWeekData.fromJson(Map<String, Object?> json) => _$BpdWeekDataFromJson(json);
 }

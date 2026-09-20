@@ -19,6 +19,5 @@ extension SemanticsUiExt on BuildContext {
   }
 
   /// Whether accessibility reader is enabled (e.g. TalkBack on Android, VoiceOver on iOS).
-  bool get isAccessibilityReaderEnabled =>
-      MediaQuery.of(this).accessibleNavigation;
+  bool get isAccessibilityReaderEnabled => MediaQuery.of(this).accessibleNavigation;
 }

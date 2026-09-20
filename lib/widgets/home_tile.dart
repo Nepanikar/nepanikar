@@ -6,12 +6,7 @@ import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/screen_resolution_helpers.dart';
 
 class HomeTile extends StatelessWidget {
-  const HomeTile({
-    super.key,
-    required this.text,
-    required this.image,
-    required this.location,
-  });
+  const HomeTile({super.key, required this.text, required this.image, required this.location});
 
   final String text;
   final Widget image;
@@ -58,10 +53,7 @@ class HomeTile extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SizedBox(
-                          height: context.isSmallScreen ? 30 : 40,
-                          child: image,
-                        ),
+                        SizedBox(height: context.isSmallScreen ? 30 : 40, child: image),
                         Assets.icons.navigation.arrowRight.svg(
                           width: 16,
                           height: 16,
@@ -77,9 +69,7 @@ class HomeTile extends StatelessWidget {
                           text,
                           style: NepanikarFonts.bodyHeavy.copyWith(
                             fontSize: context.isSmallScreen ? 14 : 15,
-                            color: isDarkMode
-                                ? Colors.white
-                                : NepanikarColors.primary(context),
+                            color: isDarkMode ? Colors.white : NepanikarColors.primary(context),
                           ),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,

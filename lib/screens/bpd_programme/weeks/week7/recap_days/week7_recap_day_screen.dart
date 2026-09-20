@@ -17,8 +17,7 @@ part 'week7_recap_day_screen.g.dart';
 // approach as Week 1's SPOKO days.
 
 @TypedGoRoute<Week7Day2MindfulnessScreenRoute>(path: '/bpd-programme/week/7/day/2')
-class Week7Day2MindfulnessScreenRoute extends GoRouteData
-    with $Week7Day2MindfulnessScreenRoute {
+class Week7Day2MindfulnessScreenRoute extends GoRouteData with $Week7Day2MindfulnessScreenRoute {
   const Week7Day2MindfulnessScreenRoute();
 
   @override
@@ -26,8 +25,7 @@ class Week7Day2MindfulnessScreenRoute extends GoRouteData
 }
 
 @TypedGoRoute<Week7Day3EmotionsScreenRoute>(path: '/bpd-programme/week/7/day/3')
-class Week7Day3EmotionsScreenRoute extends GoRouteData
-    with $Week7Day3EmotionsScreenRoute {
+class Week7Day3EmotionsScreenRoute extends GoRouteData with $Week7Day3EmotionsScreenRoute {
   const Week7Day3EmotionsScreenRoute();
 
   @override
@@ -35,8 +33,7 @@ class Week7Day3EmotionsScreenRoute extends GoRouteData
 }
 
 @TypedGoRoute<Week7Day4DistressScreenRoute>(path: '/bpd-programme/week/7/day/4')
-class Week7Day4DistressScreenRoute extends GoRouteData
-    with $Week7Day4DistressScreenRoute {
+class Week7Day4DistressScreenRoute extends GoRouteData with $Week7Day4DistressScreenRoute {
   const Week7Day4DistressScreenRoute();
 
   @override
@@ -44,8 +41,7 @@ class Week7Day4DistressScreenRoute extends GoRouteData
 }
 
 @TypedGoRoute<Week7Day5ImpulsivityScreenRoute>(path: '/bpd-programme/week/7/day/5')
-class Week7Day5ImpulsivityScreenRoute extends GoRouteData
-    with $Week7Day5ImpulsivityScreenRoute {
+class Week7Day5ImpulsivityScreenRoute extends GoRouteData with $Week7Day5ImpulsivityScreenRoute {
   const Week7Day5ImpulsivityScreenRoute();
 
   @override
@@ -138,10 +134,7 @@ class _Week7RecapDayScreenState extends State<Week7RecapDayScreen> {
                       for (var i = 0; i < data.recapParagraphs.length; i++)
                         ChatStep(
                           messages: [
-                            ChatBotBubble(
-                              text: data.recapParagraphs[i],
-                              showAvatar: i == 0,
-                            ),
+                            ChatBotBubble(text: data.recapParagraphs[i], showAvatar: i == 0),
                           ],
                           buttonLabel: i == data.recapParagraphs.length - 1
                               ? 'Vybrat si nástroj'

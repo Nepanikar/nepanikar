@@ -37,10 +37,7 @@ class NepanikarDialog extends StatelessWidget {
       return NepanikarButton(onTap: () => onTap.call(context), text: label);
     }
 
-    return NepanikarButton.secondary(
-      onTap: () => onTap.call(context),
-      text: label,
-    );
+    return NepanikarButton.secondary(onTap: () => onTap.call(context), text: label);
   }
 
   @override

@@ -97,11 +97,7 @@ class BpdDaysDao {
 
       await saveDayProgress(
         existing?.copyWith(unlockDate: unlockDate) ??
-            BpdDayProgress(
-              weekNumber: weekNumber,
-              dayNumber: dayNumber,
-              unlockDate: unlockDate,
-            ),
+            BpdDayProgress(weekNumber: weekNumber, dayNumber: dayNumber, unlockDate: unlockDate),
       );
     }
   }

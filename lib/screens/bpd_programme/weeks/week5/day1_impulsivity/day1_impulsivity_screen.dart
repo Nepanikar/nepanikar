@@ -16,8 +16,7 @@ import 'package:nepanikar/utils/registry.dart';
 part 'day1_impulsivity_screen.g.dart';
 
 @TypedGoRoute<Week5Day1ImpulsivityScreenRoute>(path: '/bpd-programme/week/5/day/1')
-class Week5Day1ImpulsivityScreenRoute extends GoRouteData
-    with $Week5Day1ImpulsivityScreenRoute {
+class Week5Day1ImpulsivityScreenRoute extends GoRouteData with $Week5Day1ImpulsivityScreenRoute {
   const Week5Day1ImpulsivityScreenRoute();
 
   @override
@@ -136,7 +135,9 @@ class Week5Day1EducationPage extends StatelessWidget {
       onCompleted: onNext,
       steps: [
         for (var i = 0; i < day1Opening.length; i++)
-          ChatStep(messages: [ChatBotBubble(text: day1Opening[i], showAvatar: i == 0)]),
+          ChatStep(
+            messages: [ChatBotBubble(text: day1Opening[i], showAvatar: i == 0)],
+          ),
         for (final message in day1Causes)
           ChatStep(messages: [ChatBotBubble(text: message, showAvatar: true)]),
         const ChatStep(
@@ -189,7 +190,9 @@ class Week5Day1AnalysisPage extends StatelessWidget {
       onCompleted: onNext,
       steps: [
         for (var i = 0; i < day1AnalysisIntro.length; i++)
-          ChatStep(messages: [ChatBotBubble(text: day1AnalysisIntro[i], showAvatar: i == 0)]),
+          ChatStep(
+            messages: [ChatBotBubble(text: day1AnalysisIntro[i], showAvatar: i == 0)],
+          ),
         // The six steps arrive numbered because the worksheet on the next page
         // asks for them in exactly this order.
         const ChatStep(
@@ -290,10 +293,7 @@ class Week5Day1MissingLinksPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 6),
-          const MissingLinksAnalysis(
-            worksheetId: day1MissingLinksId,
-            steps: day1MissingLinks,
-          ),
+          const MissingLinksAnalysis(worksheetId: day1MissingLinksId, steps: day1MissingLinks),
           const SizedBox(height: 20),
         ],
       ),

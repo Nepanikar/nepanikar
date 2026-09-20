@@ -31,12 +31,8 @@ class DatabaseService {
     _userSettingsDao = await UserSettingsDao(dbService: this).init();
     _depressionModuleDb = await DepressionModuleDb(this).initModuleDaos();
     _selfHarmModuleDb = await SelfHarmModuleDb(this).initModuleDaos();
-    _suicidalThoughtsModuleDb = await SuicidalThoughtsModuleDb(
-      this,
-    ).initModuleDaos();
-    _eatingDisorderModuleDb = await EatingDisorderModuleDb(
-      this,
-    ).initModuleDaos();
+    _suicidalThoughtsModuleDb = await SuicidalThoughtsModuleDb(this).initModuleDaos();
+    _eatingDisorderModuleDb = await EatingDisorderModuleDb(this).initModuleDaos();
     _myRecordsModuleDb = await MyRecordsModuleDb(this).initModuleDaos();
     _myContactsModuleDb = await MyContactsModuleDb(this).initModuleDaos();
     _bpdModuleDb = await BpdModuleDb(this).initModuleDaos();
@@ -75,8 +71,7 @@ class DatabaseService {
   }
 
   Future<void> checkDataPreloaded(AppLocalizations l10n) async {
-    final areDataPreloaded =
-        await mainStore.record(_dataPreloadedKey).get(database) as bool?;
+    final areDataPreloaded = await mainStore.record(_dataPreloadedKey).get(database) as bool?;
     if (areDataPreloaded == null || !areDataPreloaded) {
       debugPrint('DATABASE_SERVICE: Preloading default data.');
       await preloadDefaultData(l10n);

@@ -108,11 +108,7 @@ class _SmartGoalsReviewState extends State<SmartGoalsReview> {
     }
 
     if (_goals.isEmpty) {
-      return InfoBox(
-        icon: Icons.flag_outlined,
-        title: widget.emptyTitle,
-        text: widget.emptyText,
-      );
+      return InfoBox(icon: Icons.flag_outlined, title: widget.emptyTitle, text: widget.emptyText);
     }
 
     final keys = _goals.keys.toList();

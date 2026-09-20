@@ -21,8 +21,7 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 part 'my_records_diary_detail_screen.g.dart';
 
 @TypedGoRoute<MyRecordsDiaryDetailRoute>(path: '/home/my-records/diary/detail')
-class MyRecordsDiaryDetailRoute extends GoRouteData
-    with $MyRecordsDiaryDetailRoute {
+class MyRecordsDiaryDetailRoute extends GoRouteData with $MyRecordsDiaryDetailRoute {
   const MyRecordsDiaryDetailRoute();
 
   @override
@@ -35,10 +34,7 @@ class MyRecordsDiaryDetailRoute extends GoRouteData
 }
 
 class DiaryRecordRouteExtraData extends Equatable {
-  const DiaryRecordRouteExtraData({
-    required this.diaryRecordId,
-    required this.diaryRecord,
-  });
+  const DiaryRecordRouteExtraData({required this.diaryRecordId, required this.diaryRecord});
 
   final String diaryRecordId;
   final DiaryRecord diaryRecord;
@@ -48,10 +44,7 @@ class DiaryRecordRouteExtraData extends Equatable {
 }
 
 class MyRecordsDiaryDetailScreen extends StatelessWidget {
-  const MyRecordsDiaryDetailScreen({
-    super.key,
-    required this.diaryRecordRouteExtraData,
-  });
+  const MyRecordsDiaryDetailScreen({super.key, required this.diaryRecordRouteExtraData});
 
   final DiaryRecordRouteExtraData diaryRecordRouteExtraData;
 
@@ -69,8 +62,7 @@ class MyRecordsDiaryDetailScreen extends StatelessWidget {
     return StreamBuilder<DiaryRecord?>(
       stream: _myRecordsDiaryDao.watchRecordById(_diaryRecordId),
       builder: (_, snapshot) {
-        final diaryRecord =
-            snapshot.data ?? diaryRecordRouteExtraData.diaryRecord;
+        final diaryRecord = snapshot.data ?? diaryRecordRouteExtraData.diaryRecord;
 
         return NepanikarScreenWrapper(
           appBarTitle: context.l10n.diary_detail_appbar_title,
@@ -88,16 +80,10 @@ class MyRecordsDiaryDetailScreen extends StatelessWidget {
             const SizedBox(height: 16),
             Text(
               diaryRecord.title,
-              style: NepanikarFonts.title3.copyWith(
-                fontWeight: FontWeight.w700,
-                color: textColor,
-              ),
+              style: NepanikarFonts.title3.copyWith(fontWeight: FontWeight.w700, color: textColor),
             ),
             const SizedBox(height: 16),
-            Text(
-              diaryRecord.text,
-              style: NepanikarFonts.bodyRoman.copyWith(color: textColor),
-            ),
+            Text(diaryRecord.text, style: NepanikarFonts.bodyRoman.copyWith(color: textColor)),
             SizedBox(height: screenSize.height * 0.2),
             NepanikarButton(
               text: context.l10n.edit,
@@ -119,9 +105,7 @@ class MyRecordsDiaryDetailScreen extends StatelessWidget {
                   text: context.l10n.really_remove,
                   onPrimaryBtnTap: (context) async {
                     final goRouter = GoRouter.of(context);
-                    context.semanticsAnnounce(
-                      context.l10n.record_deleted_announce,
-                    );
+                    context.semanticsAnnounce(context.l10n.record_deleted_announce);
                     await _myRecordsDiaryDao.deleteRecord(_diaryRecordId);
                     unawaited(analytics.logEvent(name: 'diary_record_deleted'));
                     goRouter.pop();

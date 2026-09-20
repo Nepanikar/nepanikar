@@ -32,11 +32,7 @@ class MyRecordsFoodRecordsDetailMenuDetailRoute extends GoRouteData
 }
 
 class FoodRecordRouteExtraData extends Equatable {
-  const FoodRecordRouteExtraData({
-    required this.id,
-    required this.dailyFoodRecord,
-    this.foodType,
-  });
+  const FoodRecordRouteExtraData({required this.id, required this.dailyFoodRecord, this.foodType});
 
   final String id;
   final DailyFoodRecord dailyFoodRecord;
@@ -65,12 +61,10 @@ class MyRecordsFoodRecordsDetailMenuDetailScreen extends StatefulWidget {
 
 class _MyRecordsFoodRecordsDetailMenuDetailScreenState
     extends State<MyRecordsFoodRecordsDetailMenuDetailScreen> {
-  final Map<FoodQuestionText, TextEditingController>
-  _textEditingControllersMap = {};
+  final Map<FoodQuestionText, TextEditingController> _textEditingControllersMap = {};
 
   Map<FoodQuestionText, String> get _answers => {
-    for (final entry in _textEditingControllersMap.entries)
-      entry.key: entry.value.text,
+    for (final entry in _textEditingControllersMap.entries) entry.key: entry.value.text,
   };
 
   final _tickedFeels = <FoodQuestionFeel>{};
@@ -79,8 +73,7 @@ class _MyRecordsFoodRecordsDetailMenuDetailScreenState
   DailyFoodRecordAnswer get _foodTypeAnswer =>
       widget.dailyFoodRecord.getFoodRecordAnswerFromFoodType(widget.foodType);
 
-  MyRecordsFoodRecordDao get _myRecordsFoodRecordDao =>
-      registry.get<MyRecordsFoodRecordDao>();
+  MyRecordsFoodRecordDao get _myRecordsFoodRecordDao => registry.get<MyRecordsFoodRecordDao>();
 
   @override
   void initState() {
@@ -99,9 +92,7 @@ class _MyRecordsFoodRecordsDetailMenuDetailScreenState
       if (controller != null) {
         controller
           ..text = answer.answer
-          ..selection = TextSelection.fromPosition(
-            TextPosition(offset: answer.answer.length),
-          );
+          ..selection = TextSelection.fromPosition(TextPosition(offset: answer.answer.length));
         _answers[answer.foodQuestionText] = answer.answer;
       }
     }
@@ -124,12 +115,7 @@ class _MyRecordsFoodRecordsDetailMenuDetailScreenState
   DailyFoodRecordAnswer _constructFoodTypeAnswer() {
     final updatedFoodTypeAnswer = _foodTypeAnswer.copyWith(
       questionTextAnswers: _answers.entries
-          .map(
-            (entry) => FoodQuestionTextAnswer(
-              foodQuestionText: entry.key,
-              answer: entry.value,
-            ),
-          )
+          .map((entry) => FoodQuestionTextAnswer(foodQuestionText: entry.key, answer: entry.value))
           .toList(),
       tickedQuestionFeels: _tickedFeels.toList(),
       tickedQuestionProblems: _tickedProblems.toList(),
@@ -215,10 +201,7 @@ class _MyRecordsFoodRecordsDetailMenuDetailScreenState
                 const SizedBox(height: 12),
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: Text(
-                    questionText.getLabel(context),
-                    style: labelTextStyle,
-                  ),
+                  child: Text(questionText.getLabel(context), style: labelTextStyle),
                 ),
                 const SizedBox(height: 8),
                 TextFormField(

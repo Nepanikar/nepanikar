@@ -55,10 +55,7 @@ class EmotionDictionaryScreen extends StatelessWidget {
         const SizedBox(height: 20),
         const LinkLeadText('Chci vědět víc:'),
         const SizedBox(height: 8),
-        const ExternalLinkButton(
-          label: emotionDictionaryLinkLabel,
-          url: emotionDictionaryLinkUrl,
-        ),
+        const ExternalLinkButton(label: emotionDictionaryLinkLabel, url: emotionDictionaryLinkUrl),
         const SizedBox(height: 32),
       ],
     );

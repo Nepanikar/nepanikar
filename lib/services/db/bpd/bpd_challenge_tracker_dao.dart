@@ -36,11 +36,12 @@ class BpdChallengeTrackerDao {
   /// Reactive list of all tracked challenges, newest first.
   Stream<List<BpdChallenge>> watchAll() {
     return _store.query().onSnapshots(_db).map((snapshots) {
-      final list = snapshots
-          .where((s) => s.value != null)
-          .map((s) => BpdChallenge.fromMap(s.value!))
-          .toList()
-        ..sort((a, b) => b.createdAt.compareTo(a.createdAt));
+      final list =
+          snapshots
+              .where((s) => s.value != null)
+              .map((s) => BpdChallenge.fromMap(s.value!))
+              .toList()
+            ..sort((a, b) => b.createdAt.compareTo(a.createdAt));
       return list;
     });
   }
@@ -74,9 +75,7 @@ class BpdChallengeTrackerDao {
       (c) => c.weekNumber == weekNumber && c.dayNumber == dayNumber,
     );
 
-    final selectedIds = selectedTexts
-        .map((t) => challengeId(weekNumber, dayNumber, t))
-        .toSet();
+    final selectedIds = selectedTexts.map((t) => challengeId(weekNumber, dayNumber, t)).toSet();
 
     // Remove challenges the user unpicked; collect their reminder ids.
     final removedNotificationIds = <int>[];
@@ -134,11 +133,7 @@ class BpdChallengeTrackerDao {
   Future<void> toggleToday(String id) async {
     final challenge = await getById(id);
     if (challenge == null) return;
-    await setCompletedForDate(
-      id: id,
-      date: DateTime.now(),
-      completed: !challenge.isCompletedToday,
-    );
+    await setCompletedForDate(id: id, date: DateTime.now(), completed: !challenge.isCompletedToday);
   }
 
   Future<void> setReminder({required String id, TimeOfDay? time}) async {

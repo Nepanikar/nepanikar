@@ -15,12 +15,10 @@ import 'package:nepanikar_contacts_gen/nepanikar_contacts_gen.dart';
 part 'region_contacts_screen.g.dart';
 
 @TypedGoRoute<UniversityContactsRoute>(path: '/contacts/universities')
-class UniversityContactsRoute extends GoRouteData
-    with $UniversityContactsRoute {
+class UniversityContactsRoute extends GoRouteData with $UniversityContactsRoute {
   const UniversityContactsRoute();
 
-  ContactsDataManager get _contactsManager =>
-      registry.get<ContactsDataManager>();
+  ContactsDataManager get _contactsManager => registry.get<ContactsDataManager>();
 
   UserSettingsDao get _userSettingsDao => registry.get<UserSettingsDao>();
 
@@ -39,12 +37,10 @@ class UniversityContactsRoute extends GoRouteData
 }
 
 @TypedGoRoute<CrisisCenterContactsRoute>(path: '/contacts/crisis-center')
-class CrisisCenterContactsRoute extends GoRouteData
-    with $CrisisCenterContactsRoute {
+class CrisisCenterContactsRoute extends GoRouteData with $CrisisCenterContactsRoute {
   const CrisisCenterContactsRoute();
 
-  ContactsDataManager get _contactsManager =>
-      registry.get<ContactsDataManager>();
+  ContactsDataManager get _contactsManager => registry.get<ContactsDataManager>();
 
   UserSettingsDao get _userSettingsDao => registry.get<UserSettingsDao>();
 
@@ -98,10 +94,7 @@ class _RegionContactsScreenState extends State<RegionContactsScreen> {
   Widget _buildRegionHeader(String header, Color? textColor) {
     return Text(
       header,
-      style: NepanikarFonts.title2.copyWith(
-        fontWeight: FontWeight.w900,
-        color: textColor,
-      ),
+      style: NepanikarFonts.title2.copyWith(fontWeight: FontWeight.w900, color: textColor),
     );
   }
 

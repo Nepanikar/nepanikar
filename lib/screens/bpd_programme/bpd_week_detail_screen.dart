@@ -45,7 +45,6 @@ import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
 import 'package:nepanikar/services/db/bpd/bpd_unlock_schedule.dart';
 import 'package:nepanikar/utils/registry.dart';
 
-
 part 'bpd_week_detail_screen.g.dart';
 
 /// Weeks that already have implemented day content. The weeks skill tree
@@ -635,10 +634,7 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
           style: const TextStyle(height: 1.5),
         ),
         actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Rozumím'),
-          ),
+          TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text('Rozumím')),
         ],
       ),
     );
@@ -729,199 +725,201 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
     final dayContent = _getDayContent(dayProgress.dayNumber);
     if (dayContent == null) return;
 
-    unawaited(showDayPreviewSheet(
-      context: context,
-      data: DayPreviewData(
-        dayNumber: dayProgress.dayNumber,
-        weekNumber: widget.weekNumber,
-        title: dayContent.title,
-        description: dayContent.description,
-        estimatedTime: dayContent.estimatedTime,
-        activityType: dayContent.activityType,
-        isCompleted: dayProgress.isCompleted,
+    unawaited(
+      showDayPreviewSheet(
+        context: context,
+        data: DayPreviewData(
+          dayNumber: dayProgress.dayNumber,
+          weekNumber: widget.weekNumber,
+          title: dayContent.title,
+          description: dayContent.description,
+          estimatedTime: dayContent.estimatedTime,
+          activityType: dayContent.activityType,
+          isCompleted: dayProgress.isCompleted,
+        ),
+        onStart: () {
+          // Navigate based on route type
+          switch (dayContent.routeType) {
+            case _DayRouteType.onboarding:
+              const Day1OnboardingScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week1Day2Spoko:
+              const Week1Day2SpokoScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week1Day3Potrava:
+              const Week1Day3PotravaScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week1Day4Latky:
+              const Week1Day4LatkyScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week1Day5Kondice:
+              const Week1Day5KondiceScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week1Day6Onemocneni:
+              const Week1Day6OnemocneniScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week1Day7Reflexe:
+              const Week1Day7ReflexeScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week2Day1MindfulnessIntro:
+              const Week2Day1MindfulnessIntroScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week2Day2WhatSkills:
+              const Week2Day2WhatSkillsScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week2Day3HowSkills:
+              const Week2Day3HowSkillsScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week2Day4Breathing:
+              const Week2Day4BreathingScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week2Day6Techniques:
+              const Week2Day6TechniquesScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week2Day7Summary:
+              const Week2Day7SummaryScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week3Day1Emotions:
+              const Week3Day1EmotionsScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week3Day2Describe:
+              const Week3Day2DescribeScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week3Day3CheckFacts:
+              const Week3Day3CheckFactsScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week3Day4OppositeAction:
+              const Week3Day4OppositeActionScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week3Day5SpokoRecall:
+              const Week3Day5SpokoRecallScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week3Day7Summary:
+              const Week3Day7SummaryScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week4Day1Stress:
+              const Week4Day1StressScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week4Day2CrisisSkills:
+              const Week4Day2CrisisSkillsScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week4Day4Mindfulness:
+              const Week4Day4MindfulnessScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week4Day5Uznavam:
+              const Week4Day5UznavamScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week4Day7Summary:
+              const Week4Day7SummaryScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week5Day1Impulsivity:
+              const Week5Day1ImpulsivityScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week5Day2LifeThreatening:
+              const Week5Day2LifeThreateningScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week5Day4Prevention:
+              const Week5Day4PreventionScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week5Day5Mindfulness:
+              const Week5Day5MindfulnessScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week5Day7Summary:
+              const Week5Day7SummaryScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week6Day1Relationships:
+              const Week6Day1RelationshipsScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week6Day2Communication:
+              const Week6Day2CommunicationScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week6Day3JeVyzva:
+              const Week6Day3JeVyzvaScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week6Day5SelfEsteem:
+              const Week6Day5SelfEsteemScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week6Day7Summary:
+              const Week6Day7SummaryScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week7Day1Appreciation:
+              const Week7Day1AppreciationScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week7Day2Mindfulness:
+              const Week7Day2MindfulnessScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week7Day3Emotions:
+              const Week7Day3EmotionsScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week7Day4Distress:
+              const Week7Day4DistressScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week7Day5Impulsivity:
+              const Week7Day5ImpulsivityScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week7Day6Relationships:
+              const Week7Day6RelationshipsScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.week7Day7Conclusion:
+              const Week7Day7ConclusionScreenRoute().push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.pause:
+              DayPauseScreenRoute(
+                weekNumber: widget.weekNumber,
+                dayNumber: dayProgress.dayNumber,
+              ).push(context).then((_) {
+                _loadDaysProgress();
+              });
+            case _DayRouteType.regular:
+              // TODO: Navigate to regular day content screen
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text('Otevírám Den ${dayProgress.dayNumber}')));
+          }
+        },
       ),
-      onStart: () {
-        // Navigate based on route type
-        switch (dayContent.routeType) {
-          case _DayRouteType.onboarding:
-            const Day1OnboardingScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week1Day2Spoko:
-            const Week1Day2SpokoScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week1Day3Potrava:
-            const Week1Day3PotravaScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week1Day4Latky:
-            const Week1Day4LatkyScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week1Day5Kondice:
-            const Week1Day5KondiceScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week1Day6Onemocneni:
-            const Week1Day6OnemocneniScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week1Day7Reflexe:
-            const Week1Day7ReflexeScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week2Day1MindfulnessIntro:
-            const Week2Day1MindfulnessIntroScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week2Day2WhatSkills:
-            const Week2Day2WhatSkillsScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week2Day3HowSkills:
-            const Week2Day3HowSkillsScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week2Day4Breathing:
-            const Week2Day4BreathingScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week2Day6Techniques:
-            const Week2Day6TechniquesScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week2Day7Summary:
-            const Week2Day7SummaryScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week3Day1Emotions:
-            const Week3Day1EmotionsScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week3Day2Describe:
-            const Week3Day2DescribeScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week3Day3CheckFacts:
-            const Week3Day3CheckFactsScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week3Day4OppositeAction:
-            const Week3Day4OppositeActionScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week3Day5SpokoRecall:
-            const Week3Day5SpokoRecallScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week3Day7Summary:
-            const Week3Day7SummaryScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week4Day1Stress:
-            const Week4Day1StressScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week4Day2CrisisSkills:
-            const Week4Day2CrisisSkillsScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week4Day4Mindfulness:
-            const Week4Day4MindfulnessScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week4Day5Uznavam:
-            const Week4Day5UznavamScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week4Day7Summary:
-            const Week4Day7SummaryScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week5Day1Impulsivity:
-            const Week5Day1ImpulsivityScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week5Day2LifeThreatening:
-            const Week5Day2LifeThreateningScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week5Day4Prevention:
-            const Week5Day4PreventionScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week5Day5Mindfulness:
-            const Week5Day5MindfulnessScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week5Day7Summary:
-            const Week5Day7SummaryScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week6Day1Relationships:
-            const Week6Day1RelationshipsScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week6Day2Communication:
-            const Week6Day2CommunicationScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week6Day3JeVyzva:
-            const Week6Day3JeVyzvaScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week6Day5SelfEsteem:
-            const Week6Day5SelfEsteemScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week6Day7Summary:
-            const Week6Day7SummaryScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week7Day1Appreciation:
-            const Week7Day1AppreciationScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week7Day2Mindfulness:
-            const Week7Day2MindfulnessScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week7Day3Emotions:
-            const Week7Day3EmotionsScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week7Day4Distress:
-            const Week7Day4DistressScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week7Day5Impulsivity:
-            const Week7Day5ImpulsivityScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week7Day6Relationships:
-            const Week7Day6RelationshipsScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.week7Day7Conclusion:
-            const Week7Day7ConclusionScreenRoute().push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.pause:
-            DayPauseScreenRoute(
-              weekNumber: widget.weekNumber,
-              dayNumber: dayProgress.dayNumber,
-            ).push(context).then((_) {
-              _loadDaysProgress();
-            });
-          case _DayRouteType.regular:
-            // TODO: Navigate to regular day content screen
-            ScaffoldMessenger.of(
-              context,
-            ).showSnackBar(SnackBar(content: Text('Otevírám Den ${dayProgress.dayNumber}')));
-        }
-      },
-    ));
+    );
   }
 
   String _formatCountdown(Duration duration) {
@@ -930,7 +928,6 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
     final seconds = (duration.inSeconds % 60).toString().padLeft(2, '0');
     return '$hours:$minutes:$seconds';
   }
-
 
   @override
   Widget build(BuildContext context) {

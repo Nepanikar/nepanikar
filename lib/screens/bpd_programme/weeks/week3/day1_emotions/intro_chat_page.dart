@@ -21,21 +21,11 @@ class Week3IntroChatPage extends StatelessWidget {
         ChatStep(messages: [ChatBotBubble(text: day1IntroChat[1], showAvatar: true)]),
         const ChatStep(
           messages: [
-            ChatConceptCard(
-              badge: 'KLÍČOVÁ MYŠLENKA',
-              title: day1FactsTitle,
-              body: day1FactsBody,
-            ),
+            ChatConceptCard(badge: 'KLÍČOVÁ MYŠLENKA', title: day1FactsTitle, body: day1FactsBody),
           ],
         ),
         const ChatStep(
-          messages: [
-            ChatInfoCard(
-              icon: Icons.flag_outlined,
-              title: 'Náš cíl',
-              text: day1GoalNote,
-            ),
-          ],
+          messages: [ChatInfoCard(icon: Icons.flag_outlined, title: 'Náš cíl', text: day1GoalNote)],
           buttonLabel: 'Podívat se na emoce',
         ),
       ],

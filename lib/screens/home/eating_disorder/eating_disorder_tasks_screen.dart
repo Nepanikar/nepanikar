@@ -15,8 +15,7 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 part 'eating_disorder_tasks_screen.g.dart';
 
 @TypedGoRoute<EatingDisorderTasksRoute>(path: '/home/eating-disorder/tasks')
-class EatingDisorderTasksRoute extends GoRouteData
-    with $EatingDisorderTasksRoute {
+class EatingDisorderTasksRoute extends GoRouteData with $EatingDisorderTasksRoute {
   const EatingDisorderTasksRoute();
 
   @override
@@ -39,11 +38,8 @@ class EatingDisorderTasksScreen extends StatelessWidget {
       ),
       LongTile(
         text: context.l10n.food_tasks_motivation,
-        image: Assets.illustrations.modules.eatingDisorder.svg(
-          colorFilter: colorFilter,
-        ),
-        onTap: () =>
-            context.push(const EatingDisorderFoodMotivationRoute().location),
+        image: Assets.illustrations.modules.eatingDisorder.svg(colorFilter: colorFilter),
+        onTap: () => context.push(const EatingDisorderFoodMotivationRoute().location),
       ),
       LongTile(
         text: context.l10n.food_tasks_challenge,

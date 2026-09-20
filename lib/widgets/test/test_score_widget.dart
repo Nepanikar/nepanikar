@@ -5,11 +5,7 @@ class StaticScoreWidget extends StatelessWidget {
   final int score;
   final String label;
 
-  const StaticScoreWidget({
-    super.key,
-    required this.score,
-    required this.label,
-  });
+  const StaticScoreWidget({super.key, required this.score, required this.label});
 
   @override
   Widget build(BuildContext context) {
@@ -56,10 +52,7 @@ class StaticScoreWidget extends StatelessWidget {
                   child: Container(
                     width: 173,
                     height: 173,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.white,
-                    ),
+                    decoration: const BoxDecoration(shape: BoxShape.circle, color: Colors.white),
                     alignment: Alignment.center,
                     child: Text(
                       score.toString(),

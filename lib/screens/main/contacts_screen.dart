@@ -26,17 +26,14 @@ part 'contacts_screen.g.dart';
 class ContactsRoute extends GoRouteData with $ContactsRoute {
   const ContactsRoute();
 
-  ContactsDataManager get _contactsDataManager =>
-      registry.get<ContactsDataManager>();
+  ContactsDataManager get _contactsDataManager => registry.get<ContactsDataManager>();
 
   UserSettingsDao get _userSettingsDao => registry.get<UserSettingsDao>();
 
   @override
   Widget build(BuildContext context, _) {
     final locale = _userSettingsDao.locale;
-    return ContactsScreen(
-      countryContacts: _contactsDataManager.getContactsFromLocale(locale),
-    );
+    return ContactsScreen(countryContacts: _contactsDataManager.getContactsFromLocale(locale));
   }
 }
 
@@ -69,40 +66,30 @@ class ContactsScreen extends StatelessWidget {
       if (countryContacts.phoneContacts != null)
         LongTile(
           text: context.l10n.phone,
-          image: Assets.illustrations.contacts.phones.svg(
-            colorFilter: colorFilter,
-          ),
+          image: Assets.illustrations.contacts.phones.svg(colorFilter: colorFilter),
           onTap: () => context.push(const PhoneContactsRoute().location),
         ),
       if (countryContacts.crisisCenterContacts != null)
         LongTile(
           text: context.l10n.center,
-          image: Assets.illustrations.contacts.crisisCenters.svg(
-            colorFilter: colorFilter,
-          ),
+          image: Assets.illustrations.contacts.crisisCenters.svg(colorFilter: colorFilter),
           onTap: () => context.push(const CrisisCenterContactsRoute().location),
         ),
       if (countryContacts.chatContacts != null)
         LongTile(
           text: context.l10n.chat,
-          image: Assets.illustrations.contacts.chat.svg(
-            colorFilter: colorFilter,
-          ),
+          image: Assets.illustrations.contacts.chat.svg(colorFilter: colorFilter),
           onTap: () => context.push(const ChatContactsRoute().location),
         ),
       if (countryContacts.universityRegionContacts != null)
         LongTile(
           text: context.l10n.universities,
-          image: Assets.illustrations.contacts.universities.svg(
-            colorFilter: colorFilter,
-          ),
+          image: Assets.illustrations.contacts.universities.svg(colorFilter: colorFilter),
           onTap: () => context.push(const UniversityContactsRoute().location),
         ),
       LongTile(
         text: context.l10n.my_contacts,
-        image: Assets.illustrations.contacts.myContacts.svg(
-          colorFilter: colorFilter,
-        ),
+        image: Assets.illustrations.contacts.myContacts.svg(colorFilter: colorFilter),
         onTap: () => context.push(const MyContactsRecordsRoute().location),
       ),
       if ([
@@ -111,16 +98,12 @@ class ContactsScreen extends StatelessWidget {
       ].contains(locale.languageCode)) ...[
         LongTile(
           text: context.l10n.online_therapy,
-          image: Assets.illustrations.modules.onlineTherapy.svg(
-            colorFilter: colorFilter,
-          ),
+          image: Assets.illustrations.modules.onlineTherapy.svg(colorFilter: colorFilter),
           onTap: () => launchUrLink(AppConstants.nepanikarTherapyUrl),
         ),
         LongTile(
           text: context.l10n.email_consultation,
-          image: Assets.illustrations.modules.emailHelp.svg(
-            colorFilter: colorFilter,
-          ),
+          image: Assets.illustrations.modules.emailHelp.svg(colorFilter: colorFilter),
           onTap: () => context.push(
             const EmailCounsellingRoute().location,
             extra: CrisisMessageRouteExtraData(
@@ -132,9 +115,6 @@ class ContactsScreen extends StatelessWidget {
       ],
     ];
 
-    return NepanikarScreenWrapper(
-      appBarTitle: context.l10n.contacts,
-      children: modules,
-    );
+    return NepanikarScreenWrapper(appBarTitle: context.l10n.contacts, children: modules);
   }
 }

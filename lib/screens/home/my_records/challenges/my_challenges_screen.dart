@@ -15,8 +15,7 @@ class MyChallengesRoute extends GoRouteData with $MyChallengesRoute {
   const MyChallengesRoute();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const MyChallengesScreen();
+  Widget build(BuildContext context, GoRouterState state) => const MyChallengesScreen();
 }
 
 /// "Moje výzvy" — daily tracker for the DBT programme challenges the user
@@ -34,24 +33,18 @@ class _MyChallengesScreenState extends State<MyChallengesScreen> {
 
   BpdChallengeTrackerDao get _dao => registry.get<BpdChallengeTrackerDao>();
 
-  NotificationsService get _notifications =>
-      registry.get<NotificationsService>();
+  NotificationsService get _notifications => registry.get<NotificationsService>();
 
   Future<void> _toggleToday(BpdChallenge challenge) async {
     await _dao.toggleToday(challenge.id);
   }
 
-  Future<void> _editReminder(
-    BuildContext context,
-    BpdChallenge challenge,
-  ) async {
+  Future<void> _editReminder(BuildContext context, BpdChallenge challenge) async {
     final allowed = await _notifications.requestPermissionIfNeeded();
     if (!context.mounted) return;
     if (!allowed) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Notifikace jsou vypnuté. Povol je v nastavení.'),
-        ),
+        const SnackBar(content: Text('Notifikace jsou vypnuté. Povol je v nastavení.')),
       );
       return;
     }
@@ -68,9 +61,9 @@ class _MyChallengesScreenState extends State<MyChallengesScreen> {
       minute: picked.minute,
     );
     if (!context.mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Připomínka nastavena na ${picked.format(context)}')),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text('Připomínka nastavena na ${picked.format(context)}')));
   }
 
   Future<void> _removeReminder(BpdChallenge challenge) async {
@@ -85,14 +78,8 @@ class _MyChallengesScreenState extends State<MyChallengesScreen> {
         title: const Text('Odebrat výzvu?'),
         content: const Text('Výzva i její historie plnění se odstraní.'),
         actions: [
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(false),
-            child: const Text('Zrušit'),
-          ),
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(true),
-            child: const Text('Odebrat'),
-          ),
+          TextButton(onPressed: () => Navigator.of(ctx).pop(false), child: const Text('Zrušit')),
+          TextButton(onPressed: () => Navigator.of(ctx).pop(true), child: const Text('Odebrat')),
         ],
       ),
     );
@@ -165,8 +152,7 @@ class _MyChallengesScreenState extends State<MyChallengesScreen> {
                   _AreaFilterChips(
                     areas: areas,
                     selected: areaFilter,
-                    onSelected: (area) =>
-                        setState(() => _areaFilter = area),
+                    onSelected: (area) => setState(() => _areaFilter = area),
                   ),
                   const SizedBox(height: 14),
                 ],
@@ -189,11 +175,7 @@ class _MyChallengesScreenState extends State<MyChallengesScreen> {
 }
 
 class _AreaFilterChips extends StatelessWidget {
-  const _AreaFilterChips({
-    required this.areas,
-    required this.selected,
-    required this.onSelected,
-  });
+  const _AreaFilterChips({required this.areas, required this.selected, required this.onSelected});
 
   final List<String> areas;
 
@@ -208,11 +190,7 @@ class _AreaFilterChips extends StatelessWidget {
       clipBehavior: Clip.none,
       child: Row(
         children: [
-          _FilterChip(
-            label: 'Vše',
-            isSelected: selected == null,
-            onTap: () => onSelected(null),
-          ),
+          _FilterChip(label: 'Vše', isSelected: selected == null, onTap: () => onSelected(null)),
           ...areas.map(
             (area) => Padding(
               padding: const EdgeInsets.only(left: 8),
@@ -230,11 +208,7 @@ class _AreaFilterChips extends StatelessWidget {
 }
 
 class _FilterChip extends StatelessWidget {
-  const _FilterChip({
-    required this.label,
-    required this.isSelected,
-    required this.onTap,
-  });
+  const _FilterChip({required this.label, required this.isSelected, required this.onTap});
 
   final String label;
   final bool isSelected;
@@ -253,9 +227,7 @@ class _FilterChip extends StatelessWidget {
         decoration: BoxDecoration(
           color: isSelected
               ? primaryColor
-              : (isDarkMode
-                    ? Colors.white.withOpacity(0.08)
-                    : primaryColor.withOpacity(0.1)),
+              : (isDarkMode ? Colors.white.withOpacity(0.08) : primaryColor.withOpacity(0.1)),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Text(
@@ -263,9 +235,7 @@ class _FilterChip extends StatelessWidget {
           style: TextStyle(
             fontSize: 13,
             fontWeight: FontWeight.w700,
-            color: isSelected
-                ? Colors.white
-                : (isDarkMode ? Colors.white70 : primaryColor),
+            color: isSelected ? Colors.white : (isDarkMode ? Colors.white70 : primaryColor),
           ),
         ),
       ),
@@ -310,9 +280,7 @@ class _EmptyState extends StatelessWidget {
             style: TextStyle(
               fontSize: 14,
               height: 1.45,
-              color: isDarkMode
-                  ? Colors.white70
-                  : NepanikarColors.dark.withOpacity(0.65),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.65),
             ),
           ),
         ],

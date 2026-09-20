@@ -28,13 +28,11 @@ class BpdChallenge {
       weekNumber: (map['weekNumber'] as num).toInt(),
       dayNumber: (map['dayNumber'] as num).toInt(),
       area: _normalizeArea(map['area'] as String? ?? ''),
-      createdAt:
-          DateTime.tryParse(map['createdAt'] as String? ?? '') ?? DateTime(2024),
+      createdAt: DateTime.tryParse(map['createdAt'] as String? ?? '') ?? DateTime(2024),
       notificationId: (map['notificationId'] as num).toInt(),
       reminderHour: (map['reminderHour'] as num?)?.toInt(),
       reminderMinute: (map['reminderMinute'] as num?)?.toInt(),
-      completedDates:
-          rawDates is List ? rawDates.whereType<String>().toList() : const [],
+      completedDates: rawDates is List ? rawDates.whereType<String>().toList() : const [],
     );
   }
 
@@ -61,9 +59,8 @@ class BpdChallenge {
 
   bool get hasReminder => reminderHour != null && reminderMinute != null;
 
-  TimeOfDay? get reminderTime => hasReminder
-      ? TimeOfDay(hour: reminderHour!, minute: reminderMinute!)
-      : null;
+  TimeOfDay? get reminderTime =>
+      hasReminder ? TimeOfDay(hour: reminderHour!, minute: reminderMinute!) : null;
 
   bool isCompletedOn(String dateKey) => completedDates.contains(dateKey);
 
@@ -101,8 +98,7 @@ class BpdChallenge {
       createdAt: createdAt,
       notificationId: notificationId,
       reminderHour: clearReminder ? null : (reminderHour ?? this.reminderHour),
-      reminderMinute:
-          clearReminder ? null : (reminderMinute ?? this.reminderMinute),
+      reminderMinute: clearReminder ? null : (reminderMinute ?? this.reminderMinute),
       completedDates: completedDates ?? this.completedDates,
     );
   }

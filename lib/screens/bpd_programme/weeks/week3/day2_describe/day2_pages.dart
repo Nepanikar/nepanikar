@@ -62,11 +62,7 @@ class Day2ModelPage extends StatelessWidget {
             final (title, description) = day2Model[i];
             return Padding(
               padding: const EdgeInsets.only(bottom: 10),
-              child: NumberedBenefit(
-                number: '${i + 1}',
-                title: title,
-                description: description,
-              ),
+              child: NumberedBenefit(number: '${i + 1}', title: title, description: description),
             );
           }),
           const SizedBox(height: 16),

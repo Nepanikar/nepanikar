@@ -23,10 +23,7 @@ const day2ModelLead =
 
 /// The six steps of the emotion-description model, verbatim.
 const day2Model = <(String, String)>[
-  (
-    'Spouštěcí událost',
-    'Co přesně emoci vyvolalo? (Fakta v prostředí kolem nás nebo uvnitř nás.)',
-  ),
+  ('Spouštěcí událost', 'Co přesně emoci vyvolalo? (Fakta v prostředí kolem nás nebo uvnitř nás.)'),
   ('Interpretace', 'Jaké myšlenky, domněnky nebo přesvědčení o události mám?'),
   (
     'Biologické změny a prožívání',
@@ -36,10 +33,7 @@ const day2Model = <(String, String)>[
   ),
   ('Výrazy a činy', 'Řeč těla, výraz tváře, to, co říkám a co reálně dělám.'),
   ('Pojmenování emoce', 'Jakou emoci / emoce cítím?'),
-  (
-    'Následky',
-    'Jaký má emoce dopad na stav mysli, další emoce, paměť nebo chování?',
-  ),
+  ('Následky', 'Jaký má emoce dopad na stav mysli, další emoce, paměť nebo chování?'),
 ];
 
 const day2WorksheetLead =
@@ -98,10 +92,7 @@ const day2ValidationBenefits = <(String, String)>[
     'Cítím emoci na základě předchozí emoce – např. jsem naštvaná, že jsem '
         'byla celý den smutná; stydím se, že mě někdo naštval.',
   ),
-  (
-    'Umožňuje změnu',
-    'Teprve když přijmu, kde jsem (validace), můžu se pohnout dál (změna).',
-  ),
+  ('Umožňuje změnu', 'Teprve když přijmu, kde jsem (validace), můžu se pohnout dál (změna).'),
 ];
 
 const day2StemsLead = 'Pojďme si teď zkusit tuto dovednost.';

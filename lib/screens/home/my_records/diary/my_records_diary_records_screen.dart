@@ -16,8 +16,7 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 part 'my_records_diary_records_screen.g.dart';
 
 @TypedGoRoute<MyRecordsDiaryRecordsRoute>(path: '/home/my-records/diary')
-class MyRecordsDiaryRecordsRoute extends GoRouteData
-    with $MyRecordsDiaryRecordsRoute {
+class MyRecordsDiaryRecordsRoute extends GoRouteData with $MyRecordsDiaryRecordsRoute {
   const MyRecordsDiaryRecordsRoute();
 
   @override
@@ -42,8 +41,7 @@ class MyRecordsDiaryRecordsScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(CupertinoIcons.add),
             tooltip: context.l10n.add_item,
-            onPressed: () =>
-                context.push(const MyRecordsDiaryAddRoute().location),
+            onPressed: () => context.push(const MyRecordsDiaryAddRoute().location),
           ),
         ],
         android: () => null,
@@ -51,8 +49,7 @@ class MyRecordsDiaryRecordsScreen extends StatelessWidget {
       floatingActionButton: platformMapper<Widget?>(
         ios: () => null,
         android: () => FloatingActionButton(
-          onPressed: () =>
-              context.push(const MyRecordsDiaryAddRoute().location),
+          onPressed: () => context.push(const MyRecordsDiaryAddRoute().location),
           tooltip: context.l10n.add_item,
           backgroundColor: Theme.of(context).primaryColor,
           child: const Icon(Icons.add, color: Colors.white),
@@ -66,9 +63,7 @@ class MyRecordsDiaryRecordsScreen extends StatelessWidget {
             final diaryRecordsLength = diaryRecords.length;
 
             if (snapshot.hasData && diaryRecordsLength == 0) {
-              return EmptyRecordsStateWidget(
-                emptyText: context.l10n.diary_empty,
-              );
+              return EmptyRecordsStateWidget(emptyText: context.l10n.diary_empty);
             }
 
             return ListView.builder(
@@ -89,9 +84,7 @@ class MyRecordsDiaryRecordsScreen extends StatelessWidget {
                   child: DiaryTile(
                     date: recordData.dateTime,
                     isTitle: recordData.title.isNotEmpty,
-                    title: recordData.title.isEmpty
-                        ? recordData.text
-                        : recordData.title,
+                    title: recordData.title.isEmpty ? recordData.text : recordData.title,
                     onTap: () => context.push(
                       const MyRecordsDiaryDetailRoute().location,
                       extra: DiaryRecordRouteExtraData(

@@ -251,11 +251,7 @@ class _StepCard extends StatelessWidget {
                   color: isDarkMode ? Colors.white : primaryColor,
                 ),
               ),
-              Icon(
-                Icons.expand_more,
-                size: 18,
-                color: isDarkMode ? Colors.white70 : primaryColor,
-              ),
+              Icon(Icons.expand_more, size: 18, color: isDarkMode ? Colors.white70 : primaryColor),
             ],
           ),
         ),
@@ -303,9 +299,21 @@ class _StepCard extends StatelessWidget {
             const SizedBox(height: 12),
             Row(
               children: [
-                Expanded(child: _AnswerButton(label: 'Ano', isOn: answer == 'ano', onTap: () => onAnswer('ano'))),
+                Expanded(
+                  child: _AnswerButton(
+                    label: 'Ano',
+                    isOn: answer == 'ano',
+                    onTap: () => onAnswer('ano'),
+                  ),
+                ),
                 const SizedBox(width: 10),
-                Expanded(child: _AnswerButton(label: 'Ne', isOn: answer == 'ne', onTap: () => onAnswer('ne'))),
+                Expanded(
+                  child: _AnswerButton(
+                    label: 'Ne',
+                    isOn: answer == 'ne',
+                    onTap: () => onAnswer('ne'),
+                  ),
+                ),
               ],
             ),
           ],
@@ -382,9 +390,7 @@ class _AnswerButton extends StatelessWidget {
           color: isOn ? primaryColor : Colors.transparent,
           borderRadius: BorderRadius.circular(11),
           border: Border.all(
-            color: isOn
-                ? primaryColor
-                : (isDarkMode ? Colors.white38 : NepanikarColors.purple200),
+            color: isOn ? primaryColor : (isDarkMode ? Colors.white38 : NepanikarColors.purple200),
             width: 1.5,
           ),
         ),

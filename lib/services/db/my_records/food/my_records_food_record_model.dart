@@ -66,20 +66,17 @@ abstract class DailyFoodRecord with _$DailyFoodRecord {
 
   const DailyFoodRecord._();
 
-  factory DailyFoodRecord.fromJson(Map<String, Object?> json) =>
-      _$DailyFoodRecordFromJson(json);
+  factory DailyFoodRecord.fromJson(Map<String, Object?> json) => _$DailyFoodRecordFromJson(json);
 }
 
-DailyFoodRecord getEmptyDailyFoodRecord() =>
-    DailyFoodRecord(dateTime: DateTime.now(), answers: []);
+DailyFoodRecord getEmptyDailyFoodRecord() => DailyFoodRecord(dateTime: DateTime.now(), answers: []);
 
-DailyFoodRecordAnswer getEmptyDailyFoodRecordAnswer(FoodType foodType) =>
-    DailyFoodRecordAnswer(
-      foodType: foodType,
-      questionTextAnswers: [],
-      tickedQuestionFeels: [],
-      tickedQuestionProblems: [],
-    );
+DailyFoodRecordAnswer getEmptyDailyFoodRecordAnswer(FoodType foodType) => DailyFoodRecordAnswer(
+  foodType: foodType,
+  questionTextAnswers: [],
+  tickedQuestionFeels: [],
+  tickedQuestionProblems: [],
+);
 
 extension DailyFoodRecordExt on DailyFoodRecord {
   bool getIsFoodTaken(FoodType foodType) {
@@ -93,9 +90,7 @@ extension DailyFoodRecordExt on DailyFoodRecord {
 
   DailyFoodRecord getUpdatedFromAnswer(DailyFoodRecordAnswer updatedAnswer) {
     final answers = [...this.answers];
-    final index = answers.indexWhere(
-      (e) => e.foodType == updatedAnswer.foodType,
-    );
+    final index = answers.indexWhere((e) => e.foodType == updatedAnswer.foodType);
     if (index == -1) {
       answers.add(updatedAnswer);
     } else {

@@ -47,8 +47,7 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
 
   static const _lottieAnimDuration = Duration(milliseconds: 2590);
 
-  AnimationController? _getLottieAnimController(Mood m) =>
-      _lottieAnimControllersMap[m];
+  AnimationController? _getLottieAnimController(Mood m) => _lottieAnimControllersMap[m];
 
   void _playLottieAnim(Mood m) => _getLottieAnimController(m)?.forward(from: 0);
 
@@ -92,8 +91,7 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
     );
     final location = GoRouter.of(context).state.uri.toString();
     final bool shouldDisplayTitle =
-        GoRouter.of(context).state.uri.toString() ==
-        const MoodPickerRoute().location;
+        GoRouter.of(context).state.uri.toString() == const MoodPickerRoute().location;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -127,21 +125,12 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
                   }
                   if (location == const MyRecordsSleepTrackRoute().location) {
                     _playLottieAnim(mood);
-                    analytics.logEvent(
-                      name: 'mood_picked',
-                      parameters: {'mood': mood.name},
-                    );
+                    analytics.logEvent(name: 'mood_picked', parameters: {'mood': mood.name});
                     widget.onPick.call(mood);
                   } else {
-                    Provider.of<MoodState>(
-                      context,
-                      listen: false,
-                    ).setActiveMood(mood);
+                    Provider.of<MoodState>(context, listen: false).setActiveMood(mood);
                     if (location != const MoodPickerRoute().location) {
-                      Provider.of<MoodState>(
-                        context,
-                        listen: false,
-                      ).setEditing(false);
+                      Provider.of<MoodState>(context, listen: false).setEditing(false);
                       context.push(const MoodPickerRoute().location);
                     }
                     return;
@@ -149,32 +138,18 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
                   setState(() => activeMood = mood);
 
                   _playLottieAnim(mood);
-                  analytics.logEvent(
-                    name: 'mood_picked',
-                    parameters: {'mood': mood.name},
-                  );
+                  analytics.logEvent(name: 'mood_picked', parameters: {'mood': mood.name});
                 },
                 borderRadius: BorderRadius.circular(12),
                 child: Opacity(
-                  opacity:
-                      activeMood != null &&
-                          activeMood != mood &&
-                          shouldDisplayTitle
-                      ? 0.4
-                      : 1,
+                  opacity: activeMood != null && activeMood != mood && shouldDisplayTitle ? 0.4 : 1,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 6.0,
-                      vertical: 4,
-                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 4),
                     child: Column(
                       children: [
                         ColorFiltered(
                           colorFilter: ColorFilter.matrix(
-                            svgColorMatrixBasedOnDarkMode(
-                              context,
-                              lighter: true,
-                            ),
+                            svgColorMatrixBasedOnDarkMode(context, lighter: true),
                           ),
                           child: _lottieCacheManager.loadFromCache(
                             mood.animatedIcon,
@@ -189,9 +164,7 @@ class _MoodPickerState extends State<MoodPicker> with TickerProviderStateMixin {
                           const SizedBox(height: 4),
                           Text(
                             mood.getLabel(context),
-                            style: NepanikarFonts.bodySmallHeavy.copyWith(
-                              color: textStyleColor,
-                            ),
+                            style: NepanikarFonts.bodySmallHeavy.copyWith(color: textStyleColor),
                           ),
                         ],
                       ],

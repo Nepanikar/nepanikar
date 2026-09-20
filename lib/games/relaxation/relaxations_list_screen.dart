@@ -29,36 +29,21 @@ class RelaxationsListScreen extends StatelessWidget {
       children: [
         LongTile(
           text: 'Relaxace',
-          image: Assets.illustrations.modules.relaxation.svg(
-            colorFilter: colorFilter,
-          ),
-          onTap: () => context.push(
-            const RelaxationRoute(
-              relaxationType: RelaxationType.general,
-            ).location,
-          ),
+          image: Assets.illustrations.modules.relaxation.svg(colorFilter: colorFilter),
+          onTap: () =>
+              context.push(const RelaxationRoute(relaxationType: RelaxationType.general).location),
         ),
         LongTile(
           text: 'Ranní zastavení',
-          image: Assets.illustrations.modules.relaxation.svg(
-            colorFilter: colorFilter,
-          ),
-          onTap: () => context.push(
-            const RelaxationRoute(
-              relaxationType: RelaxationType.morning,
-            ).location,
-          ),
+          image: Assets.illustrations.modules.relaxation.svg(colorFilter: colorFilter),
+          onTap: () =>
+              context.push(const RelaxationRoute(relaxationType: RelaxationType.morning).location),
         ),
         LongTile(
           text: 'Večerní zastavení',
-          image: Assets.illustrations.modules.relaxation.svg(
-            colorFilter: colorFilter,
-          ),
-          onTap: () => context.push(
-            const RelaxationRoute(
-              relaxationType: RelaxationType.evening,
-            ).location,
-          ),
+          image: Assets.illustrations.modules.relaxation.svg(colorFilter: colorFilter),
+          onTap: () =>
+              context.push(const RelaxationRoute(relaxationType: RelaxationType.evening).location),
         ),
       ],
     );

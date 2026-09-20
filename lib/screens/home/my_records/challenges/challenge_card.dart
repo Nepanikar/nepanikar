@@ -53,8 +53,7 @@ class _ChallengeCardState extends State<ChallengeCard> {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final primaryColor = Theme.of(context).primaryColor;
     final textColor = isDarkMode ? Colors.white : NepanikarColors.dark;
-    final mutedColor =
-        isDarkMode ? Colors.white54 : NepanikarColors.dark.withOpacity(0.5);
+    final mutedColor = isDarkMode ? Colors.white54 : NepanikarColors.dark.withOpacity(0.5);
     final doneToday = challenge.isCompletedToday;
     final streak = challenge.currentStreak;
 
@@ -65,9 +64,7 @@ class _ChallengeCardState extends State<ChallengeCard> {
         color: isDarkMode ? Colors.white.withOpacity(0.05) : Colors.white,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: isDarkMode
-              ? Colors.white.withOpacity(0.1)
-              : primaryColor.withOpacity(0.15),
+          color: isDarkMode ? Colors.white.withOpacity(0.1) : primaryColor.withOpacity(0.15),
         ),
       ),
       child: Column(
@@ -79,10 +76,7 @@ class _ChallengeCardState extends State<ChallengeCard> {
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 4,
-                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                     decoration: BoxDecoration(
                       color: primaryColor.withOpacity(0.12),
                       borderRadius: BorderRadius.circular(20),
@@ -134,8 +128,7 @@ class _ChallengeCardState extends State<ChallengeCard> {
           _WeekHistory(challenge: challenge, primaryColor: primaryColor),
           const SizedBox(height: 6),
           InkWell(
-            onTap: () =>
-                setState(() => _calendarExpanded = !_calendarExpanded),
+            onTap: () => setState(() => _calendarExpanded = !_calendarExpanded),
             borderRadius: BorderRadius.circular(10),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 6),
@@ -143,9 +136,7 @@ class _ChallengeCardState extends State<ChallengeCard> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
-                    _calendarExpanded
-                        ? Icons.expand_less
-                        : Icons.calendar_month_outlined,
+                    _calendarExpanded ? Icons.expand_less : Icons.calendar_month_outlined,
                     size: 16,
                     color: mutedColor,
                   ),
@@ -173,16 +164,9 @@ class _ChallengeCardState extends State<ChallengeCard> {
             ),
           ],
           const SizedBox(height: 10),
-          _TodayButton(
-            done: doneToday,
-            primaryColor: primaryColor,
-            onTap: widget.onToggleToday,
-          ),
+          _TodayButton(done: doneToday, primaryColor: primaryColor, onTap: widget.onToggleToday),
           const SizedBox(height: 10),
-          _ReminderRow(
-            challenge: challenge,
-            onTap: widget.onEditReminder,
-          ),
+          _ReminderRow(challenge: challenge, onTap: widget.onEditReminder),
         ],
       ),
     );
@@ -190,11 +174,7 @@ class _ChallengeCardState extends State<ChallengeCard> {
 }
 
 class _TodayButton extends StatelessWidget {
-  const _TodayButton({
-    required this.done,
-    required this.primaryColor,
-    required this.onTap,
-  });
+  const _TodayButton({required this.done, required this.primaryColor, required this.onTap});
 
   final bool done;
   final Color primaryColor;
@@ -217,9 +197,7 @@ class _TodayButton extends StatelessWidget {
                 backgroundColor: NepanikarColors.success,
                 foregroundColor: Colors.white,
                 elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
               ),
             )
           : OutlinedButton.icon(
@@ -232,9 +210,7 @@ class _TodayButton extends StatelessWidget {
               style: OutlinedButton.styleFrom(
                 foregroundColor: primaryColor,
                 side: BorderSide(color: primaryColor, width: 1.5),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
               ),
             ),
     );
@@ -264,9 +240,7 @@ class _ReminderRow extends StatelessWidget {
         child: Row(
           children: [
             Icon(
-              hasReminder
-                  ? Icons.notifications_active
-                  : Icons.notifications_none,
+              hasReminder ? Icons.notifications_active : Icons.notifications_none,
               size: 18,
               color: color,
             ),
@@ -275,11 +249,7 @@ class _ReminderRow extends StatelessWidget {
               hasReminder && time != null
                   ? 'Připomínka ${time.format(context)}'
                   : 'Přidat připomínku',
-              style: TextStyle(
-                fontSize: 13.5,
-                fontWeight: FontWeight.w600,
-                color: color,
-              ),
+              style: TextStyle(fontSize: 13.5, fontWeight: FontWeight.w600, color: color),
             ),
           ],
         ),
@@ -303,8 +273,7 @@ class _WeekHistory extends StatelessWidget {
     // Last 7 days, oldest → today.
     final days = List.generate(
       7,
-      (i) => DateTime(today.year, today.month, today.day)
-          .subtract(Duration(days: 6 - i)),
+      (i) => DateTime(today.year, today.month, today.day).subtract(Duration(days: 6 - i)),
     );
 
     return Row(
@@ -326,9 +295,7 @@ class _WeekHistory extends StatelessWidget {
                           : primaryColor.withOpacity(0.08)),
                 shape: BoxShape.circle,
               ),
-              child: done
-                  ? const Icon(Icons.check, size: 15, color: Colors.white)
-                  : null,
+              child: done ? const Icon(Icons.check, size: 15, color: Colors.white) : null,
             ),
             const SizedBox(height: 4),
             Text(
@@ -336,9 +303,7 @@ class _WeekHistory extends StatelessWidget {
               style: TextStyle(
                 fontSize: 10,
                 fontWeight: FontWeight.w600,
-                color: isDarkMode
-                    ? Colors.white54
-                    : NepanikarColors.dark.withOpacity(0.5),
+                color: isDarkMode ? Colors.white54 : NepanikarColors.dark.withOpacity(0.5),
               ),
             ),
           ],
@@ -386,8 +351,7 @@ class _MonthCalendar extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final primaryColor = Theme.of(context).primaryColor;
-    final mutedColor =
-        isDarkMode ? Colors.white54 : NepanikarColors.dark.withOpacity(0.5);
+    final mutedColor = isDarkMode ? Colors.white54 : NepanikarColors.dark.withOpacity(0.5);
     final textColor = isDarkMode ? Colors.white : NepanikarColors.dark;
 
     final daysInMonth = DateTime(month.year, month.month + 1, 0).day;
@@ -395,17 +359,12 @@ class _MonthCalendar extends StatelessWidget {
     final leadingBlanks = DateTime(month.year, month.month).weekday - 1;
     final cells = <DateTime?>[
       ...List<DateTime?>.filled(leadingBlanks, null),
-      ...List.generate(
-        daysInMonth,
-        (i) => DateTime(month.year, month.month, i + 1),
-      ),
+      ...List.generate(daysInMonth, (i) => DateTime(month.year, month.month, i + 1)),
     ];
     while (cells.length % 7 != 0) {
       cells.add(null);
     }
-    final weeks = [
-      for (var i = 0; i < cells.length; i += 7) cells.sublist(i, i + 7),
-    ];
+    final weeks = [for (var i = 0; i < cells.length; i += 7) cells.sublist(i, i + 7)];
 
     final now = DateTime.now();
     final today = DateTime(now.year, now.month, now.day);
@@ -413,37 +372,23 @@ class _MonthCalendar extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.fromLTRB(8, 6, 8, 10),
       decoration: BoxDecoration(
-        color: isDarkMode
-            ? Colors.white.withOpacity(0.04)
-            : primaryColor.withOpacity(0.04),
+        color: isDarkMode ? Colors.white.withOpacity(0.04) : primaryColor.withOpacity(0.04),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
         children: [
           Row(
             children: [
-              _NavArrow(
-                icon: Icons.chevron_left,
-                enabled: true,
-                onTap: onPrev,
-              ),
+              _NavArrow(icon: Icons.chevron_left, enabled: true, onTap: onPrev),
               Expanded(
                 child: Center(
                   child: Text(
                     '${_monthNames[month.month - 1]} ${month.year}',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w700,
-                      color: textColor,
-                    ),
+                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: textColor),
                   ),
                 ),
               ),
-              _NavArrow(
-                icon: Icons.chevron_right,
-                enabled: canGoNext,
-                onTap: onNext,
-              ),
+              _NavArrow(icon: Icons.chevron_right, enabled: canGoNext, onTap: onNext),
             ],
           ),
           const SizedBox(height: 6),
@@ -472,8 +417,7 @@ class _MonthCalendar extends StatelessWidget {
                 if (day == null) {
                   return const Expanded(child: SizedBox(height: 34));
                 }
-                final done =
-                    challenge.isCompletedOn(BpdChallenge.dateKey(day));
+                final done = challenge.isCompletedOn(BpdChallenge.dateKey(day));
                 final isToday = day == today;
                 final isFuture = day.isAfter(today);
                 return Expanded(
@@ -495,13 +439,10 @@ class _MonthCalendar extends StatelessWidget {
                             '${day.day}',
                             style: TextStyle(
                               fontSize: 11.5,
-                              fontWeight:
-                                  done || isToday ? FontWeight.w800 : FontWeight.w500,
+                              fontWeight: done || isToday ? FontWeight.w800 : FontWeight.w500,
                               color: done
                                   ? Colors.white
-                                  : (isFuture
-                                        ? mutedColor.withOpacity(0.4)
-                                        : textColor),
+                                  : (isFuture ? mutedColor.withOpacity(0.4) : textColor),
                             ),
                           ),
                         ),
@@ -519,11 +460,7 @@ class _MonthCalendar extends StatelessWidget {
 }
 
 class _NavArrow extends StatelessWidget {
-  const _NavArrow({
-    required this.icon,
-    required this.enabled,
-    required this.onTap,
-  });
+  const _NavArrow({required this.icon, required this.enabled, required this.onTap});
 
   final IconData icon;
   final bool enabled;
@@ -539,11 +476,7 @@ class _NavArrow extends StatelessWidget {
       borderRadius: BorderRadius.circular(8),
       child: Padding(
         padding: const EdgeInsets.all(6),
-        child: Icon(
-          icon,
-          size: 20,
-          color: enabled ? color : color.withOpacity(0.25),
-        ),
+        child: Icon(icon, size: 20, color: enabled ? color : color.withOpacity(0.25)),
       ),
     );
   }
@@ -583,14 +516,8 @@ class _CardMenu extends StatelessWidget {
           child: Text(hasReminder ? 'Změnit připomínku' : 'Přidat připomínku'),
         ),
         if (hasReminder)
-          const PopupMenuItem(
-            value: 'remove_reminder',
-            child: Text('Zrušit připomínku'),
-          ),
-        const PopupMenuItem(
-          value: 'delete',
-          child: Text('Odebrat výzvu'),
-        ),
+          const PopupMenuItem(value: 'remove_reminder', child: Text('Zrušit připomínku')),
+        const PopupMenuItem(value: 'delete', child: Text('Odebrat výzvu')),
       ],
       // A plain child (instead of `icon:`) avoids the built-in 48px IconButton
       // box, so the dots hug the card's right edge.
@@ -599,9 +526,7 @@ class _CardMenu extends StatelessWidget {
         child: Icon(
           Icons.more_vert,
           size: 20,
-          color: isDarkMode
-              ? Colors.white60
-              : NepanikarColors.dark.withOpacity(0.5),
+          color: isDarkMode ? Colors.white60 : NepanikarColors.dark.withOpacity(0.5),
         ),
       ),
     );

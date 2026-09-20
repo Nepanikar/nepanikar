@@ -9,9 +9,7 @@ import 'package:nepanikar/app/l10n/ext.dart';
 String platformLocale = Platform.localeName.split('_').firstOrNull ?? 'en';
 
 final initialLocale = Locale(
-  AppLocalizations.supportedLocales.contains(Locale(platformLocale))
-      ? platformLocale
-      : 'en',
+  AppLocalizations.supportedLocales.contains(Locale(platformLocale)) ? platformLocale : 'en',
 );
 
 String pluralYears(BuildContext context, {required int value}) {
@@ -76,8 +74,6 @@ String pluralSeconds(BuildContext context, {required int value}) {
 
 extension LocalizationTextExtractor on String {
   List<String> extractToItems() {
-    return split(
-      '\n',
-    ).map((line) => line.trim()).where((line) => line.isNotEmpty).toList();
+    return split('\n').map((line) => line.trim()).where((line) => line.isNotEmpty).toList();
   }
 }

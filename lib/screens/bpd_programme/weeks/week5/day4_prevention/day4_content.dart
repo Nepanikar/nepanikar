@@ -25,7 +25,8 @@ const day4Intro =
 const day4PreventionWorksheet = <WorksheetSection>[
   WorksheetSection(
     title: 'Rozpoznání spouštěčů',
-    intro: 'Napište si situace, myšlenky nebo emoce, které obvykle vedou k '
+    intro:
+        'Napište si situace, myšlenky nebo emoce, které obvykle vedou k '
         'impulzivní reakci nebo život ohrožujícímu chování.',
     fields: [
       WorksheetField(
@@ -42,7 +43,8 @@ const day4PreventionWorksheet = <WorksheetSection>[
   ),
   WorksheetSection(
     title: 'Bezpečnostní plán',
-    intro: 'Mějte připravený seznam kroků, co uděláte, když přijde silné nutkání '
+    intro:
+        'Mějte připravený seznam kroků, co uděláte, když přijde silné nutkání '
         '(např. zavolat kamarádovi, použít techniku TIPS, jít na procházku).',
     fields: [
       WorksheetField(
@@ -53,14 +55,16 @@ const day4PreventionWorksheet = <WorksheetSection>[
       WorksheetField(
         id: 'safety_contacts',
         label: 'Komu můžu zavolat',
-        hint: 'Seznam osob nebo kontaktů, na které se můžete obrátit v krizi '
+        hint:
+            'Seznam osob nebo kontaktů, na které se můžete obrátit v krizi '
             '(blízcí, krizová linka, terapeut).',
       ),
     ],
   ),
   WorksheetSection(
     title: 'Nahrazení škodlivých reakcí bezpečnějšími',
-    intro: 'Vyberte si předem techniky (UZNÁVÁM, STOP, TIPS, mindfulness), které '
+    intro:
+        'Vyberte si předem techniky (UZNÁVÁM, STOP, TIPS, mindfulness), které '
         'můžete použít, až přijde silná emoce.',
     fields: [
       WorksheetField(
@@ -71,7 +75,8 @@ const day4PreventionWorksheet = <WorksheetSection>[
       WorksheetField(
         id: 'first_aid_box',
         label: 'Co dám do krabičky první psychické pomoci',
-        hint: 'Připravte si „krabičku první psychické pomoci“ – papír s '
+        hint:
+            'Připravte si „krabičku první psychické pomoci“ – papír s '
             'uklidňujícími myšlenkami, obrázky, věc na zmáčknutí, éterický olej, '
             'hudbu.',
       ),
@@ -79,7 +84,8 @@ const day4PreventionWorksheet = <WorksheetSection>[
   ),
   WorksheetSection(
     title: 'Plánování předem',
-    intro: 'Rozmyslete si, co budete dělat, když víte, že vás čeká těžký den '
+    intro:
+        'Rozmyslete si, co budete dělat, když víte, že vás čeká těžký den '
         '(více odpočinku, připravené copingové strategie).',
     fields: [
       WorksheetField(
@@ -96,7 +102,8 @@ const day4PreventionWorksheet = <WorksheetSection>[
   ),
   WorksheetSection(
     title: 'Pravidelná prevence',
-    intro: 'Pečujte o sebe pomocí spánku, jídla, pohybu, kontaktu s lidmi '
+    intro:
+        'Pečujte o sebe pomocí spánku, jídla, pohybu, kontaktu s lidmi '
         '(SPOKO model).',
     fields: [
       WorksheetField(
@@ -107,7 +114,8 @@ const day4PreventionWorksheet = <WorksheetSection>[
       WorksheetField(
         id: 'long_term',
         label: 'Co mi dlouhodobě snižuje stres',
-        hint: 'Věnujte se aktivitám, které z dlouhodobého hlediska snižují stres '
+        hint:
+            'Věnujte se aktivitám, které z dlouhodobého hlediska snižují stres '
             'a podporují regulaci emocí.',
       ),
     ],

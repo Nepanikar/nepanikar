@@ -16,13 +16,11 @@ abstract class BpdDayProgress with _$BpdDayProgress {
 
   const BpdDayProgress._();
 
-  factory BpdDayProgress.fromJson(Map<String, Object?> json) =>
-      _$BpdDayProgressFromJson(json);
+  factory BpdDayProgress.fromJson(Map<String, Object?> json) => _$BpdDayProgressFromJson(json);
 
   /// Check if this day is currently unlocked based on current date
   bool isUnlocked() {
-    return DateTime.now().isAfter(unlockDate) ||
-        DateTime.now().isAtSameMomentAs(unlockDate);
+    return DateTime.now().isAfter(unlockDate) || DateTime.now().isAtSameMomentAs(unlockDate);
   }
 
   /// Check if this is the current active day (unlocked but not completed)
@@ -50,6 +48,5 @@ abstract class BpdDayData with _$BpdDayData {
 
   const BpdDayData._();
 
-  factory BpdDayData.fromJson(Map<String, Object?> json) =>
-      _$BpdDayDataFromJson(json);
+  factory BpdDayData.fromJson(Map<String, Object?> json) => _$BpdDayDataFromJson(json);
 }

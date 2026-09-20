@@ -141,9 +141,7 @@ class Week6Day3JeVyzvaPage extends StatelessWidget {
       rescueItem: BpdRescueItem(
         id: day3JeVyzvaRescueId,
         title: 'Je VýZVa',
-        description: day3JeVyzvaLetters
-            .map((l) => '${l.$1} – ${l.$2}: ${l.$3}')
-            .join('\n'),
+        description: day3JeVyzvaLetters.map((l) => '${l.$1} – ${l.$2}: ${l.$3}').join('\n'),
         sourceLabel: 'Týden 6 • Den 3',
         savedAt: DateTime.now(),
         iconKey: 'heart',
@@ -166,9 +164,7 @@ class Week6Day3MindfulnessChatPage extends StatelessWidget {
       steps: [
         for (var i = 0; i < day3MindfulnessIntro.length; i++)
           ChatStep(
-            messages: [
-              ChatBotBubble(text: day3MindfulnessIntro[i], showAvatar: i == 0),
-            ],
+            messages: [ChatBotBubble(text: day3MindfulnessIntro[i], showAvatar: i == 0)],
             buttonLabel: i == day3MindfulnessIntro.length - 1 ? 'Vybrat cvičení' : null,
           ),
       ],

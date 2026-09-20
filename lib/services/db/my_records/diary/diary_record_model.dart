@@ -15,6 +15,5 @@ abstract class DiaryRecord with _$DiaryRecord {
 
   const DiaryRecord._();
 
-  factory DiaryRecord.fromJson(Map<String, Object?> json) =>
-      _$DiaryRecordFromJson(json);
+  factory DiaryRecord.fromJson(Map<String, Object?> json) => _$DiaryRecordFromJson(json);
 }

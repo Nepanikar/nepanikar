@@ -156,18 +156,12 @@ const day1ChainWorksheet = <WorksheetSection>[
   WorksheetSection(
     title: 'Impulzy',
     fields: [
-      WorksheetField(
-        id: 'urges',
-        label: 'Impulzy',
-        hint: 'Jaké nutkání k jednání jsi cítil/a?',
-      ),
+      WorksheetField(id: 'urges', label: 'Impulzy', hint: 'Jaké nutkání k jednání jsi cítil/a?'),
     ],
   ),
   WorksheetSection(
     title: 'Chování',
-    fields: [
-      WorksheetField(id: 'behaviour', label: 'Chování', hint: 'Co jsi nakonec udělal/a?'),
-    ],
+    fields: [WorksheetField(id: 'behaviour', label: 'Chování', hint: 'Co jsi nakonec udělal/a?')],
   ),
   WorksheetSection(
     title: 'Důsledky',
@@ -215,14 +209,16 @@ const day1MissingLinks = <MissingLinkStep>[
       WorksheetField(
         id: 'q1_blocked',
         label: 'Co ti bránilo to vědět?',
-        example: 'např. nedostatek pozornosti, nejasné instrukce, informace jsi '
+        example:
+            'např. nedostatek pozornosti, nejasné instrukce, informace jsi '
             'vůbec nedostal/a, byl/a jsi příliš zahlcený/á a nedokázal/a jsi to '
             'zpracovat',
       ),
       WorksheetField(
         id: 'q1_next',
         label: 'Jak to můžeš příště vyřešit?',
-        example: 'např. víc se soustředit, ptát se na upřesnění, hledat si '
+        example:
+            'např. víc se soustředit, ptát se na upřesnění, hledat si '
             'informace, poprosit o pomoc',
       ),
     ],
@@ -250,7 +246,8 @@ const day1MissingLinks = <MissingLinkStep>[
       WorksheetField(
         id: 'q3_remind',
         label: 'Jak si to můžeš příště víc připomenout?',
-        example: 'např. poznámka do kalendáře, nastavit si budík, mít zápisník '
+        example:
+            'např. poznámka do kalendáře, nastavit si budík, mít zápisník '
             's dovednostmi po ruce, coping ahead = předem si představit, jak '
             'situaci zvládneš',
       ),
@@ -264,7 +261,8 @@ const day1MissingLinks = <MissingLinkStep>[
       WorksheetField(
         id: 'q4_obstacle',
         label: 'Co ti zabránilo to udělat hned?',
-        example: 'Možné překážky: odkládání, nechuť, zapomněl/a jsi jak na to, '
+        example:
+            'Možné překážky: odkládání, nechuť, zapomněl/a jsi jak na to, '
             'pocit, že na tom nezáleží.',
       ),
       WorksheetField(
@@ -281,5 +279,4 @@ const day1MissingLinks = <MissingLinkStep>[
 // ─────────────────────────────────────────────────────────────────────────────
 
 /// Verbatim, including the source's typo "zaátek" (OQ-4).
-const day1CompletionText =
-    'Tak a to je pro zaátek pátého týdne vše. Potkáme se zítra.';
+const day1CompletionText = 'Tak a to je pro zaátek pátého týdne vše. Potkáme se zítra.';

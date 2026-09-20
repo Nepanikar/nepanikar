@@ -33,8 +33,7 @@ class MathGameScreen extends StatefulWidget {
 }
 
 class _MathGameScreenState extends State<MathGameScreen> {
-  MathAnswerResultState _answerResultState =
-      MathAnswerResultState.notAnsweredYet;
+  MathAnswerResultState _answerResultState = MathAnswerResultState.notAnsweredYet;
   final analytics = registry.get<FirebaseAnalytics>();
 
   late MathEquation _equation;
@@ -53,13 +52,9 @@ class _MathGameScreenState extends State<MathGameScreen> {
     }
   }
 
-  Future<void> _evaluateEquation(
-    String textInput, {
-    bool isInputActionFromButton = false,
-  }) async {
+  Future<void> _evaluateEquation(String textInput, {bool isInputActionFromButton = false}) async {
     if (textInput.isEmpty) return;
-    if (isInputActionFromButton)
-      await Future.delayed(_answerEvaluationDuration);
+    if (isInputActionFromButton) await Future.delayed(_answerEvaluationDuration);
     if (_equation.isValid(textInput)) {
       if (mounted) {
         _setAnswerResultState(MathAnswerResultState.correct);
@@ -119,11 +114,7 @@ class _MathGameScreenState extends State<MathGameScreen> {
 
     final cardColor = longTileColorBasedOnDarkMode(context);
 
-    final textStyle = TextStyle(
-      fontSize: 56,
-      fontWeight: FontWeight.w900,
-      color: textColor,
-    );
+    final textStyle = TextStyle(fontSize: 56, fontWeight: FontWeight.w900, color: textColor);
 
     return GestureDetector(
       onTapDown: (_) => _focusNode.unfocus(),
@@ -169,13 +160,11 @@ class _MathGameScreenState extends State<MathGameScreen> {
                                     controller: _textEditingController,
                                     onSubmitted: _evaluateEquation,
                                     decoration: InputDecoration(
-                                      hintText:
-                                          context.l10n.math_game_answer_button,
-                                      contentPadding:
-                                          const EdgeInsets.symmetric(
-                                            horizontal: 12,
-                                            vertical: 16,
-                                          ),
+                                      hintText: context.l10n.math_game_answer_button,
+                                      contentPadding: const EdgeInsets.symmetric(
+                                        horizontal: 12,
+                                        vertical: 16,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -192,13 +181,11 @@ class _MathGameScreenState extends State<MathGameScreen> {
                                   maintainSize: true,
                                   visible: !_answerResultState.isCorrect,
                                   child: NepanikarButton.async(
-                                    onTapAsync: () async =>
-                                        await _evaluateEquation(
-                                          textInput,
-                                          isInputActionFromButton: true,
-                                        ),
-                                    trailingIcon:
-                                        Assets.icons.navigation.chevronRight,
+                                    onTapAsync: () async => await _evaluateEquation(
+                                      textInput,
+                                      isInputActionFromButton: true,
+                                    ),
+                                    trailingIcon: Assets.icons.navigation.chevronRight,
                                     enabled: textInput.isNotEmpty,
                                     text: context.l10n.submit,
                                   ),

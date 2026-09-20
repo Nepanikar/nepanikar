@@ -28,10 +28,8 @@ extension JournalQuestionExt on JournalQuestion {
 
 @freezed
 abstract class JournalRecordAnswer with _$JournalRecordAnswer {
-  const factory JournalRecordAnswer({
-    required JournalQuestion question,
-    required String answer,
-  }) = _JournalRecordAnswer;
+  const factory JournalRecordAnswer({required JournalQuestion question, required String answer}) =
+      _JournalRecordAnswer;
 
   const JournalRecordAnswer._();
 
@@ -49,9 +47,7 @@ abstract class JournalRecord with _$JournalRecord {
 
   const JournalRecord._();
 
-  factory JournalRecord.fromJson(Map<String, Object?> json) =>
-      _$JournalRecordFromJson(json);
+  factory JournalRecord.fromJson(Map<String, Object?> json) => _$JournalRecordFromJson(json);
 }
 
-JournalRecord getEmptyJournalRecord() =>
-    JournalRecord(dateTime: DateTime.now(), answers: []);
+JournalRecord getEmptyJournalRecord() => JournalRecord(dateTime: DateTime.now(), answers: []);

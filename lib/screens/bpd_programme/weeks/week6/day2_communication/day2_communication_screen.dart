@@ -29,8 +29,7 @@ class Week6Day2CommunicationScreen extends StatefulWidget {
   const Week6Day2CommunicationScreen({super.key});
 
   @override
-  State<Week6Day2CommunicationScreen> createState() =>
-      _Week6Day2CommunicationScreenState();
+  State<Week6Day2CommunicationScreen> createState() => _Week6Day2CommunicationScreenState();
 }
 
 class _Week6Day2CommunicationScreenState extends State<Week6Day2CommunicationScreen> {
@@ -127,7 +126,9 @@ class Week6Day2ChatPage extends StatelessWidget {
       onCompleted: onNext,
       steps: [
         for (var i = 0; i < day2Opening.length; i++)
-          ChatStep(messages: [ChatBotBubble(text: day2Opening[i], showAvatar: i == 0)]),
+          ChatStep(
+            messages: [ChatBotBubble(text: day2Opening[i], showAvatar: i == 0)],
+          ),
         for (var i = 0; i < day2Intro.length; i++)
           ChatStep(
             messages: [ChatBotBubble(text: day2Intro[i], showAvatar: i == 0)],

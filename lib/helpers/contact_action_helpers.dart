@@ -24,10 +24,7 @@ Future<void> launchSmsNum(String phoneNum) async {
   }
 }
 
-Future<void> launchUrLink(
-  String url, {
-  LaunchMode launchMode = LaunchMode.platformDefault,
-}) async {
+Future<void> launchUrLink(String url, {LaunchMode launchMode = LaunchMode.platformDefault}) async {
   if (await canLaunchUrlString(url)) {
     await launchUrlString(url, mode: launchMode);
   } else {

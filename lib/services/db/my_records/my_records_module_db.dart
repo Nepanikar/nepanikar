@@ -25,16 +25,10 @@ class MyRecordsModuleDb implements NepanikarModuleDb {
   @override
   Future<MyRecordsModuleDb> initModuleDaos() async {
     _moodTrackDao = await MoodTrackDao(dbService: _dbService).init();
-    _myRecordsSleepTrackDao = await MyRecordsSleepTrackDao(
-      dbService: _dbService,
-    ).init();
+    _myRecordsSleepTrackDao = await MyRecordsSleepTrackDao(dbService: _dbService).init();
     _myRecordsDiaryDao = await MyRecordsDiaryDao(dbService: _dbService).init();
-    _myRecordsJournalDao = await MyRecordsJournalDao(
-      dbService: _dbService,
-    ).init();
-    _myRecordsFoodRecordDao = await MyRecordsFoodRecordDao(
-      dbService: _dbService,
-    ).init();
+    _myRecordsJournalDao = await MyRecordsJournalDao(dbService: _dbService).init();
+    _myRecordsFoodRecordDao = await MyRecordsFoodRecordDao(dbService: _dbService).init();
     _emotionsDao = await EmotionsDao(dbService: _dbService).init();
     _testResultsDao = await TestResultsDao(dbService: _dbService).init();
     return this;

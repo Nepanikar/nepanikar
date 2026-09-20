@@ -125,7 +125,8 @@ const day5NezoufejWorksheet = <WorksheetSection>[
       WorksheetField(
         id: 'f',
         label: 'F – Férovost',
-        hint: 'jak můžeš jednat spravedlivě k sobě i druhým, aniž bys je '
+        hint:
+            'jak můžeš jednat spravedlivě k sobě i druhým, aniž bys je '
             'manipuloval/a nebo obviňoval/a?',
       ),
     ],
@@ -136,7 +137,8 @@ const day5NezoufejWorksheet = <WorksheetSection>[
       WorksheetField(
         id: 'reflection',
         label: 'reflexe',
-        hint: 'co ti při používání “neZOUFej” přišlo snadné a co naopak těžké? '
+        hint:
+            'co ti při používání “neZOUFej” přišlo snadné a co naopak těžké? '
             'jak se cítil/a, když jsi si ujasnil/a hranice a reagoval/a podle '
             '“neZOUFej”?',
       ),

@@ -24,10 +24,7 @@ class BreathingGameRoute extends GoRouteData with $BreathingGameRoute {
   final String? preset;
 
   @override
-  Widget build(BuildContext context, _) => BreathingGameScreen(
-        shape: shape,
-        preset: preset,
-      );
+  Widget build(BuildContext context, _) => BreathingGameScreen(shape: shape, preset: preset);
 }
 
 class BreathingGameScreen extends StatefulWidget {
@@ -43,8 +40,7 @@ class BreathingGameScreen extends StatefulWidget {
   State<BreathingGameScreen> createState() => _BreathingGameScreenState();
 }
 
-class _BreathingGameScreenState extends State<BreathingGameScreen>
-    with TickerProviderStateMixin {
+class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerProviderStateMixin {
   /// Slider represents seconds per phase for circle shape
   static const _sliderMinValue = 2.0;
   static const _sliderMaxValue = 8.0;
@@ -155,11 +151,7 @@ class _BreathingGameScreenState extends State<BreathingGameScreen>
         });
       case BreathingGameShape.triangle:
         setState(() {
-          steps = [
-            context.l10n.breathe_in,
-            context.l10n.breathe_hold,
-            context.l10n.breathe_out,
-          ];
+          steps = [context.l10n.breathe_in, context.l10n.breathe_hold, context.l10n.breathe_out];
         });
     }
   }
@@ -191,9 +183,7 @@ class _BreathingGameScreenState extends State<BreathingGameScreen>
         _countDownNotifier.value = newCountdown;
         if (mounted) {
           if (stepChanged) {
-            context.semanticsAnnounce(
-              '${steps[_indexNotifier.value]} $newCountdown',
-            );
+            context.semanticsAnnounce('${steps[_indexNotifier.value]} $newCountdown');
           } else {
             context.semanticsAnnounce(newCountdown.toString());
           }
@@ -228,17 +218,17 @@ class _BreathingGameScreenState extends State<BreathingGameScreen>
 
     // Calculate progress within current phase
     final phaseProgress = (_controller.value * phaseCount) - newIndex;
-    final secondsRemainingInPhase =
-        (secondsPerPhase * (1 - phaseProgress)).ceil().clamp(1, secondsPerPhase);
+    final secondsRemainingInPhase = (secondsPerPhase * (1 - phaseProgress)).ceil().clamp(
+      1,
+      secondsPerPhase,
+    );
 
     if (secondsRemainingInPhase != _countDownNotifier.value) {
       setState(() {
         _countDownNotifier.value = secondsRemainingInPhase;
         if (mounted) {
           if (stepChanged) {
-            context.semanticsAnnounce(
-              '${steps[_indexNotifier.value]} $secondsRemainingInPhase',
-            );
+            context.semanticsAnnounce('${steps[_indexNotifier.value]} $secondsRemainingInPhase');
           } else {
             context.semanticsAnnounce(secondsRemainingInPhase.toString());
           }
@@ -267,10 +257,12 @@ class _BreathingGameScreenState extends State<BreathingGameScreen>
       _currentSliderValue = value;
       _controller.duration = newDuration;
       // Immediately update countdown for new duration
-      final phaseProgress = (_controller.value * phaseCount) -
-          (_controller.value * phaseCount).floor();
-      _countDownNotifier.value =
-          (secondsPerPhase * (1 - phaseProgress)).ceil().clamp(1, secondsPerPhase);
+      final phaseProgress =
+          (_controller.value * phaseCount) - (_controller.value * phaseCount).floor();
+      _countDownNotifier.value = (secondsPerPhase * (1 - phaseProgress)).ceil().clamp(
+        1,
+        secondsPerPhase,
+      );
     });
     _controller.forward();
     _controller.repeat();
@@ -297,10 +289,7 @@ class _BreathingGameScreenState extends State<BreathingGameScreen>
         ? Duration(seconds: _phaseConfig!.totalSeconds)
         : const Duration(seconds: 10);
 
-    _controller = AnimationController(
-      vsync: this,
-      duration: duration,
-    );
+    _controller = AnimationController(vsync: this, duration: duration);
 
     _controller.addListener(progressListener);
     _controller.repeat();
@@ -392,15 +381,10 @@ class _BreathingGameScreenState extends State<BreathingGameScreen>
             Center(
               child: Padding(
                 padding: EdgeInsets.only(
-                  bottom: widget.shape == BreathingGameShape.triangle
-                      ? 120.0
-                      : 0,
+                  bottom: widget.shape == BreathingGameShape.triangle ? 120.0 : 0,
                 ),
                 child: CustomPaint(
-                  painter: BorderPainter(
-                    animation: _controller,
-                    shape: widget.shape,
-                  ),
+                  painter: BorderPainter(animation: _controller, shape: widget.shape),
                   child: SizedBox(width: painterWidth, height: painterWidth),
                 ),
               ),
@@ -408,9 +392,7 @@ class _BreathingGameScreenState extends State<BreathingGameScreen>
             if (steps.isNotEmpty)
               Padding(
                 padding: EdgeInsets.only(
-                  bottom: widget.shape == BreathingGameShape.triangle
-                      ? 64.0
-                      : 0,
+                  bottom: widget.shape == BreathingGameShape.triangle ? 64.0 : 0,
                 ),
                 child: Center(
                   child: ValueListenableBuilder(
@@ -418,10 +400,7 @@ class _BreathingGameScreenState extends State<BreathingGameScreen>
                     builder: (context, value, _) {
                       return Text(
                         steps.elementAt(value),
-                        style: NepanikarFonts.bodyHeavy.copyWith(
-                          color: Colors.white,
-                          fontSize: 26,
-                        ),
+                        style: NepanikarFonts.bodyHeavy.copyWith(color: Colors.white, fontSize: 26),
                       );
                     },
                   ),
@@ -459,10 +438,7 @@ class _BreathingGameScreenState extends State<BreathingGameScreen>
                   const SizedBox(height: 8),
                   Text(
                     '${_currentSliderValue.round()}s',
-                    style: NepanikarFonts.bodyHeavy.copyWith(
-                      color: Colors.white,
-                      fontSize: 20,
-                    ),
+                    style: NepanikarFonts.bodyHeavy.copyWith(color: Colors.white, fontSize: 20),
                   ),
                   const SizedBox(height: 8),
                   Slider(
@@ -483,12 +459,7 @@ class _BreathingGameScreenState extends State<BreathingGameScreen>
               )
             else if (widget.shape != BreathingGameShape.circle && !_useCustomPhases)
               // Presets + custom controls for square/triangle
-              Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  _buildShapeControls(),
-                ],
-              ),
+              Column(mainAxisAlignment: MainAxisAlignment.end, children: [_buildShapeControls()]),
           ],
         ),
       ),
@@ -518,19 +489,11 @@ class _BreathingGameScreenState extends State<BreathingGameScreen>
                   final isSelected = _selectedPresetIndex == index && !_showCustomControls;
                   return Padding(
                     padding: const EdgeInsets.only(right: 8),
-                    child: _buildPresetButton(
-                      preset.name,
-                      isSelected,
-                      () => _selectPreset(index),
-                    ),
+                    child: _buildPresetButton(preset.name, isSelected, () => _selectPreset(index)),
                   );
                 }),
                 // Custom button
-                _buildPresetButton(
-                  'Vlastné',
-                  _showCustomControls,
-                  () => _toggleCustomControls(),
-                ),
+                _buildPresetButton('Vlastné', _showCustomControls, () => _toggleCustomControls()),
               ],
             ),
           ),
@@ -578,13 +541,7 @@ class _BreathingGameScreenState extends State<BreathingGameScreen>
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          label,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 16,
-          ),
-        ),
+        Text(label, style: const TextStyle(color: Colors.white, fontSize: 16)),
         Row(
           children: [
             _buildControlButton(
@@ -604,11 +561,7 @@ class _BreathingGameScreenState extends State<BreathingGameScreen>
                 ),
               ),
             ),
-            _buildControlButton(
-              Icons.add,
-              () => _adjustPhaseValue(index, 1),
-              enabled: value < 15,
-            ),
+            _buildControlButton(Icons.add, () => _adjustPhaseValue(index, 1), enabled: value < 15),
           ],
         ),
       ],
@@ -625,11 +578,7 @@ class _BreathingGameScreenState extends State<BreathingGameScreen>
           color: enabled ? Colors.white.withOpacity(0.2) : Colors.white.withOpacity(0.1),
           shape: BoxShape.circle,
         ),
-        child: Icon(
-          icon,
-          color: enabled ? Colors.white : Colors.white.withOpacity(0.3),
-          size: 20,
-        ),
+        child: Icon(icon, color: enabled ? Colors.white : Colors.white.withOpacity(0.3), size: 20),
       ),
     );
   }
@@ -694,10 +643,7 @@ class _BreathingGameScreenState extends State<BreathingGameScreen>
 
 /// Helper class for breathing presets
 class _BreathingPreset {
-  const _BreathingPreset({
-    required this.name,
-    required this.durations,
-  });
+  const _BreathingPreset({required this.name, required this.durations});
 
   final String name;
   final List<int> durations;

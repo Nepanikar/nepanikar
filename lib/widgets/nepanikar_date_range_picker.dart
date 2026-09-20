@@ -33,9 +33,9 @@ class NepanikarDateRangePicker extends StatelessWidget {
           ? (BuildContext context, Widget? child) {
               return Theme(
                 data: Theme.of(context).copyWith(
-                  colorScheme: Theme.of(context).colorScheme.copyWith(
-                    primary: NepanikarColors.primaryColorShade(context, 0.8),
-                  ),
+                  colorScheme: Theme.of(
+                    context,
+                  ).colorScheme.copyWith(primary: NepanikarColors.primaryColorShade(context, 0.8)),
                 ),
                 child: child!,
               );
@@ -46,8 +46,7 @@ class NepanikarDateRangePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dateFormatLabelPattern =
-        this.dateFormatLabelPattern ?? CustomDateFormats.datePickerLabel;
+    final dateFormatLabelPattern = this.dateFormatLabelPattern ?? CustomDateFormats.datePickerLabel;
     final backgroundColor = NepanikarColors.primaryColorShade(context, 0.6);
     svgColorBasedOnDarkMode(context);
     final colorFilter = svgColorFilterBasedOnDarkMode(context);
@@ -87,9 +86,7 @@ class NepanikarDateRangePicker extends StatelessWidget {
                     style: NepanikarFonts.bodyRoman.copyWith(color: textColor),
                   ),
                   const Spacer(),
-                  ExcludeSemantics(
-                    child: Assets.icons.calendar.svg(colorFilter: colorFilter),
-                  ),
+                  ExcludeSemantics(child: Assets.icons.calendar.svg(colorFilter: colorFilter)),
                 ],
               ),
             ),

@@ -19,8 +19,7 @@ import 'package:nepanikar/utils/registry.dart';
 part 'day5_mindfulness_screen.g.dart';
 
 @TypedGoRoute<Week5Day5MindfulnessScreenRoute>(path: '/bpd-programme/week/5/day/5')
-class Week5Day5MindfulnessScreenRoute extends GoRouteData
-    with $Week5Day5MindfulnessScreenRoute {
+class Week5Day5MindfulnessScreenRoute extends GoRouteData with $Week5Day5MindfulnessScreenRoute {
   const Week5Day5MindfulnessScreenRoute();
 
   @override
@@ -223,9 +222,7 @@ class Week5Day5PracticePage extends StatelessWidget {
             sourceLabel: 'Týden 2 • připomenuto v 5. týdnu',
           ),
           const SizedBox(height: 20),
-          _PickYourselfButton(
-            onTap: () => _showPicker(context),
-          ),
+          _PickYourselfButton(onTap: () => _showPicker(context)),
           const SizedBox(height: 24),
         ],
       ),

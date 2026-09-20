@@ -6,11 +6,7 @@ import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/widgets/material_wrapper.dart';
 
 class NepanikarDatePicker extends StatelessWidget {
-  const NepanikarDatePicker({
-    super.key,
-    this.initialDate,
-    required this.onPick,
-  });
+  const NepanikarDatePicker({super.key, this.initialDate, required this.onPick});
 
   final DateTime? initialDate;
   final ValueChanged<DateTime> onPick;
@@ -26,9 +22,9 @@ class NepanikarDatePicker extends StatelessWidget {
           ? (BuildContext context, Widget? child) {
               return Theme(
                 data: Theme.of(context).copyWith(
-                  colorScheme: Theme.of(context).colorScheme.copyWith(
-                    primary: NepanikarColors.primaryColorShade(context, 0.8),
-                  ),
+                  colorScheme: Theme.of(
+                    context,
+                  ).colorScheme.copyWith(primary: NepanikarColors.primaryColorShade(context, 0.8)),
                 ),
                 child: child!,
               );
@@ -62,9 +58,7 @@ class NepanikarDatePicker extends StatelessWidget {
                 children: [
                   Text(
                     DateFormat.yMd(locale.languageCode).format(dateToDisplay),
-                    style: NepanikarFonts.bodyRoman.copyWith(
-                      color: NepanikarColors.dark,
-                    ),
+                    style: NepanikarFonts.bodyRoman.copyWith(color: NepanikarColors.dark),
                   ),
                   const Spacer(),
                   ExcludeSemantics(child: Assets.icons.calendar.svg()),

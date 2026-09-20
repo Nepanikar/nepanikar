@@ -16,8 +16,7 @@ import 'package:nepanikar/utils/registry.dart';
 part 'day4_prevention_screen.g.dart';
 
 @TypedGoRoute<Week5Day4PreventionScreenRoute>(path: '/bpd-programme/week/5/day/4')
-class Week5Day4PreventionScreenRoute extends GoRouteData
-    with $Week5Day4PreventionScreenRoute {
+class Week5Day4PreventionScreenRoute extends GoRouteData with $Week5Day4PreventionScreenRoute {
   const Week5Day4PreventionScreenRoute();
 
   @override
@@ -171,11 +170,7 @@ class _Week5Day4WorksheetPageState extends State<Week5Day4WorksheetPage> {
           const SizedBox(height: 14),
           // TODO: schválit autorem — the source opens this day with no
           // introduction at all (OQ-6).
-          const InfoBox(
-            icon: Icons.schedule_outlined,
-            title: 'Klidně po částech',
-            text: day4Intro,
-          ),
+          const InfoBox(icon: Icons.schedule_outlined, title: 'Klidně po částech', text: day4Intro),
           const SizedBox(height: 20),
           const StructuredWorksheet(
             worksheetId: day4WorksheetId,
@@ -231,11 +226,7 @@ class _RescuePackageLink extends StatelessWidget {
                 ),
               ),
             ),
-            Icon(
-              Icons.chevron_right,
-              size: 20,
-              color: isDarkMode ? Colors.white70 : primaryColor,
-            ),
+            Icon(Icons.chevron_right, size: 20, color: isDarkMode ? Colors.white70 : primaryColor),
           ],
         ),
       ),

@@ -13,16 +13,12 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
 part 'eating_disorder_distractions_screen.g.dart';
 
-@TypedGoRoute<EatingDisorderDistractionsRoute>(
-  path: '/home/eating-disorder/distraction',
-)
-class EatingDisorderDistractionsRoute extends GoRouteData
-    with $EatingDisorderDistractionsRoute {
+@TypedGoRoute<EatingDisorderDistractionsRoute>(path: '/home/eating-disorder/distraction')
+class EatingDisorderDistractionsRoute extends GoRouteData with $EatingDisorderDistractionsRoute {
   const EatingDisorderDistractionsRoute();
 
   @override
-  Widget build(BuildContext context, _) =>
-      const EatingDisorderDistractionsScreen();
+  Widget build(BuildContext context, _) => const EatingDisorderDistractionsScreen();
 }
 
 class EatingDisorderDistractionsScreen extends StatelessWidget {
@@ -42,17 +38,13 @@ class EatingDisorderDistractionsScreen extends StatelessWidget {
       ),
       LongTile(
         text: context.l10n.breath,
-        image: Assets.illustrations.modules.breathing.svg(
-          colorFilter: colorFilter,
-        ),
+        image: Assets.illustrations.modules.breathing.svg(colorFilter: colorFilter),
         onTap: () => context.push(const BreathingExercisesRoute().location),
       ),
       if (['cs', 'sk'].contains(_userSettingsDao.locale.languageCode))
         LongTile(
           text: context.l10n.relaxation,
-          image: Assets.illustrations.modules.relaxation.svg(
-            colorFilter: colorFilter,
-          ),
+          image: Assets.illustrations.modules.relaxation.svg(colorFilter: colorFilter),
           onTap: () => context.push(const RelaxationsListRoute().location),
         ),
     ];

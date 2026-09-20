@@ -11,10 +11,7 @@ class PhoneNumberLinkifier extends Linkifier {
   const PhoneNumberLinkifier();
 
   @override
-  List<LinkifyElement> parse(
-    List<LinkifyElement> elements,
-    LinkifyOptions options,
-  ) {
+  List<LinkifyElement> parse(List<LinkifyElement> elements, LinkifyOptions options) {
     final list = <LinkifyElement>[];
 
     for (final element in elements) {
@@ -31,11 +28,7 @@ class PhoneNumberLinkifier extends Linkifier {
           }
 
           if (match.group(2)?.isNotEmpty == true) {
-            list.add(
-              PhoneNumberElement(
-                match.group(2)!.replaceFirst(RegExp('tel:'), ''),
-              ),
-            );
+            list.add(PhoneNumberElement(match.group(2)!.replaceFirst(RegExp('tel:'), '')));
           }
 
           if (text.isNotEmpty) {

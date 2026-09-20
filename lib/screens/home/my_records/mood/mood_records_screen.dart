@@ -48,8 +48,7 @@ class MoodRecordsScreen<T extends MoodTrackDao> extends StatefulWidget {
   State<MoodRecordsScreen<T>> createState() => _MoodRecordsScreenState<T>();
 }
 
-class _MoodRecordsScreenState<T extends MoodTrackDao>
-    extends State<MoodRecordsScreen<T>> {
+class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsScreen<T>> {
   int _entryCount = 5;
   int _currentPageIndex = 0;
 
@@ -62,8 +61,7 @@ class _MoodRecordsScreenState<T extends MoodTrackDao>
 
   DateTime get _now => getNowDateTimeLocal();
 
-  NotificationsService get _notificationsService =>
-      registry.get<NotificationsService>();
+  NotificationsService get _notificationsService => registry.get<NotificationsService>();
   final PageController _pageController = PageController();
 
   //////////////// Build Method //////////////////////////
@@ -75,11 +73,7 @@ class _MoodRecordsScreenState<T extends MoodTrackDao>
       NepanikarColors.container(context),
       NepanikarColors.white,
     );
-    final textColor = customColorsBasedOnDarkMode(
-      context,
-      NepanikarColors.white,
-      Colors.black,
-    );
+    final textColor = customColorsBasedOnDarkMode(context, NepanikarColors.white, Colors.black);
 
     return Scaffold(
       appBar: _appBarForPageIndex(_currentPageIndex),
@@ -103,8 +97,7 @@ class _MoodRecordsScreenState<T extends MoodTrackDao>
                   child: Consumer<MoodState>(
                     builder: (_, provider, child) {
                       final allMoodTrackData = provider.moodEntries;
-                      final firstMoodTrackDate =
-                          allMoodTrackData.firstOrNull?.date;
+                      final firstMoodTrackDate = allMoodTrackData.firstOrNull?.date;
                       return Column(
                         children: [
                           Padding(
@@ -118,10 +111,7 @@ class _MoodRecordsScreenState<T extends MoodTrackDao>
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 10,
-                              horizontal: 24,
-                            ),
+                            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
                             child: _buildChartWithFilters(
                               context,
                               allMoodTrackData: allMoodTrackData,
@@ -153,14 +143,8 @@ class _MoodRecordsScreenState<T extends MoodTrackDao>
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 10,
-                              horizontal: 24,
-                            ),
-                            child: _createHeatMap(
-                              context,
-                              moodTracks: allMoodTrackData,
-                            ),
+                            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
+                            child: _createHeatMap(context, moodTracks: allMoodTrackData),
                           ),
                         ],
                       );
@@ -187,9 +171,7 @@ class _MoodRecordsScreenState<T extends MoodTrackDao>
                   child: MoodPicker(
                     onPick: (mood) {
                       final l10n = context.l10n;
-                      unawaited(
-                        _notificationsService.rescheduleNotifications(l10n),
-                      );
+                      unawaited(_notificationsService.rescheduleNotifications(l10n));
                     },
                   ),
                 ),
@@ -198,9 +180,7 @@ class _MoodRecordsScreenState<T extends MoodTrackDao>
                     if (_entryCount > provider.moodEntries.length) {
                       _entryCount = provider.moodEntries.length;
                     }
-                    final moodEntries = provider.moodEntries.reversed
-                        .take(_entryCount)
-                        .toList();
+                    final moodEntries = provider.moodEntries.reversed.take(_entryCount).toList();
                     return ListView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
@@ -208,14 +188,9 @@ class _MoodRecordsScreenState<T extends MoodTrackDao>
                       itemBuilder: (context, index) {
                         final moodEntry = moodEntries[index];
                         return Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 10,
-                            horizontal: 16,
-                          ),
+                          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
                           child: MoodEntryCard(
-                            dateTime: DateFormat(
-                              'd. MMM yyyy, HH:mm',
-                            ).format(moodEntry.date),
+                            dateTime: DateFormat('d. MMM yyyy, HH:mm').format(moodEntry.date),
                             moodIcon: moodEntry.mood.icon,
                             moodDescription: moodEntry.summary ?? '',
                             onTap: () {
@@ -223,9 +198,7 @@ class _MoodRecordsScreenState<T extends MoodTrackDao>
                                 context,
                                 listen: false,
                               ).selectMoodEntry(moodEntry);
-                              context.push(
-                                const MoodEntryDetailRoute().location,
-                              );
+                              context.push(const MoodEntryDetailRoute().location);
                             },
                           ),
                         );
@@ -297,10 +270,7 @@ class _MoodRecordsScreenState<T extends MoodTrackDao>
             IconButton(
               icon: ExcludeSemantics(
                 child: Assets.icons.notificationBell.svg(
-                  colorFilter: const ColorFilter.mode(
-                    Colors.white,
-                    BlendMode.srcIn,
-                  ),
+                  colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
                 ),
               ),
               tooltip: context.l10n.notifications,
@@ -355,10 +325,8 @@ class _MoodRecordsScreenState<T extends MoodTrackDao>
         svgColorBasedOnDarkMode(context);
         final activeFilter = moodChartFilterProvider.activeFilter;
         final dateRange = moodChartFilterProvider.customDateRange;
-        final canShiftNextDateRange =
-            moodChartFilterProvider.canShiftDateRangeNext;
-        final currDateRangeStart =
-            moodChartFilterProvider.customDateRange?.start;
+        final canShiftNextDateRange = moodChartFilterProvider.canShiftDateRangeNext;
+        final currDateRangeStart = moodChartFilterProvider.customDateRange?.start;
         final filteredData = dateRange != null
             ? allMoodTrackData.filterByDateRange(dateRange)
             : <DateTime, List<MoodTrack>>{};
@@ -388,27 +356,20 @@ class _MoodRecordsScreenState<T extends MoodTrackDao>
                 IconButton(
                   icon: ExcludeSemantics(
                     child: Assets.icons.navigation.arrowLeft.svg(
-                      colorFilter: ColorFilter.mode(
-                        arrowCanShiftColor!,
-                        BlendMode.srcIn,
-                      ),
+                      colorFilter: ColorFilter.mode(arrowCanShiftColor!, BlendMode.srcIn),
                     ),
                   ),
                   tooltip: context.l10n.filter_previous_time_period,
-                  onPressed: () => moodChartFilterProvider.shiftDateRange(
-                    DateRangeSwitch.previous,
-                  ),
+                  onPressed: () => moodChartFilterProvider.shiftDateRange(DateRangeSwitch.previous),
                 ),
                 Expanded(
                   child: NepanikarDateRangePicker(
                     firstDate: firstMoodTrackDate == null
-                        ? currDateRangeStart ??
-                              DateTime(_now.year, _now.month - 1)
+                        ? currDateRangeStart ?? DateTime(_now.year, _now.month - 1)
                         : currDateRangeStart != null &&
                               firstMoodTrackDate.isBefore(currDateRangeStart)
                         ? firstMoodTrackDate
-                        : currDateRangeStart ??
-                              DateTime(_now.year, _now.month - 1),
+                        : currDateRangeStart ?? DateTime(_now.year, _now.month - 1),
                     lastDate: getNowDateTimeLocal(),
                     activeRange: moodChartFilterProvider.customDateRange,
                     onPick: moodChartFilterProvider.setCustomDateRange,
@@ -418,22 +379,14 @@ class _MoodRecordsScreenState<T extends MoodTrackDao>
                   icon: ExcludeSemantics(
                     child: Assets.icons.navigation.arrowRight.svg(
                       colorFilter: !canShiftNextDateRange
-                          ? const ColorFilter.mode(
-                              arrowCannotShiftColor,
-                              BlendMode.srcIn,
-                            )
-                          : ColorFilter.mode(
-                              arrowCanShiftColor,
-                              BlendMode.srcIn,
-                            ),
+                          ? const ColorFilter.mode(arrowCannotShiftColor, BlendMode.srcIn)
+                          : ColorFilter.mode(arrowCanShiftColor, BlendMode.srcIn),
                     ),
                   ),
                   tooltip: context.l10n.filter_next_time_period,
                   onPressed: !canShiftNextDateRange
                       ? null
-                      : () => moodChartFilterProvider.shiftDateRange(
-                          DateRangeSwitch.next,
-                        ),
+                      : () => moodChartFilterProvider.shiftDateRange(DateRangeSwitch.next),
                 ),
               ],
             ),
@@ -445,10 +398,7 @@ class _MoodRecordsScreenState<T extends MoodTrackDao>
   }
 
   /////////////////////////////Build Heat Map Function //////////////////////////////
-  Widget _createHeatMap(
-    BuildContext context, {
-    required List<MoodTrack> moodTracks,
-  }) {
+  Widget _createHeatMap(BuildContext context, {required List<MoodTrack> moodTracks}) {
     return Consumer<MoodHeatmapFilterProvider>(
       builder: (_, provider, _) {
         final activeFilter = provider.activeFilter;

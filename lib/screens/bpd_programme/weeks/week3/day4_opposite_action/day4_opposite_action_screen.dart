@@ -143,9 +143,7 @@ class Day4ChatPage extends StatelessWidget {
             messages: [ChatConceptCard(badge: 'ROVINA', title: title, body: body)],
           ),
         const ChatStep(
-          messages: [
-            ChatInfoCard(icon: Icons.flag_outlined, title: 'Cíl', text: day4GoalNote),
-          ],
+          messages: [ChatInfoCard(icon: Icons.flag_outlined, title: 'Cíl', text: day4GoalNote)],
         ),
         const ChatStep(
           messages: [

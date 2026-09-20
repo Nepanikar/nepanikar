@@ -98,10 +98,7 @@ const day3WorksheetExample = <(String, String)>[
 /// programme, which is why it autosaves and says so.
 const day3WorksheetSections = <(String, List<(String, String)>)>[
   ('Emoce, kterou chci změnit', [('emotion', 'Emoce, kterou chci změnit')]),
-  (
-    'Událost, která emoci vyvolala',
-    [('event', 'Popiš fakta, co jsi skutečně pozoroval/a')],
-  ),
+  ('Událost, která emoci vyvolala', [('event', 'Popiš fakta, co jsi skutečně pozoroval/a')]),
   (
     'Moje myšlenky, interpretace a předpoklady o události',
     [('thoughts', 'Co si o události myslím')],
@@ -117,10 +114,7 @@ const day3WorksheetSections = <(String, List<(String, String)>)>[
   ),
   (
     'Nejhorší scénář – co by se stalo, kdyby se opravdu stal?',
-    [
-      ('worstCase', 'Co by se stalo'),
-      ('coping', 'Jak bych situaci zvládl/a?'),
-    ],
+    [('worstCase', 'Co by se stalo'), ('coping', 'Jak bych situaci zvládl/a?')],
   ),
   (
     'Odpovídá moje emoce a její intenzita skutečným faktům?',

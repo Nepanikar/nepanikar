@@ -112,9 +112,7 @@ class _BalanceGameScreenState extends State<BalanceGameScreen> {
             left: (screen.width / 2) - (screen.width * 0.8) / 2,
             child: Transform.rotate(
               angle: (math.pi / 180) * angle,
-              child: Assets.illustrations.games.swing.balance.svg(
-                width: screen.width * 0.8,
-              ),
+              child: Assets.illustrations.games.swing.balance.svg(width: screen.width * 0.8),
             ),
           ),
           Positioned(
@@ -163,10 +161,8 @@ class _BalanceGameScreenState extends State<BalanceGameScreen> {
               ),
             ),
           ),
-          if (rightButtonActive)
-            const Positioned(bottom: 105, right: 20, child: _HeartSpray()),
-          if (leftButtonActive)
-            const Positioned(bottom: 105, left: 20, child: _HeartSpray()),
+          if (rightButtonActive) const Positioned(bottom: 105, right: 20, child: _HeartSpray()),
+          if (leftButtonActive) const Positioned(bottom: 105, left: 20, child: _HeartSpray()),
         ],
       ),
     );

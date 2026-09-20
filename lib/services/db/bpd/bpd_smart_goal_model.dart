@@ -19,6 +19,5 @@ abstract class BpdSmartGoal with _$BpdSmartGoal {
 
   const BpdSmartGoal._();
 
-  factory BpdSmartGoal.fromJson(Map<String, Object?> json) =>
-      _$BpdSmartGoalFromJson(json);
+  factory BpdSmartGoal.fromJson(Map<String, Object?> json) => _$BpdSmartGoalFromJson(json);
 }

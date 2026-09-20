@@ -81,19 +81,11 @@ const day2WorksheetLead =
 const day2PsanickoWorksheet = <WorksheetSection>[
   WorksheetSection(
     title: 'Situace',
-    fields: [
-      WorksheetField(
-        id: 'situation',
-        label: 'Situace',
-        hint: 'Co se stalo a s kým?',
-      ),
-    ],
+    fields: [WorksheetField(id: 'situation', label: 'Situace', hint: 'Co se stalo a s kým?')],
   ),
   WorksheetSection(
     title: 'P – Popis',
-    fields: [
-      WorksheetField(id: 'p', label: 'P – Popis', hint: 'Jasně a věcně popiš situaci.'),
-    ],
+    fields: [WorksheetField(id: 'p', label: 'P – Popis', hint: 'Jasně a věcně popiš situaci.')],
   ),
   WorksheetSection(
     title: 'S – Sdělení',
@@ -104,11 +96,7 @@ const day2PsanickoWorksheet = <WorksheetSection>[
   WorksheetSection(
     title: 'A – Asertivita',
     fields: [
-      WorksheetField(
-        id: 'a',
-        label: 'A – Asertivita',
-        hint: 'Otevřeně požádej nebo řekni ne.',
-      ),
+      WorksheetField(id: 'a', label: 'A – Asertivita', hint: 'Otevřeně požádej nebo řekni ne.'),
     ],
   ),
   WorksheetSection(
@@ -134,11 +122,7 @@ const day2PsanickoWorksheet = <WorksheetSection>[
   WorksheetSection(
     title: 'Č – Cílevědomě',
     fields: [
-      WorksheetField(
-        id: 'c',
-        label: 'Č – Cílevědomě',
-        hint: 'Vystupuj klidně a s jistotou.',
-      ),
+      WorksheetField(id: 'c', label: 'Č – Cílevědomě', hint: 'Vystupuj klidně a s jistotou.'),
     ],
   ),
   WorksheetSection(
@@ -189,5 +173,4 @@ const day2PsanickoExample = <(String, String)>[
 // Page 4/4 — completion
 // ─────────────────────────────────────────────────────────────────────────────
 
-const day2CompletionText =
-    'Skvěle, že se do průvodce pořád pouštíš. Pro dnešní den je to všechno.';
+const day2CompletionText = 'Skvěle, že se do průvodce pořád pouštíš. Pro dnešní den je to všechno.';

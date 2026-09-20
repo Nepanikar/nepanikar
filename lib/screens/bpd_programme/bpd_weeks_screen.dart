@@ -121,7 +121,6 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
     });
   }
 
-
   void _showLockedWeekSheet(BpdWeekProgress weekProgress) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final primaryColor = Theme.of(context).primaryColor;

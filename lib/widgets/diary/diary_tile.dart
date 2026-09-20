@@ -28,16 +28,12 @@ class DiaryTile extends StatelessWidget {
     final locale = Localizations.localeOf(context);
 
     return LongTile(
-      image: Assets.illustrations.modules.myRecords.svg(
-        colorFilter: colorFilter,
-      ),
+      image: Assets.illustrations.modules.myRecords.svg(colorFilter: colorFilter),
       text: DateFormat.yMd(locale.languageCode).format(date),
       textTextStyle: textStyle.copyWith(
         fontSize: 12,
         fontWeight: FontWeight.w700,
-        color: NepanikarColors.primarySwatch(
-          Theme.of(context).primaryColor,
-        ).shade700,
+        color: NepanikarColors.primarySwatch(Theme.of(context).primaryColor).shade700,
       ),
       description: title,
       descriptionSemanticsEnabled: isTitle,

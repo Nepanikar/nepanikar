@@ -37,9 +37,7 @@ class TestResultsDao {
     );
 
     final snapshots = await _store.find(_db, finder: finder);
-    return snapshots
-        .map((snapshot) => TestResult.fromJson(snapshot.value))
-        .toList();
+    return snapshots.map((snapshot) => TestResult.fromJson(snapshot.value)).toList();
   }
 
   Future<TestResult?> getLatestTestResult(String testId) async {
@@ -51,9 +49,7 @@ class TestResultsDao {
     final finder = Finder(sortOrders: [SortOrder('completedAt', false)]);
 
     final snapshots = await _store.find(_db, finder: finder);
-    return snapshots
-        .map((snapshot) => TestResult.fromJson(snapshot.value))
-        .toList();
+    return snapshots.map((snapshot) => TestResult.fromJson(snapshot.value)).toList();
   }
 
   Stream<List<TestResult>> watchTestResults(String testId) {
@@ -66,9 +62,7 @@ class TestResultsDao {
         .query(finder: finder)
         .onSnapshots(_db)
         .map(
-          (snapshots) => snapshots
-              .map((snapshot) => TestResult.fromJson(snapshot.value))
-              .toList(),
+          (snapshots) => snapshots.map((snapshot) => TestResult.fromJson(snapshot.value)).toList(),
         );
   }
 

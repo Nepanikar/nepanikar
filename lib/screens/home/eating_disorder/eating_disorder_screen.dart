@@ -21,8 +21,7 @@ part 'eating_disorder_screen.g.dart';
 class EatingDisorderRoute extends GoRouteData with $EatingDisorderRoute {
   const EatingDisorderRoute();
 
-  ContactsDataManager get _contactsManager =>
-      registry.get<ContactsDataManager>();
+  ContactsDataManager get _contactsManager => registry.get<ContactsDataManager>();
 
   UserSettingsDao get _userSettingsDao => registry.get<UserSettingsDao>();
 
@@ -32,9 +31,7 @@ class EatingDisorderRoute extends GoRouteData with $EatingDisorderRoute {
     final eatingDisorderContacts = _contactsManager
         .getContactsFromLocale(locale)
         .eatingDisorderContacts;
-    return EatingDisorderScreen(
-      shouldShowContactsTile: eatingDisorderContacts != null,
-    );
+    return EatingDisorderScreen(shouldShowContactsTile: eatingDisorderContacts != null);
   }
 }
 
@@ -51,49 +48,34 @@ class EatingDisorderScreen extends StatelessWidget {
     final modules = <Widget>[
       LongTile(
         text: context.l10n.food_tips,
-        image: Assets.illustrations.modules.eatingTips.svg(
-          colorFilter: colorFilter,
-        ),
+        image: Assets.illustrations.modules.eatingTips.svg(colorFilter: colorFilter),
         onTap: () => context.push(const EatingDisorderTipsRoute().location),
       ),
       LongTile(
         text: context.l10n.food_tasks,
-        image: Assets.illustrations.modules.homework.svg(
-          colorFilter: colorFilter,
-        ),
+        image: Assets.illustrations.modules.homework.svg(colorFilter: colorFilter),
         onTap: () => context.push(const EatingDisorderTasksRoute().location),
       ),
       LongTile(
         text: context.l10n.food_dishes,
-        image: Assets.illustrations.modules.eatingDisorder.svg(
-          colorFilter: colorFilter,
-        ),
+        image: Assets.illustrations.modules.eatingDisorder.svg(colorFilter: colorFilter),
         onTap: () => context.push(const EatingDisorderSamplesRoute().location),
       ),
       LongTile(
         text: context.l10n.distraction,
-        image: Assets.illustrations.games.math.math.svg(
-          colorFilter: colorFilter,
-        ),
-        onTap: () =>
-            context.push(const EatingDisorderDistractionsRoute().location),
+        image: Assets.illustrations.games.math.math.svg(colorFilter: colorFilter),
+        onTap: () => context.push(const EatingDisorderDistractionsRoute().location),
       ),
       if (shouldShowContactsTile)
         LongTile(
           text: context.l10n.food_contact,
-          image: Assets.illustrations.contacts.phones.svg(
-            colorFilter: colorFilter,
-          ),
-          onTap: () =>
-              context.push(const EatingDisorderContactsRoute().location),
+          image: Assets.illustrations.contacts.phones.svg(colorFilter: colorFilter),
+          onTap: () => context.push(const EatingDisorderContactsRoute().location),
         ),
       LongTile(
         text: context.l10n.food_records,
-        image: Assets.illustrations.modules.foodTracker.svg(
-          colorFilter: colorFilter,
-        ),
-        onTap: () =>
-            context.push(const MyRecordsFoodRecordsListRoute().location),
+        image: Assets.illustrations.modules.foodTracker.svg(colorFilter: colorFilter),
+        onTap: () => context.push(const MyRecordsFoodRecordsListRoute().location),
       ),
     ];
     return NepanikarScreenWrapper(

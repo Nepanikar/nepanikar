@@ -5,8 +5,7 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 part 'bpd_programme_screen.g.dart';
 
 @TypedGoRoute<BpdProgrammeScreenRoute>(path: '/bpd-programme')
-class BpdProgrammeScreenRoute extends GoRouteData
-    with $BpdProgrammeScreenRoute {
+class BpdProgrammeScreenRoute extends GoRouteData with $BpdProgrammeScreenRoute {
   const BpdProgrammeScreenRoute();
 
   @override
@@ -23,9 +22,7 @@ class BpdProgrammeScreen extends StatelessWidget {
       showBottomNavbar: true,
       children: [
         const SizedBox(height: 40),
-        const Center(
-          child: Icon(Icons.construction, size: 80, color: Colors.grey),
-        ),
+        const Center(child: Icon(Icons.construction, size: 80, color: Colors.grey)),
         const SizedBox(height: 24),
         const Center(
           child: Padding(

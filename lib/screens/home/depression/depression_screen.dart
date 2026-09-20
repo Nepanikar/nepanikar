@@ -30,33 +30,23 @@ class DepressionScreen extends StatelessWidget {
     final modules = <Widget>[
       LongTile(
         text: context.l10n.depression_help,
-        image: Assets.illustrations.modules.whatCanHelpMe.svg(
-          colorFilter: colorFilter,
-        ),
+        image: Assets.illustrations.modules.whatCanHelpMe.svg(colorFilter: colorFilter),
         onTap: () => context.push(const DepressionTipsAppRoute().location),
       ),
       LongTile(
         text: context.l10n.depression_plan,
-        image: Assets.illustrations.modules.activityPlanning.svg(
-          colorFilter: colorFilter,
-        ),
+        image: Assets.illustrations.modules.activityPlanning.svg(colorFilter: colorFilter),
         onTap: () => context.push(const DepressionActivityPlanRoute().location),
       ),
       LongTile(
         text: context.l10n.depression_nice,
-        image: Assets.illustrations.modules.whatPleasedMe.svg(
-          colorFilter: colorFilter,
-        ),
-        onTap: () =>
-            context.push(const DepressionNiceMadeHappyRoute().location),
+        image: Assets.illustrations.modules.whatPleasedMe.svg(colorFilter: colorFilter),
+        onTap: () => context.push(const DepressionNiceMadeHappyRoute().location),
       ),
       LongTile(
         text: context.l10n.depression_praise,
-        image: Assets.illustrations.modules.mySuccess.svg(
-          colorFilter: colorFilter,
-        ),
-        onTap: () =>
-            context.push(const DepressionPraiseMyAchievementsRoute().location),
+        image: Assets.illustrations.modules.mySuccess.svg(colorFilter: colorFilter),
+        onTap: () => context.push(const DepressionPraiseMyAchievementsRoute().location),
       ),
     ];
     return NepanikarScreenWrapper(

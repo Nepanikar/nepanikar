@@ -2,13 +2,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/widgets/heatmap/util/date_util.dart';
 
 class HeatMapWeekText extends StatelessWidget {
-  const HeatMapWeekText({
-    super.key,
-    this.margin,
-    this.fontSize,
-    this.size,
-    this.fontColor,
-  });
+  const HeatMapWeekText({super.key, this.margin, this.fontSize, this.size, this.fontColor});
 
   /// The margin value for correctly space between labels.
   final EdgeInsets? margin;

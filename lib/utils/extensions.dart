@@ -10,11 +10,7 @@ extension SnackbarControllersExt on BuildContext {
 }
 
 extension CustomSnackBar on BuildContext {
-  void showSuccessSnackbar({
-    required String text,
-    Widget? leading,
-    Widget? trailing,
-  }) {
+  void showSuccessSnackbar({required String text, Widget? leading, Widget? trailing}) {
     ScaffoldMessenger.of(this).showSnackBar(
       nepanikarSnackbar(
         text: text,
@@ -25,11 +21,7 @@ extension CustomSnackBar on BuildContext {
     );
   }
 
-  void showErrorSnackbar({
-    required String text,
-    Widget? leading,
-    Widget? trailing,
-  }) {
+  void showErrorSnackbar({required String text, Widget? leading, Widget? trailing}) {
     ScaffoldMessenger.of(this).showSnackBar(
       nepanikarSnackbar(
         text: text,
@@ -40,11 +32,7 @@ extension CustomSnackBar on BuildContext {
     );
   }
 
-  void showInfoSnackbar({
-    required String text,
-    Widget? leading,
-    Widget? trailing,
-  }) {
+  void showInfoSnackbar({required String text, Widget? leading, Widget? trailing}) {
     ScaffoldMessenger.of(this).showSnackBar(
       nepanikarSnackbar(
         text: text,

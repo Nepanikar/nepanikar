@@ -32,11 +32,7 @@ class CrisisMessageRouteExtraData extends Equatable {
 }
 
 class CrisisMessageContent extends StatefulWidget {
-  const CrisisMessageContent({
-    super.key,
-    this.contactAddress,
-    this.subjectMessage,
-  });
+  const CrisisMessageContent({super.key, this.contactAddress, this.subjectMessage});
 
   final String? contactAddress;
   final String? subjectMessage;
@@ -49,8 +45,7 @@ class _CrisisMessageContentState extends State<CrisisMessageContent> {
   MyContactsCrisisMessageDao get _myContactsCrisisMessageDao =>
       registry.get<MyContactsCrisisMessageDao>();
 
-  bool get _hasInitialValues =>
-      widget.contactAddress != null && widget.subjectMessage != null;
+  bool get _hasInitialValues => widget.contactAddress != null && widget.subjectMessage != null;
 
   final _addressEmailController = TextEditingController();
   final _messageTextController = TextEditingController();
@@ -62,8 +57,7 @@ class _CrisisMessageContentState extends State<CrisisMessageContent> {
   @override
   void initState() {
     super.initState();
-    _contactAddressAndMessageStream =
-        _myContactsCrisisMessageDao.contactAddressAndMessageStream;
+    _contactAddressAndMessageStream = _myContactsCrisisMessageDao.contactAddressAndMessageStream;
   }
 
   @override
@@ -90,9 +84,7 @@ class _CrisisMessageContentState extends State<CrisisMessageContent> {
   }) {
     textController
       ..text = initialValue
-      ..selection = TextSelection.fromPosition(
-        TextPosition(offset: initialValue.length),
-      );
+      ..selection = TextSelection.fromPosition(TextPosition(offset: initialValue.length));
     final textColor = textColorBasedOnDarkMode(context);
     return Column(
       children: [
@@ -167,13 +159,11 @@ class _CrisisMessageContentState extends State<CrisisMessageContent> {
                     onSaved: _hasInitialValues
                         ? null
                         : () async {
-                            await _myContactsCrisisMessageDao
-                                .saveContactAddress(
-                                  _addressEmailController.text,
-                                );
+                            await _myContactsCrisisMessageDao.saveContactAddress(
+                              _addressEmailController.text,
+                            );
                           },
-                    onFieldSubmitted: () =>
-                        FocusScope.of(context).requestFocus(_messageFocusNode),
+                    onFieldSubmitted: () => FocusScope.of(context).requestFocus(_messageFocusNode),
                   ),
                   const SizedBox(height: 4),
                   _buildForm(

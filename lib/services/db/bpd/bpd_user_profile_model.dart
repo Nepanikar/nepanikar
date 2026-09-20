@@ -25,6 +25,5 @@ abstract class BpdUserProfile with _$BpdUserProfile {
 
   const BpdUserProfile._();
 
-  factory BpdUserProfile.fromJson(Map<String, Object?> json) =>
-      _$BpdUserProfileFromJson(json);
+  factory BpdUserProfile.fromJson(Map<String, Object?> json) => _$BpdUserProfileFromJson(json);
 }

@@ -16,8 +16,7 @@ import 'package:nepanikar/utils/registry.dart';
 part 'day5_self_esteem_screen.g.dart';
 
 @TypedGoRoute<Week6Day5SelfEsteemScreenRoute>(path: '/bpd-programme/week/6/day/5')
-class Week6Day5SelfEsteemScreenRoute extends GoRouteData
-    with $Week6Day5SelfEsteemScreenRoute {
+class Week6Day5SelfEsteemScreenRoute extends GoRouteData with $Week6Day5SelfEsteemScreenRoute {
   const Week6Day5SelfEsteemScreenRoute();
 
   @override
@@ -126,14 +125,12 @@ class Week6Day5ChatPage extends StatelessWidget {
       onCompleted: onNext,
       steps: [
         for (var i = 0; i < day5Opening.length; i++)
-          ChatStep(messages: [ChatBotBubble(text: day5Opening[i], showAvatar: i == 0)]),
+          ChatStep(
+            messages: [ChatBotBubble(text: day5Opening[i], showAvatar: i == 0)],
+          ),
         const ChatStep(
           messages: [
-            ChatInfoCard(
-              icon: Icons.self_improvement,
-              title: 'neZOUFej',
-              text: day5SkillIntro,
-            ),
+            ChatInfoCard(icon: Icons.self_improvement, title: 'neZOUFej', text: day5SkillIntro),
           ],
           buttonLabel: 'Naučit se neZOUFej',
         ),
@@ -158,9 +155,7 @@ class Week6Day5NezoufejPage extends StatelessWidget {
       rescueItem: BpdRescueItem(
         id: day5NezoufejRescueId,
         title: 'neZOUFej',
-        description: day5NezoufejLetters
-            .map((l) => '${l.$1} – ${l.$2}: ${l.$3}')
-            .join('\n'),
+        description: day5NezoufejLetters.map((l) => '${l.$1} – ${l.$2}: ${l.$3}').join('\n'),
         sourceLabel: 'Týden 6 • Den 5',
         savedAt: DateTime.now(),
         iconKey: 'shield',
@@ -205,10 +200,7 @@ class Week6Day5WorksheetPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 18),
-          const StructuredWorksheet(
-            worksheetId: day5WorksheetId,
-            sections: day5NezoufejWorksheet,
-          ),
+          const StructuredWorksheet(worksheetId: day5WorksheetId, sections: day5NezoufejWorksheet),
           const SizedBox(height: 16),
         ],
       ),

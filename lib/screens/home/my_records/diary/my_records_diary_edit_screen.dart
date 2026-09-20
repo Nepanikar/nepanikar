@@ -14,8 +14,7 @@ import 'package:nepanikar/widgets/diary/diary_edit_content.dart';
 part 'my_records_diary_edit_screen.g.dart';
 
 @TypedGoRoute<MyRecordsDiaryEditRoute>(path: '/home/my-records/diary/edit')
-class MyRecordsDiaryEditRoute extends GoRouteData
-    with $MyRecordsDiaryEditRoute {
+class MyRecordsDiaryEditRoute extends GoRouteData with $MyRecordsDiaryEditRoute {
   const MyRecordsDiaryEditRoute();
 
   @override
@@ -28,10 +27,7 @@ class MyRecordsDiaryEditRoute extends GoRouteData
 }
 
 class MyRecordsDiaryEditScreen extends StatelessWidget {
-  const MyRecordsDiaryEditScreen({
-    super.key,
-    required this.diaryRecordRouteExtraData,
-  });
+  const MyRecordsDiaryEditScreen({super.key, required this.diaryRecordRouteExtraData});
 
   final DiaryRecordRouteExtraData diaryRecordRouteExtraData;
 

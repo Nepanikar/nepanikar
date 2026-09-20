@@ -24,10 +24,7 @@ class Week3ObstaclesPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 12),
-          const SectionHeader(
-            icon: Icons.filter_alt_outlined,
-            title: 'Proč je regulace těžká',
-          ),
+          const SectionHeader(icon: Icons.filter_alt_outlined, title: 'Proč je regulace těžká'),
           const SizedBox(height: 12),
           Text(
             'Regulace emocí může být těžká z více důvodů:',
@@ -42,11 +39,7 @@ class Week3ObstaclesPage extends StatelessWidget {
             final (title, description) = day1Obstacles[i];
             return Padding(
               padding: const EdgeInsets.only(bottom: 10),
-              child: NumberedBenefit(
-                number: '${i + 1}',
-                title: title,
-                description: description,
-              ),
+              child: NumberedBenefit(number: '${i + 1}', title: title, description: description),
             );
           }),
           const SizedBox(height: 10),

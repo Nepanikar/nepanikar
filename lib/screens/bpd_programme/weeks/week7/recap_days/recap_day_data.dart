@@ -206,7 +206,8 @@ final week7Day2 = Week7RecapDay(
         'poznal/a a chceš si ho zopakovat. Důležité je, že máš možnost si '
         'vybrat a zkusit to tak, jak ti to nejvíc pomáhá.',
   ],
-  pickLead: 'Vyber si z nabídky všímavých cvičení to, které ti právě teď '
+  pickLead:
+      'Vyber si z nabídky všímavých cvičení to, které ti právě teď '
       'nejvíc vyhovuje, a věnuj mu chvíli pozornosti.',
   techniques: week4DrawPool,
   sourceLabel: 'Týden 2 • připomenuto v 7. týdnu',
@@ -236,13 +237,13 @@ final week7Day3 = Week7RecapDay(
         'zmírňovat citlivost na stresory a připravovat se na náročné situace '
         'dopředu.',
   ],
-  pickLead: 'Teď si vyber, co z těchto nástrojů chceš procvičit, zopakovat a '
+  pickLead:
+      'Teď si vyber, co z těchto nástrojů chceš procvičit, zopakovat a '
       'posílit, podle toho, co ti právě teď nejvíc pomáhá.',
   techniques: _week3Skills,
   sourceLabel: 'Týden 3 • připomenuto v 7. týdnu',
   // Verbatim, including the missing word in "dovednosti z můžou" (OQ-2).
-  completionText:
-      'Díky, že stále pokračuješ! Věříme, že Ti dovednosti z můžou přinést úlevu.',
+  completionText: 'Díky, že stále pokračuješ! Věříme, že Ti dovednosti z můžou přinést úlevu.',
   nextDay: const NextDayTeaser(
     title: 'Snášení tísně',
     description: 'STOP, TIPS a UZNÁVÁM — co z toho si chceš připomenout.',
@@ -265,7 +266,8 @@ final week7Day4 = Week7RecapDay(
         'uzemňovací cvičení pomocí pěti smyslů a body scan. Dále jsme si '
         'připomněli využití všímavosti k uklidnění mysli.',
   ],
-  pickLead: 'Teď si vyber, co z těchto nástrojů chceš procvičit nebo zopakovat '
+  pickLead:
+      'Teď si vyber, co z těchto nástrojů chceš procvičit nebo zopakovat '
       'podle toho, co ti právě teď nejvíc pomáhá.',
   techniques: _week4Skills,
   sourceLabel: 'Týden 4 • připomenuto v 7. týdnu',
@@ -292,7 +294,8 @@ final week7Day5 = Week7RecapDay(
     'Naučili jsme se využívat mindfulness techniky a STOP techniku k vědomému '
         'zastavení impulzivní reakce.',
   ],
-  pickLead: 'Teď si vyber, co z těchto nástrojů chceš procvičit nebo zopakovat '
+  pickLead:
+      'Teď si vyber, co z těchto nástrojů chceš procvičit nebo zopakovat '
       'podle toho, co ti právě teď nejvíc pomáhá.',
   techniques: _week5Skills,
   sourceLabel: 'Týden 5 • připomenuto v 7. týdnu',
@@ -318,7 +321,8 @@ final week7Day6 = Week7RecapDay(
         'ověřování negativních myšlenek o sobě.',
     'Dále jsme si připomněli řetězovou analýzu a sledování vzorců chování.',
   ],
-  pickLead: 'Teď si vyber, co z těchto nástrojů chceš procvičit nebo zopakovat '
+  pickLead:
+      'Teď si vyber, co z těchto nástrojů chceš procvičit nebo zopakovat '
       'podle toho, co ti právě teď nejvíc pomáhá.',
   techniques: _week6Skills,
   sourceLabel: 'Týden 6 • připomenuto v 7. týdnu',

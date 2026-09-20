@@ -83,9 +83,7 @@ class HeatMapCalendarRow extends StatelessWidget {
                                    (datasets?[DateTime(
                                          startDate.year,
                                          startDate.month,
-                                         startDate.day +
-                                             i -
-                                             (startDate.weekday % 7),
+                                         startDate.day + i - (startDate.weekday % 7),
                                        )] ??
                                        1) /
                                    (maxValue ?? 1),

@@ -25,8 +25,7 @@ class _SpokoChallengePageState extends State<SpokoChallengePage> {
 
   BpdChallengesDao get _challengesDao => registry.get<BpdChallengesDao>();
 
-  BpdChallengeTrackerDao get _trackerDao =>
-      registry.get<BpdChallengeTrackerDao>();
+  BpdChallengeTrackerDao get _trackerDao => registry.get<BpdChallengeTrackerDao>();
 
   @override
   void initState() {

@@ -38,8 +38,7 @@ class Week5Day2LifeThreateningScreen extends StatefulWidget {
   const Week5Day2LifeThreateningScreen({super.key});
 
   @override
-  State<Week5Day2LifeThreateningScreen> createState() =>
-      _Week5Day2LifeThreateningScreenState();
+  State<Week5Day2LifeThreateningScreen> createState() => _Week5Day2LifeThreateningScreenState();
 }
 
 class _Week5Day2LifeThreateningScreenState extends State<Week5Day2LifeThreateningScreen> {
@@ -171,7 +170,9 @@ class Week5Day2WarningPage extends StatelessWidget {
       secondaryAction: _SkipButton(onTap: onSkip),
       steps: [
         for (var i = 0; i < day2Warning.length; i++)
-          ChatStep(messages: [ChatBotBubble(text: day2Warning[i], showAvatar: i == 0)]),
+          ChatStep(
+            messages: [ChatBotBubble(text: day2Warning[i], showAvatar: i == 0)],
+          ),
         ChatStep(
           messages: [
             ChatRichMessage(
@@ -314,9 +315,7 @@ class _Week5Day2ReliefListPageState extends State<Week5Day2ReliefListPage> {
           const SizedBox(height: 16),
           StructuredWorksheet(
             worksheetId: day2ReliefListId,
-            sections: const [
-              WorksheetSection(title: 'Mých 5 činností', fields: day2ReliefFields),
-            ],
+            sections: const [WorksheetSection(title: 'Mých 5 činností', fields: day2ReliefFields)],
             insertController: _insertController,
           ),
           const SizedBox(height: 4),
@@ -662,11 +661,7 @@ class _CareLink extends StatelessWidget {
                 ),
               ),
             ),
-            Icon(
-              Icons.chevron_right,
-              size: 20,
-              color: isDarkMode ? Colors.white70 : primaryColor,
-            ),
+            Icon(Icons.chevron_right, size: 20, color: isDarkMode ? Colors.white70 : primaryColor),
           ],
         ),
       ),

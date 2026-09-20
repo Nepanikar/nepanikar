@@ -9,14 +9,9 @@ import 'package:nepanikar/widgets/test/test_score_widget.dart';
 
 part 'test_result_screen.g.dart';
 
-@TypedGoRoute<TestResultScreenRoute>(
-  path: '/home/my-records/test-result/:testId/:completedAt',
-)
+@TypedGoRoute<TestResultScreenRoute>(path: '/home/my-records/test-result/:testId/:completedAt')
 class TestResultScreenRoute extends GoRouteData with $TestResultScreenRoute {
-  const TestResultScreenRoute({
-    required this.testId,
-    required this.completedAt,
-  });
+  const TestResultScreenRoute({required this.testId, required this.completedAt});
 
   final String testId;
   final int completedAt;
@@ -27,11 +22,7 @@ class TestResultScreenRoute extends GoRouteData with $TestResultScreenRoute {
 }
 
 class TestResultScreen extends StatefulWidget {
-  const TestResultScreen({
-    super.key,
-    required this.testId,
-    required this.completedAt,
-  });
+  const TestResultScreen({super.key, required this.testId, required this.completedAt});
 
   final String testId;
   final int completedAt;
@@ -88,10 +79,7 @@ class _TestResultScreenState extends State<TestResultScreen> {
 
   double _getAverageScore() {
     if (_allResults.isEmpty) return 0;
-    final total = _allResults.fold<int>(
-      0,
-      (sum, result) => sum + result.totalScore,
-    );
+    final total = _allResults.fold<int>(0, (sum, result) => sum + result.totalScore);
     return total / _allResults.length;
   }
 
@@ -105,7 +93,6 @@ class _TestResultScreenState extends State<TestResultScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     if (_isLoading) {
       return const NepanikarScreenWrapper(
         appBarTitle: 'Výsledok testu',
@@ -134,10 +121,7 @@ class _TestResultScreenState extends State<TestResultScreen> {
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 10),
           padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
-          ),
+          decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -185,10 +169,7 @@ class _TestResultScreenState extends State<TestResultScreen> {
                     children: [
                       const Text(
                         "Previous Score",
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: NepanikarColors.defaultPrimary,
-                        ),
+                        style: TextStyle(fontSize: 14, color: NepanikarColors.defaultPrimary),
                       ),
                       const SizedBox(height: 8),
                       Text(
@@ -219,10 +200,7 @@ class _TestResultScreenState extends State<TestResultScreen> {
                     children: [
                       const Text(
                         "Average",
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: NepanikarColors.defaultPrimary,
-                        ),
+                        style: TextStyle(fontSize: 14, color: NepanikarColors.defaultPrimary),
                       ),
                       const SizedBox(height: 8),
                       Text(

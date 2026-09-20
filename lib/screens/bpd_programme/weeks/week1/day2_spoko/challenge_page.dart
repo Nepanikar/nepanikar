@@ -46,8 +46,7 @@ class _Day2ChallengePageState extends State<Day2ChallengePage> {
 
   BpdChallengesDao get _challengesDao => registry.get<BpdChallengesDao>();
 
-  BpdChallengeTrackerDao get _trackerDao =>
-      registry.get<BpdChallengeTrackerDao>();
+  BpdChallengeTrackerDao get _trackerDao => registry.get<BpdChallengeTrackerDao>();
 
   @override
   void initState() {
@@ -74,11 +73,7 @@ class _Day2ChallengePageState extends State<Day2ChallengePage> {
 
   Future<void> _onContinue() async {
     final selected = _selected.toList();
-    await _challengesDao.saveSelectedChallenges(
-      weekNumber: 1,
-      dayNumber: 2,
-      items: selected,
-    );
+    await _challengesDao.saveSelectedChallenges(weekNumber: 1, dayNumber: 2, items: selected);
     final removedReminderIds = await _trackerDao.syncDaySelection(
       weekNumber: 1,
       dayNumber: 2,

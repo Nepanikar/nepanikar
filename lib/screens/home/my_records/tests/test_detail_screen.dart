@@ -11,9 +11,7 @@ import 'package:nepanikar/widgets/test/test_card.dart';
 
 part 'test_detail_screen.g.dart';
 
-@TypedGoRoute<TestDetailScreenRoute>(
-  path: '/home/my-records/tests/test-detail/:testId',
-)
+@TypedGoRoute<TestDetailScreenRoute>(path: '/home/my-records/tests/test-detail/:testId')
 class TestDetailScreenRoute extends GoRouteData with $TestDetailScreenRoute {
   const TestDetailScreenRoute({required this.testId});
 
@@ -43,14 +41,12 @@ class _TestDetailScreenState extends State<TestDetailScreen> {
 
   Future<void> _loadTestDetailsFallback() async {
     try {
-      final String jsonString = await rootBundle.loadString(
-        'assets/tests/tests-data.json',
-      );
+      final String jsonString = await rootBundle.loadString('assets/tests/tests-data.json');
       final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
 
-      final Map<String, dynamic> testJson = jsonList
-          .cast<Map<String, dynamic>>()
-          .firstWhere((item) => item['id'] == widget.testId);
+      final Map<String, dynamic> testJson = jsonList.cast<Map<String, dynamic>>().firstWhere(
+        (item) => item['id'] == widget.testId,
+      );
 
       if (mounted) {
         setState(() {

@@ -39,24 +39,18 @@ Future<void> setup() async {
     FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
     return true;
   };
-  await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(
-    !kDebugMode,
-  );
+  await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(!kDebugMode);
 
   // Analytics
   registry.registerSingleton<FirebaseAnalytics>(FirebaseAnalytics.instance);
-  await registry.get<FirebaseAnalytics>().setAnalyticsCollectionEnabled(
-    kReleaseMode,
-  );
+  await registry.get<FirebaseAnalytics>().setAnalyticsCollectionEnabled(kReleaseMode);
 
   // Initialize intl localizations.
   loadDateIntlDataIfNotLoaded();
 
   // router
   registry.registerSingleton<GoRouter>(goRouterConfig);
-  registry.registerLazySingleton<GlobalKey<NavigatorState>>(
-    () => GlobalKey<NavigatorState>(),
-  );
+  registry.registerLazySingleton<GlobalKey<NavigatorState>>(() => GlobalKey<NavigatorState>());
 
   // services
   registry.registerSingleton<SaveDirectories>(SaveDirectories());
@@ -76,9 +70,7 @@ Future<void> setup() async {
   );
   await registry.get<NotificationsService>().init();
 
-  registry.registerSingleton(
-    ExportService(databaseService: registry.get<DatabaseService>()),
-  );
+  registry.registerSingleton(ExportService(databaseService: registry.get<DatabaseService>()));
 
   // utils
   final appInfo = await PackageInfo.fromPlatform();

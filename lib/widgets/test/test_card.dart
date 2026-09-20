@@ -45,13 +45,7 @@ class TestCard extends StatelessWidget {
                       imagePath,
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) {
-                        return const Center(
-                          child: Icon(
-                            Icons.image,
-                            size: 80,
-                            color: Colors.grey,
-                          ),
-                        );
+                        return const Center(child: Icon(Icons.image, size: 80, color: Colors.grey));
                       },
                     ),
             ),
@@ -95,17 +89,12 @@ class TestCard extends StatelessWidget {
                         backgroundColor: const Color(0xFF4A148C),
                         foregroundColor: Colors.white,
                         padding: const EdgeInsets.symmetric(vertical: 16),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                         elevation: 0,
                       ),
                       child: const Text(
                         'Start Test',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
+                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                       ),
                     ),
                   ),

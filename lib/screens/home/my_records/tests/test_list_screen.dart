@@ -68,17 +68,12 @@ class _TestListScreenState extends State<TestListScreen> {
 
   Future<void> _loadManifest() async {
     try {
-      final String jsonString = await rootBundle.loadString(
-        'assets/tests/tests-data.json',
-      );
+      final String jsonString = await rootBundle.loadString('assets/tests/tests-data.json');
 
       final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
 
       final List<TestMetadata> tests = jsonList
-          .map(
-            (jsonItem) =>
-                TestMetadata.fromJson(jsonItem as Map<String, dynamic>),
-          )
+          .map((jsonItem) => TestMetadata.fromJson(jsonItem as Map<String, dynamic>))
           .toList();
 
       if (mounted) {
@@ -112,8 +107,7 @@ class _TestListScreenState extends State<TestListScreen> {
         return LongTile(
           text: test.name,
           image: SvgPicture.asset(test.svgImagePath, colorFilter: colorFilter),
-          onTap: () =>
-              context.push(TestDetailScreenRoute(testId: test.id).location),
+          onTap: () => context.push(TestDetailScreenRoute(testId: test.id).location),
         );
       }).toList();
     }

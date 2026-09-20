@@ -36,11 +36,7 @@ class ExportService {
       }
     } catch (e, s) {
       onError?.call();
-      await logExceptionToCrashlytics(
-        e,
-        s,
-        logMessage: 'EXPORT_SERVICE: Cannot export data',
-      );
+      await logExceptionToCrashlytics(e, s, logMessage: 'EXPORT_SERVICE: Cannot export data');
     }
   }
 
@@ -60,22 +56,14 @@ class ExportService {
         // Therefore we create new memory database from imported data and merge them
         // into currently open database.
         // https://github.com/tekartik/sembast.dart/issues/289
-        final importDb = await importDatabase(
-          parsed,
-          newDatabaseFactoryMemory(),
-          'export',
-        );
+        final importDb = await importDatabase(parsed, newDatabaseFactoryMemory(), 'export');
         await databaseMerge(databaseService.database, sourceDatabase: importDb);
 
         onSuccess?.call();
       }
     } catch (e, s) {
       onError?.call();
-      await logExceptionToCrashlytics(
-        e,
-        s,
-        logMessage: 'EXPORT_SERVICE: Cannot import data',
-      );
+      await logExceptionToCrashlytics(e, s, logMessage: 'EXPORT_SERVICE: Cannot import data');
     }
   }
 }

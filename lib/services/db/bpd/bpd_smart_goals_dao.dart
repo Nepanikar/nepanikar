@@ -57,9 +57,7 @@ class BpdSmartGoalsDao {
     return snapshot != null ? BpdSmartGoal.fromJson(snapshot) : null;
   }
 
-  Future<Map<String, BpdSmartGoal>> getAllGoals({
-    bool includeArchived = false,
-  }) async {
+  Future<Map<String, BpdSmartGoal>> getAllGoals({bool includeArchived = false}) async {
     final finder = includeArchived
         ? Finder(sortOrders: [SortOrder('createdAt', false)])
         : Finder(
@@ -82,10 +80,7 @@ class BpdSmartGoalsDao {
   Future<void> archiveGoal(String key) async {
     final goal = await getGoal(key);
     if (goal != null) {
-      final archived = goal.copyWith(
-        isArchived: true,
-        updatedAt: DateTime.now(),
-      );
+      final archived = goal.copyWith(isArchived: true, updatedAt: DateTime.now());
       await _store.record(key).put(_db, archived.toJson());
       debugPrint('BpdSmartGoalsDao: Archived SMART goal: $key');
     }
@@ -100,9 +95,7 @@ class BpdSmartGoalsDao {
     await _store.delete(_db);
   }
 
-  Stream<Map<String, BpdSmartGoal>> watchAllGoals({
-    bool includeArchived = false,
-  }) {
+  Stream<Map<String, BpdSmartGoal>> watchAllGoals({bool includeArchived = false}) {
     final finder = includeArchived
         ? Finder(sortOrders: [SortOrder('createdAt', false)])
         : Finder(

@@ -28,10 +28,7 @@ class Week3MythBustingPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 12),
-          const SectionHeader(
-            icon: Icons.construction_outlined,
-            title: 'Boření mýtů',
-          ),
+          const SectionHeader(icon: Icons.construction_outlined, title: 'Boření mýtů'),
           const SizedBox(height: 12),
           Text(
             day1MythExerciseLead,
@@ -62,11 +59,7 @@ class Week3MythBustingPage extends StatelessWidget {
                 title: myth.myth,
                 style: WorksheetSectionStyle.myth,
                 fields: [
-                  WorksheetField(
-                    id: 'myth_$i',
-                    label: day1MythFieldLabel,
-                    example: myth.busted,
-                  ),
+                  WorksheetField(id: 'myth_$i', label: day1MythFieldLabel, example: myth.busted),
                 ],
               );
             }),

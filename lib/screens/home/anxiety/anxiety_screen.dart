@@ -34,16 +34,12 @@ class AnxietyAppScreen extends StatelessWidget {
     final modules = <Widget>[
       LongTile(
         text: context.l10n.panic_tips_9,
-        image: Assets.illustrations.modules.depression.svg(
-          colorFilter: colorFilter,
-        ),
+        image: Assets.illustrations.modules.depression.svg(colorFilter: colorFilter),
         onTap: () => context.push(const AnxietyTipsAppRoute().location),
       ),
       LongTile(
         text: context.l10n.breath,
-        image: Assets.illustrations.modules.anxietyPanic.svg(
-          colorFilter: colorFilter,
-        ),
+        image: Assets.illustrations.modules.anxietyPanic.svg(colorFilter: colorFilter),
         onTap: () => context.push(const BreathingExercisesRoute().location),
       ),
       LongTile(
@@ -54,9 +50,7 @@ class AnxietyAppScreen extends StatelessWidget {
       if (['cs', 'sk'].contains(_userSettingsDao.locale.languageCode))
         LongTile(
           text: context.l10n.relaxation,
-          image: Assets.illustrations.modules.relaxation.svg(
-            colorFilter: colorFilter,
-          ),
+          image: Assets.illustrations.modules.relaxation.svg(colorFilter: colorFilter),
           onTap: () => context.push(const RelaxationsListRoute().location),
         ),
     ];

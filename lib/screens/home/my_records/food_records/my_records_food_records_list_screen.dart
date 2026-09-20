@@ -18,23 +18,18 @@ import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
 part 'my_records_food_records_list_screen.g.dart';
 
-@TypedGoRoute<MyRecordsFoodRecordsListRoute>(
-  path: '/home/my-records/food-records',
-)
-class MyRecordsFoodRecordsListRoute extends GoRouteData
-    with $MyRecordsFoodRecordsListRoute {
+@TypedGoRoute<MyRecordsFoodRecordsListRoute>(path: '/home/my-records/food-records')
+class MyRecordsFoodRecordsListRoute extends GoRouteData with $MyRecordsFoodRecordsListRoute {
   const MyRecordsFoodRecordsListRoute();
 
   @override
-  Widget build(BuildContext context, _) =>
-      const MyRecordsFoodRecordsListScreen();
+  Widget build(BuildContext context, _) => const MyRecordsFoodRecordsListScreen();
 }
 
 class MyRecordsFoodRecordsListScreen extends StatelessWidget {
   const MyRecordsFoodRecordsListScreen({super.key});
 
-  MyRecordsFoodRecordDao get _myRecordsFoodRecordDao =>
-      registry.get<MyRecordsFoodRecordDao>();
+  MyRecordsFoodRecordDao get _myRecordsFoodRecordDao => registry.get<MyRecordsFoodRecordDao>();
 
   @override
   Widget build(BuildContext context) {
@@ -56,10 +51,7 @@ class MyRecordsFoodRecordsListScreen extends StatelessWidget {
               unawaited(analytics.logEvent(name: 'food_record_created'));
               await goRouter.push(
                 const MyRecordsFoodRecordsDetailMenuListRoute().location,
-                extra: FoodRecordRouteExtraData(
-                  id: id,
-                  dailyFoodRecord: getEmptyDailyFoodRecord(),
-                ),
+                extra: FoodRecordRouteExtraData(id: id, dailyFoodRecord: getEmptyDailyFoodRecord()),
               );
             },
           ),
@@ -75,10 +67,7 @@ class MyRecordsFoodRecordsListScreen extends StatelessWidget {
             unawaited(analytics.logEvent(name: 'food_record_created'));
             await goRouter.push(
               const MyRecordsFoodRecordsDetailMenuListRoute().location,
-              extra: FoodRecordRouteExtraData(
-                id: id,
-                dailyFoodRecord: getEmptyDailyFoodRecord(),
-              ),
+              extra: FoodRecordRouteExtraData(id: id, dailyFoodRecord: getEmptyDailyFoodRecord()),
             );
           },
           tooltip: context.l10n.add_item,
@@ -116,12 +105,8 @@ class MyRecordsFoodRecordsListScreen extends StatelessWidget {
                     dailyFoodRecord: recordData,
                     onTap: () {
                       context.push(
-                        const MyRecordsFoodRecordsDetailMenuListRoute()
-                            .location,
-                        extra: FoodRecordRouteExtraData(
-                          id: recordId,
-                          dailyFoodRecord: recordData,
-                        ),
+                        const MyRecordsFoodRecordsDetailMenuListRoute().location,
+                        extra: FoodRecordRouteExtraData(id: recordId, dailyFoodRecord: recordData),
                       );
                     },
                   ),

@@ -36,7 +36,8 @@ const day1FactsBody =
     'důležité. Pomáhají nám zorientovat se, ale není nutné se jimi vždy '
     'řídit doslova.';
 
-const day1GoalNote = 'Naším cílem tedy není zbavit se emocí, ale zmírnit trápení s pocity související.';
+const day1GoalNote =
+    'Naším cílem tedy není zbavit se emocí, ale zmírnit trápení s pocity související.';
 
 const day1DictionaryLead = 'Protože emoce mají své funkce…';
 
@@ -52,14 +53,8 @@ const day1Obstacles = <(String, String)>[
     'Často jsme se nikde nenaučili, jak s emocemi pracovat, takže nevíme, '
         'co dělat.',
   ),
-  (
-    'Posilování emočního chování',
-    'Okolí může nevědomky podporovat naše silné emoční reakce.',
-  ),
-  (
-    'Náladovost',
-    'Naše momentální nálada někdy řídí, co děláme, místo aby rozhodoval rozum.',
-  ),
+  ('Posilování emočního chování', 'Okolí může nevědomky podporovat naše silné emoční reakce.'),
+  ('Náladovost', 'Naše momentální nálada někdy řídí, co děláme, místo aby rozhodoval rozum.'),
   (
     'Přehlcení emocemi',
     'Když jsou emoce příliš silné, je snadné ztratit přehled a zapomenout '

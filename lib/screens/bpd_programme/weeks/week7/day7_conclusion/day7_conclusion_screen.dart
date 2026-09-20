@@ -20,8 +20,7 @@ import 'package:nepanikar/utils/registry.dart';
 part 'day7_conclusion_screen.g.dart';
 
 @TypedGoRoute<Week7Day7ConclusionScreenRoute>(path: '/bpd-programme/week/7/day/7')
-class Week7Day7ConclusionScreenRoute extends GoRouteData
-    with $Week7Day7ConclusionScreenRoute {
+class Week7Day7ConclusionScreenRoute extends GoRouteData with $Week7Day7ConclusionScreenRoute {
   const Week7Day7ConclusionScreenRoute();
 
   @override
@@ -215,7 +214,8 @@ class Week7Day7ThreeSkillsPage extends StatelessWidget {
           const InfoBox(
             icon: Icons.medical_services_outlined,
             title: 'Zůstanou ti po ruce',
-            text: 'Tvoje tři dovednosti se uloží do záchranného balíčku, kde je '
+            text:
+                'Tvoje tři dovednosti se uloží do záchranného balíčku, kde je '
                 'najdeš i po skončení průvodce.',
           ),
           const SizedBox(height: 16),
@@ -236,9 +236,7 @@ class Week7Day7SupportPage extends StatelessWidget {
     return ChatDayPage(
       onCompleted: onNext,
       steps: [
-        const ChatStep(
-          messages: [ChatBotBubble(text: day7MindfulnessReminder, showAvatar: true)],
-        ),
+        const ChatStep(messages: [ChatBotBubble(text: day7MindfulnessReminder, showAvatar: true)]),
         ChatStep(
           messages: [
             const ChatBotBubble(text: day7SupportText, showAvatar: true),
@@ -339,10 +337,7 @@ class Week7Day7StudyPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          Text(
-            day7StudyThanks,
-            style: TextStyle(fontSize: 14, height: 1.55, color: bodyColor),
-          ),
+          Text(day7StudyThanks, style: TextStyle(fontSize: 14, height: 1.55, color: bodyColor)),
           if (hasBpdResearchExitForm) ...[
             const SizedBox(height: 22),
             const SectionHeader(
@@ -350,10 +345,7 @@ class Week7Day7StudyPage extends StatelessWidget {
               title: day7StudyStepLabel,
             ),
             const SizedBox(height: 12),
-            Text(
-              day7StudyAsk,
-              style: TextStyle(fontSize: 14, height: 1.55, color: bodyColor),
-            ),
+            Text(day7StudyAsk, style: TextStyle(fontSize: 14, height: 1.55, color: bodyColor)),
             const SizedBox(height: 16),
             Text(
               day7StudyFormIntro,

@@ -32,11 +32,7 @@ const day3JeVyzvaIntro = <String>[
 /// Four letters, verbatim. Note the source separates letter from word with a
 /// plain hyphen here, unlike PSANÍČKo and neZOUFej which use an en dash.
 const day3JeVyzvaLetters = <AcronymLetter>[
-  (
-    'Je',
-    'JEmné způsoby',
-    'chovej se laskavě, vyhýbej se kritice, obviňování nebo urážkám',
-  ),
+  ('Je', 'JEmné způsoby', 'chovej se laskavě, vyhýbej se kritice, obviňování nebo urážkám'),
   (
     'Vý',
     'přátelské VYstupování',
