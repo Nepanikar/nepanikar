@@ -320,7 +320,17 @@ class NotificationsService {
     // ...then bring back the reminders that are not driven by user settings.
     await _restoreChallengeReminders();
 
-    const scheduleAheadDays = 8;
+    // Nothing reschedules in the background: this runs when the app is used —
+    // programme start, a mood entry, the home screen, notification settings. At
+    // eight days the queue ran dry for anyone who stayed away longer than that,
+    // which is exactly the person the unlock reminder is for. Three weeks
+    // outlives a realistic gap.
+    //
+    // The ceiling is iOS, which keeps at most 64 pending local notifications
+    // and silently drops the rest. Three weeks of unlock reminders is 21, and
+    // the settings-driven types below add a handful more, so there is room; the
+    // whole 49-day programme would not have left any.
+    const scheduleAheadDays = 21;
     await _scheduleProgrammeUnlockReminders(scheduleAheadDays);
     final mindfulnessTapered = await _isMindfulnessModuleOver();
 
