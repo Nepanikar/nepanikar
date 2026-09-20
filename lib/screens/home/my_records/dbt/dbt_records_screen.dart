@@ -4,6 +4,7 @@ import 'package:nepanikar/screens/home/my_records/challenges/my_challenges_scree
 import 'package:nepanikar/screens/home/my_records/emotion_dictionary/emotion_dictionary_screen.dart';
 import 'package:nepanikar/screens/home/my_records/goals/my_goals_screen.dart';
 import 'package:nepanikar/screens/home/my_records/rescue_package/rescue_package_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/participant_code_card.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
@@ -30,6 +31,9 @@ class DbtRecordsScreen extends StatelessWidget {
     return NepanikarScreenWrapper(
       appBarTitle: 'DBT průvodce',
       children: [
+        // The exit questionnaire arrives seven weeks after onboarding, long
+        // after whatever the code was written on has been lost.
+        const Padding(padding: EdgeInsets.only(bottom: 16), child: ParticipantCodeCard()),
         LongTile(
           text: 'Moje výzvy',
           image: Icon(Icons.flag_outlined, size: 32, color: primaryColor),

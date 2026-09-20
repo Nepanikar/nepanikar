@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/helpers/localization_helpers.dart';
+import 'package:nepanikar/screens/bpd_programme/bpd_participant_code.dart';
 import 'package:nepanikar/services/analytics/bpd_analytics.dart';
 import 'package:nepanikar/services/db/bpd/bpd_user_profile_model.dart';
 import 'package:nepanikar/services/db/bpd/bpd_weeks_dao.dart';
@@ -41,6 +42,7 @@ class UserSettingsDao {
 
   static bool _isUnlocked(Map<String, dynamic>? record) => record?['unlocked'] == true;
   static const _bpdUserProfileKey = 'bpd_user_profile';
+  static const _bpdParticipantCodeKey = 'bpd_participant_code';
 
   Future<void> saveThemeMode(ThemeMode themeMode) async {
     final themeModeStr = UserThemeMode.themeModeToString(themeMode);
@@ -226,6 +228,22 @@ class UserSettingsDao {
         if (json == null) return const BpdProgrammeStatus(hasStarted: false);
         return BpdProgrammeStatus.fromJson(json);
       }).asBroadcastStream();
+
+  /// The participant's study code, drawn once and then kept for good.
+  ///
+  /// Created on first read rather than at programme start, so it exists by the
+  /// time onboarding shows it and never changes afterwards — the exit
+  /// questionnaire arrives seven weeks later and has to match the entry one.
+  Future<String> getOrCreateBpdParticipantCode() async {
+    final existing = await _store.record(_bpdParticipantCodeKey).get(_db);
+    final stored = existing?['code'];
+    if (stored is String && stored.isNotEmpty) return stored;
+
+    final code = generateBpdParticipantCode();
+    debugPrint('UserSettingsDao: Drew a participant code for the pilot');
+    await _store.record(_bpdParticipantCodeKey).put(_db, <String, dynamic>{'code': code});
+    return code;
+  }
 
   Future<void> saveBpdUserProfile(BpdUserProfile profile) async {
     final profileWithTimestamp = BpdUserProfile(
