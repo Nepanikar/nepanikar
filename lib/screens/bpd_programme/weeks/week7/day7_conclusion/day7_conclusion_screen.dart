@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/theme/colors.dart';
+import 'package:nepanikar/helpers/contact_action_helpers.dart';
 import 'package:nepanikar/screens/bpd_programme/bpd_research.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week7/day7_conclusion/day7_content.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_messages.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_flow_header.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
-import 'package:nepanikar/screens/bpd_programme/widgets/external_link_button.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/participant_code_card.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/participant_code_reminder_dialog.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/structured_worksheet.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/week_completion_page.dart';
 import 'package:nepanikar/screens/contacts/region_contacts_screen.dart';
@@ -18,6 +19,7 @@ import 'package:nepanikar/services/db/bpd/bpd_rescue_item_model.dart';
 import 'package:nepanikar/services/db/bpd/bpd_rescue_package_dao.dart';
 import 'package:nepanikar/services/db/bpd/bpd_worksheet_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 part 'day7_conclusion_screen.g.dart';
 
@@ -323,6 +325,14 @@ class _Week7Day7StudyPageState extends State<Week7Day7StudyPage> {
   bool _exporting = false;
   bool _exported = false;
 
+  /// The number goes in front of them before the browser takes over — once the
+  /// form is open there is nothing left on screen to read it off.
+  Future<void> _openExitForm() async {
+    final shouldContinue = await showBpdParticipantCodeReminder(context);
+    if (!shouldContinue) return;
+    await launchUrLink(bpdResearchExitFormUrl, launchMode: LaunchMode.externalApplication);
+  }
+
   Future<void> _export() async {
     setState(() => _exporting = true);
     final saved = await BpdStudyExportService.saveToFile();
@@ -380,10 +390,17 @@ class _Week7Day7StudyPageState extends State<Week7Day7StudyPage> {
               style: TextStyle(fontSize: 14, height: 1.55, color: bodyColor),
             ),
             const SizedBox(height: 10),
-            const ExternalLinkButton(
-              label: day7StudyFormButton,
-              url: bpdResearchExitFormUrl,
-              icon: Icons.assignment_outlined,
+            SizedBox(
+              width: double.infinity,
+              child: FilledButton.icon(
+                onPressed: _openExitForm,
+                icon: const Icon(Icons.assignment_outlined, size: 20),
+                label: const Text(day7StudyFormButton),
+                style: FilledButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                ),
+              ),
             ),
           ] else ...[
             const SizedBox(height: 22),
