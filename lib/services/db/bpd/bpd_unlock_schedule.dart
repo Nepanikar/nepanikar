@@ -44,3 +44,45 @@ DateTime bpdDayUnlockDate(int weekNumber, int dayNumber) =>
 
 /// Midnight of the day a week's first lesson opens.
 DateTime bpdWeekUnlockDate(int weekNumber) => bpdDayUnlockDate(weekNumber, 1);
+
+/// Czech month names in the genitive, which is the case "21. září" needs.
+const _czechMonthsGenitive = <String>[
+  'ledna',
+  'února',
+  'března',
+  'dubna',
+  'května',
+  'června',
+  'července',
+  'srpna',
+  'září',
+  'října',
+  'listopadu',
+  'prosince',
+];
+
+/// "21. září (zítra)" — the date plus how far off it is.
+///
+/// One implementation for the whole programme. There were two, and the one on
+/// the day list was written in Slovak ("Odomkne sa 22. September"), which is
+/// the kind of thing that survives precisely because it is duplicated.
+///
+/// The clock time is deliberately left out: lessons open at midnight, so an
+/// hour on the label only suggests there is one worth waiting for.
+String formatBpdUnlockDate(DateTime date) {
+  final now = DateTime.now();
+  final days = startOfDay(date).difference(startOfDay(now)).inDays;
+
+  final String relative;
+  if (days <= 0) {
+    relative = 'dnes';
+  } else if (days == 1) {
+    relative = 'zítra';
+  } else if (days <= 4) {
+    relative = 'za $days dny';
+  } else {
+    relative = 'za $days dní';
+  }
+
+  return '${date.day}. ${_czechMonthsGenitive[date.month - 1]} ($relative)';
+}

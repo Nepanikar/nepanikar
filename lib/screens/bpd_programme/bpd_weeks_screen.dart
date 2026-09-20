@@ -8,6 +8,7 @@ import 'package:nepanikar/screens/bpd_programme/widgets/bpd_help_button.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/skill_tree.dart';
 import 'package:nepanikar/screens/main/main_screen.dart';
 import 'package:nepanikar/services/bpd_weeks_data_manager.dart';
+import 'package:nepanikar/services/db/bpd/bpd_unlock_schedule.dart';
 import 'package:nepanikar/services/db/bpd/bpd_week_models.dart';
 import 'package:nepanikar/services/db/bpd/bpd_weeks_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
@@ -120,38 +121,6 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
     });
   }
 
-  String _formatUnlockDate(DateTime date) {
-    const months = [
-      'ledna',
-      'února',
-      'března',
-      'dubna',
-      'května',
-      'června',
-      'července',
-      'srpna',
-      'září',
-      'října',
-      'listopadu',
-      'prosince',
-    ];
-    final now = DateTime.now();
-    final today = DateTime(now.year, now.month, now.day);
-    final target = DateTime(date.year, date.month, date.day);
-    final days = target.difference(today).inDays;
-
-    final String relative;
-    if (days <= 0) {
-      relative = 'dnes';
-    } else if (days == 1) {
-      relative = 'zítra';
-    } else if (days <= 4) {
-      relative = 'za $days dny';
-    } else {
-      relative = 'za $days dní';
-    }
-    return '${date.day}. ${months[date.month - 1]} ($relative)';
-  }
 
   void _showLockedWeekSheet(BpdWeekProgress weekProgress) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
@@ -163,7 +132,7 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
         : 'Obsah tohoto týdne pro tebe ještě připravujeme.';
     final unlockIcon = isImplemented ? Icons.calendar_today : Icons.update;
     final unlockText = isImplemented
-        ? 'Odemkne se ${_formatUnlockDate(weekProgress.unlockDate)}'
+        ? 'Odemkne se ${formatBpdUnlockDate(weekProgress.unlockDate)}'
         : 'Odemkne se v některé z příštích aktualizací';
 
     showModalBottomSheet<void>(
@@ -363,9 +332,19 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
   }
 
   Widget _buildProgrammeBanner() {
-    final currentWeek = _weeksProgress.where((w) => !w.isCompleted && _isWeekOpen(w)).firstOrNull;
     final completedCount = _weeksProgress.where((w) => w.isCompleted).length;
-    final bannerWeek = currentWeek ?? _weeksProgress.last;
+
+    // The week being worked on; failing that the next one still to do, and only
+    // when everything is finished, the last.
+    //
+    // The middle step matters before the cohort starts: nothing is open yet, and
+    // falling straight through to `.last` greeted people who had just pressed
+    // "Začít svou cestu" with "Týden 7 · Závěr průvodce".
+    final bannerWeek =
+        _weeksProgress.where((w) => !w.isCompleted && _isWeekOpen(w)).firstOrNull ??
+        _weeksProgress.where((w) => !w.isCompleted).firstOrNull ??
+        _weeksProgress.lastOrNull;
+    if (bannerWeek == null) return const SizedBox.shrink();
 
     return SkillTreeBanner(
       kicker: 'DBT průvodce · Týden ${bannerWeek.weekNumber}',

@@ -42,6 +42,7 @@ import 'package:nepanikar/screens/bpd_programme/widgets/day_preview_sheet.dart';
 import 'package:nepanikar/screens/home/my_records/dbt/dbt_records_screen.dart';
 import 'package:nepanikar/services/db/bpd/bpd_day_models.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
+import 'package:nepanikar/services/db/bpd/bpd_unlock_schedule.dart';
 import 'package:nepanikar/utils/registry.dart';
 
 
@@ -630,7 +631,7 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
         content: Text(
           'Průvodce odemyká jednu lekci denně, aby bylo na každou dost času. '
           '${content == null ? 'Tahle' : '„${content.title}"'} na tebe čeká '
-          '${_czechDate(dayProgress.unlockDate)}.',
+          '${formatBpdUnlockDate(dayProgress.unlockDate)}.',
           style: const TextStyle(height: 1.5),
         ),
         actions: [
@@ -688,19 +689,6 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
     await context.push(BpdWeekDetailScreenRoute(weekNumber: week).location);
     if (mounted) await _loadDaysProgress();
   }
-
-  static const _czechWeekdays = <String>[
-    'v pondělí',
-    'v úterý',
-    've středu',
-    've čtvrtek',
-    'v pátek',
-    'v sobotu',
-    'v neděli',
-  ];
-
-  String _czechDate(DateTime date) =>
-      '${_czechWeekdays[date.weekday - 1]} ${date.day}. ${date.month}.';
 
   _DayContentData? _getDayContent(int dayNumber) {
     final content = _weekDaysContent[widget.weekNumber];
@@ -943,27 +931,6 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
     return '$hours:$minutes:$seconds';
   }
 
-  String _formatUnlockDate(DateTime date) {
-    final months = [
-      'Január',
-      'Február',
-      'Marec',
-      'Apríl',
-      'Máj',
-      'Jún',
-      'Júl',
-      'August',
-      'September',
-      'Október',
-      'November',
-      'December',
-    ];
-    final day = date.day;
-    final month = months[date.month - 1];
-    final hour = date.hour.toString().padLeft(2, '0');
-    final minute = date.minute.toString().padLeft(2, '0');
-    return 'Odomkne sa $day. $month, $hour:$minute';
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -1195,7 +1162,7 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        _formatUnlockDate(dayProgress.unlockDate),
+                        'Odemkne se ${formatBpdUnlockDate(dayProgress.unlockDate)}',
                         style: TextStyle(
                           fontSize: 12,
                           color: isDarkMode ? Colors.white38 : Colors.grey.shade600,
