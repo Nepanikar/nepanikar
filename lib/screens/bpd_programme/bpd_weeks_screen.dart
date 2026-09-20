@@ -45,7 +45,7 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
   Future<void> _loadWeeksProgress() async {
     var progress = await _bpdWeeksDao.getAllWeeksProgress();
     if (progress.isEmpty) {
-      await _bpdWeeksDao.initializeWeeks(DateTime.now());
+      await _bpdWeeksDao.initializeWeeks();
       progress = await _bpdWeeksDao.getAllWeeksProgress();
     }
     if (!mounted) return;
@@ -55,10 +55,15 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
     });
   }
 
-  /// A week is open when its content is implemented ([kImplementedBpdWeeks]);
-  /// weeks without content stay locked no matter what their unlock date says.
+  /// A week is open when its content exists ([kImplementedBpdWeeks]) **and**
+  /// the cohort calendar has reached it.
+  ///
+  /// The date used to be ignored here, which quietly made the whole programme
+  /// browsable from day one — the week screen was the only gate, and it was not
+  /// gating. Days were locked underneath, so nobody could do a lesson early,
+  /// but all seven weeks were open to read.
   bool _isWeekOpen(BpdWeekProgress weekProgress) =>
-      kImplementedBpdWeeks.contains(weekProgress.weekNumber);
+      kImplementedBpdWeeks.contains(weekProgress.weekNumber) && weekProgress.isUnlocked();
 
   void _handleWeekTap(BpdWeekProgress weekProgress) {
     if (_isWeekOpen(weekProgress)) {

@@ -209,7 +209,7 @@ class UserSettingsDao {
 
     // Initialize weeks with time-based unlock
     final bpdWeeksDao = registry.get<BpdWeeksDao>();
-    await bpdWeeksDao.initializeWeeks(now);
+    await bpdWeeksDao.initializeWeeks();
 
     if (!wasAlreadyStarted) await BpdAnalytics.logProgrammeStarted();
   }

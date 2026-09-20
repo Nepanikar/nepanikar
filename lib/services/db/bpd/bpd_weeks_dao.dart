@@ -26,26 +26,29 @@ class BpdWeeksDao {
 
   String _getWeekKey(int weekNumber) => 'week_$weekNumber';
 
-  /// Initialize week progress based on programme start date
-  /// Each week unlocks 7 days after the previous week
-  Future<void> initializeWeeks(DateTime startedAt) async {
+  /// Writes the cohort's week schedule.
+  ///
+  /// Unlock dates come from [bpdWeekUnlockDate] — the same fixed calendar for
+  /// everyone, not counted from whenever this ran. Existing records are
+  /// rewritten rather than skipped, so a phone carrying dates from a build that
+  /// counted from the first tap is corrected on the next launch; completion is
+  /// preserved, because the schedule changing must never un-finish a week
+  /// somebody did.
+  ///
+  /// Idempotent, and safe to call on every start.
+  Future<void> initializeWeeks() async {
     for (int i = 1; i <= totalWeeks; i++) {
       final weekKey = _getWeekKey(i);
-      final existingWeek = await _store.record(weekKey).get(_db);
+      final existing = await _store.record(weekKey).get(_db);
+      final unlockDate = bpdWeekUnlockDate(i);
 
-      if (existingWeek == null) {
-        // Week unlocks at midnight, 7 calendar days after the previous week
-        // (week 1 lands on the start of today, so it opens immediately).
-        final unlockDate = unlockDayAfter(startedAt, (i - 1) * 7);
-        final weekProgress = BpdWeekProgress(
-          weekNumber: i,
-          unlockDate: unlockDate,
-          isCompleted: false,
-        );
-        await _store.record(weekKey).put(_db, weekProgress.toJson());
-        debugPrint('BpdWeeksDao: Initialized week $i, unlocks at $unlockDate');
-      }
+      final weekProgress = existing == null
+          ? BpdWeekProgress(weekNumber: i, unlockDate: unlockDate)
+          : BpdWeekProgress.fromJson(existing).copyWith(unlockDate: unlockDate);
+
+      await _store.record(weekKey).put(_db, weekProgress.toJson());
     }
+    debugPrint('BpdWeeksDao: Week schedule set from $bpdProgrammeStartDate');
   }
 
   /// Get progress for a specific week

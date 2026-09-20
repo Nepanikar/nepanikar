@@ -1,13 +1,12 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/theme/colors.dart';
+import 'package:nepanikar/screens/bpd_programme/shared/day_pause_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/day1_onboarding/day1_onboarding_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/day2_spoko/day2_spoko_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/day7_reflection/day7_reflection_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/spoko_day/spoko_day_screen.dart';
-import 'package:nepanikar/screens/bpd_programme/shared/day_pause_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week2/day1_mindfulness_intro/day1_mindfulness_intro_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week2/day2_what_skills/day2_what_skills_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week2/day3_how_skills/day3_how_skills_screen.dart';
@@ -38,13 +37,13 @@ import 'package:nepanikar/screens/bpd_programme/weeks/week6/day7_summary/day7_su
 import 'package:nepanikar/screens/bpd_programme/weeks/week7/day1_appreciation/day1_appreciation_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week7/day7_conclusion/day7_conclusion_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week7/recap_days/week7_recap_day_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/bpd_help_button.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/day_preview_sheet.dart';
 import 'package:nepanikar/screens/home/my_records/dbt/dbt_records_screen.dart';
 import 'package:nepanikar/services/db/bpd/bpd_day_models.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
-import 'package:nepanikar/services/db/bpd/bpd_weeks_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
-import 'package:nepanikar/screens/bpd_programme/widgets/bpd_help_button.dart';
-import 'package:nepanikar/screens/bpd_programme/widgets/day_preview_sheet.dart';
+
 
 part 'bpd_week_detail_screen.g.dart';
 
@@ -589,19 +588,10 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
 
   Future<void> _loadDaysProgress() async {
     try {
-      final daysProgress = await _bpdDaysDao.getWeekDaysProgress(widget.weekNumber);
-
-      // Day records are created the first time this screen opens. They have to
-      // hang off the week's own unlock date, not off today: someone who opens
-      // week 3 four days late would otherwise push its whole seven-day
-      // schedule four days out, and every later week with it.
-      if (daysProgress.isEmpty) {
-        final week = await registry.get<BpdWeeksDao>().getWeekProgress(widget.weekNumber);
-        await _bpdDaysDao.initializeDaysForWeek(
-          widget.weekNumber,
-          week?.unlockDate ?? DateTime.now(),
-        );
-      }
+      // Written on every open, not only when missing: the dates come from the
+      // cohort calendar, so this also corrects a phone still carrying the
+      // per-user schedule an earlier build wrote. Progress is preserved.
+      await _bpdDaysDao.initializeDaysForWeek(widget.weekNumber);
 
       final newDaysProgress = await _bpdDaysDao.getWeekDaysProgress(widget.weekNumber);
       if (mounted) {
@@ -628,6 +618,90 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
     return 'Den $dayNumber';
   }
 
+  /// The lesson exists, the calendar has not reached it. Says when, because
+  /// "zamčeno" on its own reads as a punishment and this is just a date.
+  Future<void> _showNotYetOpenDialog(BpdDayProgress dayProgress) async {
+    final content = _getDayContent(dayProgress.dayNumber);
+    await showDialog<void>(
+      context: context,
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+        title: const Text('Tahle lekce se otevře později'),
+        content: Text(
+          'Průvodce odemyká jednu lekci denně, aby bylo na každou dost času. '
+          '${content == null ? 'Tahle' : '„${content.title}"'} na tebe čeká '
+          '${_czechDate(dayProgress.unlockDate)}.',
+          style: const TextStyle(height: 1.5),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('Rozumím'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// The lesson is open by the calendar, but an earlier one is unfinished.
+  ///
+  /// Offers the way there rather than only refusing: the whole point of the
+  /// rule is that someone behind can catch up, and making them find the day
+  /// themselves is the friction that stops them.
+  Future<void> _showOutOfOrderDialog(int week, int day) async {
+    final title = _weekDaysContent[week]?.elementAtOrNull(day - 1)?.title;
+    final shouldGo = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+        title: const Text('Nejdřív dokonči předchozí lekci'),
+        content: Text(
+          'Průvodce se prochází popořadě — každá lekce staví na té předchozí. '
+          'Čeká na tebe $day. den $week. týdne${title == null ? '' : ', „$title"'}. '
+          'Až ho dokončíš, otevře se ti i tenhle.',
+          style: const TextStyle(height: 1.5),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('Zavřít'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: const Text('Přejít na něj'),
+          ),
+        ],
+      ),
+    );
+
+    if (shouldGo != true || !mounted) return;
+
+    if (week == widget.weekNumber) {
+      for (final progress in _daysProgress) {
+        if (progress.dayNumber == day) {
+          await _handleDayTap(progress);
+          return;
+        }
+      }
+      return;
+    }
+    await context.push(BpdWeekDetailScreenRoute(weekNumber: week).location);
+    if (mounted) await _loadDaysProgress();
+  }
+
+  static const _czechWeekdays = <String>[
+    'v pondělí',
+    'v úterý',
+    've středu',
+    've čtvrtek',
+    'v pátek',
+    'v sobotu',
+    'v neděli',
+  ];
+
+  String _czechDate(DateTime date) =>
+      '${_czechWeekdays[date.weekday - 1]} ${date.day}. ${date.month}.';
+
   _DayContentData? _getDayContent(int dayNumber) {
     final content = _weekDaysContent[widget.weekNumber];
     if (content != null && dayNumber > 0 && dayNumber <= content.length) {
@@ -636,19 +710,38 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
     return null;
   }
 
-  void _handleDayTap(BpdDayProgress dayProgress) {
+  /// Two gates, and they say different things.
+  ///
+  /// The calendar gate is "not yet" — one lesson opens per day and this one's
+  /// day has not come. The sequence gate is "not this one first" — the lesson
+  /// is open, but an earlier one is unfinished, and the programme builds on
+  /// itself. Telling someone "zamčeno" in the second case would be a lie: the
+  /// day is not locked, they are simply not there yet, and they can fix it now.
+  Future<void> _handleDayTap(BpdDayProgress dayProgress) async {
     if (!dayProgress.isUnlocked() && !dayProgress.isCompleted) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('Tento den je ještě zamčený')));
+      await _showNotYetOpenDialog(dayProgress);
       return;
     }
+
+    if (!dayProgress.isCompleted) {
+      final blocking = await _bpdDaysDao.firstUnfinishedDayBefore(
+        widget.weekNumber,
+        dayProgress.dayNumber,
+      );
+      if (!mounted) return;
+      if (blocking != null) {
+        await _showOutOfOrderDialog(blocking.$1, blocking.$2);
+        return;
+      }
+    }
+
+    if (!mounted) return;
 
     // Show Day Preview Sheet
     final dayContent = _getDayContent(dayProgress.dayNumber);
     if (dayContent == null) return;
 
-    showDayPreviewSheet(
+    unawaited(showDayPreviewSheet(
       context: context,
       data: DayPreviewData(
         dayNumber: dayProgress.dayNumber,
@@ -840,7 +933,7 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
             ).showSnackBar(SnackBar(content: Text('Otevírám Den ${dayProgress.dayNumber}')));
         }
       },
-    );
+    ));
   }
 
   String _formatCountdown(Duration duration) {
