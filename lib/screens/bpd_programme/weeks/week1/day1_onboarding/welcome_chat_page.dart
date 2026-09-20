@@ -4,7 +4,6 @@ import 'package:nepanikar/screens/bpd_programme/bpd_research.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_messages.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/external_link_button.dart';
-import 'package:nepanikar/screens/bpd_programme/widgets/participant_code_card.dart';
 import 'package:nepanikar/services/db/bpd/bpd_user_profile_model.dart';
 
 /// Page 1/7 — Welcome + how the programme works + name/pronoun, in chat form
@@ -167,16 +166,16 @@ class _Day1WelcomeChatPageState extends State<Day1WelcomeChatPage> {
             ChatBotBubble(
               text:
                   'Součástí je krátký vstupní dotazník, vyplnění zabere 7–10 minut. '
-                  'Zároveň v něm potvrdíte souhlas s účastí ve výzkumu. Po sedmi '
-                  'týdnech Vám e-mailem přijde odkaz na výstupní dotazník.',
+                  'Zároveň v něm potvrdíte souhlas s účastí ve výzkumu. Na konci '
+                  'sedmi týdnů Vás v aplikaci čeká krátké závěrečné zhodnocení.',
             ),
-            ChatRichMessage(
-              child: ParticipantCodeCard(
-                caption:
-                    'Opište ho prosím do dotazníku — podle něj se oba dotazníky '
-                    'spárují. Budete ho potřebovat i za sedm týdnů, takže ho '
-                    'najdete i v Záznamech → DBT průvodce.',
-              ),
+            // The number is only needed at the very end, so it is not asked for
+            // here — but the e-mail carrying it arrives now, and seven weeks is
+            // long enough to delete a message you were not told to keep.
+            ChatBotBubble(
+              text:
+                  'E-mail s Vaším číslem účastníka si prosím schovejte. Budete '
+                  'ho potřebovat až na konci, při závěrečném zhodnocení.',
             ),
             ChatRichMessage(
               child: ExternalLinkButton(

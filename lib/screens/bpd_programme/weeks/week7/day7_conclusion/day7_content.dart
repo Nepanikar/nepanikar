@@ -121,3 +121,37 @@ const day7FinalPraise =
 // TODO: schválit autorem (WEEK7_SCREEN_PLAN.md → OQ-6)
 const day7FinalHeading = 'Průvodce dokončen!';
 const day7FinalButton = 'Dokončit průvodce';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Page 6/6 — the pilot study's closing ask
+// ─────────────────────────────────────────────────────────────────────────────
+
+/// Verbatim from the researcher (2026-09-20). Hers, not ours — the pressure in
+/// "nezbytnou podmínkou" and "zůstane studie neúplná" is deliberate and
+/// approved, and it is the one place in the programme that asks for something
+/// back.
+const day7StudyHeading = 'Skvělá práce k dokončení průvodce! 🎉';
+const day7StudyThanks =
+    'Děkujeme za veškerý čas a úsilí při nácviku dovedností v uplynulých '
+    '7 týdnech.';
+const day7StudyStepLabel = 'Poslední a zásadní krok';
+const day7StudyAsk =
+    'Vyplnění závěrečného zhodnocení je nezbytnou podmínkou celého výzkumného '
+    'projektu. Bez tvé zpětné vazby zůstane studie neúplná a data nebude možné '
+    'propojit. Zabere to jen pár minut, ale pro úspěch pilotu je to klíčové.';
+const day7StudyFormIntro = 'Prosíme o dokončení programu zde:';
+const day7StudyFormButton = 'Vyplnit závěrečný dotazník';
+
+/// Ours. The number is what lets the researcher put the two questionnaires and
+/// the export side by side, so it is asked for before the export button rather
+/// than after — a file saved without it cannot be matched to anyone.
+const day7StudyCodeCaption =
+    'Číslo, které ti přišlo e-mailem na začátku. Zadej ho prosím i do '
+    'závěrečného dotazníku — podle něj se tvoje odpovědi spárují.';
+const day7StudyExportLead =
+    'Nakonec můžeš přiložit přehled svého postupu průvodcem — kdy jsi které dny '
+    'dokončil/a a kolik cvičení máš za sebou. Nejsou v něm žádné tvoje texty, '
+    'jen počty a data. Soubor se uloží do telefonu a odtud ho můžeš poslat.';
+const day7StudyExportButton = 'Uložit přehled postupu';
+const day7StudyExportDone = 'Přehled uložen. Díky!';
+const day7StudyCloseButton = 'Zavřít';

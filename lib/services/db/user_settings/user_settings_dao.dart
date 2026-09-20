@@ -229,20 +229,31 @@ class UserSettingsDao {
         return BpdProgrammeStatus.fromJson(json);
       }).asBroadcastStream();
 
-  /// The participant's study code, drawn once and then kept for good.
+  /// The participant's study number, as the researcher issued it by e-mail.
   ///
-  /// Created on first read rather than at programme start, so it exists by the
-  /// time onboarding shows it and never changes afterwards — the exit
-  /// questionnaire arrives seven weeks later and has to match the entry one.
-  Future<String> getOrCreateBpdParticipantCode() async {
+  /// Null until someone types it in, which is the honest state: the app has no
+  /// way to invent this number and must not pretend it has one.
+  Future<String?> getBpdParticipantCode() async {
     final existing = await _store.record(_bpdParticipantCodeKey).get(_db);
     final stored = existing?['code'];
-    if (stored is String && stored.isNotEmpty) return stored;
+    return stored is String && stored.isNotEmpty ? stored : null;
+  }
 
-    final code = generateBpdParticipantCode();
-    debugPrint('UserSettingsDao: Drew a participant code for the pilot');
-    await _store.record(_bpdParticipantCodeKey).put(_db, <String, dynamic>{'code': code});
-    return code;
+  Stream<String?> get bpdParticipantCodeStream =>
+      _store.record(_bpdParticipantCodeKey).onSnapshot(_db).map((snapshot) {
+        final stored = snapshot?.value['code'];
+        return stored is String && stored.isNotEmpty ? stored : null;
+      }).asBroadcastStream();
+
+  /// Stores the number, or clears it when given something blank.
+  Future<void> setBpdParticipantCode(String code) async {
+    final normalized = normalizeBpdParticipantCode(code);
+    if (normalized.isEmpty) {
+      await _store.record(_bpdParticipantCodeKey).delete(_db);
+      return;
+    }
+    await _store.record(_bpdParticipantCodeKey).put(_db, <String, dynamic>{'code': normalized});
+    debugPrint('UserSettingsDao: Stored the participant number');
   }
 
   Future<void> saveBpdUserProfile(BpdUserProfile profile) async {

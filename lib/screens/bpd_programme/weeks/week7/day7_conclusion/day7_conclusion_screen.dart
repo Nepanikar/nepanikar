@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/theme/colors.dart';
+import 'package:nepanikar/screens/bpd_programme/bpd_research.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week7/day7_conclusion/day7_content.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_messages.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_flow_header.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/external_link_button.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/participant_code_card.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/structured_worksheet.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/week_completion_page.dart';
 import 'package:nepanikar/screens/contacts/region_contacts_screen.dart';
+import 'package:nepanikar/services/bpd_study_export_service.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
 import 'package:nepanikar/services/db/bpd/bpd_rescue_item_model.dart';
 import 'package:nepanikar/services/db/bpd/bpd_rescue_package_dao.dart';
@@ -41,7 +45,7 @@ class Week7Day7ConclusionScreen extends StatefulWidget {
 class _Week7Day7ConclusionScreenState extends State<Week7Day7ConclusionScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
-  static const int _totalPages = 5;
+  static const int _totalPages = 6;
 
   BpdDaysDao get _bpdDaysDao => registry.get<BpdDaysDao>();
 
@@ -97,9 +101,12 @@ class _Week7Day7ConclusionScreenState extends State<Week7Day7ConclusionScreen> {
     _goToNextPage();
   }
 
+  /// Marks the programme done and moves on to the study's closing ask, rather
+  /// than leaving: the questionnaire is the one thing the pilot cannot get
+  /// afterwards, and nobody comes back to a programme they have finished.
   Future<void> _completeProgramme() async {
     await _bpdDaysDao.markDayCompleted(7, 7);
-    if (mounted) context.pop();
+    if (mounted) _goToNextPage();
   }
 
   @override
@@ -138,6 +145,7 @@ class _Week7Day7ConclusionScreenState extends State<Week7Day7ConclusionScreen> {
                     buttonText: day7FinalButton,
                     onComplete: _completeProgramme,
                   ),
+                  Week7Day7StudyPage(onClose: () => context.pop()),
                 ],
               ),
             ),
@@ -292,6 +300,138 @@ class Week7Day7ClosingWritingPage extends StatelessWidget {
           ),
           const SizedBox(height: 16),
         ],
+      ),
+    );
+  }
+}
+
+/// Page 6/6 — the pilot study's closing ask.
+///
+/// Deliberately after the celebration, not instead of it: the programme is the
+/// thing the person came for, and the questionnaire is what we need from them.
+/// The order says which is which.
+class Week7Day7StudyPage extends StatefulWidget {
+  const Week7Day7StudyPage({super.key, required this.onClose});
+
+  final VoidCallback onClose;
+
+  @override
+  State<Week7Day7StudyPage> createState() => _Week7Day7StudyPageState();
+}
+
+class _Week7Day7StudyPageState extends State<Week7Day7StudyPage> {
+  bool _exporting = false;
+  bool _exported = false;
+
+  Future<void> _export() async {
+    setState(() => _exporting = true);
+    final saved = await BpdStudyExportService.saveToFile();
+    if (!mounted) return;
+    setState(() {
+      _exporting = false;
+      // Only a file that actually landed counts — backing out of the save
+      // dialog must not leave the screen claiming the data was sent.
+      _exported = saved;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final bodyColor = isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.78);
+
+    return DayPageBase(
+      buttonText: day7StudyCloseButton,
+      onButtonPressed: widget.onClose,
+      content: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 12),
+          Text(
+            day7StudyHeading,
+            style: TextStyle(
+              fontSize: 21,
+              fontWeight: FontWeight.w800,
+              height: 1.3,
+              color: isDarkMode ? Colors.white : NepanikarColors.dark,
+            ),
+          ),
+          const SizedBox(height: 12),
+          Text(
+            day7StudyThanks,
+            style: TextStyle(fontSize: 14, height: 1.55, color: bodyColor),
+          ),
+          if (hasBpdResearchExitForm) ...[
+            const SizedBox(height: 22),
+            const SectionHeader(
+              icon: Icons.assignment_turned_in_outlined,
+              title: day7StudyStepLabel,
+            ),
+            const SizedBox(height: 12),
+            Text(
+              day7StudyAsk,
+              style: TextStyle(fontSize: 14, height: 1.55, color: bodyColor),
+            ),
+            const SizedBox(height: 16),
+            const ParticipantCodeCard(caption: day7StudyCodeCaption),
+            const SizedBox(height: 16),
+            Text(
+              day7StudyFormIntro,
+              style: TextStyle(fontSize: 14, height: 1.55, color: bodyColor),
+            ),
+            const SizedBox(height: 10),
+            const ExternalLinkButton(
+              label: day7StudyFormButton,
+              url: bpdResearchExitFormUrl,
+              icon: Icons.assignment_outlined,
+            ),
+          ] else ...[
+            const SizedBox(height: 22),
+            const ParticipantCodeCard(caption: day7StudyCodeCaption),
+          ],
+          const SizedBox(height: 22),
+          Text(
+            day7StudyExportLead,
+            style: TextStyle(fontSize: 14, height: 1.55, color: bodyColor),
+          ),
+          const SizedBox(height: 12),
+          _ExportButton(
+            busy: _exporting,
+            done: _exported,
+            onPressed: _exporting || _exported ? null : _export,
+          ),
+          const SizedBox(height: 16),
+        ],
+      ),
+    );
+  }
+}
+
+class _ExportButton extends StatelessWidget {
+  const _ExportButton({required this.busy, required this.done, required this.onPressed});
+
+  final bool busy;
+  final bool done;
+  final VoidCallback? onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    final primaryColor = Theme.of(context).primaryColor;
+
+    return SizedBox(
+      width: double.infinity,
+      child: OutlinedButton.icon(
+        onPressed: onPressed,
+        icon: busy
+            ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2))
+            : Icon(done ? Icons.check_circle_outline : Icons.download_outlined, size: 20),
+        label: Text(done ? day7StudyExportDone : day7StudyExportButton),
+        style: OutlinedButton.styleFrom(
+          foregroundColor: done ? Colors.green : primaryColor,
+          side: BorderSide(color: (done ? Colors.green : primaryColor).withOpacity(0.6)),
+          padding: const EdgeInsets.symmetric(vertical: 14),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        ),
       ),
     );
   }

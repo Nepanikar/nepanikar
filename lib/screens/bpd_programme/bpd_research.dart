@@ -25,3 +25,14 @@ const bpdResearchEntryFormUrl =
 
 /// The researcher's contact address, as given in the entry form.
 const bpdResearchContactEmail = '510685@mail.muni.cz';
+
+/// Exit questionnaire — the closing evaluation, shown after the last day of
+/// Week 7.
+///
+/// **Empty until the researcher sends the link** (promised 2026-09-20). While
+/// it is empty the closing screen simply leaves the questionnaire out, so a
+/// build that ships without it has no dead button; filling this constant in is
+/// the whole change.
+const bpdResearchExitFormUrl = '';
+
+bool get hasBpdResearchExitForm => bpdResearchExitFormUrl.isNotEmpty;
