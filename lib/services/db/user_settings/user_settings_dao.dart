@@ -229,21 +229,35 @@ class UserSettingsDao {
         return BpdProgrammeStatus.fromJson(json);
       }).asBroadcastStream();
 
+  /// Marks a record as holding a number the participant typed in, as opposed to
+  /// one an earlier build of the app drew for itself.
+  ///
+  /// Builds before 2026-09-20 generated the code here. Those records are now
+  /// wrong — the real number comes from the researcher — and showing one back
+  /// to someone, ticked and looking saved, would put a made-up number into the
+  /// questionnaire and quietly break the pairing. An unmarked record is
+  /// therefore treated as absent rather than trusted.
+  static const _participantCodeSource = 'participant';
+
+  static String? _readParticipantCode(Map<String, dynamic>? record) {
+    if (record == null) return null;
+    if (record['source'] != _participantCodeSource) return null;
+    final stored = record['code'];
+    return stored is String && stored.isNotEmpty ? stored : null;
+  }
+
   /// The participant's study number, as the researcher issued it by e-mail.
   ///
   /// Null until someone types it in, which is the honest state: the app has no
   /// way to invent this number and must not pretend it has one.
-  Future<String?> getBpdParticipantCode() async {
-    final existing = await _store.record(_bpdParticipantCodeKey).get(_db);
-    final stored = existing?['code'];
-    return stored is String && stored.isNotEmpty ? stored : null;
-  }
+  Future<String?> getBpdParticipantCode() async =>
+      _readParticipantCode(await _store.record(_bpdParticipantCodeKey).get(_db));
 
-  Stream<String?> get bpdParticipantCodeStream =>
-      _store.record(_bpdParticipantCodeKey).onSnapshot(_db).map((snapshot) {
-        final stored = snapshot?.value['code'];
-        return stored is String && stored.isNotEmpty ? stored : null;
-      }).asBroadcastStream();
+  Stream<String?> get bpdParticipantCodeStream => _store
+      .record(_bpdParticipantCodeKey)
+      .onSnapshot(_db)
+      .map((snapshot) => _readParticipantCode(snapshot?.value))
+      .asBroadcastStream();
 
   /// Stores the number, or clears it when given something blank.
   Future<void> setBpdParticipantCode(String code) async {
@@ -252,7 +266,10 @@ class UserSettingsDao {
       await _store.record(_bpdParticipantCodeKey).delete(_db);
       return;
     }
-    await _store.record(_bpdParticipantCodeKey).put(_db, <String, dynamic>{'code': normalized});
+    await _store.record(_bpdParticipantCodeKey).put(_db, <String, dynamic>{
+      'code': normalized,
+      'source': _participantCodeSource,
+    });
     debugPrint('UserSettingsDao: Stored the participant number');
   }
 
