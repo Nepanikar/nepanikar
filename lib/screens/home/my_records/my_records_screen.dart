@@ -4,7 +4,6 @@ import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/providers/mood_heatmap_filter_provider.dart';
-import 'package:nepanikar/screens/home/my_records/tests/test_list_screen.dart';
 import 'package:nepanikar/screens/home/my_records/dbt/dbt_records_screen.dart';
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_records_screen.dart';
 import 'package:nepanikar/screens/home/my_records/food_records/my_records_food_records_list_screen.dart';
@@ -64,11 +63,6 @@ class MyRecordsScreen extends StatelessWidget {
         text: context.l10n.food_records,
         image: Assets.illustrations.modules.foodTracker.svg(colorFilter: colorFilter),
         onTap: () => context.push(const MyRecordsFoodRecordsListRoute().location),
-      ),
-      LongTile(
-        text: 'Tests',
-        image: Assets.illustrations.modules.foodTracker.svg(colorFilter: colorFilter),
-        onTap: () => context.push(const TestListScreenRoute().location),
       ),
       LongTile(
         text: 'DBT průvodce',
