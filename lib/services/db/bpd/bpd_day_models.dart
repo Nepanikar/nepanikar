@@ -25,10 +25,12 @@ abstract class BpdDayProgress with _$BpdDayProgress {
 
   factory BpdDayProgress.fromJson(Map<String, Object?> json) => _$BpdDayProgressFromJson(json);
 
-  /// Check if this day is currently unlocked based on current date
-  bool isUnlocked() {
-    return DateTime.now().isAfter(unlockDate) || DateTime.now().isAtSameMomentAs(unlockDate);
-  }
+  /// DEV BRANCH — always unlocked.
+  ///
+  /// On `task/matus.snopek/weeks-5-7-programme-complete` this compares against
+  /// the cohort calendar. Here it does not, so the whole programme can be read
+  /// and walked in one sitting for review.
+  bool isUnlocked() => true;
 
   /// Check if this is the current active day (unlocked but not completed)
   bool isActive() {

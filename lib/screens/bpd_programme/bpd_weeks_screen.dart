@@ -65,7 +65,8 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
   /// gating. Days were locked underneath, so nobody could do a lesson early,
   /// but all seven weeks were open to read.
   bool _isWeekOpen(BpdWeekProgress weekProgress) =>
-      kImplementedBpdWeeks.contains(weekProgress.weekNumber) && weekProgress.isUnlocked();
+      // DEV BRANCH — the date is not checked here; see bpd_day_models.dart.
+      kImplementedBpdWeeks.contains(weekProgress.weekNumber);
 
   void _handleWeekTap(BpdWeekProgress weekProgress) {
     if (_isWeekOpen(weekProgress)) {
