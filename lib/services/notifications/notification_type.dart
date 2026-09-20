@@ -57,10 +57,12 @@ enum NotificationType {
   ///
   /// The body must not repeat the title — together they are two lines on a
   /// lock screen, and "Nový den je připravený / Čeká na tebe další den" spent
-  /// both of them saying one thing. This one adds what the title cannot: how
-  /// much it costs, and that the timing is the reader's to choose.
-  /// TODO: schválit autorem
-  static const programmeUnlockDayBody = 'Stačí pár minut, kdykoliv se ti to hodí.';
+  /// both of them saying one thing. This one adds what the title cannot: that
+  /// the timing is the reader's to choose, and it says so as a whole sentence
+  /// (the earlier "Až budeš mít chvíli." trailed off mid-thought).
+  ///
+  /// Wording approved 2026-09-20.
+  static const programmeUnlockDayBody = 'Když budeš mít čas, mrkni se na něj.';
 
   /// Used instead of [programmeUnlockDayBody] when the day that opens is
   /// the first of a week — that is a bigger moment than an ordinary day.
