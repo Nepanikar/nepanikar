@@ -294,13 +294,23 @@ found three things not in this list, all fixed in the same pass:
   reads. Both entry points removed (home grid, Mé záznamy). Screens, routes and
   DAO left in the tree, unreachable, so a later release can put them back.
 
-- [ ] **GEN-16 — The exit questionnaire link is still missing.** The closing
-  screen of Week 7 Day 7 is built and verified, but `bpdResearchExitFormUrl` in
-  [bpd_research.dart](../../lib/screens/bpd_programme/bpd_research.dart) is
-  empty, so the questionnaire block is left out of the build. The author was
-  creating the form on 2026-09-20. **Filling the constant in is the whole
-  change** — but the APK has to be rebuilt and redistributed, so this blocks the
-  build the participants actually get.
+- [x] **GEN-16 — The exit questionnaire link.** ✅ Done 2026-09-20. In
+  `bpdResearchExitFormUrl`, verified on a device: the closing page renders and
+  the button hands the exact URL to the browser.
+
+  ⚠️ **The form itself was still an empty draft** when the link was added —
+  titled "Pilotní DBT finální dotazník (rozpracovaná verze)" with no questions,
+  only a Submit button. The response URL does not change when a Microsoft Form
+  is edited, so the shipped link stays valid; but **someone finishing Week 7
+  before the questions are added submits nothing**, and Week 7 opens six weeks
+  after the first participant starts.
+
+- [x] **GEN-17 — Participant number and study export removed.** ✅ Done
+  2026-09-20. Both were built (number stored and entered at onboarding, shown
+  again before the exit form; export of dates and counts, no free text) and then
+  dropped on the author's call — the pairing happens inside the two
+  questionnaires instead. The app now holds and sends no study data at all,
+  which is where `bpd_research.dart` always said it should be.
 
 - [ ] **GEN-08 — Approve the programme green.** The skill tree and every
   completion check used `NepanikarColors.success` (`#6FD866`); the author called it
