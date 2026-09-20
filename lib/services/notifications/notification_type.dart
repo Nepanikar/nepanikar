@@ -54,8 +54,13 @@ enum NotificationType {
   /// (docs/hpo/TODO.md → GEN-07). Kept plain on purpose: it says a lesson
   /// is waiting, it does not push, and it promises nothing about how long
   /// it takes beyond what is true.
+  ///
+  /// The body must not repeat the title — together they are two lines on a
+  /// lock screen, and "Nový den je připravený / Čeká na tebe další den" spent
+  /// both of them saying one thing. This one adds what the title cannot: how
+  /// much it costs, and that the timing is the reader's to choose.
   /// TODO: schválit autorem
-  static const programmeUnlockDayBody = 'Čeká na tebe další den. Až budeš mít chvíli.';
+  static const programmeUnlockDayBody = 'Stačí pár minut, kdykoliv se ti to hodí.';
 
   /// Used instead of [programmeUnlockDayBody] when the day that opens is
   /// the first of a week — that is a bigger moment than an ordinary day.
