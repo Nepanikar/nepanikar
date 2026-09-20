@@ -12,10 +12,15 @@ DateTime startOfDay(DateTime date) => DateTime(date.year, date.month, date.day);
 
 /// Midnight [days] calendar days after [from].
 ///
-/// Floors *after* adding rather than adding to a floored date: adding a
-/// `Duration` crosses a DST boundary as 23 or 25 hours, which would otherwise
-/// leave the result an hour either side of midnight.
-DateTime unlockDayAfter(DateTime from, int days) => startOfDay(from.add(Duration(days: days)));
+/// Counts in calendar days, not in hours. `add(Duration(days: n))` adds exactly
+/// 24n hours, and the day the clocks go back is 23 — so on 25 October 2026 that
+/// arithmetic slid a day backwards and every lesson after it landed one day
+/// early. Weeks 6 and 7 of the pilot would have opened on a Sunday.
+///
+/// `DateTime` normalises an out-of-range day field, so this stays on the
+/// calendar and stays at local midnight through any offset change.
+DateTime unlockDayAfter(DateTime from, int days) =>
+    DateTime(from.year, from.month, from.day + days);
 
 /// The day the pilot cohort starts: Monday 21 September 2026.
 ///
