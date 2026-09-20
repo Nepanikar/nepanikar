@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// A challenge the user committed to during the DBT programme, tracked with
 /// daily check-offs across weeks and an optional per-challenge reminder.
