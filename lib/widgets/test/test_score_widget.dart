@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/theme/colors.dart';
-import 'package:nepanikar/main.dart';
 
 class StaticScoreWidget extends StatelessWidget {
   final int score;

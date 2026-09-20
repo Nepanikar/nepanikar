@@ -17,26 +17,20 @@ class BpdWeeksDataManager {
     final weeksList = jsonData['weeks'] as List<dynamic>;
 
     _weeksData = weeksList
-        .map(
-          (weekJson) => BpdWeekData.fromJson(weekJson as Map<String, dynamic>),
-        )
+        .map((weekJson) => BpdWeekData.fromJson(weekJson as Map<String, dynamic>))
         .toList();
   }
 
   List<BpdWeekData> get weeksData {
     if (_weeksData == null) {
-      throw StateError(
-        'BpdWeeksDataManager not initialized. Call init() first.',
-      );
+      throw StateError('BpdWeeksDataManager not initialized. Call init() first.');
     }
     return _weeksData!;
   }
 
   BpdWeekData? getWeekData(int weekNumber) {
     if (_weeksData == null) {
-      throw StateError(
-        'BpdWeeksDataManager not initialized. Call init() first.',
-      );
+      throw StateError('BpdWeeksDataManager not initialized. Call init() first.');
     }
     try {
       return _weeksData!.firstWhere((week) => week.weekNumber == weekNumber);

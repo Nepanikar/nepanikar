@@ -117,7 +117,6 @@ class _NepanikarScreenWrapperState extends State<NepanikarScreenWrapper> {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final containerColor = longTileColorBasedOnDarkMode(context);
 
     Widget getPageContent() {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/theme/colors.dart';
-import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/services/db/tests/test_results_dao.dart';
 import 'package:nepanikar/services/db/tests/test_results_models.dart';
 import 'package:nepanikar/utils/registry.dart';
@@ -106,7 +105,6 @@ class _TestResultScreenState extends State<TestResultScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final colors = longTileColorBasedOnDarkMode(context);
 
     if (_isLoading) {
       return const NepanikarScreenWrapper(
