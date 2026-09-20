@@ -142,16 +142,4 @@ const day7StudyAsk =
 const day7StudyFormIntro = 'Prosíme o dokončení programu zde:';
 const day7StudyFormButton = 'Vyplnit závěrečný dotazník';
 
-/// Ours. The number is what lets the researcher put the two questionnaires and
-/// the export side by side, so it is asked for before the export button rather
-/// than after — a file saved without it cannot be matched to anyone.
-const day7StudyCodeCaption =
-    'Číslo, které ti přišlo e-mailem na začátku. Zadej ho prosím i do '
-    'závěrečného dotazníku — podle něj se tvoje odpovědi spárují.';
-const day7StudyExportLead =
-    'Nakonec můžeš přiložit přehled svého postupu průvodcem — kdy jsi které dny '
-    'dokončil/a a kolik cvičení máš za sebou. Nejsou v něm žádné tvoje texty, '
-    'jen počty a data. Soubor se uloží do telefonu a odtud ho můžeš poslat.';
-const day7StudyExportButton = 'Uložit přehled postupu';
-const day7StudyExportDone = 'Přehled uložen. Díky!';
 const day7StudyCloseButton = 'Zavřít';

@@ -1,25 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/theme/colors.dart';
-import 'package:nepanikar/helpers/contact_action_helpers.dart';
 import 'package:nepanikar/screens/bpd_programme/bpd_research.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week7/day7_conclusion/day7_content.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_messages.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_flow_header.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
-import 'package:nepanikar/screens/bpd_programme/widgets/participant_code_card.dart';
-import 'package:nepanikar/screens/bpd_programme/widgets/participant_code_reminder_dialog.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/external_link_button.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/structured_worksheet.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/week_completion_page.dart';
 import 'package:nepanikar/screens/contacts/region_contacts_screen.dart';
-import 'package:nepanikar/services/bpd_study_export_service.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
 import 'package:nepanikar/services/db/bpd/bpd_rescue_item_model.dart';
 import 'package:nepanikar/services/db/bpd/bpd_rescue_package_dao.dart';
 import 'package:nepanikar/services/db/bpd/bpd_worksheet_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 part 'day7_conclusion_screen.g.dart';
 
@@ -312,38 +308,14 @@ class Week7Day7ClosingWritingPage extends StatelessWidget {
 /// Deliberately after the celebration, not instead of it: the programme is the
 /// thing the person came for, and the questionnaire is what we need from them.
 /// The order says which is which.
-class Week7Day7StudyPage extends StatefulWidget {
+///
+/// Nothing on this page collects anything. The questionnaire is a Microsoft
+/// Form on the university's tenant and this is a link to it, which is the whole
+/// of the app's part in the study.
+class Week7Day7StudyPage extends StatelessWidget {
   const Week7Day7StudyPage({super.key, required this.onClose});
 
   final VoidCallback onClose;
-
-  @override
-  State<Week7Day7StudyPage> createState() => _Week7Day7StudyPageState();
-}
-
-class _Week7Day7StudyPageState extends State<Week7Day7StudyPage> {
-  bool _exporting = false;
-  bool _exported = false;
-
-  /// The number goes in front of them before the browser takes over — once the
-  /// form is open there is nothing left on screen to read it off.
-  Future<void> _openExitForm() async {
-    final shouldContinue = await showBpdParticipantCodeReminder(context);
-    if (!shouldContinue) return;
-    await launchUrLink(bpdResearchExitFormUrl, launchMode: LaunchMode.externalApplication);
-  }
-
-  Future<void> _export() async {
-    setState(() => _exporting = true);
-    final saved = await BpdStudyExportService.saveToFile();
-    if (!mounted) return;
-    setState(() {
-      _exporting = false;
-      // Only a file that actually landed counts — backing out of the save
-      // dialog must not leave the screen claiming the data was sent.
-      _exported = saved;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -352,7 +324,7 @@ class _Week7Day7StudyPageState extends State<Week7Day7StudyPage> {
 
     return DayPageBase(
       buttonText: day7StudyCloseButton,
-      onButtonPressed: widget.onClose,
+      onButtonPressed: onClose,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -383,72 +355,19 @@ class _Week7Day7StudyPageState extends State<Week7Day7StudyPage> {
               style: TextStyle(fontSize: 14, height: 1.55, color: bodyColor),
             ),
             const SizedBox(height: 16),
-            const ParticipantCodeCard(caption: day7StudyCodeCaption),
-            const SizedBox(height: 16),
             Text(
               day7StudyFormIntro,
               style: TextStyle(fontSize: 14, height: 1.55, color: bodyColor),
             ),
             const SizedBox(height: 10),
-            SizedBox(
-              width: double.infinity,
-              child: FilledButton.icon(
-                onPressed: _openExitForm,
-                icon: const Icon(Icons.assignment_outlined, size: 20),
-                label: const Text(day7StudyFormButton),
-                style: FilledButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 14),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                ),
-              ),
+            const ExternalLinkButton(
+              label: day7StudyFormButton,
+              url: bpdResearchExitFormUrl,
+              icon: Icons.assignment_outlined,
             ),
-          ] else ...[
-            const SizedBox(height: 22),
-            const ParticipantCodeCard(caption: day7StudyCodeCaption),
           ],
-          const SizedBox(height: 22),
-          Text(
-            day7StudyExportLead,
-            style: TextStyle(fontSize: 14, height: 1.55, color: bodyColor),
-          ),
-          const SizedBox(height: 12),
-          _ExportButton(
-            busy: _exporting,
-            done: _exported,
-            onPressed: _exporting || _exported ? null : _export,
-          ),
           const SizedBox(height: 16),
         ],
-      ),
-    );
-  }
-}
-
-class _ExportButton extends StatelessWidget {
-  const _ExportButton({required this.busy, required this.done, required this.onPressed});
-
-  final bool busy;
-  final bool done;
-  final VoidCallback? onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    final primaryColor = Theme.of(context).primaryColor;
-
-    return SizedBox(
-      width: double.infinity,
-      child: OutlinedButton.icon(
-        onPressed: onPressed,
-        icon: busy
-            ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2))
-            : Icon(done ? Icons.check_circle_outline : Icons.download_outlined, size: 20),
-        label: Text(done ? day7StudyExportDone : day7StudyExportButton),
-        style: OutlinedButton.styleFrom(
-          foregroundColor: done ? Colors.green : primaryColor,
-          side: BorderSide(color: (done ? Colors.green : primaryColor).withOpacity(0.6)),
-          padding: const EdgeInsets.symmetric(vertical: 14),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        ),
       ),
     );
   }

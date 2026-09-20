@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:nepanikar/screens/bpd_programme/widgets/participant_code_card.dart';
 import 'package:nepanikar/screens/home/my_records/challenges/my_challenges_screen.dart';
 import 'package:nepanikar/screens/home/my_records/emotion_dictionary/emotion_dictionary_screen.dart';
 import 'package:nepanikar/screens/home/my_records/goals/my_goals_screen.dart';
 import 'package:nepanikar/screens/home/my_records/rescue_package/rescue_package_screen.dart';
-import 'package:nepanikar/services/bpd_study_export_service.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 
@@ -32,16 +30,6 @@ class DbtRecordsScreen extends StatelessWidget {
     return NepanikarScreenWrapper(
       appBarTitle: 'DBT průvodce',
       children: [
-        // Also reachable from the last screen of Week 7, but that screen is
-        // seen once. Someone who mistyped their number, or who closed the
-        // programme before saving the export, needs a way back to both.
-        const Padding(
-          padding: EdgeInsets.only(bottom: 16),
-          child: ParticipantCodeCard(
-            caption: 'Číslo z e-mailu, podle kterého se párují tvoje dotazníky '
-                've výzkumu.',
-          ),
-        ),
         LongTile(
           text: 'Moje výzvy',
           image: Icon(Icons.flag_outlined, size: 32, color: primaryColor),
@@ -61,11 +49,6 @@ class DbtRecordsScreen extends StatelessWidget {
           text: 'Slovník emocí',
           image: Icon(Icons.menu_book_outlined, size: 32, color: primaryColor),
           onTap: () => context.push(const EmotionDictionaryRoute().location),
-        ),
-        LongTile(
-          text: 'Přehled postupu pro výzkum',
-          image: Icon(Icons.download_outlined, size: 32, color: primaryColor),
-          onTap: () => BpdStudyExportService.saveToFile(),
         ),
       ],
     );

@@ -4,7 +4,6 @@ import 'package:nepanikar/screens/bpd_programme/bpd_research.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_messages.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/external_link_button.dart';
-import 'package:nepanikar/screens/bpd_programme/widgets/participant_code_card.dart';
 import 'package:nepanikar/services/db/bpd/bpd_user_profile_model.dart';
 
 /// Page 1/7 — Welcome + how the programme works + name/pronoun, in chat form
@@ -169,19 +168,6 @@ class _Day1WelcomeChatPageState extends State<Day1WelcomeChatPage> {
                   'Součástí je krátký vstupní dotazník, vyplnění zabere 7–10 minut. '
                   'Zároveň v něm potvrdíte souhlas s účastí ve výzkumu. Na konci '
                   'sedmi týdnů Vás v aplikaci čeká krátké závěrečné zhodnocení.',
-            ),
-            // Asked for here rather than at the end: the e-mail carrying the
-            // number arrives before onboarding, and seven weeks is long enough
-            // to lose a message nobody told you to keep. Skippable, because the
-            // e-mail may not have arrived yet and a wall at step one of a
-            // seven-week programme is a wall people do not climb.
-            ChatRichMessage(
-              child: ParticipantCodeCard(
-                caption:
-                    'Číslo, které Vám přišlo e-mailem. Podle něj se spárují Vaše '
-                    'odpovědi z obou dotazníků. Pokud ho zatím nemáte, můžete ho '
-                    'doplnit později v Záznamech → DBT průvodce.',
-              ),
             ),
             ChatRichMessage(
               child: ExternalLinkButton(

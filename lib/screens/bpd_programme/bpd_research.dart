@@ -5,12 +5,17 @@
 /// with Nepanikař. Participation has three parts: an entry questionnaire, the
 /// seven weeks in the app, and an exit questionnaire after those seven weeks.
 ///
-/// **No study data lives in this app.** Both questionnaires are Microsoft Forms
-/// on the university's tenant, so the informed consent, the e-mail used to pair
-/// someone's two questionnaires, and every answer stay with the researcher. The
-/// app only links out. That is deliberate: the moment the app stored any of it,
-/// Nepanikař would be holding special-category health data about people with a
-/// BPD diagnosis, which is a far heavier thing to carry than a hyperlink.
+/// **No study data lives in this app, and none leaves it.** Both questionnaires
+/// are Microsoft Forms on the university's tenant, so the informed consent,
+/// whatever pairs someone's two questionnaires, and every answer stay with the
+/// researcher. The app's entire part is two links.
+///
+/// It briefly did more. A participant number was stored and typed in, and the
+/// programme could export a summary of someone's progress to send along; both
+/// were dropped on 2026-09-20 in favour of the questionnaires alone. Worth
+/// keeping that way: the moment the app holds any of this, Nepanikař is
+/// carrying special-category health data about people with a BPD diagnosis,
+/// which is a far heavier thing than a hyperlink.
 library;
 
 /// Entry questionnaire — informed consent plus the intake questions.
@@ -29,10 +34,15 @@ const bpdResearchContactEmail = '510685@mail.muni.cz';
 /// Exit questionnaire — the closing evaluation, shown after the last day of
 /// Week 7.
 ///
-/// **Empty until the researcher sends the link** (promised 2026-09-20). While
-/// it is empty the closing screen simply leaves the questionnaire out, so a
-/// build that ships without it has no dead button; filling this constant in is
-/// the whole change.
-const bpdResearchExitFormUrl = '';
+/// Received 2026-09-20. Same tenant and same form family as the entry
+/// questionnaire — only the form id differs — so a build that can reach one can
+/// reach the other.
+///
+/// While this is empty the closing screen leaves the questionnaire out
+/// entirely, rather than showing a button that goes nowhere.
+const bpdResearchExitFormUrl =
+    'https://forms.cloud.microsoft/pages/responsepage.aspx'
+    '?id=I0-QEdvw3EyW9zkL1V_O6NQnBEJYjexFgDOdpuulVnFUQzQ0S0kyQlpQSjVJR0xRSDBDNlU3QklIMC4u'
+    '&route=shorturl';
 
 bool get hasBpdResearchExitForm => bpdResearchExitFormUrl.isNotEmpty;
