@@ -134,14 +134,7 @@ class BpdDaysDao {
   /// time, so a week the user never opened has no records at all, and treating
   /// that as "nothing to do here" would let them skip the week entirely.
   Future<(int week, int day)?> firstUnfinishedDayBefore(int weekNumber, int dayNumber) async {
-    final target = bpdDayIndex(weekNumber, dayNumber);
-    for (var week = 1; week <= weekNumber; week++) {
-      for (var day = 1; day <= _daysPerWeek; day++) {
-        if (bpdDayIndex(week, day) >= target) break;
-        final progress = await getDayProgress(week, day);
-        if (progress?.isCompleted != true) return (week, day);
-      }
-    }
+    // DEV BRANCH — no sequence rule; see bpd_day_models.dart.
     return null;
   }
 
