@@ -14,21 +14,21 @@ dependencies:
   cupertino_ui: any
   email_validator: ^3.0.0
   equatable: ^2.0.5
-  firebase_analytics: ^12.0.0
-  firebase_core: ^4.0.0
-  firebase_crashlytics: ^5.0.0
+  firebase_analytics: ^12.6.0
+  firebase_core: ^4.15.0
+  firebase_crashlytics: ^5.4.0
   fl_chart: ^1.1.1
   flutter:
     sdk: flutter
   flutter_animate: ^4.5.2
-  flutter_file_dialog: ^3.0.0
+  flutter_file_dialog: ^3.3.3
   flutter_localizations:
     sdk: flutter
   flutter_native_splash: ^2.2.17
   flutter_svg: ^2.2.0
   freezed_annotation: ^3.1.0
   get_it: ^9.0.5
-  go_router: ^17.0.0
+  go_router: ^18.0.1
   ini: any
   intl: ^0.20.2
   json_annotation: ^4.9.0
