@@ -257,7 +257,13 @@ found three things not in this list, all fixed in the same pass:
     longer exist. Nothing in the app navigated to them; only a hand-typed deep
     link could have reached them.
 
-- [ ] **GEN-10 — Test titles and questions are inconsistent.** Now that the tests
+- [x] **GEN-10 — Test titles and questions are inconsistent.** ✅ Moot 2026-09-20 —
+  the tests were taken out of the app (see GEN-15), so the mixed Slovak/English
+  wording is no longer reachable. Reopen if they ever come back.
+
+  <details><summary>Original</summary>
+
+- **Test titles and questions are inconsistent.** Now that the tests
   are promoted to a home tile ("Otestuj se", 2026-08-19) this is much more
   visible. In `assets/tests/tests-data.json` the four names are `BRCS Test`,
   `Test Depresie (PHQ-9)` (**Slovak**), `PSS Test`, `GAD-7 Test`; and
@@ -265,13 +271,36 @@ found three things not in this list, all fixed in the same pass:
   BRCS are Czech. Not touched — test wording is clinical content and the author's
   call, not a formatting fix.
 
-- [ ] **GEN-11 — Duplicate entry point for the tests.** The tests are now on the
+  </details>
+
+- [x] **GEN-11 — Duplicate entry point for the tests.** ✅ Answered 2026-09-20 —
+  the author's answer was neither: both entry points go (GEN-15).
+
+  <details><summary>Original</summary>
+
+- **Duplicate entry point for the tests.** The tests are now on the
   home grid *and* still a `LongTile` inside Mé záznamy
   ([my_records_screen.dart](../../lib/screens/home/my_records/my_records_screen.dart)),
   where that tile is labelled `'Tests'` (hardcoded English) and reuses
   `foodTracker.svg` — the same artwork as "Meal records" right above it. Ask the
   author whether the records entry should go now that the home tile exists; if it
   stays, it needs its own label and icon.
+
+  </details>
+
+- [x] **GEN-15 — Take the psychological tests out of the app.** ✅ Done 2026-09-20.
+  The pilot measures people with its own entry and exit questionnaires, and a
+  GAD-7 or PHQ-9 alongside them is a second, uncontrolled measurement nobody
+  reads. Both entry points removed (home grid, Mé záznamy). Screens, routes and
+  DAO left in the tree, unreachable, so a later release can put them back.
+
+- [ ] **GEN-16 — The exit questionnaire link is still missing.** The closing
+  screen of Week 7 Day 7 is built and verified, but `bpdResearchExitFormUrl` in
+  [bpd_research.dart](../../lib/screens/bpd_programme/bpd_research.dart) is
+  empty, so the questionnaire block is left out of the build. The author was
+  creating the form on 2026-09-20. **Filling the constant in is the whole
+  change** — but the APK has to be rebuilt and redistributed, so this blocks the
+  build the participants actually get.
 
 - [ ] **GEN-08 — Approve the programme green.** The skill tree and every
   completion check used `NepanikarColors.success` (`#6FD866`); the author called it
