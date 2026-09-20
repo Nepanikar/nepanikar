@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
@@ -74,8 +74,8 @@ class NepanikarDropdown<T> extends StatelessWidget {
     required this.labelBuilder,
     required this.onPick,
     required this.expand,
-    required NepanikarDropdownType type,
-  }) : _type = type;
+    required this._type,
+  });
 
   final T? activeItem;
   final Iterable<T> items;

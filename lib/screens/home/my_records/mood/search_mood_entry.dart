@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
-import 'package:multi_select_flutter/multi_select_flutter.dart';
+import 'package:material_ui/material_ui.dart';
+import 'package:multi_dropdown/multi_dropdown.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
@@ -14,6 +14,7 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/mood/chosen_emotions.dart';
 import 'package:nepanikar/widgets/mood/mood_entry_card.dart';
 import 'package:provider/provider.dart';
+
 part 'search_mood_entry.g.dart';
 
 @TypedGoRoute<SearchMoodEntryRoute>(path: '/home/my-records/search-mood-entry')
@@ -21,8 +22,7 @@ class SearchMoodEntryRoute extends GoRouteData with $SearchMoodEntryRoute {
   const SearchMoodEntryRoute();
 
   @override
-  Widget build(BuildContext context, _) =>
-      const SearchMoodEntryScreen<MoodTrackDao>();
+  Widget build(BuildContext context, _) => const SearchMoodEntryScreen<MoodTrackDao>();
 }
 
 class SearchMoodEntryScreen<T extends MoodTrackDao> extends StatefulWidget {
@@ -32,8 +32,7 @@ class SearchMoodEntryScreen<T extends MoodTrackDao> extends StatefulWidget {
   State<SearchMoodEntryScreen<T>> createState() => _SearchMoodEntryState<T>();
 }
 
-class _SearchMoodEntryState<T extends MoodTrackDao>
-    extends State<SearchMoodEntryScreen<T>> {
+class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntryScreen<T>> {
   T get _trackDao => registry.get<T>();
 
   final TextEditingController _searchController = TextEditingController();
@@ -53,10 +52,7 @@ class _SearchMoodEntryState<T extends MoodTrackDao>
   }
 
   Future<void> _search() async {
-    final results = await _trackDao.searchMoodTracks(
-      _summaryToSearch,
-      _selectedEmotions,
-    );
+    final results = await _trackDao.searchMoodTracks(_summaryToSearch, _selectedEmotions);
     setState(() {
       _searchResults = results;
     });
@@ -72,14 +68,17 @@ class _SearchMoodEntryState<T extends MoodTrackDao>
   @override
   Widget build(BuildContext context) {
     _emotions = Provider.of<MoodState>(context).emotions;
-    final items = _emotions
-        .map((emotion) => MultiSelectItem<String>(emotion, emotion))
+    final List<DropdownItem<String>> items = _emotions
+        .map(
+          (emotion) => DropdownItem<String>(
+            label: emotion,
+            value: emotion,
+            selected: _selectedEmotions.contains(emotion),
+          ),
+        )
         .toList();
 
-    const pageHorizontalPadding = EdgeInsets.symmetric(
-      horizontal: 24.0,
-      vertical: 12,
-    );
+    const pageHorizontalPadding = EdgeInsets.symmetric(horizontal: 24.0, vertical: 12);
 
     final ValueKey<int> uniqueKey = ValueKey<int>(_selectedEmotions.length);
 
@@ -116,9 +115,7 @@ class _SearchMoodEntryState<T extends MoodTrackDao>
                     fillColor: containerColor,
                     filled: true,
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: NepanikarColors.container(context),
-                      ),
+                      borderSide: BorderSide(color: NepanikarColors.container(context)),
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     hintText: context.l10n.enter_part_of_summary,
@@ -133,49 +130,31 @@ class _SearchMoodEntryState<T extends MoodTrackDao>
                 const SizedBox(height: 15),
                 Container(
                   key: uniqueKey,
-                  child: MultiSelectDialogField(
-                    searchable: true,
+                  child: MultiDropdown<String>(
                     items: items,
-                    checkColor: Theme.of(context).brightness == Brightness.dark
-                        ? Theme.of(context).primaryColor
-                        : Colors.white,
-                    backgroundColor: containerColor,
-                    title: Text(context.l10n.emotions),
-                    decoration: BoxDecoration(
-                      color: containerColor,
-                      borderRadius: const BorderRadius.all(Radius.circular(40)),
-                      border: Border.all(
-                        color: NepanikarColors.container(context),
-                      ),
-                    ),
-                    selectedColor: textStyleColor,
-                    selectedItemsTextStyle: TextStyle(color: textStyleColor),
-                    unselectedColor: textStyleColor,
-                    itemsTextStyle: TextStyle(color: textStyleColor),
-                    buttonIcon: Icon(
-                      Icons.arrow_drop_down,
-                      color: textStyleColor,
-                    ),
-                    buttonText: Text(
-                      context.l10n.search_by_emotions,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
-                    onConfirm: (results) {
-                      _onEmotionsUpdated(results.cast<String>());
+                    searchEnabled: true,
+                    maxSelections: 9,
+                    dropdownMode: DropdownMode.bottomSheet,
+
+                    onSelectionChange: (values) {
+                      _onEmotionsUpdated(List<String>.from(values));
                     },
-                    cancelText: Text(
-                      context.l10n.cancel,
-                      style: TextStyle(color: textStyleColor, fontSize: 16),
+
+                    fieldDecoration: FieldDecoration(
+                      hintText: context.l10n.search_by_emotions,
+                      hintStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      backgroundColor: containerColor,
+                      borderRadius: 40,
                     ),
-                    confirmText: Text(
-                      context.l10n.submit,
-                      style: TextStyle(color: textStyleColor, fontSize: 16),
+
+                    dropdownDecoration: DropdownDecoration(backgroundColor: containerColor),
+
+                    searchDecoration: SearchFieldDecoration(hintText: context.l10n.emotions),
+
+                    dropdownItemDecoration: DropdownItemDecoration(
+                      textColor: textStyleColor,
+                      selectedTextColor: textStyleColor,
                     ),
-                    initialValue: _selectedEmotions,
-                    chipDisplay: MultiSelectChipDisplay.none(),
                   ),
                 ),
                 const SizedBox(height: 5),
@@ -197,16 +176,11 @@ class _SearchMoodEntryState<T extends MoodTrackDao>
                           _search();
                         },
                         style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                          ),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
                         ),
                         child: Text(
                           context.l10n.search,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                          ), // Text color
+                          style: const TextStyle(color: Colors.white, fontSize: 14), // Text color
                         ),
                       ),
                     ),
@@ -227,16 +201,11 @@ class _SearchMoodEntryState<T extends MoodTrackDao>
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: NepanikarColors.deleteButton,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                          ),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
                         ),
                         child: Text(
                           context.l10n.clear_button,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                          ), // Text color
+                          style: const TextStyle(color: Colors.white, fontSize: 14), // Text color
                         ),
                       ),
                     ),
@@ -247,39 +216,27 @@ class _SearchMoodEntryState<T extends MoodTrackDao>
                   if (_searchResults.isNotEmpty) ...[
                     Text(
                       context.l10n.mood_entries,
-                      style: NepanikarFonts.title2.copyWith(
-                        color: textStyleColor,
-                      ),
+                      style: NepanikarFonts.title2.copyWith(color: textStyleColor),
                     ),
                     ListView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      itemCount: _searchResults
-                          .length, // Use the length of the search results list
+                      itemCount: _searchResults.length, // Use the length of the search results list
                       itemBuilder: (context, index) {
-                        final moodEntry =
-                            _searchResults[index]; // Access the search result item
+                        final moodEntry = _searchResults[index]; // Access the search result item
                         return Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 10,
-                            horizontal: 16,
-                          ),
+                          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
                           child: MoodEntryCard(
-                            dateTime: DateFormat(
-                              'd. MMM yyyy, HH:mm',
-                            ).format(moodEntry.date),
+                            dateTime: DateFormat('d. MMM yyyy, HH:mm').format(moodEntry.date),
                             moodIcon: moodEntry.mood.icon,
                             moodDescription:
-                                moodEntry.summary ??
-                                context.l10n.no_description_provided,
+                                moodEntry.summary ?? context.l10n.no_description_provided,
                             onTap: () {
                               Provider.of<MoodState>(
                                 context,
                                 listen: false,
                               ).selectMoodEntry(moodEntry);
-                              context.push(
-                                const MoodEntryDetailRoute().location,
-                              );
+                              context.push(const MoodEntryDetailRoute().location);
                             },
                           ),
                         );
@@ -288,9 +245,7 @@ class _SearchMoodEntryState<T extends MoodTrackDao>
                   ] else ...[
                     Text(
                       context.l10n.no_mood_entries,
-                      style: NepanikarFonts.title2.copyWith(
-                        color: textStyleColor,
-                      ),
+                      style: NepanikarFonts.title2.copyWith(color: textStyleColor),
                     ),
                   ],
                 ],

@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 
 /// [Lottie] animations should NOT be usually cached - they usually work just fine using

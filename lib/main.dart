@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart' as flutter_localizations;
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/generated/fonts.gen.dart';
 import 'package:nepanikar/app/l10n/app_localizations.dart';
 import 'package:nepanikar/app/theme/dark_theme.dart';
@@ -36,12 +37,8 @@ class Nepanikar extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<MoodChartFilterProvider>(
-          create: (_) => MoodChartFilterProvider(),
-        ),
-        ChangeNotifierProvider<MoodState>(
-          create: (_) => MoodState(_emotionsDao, _trackDao),
-        ),
+        ChangeNotifierProvider<MoodChartFilterProvider>(create: (_) => MoodChartFilterProvider()),
+        ChangeNotifierProvider<MoodState>(create: (_) => MoodState(_emotionsDao, _trackDao)),
         ChangeNotifierProvider<MoodHeatmapFilterProvider>(
           create: (_) => MoodHeatmapFilterProvider(),
         ),
@@ -57,44 +54,46 @@ class Nepanikar extends StatelessWidget {
               return StreamBuilder<Color>(
                 stream: _userSettingsDao.mainColorStream,
                 builder: (context, snapshot) {
-                  final inputMainColor =
-                      snapshot.data ?? Theme.of(context).primaryColor;
+                  final inputMainColor = snapshot.data ?? Theme.of(context).primaryColor;
                   return MaterialApp.router(
                     debugShowCheckedModeBanner: false,
                     title: _getAppNameFromLocale(locale),
                     theme: NepanikarTheme.getThemeData(
-                      fontFamily:
-                          locale?.languageCode ==
-                              NepanikarLanguages.uk.languageCode
+                      fontFamily: locale?.languageCode == NepanikarLanguages.uk.languageCode
                           ? null
                           : FontFamily.satoshi,
                       mainColor: inputMainColor,
                     ),
                     darkTheme: darkTheme.getThemeData(
-                      fontFamily:
-                          locale?.languageCode ==
-                              NepanikarLanguages.uk.languageCode
+                      fontFamily: locale?.languageCode == NepanikarLanguages.uk.languageCode
                           ? null
                           : FontFamily.satoshi,
                       mainColor: inputMainColor,
                     ),
                     themeMode: themeMode,
-                    localizationsDelegates:
-                        AppLocalizations.localizationsDelegates,
+                    localizationsDelegates: const [
+                      AppLocalizations.delegate,
+                      GlobalMaterialLocalizations.delegate,
+                      flutter_localizations.GlobalWidgetsLocalizations.delegate,
+                      flutter_localizations.GlobalCupertinoLocalizations.delegate,
+                    ],
                     supportedLocales: AppLocalizations.supportedLocales,
                     locale: locale,
                     routerConfig: _goRouter,
                     builder: (context, child) {
                       return child != null
-                          ? ScrollConfiguration(
-                              behavior: NepanikarScrollBehavior(),
-                              child: MediaQuery(
-                                // To not influence app's font size by the system font size.
-                                // TODO: Should be resolved, accessibility is important.
-                                data: MediaQuery.of(
-                                  context,
-                                ).copyWith(textScaler: TextScaler.noScaling),
-                                child: child,
+                          // ignore: deprecated_member_use
+                          ? MaterialUiCompatibilityBridge(
+                              child: ScrollConfiguration(
+                                behavior: NepanikarScrollBehavior(),
+                                child: MediaQuery(
+                                  // To not influence app's font size by the system font size.
+                                  // TODO: Should be resolved, accessibility is important.
+                                  data: MediaQuery.of(
+                                    context,
+                                  ).copyWith(textScaler: TextScaler.noScaling),
+                                  child: child,
+                                ),
                               ),
                             )
                           : const SizedBox.shrink();

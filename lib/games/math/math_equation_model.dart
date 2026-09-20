@@ -10,8 +10,8 @@ class MathEquation {
     required this.a,
     required this.b,
     required this.operation,
-    required int correctResult,
-  }) : _correctResult = correctResult;
+    required this._correctResult,
+  });
 
   factory MathEquation.generate() {
     final r = Random();

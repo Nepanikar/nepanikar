@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/utils/contacts_data_manager.dart';
@@ -7,6 +7,7 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/contacts/phone_contact_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
 import 'package:nepanikar_contacts_gen/nepanikar_contacts_gen.dart';
+
 part 'phone_contacts_screen.g.dart';
 
 @TypedGoRoute<PhoneContactsRoute>(path: '/contacts/phones')

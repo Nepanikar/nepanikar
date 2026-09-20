@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
@@ -11,6 +11,7 @@ import 'package:nepanikar/screens/home/eating_disorder/tasks/eating_disorder_foo
 import 'package:nepanikar/screens/home/eating_disorder/tasks/eating_disorder_like_on_myself_screen.dart';
 import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
+
 part 'eating_disorder_tasks_screen.g.dart';
 
 @TypedGoRoute<EatingDisorderTasksRoute>(path: '/home/eating-disorder/tasks')

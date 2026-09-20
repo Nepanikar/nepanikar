@@ -1,7 +1,6 @@
 import 'package:email_validator/email_validator.dart';
-import 'package:flutter/material.dart';
-import 'package:linkify/linkify.dart'
-    hide PhoneNumberElement, PhoneNumberLinkifier;
+import 'package:linkify/linkify.dart' hide PhoneNumberElement, PhoneNumberLinkifier;
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/helpers/contact_action_helpers.dart';
@@ -17,10 +16,7 @@ class RegionItemContactsList extends StatelessWidget {
   Widget _buildUniversityHeader(Color? textColor) {
     return Text(
       regionItemContact.name,
-      style: NepanikarFonts.title3.copyWith(
-        color: textColor,
-        fontWeight: FontWeight.w700,
-      ),
+      style: NepanikarFonts.title3.copyWith(color: textColor, fontWeight: FontWeight.w700),
     );
   }
 
@@ -40,11 +36,7 @@ class RegionItemContactsList extends StatelessWidget {
           ...regionItemContact.contactAddresses.map((contact) {
             final linkifiedText = linkify(
               contact,
-              linkifiers: const [
-                EmailLinkifier(),
-                UrlLinkifier(),
-                PhoneNumberLinkifier(),
-              ],
+              linkifiers: const [EmailLinkifier(), UrlLinkifier(), PhoneNumberLinkifier()],
               options: const LinkifyOptions(looseUrl: true, removeWww: true),
             );
 
@@ -56,18 +48,14 @@ class RegionItemContactsList extends StatelessWidget {
                     if (e is LinkableElement) {
                       final displayText = e.text;
                       final fullLink = e.url;
-                      final displayUrlLink =
-                          Uri.tryParse(fullLink)?.host ?? displayText;
+                      final displayUrlLink = Uri.tryParse(fullLink)?.host ?? displayText;
                       final isEmail = EmailValidator.validate(displayText);
                       return WidgetSpan(
                         child: GestureDetector(
                           onTap: () async => await launchLinkableContact(e),
-                          onLongPress: () async =>
-                              await copyContact(context, displayText),
+                          onLongPress: () async => await copyContact(context, displayText),
                           child: Text(
-                            isEmail || e is PhoneNumberElement
-                                ? displayText
-                                : displayUrlLink,
+                            isEmail || e is PhoneNumberElement ? displayText : displayUrlLink,
                             semanticsLabel: e is PhoneNumberElement
                                 ? displayText.spellOutNumFormat
                                 : isEmail
@@ -80,9 +68,7 @@ class RegionItemContactsList extends StatelessWidget {
                     }
                     return TextSpan(
                       text: e.text,
-                      style: linkifiedTextStyle.copyWith(
-                        decoration: TextDecoration.none,
-                      ),
+                      style: linkifiedTextStyle.copyWith(decoration: TextDecoration.none),
                     );
                   }).toList(),
                 ),

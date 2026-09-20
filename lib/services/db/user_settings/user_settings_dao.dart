@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/helpers/localization_helpers.dart';
 import 'package:nepanikar/services/analytics/bpd_analytics.dart';
@@ -12,9 +12,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:sembast/sembast.dart';
 
 class UserSettingsDao {
-  UserSettingsDao({required DatabaseService dbService})
-    : _dbService = dbService,
-      _store = StoreRef(_storeKeyName);
+  UserSettingsDao({required this._dbService}) : _store = StoreRef(_storeKeyName);
 
   Future<UserSettingsDao> init() async {
     registry.registerSingleton<UserSettingsDao>(this);

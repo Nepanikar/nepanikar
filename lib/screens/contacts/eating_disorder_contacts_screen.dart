@@ -1,8 +1,7 @@
 import 'package:email_validator/email_validator.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:linkify/linkify.dart'
-    hide PhoneNumberElement, PhoneNumberLinkifier;
+import 'package:linkify/linkify.dart' hide PhoneNumberElement, PhoneNumberLinkifier;
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
@@ -14,17 +13,14 @@ import 'package:nepanikar/utils/contacts_data_manager.dart';
 import 'package:nepanikar/utils/custom_linkifiers.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
+
 part 'eating_disorder_contacts_screen.g.dart';
 
-@TypedGoRoute<EatingDisorderContactsRoute>(
-  path: '/home/eating-disorder/contacts',
-)
-class EatingDisorderContactsRoute extends GoRouteData
-    with $EatingDisorderContactsRoute {
+@TypedGoRoute<EatingDisorderContactsRoute>(path: '/home/eating-disorder/contacts')
+class EatingDisorderContactsRoute extends GoRouteData with $EatingDisorderContactsRoute {
   const EatingDisorderContactsRoute();
 
-  ContactsDataManager get _contactsManager =>
-      registry.get<ContactsDataManager>();
+  ContactsDataManager get _contactsManager => registry.get<ContactsDataManager>();
 
   UserSettingsDao get _userSettingsDao => registry.get<UserSettingsDao>();
 
@@ -73,11 +69,7 @@ class EatingDisorderContactsScreen extends StatelessWidget {
           ...eatingDisorderContacts.map((contact) {
             final linkifiedText = linkify(
               contact,
-              linkifiers: const [
-                EmailLinkifier(),
-                UrlLinkifier(),
-                PhoneNumberLinkifier(),
-              ],
+              linkifiers: const [EmailLinkifier(), UrlLinkifier(), PhoneNumberLinkifier()],
               options: const LinkifyOptions(looseUrl: true, removeWww: true),
             );
 
@@ -89,17 +81,14 @@ class EatingDisorderContactsScreen extends StatelessWidget {
                     if (e is LinkableElement) {
                       final displayText = e.text;
                       final fullLink = e.url;
-                      final displayUrlLink =
-                          Uri.tryParse(fullLink)?.host ?? displayText;
+                      final displayUrlLink = Uri.tryParse(fullLink)?.host ?? displayText;
                       final isEmail = EmailValidator.validate(displayText);
                       return WidgetSpan(
                         child: GestureDetector(
                           onTap: () => launchLinkableContact(e),
                           onLongPress: () => copyContact(context, displayText),
                           child: Text(
-                            isEmail || e is PhoneNumberElement
-                                ? displayText
-                                : displayUrlLink,
+                            isEmail || e is PhoneNumberElement ? displayText : displayUrlLink,
                             semanticsLabel: e is PhoneNumberElement
                                 ? displayText.spellOutNumFormat
                                 : isEmail
@@ -112,9 +101,7 @@ class EatingDisorderContactsScreen extends StatelessWidget {
                     }
                     return TextSpan(
                       text: e.text,
-                      style: linkifiedTextStyle.copyWith(
-                        decoration: TextDecoration.none,
-                      ),
+                      style: linkifiedTextStyle.copyWith(decoration: TextDecoration.none),
                     );
                   }).toList(),
                 ),

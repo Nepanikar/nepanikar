@@ -20,12 +20,10 @@ import 'package:nepanikar/utils/registry.dart';
 
 class NotificationsService {
   const NotificationsService({
-    required AwesomeNotifications awesomeNotifications,
-    required GoRouter router,
-    required UserSettingsDao userSettingsDao,
-  }) : _awesomeNotifications = awesomeNotifications,
-       _router = router,
-       _userSettingsDao = userSettingsDao;
+    required this._awesomeNotifications,
+    required this._router,
+    required this._userSettingsDao,
+  });
 
   final GoRouter _router;
   final AwesomeNotifications _awesomeNotifications;

@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_constructors_over_static_methods
 
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/services/notifications/notification_type.dart';
 
 part 'user_settings_models.freezed.dart';
