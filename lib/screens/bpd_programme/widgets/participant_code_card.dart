@@ -21,9 +21,7 @@ class ParticipantCodeCard extends StatefulWidget {
 }
 
 class _ParticipantCodeCardState extends State<ParticipantCodeCard> {
-  late final Future<String> _code = registry
-      .get<UserSettingsDao>()
-      .getOrCreateBpdParticipantCode();
+  late final Future<String> _code = registry.get<UserSettingsDao>().getOrCreateBpdParticipantCode();
 
   bool _copied = false;
 
@@ -63,10 +61,13 @@ class _ParticipantCodeCardState extends State<ParticipantCodeCard> {
                 ),
               ),
               const SizedBox(height: 10),
-              // Reserve the row's height while the code loads, so the card does
-              // not jump once the database answers.
+              // The code gets the full width and the button sits under it.
+              // Sharing a row cost it the second half: spaced-out bold 26pt
+              // wrapped, and the row's fixed height ate the wrapped line, so
+              // "CP3J-K4M2" showed as "CP3J-". Nothing about a code may depend
+              // on there being room for it.
               SizedBox(
-                height: 38,
+                height: 36,
                 child: code == null
                     ? const Align(
                         alignment: Alignment.centerLeft,
@@ -76,30 +77,35 @@ class _ParticipantCodeCardState extends State<ParticipantCodeCard> {
                           child: CircularProgressIndicator(strokeWidth: 2),
                         ),
                       )
-                    : Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              code,
-                              style: TextStyle(
-                                fontSize: 26,
-                                fontWeight: FontWeight.w800,
-                                letterSpacing: 2.5,
-                                color: isDarkMode ? Colors.white : NepanikarColors.dark,
-                              ),
-                            ),
+                    : FittedBox(
+                        fit: BoxFit.scaleDown,
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          code,
+                          maxLines: 1,
+                          softWrap: false,
+                          style: TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: 3,
+                            color: isDarkMode ? Colors.white : NepanikarColors.dark,
                           ),
-                          TextButton.icon(
-                            onPressed: () => _copy(code),
-                            icon: Icon(_copied ? Icons.check : Icons.copy_outlined, size: 18),
-                            label: Text(_copied ? 'Zkopírováno' : 'Kopírovat'),
-                            style: TextButton.styleFrom(
-                              foregroundColor: isDarkMode ? Colors.white : primaryColor,
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
               ),
+              if (code != null)
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: TextButton.icon(
+                    onPressed: () => _copy(code),
+                    icon: Icon(_copied ? Icons.check : Icons.copy_outlined, size: 18),
+                    label: Text(_copied ? 'Zkopírováno' : 'Kopírovat'),
+                    style: TextButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      foregroundColor: isDarkMode ? Colors.white : primaryColor,
+                    ),
+                  ),
+                ),
               if (widget.caption != null) ...[
                 const SizedBox(height: 10),
                 Text(
@@ -107,9 +113,7 @@ class _ParticipantCodeCardState extends State<ParticipantCodeCard> {
                   style: TextStyle(
                     fontSize: 13,
                     height: 1.45,
-                    color: isDarkMode
-                        ? Colors.white70
-                        : NepanikarColors.dark.withOpacity(0.7),
+                    color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.7),
                   ),
                 ),
               ],
