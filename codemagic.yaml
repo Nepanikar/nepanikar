@@ -31,6 +31,12 @@ definitions:
       name: Generate code with build_runner
       script: |
         flutter pub run build_runner build --delete-conflicting-outputs
+    - &run_contacts_build_runner
+      name: Generate contacts package code with build_runner
+      script: |
+        cd packages/nepanikar_contacts_gen
+        flutter pub get
+        flutter pub run build_runner build --delete-conflicting-outputs
     - &generate_localization
       name: Generate Flutter localization files
       script: |
@@ -96,6 +102,7 @@ workflows:
       - *local_properties
       - *get_packages
       - *run_build_runner
+      - *run_contacts_build_runner
       - *generate_localization
       - *build_android
       - *setup_ios
@@ -136,6 +143,7 @@ workflows:
       - *local_properties
       - *get_packages
       - *run_build_runner
+      - *run_contacts_build_runner
       - *generate_localization
       - *build_android
       - *setup_ios
