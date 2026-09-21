@@ -54,12 +54,39 @@ jobs:
         run: flutter build apk --release
 
       - name: GitHub release
-        uses: ncipollo/release-action@v1
         if: github.event_name != 'pull_request'
-        with:
-          name: Android build (dev-0.2.${{github.run_number}})
-          commit: ${{ github.sha }}
-          tag: dev-0.2.${{github.run_number}}
-          artifacts: "build/app/outputs/flutter-apk/app-release.apk"
-          token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_TAG: dev-0.2.${{github.run_number}}
+          RELEASE_TITLE: Android build (dev-0.2.${{github.run_number}})
+          RELEASE_ARTIFACT: build/app/outputs/flutter-apk/app-release.apk
+        run: |
+          for attempt in 1 2 3; do
+            if (
+              set -e
+              if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+                gh release edit "$RELEASE_TAG" --title "$RELEASE_TITLE" --target "${{ github.sha }}"
 
+                mapfile -t existing_assets < <(
+                  gh release view "$RELEASE_TAG" --json assets --jq '.assets[].name'
+                )
+                for existing_asset in "${existing_assets[@]}"; do
+                  gh release delete-asset "$RELEASE_TAG" "$existing_asset" --yes
+                done
+
+                gh release upload "$RELEASE_TAG" "$RELEASE_ARTIFACT" --clobber
+              else
+                gh release create "$RELEASE_TAG" "$RELEASE_ARTIFACT" \
+                  --title "$RELEASE_TITLE" --target "${{ github.sha }}"
+              fi
+            ); then
+              exit 0
+            fi
+
+            if [ "$attempt" -eq 3 ]; then
+              echo "Failed to create or update GitHub release after 3 attempts." >&2
+              exit 1
+            fi
+
+            sleep $((attempt * 10))
+          done
