@@ -1,6 +1,9 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/helpers/localization_helpers.dart';
+import 'package:nepanikar/services/analytics/bpd_analytics.dart';
+import 'package:nepanikar/services/db/bpd/bpd_user_profile_model.dart';
+import 'package:nepanikar/services/db/bpd/bpd_weeks_dao.dart';
 import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_models.dart';
 import 'package:nepanikar/services/notifications/notification_type.dart';
@@ -26,6 +29,16 @@ class UserSettingsDao {
   static const _storeKeyName = 'user_settings';
   static const _languageKey = 'language';
   static const _notificationKeyPrefix = 'notification_type_';
+  static const _bpdProgrammeStatusKey = 'bpd_programme_status';
+  static const _bpdProgrammeUnlockedKey = 'bpd_programme_unlocked';
+  static const _notifPermissionAskedKey = 'notification_permission_asked';
+
+  /// The store holds JSON maps, so the unlocked flag is a one-field record
+  /// rather than a bare bool.
+  static const _unlockedRecord = <String, dynamic>{'unlocked': true};
+
+  static bool _isUnlocked(Map<String, dynamic>? record) => record?['unlocked'] == true;
+  static const _bpdUserProfileKey = 'bpd_user_profile';
 
   Future<void> saveThemeMode(ThemeMode themeMode) async {
     final themeModeStr = UserThemeMode.themeModeToString(themeMode);
@@ -134,6 +147,106 @@ class UserSettingsDao {
     if (json == null) return null;
     return NotificationTypeSettings.fromJson(json);
   }
+
+  /// Whether the app has already offered to turn notifications on.
+  ///
+  /// The OS grants exactly one chance to show its permission dialog, so this
+  /// records that the offer was made — whatever the answer was. Someone who
+  /// said no is never asked again on launch; Settings → Notifications stays
+  /// open to them.
+  Future<bool> hasAskedNotificationPermission() async {
+    final record = await _store.record(_notifPermissionAskedKey).get(_db);
+    return record?['asked'] == true;
+  }
+
+  Future<void> markNotificationPermissionAsked() async {
+    debugPrint('UserSettingsDao: Marking the notification permission offer as made');
+    await _store.record(_notifPermissionAskedKey).put(_db, <String, dynamic>{'asked': true});
+  }
+
+  /// Unlocks the DBT programme after someone entered the access code.
+  ///
+  /// What is stored is the unlocked state, not the code, so changing
+  /// `kBpdAccessCode` later never locks anyone back out.
+  Future<void> unlockBpdProgramme() async {
+    debugPrint('UserSettingsDao: Unlocking the BPD programme');
+    await _store.record(_bpdProgrammeUnlockedKey).put(_db, _unlockedRecord);
+  }
+
+  Future<bool> isBpdProgrammeUnlocked() async {
+    final record = await _store.record(_bpdProgrammeUnlockedKey).get(_db);
+    if (_isUnlocked(record)) return true;
+    // Anyone already walking the programme when the gate was introduced keeps
+    // their access — re-locking them would hide their own entries from them.
+    return (await getBpdProgrammeStatus()).hasStarted;
+  }
+
+  /// Whether the programme (its home tile and its tab) should be visible.
+  ///
+  /// Falls back to `hasStarted` on every emission rather than migrating the
+  /// old records once, so the grandfathering also covers a database restored
+  /// from a backup made before the gate existed.
+  Stream<bool> get bpdProgrammeUnlockedStream =>
+      _store.record(_bpdProgrammeUnlockedKey).onSnapshot(_db).asyncMap((snapshot) async {
+        if (_isUnlocked(snapshot?.value)) return true;
+        return (await getBpdProgrammeStatus()).hasStarted;
+      }).asBroadcastStream();
+
+  Future<void> markBpdProgrammeStarted() async {
+    final now = DateTime.now();
+    // The landing screen shows "Začít svou cestu" on every visit, so this runs
+    // again for people who are already walking the programme. Only the first
+    // time is a start.
+    final wasAlreadyStarted = (await getBpdProgrammeStatus()).hasStarted;
+    final status = BpdProgrammeStatus(hasStarted: true, startedAt: now);
+    debugPrint('UserSettingsDao: Marking BPD Programme as started');
+    await _store.record(_bpdProgrammeStatusKey).put(_db, status.toJson());
+    // Starting implies unlocked; keeps the stream truthful without waiting for
+    // the `hasStarted` fallback.
+    await _store.record(_bpdProgrammeUnlockedKey).put(_db, _unlockedRecord);
+
+    // Initialize weeks with time-based unlock
+    final bpdWeeksDao = registry.get<BpdWeeksDao>();
+    await bpdWeeksDao.initializeWeeks();
+
+    if (!wasAlreadyStarted) await BpdAnalytics.logProgrammeStarted();
+  }
+
+  Future<BpdProgrammeStatus> getBpdProgrammeStatus() async {
+    final json = await _store.record(_bpdProgrammeStatusKey).get(_db);
+    if (json == null) return const BpdProgrammeStatus(hasStarted: false);
+    return BpdProgrammeStatus.fromJson(json);
+  }
+
+  Stream<BpdProgrammeStatus> get bpdProgrammeStatusStream =>
+      _store.record(_bpdProgrammeStatusKey).onSnapshot(_db).map((snapshot) {
+        final json = snapshot?.value;
+        if (json == null) return const BpdProgrammeStatus(hasStarted: false);
+        return BpdProgrammeStatus.fromJson(json);
+      }).asBroadcastStream();
+
+  Future<void> saveBpdUserProfile(BpdUserProfile profile) async {
+    final profileWithTimestamp = BpdUserProfile(
+      name: profile.name,
+      pronoun: profile.pronoun,
+      createdAt: profile.createdAt ?? DateTime.now(),
+    );
+    debugPrint('UserSettingsDao: Saving BPD user profile: ${profileWithTimestamp.name}');
+    await _store.record(_bpdUserProfileKey).put(_db, profileWithTimestamp.toJson());
+  }
+
+  Future<BpdUserProfile?> getBpdUserProfile() async {
+    final json = await _store.record(_bpdUserProfileKey).get(_db);
+    if (json == null) return null;
+    return BpdUserProfile.fromJson(json);
+  }
+
+  Stream<BpdUserProfile?> get bpdUserProfileStream =>
+      _store.record(_bpdUserProfileKey).onSnapshot(_db).map((snapshot) {
+        final json = snapshot?.value;
+        if (json == null) return null;
+        return BpdUserProfile.fromJson(json);
+      }).asBroadcastStream();
 
   Future<void> clear() async {
     await _store.delete(_db);

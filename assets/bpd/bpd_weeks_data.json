@@ -1,0 +1,46 @@
+{
+  "weeks": [
+    {
+      "weekNumber": 1,
+      "titleKey": "Úvod + SPOKO",
+      "descriptionKey": "week_1_intro_spoko_description",
+      "iconPath": null
+    },
+    {
+      "weekNumber": 2,
+      "titleKey": "Všímavost",
+      "descriptionKey": "week_2_mindfulness_description",
+      "iconPath": null
+    },
+    {
+      "weekNumber": 3,
+      "titleKey": "Emoční regulace",
+      "descriptionKey": "week_3_emotion_regulation_description",
+      "iconPath": null
+    },
+    {
+      "weekNumber": 4,
+      "titleKey": "Snášení tísně",
+      "descriptionKey": "week_4_distress_tolerance_description",
+      "iconPath": null
+    },
+    {
+      "weekNumber": 5,
+      "titleKey": "Impulzivní chování",
+      "descriptionKey": "week_5_impulsive_behaviour_description",
+      "iconPath": null
+    },
+    {
+      "weekNumber": 6,
+      "titleKey": "Mezilidské vztahy a sebepojetí",
+      "descriptionKey": "week_6_relationships_and_self_esteem_description",
+      "iconPath": null
+    },
+    {
+      "weekNumber": 7,
+      "titleKey": "Závěr průvodce",
+      "descriptionKey": "week_7_conclusion_description",
+      "iconPath": null
+    }
+  ]
+}

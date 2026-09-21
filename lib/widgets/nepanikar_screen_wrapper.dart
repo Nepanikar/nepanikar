@@ -10,6 +10,8 @@ import 'package:nepanikar/app/theme/sizes.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/helpers/screen_resolution_helpers.dart';
 import 'package:nepanikar/screens/main/main_screen.dart';
+import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
+import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/bottom_navbar_item.dart';
 
 class NepanikarScreenWrapper extends StatefulWidget {
@@ -52,6 +54,46 @@ class NepanikarScreenWrapper extends StatefulWidget {
 }
 
 class _NepanikarScreenWrapperState extends State<NepanikarScreenWrapper> {
+  /// One bar item, addressed by its **route** index (see [mainTabs]).
+  ///
+  /// This bar shows no selection — tapping always navigates away — so unlike
+  /// the main bar it takes no selected index.
+  BottomNavigationBarItem _navItem(BuildContext context, int tab) {
+    switch (tab) {
+      case bpdTabIndex:
+        return buildBottomNavigationBarItem(
+          svgIconPath: Assets.icons.calendarEvent.path,
+          label: 'DBT',
+          context: context,
+        );
+      case 1:
+        return buildBottomNavigationBarItem(
+          svgIconPath: Assets.icons.calendarEvent.path,
+          label: context.l10n.records,
+          context: context,
+        );
+      case 3:
+        return buildBottomNavigationBarItem(
+          svgIconPath: Assets.icons.phone.path,
+          label: context.l10n.contacts_module,
+          context: context,
+        );
+      case 4:
+        return buildBottomNavigationBarItem(
+          svgIconPath: Assets.icons.settings.path,
+          label: context.l10n.settings,
+          context: context,
+        );
+      default:
+        return buildBottomNavigationBarItem(
+          svgIconPath: Assets.icons.home.path,
+          label: context.l10n.home,
+          isSelected: true,
+          context: context,
+        );
+    }
+  }
+
   final GlobalKey _appBarOverflowSizeKey = GlobalKey();
 
   var _appBarOverflowSize = 0.0;
@@ -75,7 +117,6 @@ class _NepanikarScreenWrapperState extends State<NepanikarScreenWrapper> {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final containerColor = longTileColorBasedOnDarkMode(context);
 
     Widget getPageContent() {
@@ -110,44 +151,27 @@ class _NepanikarScreenWrapperState extends State<NepanikarScreenWrapper> {
               child: widget.floatingActionButton,
             ),
       bottomNavigationBar: widget.showBottomNavbar
-          ? BottomNavigationBar(
-              items: <BottomNavigationBarItem>[
-                buildBottomNavigationBarItem(
-                  svgIconPath: Assets.icons.home.path,
-                  label: context.l10n.home,
-                  isSelected: true,
-                  isDarkMode: isDarkMode,
-                  context: context,
-                ),
-                buildBottomNavigationBarItem(
-                  svgIconPath: Assets.icons.calendarEvent.path,
-                  label: context.l10n.records,
-                  isDarkMode: isDarkMode,
-                  context: context,
-                ),
-                buildBottomNavigationBarItem(
-                  svgIconPath: Assets.icons.phone.path,
-                  label: context.l10n.contacts_module,
-                  isDarkMode: isDarkMode,
-                  context: context,
-                ),
-                buildBottomNavigationBarItem(
-                  svgIconPath: Assets.icons.settings.path,
-                  label: context.l10n.settings,
-                  isDarkMode: isDarkMode,
-                  context: context,
-                ),
-              ],
-              showUnselectedLabels: true,
-              type: BottomNavigationBarType.fixed,
-              elevation: 0,
-              onTap: (index) {
-                context
-                  ..go(const MainRoute().location)
-                  ..pushReplacement(
-                    const MainRoute().location,
-                    extra: MainPageExtra(initIndex: index),
-                  );
+          ? StreamBuilder<bool>(
+              stream: registry.get<UserSettingsDao>().bpdProgrammeUnlockedStream,
+              builder: (context, snapshot) {
+                // Same gate as the main bar: the DBT tab is absent until the
+                // access code is entered. `initIndex` is a route index, so the
+                // tap has to map the visible position back through the list.
+                final visibleTabs = (snapshot.data ?? false) ? mainTabs : tabsWithoutBpd;
+                return BottomNavigationBar(
+                  items: [for (final tab in visibleTabs) _navItem(context, tab)],
+                  showUnselectedLabels: true,
+                  type: BottomNavigationBarType.fixed,
+                  elevation: 0,
+                  onTap: (visibleIndex) {
+                    context
+                      ..go(const MainRoute().location)
+                      ..pushReplacement(
+                        const MainRoute().location,
+                        extra: MainPageExtra(initIndex: visibleTabs[visibleIndex]),
+                      );
+                  },
+                );
               },
             )
           : null,

@@ -22,7 +22,6 @@ class BreathingExercisesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final colorFilter = svgColorFilterBasedOnDarkMode(context);
 
     final modules = <Widget>[
@@ -31,21 +30,18 @@ class BreathingExercisesScreen extends StatelessWidget {
         image: Assets.illustrations.modules.breathingCircle.svg(colorFilter: colorFilter),
         onTap: () =>
             context.push(const BreathingGameRoute(shape: BreathingGameShape.circle).location),
-        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.breathing_exercise_ii,
         image: Assets.illustrations.modules.breathingTriangle.svg(colorFilter: colorFilter),
         onTap: () =>
             context.push(const BreathingGameRoute(shape: BreathingGameShape.triangle).location),
-        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.breathing_exercise_iii,
         image: Assets.illustrations.modules.breathingSquare.svg(colorFilter: colorFilter),
         onTap: () =>
             context.push(const BreathingGameRoute(shape: BreathingGameShape.square).location),
-        isDarkMode: isDarkMode,
       ),
     ];
 

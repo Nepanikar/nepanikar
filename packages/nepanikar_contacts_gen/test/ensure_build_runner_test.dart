@@ -9,7 +9,9 @@ void main() {
     'ensure generated files are up to date',
     () => expectBuildClean(
       packageRelativeDirectory: 'packages/nepanikar_contacts_gen',
-      gitDiffPathArguments: [':!pubspec.lock'], // Ignore changes in pubspec.lock.
+      gitDiffPathArguments: [
+        ':!pubspec.lock',
+      ], // Ignore changes in pubspec.lock.
     ),
   );
 }

@@ -8,7 +8,9 @@ void main() {
   test(
     'ensure generated files are up to date',
     () => expectBuildClean(
-      gitDiffPathArguments: [':!pubspec.lock'], // Ignore changes in pubspec.lock.
+      gitDiffPathArguments: [
+        ':!pubspec.lock',
+      ], // Ignore changes in pubspec.lock.
     ),
   );
 }

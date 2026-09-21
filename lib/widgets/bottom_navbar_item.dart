@@ -5,11 +5,12 @@ import 'package:nepanikar/app/theme/colors.dart';
 
 BottomNavigationBarItem buildBottomNavigationBarItem({
   bool isSelected = false,
-  required bool isDarkMode,
   required String svgIconPath,
   required String label,
   required BuildContext context,
 }) {
+  var isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
   return BottomNavigationBarItem(
     icon: Column(
       children: [

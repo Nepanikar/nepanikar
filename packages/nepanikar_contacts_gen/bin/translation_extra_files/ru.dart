@@ -12,7 +12,8 @@ final ru_Contacts = en_Contacts.copyWith(
 
 const _phoneContacts = <PhoneContact>[
   PhoneContact.subList(
-    title: 'Единый общероссийский телефон доверия для детей, подростков и их родителей',
+    title:
+        'Единый общероссийский телефон доверия для детей, подростков и их родителей',
     subPhoneContacts: [SubPhoneContact(title: '', tel: '88002000122')],
   ),
   PhoneContact.subList(
@@ -28,7 +29,8 @@ const _phoneContacts = <PhoneContact>[
     subPhoneContacts: [SubPhoneContact(title: '', tel: '+7 (495) 251-14-55')],
   ),
   PhoneContact.subList(
-    title: 'Телефоны доверия по вопросам социально-психологической помощи семье и детям Москвы',
+    title:
+        'Телефоны доверия по вопросам социально-психологической помощи семье и детям Москвы',
     subPhoneContacts: [SubPhoneContact(title: '', tel: '+7 (495) 205-05-50')],
   ),
   PhoneContact(
@@ -48,20 +50,34 @@ const _phoneContacts = <PhoneContact>[
       SubPhoneContact(title: 'Санкт-Петербург', tel: '+7 (812) 718-25-16'),
     ],
   ),
-  PhoneContact(title: 'Психологическая помощь женщинам', tel: '+7 (495) 282-84-50'),
-  PhoneContact(title: 'Волонтерский телефон психологической помощи', tel: '+7 (495) 308-92-42'),
-  PhoneContact(title: 'Бесплатная кризисная линия доверия', tel: '8 (800) 333-44-34'),
+  PhoneContact(
+    title: 'Психологическая помощь женщинам',
+    tel: '+7 (495) 282-84-50',
+  ),
+  PhoneContact(
+    title: 'Волонтерский телефон психологической помощи',
+    tel: '+7 (495) 308-92-42',
+  ),
+  PhoneContact(
+    title: 'Бесплатная кризисная линия доверия',
+    tel: '8 (800) 333-44-34',
+  ),
   PhoneContact.subList(
     title:
         'Телефон доверия для оказания неотложной психологической помощи детям и подросткам, находящимся в трудной ситуации, а также родителям и педагога',
     subPhoneContacts: [
-      SubPhoneContact(title: 'понедельник – пятница,\nс 10.30-21.00', tel: '8-800-250-11-91'),
+      SubPhoneContact(
+        title: 'понедельник – пятница,\nс 10.30-21.00',
+        tel: '8-800-250-11-91',
+      ),
     ],
   ),
   PhoneContact.subList(
     title:
         'Российская Ассоциация Телефонной Экстренной Психологической Помощи, полный перечень региональных телефонов доверия',
-    subPhoneContacts: [SubPhoneContact(title: '', tel: 'http://ratepp.ru/index/0-11')],
+    subPhoneContacts: [
+      SubPhoneContact(title: '', tel: 'http://ratepp.ru/index/0-11'),
+    ],
   ),
 ];
 
@@ -79,7 +95,10 @@ const _crisisCenterContacts = <RegionContact>[
       ),
       RegionItemContact(
         name: 'Oтдел экстренной психологической помощи ГБУ МСППН',
-        contactAddresses: ['запись по телефону с 9.00 до 21.00', '(499) 177-34-94'],
+        contactAddresses: [
+          'запись по телефону с 9.00 до 21.00',
+          '(499) 177-34-94',
+        ],
       ),
       RegionItemContact(
         name: 'Бесплатные центры психологической помощи по округам',
@@ -191,21 +210,39 @@ const _crisisCenterContacts = <RegionContact>[
   RegionContact(
     region: 'Ростов-на-Дону',
     contacts: [
-      RegionItemContact(name: 'Молодежный Телефон Доверия', contactAddresses: ['242-61-01']),
-      RegionItemContact(name: 'Телефон Доверия Городской', contactAddresses: ['267-93-04']),
-      RegionItemContact(name: 'Телефон Доверия', contactAddresses: ['223-41-41']),
+      RegionItemContact(
+        name: 'Молодежный Телефон Доверия',
+        contactAddresses: ['242-61-01'],
+      ),
+      RegionItemContact(
+        name: 'Телефон Доверия Городской',
+        contactAddresses: ['267-93-04'],
+      ),
+      RegionItemContact(
+        name: 'Телефон Доверия',
+        contactAddresses: ['223-41-41'],
+      ),
       RegionItemContact(
         name: 'Областной центр социальной помощи семье и детям',
         contactAddresses: ['пер. Островского 105', '267-05-15', '267-05-04'],
       ),
       RegionItemContact(
-        name: 'Областной центр психолого-педагогической реабилитации и коррекции',
-        contactAddresses: ['ГУ Малюгиной ул., 214', '(863) 264-17-92', '264-34-71'],
+        name:
+            'Областной центр психолого-педагогической реабилитации и коррекции',
+        contactAddresses: [
+          'ГУ Малюгиной ул., 214',
+          '(863) 264-17-92',
+          '264-34-71',
+        ],
       ),
       RegionItemContact(
         name:
             'Центр диагностики и консультирования города Ростова-на-Дону для детей, нуждающихся в психолого-педагогической и медико-социальной помощи',
-        contactAddresses: ['Ленина ул., 44/2', '(863) 245-52-23', '(863) 262-47-93'],
+        contactAddresses: [
+          'Ленина ул., 44/2',
+          '(863) 245-52-23',
+          '(863) 262-47-93',
+        ],
       ),
       RegionItemContact(
         name: 'профилактический отде',
@@ -248,7 +285,10 @@ const _crisisCenterContacts = <RegionContact>[
           'https://mchs.gov.ru/',
         ],
       ),
-      RegionItemContact(name: 'Телефон Доверия', contactAddresses: ['224-05-95 (круглосуточно)']),
+      RegionItemContact(
+        name: 'Телефон Доверия',
+        contactAddresses: ['224-05-95 (круглосуточно)'],
+      ),
     ],
   ),
   RegionContact(
@@ -265,7 +305,8 @@ const _crisisCenterContacts = <RegionContact>[
         contactAddresses: ['+7 (8452) 92-96-56'],
       ),
       RegionItemContact(
-        name: 'Гпнд Психоневрологический кабинет Заводского района Огородная ул., 83',
+        name:
+            'Гпнд Психоневрологический кабинет Заводского района Огородная ул., 83',
         contactAddresses: ['тел. 95-05-00', 'тел. 75-27-97', 'тел. 75-27-97'],
       ),
       RegionItemContact(
@@ -285,7 +326,8 @@ const _crisisCenterContacts = <RegionContact>[
         ],
       ),
       RegionItemContact(
-        name: 'Центр психологической помощи при городской психоневрологической больнице',
+        name:
+            'Центр психологической помощи при городской психоневрологической больнице',
         contactAddresses: ['(843) 279-55-66', '(843) 279-55-80'],
       ),
       RegionItemContact(
@@ -296,7 +338,10 @@ const _crisisCenterContacts = <RegionContact>[
         name: 'Женский кризисный центр «Фатима»',
         contactAddresses: ['ул. Право-Булачная, 13', '(843) 292-97-25'],
       ),
-      RegionItemContact(name: 'женский телефон доверия', contactAddresses: ['(843) 246-44-01']),
+      RegionItemContact(
+        name: 'женский телефон доверия',
+        contactAddresses: ['(843) 246-44-01'],
+      ),
       RegionItemContact(
         name: 'Отделение психолого-педагогической помощи Сердэш',
         contactAddresses: ['ул. Годовикова, 14', '571-15-80'],
@@ -308,12 +353,20 @@ const _crisisCenterContacts = <RegionContact>[
     contacts: [
       RegionItemContact(
         name: 'Республиканский клинический психотерапевтический центр',
-        contactAddresses: ['ул. Шота Руставели, 29', '+7 (347) 241-62-85', 'https://rkpc.ru/'],
+        contactAddresses: [
+          'ул. Шота Руставели, 29',
+          '+7 (347) 241-62-85',
+          'https://rkpc.ru/',
+        ],
       ),
       RegionItemContact(
         name:
             'ГБУ Республиканский молодежный социально-психологический и информационно-методический центр',
-        contactAddresses: ['ул. Пархоменко, 133/1', 'тел. 272-82-87', 'тел. 272-05-87'],
+        contactAddresses: [
+          'ул. Пархоменко, 133/1',
+          'тел. 272-82-87',
+          'тел. 272-05-87',
+        ],
       ),
       RegionItemContact(
         name: 'Республиканский клинический психотерапевтический центр',
@@ -328,7 +381,8 @@ const _crisisCenterContacts = <RegionContact>[
         contactAddresses: ['тел. 295-02-36 (круглосуточно)'],
       ),
       RegionItemContact(
-        name: 'Отдел экстренной психологической помощи “Телефон Доверия” МУ ГЦПМСС “ИНДИГО”',
+        name:
+            'Отдел экстренной психологической помощи “Телефон Доверия” МУ ГЦПМСС “ИНДИГО”',
         contactAddresses: ['тел. 223-22-11 (круглосуточно)'],
       ),
       RegionItemContact(
@@ -411,7 +465,8 @@ const _crisisCenterContacts = <RegionContact>[
     region: 'Омск',
     contacts: [
       RegionItemContact(
-        name: 'Городской центр психолого-педагогической, медицинской и социальной помощи',
+        name:
+            'Городской центр психолого-педагогической, медицинской и социальной помощи',
         contactAddresses: ['Мира проспект 165-А', '77-77-79'],
       ),
       RegionItemContact(
@@ -433,7 +488,11 @@ const _crisisCenterContacts = <RegionContact>[
     contacts: [
       RegionItemContact(
         name: 'телефон доверия',
-        contactAddresses: ['(383) 276 35 16', '(383) 335 66 39', '(383) 300 01 00'],
+        contactAddresses: [
+          '(383) 276 35 16',
+          '(383) 335 66 39',
+          '(383) 300 01 00',
+        ],
       ),
       RegionItemContact(
         name: 'телефон экстренной психологической помощи',
@@ -444,7 +503,8 @@ const _crisisCenterContacts = <RegionContact>[
         contactAddresses: ['Комсомольская ул., д. 27', 'тел. 347-13-70'],
       ),
       RegionItemContact(
-        name: 'Центр медико-психологической и педагогической помощи детям и подросткам',
+        name:
+            'Центр медико-психологической и педагогической помощи детям и подросткам',
         contactAddresses: ['Станиславского ул., д. 8', 'тел. 343-38-88'],
       ),
       RegionItemContact(
@@ -452,7 +512,8 @@ const _crisisCenterContacts = <RegionContact>[
         contactAddresses: ['Пирогова ул., д. 18-А', 'тел. 330-87-81'],
       ),
       RegionItemContact(
-        name: 'Государственный Новосибирский областной клинический психоневрологический диспансер',
+        name:
+            'Государственный Новосибирский областной клинический психоневрологический диспансер',
         contactAddresses: [
           '1905 года ул., д. 1',
           'тел. 220-41-39',

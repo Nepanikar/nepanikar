@@ -9,12 +9,14 @@ import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/helpers/contact_action_helpers.dart';
+import 'package:nepanikar/screens/bpd_programme/bpd_unlock_dialog.dart';
 import 'package:nepanikar/screens/settings/about_app_screen.dart';
 import 'package:nepanikar/screens/settings/export_screen.dart';
 import 'package:nepanikar/screens/settings/languages_screen.dart';
 import 'package:nepanikar/screens/settings/sponsors_screen.dart';
 import 'package:nepanikar/screens/settings/theme_screen.dart';
 import 'package:nepanikar/services/db/database_service.dart';
+import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/services/notifications/notifications_service.dart';
 import 'package:nepanikar/utils/app_config.dart';
 import 'package:nepanikar/utils/extensions.dart';
@@ -38,6 +40,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
   DatabaseService get _databaseService => registry.get<DatabaseService>();
 
   NotificationsService get _notificationsService => registry.get<NotificationsService>();
+
+  UserSettingsDao get _userSettingsDao => registry.get<UserSettingsDao>();
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +70,25 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     leading: Assets.icons.notificationBell.svg(colorFilter: colorFilter),
                     onTap: _notificationsService.checkPermission,
                     text: context.l10n.notifications,
+                  ),
+                  // The DBT programme is a closed pilot: this is the only way
+                  // in. Once unlocked the row disappears — there is nothing
+                  // left to do with it, and leaving it would suggest the code
+                  // has to be kept.
+                  StreamBuilder<bool>(
+                    stream: _userSettingsDao.bpdProgrammeUnlockedStream,
+                    builder: (context, snapshot) {
+                      if (snapshot.data ?? false) return const SizedBox.shrink();
+                      return _SettingsMenuItem(
+                        leading: Assets.illustrations.modules.homework.svg(
+                          colorFilter: colorFilter,
+                          height: 24,
+                          width: 24,
+                        ),
+                        text: context.l10n.bpd_unlock_title,
+                        onTap: () => showBpdUnlockDialog(context),
+                      );
+                    },
                   ),
                   _SettingsMenuItem(
                     leading: Assets.icons.deleteData.svg(colorFilter: colorFilter),

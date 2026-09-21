@@ -59,3 +59,14 @@ abstract class UserThemeMode with _$UserThemeMode {
     return themeMode.toString().split('.').last;
   }
 }
+
+@freezed
+abstract class BpdProgrammeStatus with _$BpdProgrammeStatus {
+  const factory BpdProgrammeStatus({required bool hasStarted, DateTime? startedAt}) =
+      _BpdProgrammeStatus;
+
+  const BpdProgrammeStatus._();
+
+  factory BpdProgrammeStatus.fromJson(Map<String, Object?> json) =>
+      _$BpdProgrammeStatusFromJson(json);
+}

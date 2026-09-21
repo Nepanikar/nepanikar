@@ -9,6 +9,45 @@ import 'package:nepanikar/games/math/math_game_screen.dart';
 import 'package:nepanikar/games/plants/plants_game_screen.dart';
 import 'package:nepanikar/games/relaxation/relaxation_screen.dart';
 import 'package:nepanikar/games/relaxation/relaxations_list_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/bpd_landing_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/bpd_programme_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/bpd_week_detail_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/bpd_weeks_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/shared/day_pause_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week1/day1_onboarding/day1_onboarding_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week1/day2_spoko/day2_spoko_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week1/day7_reflection/day7_reflection_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week1/spoko_day/spoko_day_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week2/day1_mindfulness_intro/day1_mindfulness_intro_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week2/day2_what_skills/day2_what_skills_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week2/day3_how_skills/day3_how_skills_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week2/day4_breathing/day4_breathing_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week2/day6_techniques/day6_techniques_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week2/day7_summary/day7_summary_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week3/day1_emotions/day1_emotions_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week3/day2_describe/day2_describe_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week3/day3_check_facts/day3_check_facts_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week3/day4_opposite_action/day4_opposite_action_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week3/day5_spoko_recall/day5_spoko_recall_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week3/day7_summary/day7_summary_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week4/day1_stress/day1_stress_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week4/day2_crisis_skills/day2_crisis_skills_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week4/day4_mindfulness_stress/day4_mindfulness_stress_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week4/day5_uznavam/day5_uznavam_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week4/day7_summary/day7_summary_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week5/day1_impulsivity/day1_impulsivity_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week5/day2_life_threatening/day2_life_threatening_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week5/day4_prevention/day4_prevention_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week5/day5_mindfulness/day5_mindfulness_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week5/day7_summary/day7_summary_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week6/day1_relationships/day1_relationships_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week6/day2_communication/day2_communication_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week6/day3_je_vyzva/day3_je_vyzva_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week6/day5_self_esteem/day5_self_esteem_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week6/day7_summary/day7_summary_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week7/day1_appreciation/day1_appreciation_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week7/day7_conclusion/day7_conclusion_screen.dart';
+import 'package:nepanikar/screens/bpd_programme/weeks/week7/recap_days/week7_recap_day_screen.dart';
 import 'package:nepanikar/screens/contacts/chat_contacts_screen.dart';
 import 'package:nepanikar/screens/contacts/crisis_message_screen.dart';
 import 'package:nepanikar/screens/contacts/eating_disorder_contacts_screen.dart';
@@ -41,13 +80,18 @@ import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips
 import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_overeat.dart';
 import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_remorse.dart';
 import 'package:nepanikar/screens/home/eating_disorder/tips/eating_disorder_tips_vomit.dart';
+import 'package:nepanikar/screens/home/my_records/challenges/my_challenges_screen.dart';
+import 'package:nepanikar/screens/home/my_records/dbt/dbt_records_screen.dart';
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_add_screen.dart';
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_detail_screen.dart';
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_edit_screen.dart';
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_records_screen.dart';
+import 'package:nepanikar/screens/home/my_records/emotion_dictionary/emotion_dictionary_screen.dart';
 import 'package:nepanikar/screens/home/my_records/food_records/my_records_food_record_detail_menu_detail_screen.dart';
 import 'package:nepanikar/screens/home/my_records/food_records/my_records_food_record_detail_menu_list_screen.dart';
 import 'package:nepanikar/screens/home/my_records/food_records/my_records_food_records_list_screen.dart';
+import 'package:nepanikar/screens/home/my_records/goals/my_goals_screen.dart';
+import 'package:nepanikar/screens/home/my_records/goals/smart_goal_form_screen.dart';
 import 'package:nepanikar/screens/home/my_records/journal/my_records_detail_journal_screen.dart';
 import 'package:nepanikar/screens/home/my_records/journal/my_records_journal_records_screen.dart';
 import 'package:nepanikar/screens/home/my_records/mood/mood_entry_detail_screen.dart';
@@ -57,6 +101,7 @@ import 'package:nepanikar/screens/home/my_records/mood/mood_track_screen.dart';
 import 'package:nepanikar/screens/home/my_records/mood/search_mood_entry.dart';
 import 'package:nepanikar/screens/home/my_records/my_records_screen.dart';
 import 'package:nepanikar/screens/home/my_records/my_records_sleep_track_screen.dart';
+import 'package:nepanikar/screens/home/my_records/rescue_package/rescue_package_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_helped_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_plan_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_screen.dart';
@@ -80,7 +125,13 @@ part 'routes.g.dart';
 /// More info in the package docs: https://pub.dev/packages/go_router.
 @TypedGoRoute<MainRoute>(
   path: '/',
-  routes: [..._settingsRoutes, ..._gameRoutes, ..._contactRoutes, ..._homeRoutes],
+  routes: [
+    ..._settingsRoutes,
+    ..._gameRoutes,
+    ..._contactRoutes,
+    ..._homeRoutes,
+    ..._bpdProgrammeRoutes,
+  ],
 )
 class MainRoute extends GoRouteData with $MainRoute {
   const MainRoute();
@@ -196,6 +247,12 @@ const _myRecordsRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<SearchMoodEntryRoute>(path: 'home/my-records/search-mood-entry'),
   TypedGoRoute<MoodEntryDetailRoute>(path: 'home/my-records/mood-records/mood-entry'),
   TypedGoRoute<MyRecordsSleepTrackRoute>(path: 'home/my-records/sleep-track'),
+  TypedGoRoute<MyChallengesRoute>(path: 'home/my-records/challenges'),
+  TypedGoRoute<DbtRecordsRoute>(path: 'home/my-records/dbt'),
+  TypedGoRoute<MyGoalsRoute>(path: 'home/my-records/goals'),
+  TypedGoRoute<SmartGoalFormRoute>(path: 'home/my-records/goals/new'),
+  TypedGoRoute<RescuePackageRoute>(path: 'home/my-records/rescue-package'),
+  TypedGoRoute<EmotionDictionaryRoute>(path: 'home/my-records/emotion-dictionary'),
 
   // Diary
   TypedGoRoute<MyRecordsDiaryRecordsRoute>(path: 'home/my-records/diary'),
@@ -215,4 +272,60 @@ const _myRecordsRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<MyRecordsFoodRecordsDetailMenuDetailRoute>(
     path: 'home/my-records/food-records/detail/menu-detail',
   ),
+];
+
+const _bpdProgrammeRoutes = <TypedGoRoute<GoRouteData>>[
+  TypedGoRoute<BpdLandingScreenRoute>(path: 'bpd-programme/landing'),
+  TypedGoRoute<BpdProgrammeScreenRoute>(path: 'bpd-programme'),
+  TypedGoRoute<BpdWeeksScreenRoute>(path: 'bpd-programme/weeks'),
+  TypedGoRoute<BpdWeekDetailScreenRoute>(path: 'bpd-programme/week/:weekNumber'),
+  TypedGoRoute<Day1OnboardingScreenRoute>(path: 'bpd-programme/day-onboarding'),
+  // Day content screens - Week 1 (SPOKO)
+  TypedGoRoute<Week1Day2SpokoScreenRoute>(path: 'bpd-programme/week/1/day/2'),
+  TypedGoRoute<Week1Day3PotravaScreenRoute>(path: 'bpd-programme/week/1/day/3'),
+  TypedGoRoute<Week1Day4LatkyScreenRoute>(path: 'bpd-programme/week/1/day/4'),
+  TypedGoRoute<Week1Day5KondiceScreenRoute>(path: 'bpd-programme/week/1/day/5'),
+  TypedGoRoute<Week1Day6OnemocneniScreenRoute>(path: 'bpd-programme/week/1/day/6'),
+  TypedGoRoute<Week1Day7ReflexeScreenRoute>(path: 'bpd-programme/week/1/day/7'),
+  // Day content screens - Week 2 (Mindfulness)
+  TypedGoRoute<Week2Day1MindfulnessIntroScreenRoute>(path: 'bpd-programme/week/2/day/1'),
+  TypedGoRoute<Week2Day2WhatSkillsScreenRoute>(path: 'bpd-programme/week/2/day/2'),
+  TypedGoRoute<Week2Day3HowSkillsScreenRoute>(path: 'bpd-programme/week/2/day/3'),
+  TypedGoRoute<Week2Day4BreathingScreenRoute>(path: 'bpd-programme/week/2/day/4'),
+  TypedGoRoute<Week2Day6TechniquesScreenRoute>(path: 'bpd-programme/week/2/day/6'),
+  TypedGoRoute<Week2Day7SummaryScreenRoute>(path: 'bpd-programme/week/2/day/7'),
+  // Day content screens - Week 3 (Emoční regulace)
+  TypedGoRoute<Week3Day1EmotionsScreenRoute>(path: 'bpd-programme/week/3/day/1'),
+  TypedGoRoute<Week3Day2DescribeScreenRoute>(path: 'bpd-programme/week/3/day/2'),
+  TypedGoRoute<Week3Day3CheckFactsScreenRoute>(path: 'bpd-programme/week/3/day/3'),
+  TypedGoRoute<Week3Day4OppositeActionScreenRoute>(path: 'bpd-programme/week/3/day/4'),
+  TypedGoRoute<Week3Day5SpokoRecallScreenRoute>(path: 'bpd-programme/week/3/day/5'),
+  TypedGoRoute<Week3Day7SummaryScreenRoute>(path: 'bpd-programme/week/3/day/7'),
+  TypedGoRoute<Week4Day1StressScreenRoute>(path: 'bpd-programme/week/4/day/1'),
+  TypedGoRoute<Week4Day2CrisisSkillsScreenRoute>(path: 'bpd-programme/week/4/day/2'),
+  TypedGoRoute<Week4Day4MindfulnessScreenRoute>(path: 'bpd-programme/week/4/day/4'),
+  TypedGoRoute<Week4Day5UznavamScreenRoute>(path: 'bpd-programme/week/4/day/5'),
+  TypedGoRoute<Week4Day7SummaryScreenRoute>(path: 'bpd-programme/week/4/day/7'),
+  // Week 5 - Impulzivní chování
+  TypedGoRoute<Week5Day1ImpulsivityScreenRoute>(path: 'bpd-programme/week/5/day/1'),
+  TypedGoRoute<Week5Day2LifeThreateningScreenRoute>(path: 'bpd-programme/week/5/day/2'),
+  TypedGoRoute<Week5Day4PreventionScreenRoute>(path: 'bpd-programme/week/5/day/4'),
+  TypedGoRoute<Week5Day5MindfulnessScreenRoute>(path: 'bpd-programme/week/5/day/5'),
+  TypedGoRoute<Week5Day7SummaryScreenRoute>(path: 'bpd-programme/week/5/day/7'),
+  // Week 6 - Mezilidské vztahy a sebepojetí
+  TypedGoRoute<Week6Day1RelationshipsScreenRoute>(path: 'bpd-programme/week/6/day/1'),
+  TypedGoRoute<Week6Day2CommunicationScreenRoute>(path: 'bpd-programme/week/6/day/2'),
+  TypedGoRoute<Week6Day3JeVyzvaScreenRoute>(path: 'bpd-programme/week/6/day/3'),
+  TypedGoRoute<Week6Day5SelfEsteemScreenRoute>(path: 'bpd-programme/week/6/day/5'),
+  TypedGoRoute<Week6Day7SummaryScreenRoute>(path: 'bpd-programme/week/6/day/7'),
+  // Week 7 - Závěr programu
+  TypedGoRoute<Week7Day1AppreciationScreenRoute>(path: 'bpd-programme/week/7/day/1'),
+  TypedGoRoute<Week7Day2MindfulnessScreenRoute>(path: 'bpd-programme/week/7/day/2'),
+  TypedGoRoute<Week7Day3EmotionsScreenRoute>(path: 'bpd-programme/week/7/day/3'),
+  TypedGoRoute<Week7Day4DistressScreenRoute>(path: 'bpd-programme/week/7/day/4'),
+  TypedGoRoute<Week7Day5ImpulsivityScreenRoute>(path: 'bpd-programme/week/7/day/5'),
+  TypedGoRoute<Week7Day6RelationshipsScreenRoute>(path: 'bpd-programme/week/7/day/6'),
+  TypedGoRoute<Week7Day7ConclusionScreenRoute>(path: 'bpd-programme/week/7/day/7'),
+  // Pause day (reusable for any week/day)
+  TypedGoRoute<DayPauseScreenRoute>(path: 'bpd-programme/week/:weekNumber/day/:dayNumber/pause'),
 ];

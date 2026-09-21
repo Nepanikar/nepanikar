@@ -12,6 +12,7 @@ import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/router/go_router_config.dart';
 import 'package:nepanikar/firebase_options.dart';
+import 'package:nepanikar/services/bpd_weeks_data_manager.dart';
 import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/services/export_service.dart';
@@ -86,4 +87,7 @@ Future<void> setup() async {
 
   registry.registerSingleton<ContactsDataManager>(ContactsDataManager());
   await registry.get<ContactsDataManager>().init();
+
+  registry.registerSingleton<BpdWeeksDataManager>(BpdWeeksDataManager());
+  await registry.get<BpdWeeksDataManager>().init();
 }

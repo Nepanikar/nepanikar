@@ -29,7 +29,6 @@ class PhoneContactTile extends StatelessWidget {
   }
 
   Widget _buildSingleContact(BuildContext context, PhoneContactSingle contact) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final textColorMode = textColorBasedOnDarkMode(context);
 
     final isPinned = contact.pinned;
@@ -37,7 +36,6 @@ class PhoneContactTile extends StatelessWidget {
     final colorFilter = textColor != null ? ColorFilter.mode(textColor, BlendMode.srcIn) : null;
     final isUrl = contact.tel.contains('http');
     return LongTile(
-      isDarkMode: isDarkMode,
       text: contact.title,
       textTextStyle: _textTextStyle.copyWith(color: textColor),
       description: contact.subtitle,
@@ -57,7 +55,6 @@ class PhoneContactTile extends StatelessWidget {
   }
 
   Widget _buildSubListContact(BuildContext context, PhoneContactSubList contact) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final textColorMode = textColorBasedOnDarkMode(context);
     final colorFilter = textColorMode != null
         ? ColorFilter.mode(textColorMode, BlendMode.srcIn)
@@ -72,7 +69,6 @@ class PhoneContactTile extends StatelessWidget {
           ? () async => await copyContact(context, contact.subPhoneContacts.first.unformattedTel)
           : null,
       child: LongTile(
-        isDarkMode: isDarkMode,
         text: contact.title,
         textTextStyle: _textTextStyle.copyWith(color: textColorMode),
         description: contact.subtitle,

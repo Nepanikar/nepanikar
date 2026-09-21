@@ -27,7 +27,6 @@ class ChatContactTile extends StatelessWidget {
   }
 
   Widget _buildSubListContact(BuildContext context, ChatContactSubList contact) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final textColor = textColorBasedOnDarkMode(context);
     final subContactsLength = contact.subChatContacts.length;
     final isSingleSubList = subContactsLength == 1;
@@ -40,7 +39,6 @@ class ChatContactTile extends StatelessWidget {
           ? () async => await copyContact(context, contact.subChatContacts.first.url)
           : null,
       child: LongTile(
-        isDarkMode: isDarkMode,
         text: contact.title,
         textTextStyle: _textTextStyle.copyWith(color: textColor),
         description: contact.subtitle,

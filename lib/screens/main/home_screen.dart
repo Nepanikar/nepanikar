@@ -9,6 +9,7 @@ import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/helpers/screen_resolution_helpers.dart';
+import 'package:nepanikar/screens/bpd_programme/bpd_landing_screen.dart';
 import 'package:nepanikar/screens/home/anxiety/anxiety_screen.dart';
 import 'package:nepanikar/screens/home/depression/depression_screen.dart';
 import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_screen.dart';
@@ -17,6 +18,7 @@ import 'package:nepanikar/screens/home/self_harm/self_harm_screen.dart';
 import 'package:nepanikar/screens/home/suicidal_thoughts/suicidal_thoughts_screen.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_dao.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
+import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/services/notifications/notifications_service.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/contacts/quick_help_button.dart';
@@ -30,6 +32,8 @@ class HomeScreen extends StatelessWidget {
 
   NotificationsService get _notificationsService => registry.get<NotificationsService>();
 
+  UserSettingsDao get _userSettingsDao => registry.get<UserSettingsDao>();
+
   @override
   Widget build(BuildContext context) {
     final currentTheme = Theme.of(context);
@@ -40,6 +44,7 @@ class HomeScreen extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
     );
+    final bpdLocation = const BpdLandingScreenRoute().location;
     final modules = <HomeTile>[
       HomeTile(
         text: context.l10n.depression,
@@ -66,6 +71,16 @@ class HomeScreen extends StatelessWidget {
         image: Assets.illustrations.modules.eatingDisorder.svg(colorFilter: colorFilter),
         location: const EatingDisorderRoute().location,
       ),
+      HomeTile(
+        // Hardcoded like the bottom bar's 'DBT' label — programme copy lives in
+        // Dart, not ARB (see docs/hpo/TODO.md → GEN-03).
+        text: 'DBT průvodce',
+        // TODO: temporary artwork — there is no DBT module illustration yet.
+        image: Assets.illustrations.modules.homework.svg(colorFilter: colorFilter),
+        location: bpdLocation,
+      ),
+      // Records came back to the grid on the author's request (2026-08-19) after
+      // the DBT tile took its slot — she wants both, so the grid grew instead.
       HomeTile(
         text: context.l10n.my_records,
         image: Assets.illustrations.modules.myRecords.svg(colorFilter: colorFilter),
@@ -142,16 +157,28 @@ class HomeScreen extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 24, right: 24, bottom: 20),
-                child: GridView.count(
-                  shrinkWrap: true,
-                  primary: false,
-                  crossAxisCount: (MediaQuery.of(context).size.width / context.tabletMaxColumnWidth)
-                      .floor()
-                      .clamp(2, 6),
-                  crossAxisSpacing: context.isSmallScreen ? 12 : 16,
-                  mainAxisSpacing: context.isSmallScreen ? 12 : 16,
-                  childAspectRatio: context.isSmallScreen ? 1.4 : 1.2,
-                  children: modules,
+                // The DBT programme is a closed pilot: until someone enters the
+                // code in Settings its tile is absent, not greyed out. A locked
+                // tile would still advertise it.
+                child: StreamBuilder<bool>(
+                  stream: _userSettingsDao.bpdProgrammeUnlockedStream,
+                  builder: (context, snapshot) {
+                    final visibleModules = (snapshot.data ?? false)
+                        ? modules
+                        : modules.where((tile) => tile.location != bpdLocation).toList();
+                    return GridView.count(
+                      shrinkWrap: true,
+                      primary: false,
+                      crossAxisCount:
+                          (MediaQuery.of(context).size.width / context.tabletMaxColumnWidth)
+                              .floor()
+                              .clamp(2, 6),
+                      crossAxisSpacing: context.isSmallScreen ? 12 : 16,
+                      mainAxisSpacing: context.isSmallScreen ? 12 : 16,
+                      childAspectRatio: context.isSmallScreen ? 1.4 : 1.2,
+                      children: visibleModules,
+                    );
+                  },
                 ),
               ),
             ],

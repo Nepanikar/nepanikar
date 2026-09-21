@@ -25,7 +25,6 @@ class DepressionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final colorFilter = svgColorFilterBasedOnDarkMode(context);
 
     final modules = <Widget>[
@@ -33,25 +32,21 @@ class DepressionScreen extends StatelessWidget {
         text: context.l10n.depression_help,
         image: Assets.illustrations.modules.whatCanHelpMe.svg(colorFilter: colorFilter),
         onTap: () => context.push(const DepressionTipsAppRoute().location),
-        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.depression_plan,
         image: Assets.illustrations.modules.activityPlanning.svg(colorFilter: colorFilter),
         onTap: () => context.push(const DepressionActivityPlanRoute().location),
-        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.depression_nice,
         image: Assets.illustrations.modules.whatPleasedMe.svg(colorFilter: colorFilter),
         onTap: () => context.push(const DepressionNiceMadeHappyRoute().location),
-        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.depression_praise,
         image: Assets.illustrations.modules.mySuccess.svg(colorFilter: colorFilter),
         onTap: () => context.push(const DepressionPraiseMyAchievementsRoute().location),
-        isDarkMode: isDarkMode,
       ),
     ];
     return NepanikarScreenWrapper(

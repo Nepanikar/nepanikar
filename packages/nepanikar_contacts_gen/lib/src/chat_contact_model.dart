@@ -13,14 +13,17 @@ abstract class ChatContact with _$ChatContact {
     required List<SubChatContact> subChatContacts,
   }) = ChatContactSubList;
 
-  factory ChatContact.fromJson(Map<String, Object?> json) => _$ChatContactFromJson(json);
+  factory ChatContact.fromJson(Map<String, Object?> json) =>
+      _$ChatContactFromJson(json);
 }
 
 @freezed
 abstract class SubChatContact with _$SubChatContact {
-  const factory SubChatContact({required String title, required String url}) = _SubChatContact;
+  const factory SubChatContact({required String title, required String url}) =
+      _SubChatContact;
 
   const SubChatContact._();
 
-  factory SubChatContact.fromJson(Map<String, Object?> json) => _$SubChatContactFromJson(json);
+  factory SubChatContact.fromJson(Map<String, Object?> json) =>
+      _$SubChatContactFromJson(json);
 }

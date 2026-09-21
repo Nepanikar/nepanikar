@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/app_localizations.dart';
+import 'package:nepanikar/services/db/bpd/bpd_module_db.dart';
 import 'package:nepanikar/services/db/depression/depression_module_db.dart';
 import 'package:nepanikar/services/db/eating_disorder/eating_disorder_module_db.dart';
 import 'package:nepanikar/services/db/my_contacts/my_contacts_module_db.dart';
@@ -34,6 +35,7 @@ class DatabaseService {
     _eatingDisorderModuleDb = await EatingDisorderModuleDb(this).initModuleDaos();
     _myRecordsModuleDb = await MyRecordsModuleDb(this).initModuleDaos();
     _myContactsModuleDb = await MyContactsModuleDb(this).initModuleDaos();
+    _bpdModuleDb = await BpdModuleDb(this).initModuleDaos();
     await EmotionsDao(dbService: this).initEmotions();
     _areDaosInitialized = true;
   }
@@ -51,6 +53,7 @@ class DatabaseService {
   late final EatingDisorderModuleDb _eatingDisorderModuleDb;
   late final MyRecordsModuleDb _myRecordsModuleDb;
   late final MyContactsModuleDb _myContactsModuleDb;
+  late final BpdModuleDb _bpdModuleDb;
 
   bool _areDaosInitialized = false;
 
@@ -88,6 +91,7 @@ class DatabaseService {
     await _eatingDisorderModuleDb.preloadDefaultModuleData(l10n);
     await _myRecordsModuleDb.preloadDefaultModuleData(l10n);
     await _myContactsModuleDb.preloadDefaultModuleData(l10n);
+    await _bpdModuleDb.preloadDefaultModuleData(l10n);
     await _setDataPreloaded();
   }
 
@@ -100,5 +104,6 @@ class DatabaseService {
     await _eatingDisorderModuleDb.clearModule();
     await _myRecordsModuleDb.clearModule();
     await _myContactsModuleDb.clearModule();
+    await _bpdModuleDb.clearModule();
   }
 }

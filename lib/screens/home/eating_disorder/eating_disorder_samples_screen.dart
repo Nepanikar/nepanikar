@@ -24,7 +24,6 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     svgColorBasedOnDarkMode(context);
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final colorFilter = svgColorFilterBasedOnDarkMode(context);
 
     final modules = <Widget>[
@@ -37,7 +36,6 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
             queryParameters: {'id': MealType.breakfast.name, 'title': context.l10n.food_breakfast},
           ).toString(),
         ),
-        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: '${context.l10n.food_am_snack} ',
@@ -48,7 +46,6 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
             queryParameters: {'id': MealType.amSnack.name, 'title': context.l10n.food_am_snack},
           ).toString(),
         ),
-        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: '${context.l10n.food_lunch} ',
@@ -59,7 +56,6 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
             queryParameters: {'id': MealType.lunch.name, 'title': context.l10n.food_lunch},
           ).toString(),
         ),
-        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_pm_snack,
@@ -70,7 +66,6 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
             queryParameters: {'id': MealType.pmSnack.name, 'title': context.l10n.food_pm_snack},
           ).toString(),
         ),
-        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_dinner,
@@ -81,7 +76,6 @@ class EatingDisordersSamplesScreen extends StatelessWidget {
             queryParameters: {'id': MealType.dinner.name, 'title': context.l10n.food_dinner},
           ).toString(),
         ),
-        isDarkMode: isDarkMode,
       ),
     ];
     return NepanikarScreenWrapper(

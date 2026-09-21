@@ -45,7 +45,6 @@ class FoodRecordTile extends StatelessWidget {
       onTap: onTap,
       child: LongTile(
         image: null,
-        isDarkMode: isDarkMode,
         text: DateFormat.yMd(locale.languageCode).format(dailyFoodRecord.dateTime),
         textTextStyle: textStyle.copyWith(fontSize: 12, fontWeight: FontWeight.w700),
         onTap: null,

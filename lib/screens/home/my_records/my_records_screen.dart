@@ -4,6 +4,7 @@ import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/providers/mood_heatmap_filter_provider.dart';
+import 'package:nepanikar/screens/home/my_records/dbt/dbt_records_screen.dart';
 import 'package:nepanikar/screens/home/my_records/diary/my_records_diary_records_screen.dart';
 import 'package:nepanikar/screens/home/my_records/food_records/my_records_food_records_list_screen.dart';
 import 'package:nepanikar/screens/home/my_records/journal/my_records_journal_records_screen.dart';
@@ -30,8 +31,6 @@ class MyRecordsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    svgColorBasedOnDarkMode(context);
     final colorFilter = svgColorFilterBasedOnDarkMode(context);
 
     final modules = <Widget>[
@@ -45,31 +44,31 @@ class MyRecordsScreen extends StatelessWidget {
           ).setFilter(HeatmapFilter.initial);
           context.push(const MoodRecordsRoute(fromMoodPicker: false).location);
         },
-        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.sleep_title,
         image: Assets.illustrations.modules.sleepTracker.svg(colorFilter: colorFilter),
         onTap: () => context.push(const MyRecordsSleepTrackRoute().location),
-        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.diary,
         image: Assets.illustrations.modules.diary.svg(colorFilter: colorFilter),
         onTap: () => context.push(const MyRecordsDiaryRecordsRoute().location),
-        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.journal,
         image: Assets.illustrations.modules.journal.svg(colorFilter: colorFilter),
         onTap: () => context.push(const MyRecordsJournalRecordsRoute().location),
-        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_records,
         image: Assets.illustrations.modules.foodTracker.svg(colorFilter: colorFilter),
         onTap: () => context.push(const MyRecordsFoodRecordsListRoute().location),
-        isDarkMode: isDarkMode,
+      ),
+      LongTile(
+        text: 'DBT průvodce',
+        image: Icon(Icons.self_improvement, size: 32, color: Theme.of(context).primaryColor),
+        onTap: () => context.push(const DbtRecordsRoute().location),
       ),
     ];
 

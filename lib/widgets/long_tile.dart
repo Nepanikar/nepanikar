@@ -16,7 +16,6 @@ class LongTile extends StatelessWidget {
     this.descriptionMaxLines,
     required this.image,
     required this.onTap,
-    required this.isDarkMode,
     this.onLongPress,
     this.trailing,
     this.subContent,
@@ -24,7 +23,6 @@ class LongTile extends StatelessWidget {
     this.showSubContentSeparator = true,
   });
 
-  final bool isDarkMode;
   final Color? backgroundColor;
   final String text;
   final TextStyle textTextStyle;
@@ -44,6 +42,8 @@ class LongTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     Color? longTileColor = longTileColorBasedOnDarkMode(context);
     if (backgroundColor != null) {
       longTileColor = backgroundColor;

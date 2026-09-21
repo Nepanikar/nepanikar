@@ -43,7 +43,6 @@ class EatingDisorderScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     svgColorBasedOnDarkMode(context);
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final colorFilter = svgColorFilterBasedOnDarkMode(context);
 
     final modules = <Widget>[
@@ -51,38 +50,32 @@ class EatingDisorderScreen extends StatelessWidget {
         text: context.l10n.food_tips,
         image: Assets.illustrations.modules.eatingTips.svg(colorFilter: colorFilter),
         onTap: () => context.push(const EatingDisorderTipsRoute().location),
-        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_tasks,
         image: Assets.illustrations.modules.homework.svg(colorFilter: colorFilter),
         onTap: () => context.push(const EatingDisorderTasksRoute().location),
-        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.food_dishes,
         image: Assets.illustrations.modules.eatingDisorder.svg(colorFilter: colorFilter),
         onTap: () => context.push(const EatingDisorderSamplesRoute().location),
-        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.distraction,
         image: Assets.illustrations.games.math.math.svg(colorFilter: colorFilter),
         onTap: () => context.push(const EatingDisorderDistractionsRoute().location),
-        isDarkMode: isDarkMode,
       ),
       if (shouldShowContactsTile)
         LongTile(
           text: context.l10n.food_contact,
           image: Assets.illustrations.contacts.phones.svg(colorFilter: colorFilter),
           onTap: () => context.push(const EatingDisorderContactsRoute().location),
-          isDarkMode: isDarkMode,
         ),
       LongTile(
         text: context.l10n.food_records,
         image: Assets.illustrations.modules.foodTracker.svg(colorFilter: colorFilter),
         onTap: () => context.push(const MyRecordsFoodRecordsListRoute().location),
-        isDarkMode: isDarkMode,
       ),
     ];
     return NepanikarScreenWrapper(

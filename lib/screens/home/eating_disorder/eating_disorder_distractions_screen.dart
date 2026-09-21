@@ -28,7 +28,6 @@ class EatingDisorderDistractionsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final colorFilter = svgColorFilterBasedOnDarkMode(context);
 
     final modules = <Widget>[
@@ -36,20 +35,17 @@ class EatingDisorderDistractionsScreen extends StatelessWidget {
         text: context.l10n.games,
         image: Assets.illustrations.modules.games.svg(colorFilter: colorFilter),
         onTap: () => context.push(const GamesRoute().location),
-        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.breath,
         image: Assets.illustrations.modules.breathing.svg(colorFilter: colorFilter),
         onTap: () => context.push(const BreathingExercisesRoute().location),
-        isDarkMode: isDarkMode,
       ),
       if (['cs', 'sk'].contains(_userSettingsDao.locale.languageCode))
         LongTile(
           text: context.l10n.relaxation,
           image: Assets.illustrations.modules.relaxation.svg(colorFilter: colorFilter),
           onTap: () => context.push(const RelaxationsListRoute().location),
-          isDarkMode: isDarkMode,
         ),
     ];
     return NepanikarScreenWrapper(

@@ -97,11 +97,14 @@ class NotificationSettingsScreen extends StatelessWidget {
         }
 
         final notificationTypeSettings = snapshot.data ?? [];
+        // Programme-managed reminders (per-challenge from "Moje výzvy",
+        // mindfulness from the programme) are not part of this global list.
+        final settingsTypes = NotificationType.settingsVisibleValues;
         return NepanikarScreenWrapper(
           appBarTitle: context.l10n.notifications,
           isCardStackLayout: true,
           expandToMaxScreenHeight: true,
-          children: NotificationType.values
+          children: settingsTypes
               .mapIndexed(
                 (i, notificationType) => _buildNotificationSection(
                   context,
@@ -125,7 +128,8 @@ class NotificationSettingsScreen extends StatelessWidget {
     NotificationTypeSettings? notificationTypeSettings,
   ) {
     final l10n = context.l10n;
-    final isLast = i == NotificationType.values.length - 1;
+    final settingsTypesCount = NotificationType.settingsVisibleValues.length;
+    final isLast = i == settingsTypesCount - 1;
     final reminderTime = notificationTypeSettings != null
         ? TimeOfDay(
             hour: notificationTypeSettings.scheduledHour,

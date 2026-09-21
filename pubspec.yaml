@@ -10,6 +10,7 @@ dependencies:
   auto_size_text: ^3.0.0
   awesome_notifications: ^0.12.0
   collection: ^1.19.0
+  csv: ^5.1.1
   cupertino_icons: ^1.0.5
   cupertino_ui: any
   email_validator: ^3.0.0
@@ -87,6 +88,7 @@ flutter:
         - asset: assets/fonts/Satoshi-Black.otf
           weight: 900
   assets:
+    - assets/bpd/
     - assets/contacts/
     - assets/icons/
     - assets/icons/checkmarks/

@@ -25,7 +25,6 @@ class GamesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final colorFilter = svgColorFilterBasedOnDarkMode(context);
 
     final modules = <Widget>[
@@ -33,25 +32,21 @@ class GamesScreen extends StatelessWidget {
         text: context.l10n.math,
         image: Assets.illustrations.games.math.math.svg(colorFilter: colorFilter),
         onTap: () => context.push(const MathGameRoute().location),
-        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.game_balls,
         image: Assets.illustrations.games.balloons.baloons.svg(colorFilter: colorFilter),
         onTap: () => context.push(const BalloonsGameRoute().location),
-        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.game_balance,
         image: Assets.illustrations.games.swing.swing.svg(colorFilter: colorFilter),
         onTap: () => context.push(const BalanceGameRoute().location),
-        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.plants,
         image: Assets.illustrations.games.plants.plants.svg(colorFilter: colorFilter),
         onTap: () => context.push(const PlantsGameRoute().location),
-        isDarkMode: isDarkMode,
       ),
     ];
 

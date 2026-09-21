@@ -29,7 +29,6 @@ class AnxietyAppScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final colorFilter = svgColorFilterBasedOnDarkMode(context);
 
     final modules = <Widget>[
@@ -37,26 +36,22 @@ class AnxietyAppScreen extends StatelessWidget {
         text: context.l10n.panic_tips_9,
         image: Assets.illustrations.modules.depression.svg(colorFilter: colorFilter),
         onTap: () => context.push(const AnxietyTipsAppRoute().location),
-        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.breath,
         image: Assets.illustrations.modules.anxietyPanic.svg(colorFilter: colorFilter),
         onTap: () => context.push(const BreathingExercisesRoute().location),
-        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.games,
         image: Assets.illustrations.modules.games.svg(colorFilter: colorFilter),
         onTap: () => context.push(const GamesRoute().location),
-        isDarkMode: isDarkMode,
       ),
       if (['cs', 'sk'].contains(_userSettingsDao.locale.languageCode))
         LongTile(
           text: context.l10n.relaxation,
           image: Assets.illustrations.modules.relaxation.svg(colorFilter: colorFilter),
           onTap: () => context.push(const RelaxationsListRoute().location),
-          isDarkMode: isDarkMode,
         ),
     ];
 

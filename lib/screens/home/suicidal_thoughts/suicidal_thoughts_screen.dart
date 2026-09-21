@@ -24,8 +24,6 @@ class SuicidalThoughtsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    svgColorBasedOnDarkMode(context);
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final colorFilter = svgColorFilterBasedOnDarkMode(context);
 
     final modules = <Widget>[
@@ -33,19 +31,16 @@ class SuicidalThoughtsScreen extends StatelessWidget {
         text: context.l10n.plan,
         image: Assets.illustrations.modules.emergencyPlan.svg(colorFilter: colorFilter),
         onTap: () => context.push(const SuicidalThoughtsPlanRoute().location),
-        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.reasons,
         image: Assets.illustrations.modules.reaseonsWhyNot.svg(colorFilter: colorFilter),
         onTap: () => context.push(const SuicidalThoughtsReasonsNoRoute().location),
-        isDarkMode: isDarkMode,
       ),
       LongTile(
         text: context.l10n.breath,
         image: Assets.illustrations.modules.breathing.svg(colorFilter: colorFilter),
         onTap: () => context.push(const BreathingExercisesRoute().location),
-        isDarkMode: isDarkMode,
       ),
     ];
 
