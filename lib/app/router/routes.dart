@@ -102,6 +102,10 @@ import 'package:nepanikar/screens/home/my_records/mood/search_mood_entry.dart';
 import 'package:nepanikar/screens/home/my_records/my_records_screen.dart';
 import 'package:nepanikar/screens/home/my_records/my_records_sleep_track_screen.dart';
 import 'package:nepanikar/screens/home/my_records/rescue_package/rescue_package_screen.dart';
+import 'package:nepanikar/screens/home/my_records/tests/test_detail_screen.dart';
+import 'package:nepanikar/screens/home/my_records/tests/test_list_screen.dart';
+import 'package:nepanikar/screens/home/my_records/tests/test_result_screen.dart';
+import 'package:nepanikar/screens/home/my_records/tests/test_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_helped_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_plan_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_screen.dart';
@@ -130,6 +134,7 @@ part 'routes.g.dart';
     ..._gameRoutes,
     ..._contactRoutes,
     ..._homeRoutes,
+    ..._myRecordsTestRoutes,
     ..._bpdProgrammeRoutes,
   ],
 )
@@ -272,6 +277,13 @@ const _myRecordsRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<MyRecordsFoodRecordsDetailMenuDetailRoute>(
     path: 'home/my-records/food-records/detail/menu-detail',
   ),
+];
+
+const _myRecordsTestRoutes = <TypedGoRoute<GoRouteData>>[
+  TypedGoRoute<TestListScreenRoute>(path: 'home/my-records/tests'),
+  TypedGoRoute<TestScreenRoute>(path: 'home/my-records/tests/:testId'),
+  TypedGoRoute<TestDetailScreenRoute>(path: 'home/my-records/tests/test-detail/:testId'),
+  TypedGoRoute<TestResultScreenRoute>(path: 'home/my-records/test-result/:testId/:completedAt'),
 ];
 
 const _bpdProgrammeRoutes = <TypedGoRoute<GoRouteData>>[

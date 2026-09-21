@@ -1,0 +1,34 @@
+[
+  {
+    "id": "BRCS-test",
+    "name": "BRCS Test",
+    "description": "Krátky 4-otázkový dotazník na zistenie schopnosti zvládať stres a náročné životné situácie.",
+    "svg_image_path": "assets/images/test_icon_anxiety.svg",
+    "png_image_path": "",
+    "csv_path": "assets/tests/BRCS-test.csv"
+  },
+  {
+    "id": "PHQ-9-test",
+    "name": "Test Depresie (PHQ-9)",
+    "description": "Monitorujte príznaky depresie a nálady.",
+    "svg_image_path": "assets/images/test_icon_depression.svg",
+    "png_image_path": "",
+    "csv_path": "assets/tests/PHQ-9-test.csv"
+  },
+  {
+    "id": "PSS-test",
+    "name": "PSS Test",
+    "description": "Dotazník na meranie celkovej úrovne stresu v poslednom mesiaci pomocou 10 otázok hodnotiacich pocity preťaženia a kontroly nad životnými situáciami.",
+    "svg_image_path": "assets/images/test_icon_depression.svg",
+    "png_image_path": "",
+    "csv_path": "assets/tests/PSS-test.csv"
+  },
+  {
+    "id": "GAD-7-test",
+    "name": "GAD-7 Test",
+    "description": "Skríningový dotazník na zistenie generalizovanej úzkostnej poruchy pomocou 7 otázok.",
+    "svg_image_path": "assets/images/test_icon_depression.svg",
+    "png_image_path": "",
+    "csv_path": "assets/tests/GAD-7-test.csv"
+  }
+]

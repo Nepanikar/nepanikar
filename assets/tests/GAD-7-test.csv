@@ -1,0 +1,29 @@
+question_id,question_text,answer_id,answer_text,answer_score
+q1,"Feeling nervous, anxious, or on edge",a1,"Not at all",0
+q1,"Feeling nervous, anxious, or on edge",a2,"Several days",1
+q1,"Feeling nervous, anxious, or on edge",a3,"More than half the days",2
+q1,"Feeling nervous, anxious, or on edge",a4,"Nearly every day",3
+q2,"Not being able to stop or control worrying",a1,"Not at all",0
+q2,"Not being able to stop or control worrying",a2,"Several days",1
+q2,"Not being able to stop or control worrying",a3,"More than half the days",2
+q2,"Not being able to stop or control worrying",a4,"Nearly every day",3
+q3,"Worrying too much about different things",a1,"Not at all",0
+q3,"Worrying too much about different things",a2,"Several days",1
+q3,"Worrying too much about different things",a3,"More than half the days",2
+q3,"Worrying too much about different things",a4,"Nearly every day",3
+q4,"Trouble relaxing",a1,"Not at all",0
+q4,"Trouble relaxing",a2,"Several days",1
+q4,"Trouble relaxing",a3,"More than half the days",2
+q4,"Trouble relaxing",a4,"Nearly every day",3
+q5,"Being so restless that it is hard to sit still",a1,"Not at all",0
+q5,"Being so restless that it is hard to sit still",a2,"Several days",1
+q5,"Being so restless that it is hard to sit still",a3,"More than half the days",2
+q5,"Being so restless that it is hard to sit still",a4,"Nearly every day",3
+q6,"Becoming easily annoyed or irritable",a1,"Not at all",0
+q6,"Becoming easily annoyed or irritable",a2,"Several days",1
+q6,"Becoming easily annoyed or irritable",a3,"More than half the days",2
+q6,"Becoming easily annoyed or irritable",a4,"Nearly every day",3
+q7,"Feeling afraid as if something awful might happen",a1,"Not at all",0
+q7,"Feeling afraid as if something awful might happen",a2,"Several days",1
+q7,"Feeling afraid as if something awful might happen",a3,"More than half the days",2
+q7,"Feeling afraid as if something awful might happen",a4,"Nearly every day",3

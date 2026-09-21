@@ -1,0 +1,10 @@
+question_id,question_text,answer_id,answer_text,answer_score
+q1,"How often do you feel overwhelmed by your thoughts?",a1,"Rarely",1
+q1,"How often do you feel overwhelmed by your thoughts?",a2,"Sometimes",2
+q1,"How often do you feel overwhelmed by your thoughts?",a3,"Often",3
+q2,"Do you avoid situations that cause you stress?",a1,"Never",0
+q2,"Do you avoid situations that cause you stress?",a2,"Occasionally",2
+q2,"Do you avoid situations that cause you stress?",a3,"Frequently",4
+q3,"Are you worried about things that might happen?",a1,"Never",0
+q3,"Are you worried about things that might happen?",a2,"Sometimes",2
+q3,"Are you worried about things that might happen?",a3,"Always",4

@@ -1,0 +1,37 @@
+question_id,question_text,answer_id,answer_text,answer_score
+q1,"Malý zájem nebo potěšení z věcí, které děláte",a1,"Vůbec ne",0
+q1,"Malý zájem nebo potěšení z věcí, které děláte",a2,"Několik dní",1
+q1,"Malý zájem nebo potěšení z věcí, které děláte",a3,"Více než polovinu dní",2
+q1,"Malý zájem nebo potěšení z věcí, které děláte",a4,"Téměř každý den",3
+q2,"Pocit, že jste na dně, pocit deprese nebo beznaděje",a1,"Vůbec ne",0
+q2,"Pocit, že jste na dně, pocit deprese nebo beznaděje",a2,"Několik dní",1
+q2,"Pocit, že jste na dně, pocit deprese nebo beznaděje",a3,"Více než polovinu dní",2
+q2,"Pocit, že jste na dně, pocit deprese nebo beznaděje",a4,"Téměř každý den",3
+q3,"Potíže s usínáním, přerušovaným spánkem nebo s přílišným spáním",a1,"Vůbec ne",0
+q3,"Potíže s usínáním, přerušovaným spánkem nebo s přílišným spáním",a2,"Několik dní",1
+q3,"Potíže s usínáním, přerušovaným spánkem nebo s přílišným spáním",a3,"Více než polovinu dní",2
+q3,"Potíže s usínáním, přerušovaným spánkem nebo s přílišným spáním",a4,"Téměř každý den",3
+q4,"Pocit únavy nebo málo energie",a1,"Vůbec ne",0
+q4,"Pocit únavy nebo málo energie",a2,"Několik dní",1
+q4,"Pocit únavy nebo málo energie",a3,"Více než polovinu dní",2
+q4,"Pocit únavy nebo málo energie",a4,"Téměř každý den",3
+q5,"Malá chuť k jídlu nebo přejídání",a1,"Vůbec ne",0
+q5,"Malá chuť k jídlu nebo přejídání",a2,"Několik dní",1
+q5,"Malá chuť k jídlu nebo přejídání",a3,"Více než polovinu dní",2
+q5,"Malá chuť k jídlu nebo přejídání",a4,"Téměř každý den",3
+q6,"Měl/a jste ze sebe špatný pocit – že se vám život nevydařil nebo že jste zklamal/a sebe či rodinu",a1,"Vůbec ne",0
+q6,"Měl/a jste ze sebe špatný pocit – že se vám život nevydařil nebo že jste zklamal/a sebe či rodinu",a2,"Několik dní",1
+q6,"Měl/a jste ze sebe špatný pocit – že se vám život nevydařil nebo že jste zklamal/a sebe či rodinu",a3,"Více než polovinu dní",2
+q6,"Měl/a jste ze sebe špatný pocit – že se vám život nevydařil nebo že jste zklamal/a sebe či rodinu",a4,"Téměř každý den",3
+q7,"Potíže se soustředěním, např. při čtení nebo sledování televize",a1,"Vůbec ne",0
+q7,"Potíže se soustředěním, např. při čtení nebo sledování televize",a2,"Několik dní",1
+q7,"Potíže se soustředěním, např. při čtení nebo sledování televize",a3,"Více než polovinu dní",2
+q7,"Potíže se soustředěním, např. při čtení nebo sledování televize",a4,"Téměř každý den",3
+q8,"Pohyboval/a jste se nebo mluvil/a tak pomalu, že si toho druzí všimli, nebo naopak byl/a neklidný/á a pohyboval/a se více",a1,"Vůbec ne",0
+q8,"Pohyboval/a jste se nebo mluvil/a tak pomalu, že si toho druzí všimli, nebo naopak byl/a neklidný/á a pohyboval/a se více",a2,"Několik dní",1
+q8,"Pohyboval/a jste se nebo mluvil/a tak pomalu, že si toho druzí všimli, nebo naopak byl/a neklidný/á a pohyboval/a se více",a3,"Více než polovinu dní",2
+q8,"Pohyboval/a jste se nebo mluvil/a tak pomalu, že si toho druzí všimli, nebo naopak byl/a neklidný/á a pohyboval/a se více",a4,"Téměř každý den",3
+q9,"Myšlenky na to, že by vám bylo lépe, kdybyste nebyl/a naživu nebo si ublížil/a",a1,"Vůbec ne",0
+q9,"Myšlenky na to, že by vám bylo lépe, kdybyste nebyl/a naživu nebo si ublížil/a",a2,"Několik dní",1
+q9,"Myšlenky na to, že by vám bylo lépe, kdybyste nebyl/a naživu nebo si ublížil/a",a3,"Více než polovinu dní",2
+q9,"Myšlenky na to, že by vám bylo lépe, kdybyste nebyl/a naživu nebo si ublížil/a",a4,"Téměř každý den",3

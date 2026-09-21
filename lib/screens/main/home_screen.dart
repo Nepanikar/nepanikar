@@ -14,6 +14,7 @@ import 'package:nepanikar/screens/home/anxiety/anxiety_screen.dart';
 import 'package:nepanikar/screens/home/depression/depression_screen.dart';
 import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_screen.dart';
 import 'package:nepanikar/screens/home/my_records/my_records_screen.dart';
+import 'package:nepanikar/screens/home/my_records/tests/test_list_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_screen.dart';
 import 'package:nepanikar/screens/home/suicidal_thoughts/suicidal_thoughts_screen.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_dao.dart';
@@ -85,6 +86,15 @@ class HomeScreen extends StatelessWidget {
         text: context.l10n.my_records,
         image: Assets.illustrations.modules.myRecords.svg(colorFilter: colorFilter),
         location: const MyRecordsRoute().location,
+      ),
+      // The tests used to be reachable only from inside Mé záznamy, where the
+      // author judged they did not belong; this promotes them to the grid.
+      HomeTile(
+        // Hardcoded Czech like the DBT tile — there is no ARB key for this yet.
+        text: 'Otestuj se',
+        // TODO: temporary artwork — no dedicated illustration for the tests.
+        image: Assets.illustrations.modules.activityPlanning.svg(colorFilter: colorFilter),
+        location: const TestListScreenRoute().location,
       ),
     ];
 
