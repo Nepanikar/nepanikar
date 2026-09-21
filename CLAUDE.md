@@ -213,20 +213,14 @@ Files using code generation follow the `part`/`part of` pattern:
 > (what the user goes through), `implementation-spec.md` (how it maps to code),
 > `TODO.md` (backlog), `source/*.md` (verbatim Czech copy = source of truth).
 >
-> **Before working on a programme week, read `.claude/`** — it holds the screen
-> pipeline and its state, and skipping it means redoing work:
-> - `.claude/skills/` — `plan-screens` → `design-screen` → `implement-screen`
->   (orchestrated by `build-screens`). **`.claude/skills/LESSONS.md` is
->   mandatory:** read the OPEN lessons before you start, add a retrospective when
->   you finish.
-> - `.claude/design/week<N>/` — `WEEK<N>_SCREEN_PLAN.md` (per-page plan) +
->   `TRACKING.md` (what is designed / implemented) + `mockups/*.html`.
->   Preview them via `.claude/launch.json` (`week1-mockups`, `week2-mockups`).
-> - `.claude/design/DESIGN_PROMPTS.md` — design tokens + approved component
->   concepts (chat feed, skill tree). Education days use the **chat** template.
-> - `.claude/obrazovky_prehlad.md` — screen-level implementation overview.
-> - `.claude/data/TYZDEN_<N>_VYPLNENY.txt` — the author's structured working copy
->   (Slovak). Superseded by `docs/hpo/source/*.md` for anything shipped.
+> The seven weeks are built and shipped; what is left is content approval and
+> fixes, both tracked in `docs/hpo/TODO.md`.
+>
+> The screen-design scaffolding that produced them — per-week plans, HTML
+> mockups, the design-prompt notes and the author's Slovak working copies —
+> lived in `.claude/` and is no longer in the repository. It is in this
+> branch's history if it is ever needed; `docs/hpo/source/*.md` superseded it
+> for anything that shipped.
 
 ### Structure
 ```

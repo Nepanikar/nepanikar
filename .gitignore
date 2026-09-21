@@ -60,3 +60,6 @@ fix_imports.dart
 /lib/app/l10n/app_localizations*.dart
 /pubspec.lock
 
+
+# Local agent scaffolding: screen plans, mockups, skills. Kept on disk, out of the repo.
+.claude/
