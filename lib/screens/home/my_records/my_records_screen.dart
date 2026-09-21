@@ -67,7 +67,7 @@ class MyRecordsScreen extends StatelessWidget {
       ),
       LongTile(
         text: 'DBT průvodce',
-        image: Icon(Icons.self_improvement, size: 32, color: Theme.of(context).primaryColor),
+        image: Icon(Icons.self_improvement, size: 32, color: svgColorBasedOnDarkMode(context)),
         onTap: () => context.push(const DbtRecordsRoute().location),
       ),
     ];

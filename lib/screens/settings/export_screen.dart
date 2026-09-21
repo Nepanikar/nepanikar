@@ -5,6 +5,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/app_constants.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/services/export_service.dart';
 import 'package:nepanikar/services/save_directories.dart';
 import 'package:nepanikar/utils/extensions.dart';
@@ -53,7 +54,7 @@ class _ExportScreenState extends State<ExportScreen> {
       children: [
         LongTile(
           text: context.l10n.export_button,
-          image: Assets.icons.export.svg(),
+          image: Assets.icons.export.svg(colorFilter: svgColorFilterBasedOnDarkMode(context)),
           trailing: exportInProgress ? const _Spinner() : null,
           onTap: () async {
             setState(() {
@@ -76,7 +77,7 @@ class _ExportScreenState extends State<ExportScreen> {
         ),
         LongTile(
           text: context.l10n.import_button,
-          image: Assets.icons.import.svg(),
+          image: Assets.icons.import.svg(colorFilter: svgColorFilterBasedOnDarkMode(context)),
           trailing: importInProgress ? const _Spinner() : null,
           onTap: () async {
             setState(() {

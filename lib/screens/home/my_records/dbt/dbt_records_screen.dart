@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/screens/home/my_records/challenges/my_challenges_screen.dart';
 import 'package:nepanikar/screens/home/my_records/emotion_dictionary/emotion_dictionary_screen.dart';
 import 'package:nepanikar/screens/home/my_records/goals/my_goals_screen.dart';
@@ -25,29 +26,30 @@ class DbtRecordsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final primaryColor = Theme.of(context).primaryColor;
+    // White on dark, primary on light — the same rule the SVG tiles use.
+    final iconColor = svgColorBasedOnDarkMode(context);
 
     return NepanikarScreenWrapper(
       appBarTitle: 'DBT průvodce',
       children: [
         LongTile(
           text: 'Moje výzvy',
-          image: Icon(Icons.flag_outlined, size: 32, color: primaryColor),
+          image: Icon(Icons.flag_outlined, size: 32, color: iconColor),
           onTap: () => context.push(const MyChallengesRoute().location),
         ),
         LongTile(
           text: 'Moje cíle',
-          image: Icon(Icons.track_changes, size: 32, color: primaryColor),
+          image: Icon(Icons.track_changes, size: 32, color: iconColor),
           onTap: () => context.push(const MyGoalsRoute().location),
         ),
         LongTile(
           text: 'Záchranný balíček',
-          image: Icon(Icons.medical_services_outlined, size: 32, color: primaryColor),
+          image: Icon(Icons.medical_services_outlined, size: 32, color: iconColor),
           onTap: () => context.push(const RescuePackageRoute().location),
         ),
         LongTile(
           text: 'Slovník emocí',
-          image: Icon(Icons.menu_book_outlined, size: 32, color: primaryColor),
+          image: Icon(Icons.menu_book_outlined, size: 32, color: iconColor),
           onTap: () => context.push(const EmotionDictionaryRoute().location),
         ),
       ],
