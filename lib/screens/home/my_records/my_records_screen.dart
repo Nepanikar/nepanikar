@@ -65,11 +65,6 @@ class MyRecordsScreen extends StatelessWidget {
         image: Assets.illustrations.modules.foodTracker.svg(colorFilter: colorFilter),
         onTap: () => context.push(const MyRecordsFoodRecordsListRoute().location),
       ),
-      LongTile(
-        text: 'DBT průvodce',
-        image: Icon(Icons.self_improvement, size: 32, color: svgColorBasedOnDarkMode(context)),
-        onTap: () => context.push(const DbtRecordsRoute().location),
-      ),
     ];
 
     return NepanikarScreenWrapper(

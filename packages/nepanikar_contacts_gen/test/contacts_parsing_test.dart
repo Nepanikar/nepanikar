@@ -14,9 +14,7 @@ void main() {
     final assetContent = File(
       '${bin.appContactsAssetDirPath}/$CONTACTS_ASSET_NAME',
     ).readAsStringSync();
-    final allContacts = AllContacts.fromJson(
-      jsonDecode(assetContent) as Map<String, dynamic>,
-    );
+    final allContacts = AllContacts.fromJson(jsonDecode(assetContent) as Map<String, dynamic>);
     expect(allContacts.countryContacts.length > 2, true);
     expect(allContacts, equals(bin.allContacts));
   });

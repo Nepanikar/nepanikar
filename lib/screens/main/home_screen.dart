@@ -72,15 +72,10 @@ class HomeScreen extends StatelessWidget {
         location: const EatingDisorderRoute().location,
       ),
       HomeTile(
-        // Hardcoded like the bottom bar's 'DBT' label — programme copy lives in
-        // Dart, not ARB (see docs/hpo/TODO.md → GEN-03).
         text: 'DBT průvodce',
-        // TODO: temporary artwork — there is no DBT module illustration yet.
-        image: Assets.illustrations.modules.homework.svg(colorFilter: colorFilter),
+        image: Assets.illustrations.modules.dbt.svg(colorFilter: colorFilter),
         location: bpdLocation,
       ),
-      // Records came back to the grid on the author's request (2026-08-19) after
-      // the DBT tile took its slot — she wants both, so the grid grew instead.
       HomeTile(
         text: context.l10n.my_records,
         image: Assets.illustrations.modules.myRecords.svg(colorFilter: colorFilter),

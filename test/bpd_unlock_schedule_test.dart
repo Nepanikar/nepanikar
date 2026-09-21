@@ -25,11 +25,7 @@ void main() {
       expect(dates.toSet(), hasLength(49), reason: 'two lessons share a day');
 
       for (var i = 1; i < dates.length; i++) {
-        expect(
-          dates[i].difference(dates[i - 1]).inDays,
-          1,
-          reason: 'gap before lesson ${i + 1}',
-        );
+        expect(dates[i].difference(dates[i - 1]).inDays, 1, reason: 'gap before lesson ${i + 1}');
       }
     });
 
@@ -38,10 +34,7 @@ void main() {
       // day 1 has to be the day after week 1 day 7, not seven days after
       // week 1 day 1.
       for (var week = 1; week < 7; week++) {
-        expect(
-          bpdDayUnlockDate(week + 1, 1).difference(bpdDayUnlockDate(week, 7)).inDays,
-          1,
-        );
+        expect(bpdDayUnlockDate(week + 1, 1).difference(bpdDayUnlockDate(week, 7)).inDays, 1);
       }
       expect(bpdWeekUnlockDate(1), DateTime(2026, 9, 21));
       expect(bpdWeekUnlockDate(7), DateTime(2026, 11, 2));

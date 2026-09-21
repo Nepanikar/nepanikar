@@ -68,11 +68,7 @@ const _crisisCenterContacts = <RegionContact>[
       ),
       RegionItemContact(
         name: 'Zentrum für Psychiatrie Calw - Klinikum Nordschwarzwald',
-        contactAddresses: [
-          'Im Lützenhardter Hof',
-          '75365 Calw',
-          'https://www.zfp-emmendingen.de/',
-        ],
+        contactAddresses: ['Im Lützenhardter Hof', '75365 Calw', 'https://www.zfp-emmendingen.de/'],
       ),
     ],
   ),
@@ -81,11 +77,7 @@ const _crisisCenterContacts = <RegionContact>[
     contacts: [
       RegionItemContact(
         name: 'Psychosoziale Dienste in Wien',
-        contactAddresses: [
-          'Modecenterstraße 14/A/2',
-          '1030 Wien',
-          'https://psd-wien.at/',
-        ],
+        contactAddresses: ['Modecenterstraße 14/A/2', '1030 Wien', 'https://psd-wien.at/'],
       ),
     ],
   ),
@@ -94,8 +86,6 @@ const _crisisCenterContacts = <RegionContact>[
 const _chatContacts = <ChatContact>[
   ChatContact.subList(
     title: 'Telefonseelsorge',
-    subChatContacts: [
-      SubChatContact(title: '', url: 'https://online.telefonseelsorge.de/'),
-    ],
+    subChatContacts: [SubChatContact(title: '', url: 'https://online.telefonseelsorge.de/')],
   ),
 ];

@@ -19,6 +19,5 @@ abstract class CountryContacts with _$CountryContacts {
 
   const CountryContacts._();
 
-  factory CountryContacts.fromJson(Map<String, Object?> json) =>
-      _$CountryContactsFromJson(json);
+  factory CountryContacts.fromJson(Map<String, Object?> json) => _$CountryContactsFromJson(json);
 }
