@@ -2,12 +2,7 @@ import 'package:flutter/material.dart';
 
 /// One entry of the emotion dictionary.
 class EmotionEntry {
-  const EmotionEntry({
-    required this.name,
-    required this.function,
-    required this.icon,
-    this.isInInfographic = false,
-  });
+  const EmotionEntry({required this.name, required this.function, required this.icon});
 
   final String name;
 
@@ -15,11 +10,6 @@ class EmotionEntry {
   final String function;
 
   final IconData icon;
-
-  /// Whether the author's `ZÁKLADNÍ EMOCE` infographic covers this emotion.
-  /// It shows six of the ten, so the picture is presented as an illustration of
-  /// those six rather than as a complete overview.
-  final bool isInInfographic;
 }
 
 /// The "slovníček emocí" from Week 3, Day 1 — verbatim, source: tyzden-3.md §1.
@@ -33,25 +23,21 @@ const emotionDictionary = <EmotionEntry>[
     name: 'Vztek',
     function: 'Chrání naše hranice a pomáhá bránit se nespravedlnosti.',
     icon: Icons.local_fire_department_outlined,
-    isInInfographic: true,
   ),
   EmotionEntry(
     name: 'Strach',
     function: 'Varuje před nebezpečím a připravuje tělo na obranu nebo útěk.',
     icon: Icons.warning_amber_outlined,
-    isInInfographic: true,
   ),
   EmotionEntry(
     name: 'Radost',
     function: 'Motivuje nás opakovat příjemné chování a posiluje vztahy.',
     icon: Icons.wb_sunny_outlined,
-    isInInfographic: true,
   ),
   EmotionEntry(
     name: 'Smutek',
     function: 'Signalizuje ztrátu, podporuje zpomalení a hledání podpory.',
     icon: Icons.water_drop_outlined,
-    isInInfographic: true,
   ),
   EmotionEntry(
     name: 'Znechucení',
@@ -59,13 +45,11 @@ const emotionDictionary = <EmotionEntry>[
         'Upozorňuje nás na věci, které by nám mohly uškodit nebo nám nejsou '
         'příjemné; chrání nás před nebezpečím nebo nepříjemnými situacemi.',
     icon: Icons.block_outlined,
-    isInInfographic: true,
   ),
   EmotionEntry(
     name: 'Stud',
     function: 'Pomáhá udržovat sociální vazby a přizpůsobovat se pravidlům skupiny.',
     icon: Icons.visibility_off_outlined,
-    isInInfographic: true,
   ),
   EmotionEntry(
     name: 'Vina',

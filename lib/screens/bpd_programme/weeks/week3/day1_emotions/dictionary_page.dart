@@ -44,8 +44,6 @@ class Week3DictionaryPage extends StatelessWidget {
               child: EmotionCard(emotion: emotion),
             ),
           ),
-          const SizedBox(height: 8),
-          const EmotionInfographic(),
           const SizedBox(height: 20),
           const InfoBox(
             icon: Icons.bookmark_outline,

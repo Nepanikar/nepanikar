@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week3/emotion_dictionary_data.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/external_link_button.dart';
@@ -50,8 +49,6 @@ class EmotionDictionaryScreen extends StatelessWidget {
             child: EmotionCard(emotion: emotion),
           ),
         ),
-        const SizedBox(height: 8),
-        const EmotionInfographic(),
         const SizedBox(height: 20),
         const LinkLeadText('Chci vědět víc:'),
         const SizedBox(height: 8),
@@ -123,46 +120,6 @@ class EmotionCard extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-/// The author's `ZÁKLADNÍ EMOCE` picture.
-///
-/// It covers six of the ten emotions, so it is captioned as an illustration of
-/// the basic six instead of being presented as the full list — otherwise the
-/// four that are missing (vina, překvapení, žárlivost, závist) read as an
-/// oversight.
-class EmotionInfographic extends StatelessWidget {
-  const EmotionInfographic({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    final basicCount = emotionDictionary.where((e) => e.isInInfographic).length;
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(12),
-          child: Image.asset(
-            Assets.bpd.emoceInfografika.path,
-            fit: BoxFit.contain,
-            width: double.infinity,
-          ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          'Obrázek zachycuje $basicCount základních emocí. Zbývající '
-          '${emotionDictionary.length - basicCount} najdeš v seznamu výše.',
-          style: TextStyle(
-            fontSize: 12,
-            fontStyle: FontStyle.italic,
-            color: isDarkMode ? Colors.white54 : Colors.grey.shade500,
-          ),
-        ),
-      ],
     );
   }
 }
