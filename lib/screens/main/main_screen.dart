@@ -61,7 +61,7 @@ class _MainScreenState extends State<MainScreen> {
     return <Widget>[
       const HomeScreen(),
       const MyRecordsScreen(showBottomNavbar: false),
-      _BpdLandingNavigator(userSettingsDao: _userSettingsDao),
+      _BpdLandingNavigator(onDismissed: _leaveBpdTab),
       ContactsScreen(countryContacts: countryContacts),
       const SettingsScreen(),
     ];
@@ -106,6 +106,14 @@ class _MainScreenState extends State<MainScreen> {
         _selectedIndex = newIndex;
       });
     }
+  }
+
+  /// Leaves the DBT tab once its landing screen is dismissed.
+  ///
+  /// Home, rather than the tab they came from, because that is where the
+  /// landing screen's own "Možná později" and the programme's exit button go.
+  void _leaveBpdTab() {
+    if (_selectedIndex == bpdTabIndex) _onItemTapped(0);
   }
 
   void _onItemTapped(int index) {
@@ -187,10 +195,19 @@ class _MainScreenState extends State<MainScreen> {
   }
 }
 
+/// The DBT tab's body.
+///
+/// The tab has no screen of its own — it opens the landing screen full-screen,
+/// over the bottom bar — so this is only ever what sits behind it.
 class _BpdLandingNavigator extends StatefulWidget {
-  const _BpdLandingNavigator({required this.userSettingsDao});
+  const _BpdLandingNavigator({required this.onDismissed});
 
-  final UserSettingsDao userSettingsDao;
+  /// Called once the landing screen has left the stack.
+  ///
+  /// Without it, coming back (back gesture, system back button) leaves the
+  /// person on the spinner below with no way out: the tab is still selected
+  /// and `_hasNavigated` has latched, so nothing pushes again.
+  final VoidCallback onDismissed;
 
   @override
   State<_BpdLandingNavigator> createState() => _BpdLandingNavigatorState();
@@ -204,10 +221,14 @@ class _BpdLandingNavigatorState extends State<_BpdLandingNavigator> {
     super.didChangeDependencies();
     if (!_hasNavigated) {
       _hasNavigated = true;
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (mounted) {
-          context.push(const BpdLandingScreenRoute().location);
-        }
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        if (!mounted) return;
+        await context.push(const BpdLandingScreenRoute().location);
+        // This also completes when the landing screen leaves via "Začít svou
+        // cestu", which replaces the stack. Harmless: the tab it hands back to
+        // is hidden under the weeks screen, and is the one the programme's own
+        // exit returns to anyway.
+        if (mounted) widget.onDismissed();
       });
     }
   }
