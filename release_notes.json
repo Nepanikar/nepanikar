@@ -1,70 +1,82 @@
 [
   {
-    "language": "cs-CZ",
-    "text": "• Přidána možnost nastavit si připomínky na zadání nálady a spánku. Lze je zapnout v sekci Nastavení.\n• Vylepšena přístupnost\n• Aktualizovány kontakty na pomoc\n• Opravy chyb"
+    "language": "ar-SA",
+    "text": "• إصلاح الأخطاء"
   },
   {
     "language": "cs",
-    "text": "• Přidána možnost nastavit si připomínky na zadání nálady a spánku. Upozornění lze zapnout v sekci Nastavení.\n• Vylepšena přístupnost\n• Aktualizovány kontakty na pomoc\n• Opravy chyb"
-  },
-  {
-    "language": "sk",
-    "text": "• Přidána možnost nastavit si připomínky na zadání nálady a spánku. Upozornění lze zapnout v sekci Nastavení.\n• Vylepšena přístupnost\n• Aktualizovány kontakty na pomoc\n• Opravy chyb"
-  },
-  {
-    "language": "en-US",
-    "text": "• Added an option to set reminders for mood and sleep. Notifications can be enabled in the Settings tab.\n• Accessibility improvements\n• Updated helpline contacts\n• Bug fixes"
+    "text": "• Opravy chyb"
   },
   {
     "language": "de-DE",
-    "text": "• Added an option to set reminders for mood and sleep. Notifications can be enabled in the Settings tab.\n• Accessibility improvements\n• Updated helpline contacts\n• Bug fixes"
+    "text": "• Fehlerbehebungen"
   },
   {
-    "language": "de",
-    "text": "• Added an option to set reminders for mood and sleep. Notifications can be enabled in the Settings tab.\n• Accessibility improvements\n• Updated helpline contacts\n• Bug fixes"
+    "language": "en-US",
+    "text": "• Bug fixes"
   },
   {
     "language": "es-ES",
-    "text": "• Added an option to set reminders for mood and sleep. Notifications can be enabled in the Settings tab.\n• Accessibility improvements\n• Updated helpline contacts\n• Bug fixes"
+    "text": "• Correcciones de errores"
+  },
+  {
+    "language": "fi",
+    "text": "• Virheenkorjaukset"
   },
   {
     "language": "fr-FR",
-    "text": "• Added an option to set reminders for mood and sleep. Notifications can be enabled in the Settings tab.\n• Accessibility improvements\n• Updated helpline contacts\n• Bug fixes"
+    "text": "• Corrections de bugs"
+  },
+  {
+    "language": "hi",
+    "text": "• बग सुधार"
   },
   {
     "language": "it",
-    "text": "• Added an option to set reminders for mood and sleep. Notifications can be enabled in the Settings tab.\n• Accessibility improvements\n• Updated helpline contacts\n• Bug fixes"
+    "text": "• Correzioni di bug"
   },
   {
-    "language": "it-IT",
-    "text": "• Added an option to set reminders for mood and sleep. Notifications can be enabled in the Settings tab.\n• Accessibility improvements\n• Updated helpline contacts\n• Bug fixes"
+    "language": "ja",
+    "text": "• バグ修正"
+  },
+  {
+    "language": "ko",
+    "text": "• 버그 수정"
   },
   {
     "language": "no",
-    "text": "• Added an option to set reminders for mood and sleep. Notifications can be enabled in the Settings tab.\n• Accessibility improvements\n• Updated helpline contacts\n• Bug fixes"
-  },
-  {
-    "language": "no-NO",
-    "text": "• Added an option to set reminders for mood and sleep. Notifications can be enabled in the Settings tab.\n• Accessibility improvements\n• Updated helpline contacts\n• Bug fixes"
+    "text": "• Feilrettinger"
   },
   {
     "language": "pl",
-    "text": "• Added an option to set reminders for mood and sleep. Notifications can be enabled in the Settings tab.\n• Accessibility improvements\n• Updated helpline contacts\n• Bug fixes"
+    "text": "• Poprawki błędów"
   },
   {
-    "language": "pl-PL",
-    "text": "• Added an option to set reminders for mood and sleep. Notifications can be enabled in the Settings tab.\n• Accessibility improvements\n• Updated helpline contacts\n• Bug fixes"
+    "language": "pt-PT",
+    "text": "• Correções de bugs"
   },
   {
     "language": "ru",
-    "text": "• Added an option to set reminders for mood and sleep. Notifications can be enabled in the Settings tab.\n• Accessibility improvements\n• Updated helpline contacts\n• Bug fixes"
+    "text": "• Исправления ошибок"
   },
   {
-    "language": "ru-RU",
-    "text": "• Added an option to set reminders for mood and sleep. Notifications can be enabled in the Settings tab.\n• Accessibility improvements\n• Updated helpline contacts\n• Bug fixes"
+    "language": "sk",
+    "text": "• Opravy chýb"
+  },
+  {
+    "language": "sv",
+    "text": "• Buggfixar"
+  },
+  {
+    "language": "tr",
+    "text": "• Hata düzeltmeleri"
   },
   {
     "language": "uk",
-    "text": "• Added an option to set reminders for mood and sleep. Notifications can be enabled in the Settings tab.\n• Accessibility improvements\n• Updated helpline contacts\n• Bug fixes"
+    "text": "• Виправлення помилок"
+  },
+  {
+    "language": "vi",
+    "text": "• Sửa lỗi"
   }
 ]
