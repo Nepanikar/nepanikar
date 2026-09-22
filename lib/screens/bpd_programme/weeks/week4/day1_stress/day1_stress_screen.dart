@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week4/day1_stress/day1_content.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart';
@@ -145,11 +146,11 @@ class Week4Day1ChatPage extends StatelessWidget {
         ),
         for (final message in day1ClosingChat)
           ChatStep(messages: [ChatBotBubble(text: message, showAvatar: true)]),
-        const ChatStep(
+        ChatStep(
           messages: [
             ChatLinksCard(
-              caption: 'Chci vědět víc',
-              links: [
+              caption: context.l10n.dbt_want_to_know_more,
+              links: const [
                 ChatLink(
                   label: 'Video o stresu',
                   url: day1VideoUrl,
@@ -158,7 +159,7 @@ class Week4Day1ChatPage extends StatelessWidget {
               ],
             ),
           ],
-          buttonLabel: 'Dokončit čtení',
+          buttonLabel: context.l10n.dbt_finish_reading,
         ),
       ],
     );

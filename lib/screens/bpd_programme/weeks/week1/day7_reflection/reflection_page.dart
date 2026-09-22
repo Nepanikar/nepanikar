@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
 
@@ -22,7 +23,7 @@ class Day7ReflectionPage extends StatelessWidget {
     final primaryColor = Theme.of(context).primaryColor;
 
     return DayPageBase(
-      buttonText: 'Pokračovat',
+      buttonText: context.l10n.dbt_continue,
       onButtonPressed: onNext,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -108,7 +109,7 @@ class _ReflectionField extends StatelessWidget {
         minLines: 2,
         style: TextStyle(fontSize: 14, color: isDarkMode ? Colors.white : NepanikarColors.dark),
         decoration: InputDecoration(
-          hintText: 'Napiš sem…',
+          hintText: context.l10n.dbt_write_here,
           hintStyle: TextStyle(color: isDarkMode ? Colors.white38 : Colors.grey.shade400),
           border: InputBorder.none,
           contentPadding: const EdgeInsets.all(14),

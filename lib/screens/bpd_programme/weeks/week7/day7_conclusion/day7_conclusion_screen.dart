@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/bpd_research.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week7/day7_conclusion/day7_content.dart';
@@ -167,7 +168,7 @@ class Week7Day7OpeningPage extends StatelessWidget {
         for (var i = 0; i < day7Opening.length; i++)
           ChatStep(
             messages: [ChatBotBubble(text: day7Opening[i], showAvatar: i == 0)],
-            buttonLabel: i == day7Opening.length - 1 ? 'Pokračovat' : null,
+            buttonLabel: i == day7Opening.length - 1 ? context.l10n.dbt_continue : null,
           ),
       ],
     );
@@ -185,7 +186,7 @@ class Week7Day7ThreeSkillsPage extends StatelessWidget {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return DayPageBase(
-      buttonText: 'Pokračovat',
+      buttonText: context.l10n.dbt_continue,
       onButtonPressed: onNext,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -249,9 +250,9 @@ class Week7Day7SupportPage extends StatelessWidget {
             ),
           ],
         ),
-        const ChatStep(
-          messages: [ChatBotBubble(text: day7JustTheBeginning, showAvatar: true)],
-          buttonLabel: 'Pokračovat',
+        ChatStep(
+          messages: [const ChatBotBubble(text: day7JustTheBeginning, showAvatar: true)],
+          buttonLabel: context.l10n.dbt_continue,
         ),
       ],
     );
@@ -269,7 +270,7 @@ class Week7Day7ClosingWritingPage extends StatelessWidget {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return DayPageBase(
-      buttonText: 'Pokračovat',
+      buttonText: context.l10n.dbt_continue,
       onButtonPressed: onNext,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -321,7 +322,7 @@ class Week7Day7StudyPage extends StatelessWidget {
     final bodyColor = isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.78);
 
     return DayPageBase(
-      buttonText: day7StudyCloseButton,
+      buttonText: context.l10n.dbt_close,
       onButtonPressed: onClose,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

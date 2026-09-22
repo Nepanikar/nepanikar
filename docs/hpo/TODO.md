@@ -210,14 +210,23 @@ found three things not in this list, all fixed in the same pass:
   read back anywhere.
 
 - [~] **GEN-03 — Localisation pass.**
-  - ✅ **Chrome is in ARB (done 2026-09-22).** Everything that is the app talking
-    rather than the programme's content now goes through `context.l10n`: the
-    "DBT průvodce" tile and app-bar titles, the landing screen, the weeks
-    overview and its locked-week sheet, and the whole My records → DBT branch
-    (challenges, SMART goals, rescue package, emotion dictionary). 57 `dbt_*`
-    keys in `app_cs.arb` + `app_en.arb`; the other 17 locales come from Localazy.
-    Hardcoded weekday and month names in the challenge calendar were replaced
-    with `DateFormat` in the active locale.
+  - ✅ **Chrome is in ARB, in all 20 locales (done 2026-09-22).** Everything
+    that is the app talking rather than the programme's content now goes
+    through `context.l10n`: the module's tiles and app-bar titles, the landing
+    screen, the weeks overview and its locked-week sheet, the day list with
+    both refusal dialogs, the day/week completion pages, the shared worksheet
+    and technique widgets, the pause day, the programme's notifications, and
+    the whole My records → DBT branch (challenges, SMART goals, rescue package,
+    emotion dictionary). 139 `dbt_*` keys, hand-filled for every supported
+    locale rather than left to Localazy, because the pilot ships before the
+    next sync.
+    Dates and weekday/month names come from `DateFormat` in the active locale;
+    the day-list activity chips are an enum (`_DayActivity`) rather than
+    repeated Czech strings.
+    **Watch out:** gen-l10n orders placeholders **alphabetically**, not by
+    where they appear in the sentence, and the generated parameters are
+    positional `Object`s — so `{lesson} … {date}` is called `(date, lesson)`.
+    Two call sites shipped swapped until a screenshot caught it.
   - **Programme copy stays inline Czech.** The day screens and their
     `dayN_content.dart` (~2 000 strings) are the author's verbatim clinical copy,
     with `docs/hpo/source/*.md` as the source of truth, and the pilot is Czech.
@@ -225,7 +234,8 @@ found three things not in this list, all fixed in the same pass:
     run in another language, and then with a translator.
   - Known seams where translated chrome frames Czech content: the SMART
     worksheet questions (`smart_goal_fields.dart`, mirrored in
-    `my_goals_screen.dart`), the challenge "area" labels, week titles from
+    `my_goals_screen.dart`), the SPOKO area labels (`bpd_challenge_model.dart`,
+    an acronym that only works in Czech), week titles from
     `bpd_weeks_data.json`, and the emotion dictionary entries.
 
 - [?] **GEN-06 — Unlock policy.** Asked by the author (2026-08-12).

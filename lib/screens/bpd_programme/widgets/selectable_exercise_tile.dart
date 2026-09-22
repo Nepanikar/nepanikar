@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 
 /// Checkable tile for an exercise the user picks to try ("vyber si alespoň dvě
@@ -126,16 +127,11 @@ class _Checkbox extends StatelessWidget {
 /// dropped from the wording — "z minimálně 0" would read as a demand for
 /// nothing, and someone who tried none of it must not meet a grey zero.
 class PickCounterHint extends StatelessWidget {
-  const PickCounterHint({
-    super.key,
-    required this.picked,
-    required this.minimum,
-    this.label = 'Vybráno',
-  });
+  const PickCounterHint({super.key, required this.picked, required this.minimum, this.label});
 
   final int picked;
   final int minimum;
-  final String label;
+  final String? label;
 
   @override
   Widget build(BuildContext context) {
@@ -152,7 +148,14 @@ class PickCounterHint extends StatelessWidget {
         Icon(isMet ? Icons.check_circle : Icons.radio_button_unchecked, size: 16, color: color),
         const SizedBox(width: 6),
         Text(
-          hasTarget ? '$label $picked z minimálně $minimum' : '$label $picked',
+          hasTarget
+              // Alphabetical parameter order, courtesy of gen-l10n.
+              ? context.l10n.dbt_picked_of_minimum(
+                  label ?? context.l10n.dbt_selected,
+                  minimum,
+                  picked,
+                )
+              : '${label ?? context.l10n.dbt_selected} $picked',
           style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: color),
         ),
       ],

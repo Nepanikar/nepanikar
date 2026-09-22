@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/services/db/bpd/bpd_rescue_item_model.dart';
 import 'package:nepanikar/services/db/bpd/bpd_rescue_package_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
@@ -39,7 +40,9 @@ class _RescueSaveButtonState extends State<RescueSaveButton> {
     setState(() => _isSaved = saved);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(saved ? 'Uloženo do záchranného balíčku' : 'Odebráno ze záchranného balíčku'),
+        content: Text(
+          saved ? context.l10n.dbt_rescue_save_toast : context.l10n.dbt_rescue_remove_toast,
+        ),
       ),
     );
   }
@@ -67,7 +70,7 @@ class _RescueSaveButtonState extends State<RescueSaveButton> {
           const SizedBox(width: 8),
           Flexible(
             child: Text(
-              isSaved ? 'V záchranném balíčku' : 'Uložit do záchranného balíčku',
+              isSaved ? context.l10n.dbt_rescue_saved : context.l10n.dbt_rescue_save,
               style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             ),
           ),

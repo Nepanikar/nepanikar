@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/rescue_save_button.dart';
 import 'package:nepanikar/services/db/bpd/bpd_rescue_item_model.dart';
@@ -26,7 +27,7 @@ class AcronymSkillPage extends StatelessWidget {
     this.leadParagraphs = const [],
     this.afterLetter = const {},
     this.rescueItem,
-    this.buttonText = 'Pokračovat',
+    this.buttonText,
   });
 
   final IconData icon;
@@ -47,7 +48,7 @@ class AcronymSkillPage extends StatelessWidget {
   /// When set, the page offers to save the acronym to the rescue package.
   final BpdRescueItem? rescueItem;
 
-  final String buttonText;
+  final String? buttonText;
   final VoidCallback onNext;
 
   @override
@@ -56,7 +57,7 @@ class AcronymSkillPage extends StatelessWidget {
     final secondaryText = isDarkMode ? Colors.white70 : Colors.black.withOpacity(0.75);
 
     return DayPageBase(
-      buttonText: buttonText,
+      buttonText: buttonText ?? context.l10n.dbt_continue,
       onButtonPressed: onNext,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

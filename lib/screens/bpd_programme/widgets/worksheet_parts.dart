@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/reflection_fields.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/structured_worksheet.dart';
@@ -106,7 +107,7 @@ class WorksheetNumberedSection extends StatelessWidget {
                 ],
                 ReflectionField(
                   controller: controllers[field.id]!,
-                  hintText: field.hint ?? 'Napiš sem…',
+                  hintText: field.hint ?? context.l10n.dbt_write_here,
                 ),
                 if (field.example != null)
                   WorksheetFieldExample(
@@ -158,7 +159,7 @@ class WorksheetMythSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'MÝTUS',
+            context.l10n.dbt_myth,
             style: TextStyle(
               fontSize: 11,
               fontWeight: FontWeight.w800,
@@ -186,7 +187,10 @@ class WorksheetMythSection extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 6),
-          ReflectionField(controller: controllers[field.id]!, hintText: field.hint ?? 'Napiš sem…'),
+          ReflectionField(
+            controller: controllers[field.id]!,
+            hintText: field.hint ?? context.l10n.dbt_write_here,
+          ),
           if (field.example != null)
             WorksheetFieldExample(
               example: field.example!,
@@ -228,7 +232,7 @@ class WorksheetFieldExample extends StatelessWidget {
           child: TextButton.icon(
             onPressed: onToggle,
             icon: Icon(isOpen ? Icons.expand_less : Icons.lightbulb_outline, size: 16),
-            label: Text(isOpen ? 'Skrýt příklad' : 'Zobrazit příklad'),
+            label: Text(isOpen ? context.l10n.dbt_hide_example : context.l10n.dbt_show_example),
             style: TextButton.styleFrom(
               foregroundColor: primaryColor,
               padding: const EdgeInsets.symmetric(horizontal: 4),

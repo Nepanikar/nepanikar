@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/games/breathing/breathing_game_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
@@ -91,7 +92,7 @@ class TechniqueMenuPage extends StatelessWidget {
     final secondaryText = isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.85);
 
     return DayPageBase(
-      buttonText: 'Pokračovat',
+      buttonText: context.l10n.dbt_continue,
       onButtonPressed: onNext,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -151,7 +152,7 @@ class TechniqueMenuPage extends StatelessWidget {
             const SizedBox(height: 16),
             InfoBox(
               icon: Icons.medical_services_outlined,
-              title: 'Kdykoliv se můžeš vrátit',
+              title: context.l10n.dbt_come_back_anytime,
               text: closingNote!,
             ),
           ],
@@ -341,10 +342,10 @@ class _TechniqueDetailSheet extends StatelessWidget {
                 const SizedBox(height: 10),
               ],
               if (technique.videoUrl != null) ...[
-                const LinkLeadText('Pro zájemce vedené cvičení skrze video:'),
+                LinkLeadText(context.l10n.dbt_guided_video_intro),
                 const SizedBox(height: 6),
                 ExternalLinkButton(
-                  label: 'Otevřít video',
+                  label: context.l10n.dbt_open_video,
                   url: technique.videoUrl!,
                   icon: Icons.play_circle_outline,
                 ),
@@ -397,14 +398,14 @@ class _StartBreathingButton extends StatelessWidget {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           elevation: 1,
         ),
-        child: const Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.play_arrow_rounded, size: 22),
-            SizedBox(width: 8),
+            const Icon(Icons.play_arrow_rounded, size: 22),
+            const SizedBox(width: 8),
             Text(
-              'Spustit dechové cvičení',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              context.l10n.dbt_start_breathing,
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
           ],
         ),

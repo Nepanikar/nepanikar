@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week4/day4_mindfulness_stress/day4_mindfulness_stress_screen.dart'
     show week4DrawPool;
@@ -165,7 +166,9 @@ class Week6Day3MindfulnessChatPage extends StatelessWidget {
         for (var i = 0; i < day3MindfulnessIntro.length; i++)
           ChatStep(
             messages: [ChatBotBubble(text: day3MindfulnessIntro[i], showAvatar: i == 0)],
-            buttonLabel: i == day3MindfulnessIntro.length - 1 ? 'Vybrat cvičení' : null,
+            buttonLabel: i == day3MindfulnessIntro.length - 1
+                ? context.l10n.dbt_pick_exercise
+                : null,
           ),
       ],
     );

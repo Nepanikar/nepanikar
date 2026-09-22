@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week2/day1_mindfulness_intro/day1_content.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_lists.dart';
@@ -41,9 +42,9 @@ class Week2Day1EducationChatPage extends StatelessWidget {
         const ChatStep(
           messages: [ChatConceptCard(badge: 'ZÁKLAD DBT', title: day1DbtTitle, body: day1DbtBody)],
         ),
-        const ChatStep(
-          messages: [ChatLinksCard(caption: 'Chci vědět víc', links: day1Links)],
-          buttonLabel: 'Dokončit čtení',
+        ChatStep(
+          messages: [ChatLinksCard(caption: context.l10n.dbt_want_to_know_more, links: day1Links)],
+          buttonLabel: context.l10n.dbt_finish_reading,
         ),
       ],
     );

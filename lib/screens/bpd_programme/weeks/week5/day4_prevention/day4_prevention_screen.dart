@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week5/day4_prevention/day4_content.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_completion_page.dart';
@@ -156,7 +157,7 @@ class _Week5Day4WorksheetPageState extends State<Week5Day4WorksheetPage> {
   @override
   Widget build(BuildContext context) {
     return DayPageBase(
-      buttonText: 'Pokračovat',
+      buttonText: context.l10n.dbt_continue,
       onButtonPressed: _saveAndContinue,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week6/day2_communication/day2_content.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/acronym_skill_page.dart';
@@ -154,7 +155,7 @@ class Week6Day2PsanickoPage extends StatelessWidget {
       letters: day2PsanickoLetters,
       // The source's closing sentence belongs under the last letter, not above
       // the first — it summarises what the whole acronym is for.
-      afterLetter: {'Ko': const _ClosingNote(text: day2PsanickoClosing)},
+      afterLetter: const {'Ko': _ClosingNote(text: day2PsanickoClosing)},
       rescueItem: BpdRescueItem(
         id: day2PsanickoRescueId,
         title: 'PSANÍČKo',
@@ -180,7 +181,7 @@ class Week6Day2WorksheetPage extends StatelessWidget {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return DayPageBase(
-      buttonText: 'Pokračovat',
+      buttonText: context.l10n.dbt_continue,
       onButtonPressed: onNext,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

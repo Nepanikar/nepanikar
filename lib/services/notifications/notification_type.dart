@@ -31,6 +31,22 @@ enum NotificationType {
   /// screen; a tap opens the skill tree.
   programmeUnlock;
 
+  /// The programme's own wording, now in the ARB under `dbt_notification_*`:
+  ///
+  /// - mindfulness: verbatim from docs/hpo/source/tyzden-2.md §3.
+  /// - unlock: **ours** — the source never asked for this notification, so
+  ///   there is nothing of the author's to quote (docs/hpo/TODO.md → GEN-07).
+  ///   Kept plain on purpose: it says a lesson is waiting, it does not push,
+  ///   and it promises nothing about how long it takes beyond what is true.
+  ///   The body must not repeat the title — together they are two lines on a
+  ///   lock screen, and "Nový den je připravený / Čeká na tebe další den" spent
+  ///   both of them saying one thing. The body adds what the title cannot: that
+  ///   the timing is the reader's to choose, and it says so as a whole sentence
+  ///   (the earlier "Až budeš mít chvíli." trailed off mid-thought). Czech
+  ///   wording approved 2026-09-20; the week variant
+  ///   (`dbt_notification_week_*`) is used when the day that opens is the first
+  ///   of a week — a bigger moment than an ordinary day.
+  ///   TODO: týdenní variantu schválit autorem
   String getBodyMessage(AppLocalizations l10n) {
     switch (this) {
       case NotificationType.moodReminder:
@@ -38,53 +54,27 @@ enum NotificationType {
       case NotificationType.sleepRateReminder:
         return l10n.notification_sleep_mood_reminder_title;
       case NotificationType.challengeReminder:
-        return 'Nezapomeň na svou výzvu';
+        return l10n.dbt_notification_challenge_body;
       case NotificationType.mindfulnessReminder:
-        return mindfulnessReminderBody;
+        return l10n.dbt_notification_mindfulness_body;
       case NotificationType.programmeUnlock:
-        return programmeUnlockDayBody;
+        return l10n.dbt_notification_day_body;
     }
   }
 
-  /// Verbatim from docs/hpo/source/tyzden-2.md §3.
-  static const mindfulnessReminderBody = 'Věnuj teď tři minuty všímavosti. Nezapomeň co a jak.';
-
-  /// Unlock wording is **ours** — the source never asked for this
-  /// notification, so there is nothing of the author's to quote
-  /// (docs/hpo/TODO.md → GEN-07). Kept plain on purpose: it says a lesson
-  /// is waiting, it does not push, and it promises nothing about how long
-  /// it takes beyond what is true.
-  ///
-  /// The body must not repeat the title — together they are two lines on a
-  /// lock screen, and "Nový den je připravený / Čeká na tebe další den" spent
-  /// both of them saying one thing. This one adds what the title cannot: that
-  /// the timing is the reader's to choose, and it says so as a whole sentence
-  /// (the earlier "Až budeš mít chvíli." trailed off mid-thought).
-  ///
-  /// Wording approved 2026-09-20.
-  static const programmeUnlockDayBody = 'Když budeš mít čas, mrkni se na něj.';
-
-  /// Used instead of [programmeUnlockDayBody] when the day that opens is
-  /// the first of a week — that is a bigger moment than an ordinary day.
-  /// TODO: schválit autorem
-  static const programmeUnlockWeekBody = 'Začíná nový týden průvodce. Podívej se, co tě čeká.';
-
-  static const programmeUnlockDayTitle = 'Nový den je připravený';
-  static const programmeUnlockWeekTitle = 'Nový týden se otevřel';
-
   /// Title to show instead of the generic reminder header, where the programme
   /// source prescribes specific wording.
-  String? get customTitle {
+  String? customTitle(AppLocalizations l10n) {
     switch (this) {
       case NotificationType.moodReminder:
       case NotificationType.sleepRateReminder:
         return null;
       case NotificationType.challengeReminder:
-        return 'Připomínka výzvy';
+        return l10n.dbt_notification_challenge_title;
       case NotificationType.mindfulnessReminder:
-        return 'Čas na všímavost';
+        return l10n.dbt_notification_mindfulness_title;
       case NotificationType.programmeUnlock:
-        return programmeUnlockDayTitle;
+        return l10n.dbt_notification_day_title;
     }
   }
 
@@ -151,11 +141,11 @@ enum NotificationType {
       case NotificationType.sleepRateReminder:
         return l10n.sleep_title;
       case NotificationType.challengeReminder:
-        return 'Moje výzvy';
+        return l10n.dbt_challenges;
       case NotificationType.mindfulnessReminder:
-        return 'Všímavost';
+        return l10n.dbt_notification_mindfulness_settings;
       case NotificationType.programmeUnlock:
-        return 'Nový den v průvodci';
+        return l10n.dbt_notification_unlock_settings;
     }
   }
 }

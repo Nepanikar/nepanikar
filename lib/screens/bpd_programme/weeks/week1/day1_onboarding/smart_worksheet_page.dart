@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/smart_goal_fields.dart';
@@ -17,7 +18,7 @@ class Day1SmartWorksheetPage extends StatelessWidget {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return DayPageBase(
-      buttonText: 'Dokončit den',
+      buttonText: context.l10n.dbt_finish_day,
       onButtonPressed: onComplete,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

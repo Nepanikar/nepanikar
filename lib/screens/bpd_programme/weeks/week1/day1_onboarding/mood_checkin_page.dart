@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
 import 'package:nepanikar/screens/home/my_records/mood/mood_picker_screen.dart';
@@ -25,7 +26,7 @@ class Day1MoodCheckinPage extends StatelessWidget {
     final bodyColor = isDarkMode ? Colors.white : NepanikarColors.dark;
 
     return DayPageBase(
-      buttonText: 'Pokračovat',
+      buttonText: context.l10n.dbt_continue,
       onButtonPressed: onNext,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,9 +103,9 @@ class Day1MoodCheckinPage extends StatelessWidget {
             child: ElevatedButton.icon(
               onPressed: () => const MoodPickerRoute().push<void>(context),
               icon: const Icon(Icons.edit_note),
-              label: const Text(
-                'Zaznamenat náladu',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              label: Text(
+                context.l10n.dbt_record_mood,
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: primaryColor,

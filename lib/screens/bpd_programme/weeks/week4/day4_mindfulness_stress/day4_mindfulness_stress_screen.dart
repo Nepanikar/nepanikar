@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week2/day4_breathing/day4_content.dart'
     as week2_breathing;
@@ -176,7 +177,7 @@ class Week4Day4DrawPage extends StatelessWidget {
     return DayPageBase(
       // Not "Hotovo" — the day is complete whether or not the drawn technique
       // was actually done.
-      buttonText: 'Pokračovat',
+      buttonText: context.l10n.dbt_continue,
       onButtonPressed: onNext,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/selectable_exercise_tile.dart';
@@ -133,7 +134,7 @@ class _SkillPracticePageState extends State<SkillPracticePage> {
     final secondaryText = isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.85);
 
     return DayPageBase(
-      buttonText: 'Pokračovat',
+      buttonText: context.l10n.dbt_continue,
       onButtonPressed: _onContinue,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

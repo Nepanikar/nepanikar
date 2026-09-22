@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/bpd_help_button.dart';
 import 'package:nepanikar/screens/home/my_records/mood/mood_picker_screen.dart';
@@ -117,7 +118,7 @@ class DayPauseScreen extends StatelessWidget {
 
                       // Title
                       Text(
-                        'Dnes si dáme pauzu',
+                        context.l10n.dbt_pause_title,
                         style: TextStyle(
                           fontSize: 26,
                           fontWeight: FontWeight.bold,
@@ -149,7 +150,7 @@ class DayPauseScreen extends StatelessWidget {
                       const SizedBox(height: 24),
 
                       // Tip card
-                      _buildTipCard(primaryColor, isDarkMode),
+                      _buildTipCard(context, primaryColor, isDarkMode),
 
                       const SizedBox(height: 32),
                     ],
@@ -172,14 +173,14 @@ class DayPauseScreen extends StatelessWidget {
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                     elevation: 2,
                   ),
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.check, size: 22),
-                      SizedBox(width: 8),
+                      const Icon(Icons.check, size: 22),
+                      const SizedBox(width: 8),
                       Text(
-                        'OZNAČIT JAKO SPLNĚNÉ',
-                        style: TextStyle(
+                        context.l10n.dbt_mark_done,
+                        style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 0.5,
@@ -211,7 +212,7 @@ class DayPauseScreen extends StatelessWidget {
           ),
           Expanded(
             child: Text(
-              'DEN $dayNumber • TÝDEN $weekNumber',
+              context.l10n.dbt_day_week(dayNumber, weekNumber),
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
@@ -291,19 +292,22 @@ class DayPauseScreen extends StatelessWidget {
           side: BorderSide(color: primaryColor.withOpacity(0.5), width: 1.5),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),
-        child: const Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.sentiment_satisfied_alt, size: 20),
-            SizedBox(width: 8),
-            Text('Zaznamenat náladu', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            const Icon(Icons.sentiment_satisfied_alt, size: 20),
+            const SizedBox(width: 8),
+            Text(
+              context.l10n.dbt_record_mood,
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildTipCard(Color primaryColor, bool isDarkMode) {
+  Widget _buildTipCard(BuildContext context, Color primaryColor, bool isDarkMode) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(20),
@@ -340,7 +344,7 @@ class DayPauseScreen extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               Text(
-                'Tip na dnešek',
+                context.l10n.dbt_tip_today,
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,

@@ -139,56 +139,56 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
         title: 'Představení průvodce',
         description:
             'Vítej v průvodci! Seznámíš se s tím, co tě čeká během následujících 7 týdnů, dozvíš se něco o HPO a DBT, zaznamenáš si svou náladu a nastavíš si první SMART cíl.',
-        estimatedTime: '15-20 min',
-        activityType: 'Úvod',
+        estimatedTime: '15-20',
+        activityType: _DayActivity.intro,
         routeType: _DayRouteType.onboarding,
       ),
       const _DayContentData(
         title: 'SPOKO + Spánek',
         description:
             'Seznámíš se s modelem SPOKO – základními oblastmi péče o tělo a psychickou stabilitu. Dnešní zaměření je spánek: zmapuješ si svůj současný stav a můžeš si vybrat malou výzvu, kterou dnes zkusíš.',
-        estimatedTime: '5-10 min',
-        activityType: 'Edukace + Cvičení',
+        estimatedTime: '5-10',
+        activityType: _DayActivity.educationExercise,
         routeType: _DayRouteType.week1Day2Spoko,
       ),
       const _DayContentData(
         title: 'Potrava',
         description:
             'Druhá oblast modelu SPOKO – potrava. Jídlo ovlivňuje nejen tělo, ale i emoce, energii a zvládání stresu. Zmapuješ si svůj současný stav a můžeš si vybrat malou výzvu.',
-        estimatedTime: '5-10 min',
-        activityType: 'Edukace + Cvičení',
+        estimatedTime: '5-10',
+        activityType: _DayActivity.educationExercise,
         routeType: _DayRouteType.week1Day3Potrava,
       ),
       const _DayContentData(
         title: 'Ne omamným látkám',
         description:
             'Téma omamných látek a jejich vlivu na náladu, spánek a zvládání stresu. Bez hodnocení si všimneš svého vztahu k nim a můžeš si zkusit malou výzvu.',
-        estimatedTime: '5-10 min',
-        activityType: 'Edukace + Cvičení',
+        estimatedTime: '5-10',
+        activityType: _DayActivity.educationExercise,
         routeType: _DayRouteType.week1Day4Latky,
       ),
       const _DayContentData(
         title: 'Kondice',
         description:
             'Pohyb a fyzická aktivita mají přímý vliv na náladu, stres i energii. Nejde o výkon, ale o to, jak se tělo cítí v pohybu. Vyber si malou pohybovou výzvu.',
-        estimatedTime: '5-10 min',
-        activityType: 'Edukace + Cvičení',
+        estimatedTime: '5-10',
+        activityType: _DayActivity.educationExercise,
         routeType: _DayRouteType.week1Day5Kondice,
       ),
       const _DayContentData(
         title: 'Léčba onemocnění',
         description:
             'Poslední oblast modelu SPOKO. Tělesné i psychické zdraví jsou propojené. Všimneš si, jak se staráš o své zdraví, a stanovíš si poslední výzvu tohoto týdne.',
-        estimatedTime: '5-10 min',
-        activityType: 'Edukace + Cvičení',
+        estimatedTime: '5-10',
+        activityType: _DayActivity.educationExercise,
         routeType: _DayRouteType.week1Day6Onemocneni,
       ),
       const _DayContentData(
         title: 'Reflexe SPOKO a týdne',
         description:
             'Máme za sebou první týden! Připomeneš si oblasti modelu SPOKO a zamyslíš se nad tím, co ti přinesly, která byla nejvíc relevantní a co si chceš odnést dál.',
-        estimatedTime: '5-10 min',
-        activityType: 'Reflexe',
+        estimatedTime: '5-10',
+        activityType: _DayActivity.reflection,
         routeType: _DayRouteType.week1Day7Reflexe,
       ),
     ],
@@ -198,56 +198,56 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
         title: 'Edukace všímavosti',
         description:
             'Dozvíš se, co je všímavost a proč je v DBT považovaná za základní dovednost, na které stojí všechny ostatní.',
-        estimatedTime: '5-10 min',
-        activityType: 'Edukace',
+        estimatedTime: '5-10',
+        activityType: _DayActivity.education,
         routeType: _DayRouteType.week2Day1MindfulnessIntro,
       ),
       const _DayContentData(
         title: 'Co dovednosti',
         description:
             'Tři dovednosti, které popisují, co vlastně děláš, když praktikuješ všímavost – pozorování, popisování a participace. Z každé si vybereš aspoň dvě cvičení na dnešní den.',
-        estimatedTime: '10-15 min',
-        activityType: 'Edukace + Cvičení',
+        estimatedTime: '10-15',
+        activityType: _DayActivity.educationExercise,
         routeType: _DayRouteType.week2Day2WhatSkills,
       ),
       const _DayContentData(
         title: 'Jak dovednosti',
         description:
             'Jak ty dovednosti vykonávat – jednomyslně, bez hodnocení a efektivně. Opět si z každé nabídky vybereš aspoň dvě cvičení.',
-        estimatedTime: '10-15 min',
-        activityType: 'Edukace + Cvičení',
+        estimatedTime: '10-15',
+        activityType: _DayActivity.educationExercise,
         routeType: _DayRouteType.week2Day3HowSkills,
       ),
       const _DayContentData(
         title: 'Všímavé dýchání',
         description:
             'Dech pomáhá zastavit se a ukotvit v přítomném okamžiku. Vybereš si z několika dechových cvičení – zbytek si můžeš uložit do záchranného balíčku.',
-        estimatedTime: '5-10 min',
-        activityType: 'Cvičení',
+        estimatedTime: '5-10',
+        activityType: _DayActivity.exercise,
         routeType: _DayRouteType.week2Day4Breathing,
       ),
       const _DayContentData(
         title: 'Pauza',
         description:
             'Dnešek bude ve znamení pauzy od průvodce. Už teď máš za sebou spoustu skvělé práce – využij dnešní den k regeneraci.',
-        estimatedTime: '2 min',
-        activityType: 'Odpočinek',
+        estimatedTime: '2',
+        activityType: _DayActivity.rest,
         routeType: _DayRouteType.pause,
       ),
       const _DayContentData(
         title: 'Techniky všímavosti',
         description:
             'Rozšíříme naši znalost všímavých technik – skenování těla, všímavá chůze, jedení, naslouchání i všech pět smyslů pohromadě. Jedno si dnes vyzkoušíš.',
-        estimatedTime: '5-10 min',
-        activityType: 'Cvičení',
+        estimatedTime: '5-10',
+        activityType: _DayActivity.exercise,
         routeType: _DayRouteType.week2Day6Techniques,
       ),
       const _DayContentData(
         title: 'Shrnutí týdne',
         description:
             'Máme za sebou druhý týden. Zamyslíš se nad tím, co pro tebe bylo nejzajímavější, co ses naučil/a a kdy ti všímavost pomohla.',
-        estimatedTime: '5-10 min',
-        activityType: 'Reflexe',
+        estimatedTime: '5-10',
+        activityType: _DayActivity.reflection,
         routeType: _DayRouteType.week2Day7Summary,
       ),
     ],
@@ -256,56 +256,56 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
         title: 'Edukace o emocích',
         description:
             'Co je emoční regulace, k čemu jednotlivé emoce slouží a proč je jejich zvládání někdy tak těžké. Na konci si zkusíš zbořit několik mýtů o emocích.',
-        estimatedTime: '15-20 min',
-        activityType: 'Edukace + Cvičení',
+        estimatedTime: '15-20',
+        activityType: _DayActivity.educationExercise,
         routeType: _DayRouteType.week3Day1Emotions,
       ),
       const _DayContentData(
         title: 'Validace a popis emocí',
         description:
             'Emoce mají strukturu – rozebereme si jednu tvoji situaci jako ve zpomaleném filmu. A naučíš se uznat, že máš právo cítit to, co cítíš.',
-        estimatedTime: '15-20 min',
-        activityType: 'Edukace + Cvičení',
+        estimatedTime: '15-20',
+        activityType: _DayActivity.educationExercise,
         routeType: _DayRouteType.week3Day2Describe,
       ),
       const _DayContentData(
         title: 'Ověřování faktů',
         description:
             'Mezi událostí a emocí stojí myšlenka. Když ověříš fakta, můžeš změnit i to, co cítíš. Čeká tě nejdelší cvičení průvodce – ale nemusíš ho stihnout naráz.',
-        estimatedTime: '15-20 min',
-        activityType: 'Edukace + Cvičení',
+        estimatedTime: '15-20',
+        activityType: _DayActivity.educationExercise,
         routeType: _DayRouteType.week3Day3CheckFacts,
       ),
       const _DayContentData(
         title: 'Opačná akce',
         description:
             'Technika, kdy jednáš opačně, než by tě emoce nutila – ve třech rovinách. Dnes je to jen na čtení, žádné vyplňování.',
-        estimatedTime: '5-10 min',
-        activityType: 'Edukace',
+        estimatedTime: '5-10',
+        activityType: _DayActivity.education,
         routeType: _DayRouteType.week3Day4OppositeAction,
       ),
       const _DayContentData(
         title: 'Když to, co děláš, nefunguje',
         description:
             'Krátké připomenutí: když dovednosti nezabírají, bývá to tělo. Vrátíme se k modelu SPOKO z prvního týdne.',
-        estimatedTime: '5 min',
-        activityType: 'Připomenutí',
+        estimatedTime: '5',
+        activityType: _DayActivity.reminder,
         routeType: _DayRouteType.week3Day5SpokoRecall,
       ),
       const _DayContentData(
         title: 'Pauza',
         description:
             'Dnes průvodce vynecháme. Máš za sebou skvělý pokrok a zasloužíš si chvilku odpočinku.',
-        estimatedTime: '2 min',
-        activityType: 'Odpočinek',
+        estimatedTime: '2',
+        activityType: _DayActivity.rest,
         routeType: _DayRouteType.pause,
       ),
       const _DayContentData(
         title: 'Shrnutí týdne',
         description:
             'Uzavíráme třetí týden. Zamyslíš se nad tím, co pro tebe bylo klíčové, co se ti podařilo uvést do praxe a kde dovednost využiješ dál.',
-        estimatedTime: '5-10 min',
-        activityType: 'Reflexe',
+        estimatedTime: '5-10',
+        activityType: _DayActivity.reflection,
         routeType: _DayRouteType.week3Day7Summary,
       ),
     ],
@@ -314,56 +314,56 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
         title: 'Edukace o stresu',
         description:
             'Kdy je stres přirozený a užitečný a kdy se mění v distres. Dnes jen čtení – tenhle týden bude o akutních chvílích.',
-        estimatedTime: '5-10 min',
-        activityType: 'Edukace',
+        estimatedTime: '5-10',
+        activityType: _DayActivity.education,
         routeType: _DayRouteType.week4Day1Stress,
       ),
       const _DayContentData(
         title: 'Dovednosti pro překonání krize',
         description:
             'Dva nástroje pro nejtěžší chvíle – STOP a TIPS. Naučíš se i to, kdy je použít a kdy naopak ne. Na konci si zkusíš svalovou relaxaci.',
-        estimatedTime: '15-20 min',
-        activityType: 'Edukace + Technika',
+        estimatedTime: '15-20',
+        activityType: _DayActivity.educationTechnique,
         routeType: _DayRouteType.week4Day2CrisisSkills,
       ),
       const _DayContentData(
         title: 'Pauza',
         description:
             'Dnes průvodce vynecháme. Udělal/a jsi velký pokrok a zasloužíš si chvíli klidu pro načerpání nové energie.',
-        estimatedTime: '2 min',
-        activityType: 'Odpočinek',
+        estimatedTime: '2',
+        activityType: _DayActivity.rest,
         routeType: _DayRouteType.pause,
       ),
       const _DayContentData(
         title: 'Všímavost u stresu',
         description:
             'Jak všímavost z druhého týdne pomáhá ve stresu – v daný moment i dlouhodobě. Na konci si jednu techniku vylosuješ.',
-        estimatedTime: '10 min',
-        activityType: 'Edukace + Cvičení',
+        estimatedTime: '10',
+        activityType: _DayActivity.educationExercise,
         routeType: _DayRouteType.week4Day4Mindfulness,
       ),
       const _DayContentData(
         title: 'Techniky pro zvládnutí okamžiku krize',
         description:
             'UZNÁVÁM – sedm drobných triků, které odvedou pozornost, dokud bouře neodezní. Označíš si, co jsi z nich zkusil/a.',
-        estimatedTime: '15 min',
-        activityType: 'Edukace + Cvičení',
+        estimatedTime: '15',
+        activityType: _DayActivity.educationExercise,
         routeType: _DayRouteType.week4Day5Uznavam,
       ),
       const _DayContentData(
         title: 'Pauza',
         description:
             'Dnes si dopřejeme volnější den bez průvodce. Máš za sebou opravdu velký kus práce.',
-        estimatedTime: '2 min',
-        activityType: 'Odpočinek',
+        estimatedTime: '2',
+        activityType: _DayActivity.rest,
         routeType: _DayRouteType.pause,
       ),
       const _DayContentData(
         title: 'Shrnutí týdne',
         description:
             'Uzavíráme čtvrtý týden. Zamyslíš se nad tím, co ti nejvíc dalo, co se ti podařilo použít a kde se dovednost nabídne dál.',
-        estimatedTime: '5-10 min',
-        activityType: 'Reflexe',
+        estimatedTime: '5-10',
+        activityType: _DayActivity.reflection,
         routeType: _DayRouteType.week4Day7Summary,
       ),
     ],
@@ -373,8 +373,8 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
         description:
             'Proč jednáme rychle a bez rozmyslu — a co s tím. Rozebereš si jednu '
             'svoji situaci krok za krokem řetězovou analýzou.',
-        estimatedTime: '20-25 min',
-        activityType: 'Edukace + Cvičení',
+        estimatedTime: '20-25',
+        activityType: _DayActivity.educationExercise,
         routeType: _DayRouteType.week5Day1Impulsivity,
       ),
       const _DayContentData(
@@ -384,8 +384,8 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
         description:
             'Citlivé téma, dnešek je dobrovolný. Technika STOP a vlastní seznam '
             'toho, co udělat místo ublížení si.',
-        estimatedTime: '15 min',
-        activityType: 'Edukace + Technika',
+        estimatedTime: '15',
+        activityType: _DayActivity.educationTechnique,
         routeType: _DayRouteType.week5Day2LifeThreatening,
       ),
       const _DayContentData(
@@ -395,8 +395,8 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
         description:
             'Máš za sebou velký kus cesty a je přirozené cítit únavu. Dovol si '
             'zpomalit a postarat se o sebe s laskavostí.',
-        estimatedTime: '2 min',
-        activityType: 'Odpočinek',
+        estimatedTime: '2',
+        activityType: _DayActivity.rest,
         routeType: _DayRouteType.pause,
       ),
       const _DayContentData(
@@ -404,8 +404,8 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
         description:
             'Vlastní plán pro chvíle, kdy přijde silné nutkání — spouštěče, '
             'bezpečnostní kroky, kontakty a každodenní péče.',
-        estimatedTime: '15-20 min',
-        activityType: 'Cvičení',
+        estimatedTime: '15-20',
+        activityType: _DayActivity.exercise,
         routeType: _DayRouteType.week5Day4Prevention,
       ),
       const _DayContentData(
@@ -413,15 +413,15 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
         description:
             'Jak všímavost pomáhá zastavit se dřív, než impulz převezme řízení. '
             'Na konci si techniku vylosuješ nebo vybereš.',
-        estimatedTime: '10 min',
-        activityType: 'Edukace + Cvičení',
+        estimatedTime: '10',
+        activityType: _DayActivity.educationExercise,
         routeType: _DayRouteType.week5Day5Mindfulness,
       ),
       const _DayContentData(
         title: 'Pauza',
         description: 'Dnešek bude dnem odpočinku. I pauza je součástí cesty vpřed.',
-        estimatedTime: '2 min',
-        activityType: 'Odpočinek',
+        estimatedTime: '2',
+        activityType: _DayActivity.rest,
         routeType: _DayRouteType.pause,
       ),
       const _DayContentData(
@@ -429,8 +429,8 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
         description:
             'Uzavíráme pátý týden. Zamyslíš se nad tím, co ti nejvíc dalo, co se '
             'ti podařilo použít a kde se dovednost nabídne dál.',
-        estimatedTime: '5-10 min',
-        activityType: 'Reflexe',
+        estimatedTime: '5-10',
+        activityType: _DayActivity.reflection,
         routeType: _DayRouteType.week5Day7Summary,
       ),
     ],
@@ -440,8 +440,8 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
         description:
             'Proč jsou vztahy těžké a jaké mýty nám v nich brání. Dvacet čtyři '
             'přesvědčení, která si zkusíš zpochybnit vlastními slovy.',
-        estimatedTime: '15-20 min',
-        activityType: 'Edukace + Cvičení',
+        estimatedTime: '15-20',
+        activityType: _DayActivity.educationExercise,
         routeType: _DayRouteType.week6Day1Relationships,
       ),
       const _DayContentData(
@@ -449,8 +449,8 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
         description:
             'PSANÍČKo — sedm kroků, jak požádat o svoje nebo odmítnout tak, aby '
             'tě druhý slyšel. Na konci si to zkusíš na vlastní situaci.',
-        estimatedTime: '15-20 min',
-        activityType: 'Edukace + Cvičení',
+        estimatedTime: '15-20',
+        activityType: _DayActivity.educationExercise,
         routeType: _DayRouteType.week6Day2Communication,
       ),
       // The source gives this day no title (it starts at a bare "3."); the
@@ -461,8 +461,8 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
         description:
             'Jak zůstat laskavý/á, pozorný/á a chápavý/á i ve chvíli, kdy jsi '
             'rozrušený/á. Na konci si vybereš všímavé cvičení.',
-        estimatedTime: '10-15 min',
-        activityType: 'Edukace + Cvičení',
+        estimatedTime: '10-15',
+        activityType: _DayActivity.educationExercise,
         routeType: _DayRouteType.week6Day3JeVyzva,
       ),
       const _DayContentData(
@@ -470,8 +470,8 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
         description:
             'Dnes průvodce vynecháme. Máš za sebou skvělý pokrok a zasloužíš si '
             'chvilku odpočinku.',
-        estimatedTime: '2 min',
-        activityType: 'Odpočinek',
+        estimatedTime: '2',
+        activityType: _DayActivity.rest,
         routeType: _DayRouteType.pause,
       ),
       const _DayContentData(
@@ -479,8 +479,8 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
         description:
             'neZOUFej — jak chránit své hranice bez zbytečných omluv. Zkusíš to '
             'na situaci, kdy na tebe někdo tlačí nebo tě kritizuje.',
-        estimatedTime: '15-20 min',
-        activityType: 'Edukace + Cvičení',
+        estimatedTime: '15-20',
+        activityType: _DayActivity.educationExercise,
         routeType: _DayRouteType.week6Day5SelfEsteem,
       ),
       const _DayContentData(
@@ -488,8 +488,8 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
         description:
             'Dnes si dopřej volno. Zasloužíš si vypnout a nechat všechno, co se '
             'Ti povedlo, trochu doznít.',
-        estimatedTime: '2 min',
-        activityType: 'Odpočinek',
+        estimatedTime: '2',
+        activityType: _DayActivity.rest,
         routeType: _DayRouteType.pause,
       ),
       const _DayContentData(
@@ -497,8 +497,8 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
         description:
             'Uzavíráme šestý týden. Zamyslíš se nad tím, co ti nejvíc dalo, co '
             'se ti podařilo použít a kde se dovednost nabídne dál.',
-        estimatedTime: '5-10 min',
-        activityType: 'Reflexe',
+        estimatedTime: '5-10',
+        activityType: _DayActivity.reflection,
         routeType: _DayRouteType.week6Day7Summary,
       ),
     ],
@@ -510,8 +510,8 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
         description:
             'Napíšeš si, na co jsi pyšný/á, a vrátíš se ke SMART cílům, které '
             'sis dal/a v prvním týdnu.',
-        estimatedTime: '15-20 min',
-        activityType: 'Reflexe',
+        estimatedTime: '15-20',
+        activityType: _DayActivity.reflection,
         routeType: _DayRouteType.week7Day1Appreciation,
       ),
       const _DayContentData(
@@ -519,8 +519,8 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
         description:
             'Vybereš si všímavé cvičení, které ti během průvodce nejvíc sedlo, '
             'a zopakuješ si ho.',
-        estimatedTime: '10 min',
-        activityType: 'Cvičení',
+        estimatedTime: '10',
+        activityType: _DayActivity.exercise,
         routeType: _DayRouteType.week7Day2Mindfulness,
       ),
       const _DayContentData(
@@ -528,8 +528,8 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
         description:
             'Ohlédnutí za prací s emocemi — a výběr toho, co si chceš '
             'procvičit znovu.',
-        estimatedTime: '10 min',
-        activityType: 'Shrnutí + Cvičení',
+        estimatedTime: '10',
+        activityType: _DayActivity.summaryExercise,
         routeType: _DayRouteType.week7Day3Emotions,
       ),
       const _DayContentData(
@@ -537,8 +537,8 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
         description:
             'STOP, TIPS a UZNÁVÁM — připomeneš si, co ti v krizi fungovalo '
             'nejlépe.',
-        estimatedTime: '10 min',
-        activityType: 'Shrnutí + Cvičení',
+        estimatedTime: '10',
+        activityType: _DayActivity.summaryExercise,
         routeType: _DayRouteType.week7Day4Distress,
       ),
       const _DayContentData(
@@ -546,15 +546,15 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
         description:
             'Řetězová analýza a STOP — co ti pomohlo zastavit se dřív, než '
             'zareagoval impulz.',
-        estimatedTime: '10 min',
-        activityType: 'Shrnutí + Cvičení',
+        estimatedTime: '10',
+        activityType: _DayActivity.summaryExercise,
         routeType: _DayRouteType.week7Day5Impulsivity,
       ),
       const _DayContentData(
         title: 'Mezilidské vztahy a sebeúcta',
         description: 'PSANÍČKo, Je VýZVa a neZOUFej — poslední ohlédnutí před závěrem.',
-        estimatedTime: '10 min',
-        activityType: 'Shrnutí + Cvičení',
+        estimatedTime: '10',
+        activityType: _DayActivity.summaryExercise,
         routeType: _DayRouteType.week7Day6Relationships,
       ),
       const _DayContentData(
@@ -562,8 +562,8 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
         description:
             'Poslední den průvodce. Vybereš si tři dovednosti, které si '
             'odnášíš do života, a uzavřeš celou cestu.',
-        estimatedTime: '15-20 min',
-        activityType: 'Reflexe',
+        estimatedTime: '15-20',
+        activityType: _DayActivity.reflection,
         routeType: _DayRouteType.week7Day7Conclusion,
       ),
     ],
@@ -616,7 +616,7 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
     if (content != null && dayNumber > 0 && dayNumber <= content.length) {
       return content[dayNumber - 1].title;
     }
-    return 'Den $dayNumber';
+    return context.l10n.dbt_day(dayNumber);
   }
 
   /// The lesson exists, the calendar has not reached it. Says when, because
@@ -627,15 +627,21 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
       context: context,
       builder: (context) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
-        title: const Text('Tahle lekce se otevře později'),
+        title: Text(context.l10n.dbt_day_locked_title),
         content: Text(
-          'Průvodce odemyká jednu lekci denně, aby bylo na každou dost času. '
-          '${content == null ? 'Tahle' : '„${content.title}"'} na tebe čeká '
-          '${formatBpdUnlockDate(context, dayProgress.unlockDate)}.',
+          // gen-l10n orders placeholders alphabetically, not by where they
+          // appear in the sentence, so `date` comes first.
+          context.l10n.dbt_day_locked_description(
+            formatBpdUnlockDate(context, dayProgress.unlockDate),
+            content == null ? context.l10n.dbt_day_locked_this : '„${content.title}"',
+          ),
           style: const TextStyle(height: 1.5),
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text('Rozumím')),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text(context.l10n.dbt_understood),
+          ),
         ],
       ),
     );
@@ -652,21 +658,22 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
       context: context,
       builder: (context) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
-        title: const Text('Nejdřív dokonči předchozí lekci'),
+        title: Text(context.l10n.dbt_day_out_of_order_title),
         content: Text(
-          'Průvodce se prochází popořadě — každá lekce staví na té předchozí. '
-          'Čeká na tebe $day. den $week. týdne${title == null ? '' : ', „$title"'}. '
-          'Až ho dokončíš, otevře se ti i tenhle.',
+          context.l10n.dbt_day_out_of_order_description(
+            '${context.l10n.dbt_day_of_week(day, week)}'
+            '${title == null ? '' : ', „$title"'}',
+          ),
           style: const TextStyle(height: 1.5),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Zavřít'),
+            child: Text(context.l10n.dbt_close),
           ),
           FilledButton(
             onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Přejít na něj'),
+            child: Text(context.l10n.dbt_go_to_it),
           ),
         ],
       ),
@@ -734,8 +741,8 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
           weekNumber: widget.weekNumber,
           title: dayContent.title,
           description: dayContent.description,
-          estimatedTime: dayContent.estimatedTime,
-          activityType: dayContent.activityType,
+          estimatedTime: context.l10n.dbt_minutes(dayContent.estimatedTime),
+          activityType: dayContent.activityType.label(context),
           isCompleted: dayProgress.isCompleted,
         ),
         onStart: () {
@@ -914,9 +921,9 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
               });
             case _DayRouteType.regular:
               // TODO: Navigate to regular day content screen
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(SnackBar(content: Text('Otevírám Den ${dayProgress.dayNumber}')));
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(context.l10n.dbt_opening_day(dayProgress.dayNumber))),
+              );
           }
         },
       ),
@@ -964,9 +971,9 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
                       onPressed: () => context.pop(),
                     ),
                     const SizedBox(width: 8),
-                    const Text(
-                      'DBT průvodce',
-                      style: TextStyle(
+                    Text(
+                      context.l10n.dbt_programme,
+                      style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
                         color: Colors.white,
@@ -975,7 +982,7 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
                     const Spacer(),
                     IconButton(
                       icon: const Icon(Icons.self_improvement, color: Colors.white, size: 24),
-                      tooltip: 'DBT průvodce',
+                      tooltip: context.l10n.dbt_programme,
                       onPressed: () => const DbtRecordsRoute().push<void>(context),
                     ),
                     const Padding(
@@ -1060,7 +1067,7 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Den ${dayProgress.dayNumber}',
+                            context.l10n.dbt_day(dayProgress.dayNumber),
                             style: TextStyle(
                               fontSize: 12,
                               color: isLocked
@@ -1129,7 +1136,7 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
                       Icon(Icons.access_time, size: 16, color: primaryColor),
                       const SizedBox(width: 8),
                       Text(
-                        'Další lekce se odemkne za: ${_formatCountdown(nextUnlockIn)}',
+                        context.l10n.dbt_next_lesson_in(_formatCountdown(nextUnlockIn)),
                         style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
@@ -1180,6 +1187,37 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
 }
 
 /// Helper class for day content data
+/// What a day asks of the reader, shown as a chip in the day list.
+///
+/// An enum rather than the label itself: the same nine categories repeat across
+/// all 49 days, and they are the app's words, not the author's copy.
+enum _DayActivity {
+  education,
+  exercise,
+  educationExercise,
+  educationTechnique,
+  summaryExercise,
+  reflection,
+  rest,
+  intro,
+  reminder;
+
+  String label(BuildContext context) {
+    final l10n = context.l10n;
+    return switch (this) {
+      _DayActivity.education => l10n.dbt_activity_education,
+      _DayActivity.exercise => l10n.dbt_activity_exercise,
+      _DayActivity.educationExercise => l10n.dbt_activity_education_exercise,
+      _DayActivity.educationTechnique => l10n.dbt_activity_education_technique,
+      _DayActivity.summaryExercise => l10n.dbt_activity_summary_exercise,
+      _DayActivity.reflection => l10n.dbt_activity_reflection,
+      _DayActivity.rest => l10n.dbt_activity_rest,
+      _DayActivity.intro => l10n.dbt_activity_intro,
+      _DayActivity.reminder => l10n.dbt_activity_reminder,
+    };
+  }
+}
+
 class _DayContentData {
   const _DayContentData({
     required this.title,
@@ -1192,6 +1230,6 @@ class _DayContentData {
   final String title;
   final String description;
   final String estimatedTime;
-  final String activityType;
+  final _DayActivity activityType;
   final _DayRouteType routeType;
 }

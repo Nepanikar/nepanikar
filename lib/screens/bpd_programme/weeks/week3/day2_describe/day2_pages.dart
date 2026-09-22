@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week3/day2_describe/day2_content.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart';
@@ -85,7 +86,7 @@ class Day2WorksheetPage extends StatelessWidget {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return DayPageBase(
-      buttonText: 'Pokračovat',
+      buttonText: context.l10n.dbt_continue,
       onButtonPressed: onNext,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -114,7 +115,7 @@ class Day2WorksheetPage extends StatelessWidget {
           const SizedBox(height: 16),
           StructuredWorksheet(
             worksheetId: worksheetId,
-            exampleTitle: 'Zobrazit příklad',
+            exampleTitle: context.l10n.dbt_show_example,
             example: day2WorksheetExample,
             sections: List.generate(day2Model.length, (i) {
               final (title, question) = day2Model[i];
@@ -199,7 +200,7 @@ class Day2StemsPage extends StatelessWidget {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return DayPageBase(
-      buttonText: 'Pokračovat',
+      buttonText: context.l10n.dbt_continue,
       onButtonPressed: onNext,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

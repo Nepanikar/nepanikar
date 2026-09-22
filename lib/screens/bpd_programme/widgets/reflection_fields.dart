@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 
 /// Multi-line free-text field used by the programme's reflection days.
 class ReflectionField extends StatelessWidget {
-  const ReflectionField({super.key, required this.controller, this.hintText = 'Napiš sem…'});
+  const ReflectionField({super.key, required this.controller, this.hintText});
 
   final TextEditingController controller;
-  final String hintText;
+  final String? hintText;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class ReflectionField extends StatelessWidget {
         minLines: 2,
         style: TextStyle(fontSize: 14, color: isDarkMode ? Colors.white : NepanikarColors.dark),
         decoration: InputDecoration(
-          hintText: hintText,
+          hintText: hintText ?? context.l10n.dbt_write_here,
           hintStyle: TextStyle(color: isDarkMode ? Colors.white38 : Colors.grey.shade400),
           border: InputBorder.none,
           contentPadding: const EdgeInsets.all(14),

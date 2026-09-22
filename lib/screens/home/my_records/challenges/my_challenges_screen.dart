@@ -41,6 +41,7 @@ class _MyChallengesScreenState extends State<MyChallengesScreen> {
   }
 
   Future<void> _editReminder(BuildContext context, BpdChallenge challenge) async {
+    final l10n = context.l10n;
     final allowed = await _notifications.requestPermissionIfNeeded();
     if (!context.mounted) return;
     if (!allowed) {
@@ -56,6 +57,7 @@ class _MyChallengesScreenState extends State<MyChallengesScreen> {
     if (picked == null) return;
     await _dao.setReminder(id: challenge.id, time: picked);
     await _notifications.scheduleChallengeReminder(
+      l10n: l10n,
       notificationId: challenge.notificationId,
       challengeText: challenge.text,
       hour: picked.hour,

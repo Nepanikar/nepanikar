@@ -141,5 +141,3 @@ const day7StudyAsk =
     'propojit. Zabere to jen pár minut, ale pro úspěch pilotu je to klíčové.';
 const day7StudyFormIntro = 'Prosíme o dokončení programu zde:';
 const day7StudyFormButton = 'Vyplnit závěrečný dotazník';
-
-const day7StudyCloseButton = 'Zavřít';

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/spoko_day/spoko_day_data.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart';
@@ -19,8 +20,6 @@ class SpokoEducationChatPage extends StatelessWidget {
   final SpokoDayData data;
   final VoidCallback onNext;
 
-  static const _nextLabel = 'Vybrat výzvu';
-
   void _onContact(BuildContext context) {
     switch (data.contact!.action) {
       case SpokoContactAction.eatingDisorderContacts:
@@ -28,13 +27,15 @@ class SpokoEducationChatPage extends StatelessWidget {
       case SpokoContactAction.comingSoon:
         ScaffoldMessenger.of(
           context,
-        ).showSnackBar(const SnackBar(content: Text('Tato funkce se připravuje.')));
+        ).showSnackBar(SnackBar(content: Text(context.l10n.dbt_feature_coming)));
     }
   }
 
   @override
   Widget build(BuildContext context) {
     final contact = data.contact;
+
+    final nextLabel = context.l10n.dbt_pick_challenge;
 
     return ChatDayPage(
       onCompleted: onNext,
@@ -46,7 +47,7 @@ class SpokoEducationChatPage extends StatelessWidget {
         ChatStep(messages: [ChatBotBubble(text: data.note, showAvatar: true)]),
         ChatStep(
           messages: [ChatNumberedList(caption: 'Zamysli se', items: data.questions)],
-          buttonLabel: contact == null ? _nextLabel : null,
+          buttonLabel: contact == null ? nextLabel : null,
         ),
         if (contact != null)
           ChatStep(
@@ -55,7 +56,7 @@ class SpokoEducationChatPage extends StatelessWidget {
                 child: _ContactCard(contact: contact, onTap: () => _onContact(context)),
               ),
             ],
-            buttonLabel: _nextLabel,
+            buttonLabel: nextLabel,
           ),
       ],
     );

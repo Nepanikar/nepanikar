@@ -28,6 +28,18 @@ Text(context.l10n.anxiety_panic)   // never hardcode user-facing text
 3. Use it via `context.l10n.<key>`.
 4. Real translations come from Localazy (`./bin/localazy/localazy_gen.sh`) — don't hand-translate
    every language; just provide cs/en and let translators fill the rest.
+   The `dbt_*` keys are the exception: the DBT pilot ships before the next sync, so they were
+   filled for every locale by hand (2026-09-22). Localazy may refine them later.
+
+## Placeholders
+
+`{name}` works without any `@key` metadata — gen-l10n infers it and types the parameter `Object`.
+Two traps:
+- **Parameters are ordered alphabetically, not by position in the sentence.** `'{lesson} … {date}'`
+  generates `method(Object date, Object lesson)`. They are positional, so a wrong order compiles
+  and ships.
+- Every locale must carry the same placeholders as the template, or the generated method for that
+  locale drops one.
 
 ## Plurals
 

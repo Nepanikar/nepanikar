@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week3/day4_opposite_action/day4_content.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart';
@@ -145,15 +146,15 @@ class Day4ChatPage extends StatelessWidget {
         const ChatStep(
           messages: [ChatInfoCard(icon: Icons.flag_outlined, title: 'Cíl', text: day4GoalNote)],
         ),
-        const ChatStep(
+        ChatStep(
           messages: [
-            ChatConceptCard(
+            const ChatConceptCard(
               badge: 'JAK NA TO',
               title: day4SmallStepsTitle,
               body: day4SmallStepsBody,
             ),
           ],
-          buttonLabel: 'Dokončit čtení',
+          buttonLabel: context.l10n.dbt_finish_reading,
         ),
       ],
     );

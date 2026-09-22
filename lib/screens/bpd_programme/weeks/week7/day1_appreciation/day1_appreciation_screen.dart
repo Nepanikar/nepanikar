@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week7/day1_appreciation/day1_content.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart';
@@ -129,7 +130,7 @@ class Week7Day1ChatPage extends StatelessWidget {
         for (var i = 0; i < day1Opening.length; i++)
           ChatStep(
             messages: [ChatBotBubble(text: day1Opening[i], showAvatar: i == 0)],
-            buttonLabel: i == day1Opening.length - 1 ? 'Pokračovat' : null,
+            buttonLabel: i == day1Opening.length - 1 ? context.l10n.dbt_continue : null,
           ),
       ],
     );
@@ -147,7 +148,7 @@ class Week7Day1ProudPage extends StatelessWidget {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return DayPageBase(
-      buttonText: 'Pokračovat',
+      buttonText: context.l10n.dbt_continue,
       onButtonPressed: onNext,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -191,7 +192,7 @@ class Week7Day1SmartReviewPage extends StatelessWidget {
     final secondary = isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.78);
 
     return DayPageBase(
-      buttonText: 'Pokračovat',
+      buttonText: context.l10n.dbt_continue,
       onButtonPressed: onNext,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

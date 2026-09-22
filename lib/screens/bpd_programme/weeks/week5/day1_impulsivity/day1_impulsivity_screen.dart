@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week5/day1_impulsivity/day1_content.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart';
@@ -169,9 +170,9 @@ class Week5Day1EducationPage extends StatelessWidget {
             ),
           ],
         ),
-        const ChatStep(
-          messages: [ChatBotBubble(text: day1UnderstandingTriggers, showAvatar: true)],
-          buttonLabel: 'Pokračovat',
+        ChatStep(
+          messages: [const ChatBotBubble(text: day1UnderstandingTriggers, showAvatar: true)],
+          buttonLabel: context.l10n.dbt_continue,
         ),
       ],
     );
@@ -219,7 +220,7 @@ class Week5Day1ChainWorksheetPage extends StatelessWidget {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return DayPageBase(
-      buttonText: 'Pokračovat',
+      buttonText: context.l10n.dbt_continue,
       onButtonPressed: onNext,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -272,7 +273,7 @@ class Week5Day1MissingLinksPage extends StatelessWidget {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return DayPageBase(
-      buttonText: 'Pokračovat',
+      buttonText: context.l10n.dbt_continue,
       onButtonPressed: onNext,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

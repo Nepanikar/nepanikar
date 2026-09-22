@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
 
@@ -21,16 +22,16 @@ class DayCompletionPage extends StatelessWidget {
     required this.dayNumber,
     required this.summary,
     required this.onComplete,
-    this.heading = 'Výborně!',
+    this.heading,
     this.nextDay,
     this.extraContent,
-    this.buttonText = 'Dokončit den',
+    this.buttonText,
   });
 
   final int dayNumber;
   final String summary;
-  final String heading;
-  final String buttonText;
+  final String? heading;
+  final String? buttonText;
   final NextDayTeaser? nextDay;
 
   /// Rendered between the summary and the next-day teaser, so that anything
@@ -51,7 +52,7 @@ class DayCompletionPage extends StatelessWidget {
     final accent = isDarkMode ? Colors.white : primaryColor;
 
     return DayPageBase(
-      buttonText: buttonText,
+      buttonText: buttonText ?? context.l10n.dbt_finish_day,
       onButtonPressed: onComplete,
       buttonIcon: Icons.check,
       content: Column(
@@ -68,7 +69,7 @@ class DayCompletionPage extends StatelessWidget {
           ),
           const SizedBox(height: 32),
           Text(
-            heading,
+            heading ?? context.l10n.dbt_well_done,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 28,
@@ -78,7 +79,7 @@ class DayCompletionPage extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           Text(
-            'Den $dayNumber dokončen',
+            context.l10n.dbt_day_completed(dayNumber),
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: accent),
           ),
@@ -108,7 +109,7 @@ class DayCompletionPage extends StatelessWidget {
                   Icon(Icons.arrow_forward, color: accent, size: 28),
                   const SizedBox(height: 12),
                   Text(
-                    'Zítra',
+                    context.l10n.dbt_tomorrow,
                     style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: accent),
                   ),
                   const SizedBox(height: 4),

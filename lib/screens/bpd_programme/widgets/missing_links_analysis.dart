@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/reflection_fields.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/structured_worksheet.dart';
@@ -153,7 +154,7 @@ class _MissingLinksAnalysisState extends State<MissingLinksAnalysis> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         for (var i = 0; i < visible.length; i++) ...[
-          if (i > 0) _ChainDivider(label: '${i + 1} ze ${widget.steps.length}'),
+          if (i > 0) _ChainDivider(label: context.l10n.dbt_step_of(i + 1, widget.steps.length)),
           _StepCard(
             step: visible[i],
             index: i,
@@ -277,7 +278,7 @@ class _StepCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'OTÁZKA ${index + 1} Z $total',
+            context.l10n.dbt_question_of(index + 1, total),
             style: TextStyle(
               fontSize: 11,
               fontWeight: FontWeight.w900,
@@ -345,7 +346,7 @@ class _StepCard extends StatelessWidget {
                     const SizedBox(height: 6),
                     ReflectionField(
                       controller: controllers[field.id]!,
-                      hintText: field.hint ?? 'Napiš sem…',
+                      hintText: field.hint ?? context.l10n.dbt_write_here,
                     ),
                     // The source's "(např. …)" hints live here, not in the
                     // placeholder: a placeholder vanishes the moment someone

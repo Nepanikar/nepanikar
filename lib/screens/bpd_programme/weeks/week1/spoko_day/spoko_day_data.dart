@@ -216,7 +216,7 @@ const spokoDay5Kondice = SpokoDayData(
     'zkusit si všimnout, jak se mění nálada po pohybu',
   ],
   completionIcon: Icons.directions_run,
-  completionHeading: 'Skvělá práce!',
+  completionHeading: 'Výborně!',
   completionPraise:
       'Každé protažení, procházka nebo jen vědomé uvolnění napětí má obrovský '
       'smysl pro tvou psychickou pohodu. Děkujeme za tvou energii, kterou do '
