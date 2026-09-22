@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/helpers/color_helpers.dart';
 import 'package:nepanikar/screens/home/my_records/challenges/my_challenges_screen.dart';
 import 'package:nepanikar/screens/home/my_records/emotion_dictionary/emotion_dictionary_screen.dart';
@@ -30,25 +31,25 @@ class DbtRecordsScreen extends StatelessWidget {
     final iconColor = svgColorBasedOnDarkMode(context);
 
     return NepanikarScreenWrapper(
-      appBarTitle: 'DBT průvodce',
+      appBarTitle: context.l10n.dbt_programme,
       children: [
         LongTile(
-          text: 'Moje výzvy',
+          text: context.l10n.dbt_challenges,
           image: Icon(Icons.flag_outlined, size: 32, color: iconColor),
           onTap: () => context.push(const MyChallengesRoute().location),
         ),
         LongTile(
-          text: 'Moje cíle',
+          text: context.l10n.dbt_goals,
           image: Icon(Icons.track_changes, size: 32, color: iconColor),
           onTap: () => context.push(const MyGoalsRoute().location),
         ),
         LongTile(
-          text: 'Záchranný balíček',
+          text: context.l10n.dbt_rescue_package,
           image: Icon(Icons.medical_services_outlined, size: 32, color: iconColor),
           onTap: () => context.push(const RescuePackageRoute().location),
         ),
         LongTile(
-          text: 'Slovník emocí',
+          text: context.l10n.dbt_emotion_dictionary,
           image: Icon(Icons.menu_book_outlined, size: 32, color: iconColor),
           onTap: () => context.push(const EmotionDictionaryRoute().location),
         ),

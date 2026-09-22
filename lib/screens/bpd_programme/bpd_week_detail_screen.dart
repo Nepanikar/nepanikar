@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/shared/day_pause_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/day1_onboarding/day1_onboarding_screen.dart';
@@ -630,7 +631,7 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
         content: Text(
           'Průvodce odemyká jednu lekci denně, aby bylo na každou dost času. '
           '${content == null ? 'Tahle' : '„${content.title}"'} na tebe čeká '
-          '${formatBpdUnlockDate(dayProgress.unlockDate)}.',
+          '${formatBpdUnlockDate(context, dayProgress.unlockDate)}.',
           style: const TextStyle(height: 1.5),
         ),
         actions: [
@@ -1159,7 +1160,9 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        'Odemkne se ${formatBpdUnlockDate(dayProgress.unlockDate)}',
+                        context.l10n.dbt_week_unlocks_on(
+                          formatBpdUnlockDate(context, dayProgress.unlockDate),
+                        ),
                         style: TextStyle(
                           fontSize: 12,
                           color: isDarkMode ? Colors.white38 : Colors.grey.shade600,

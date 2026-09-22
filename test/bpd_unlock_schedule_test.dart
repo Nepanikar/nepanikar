@@ -1,4 +1,7 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:nepanikar/app/l10n/app_localizations.dart';
 import 'package:nepanikar/services/db/bpd/bpd_unlock_schedule.dart';
 
 /// The pilot's pacing is arithmetic, and arithmetic is where off-by-one lives.
@@ -8,6 +11,14 @@ import 'package:nepanikar/services/db/bpd/bpd_unlock_schedule.dart';
 /// because the alternative way to find a mistake in this file is for a
 /// participant to be shown the wrong lesson on the wrong day.
 void main() {
+  // The formatter reads its words from the ARB and its month names from
+  // `intl`, so both have to be loaded before the labels can be checked.
+  late AppLocalizations cs;
+  setUpAll(() async {
+    await initializeDateFormatting('cs');
+    cs = await AppLocalizations.delegate.load(const Locale('cs'));
+  });
+
   group('cohort calendar', () {
     test('the programme opens on Monday 21 September 2026', () {
       expect(bpdProgrammeStartDate, DateTime(2026, 9, 21));
@@ -63,28 +74,30 @@ void main() {
     });
   });
 
-  group('formatBpdUnlockDate', () {
+  group('formatUnlockDateIn', () {
+    String format(DateTime date) => formatUnlockDateIn(cs, 'cs', date);
+
     test('uses the Czech genitive month, not the nominative or Slovak', () {
       // Regression: the day list used to print "22. September" from a Slovak
       // month table of its own.
-      expect(formatBpdUnlockDate(DateTime(2026, 9, 22)), startsWith('22. září'));
-      expect(formatBpdUnlockDate(DateTime(2026, 10, 5)), startsWith('5. října'));
-      expect(formatBpdUnlockDate(DateTime(2026, 1, 3)), startsWith('3. ledna'));
-      expect(formatBpdUnlockDate(DateTime(2026, 5, 9)), startsWith('9. května'));
+      expect(format(DateTime(2026, 9, 22)), startsWith('22. září'));
+      expect(format(DateTime(2026, 10, 5)), startsWith('5. října'));
+      expect(format(DateTime(2026, 1, 3)), startsWith('3. ledna'));
+      expect(format(DateTime(2026, 5, 9)), startsWith('9. května'));
     });
 
     test('says how far off the day is', () {
       final today = startOfDay(DateTime.now());
-      expect(formatBpdUnlockDate(today), contains('(dnes)'));
-      expect(formatBpdUnlockDate(today.add(const Duration(days: 1))), contains('(zítra)'));
-      expect(formatBpdUnlockDate(today.add(const Duration(days: 3))), contains('(za 3 dny)'));
+      expect(format(today), contains('(dnes)'));
+      expect(format(today.add(const Duration(days: 1))), contains('(zítra)'));
+      expect(format(today.add(const Duration(days: 3))), contains('(za 3 dny)'));
       // Czech switches counted nouns after four.
-      expect(formatBpdUnlockDate(today.add(const Duration(days: 9))), contains('(za 9 dní)'));
+      expect(format(today.add(const Duration(days: 9))), contains('(za 9 dní)'));
     });
 
     test('a date already past reads as today rather than going negative', () {
       final yesterday = startOfDay(DateTime.now()).subtract(const Duration(days: 1));
-      expect(formatBpdUnlockDate(yesterday), contains('(dnes)'));
+      expect(format(yesterday), contains('(dnes)'));
     });
   });
 

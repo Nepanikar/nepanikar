@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/bpd_week_detail_screen.dart';
@@ -87,13 +88,13 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
   /// is preserved on whichever tab launched the programme (the DBT tab). Going
   /// to `/` with an explicit home-tab index makes [MainScreen] switch back to
   /// Home (it reacts to the changed `extra` in `didUpdateWidget`), instead of
-  /// returning to the stale DBT tab whose navigator is stuck on a spinner.
+  /// returning to the DBT tab, which would only re-open the landing screen.
   void _exitToMain() {
     context.go(const MainRoute().location, extra: MainPageExtra(initIndex: 0));
   }
 
   String _weekTitle(int weekNumber) =>
-      _bpdWeeksDataManager.getWeekData(weekNumber)?.titleKey ?? 'Týden $weekNumber';
+      _bpdWeeksDataManager.getWeekData(weekNumber)?.titleKey ?? context.l10n.dbt_week(weekNumber);
 
   /// Maps week progress to tree node states: unimplemented weeks are locked,
   /// completed → green, first open-uncompleted → highlighted "current",
@@ -114,7 +115,9 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
       }
       return SkillTreeNodeData(
         id: progress.weekNumber,
-        label: 'Týden ${progress.weekNumber} · ${_weekTitle(progress.weekNumber)}',
+        label:
+            '${context.l10n.dbt_week(progress.weekNumber)}'
+            ' · ${_weekTitle(progress.weekNumber)}',
         state: state,
         isCheckpoint: i == _weeksProgress.length - 1,
       );
@@ -127,12 +130,12 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
     final textColor = isDarkMode ? Colors.white : NepanikarColors.dark;
     final isImplemented = kImplementedBpdWeeks.contains(weekProgress.weekNumber);
     final subtitle = isImplemented
-        ? 'Tento týden je zatím zamčený. Průvodce se odemyká postupně, týden po týdnu.'
-        : 'Obsah tohoto týdne pro tebe ještě připravujeme.';
+        ? context.l10n.dbt_week_locked_description
+        : context.l10n.dbt_week_unavailable_description;
     final unlockIcon = isImplemented ? Icons.calendar_today : Icons.update;
     final unlockText = isImplemented
-        ? 'Odemkne se ${formatBpdUnlockDate(weekProgress.unlockDate)}'
-        : 'Odemkne se v některé z příštích aktualizací';
+        ? context.l10n.dbt_week_unlocks_on(formatBpdUnlockDate(context, weekProgress.unlockDate))
+        : context.l10n.dbt_week_unlocks_in_update;
 
     showModalBottomSheet<void>(
       context: context,
@@ -171,7 +174,8 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
                 ),
                 const SizedBox(height: 14),
                 Text(
-                  'Týden ${weekProgress.weekNumber} · ${_weekTitle(weekProgress.weekNumber)}',
+                  '${context.l10n.dbt_week(weekProgress.weekNumber)}'
+                  ' · ${_weekTitle(weekProgress.weekNumber)}',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: textColor),
                 ),
@@ -220,9 +224,9 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
                       foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                     ),
-                    child: const Text(
-                      'Rozumím',
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    child: Text(
+                      context.l10n.dbt_understood,
+                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
@@ -279,9 +283,9 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
                     alignment: Alignment.center,
                     children: [
                       // Centered title
-                      const Text(
-                        'DBT průvodce',
-                        style: TextStyle(
+                      Text(
+                        context.l10n.dbt_programme,
+                        style: const TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
@@ -346,10 +350,12 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
     if (bannerWeek == null) return const SizedBox.shrink();
 
     return SkillTreeBanner(
-      kicker: 'DBT průvodce · Týden ${bannerWeek.weekNumber}',
+      kicker:
+          '${context.l10n.dbt_programme}'
+          ' · ${context.l10n.dbt_week(bannerWeek.weekNumber)}',
       title: _weekTitle(bannerWeek.weekNumber),
       progress: _weeksProgress.isEmpty ? 0 : completedCount / _weeksProgress.length,
-      progressLabel: '$completedCount ze ${_weeksProgress.length} týdnů hotovo',
+      progressLabel: context.l10n.dbt_weeks_done(completedCount, _weeksProgress.length),
     );
   }
 }

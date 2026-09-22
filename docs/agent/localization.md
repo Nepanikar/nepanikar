@@ -61,4 +61,8 @@ pluralMinutes(context, value: n);  pluralSeconds(context, value: n);
   their `dayN_content.dart` files (not ARB, not JSON — it is content, not UI
   chrome). Authored copy lives in `docs/hpo/source/*.md`. Week-level skill-tree
   data is in `assets/bpd/bpd_weeks_data.json`.
+  The programme's *chrome* is the exception and does belong in ARB, under the
+  `dbt_` prefix: the module's tiles and titles, the landing screen, the weeks
+  overview, and the My records → DBT screens (challenges, goals, rescue package,
+  emotion dictionary). See GEN-03 in `docs/hpo/TODO.md` for where the two meet.
 - **Psychological tests** (GAD-7, PHQ-9, PSS, BRCS): CSV in `assets/tests/`.

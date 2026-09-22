@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/home/my_records/goals/smart_goal_form_screen.dart';
 import 'package:nepanikar/services/db/bpd/bpd_smart_goal_model.dart';
@@ -28,11 +30,17 @@ class MyGoalsScreen extends StatelessWidget {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Odebrat cíl?'),
-        content: const Text('Cíl se trvale odstraní.'),
+        title: Text(context.l10n.dbt_goal_remove_title),
+        content: Text(context.l10n.dbt_goal_remove_description),
         actions: [
-          TextButton(onPressed: () => Navigator.of(ctx).pop(false), child: const Text('Zrušit')),
-          TextButton(onPressed: () => Navigator.of(ctx).pop(true), child: const Text('Odebrat')),
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(false),
+            child: Text(context.l10n.cancel),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(true),
+            child: Text(context.l10n.dbt_remove),
+          ),
         ],
       ),
     );
@@ -43,11 +51,11 @@ class MyGoalsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NepanikarScreenWrapper(
-      appBarTitle: 'Moje cíle',
+      appBarTitle: context.l10n.dbt_goals,
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => context.push(const SmartGoalFormRoute().location),
         icon: const Icon(Icons.add),
-        label: const Text('Nový cíl'),
+        label: Text(context.l10n.dbt_goal_new),
       ),
       children: [
         StreamBuilder<Map<String, BpdSmartGoal>>(
@@ -70,7 +78,7 @@ class MyGoalsScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 44, bottom: 14),
                   child: Text(
-                    'Cíle, které sis v průvodci stanovil/a metodou SMART.',
+                    context.l10n.dbt_goals_intro,
                     style: TextStyle(
                       fontSize: 14,
                       height: 1.45,
@@ -117,10 +125,8 @@ class _GoalCard extends StatelessWidget {
     goal.timeBound,
   ];
 
-  String get _createdLabel {
-    final d = goal.createdAt;
-    return '${d.day}. ${d.month}. ${d.year}';
-  }
+  String _createdLabel(BuildContext context) =>
+      DateFormat.yMd(Localizations.localeOf(context).toString()).format(goal.createdAt);
 
   @override
   Widget build(BuildContext context) {
@@ -154,7 +160,7 @@ class _GoalCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text(
-                      'SMART cíl · $_createdLabel',
+                      context.l10n.dbt_goal_created(_createdLabel(context)),
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         fontSize: 11,
@@ -274,7 +280,9 @@ class _CardMenu extends StatelessWidget {
       onSelected: (value) {
         if (value == 'delete') onDelete();
       },
-      itemBuilder: (context) => [const PopupMenuItem(value: 'delete', child: Text('Odebrat cíl'))],
+      itemBuilder: (context) => [
+        PopupMenuItem(value: 'delete', child: Text(context.l10n.dbt_goal_remove)),
+      ],
       // A plain child (instead of `icon:`) avoids the built-in 48px IconButton
       // box, so the dots hug the card's right edge.
       child: Padding(
@@ -311,7 +319,7 @@ class _EmptyState extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           Text(
-            'Zatím žádné cíle',
+            context.l10n.dbt_goals_empty_title,
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -320,8 +328,7 @@ class _EmptyState extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'Až si v průvodci stanovíš svůj SMART cíl, objeví se tady a budeš '
-            'se k němu moct kdykoliv vrátit.',
+            context.l10n.dbt_goals_empty_description,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 14,

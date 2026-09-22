@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/external_link_button.dart';
 import 'package:nepanikar/services/db/bpd/bpd_rescue_item_model.dart';
@@ -29,7 +30,7 @@ class RescuePackageScreen extends StatelessWidget {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return NepanikarScreenWrapper(
-      appBarTitle: 'Záchranný balíček',
+      appBarTitle: context.l10n.dbt_rescue_package,
       children: [
         StreamBuilder<List<BpdRescueItem>>(
           stream: _dao.watchAll(),
@@ -51,8 +52,7 @@ class RescuePackageScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 44, bottom: 14),
                   child: Text(
-                    'Cvičení, která sis uložil/a v průvodci. Vrať se k nim, '
-                    'kdykoliv je budeš potřebovat.',
+                    context.l10n.dbt_rescue_intro,
                     style: TextStyle(
                       fontSize: 14,
                       height: 1.45,
@@ -134,7 +134,7 @@ class _RescueItemCard extends StatelessWidget {
                   size: 22,
                   color: isDarkMode ? Colors.white54 : NepanikarColors.dark.withOpacity(0.5),
                 ),
-                tooltip: 'Odebrat z balíčku',
+                tooltip: context.l10n.dbt_rescue_remove,
                 onPressed: onRemove,
               ),
             ],
@@ -152,7 +152,7 @@ class _RescueItemCard extends StatelessWidget {
           ],
           if (item.videoUrl != null) ...[
             const SizedBox(height: 4),
-            ExternalLinkText(label: 'Vedené cvičení ve videu', url: item.videoUrl!),
+            ExternalLinkText(label: context.l10n.dbt_rescue_video, url: item.videoUrl!),
           ],
         ],
       ),
@@ -183,7 +183,7 @@ class _EmptyState extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           Text(
-            'Balíček je zatím prázdný',
+            context.l10n.dbt_rescue_empty_title,
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -192,8 +192,7 @@ class _EmptyState extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'Až si v průvodci uložíš nějaké cvičení, najdeš ho tady — po ruce '
-            'na chvíle, kdy ho budeš potřebovat.',
+            context.l10n.dbt_rescue_empty_description,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 14,
