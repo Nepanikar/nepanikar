@@ -6,6 +6,7 @@ import 'package:nepanikar/screens/bpd_programme/weeks/week2/day4_breathing/intro
 import 'package:nepanikar/screens/bpd_programme/weeks/week2/day4_breathing/reminder_page.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_completion_page.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_flow_header.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/day_page_memory.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/technique_menu_page.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
@@ -32,10 +33,19 @@ class Week2Day4BreathingScreen extends StatefulWidget {
 
 class _Week2Day4BreathingScreenState extends State<Week2Day4BreathingScreen> {
   final PageController _pageController = PageController();
+  static const _pageMemory = BpdDayPageMemory(2, 4);
   int _currentPage = 0;
   static const int _totalPages = 4;
 
   BpdDaysDao get _bpdDaysDao => registry.get<BpdDaysDao>();
+
+  @override
+  void initState() {
+    super.initState();
+    _pageMemory.restore(this, _pageController, _totalPages, (page) {
+      setState(() => _currentPage = page);
+    });
+  }
 
   @override
   void dispose() {
@@ -86,7 +96,10 @@ class _Week2Day4BreathingScreenState extends State<Week2Day4BreathingScreen> {
               child: PageView(
                 controller: _pageController,
                 physics: const NeverScrollableScrollPhysics(),
-                onPageChanged: (page) => setState(() => _currentPage = page),
+                onPageChanged: (page) {
+                  setState(() => _currentPage = page);
+                  _pageMemory.remember(page);
+                },
                 children: [
                   Week2Day4IntroChatPage(onNext: _goToNextPage),
                   TechniqueMenuPage(

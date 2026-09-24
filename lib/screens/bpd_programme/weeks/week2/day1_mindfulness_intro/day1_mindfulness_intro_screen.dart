@@ -5,6 +5,7 @@ import 'package:nepanikar/screens/bpd_programme/weeks/week2/day1_mindfulness_int
 import 'package:nepanikar/screens/bpd_programme/weeks/week2/day1_mindfulness_intro/education_chat_page.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_completion_page.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_flow_header.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/day_page_memory.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 
@@ -31,10 +32,19 @@ class Week2Day1MindfulnessIntroScreen extends StatefulWidget {
 
 class _Week2Day1MindfulnessIntroScreenState extends State<Week2Day1MindfulnessIntroScreen> {
   final PageController _pageController = PageController();
+  static const _pageMemory = BpdDayPageMemory(2, 1);
   int _currentPage = 0;
   static const int _totalPages = 2;
 
   BpdDaysDao get _bpdDaysDao => registry.get<BpdDaysDao>();
+
+  @override
+  void initState() {
+    super.initState();
+    _pageMemory.restore(this, _pageController, _totalPages, (page) {
+      setState(() => _currentPage = page);
+    });
+  }
 
   @override
   void dispose() {
@@ -85,7 +95,10 @@ class _Week2Day1MindfulnessIntroScreenState extends State<Week2Day1MindfulnessIn
               child: PageView(
                 controller: _pageController,
                 physics: const NeverScrollableScrollPhysics(),
-                onPageChanged: (page) => setState(() => _currentPage = page),
+                onPageChanged: (page) {
+                  setState(() => _currentPage = page);
+                  _pageMemory.remember(page);
+                },
                 children: [
                   Week2Day1EducationChatPage(onNext: _goToNextPage),
                   DayCompletionPage(

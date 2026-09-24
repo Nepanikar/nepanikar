@@ -7,6 +7,7 @@ import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_lists.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_messages.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_flow_header.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/day_page_memory.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/reflection_autosave.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/reflection_fields.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/week_completion_page.dart';
@@ -37,6 +38,7 @@ class Week4Day7SummaryScreen extends StatefulWidget {
 class _Week4Day7SummaryScreenState extends State<Week4Day7SummaryScreen>
     with ReflectionAutosave<Week4Day7SummaryScreen> {
   final PageController _pageController = PageController();
+  static const _pageMemory = BpdDayPageMemory(_weekNumber, 7);
   int _currentPage = 0;
   static const int _totalPages = 3;
   static const int _weekNumber = 4;
@@ -90,6 +92,9 @@ class _Week4Day7SummaryScreenState extends State<Week4Day7SummaryScreen>
   @override
   void initState() {
     super.initState();
+    _pageMemory.restore(this, _pageController, _totalPages, (page) {
+      setState(() => _currentPage = page);
+    });
     initReflectionAutosave(weekNumber: _weekNumber, controllers: _controllers);
   }
 
@@ -147,7 +152,10 @@ class _Week4Day7SummaryScreenState extends State<Week4Day7SummaryScreen>
               child: PageView(
                 controller: _pageController,
                 physics: const NeverScrollableScrollPhysics(),
-                onPageChanged: (page) => setState(() => _currentPage = page),
+                onPageChanged: (page) {
+                  setState(() => _currentPage = page);
+                  _pageMemory.remember(page);
+                },
                 children: [
                   ChatDayPage(
                     onCompleted: _goToNextPage,

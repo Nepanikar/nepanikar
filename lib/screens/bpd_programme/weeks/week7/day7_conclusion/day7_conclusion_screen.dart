@@ -8,6 +8,7 @@ import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart'
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_messages.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_flow_header.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/day_page_memory.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/external_link_button.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/structured_worksheet.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/week_completion_page.dart';
@@ -42,6 +43,7 @@ class Week7Day7ConclusionScreen extends StatefulWidget {
 
 class _Week7Day7ConclusionScreenState extends State<Week7Day7ConclusionScreen> {
   final PageController _pageController = PageController();
+  static const _pageMemory = BpdDayPageMemory(7, 7);
   int _currentPage = 0;
   static const int _totalPages = 6;
 
@@ -50,6 +52,14 @@ class _Week7Day7ConclusionScreenState extends State<Week7Day7ConclusionScreen> {
   BpdWorksheetDao get _worksheetDao => registry.get<BpdWorksheetDao>();
 
   BpdRescuePackageDao get _rescueDao => registry.get<BpdRescuePackageDao>();
+
+  @override
+  void initState() {
+    super.initState();
+    _pageMemory.restore(this, _pageController, _totalPages, (page) {
+      setState(() => _currentPage = page);
+    });
+  }
 
   @override
   void dispose() {
@@ -129,7 +139,10 @@ class _Week7Day7ConclusionScreenState extends State<Week7Day7ConclusionScreen> {
               child: PageView(
                 controller: _pageController,
                 physics: const NeverScrollableScrollPhysics(),
-                onPageChanged: (page) => setState(() => _currentPage = page),
+                onPageChanged: (page) {
+                  setState(() => _currentPage = page);
+                  _pageMemory.remember(page);
+                },
                 children: [
                   Week7Day7OpeningPage(onNext: _goToNextPage),
                   Week7Day7ThreeSkillsPage(onNext: _saveThreeSkillsAndContinue),

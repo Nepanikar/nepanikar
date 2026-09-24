@@ -12,6 +12,13 @@ abstract class BpdDayProgress with _$BpdDayProgress {
     @Default(false) bool isCompleted,
     DateTime? completedAt,
     DateTime? startedAt,
+
+    /// How far into the day's page flow the user got.
+    ///
+    /// Leaving a lesson is not abandoning it: recording a mood, a phone call,
+    /// or just closing the app used to drop somebody back on page one of a
+    /// lesson they were halfway through.
+    @Default(0) int lastPage,
   }) = _BpdDayProgress;
 
   const BpdDayProgress._();

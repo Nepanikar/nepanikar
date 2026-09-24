@@ -9,6 +9,7 @@ import 'package:nepanikar/screens/bpd_programme/weeks/week3/day1_emotions/myths_
 import 'package:nepanikar/screens/bpd_programme/weeks/week3/day1_emotions/obstacles_page.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_completion_page.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_flow_header.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/day_page_memory.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 
@@ -35,6 +36,7 @@ class Week3Day1EmotionsScreen extends StatefulWidget {
 
 class _Week3Day1EmotionsScreenState extends State<Week3Day1EmotionsScreen> {
   final PageController _pageController = PageController();
+  static const _pageMemory = BpdDayPageMemory(3, 1);
   int _currentPage = 0;
   static const int _totalPages = 7;
 
@@ -42,6 +44,14 @@ class _Week3Day1EmotionsScreenState extends State<Week3Day1EmotionsScreen> {
   static final int _mythsPerPage = day1Myths.length ~/ 2;
 
   BpdDaysDao get _bpdDaysDao => registry.get<BpdDaysDao>();
+
+  @override
+  void initState() {
+    super.initState();
+    _pageMemory.restore(this, _pageController, _totalPages, (page) {
+      setState(() => _currentPage = page);
+    });
+  }
 
   @override
   void dispose() {
@@ -92,7 +102,10 @@ class _Week3Day1EmotionsScreenState extends State<Week3Day1EmotionsScreen> {
               child: PageView(
                 controller: _pageController,
                 physics: const NeverScrollableScrollPhysics(),
-                onPageChanged: (page) => setState(() => _currentPage = page),
+                onPageChanged: (page) {
+                  setState(() => _currentPage = page);
+                  _pageMemory.remember(page);
+                },
                 children: [
                   Week3IntroChatPage(onNext: _goToNextPage),
                   Week3DictionaryPage(onNext: _goToNextPage),

@@ -9,6 +9,7 @@ import 'package:nepanikar/screens/bpd_programme/weeks/week1/day1_onboarding/smar
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/day1_onboarding/smart_worksheet_page.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/day1_onboarding/welcome_chat_page.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/bpd_help_button.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/day_page_memory.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
 import 'package:nepanikar/services/db/bpd/bpd_expectations_dao.dart';
 import 'package:nepanikar/services/db/bpd/bpd_smart_goals_dao.dart';
@@ -35,6 +36,7 @@ class Day1OnboardingScreen extends StatefulWidget {
 
 class _Day1OnboardingScreenState extends State<Day1OnboardingScreen> {
   final PageController _pageController = PageController();
+  static const _pageMemory = BpdDayPageMemory(1, 1);
   int _currentPage = 0;
   static const int _totalPages = 7;
 
@@ -58,6 +60,9 @@ class _Day1OnboardingScreenState extends State<Day1OnboardingScreen> {
   @override
   void initState() {
     super.initState();
+    _pageMemory.restore(this, _pageController, _totalPages, (page) {
+      setState(() => _currentPage = page);
+    });
     _prefillSavedAnswers();
     _checkAlreadyCompleted();
   }
@@ -169,7 +174,10 @@ class _Day1OnboardingScreenState extends State<Day1OnboardingScreen> {
               child: PageView(
                 controller: _pageController,
                 physics: const NeverScrollableScrollPhysics(),
-                onPageChanged: (page) => setState(() => _currentPage = page),
+                onPageChanged: (page) {
+                  setState(() => _currentPage = page);
+                  _pageMemory.remember(page);
+                },
                 children: [
                   Day1WelcomeChatPage(onNext: _saveProfileAndNext),
                   Day1EducationChatPage(onNext: _nextPage),

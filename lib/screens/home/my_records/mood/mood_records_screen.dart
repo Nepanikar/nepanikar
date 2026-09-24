@@ -240,6 +240,26 @@ class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsS
     );
   }
 
+  /// Back out of the two screens the save flow pushed: this one and the mood
+  /// picker underneath it.
+  ///
+  /// This used to be `go('/')`, which replaced the whole stack. That was fine
+  /// when the picker was opened from the home screen, but the DBT programme
+  /// opens it from inside a lesson — and replacing the stack threw the lesson
+  /// away, so recording a mood meant losing your place in it.
+  ///
+  /// When the picker itself was the stack's root (a notification opens it that
+  /// way) there is nothing underneath to go back to, so home it is.
+  void _leaveAfterSaving() {
+    final router = GoRouter.of(context);
+    var popped = 0;
+    while (popped < 2 && router.canPop()) {
+      router.pop();
+      popped++;
+    }
+    if (popped < 2) router.go('/');
+  }
+
   //////////////////// App Bar Function   //////////////////////////////
 
   AppBar _appBarForPageIndex(int index) {
@@ -255,7 +275,7 @@ class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsS
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
               if (widget.fromMoodPicker == true) {
-                context.go('/');
+                _leaveAfterSaving();
               } else {
                 context.pop();
               }

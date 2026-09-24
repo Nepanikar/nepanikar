@@ -9,6 +9,7 @@ import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_messages.dart'
 import 'package:nepanikar/screens/bpd_programme/widgets/day_completion_page.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_flow_header.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/day_page_memory.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/structured_worksheet.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
 import 'package:nepanikar/services/db/bpd/bpd_rescue_item_model.dart';
@@ -34,10 +35,19 @@ class Week6Day5SelfEsteemScreen extends StatefulWidget {
 
 class _Week6Day5SelfEsteemScreenState extends State<Week6Day5SelfEsteemScreen> {
   final PageController _pageController = PageController();
+  static const _pageMemory = BpdDayPageMemory(6, 5);
   int _currentPage = 0;
   static const int _totalPages = 4;
 
   BpdDaysDao get _bpdDaysDao => registry.get<BpdDaysDao>();
+
+  @override
+  void initState() {
+    super.initState();
+    _pageMemory.restore(this, _pageController, _totalPages, (page) {
+      setState(() => _currentPage = page);
+    });
+  }
 
   @override
   void dispose() {
@@ -88,7 +98,10 @@ class _Week6Day5SelfEsteemScreenState extends State<Week6Day5SelfEsteemScreen> {
               child: PageView(
                 controller: _pageController,
                 physics: const NeverScrollableScrollPhysics(),
-                onPageChanged: (page) => setState(() => _currentPage = page),
+                onPageChanged: (page) {
+                  setState(() => _currentPage = page);
+                  _pageMemory.remember(page);
+                },
                 children: [
                   Week6Day5ChatPage(onNext: _goToNextPage),
                   Week6Day5NezoufejPage(onNext: _goToNextPage),
