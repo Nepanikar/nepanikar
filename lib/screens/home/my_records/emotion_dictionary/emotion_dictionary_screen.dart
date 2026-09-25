@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week3/emotion_dictionary_data.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/external_link_button.dart';
@@ -29,7 +30,7 @@ class EmotionDictionaryScreen extends StatelessWidget {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return NepanikarScreenWrapper(
-      appBarTitle: 'Slovník emocí',
+      appBarTitle: context.l10n.dbt_emotion_dictionary,
       children: [
         Padding(
           padding: const EdgeInsets.only(top: 44, bottom: 18),
@@ -50,7 +51,7 @@ class EmotionDictionaryScreen extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 20),
-        const LinkLeadText('Chci vědět víc:'),
+        LinkLeadText(context.l10n.dbt_emotion_dictionary_more),
         const SizedBox(height: 8),
         const ExternalLinkButton(label: emotionDictionaryLinkLabel, url: emotionDictionaryLinkUrl),
         const SizedBox(height: 32),

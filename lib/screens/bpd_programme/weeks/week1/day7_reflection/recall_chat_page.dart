@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_messages.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/spoko_recall.dart';
@@ -25,12 +26,12 @@ class Day7RecallChatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChatDayPage(
       onCompleted: onNext,
-      steps: const [
-        ChatStep(messages: [ChatBotBubble(text: _intro1, showAvatar: true)]),
-        ChatStep(messages: [ChatBotBubble(text: _intro2)]),
+      steps: [
+        const ChatStep(messages: [ChatBotBubble(text: _intro1, showAvatar: true)]),
+        const ChatStep(messages: [ChatBotBubble(text: _intro2)]),
         ChatStep(
-          messages: [ChatRichMessage(child: SpokoRecallList())],
-          buttonLabel: 'Pokračovat',
+          messages: [const ChatRichMessage(child: SpokoRecallList())],
+          buttonLabel: context.l10n.dbt_continue,
         ),
       ],
     );

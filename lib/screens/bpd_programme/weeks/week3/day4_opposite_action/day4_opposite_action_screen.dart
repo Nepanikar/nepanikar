@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week3/day4_opposite_action/day4_content.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_messages.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_completion_page.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_flow_header.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/day_page_memory.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 
@@ -34,10 +36,19 @@ class Week3Day4OppositeActionScreen extends StatefulWidget {
 
 class _Week3Day4OppositeActionScreenState extends State<Week3Day4OppositeActionScreen> {
   final PageController _pageController = PageController();
+  static const _pageMemory = BpdDayPageMemory(3, 4);
   int _currentPage = 0;
   static const int _totalPages = 2;
 
   BpdDaysDao get _bpdDaysDao => registry.get<BpdDaysDao>();
+
+  @override
+  void initState() {
+    super.initState();
+    _pageMemory.restore(this, _pageController, _totalPages, (page) {
+      setState(() => _currentPage = page);
+    });
+  }
 
   @override
   void dispose() {
@@ -88,7 +99,10 @@ class _Week3Day4OppositeActionScreenState extends State<Week3Day4OppositeActionS
               child: PageView(
                 controller: _pageController,
                 physics: const NeverScrollableScrollPhysics(),
-                onPageChanged: (page) => setState(() => _currentPage = page),
+                onPageChanged: (page) {
+                  setState(() => _currentPage = page);
+                  _pageMemory.remember(page);
+                },
                 children: [
                   Day4ChatPage(onNext: _goToNextPage),
                   DayCompletionPage(
@@ -145,15 +159,15 @@ class Day4ChatPage extends StatelessWidget {
         const ChatStep(
           messages: [ChatInfoCard(icon: Icons.flag_outlined, title: 'Cíl', text: day4GoalNote)],
         ),
-        const ChatStep(
+        ChatStep(
           messages: [
-            ChatConceptCard(
+            const ChatConceptCard(
               badge: 'JAK NA TO',
               title: day4SmallStepsTitle,
               body: day4SmallStepsBody,
             ),
           ],
-          buttonLabel: 'Dokončit čtení',
+          buttonLabel: context.l10n.dbt_finish_reading,
         ),
       ],
     );

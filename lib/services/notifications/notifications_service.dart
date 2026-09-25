@@ -32,8 +32,6 @@ class NotificationsService {
   static const _basicChannelGroupKey = 'basic_channel_group';
   static const _basicChannelKey = 'basic_channel';
 
-  static final _challengeReminderTitle = NotificationType.challengeReminder.customTitle!;
-
   Future<void> init() async {
     await _awesomeNotifications.initialize(
       null, // To use the default app icon.
@@ -105,6 +103,7 @@ class NotificationsService {
   /// [notificationId] is stable per challenge, so it can be cancelled or
   /// rescheduled on its own via [cancelChallengeReminder].
   Future<void> scheduleChallengeReminder({
+    required AppLocalizations l10n,
     required int notificationId,
     required String challengeText,
     required int hour,
@@ -116,7 +115,7 @@ class NotificationsService {
       content: NotificationContent(
         id: notificationId,
         channelKey: _basicChannelKey,
-        title: _challengeReminderTitle,
+        title: NotificationType.challengeReminder.customTitle(l10n),
         body: challengeText,
         badge: 1,
         payload: {nestedPayloadKey: jsonEncode(payload)},
@@ -190,11 +189,12 @@ class NotificationsService {
 
   /// Re-arms the per-challenge reminders after a blanket cancel, since those are
   /// scheduled individually and would otherwise be silently lost.
-  Future<void> _restoreChallengeReminders() async {
+  Future<void> _restoreChallengeReminders(AppLocalizations l10n) async {
     if (!registry.isRegistered<BpdChallengeTrackerDao>()) return;
     final challenges = await registry.get<BpdChallengeTrackerDao>().getAll();
     for (final challenge in challenges.where((c) => c.hasReminder)) {
       await scheduleChallengeReminder(
+        l10n: l10n,
         notificationId: challenge.notificationId,
         challengeText: challenge.text,
         hour: challenge.reminderHour!,
@@ -233,7 +233,10 @@ class NotificationsService {
   /// Unlocks land at midnight, which is no time to be told about anything, so
   /// the notification fires at [_unlockNotificationHour] on the unlock day. Ids
   /// derive from week and day, so re-running this never stacks duplicates.
-  Future<void> _scheduleProgrammeUnlockReminders(int scheduleAheadDays) async {
+  Future<void> _scheduleProgrammeUnlockReminders(
+    AppLocalizations l10n,
+    int scheduleAheadDays,
+  ) async {
     if (!registry.isRegistered<BpdWeeksDao>()) return;
     if (!(await _userSettingsDao.getBpdProgrammeStatus()).hasStarted) return;
 
@@ -268,11 +271,9 @@ class NotificationsService {
             id: _unlockNotificationId(week.weekNumber, dayNumber),
             channelKey: _basicChannelKey,
             title: isWeekOpening
-                ? NotificationType.programmeUnlockWeekTitle
-                : NotificationType.programmeUnlockDayTitle,
-            body: isWeekOpening
-                ? NotificationType.programmeUnlockWeekBody
-                : NotificationType.programmeUnlockDayBody,
+                ? l10n.dbt_notification_week_title
+                : l10n.dbt_notification_day_title,
+            body: isWeekOpening ? l10n.dbt_notification_week_body : l10n.dbt_notification_day_body,
             badge: 1,
             payload: {
               nestedPayloadKey: jsonEncode(
@@ -316,7 +317,7 @@ class NotificationsService {
     }
 
     // ...then bring back the reminders that are not driven by user settings.
-    await _restoreChallengeReminders();
+    await _restoreChallengeReminders(l10n);
 
     // Nothing reschedules in the background: this runs when the app is used —
     // programme start, a mood entry, the home screen, notification settings. At
@@ -329,7 +330,7 @@ class NotificationsService {
     // the settings-driven types below add a handful more, so there is room; the
     // whole 49-day programme would not have left any.
     const scheduleAheadDays = 21;
-    await _scheduleProgrammeUnlockReminders(scheduleAheadDays);
+    await _scheduleProgrammeUnlockReminders(l10n, scheduleAheadDays);
     final mindfulnessTapered = await _isMindfulnessModuleOver();
 
     final r = math.Random();
@@ -348,7 +349,7 @@ class NotificationsService {
         continue;
       }
 
-      final notificationTitleMessage = type.customTitle ?? l10n.notification_reminder_header;
+      final notificationTitleMessage = type.customTitle(l10n) ?? l10n.notification_reminder_header;
       final notificationBodyMessage = type.getBodyMessage(l10n);
       final customDataPayload = AppNotificationData(type: type).toJson();
 

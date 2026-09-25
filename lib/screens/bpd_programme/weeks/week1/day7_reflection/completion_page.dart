@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 
 /// Page 3/3 — week 1 congratulations (verbatim, source: tyzden-1.md §7, closing).
@@ -104,9 +105,9 @@ class Day7CompletionPage extends StatelessWidget {
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                   elevation: 2,
                 ),
-                child: const Text(
-                  'Dokončit týden',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                child: Text(
+                  context.l10n.dbt_finish_week,
+                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
             ),

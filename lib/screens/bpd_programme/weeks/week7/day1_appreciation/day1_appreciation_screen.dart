@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week7/day1_appreciation/day1_content.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart';
@@ -7,6 +8,7 @@ import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_messages.dart'
 import 'package:nepanikar/screens/bpd_programme/widgets/day_completion_page.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_flow_header.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/day_page_memory.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/smart_goals_review.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/structured_worksheet.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
@@ -35,10 +37,19 @@ class Week7Day1AppreciationScreen extends StatefulWidget {
 
 class _Week7Day1AppreciationScreenState extends State<Week7Day1AppreciationScreen> {
   final PageController _pageController = PageController();
+  static const _pageMemory = BpdDayPageMemory(7, 1);
   int _currentPage = 0;
   static const int _totalPages = 4;
 
   BpdDaysDao get _bpdDaysDao => registry.get<BpdDaysDao>();
+
+  @override
+  void initState() {
+    super.initState();
+    _pageMemory.restore(this, _pageController, _totalPages, (page) {
+      setState(() => _currentPage = page);
+    });
+  }
 
   @override
   void dispose() {
@@ -89,7 +100,10 @@ class _Week7Day1AppreciationScreenState extends State<Week7Day1AppreciationScree
               child: PageView(
                 controller: _pageController,
                 physics: const NeverScrollableScrollPhysics(),
-                onPageChanged: (page) => setState(() => _currentPage = page),
+                onPageChanged: (page) {
+                  setState(() => _currentPage = page);
+                  _pageMemory.remember(page);
+                },
                 children: [
                   Week7Day1ChatPage(onNext: _goToNextPage),
                   Week7Day1ProudPage(onNext: _goToNextPage),
@@ -129,7 +143,7 @@ class Week7Day1ChatPage extends StatelessWidget {
         for (var i = 0; i < day1Opening.length; i++)
           ChatStep(
             messages: [ChatBotBubble(text: day1Opening[i], showAvatar: i == 0)],
-            buttonLabel: i == day1Opening.length - 1 ? 'Pokračovat' : null,
+            buttonLabel: i == day1Opening.length - 1 ? context.l10n.dbt_continue : null,
           ),
       ],
     );
@@ -147,7 +161,7 @@ class Week7Day1ProudPage extends StatelessWidget {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return DayPageBase(
-      buttonText: 'Pokračovat',
+      buttonText: context.l10n.dbt_continue,
       onButtonPressed: onNext,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -191,7 +205,7 @@ class Week7Day1SmartReviewPage extends StatelessWidget {
     final secondary = isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.78);
 
     return DayPageBase(
-      buttonText: 'Pokračovat',
+      buttonText: context.l10n.dbt_continue,
       onButtonPressed: onNext,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

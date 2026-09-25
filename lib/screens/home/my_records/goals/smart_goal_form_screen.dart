@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/smart_goal_fields.dart';
@@ -43,7 +44,7 @@ class _SmartGoalFormScreenState extends State<SmartGoalFormScreen> {
     if (values.every((v) => v.isEmpty)) {
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(const SnackBar(content: Text('Vyplň alespoň jedno pole.')));
+      ).showSnackBar(SnackBar(content: Text(context.l10n.dbt_goal_empty_form)));
       return;
     }
     await _dao.createGoal(
@@ -61,18 +62,17 @@ class _SmartGoalFormScreenState extends State<SmartGoalFormScreen> {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Nový SMART cíl')),
+      appBar: AppBar(title: Text(context.l10n.dbt_goal_new_smart)),
       body: SafeArea(
         child: DayPageBase(
-          buttonText: 'Uložit cíl',
+          buttonText: context.l10n.dbt_goal_save,
           onButtonPressed: _save,
           content: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 12),
               Text(
-                'Doplň, čeho přesně chceš dosáhnout. Klepni na „příklad" pro '
-                'inspiraci.',
+                context.l10n.dbt_goal_form_intro,
                 style: TextStyle(
                   fontSize: 13.5,
                   color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.65),

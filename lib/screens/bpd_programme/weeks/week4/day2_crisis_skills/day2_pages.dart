@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/games/breathing/breathing_game_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week4/day2_crisis_skills/day2_content.dart';
@@ -225,7 +226,7 @@ class Week4Day2RelaxationPage extends StatelessWidget {
     return DayPageBase(
       // Never "Splnit cvičení" — someone who does not play the video has not
       // failed the day.
-      buttonText: 'Pokračovat',
+      buttonText: context.l10n.dbt_continue,
       onButtonPressed: onNext,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 
 /// The five areas of the SPOKO model (verbatim, source: tyzden-1.md §2).
@@ -18,12 +19,9 @@ const spokoAreas = <(String, String)>[
 /// Recall before reveal is the point — the user is meant to try to remember,
 /// which is why the areas are hidden rather than simply listed.
 class SpokoRecallList extends StatefulWidget {
-  const SpokoRecallList({
-    super.key,
-    this.hint = 'Klepnutím odkryješ jednotlivé oblasti modelu SPOKO.',
-  });
+  const SpokoRecallList({super.key, this.hint});
 
-  final String hint;
+  final String? hint;
 
   @override
   State<SpokoRecallList> createState() => _SpokoRecallListState();
@@ -40,7 +38,7 @@ class _SpokoRecallListState extends State<SpokoRecallList> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          widget.hint,
+          widget.hint ?? context.l10n.dbt_spoko_tap_hint,
           style: TextStyle(
             fontSize: 13,
             color: isDarkMode ? Colors.white60 : NepanikarColors.dark.withOpacity(0.6),
@@ -96,7 +94,7 @@ class _RevealCard extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              '? klepni pro odkrytí',
+              context.l10n.dbt_tap_to_reveal,
               style: TextStyle(
                 fontSize: 13,
                 fontWeight: FontWeight.w700,

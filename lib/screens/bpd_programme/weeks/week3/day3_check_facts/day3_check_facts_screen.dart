@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week3/day3_check_facts/day3_content.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart';
@@ -7,6 +8,7 @@ import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_messages.dart'
 import 'package:nepanikar/screens/bpd_programme/widgets/day_completion_page.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_flow_header.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/day_page_memory.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/structured_worksheet.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
@@ -31,10 +33,19 @@ class Week3Day3CheckFactsScreen extends StatefulWidget {
 
 class _Week3Day3CheckFactsScreenState extends State<Week3Day3CheckFactsScreen> {
   final PageController _pageController = PageController();
+  static const _pageMemory = BpdDayPageMemory(3, 3);
   int _currentPage = 0;
   static const int _totalPages = 4;
 
   BpdDaysDao get _bpdDaysDao => registry.get<BpdDaysDao>();
+
+  @override
+  void initState() {
+    super.initState();
+    _pageMemory.restore(this, _pageController, _totalPages, (page) {
+      setState(() => _currentPage = page);
+    });
+  }
 
   @override
   void dispose() {
@@ -85,7 +96,10 @@ class _Week3Day3CheckFactsScreenState extends State<Week3Day3CheckFactsScreen> {
               child: PageView(
                 controller: _pageController,
                 physics: const NeverScrollableScrollPhysics(),
-                onPageChanged: (page) => setState(() => _currentPage = page),
+                onPageChanged: (page) {
+                  setState(() => _currentPage = page);
+                  _pageMemory.remember(page);
+                },
                 children: [
                   Day3IntroChatPage(onNext: _goToNextPage),
                   Day3StepsPage(onNext: _goToNextPage),
@@ -187,7 +201,7 @@ class Day3WorksheetPage extends StatelessWidget {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return DayPageBase(
-      buttonText: 'Pokračovat',
+      buttonText: context.l10n.dbt_continue,
       onButtonPressed: onNext,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

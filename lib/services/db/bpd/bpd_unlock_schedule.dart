@@ -7,6 +7,11 @@
 /// "tomorrow".
 library;
 
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:nepanikar/app/l10n/app_localizations.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
+
 /// Midnight at the start of [date], in local time.
 DateTime startOfDay(DateTime date) => DateTime(date.year, date.month, date.day);
 
@@ -50,22 +55,6 @@ DateTime bpdDayUnlockDate(int weekNumber, int dayNumber) =>
 /// Midnight of the day a week's first lesson opens.
 DateTime bpdWeekUnlockDate(int weekNumber) => bpdDayUnlockDate(weekNumber, 1);
 
-/// Czech month names in the genitive, which is the case "21. září" needs.
-const _czechMonthsGenitive = <String>[
-  'ledna',
-  'února',
-  'března',
-  'dubna',
-  'května',
-  'června',
-  'července',
-  'srpna',
-  'září',
-  'října',
-  'listopadu',
-  'prosince',
-];
-
 /// "21. září (zítra)" — the date plus how far off it is.
 ///
 /// One implementation for the whole programme. There were two, and the one on
@@ -74,20 +63,32 @@ const _czechMonthsGenitive = <String>[
 ///
 /// The clock time is deliberately left out: lessons open at midnight, so an
 /// hour on the label only suggests there is one worth waiting for.
-String formatBpdUnlockDate(DateTime date) {
-  final now = DateTime.now();
-  final days = startOfDay(date).difference(startOfDay(now)).inDays;
+String formatBpdUnlockDate(BuildContext context, DateTime date) =>
+    formatUnlockDateIn(context.l10n, Localizations.localeOf(context).toString(), date);
+
+/// [formatBpdUnlockDate] without a [BuildContext], so it can be tested directly.
+///
+/// The month comes from `intl` rather than a table of our own: Czech needs the
+/// genitive ("21. září", not "Září"), which is exactly the form `MMMMd` uses,
+/// and every other locale then gets its own convention for free.
+String formatUnlockDateIn(AppLocalizations l10n, String locale, DateTime date) {
+  final days = startOfDay(date).difference(startOfDay(DateTime.now())).inDays;
 
   final String relative;
   if (days <= 0) {
-    relative = 'dnes';
+    relative = l10n.dbt_unlocks_today;
   } else if (days == 1) {
-    relative = 'zítra';
-  } else if (days <= 4) {
-    relative = 'za $days dny';
+    relative = l10n.dbt_unlocks_tomorrow;
   } else {
-    relative = 'za $days dní';
+    // Czech counts 2–4 differently from 5 and up ("za 3 dny" / "za 9 dní");
+    // Intl picks whichever form the active locale asks for.
+    relative = Intl.plural(
+      days,
+      few: l10n.dbt_unlocks_in_days_few(days),
+      other: l10n.dbt_unlocks_in_days_other(days),
+      locale: locale,
+    );
   }
 
-  return '${date.day}. ${_czechMonthsGenitive[date.month - 1]} ($relative)';
+  return l10n.dbt_unlocks_date(DateFormat.MMMMd(locale).format(date), relative);
 }

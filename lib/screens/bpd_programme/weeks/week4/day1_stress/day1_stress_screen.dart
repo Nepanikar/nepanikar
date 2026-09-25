@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week4/day1_stress/day1_content.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart';
@@ -7,6 +8,7 @@ import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_lists.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_messages.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_completion_page.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_flow_header.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/day_page_memory.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 
@@ -32,10 +34,19 @@ class Week4Day1StressScreen extends StatefulWidget {
 
 class _Week4Day1StressScreenState extends State<Week4Day1StressScreen> {
   final PageController _pageController = PageController();
+  static const _pageMemory = BpdDayPageMemory(4, 1);
   int _currentPage = 0;
   static const int _totalPages = 2;
 
   BpdDaysDao get _bpdDaysDao => registry.get<BpdDaysDao>();
+
+  @override
+  void initState() {
+    super.initState();
+    _pageMemory.restore(this, _pageController, _totalPages, (page) {
+      setState(() => _currentPage = page);
+    });
+  }
 
   @override
   void dispose() {
@@ -86,7 +97,10 @@ class _Week4Day1StressScreenState extends State<Week4Day1StressScreen> {
               child: PageView(
                 controller: _pageController,
                 physics: const NeverScrollableScrollPhysics(),
-                onPageChanged: (page) => setState(() => _currentPage = page),
+                onPageChanged: (page) {
+                  setState(() => _currentPage = page);
+                  _pageMemory.remember(page);
+                },
                 children: [
                   Week4Day1ChatPage(onNext: _goToNextPage),
                   DayCompletionPage(
@@ -145,11 +159,11 @@ class Week4Day1ChatPage extends StatelessWidget {
         ),
         for (final message in day1ClosingChat)
           ChatStep(messages: [ChatBotBubble(text: message, showAvatar: true)]),
-        const ChatStep(
+        ChatStep(
           messages: [
             ChatLinksCard(
-              caption: 'Chci vědět víc',
-              links: [
+              caption: context.l10n.dbt_want_to_know_more,
+              links: const [
                 ChatLink(
                   label: 'Video o stresu',
                   url: day1VideoUrl,
@@ -158,7 +172,7 @@ class Week4Day1ChatPage extends StatelessWidget {
               ],
             ),
           ],
-          buttonLabel: 'Dokončit čtení',
+          buttonLabel: context.l10n.dbt_finish_reading,
         ),
       ],
     );

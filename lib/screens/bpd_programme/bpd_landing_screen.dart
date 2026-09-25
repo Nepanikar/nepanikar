@@ -94,7 +94,7 @@ class BpdLandingScreen extends StatelessWidget {
 
                       // Title
                       Text(
-                        'Tvoje cesta ke stabilitě se Stromem dovedností',
+                        context.l10n.dbt_landing_title,
                         style: TextStyle(
                           fontSize: 23,
                           fontWeight: FontWeight.bold,
@@ -112,9 +112,7 @@ class BpdLandingScreen extends StatelessWidget {
                       // the commitment. Not the author's copy; it predates the
                       // HPO content.
                       Text(
-                        'Víme, že život s hraniční poruchou osobnosti přináší výzvy. '
-                        'Tento sedmitýdenní průvodce tě provede budováním '
-                        'odolnosti a lepším zvládáním nálad.',
+                        context.l10n.dbt_landing_description,
                         style: TextStyle(
                           fontSize: 15,
                           color: isDarkMode
@@ -129,17 +127,15 @@ class BpdLandingScreen extends StatelessWidget {
 
                       // Bullet points
                       _buildBulletPoint(
-                        'Budování copingových mechanismů',
-                        'Nauč se osvědčené techniky na rozpoznání a zvládání '
-                            'emočních výzev.',
+                        context.l10n.dbt_landing_coping_title,
+                        context.l10n.dbt_landing_coping_description,
                         isDarkMode,
                         primaryColor,
                       ),
                       const SizedBox(height: 20),
                       _buildBulletPoint(
-                        'Stabilizace nálady',
-                        'Osvoj si každodenní návyky, které podporují rovnováhu a '
-                            'lepší zvládání nálad.',
+                        context.l10n.dbt_landing_mood_title,
+                        context.l10n.dbt_landing_mood_description,
                         isDarkMode,
                         primaryColor,
                       ),
@@ -162,9 +158,9 @@ class BpdLandingScreen extends StatelessWidget {
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                     elevation: 4,
                   ),
-                  child: const Text(
-                    'Začít svou cestu',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  child: Text(
+                    context.l10n.dbt_landing_start,
+                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
@@ -175,7 +171,7 @@ class BpdLandingScreen extends StatelessWidget {
               TextButton(
                 onPressed: () => _handleMaybeLater(context),
                 child: Text(
-                  'Možná později',
+                  context.l10n.dbt_landing_later,
                   style: TextStyle(fontSize: 16, color: primaryColor, fontWeight: FontWeight.w600),
                 ),
               ),

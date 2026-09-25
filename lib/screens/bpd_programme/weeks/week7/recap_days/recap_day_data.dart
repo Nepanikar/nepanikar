@@ -91,7 +91,7 @@ List<String> _steps(List<String> lead, List<String> steps) => [
 
 /// Week 3 — emoční regulace.
 final _week3Skills = <TechniqueData>[
-  TechniqueData(
+  const TechniqueData(
     id: 'week3_check_facts',
     iconKey: 'facts',
     icon: Icons.fact_check_outlined,
@@ -100,7 +100,7 @@ final _week3Skills = <TechniqueData>[
     shortDescription: 'Ověříš, jestli emoce odpovídá tomu, co se opravdu stalo',
     detailParagraphs: [w3_facts.day3ChainBody, ...w3_facts.day3IntroChat],
   ),
-  TechniqueData(
+  const TechniqueData(
     id: 'week3_opposite_action',
     iconKey: 'swap',
     icon: Icons.swap_horiz,

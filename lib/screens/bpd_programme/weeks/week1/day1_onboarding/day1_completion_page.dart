@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 
 /// Page 10/10 — Day 1 completion (verbatim, source: tyzden-1.md §1, closing).
@@ -62,7 +63,7 @@ class Day1CompletionPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Skvělá práce!',
+                      context.l10n.dbt_great_work,
                       style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,

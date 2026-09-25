@@ -10,7 +10,6 @@ import 'package:nepanikar/games/plants/plants_game_screen.dart';
 import 'package:nepanikar/games/relaxation/relaxation_screen.dart';
 import 'package:nepanikar/games/relaxation/relaxations_list_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/bpd_landing_screen.dart';
-import 'package:nepanikar/screens/bpd_programme/bpd_programme_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/bpd_week_detail_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/bpd_weeks_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/shared/day_pause_screen.dart';
@@ -276,7 +275,6 @@ const _myRecordsRoutes = <TypedGoRoute<GoRouteData>>[
 
 const _bpdProgrammeRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<BpdLandingScreenRoute>(path: 'bpd-programme/landing'),
-  TypedGoRoute<BpdProgrammeScreenRoute>(path: 'bpd-programme'),
   TypedGoRoute<BpdWeeksScreenRoute>(path: 'bpd-programme/weeks'),
   TypedGoRoute<BpdWeekDetailScreenRoute>(path: 'bpd-programme/week/:weekNumber'),
   TypedGoRoute<Day1OnboardingScreenRoute>(path: 'bpd-programme/day-onboarding'),

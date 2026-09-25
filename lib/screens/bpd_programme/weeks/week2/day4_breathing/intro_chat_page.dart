@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week2/day4_breathing/day4_content.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_messages.dart';
@@ -16,15 +17,15 @@ class Week2Day4IntroChatPage extends StatelessWidget {
       steps: [
         for (final message in week2Day4IntroChat)
           ChatStep(messages: [ChatBotBubble(text: message, showAvatar: true)]),
-        const ChatStep(
+        ChatStep(
           messages: [
-            ChatInfoCard(
+            const ChatInfoCard(
               icon: Icons.self_improvement,
               title: 'Co to dělá',
               text: week2Day4IntroNote,
             ),
           ],
-          buttonLabel: 'Vybrat cvičení',
+          buttonLabel: context.l10n.dbt_pick_exercise,
         ),
       ],
     );

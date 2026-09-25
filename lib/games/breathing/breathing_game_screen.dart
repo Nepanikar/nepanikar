@@ -96,14 +96,20 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
     }
   }
 
-  List<String> get _phaseLabels {
+  /// Labels for the custom-duration rows.
+  ///
+  /// The same words the animation announces (see `newSteps` above), which is
+  /// why they come from the same keys: they were a Slovak list of their own,
+  /// so every language but Slovak read "Nádych / Zadržať / Výdych" here.
+  List<String> _phaseLabels(BuildContext context) {
+    final l10n = context.l10n;
     switch (widget.shape) {
       case BreathingGameShape.square:
-        return ['Nádych', 'Zadržať', 'Výdych', 'Zadržať'];
+        return [l10n.breathe_in, l10n.breathe_hold, l10n.breathe_out, l10n.breathe_hold];
       case BreathingGameShape.triangle:
-        return ['Nádych', 'Zadržať', 'Výdych'];
+        return [l10n.breathe_in, l10n.breathe_hold, l10n.breathe_out];
       case BreathingGameShape.circle:
-        return ['Nádych', 'Výdych'];
+        return [l10n.breathe_in, l10n.breathe_out];
     }
   }
 
@@ -493,7 +499,11 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
                   );
                 }),
                 // Custom button
-                _buildPresetButton('Vlastné', _showCustomControls, () => _toggleCustomControls()),
+                _buildPresetButton(
+                  context.l10n.chart_filter_custom,
+                  _showCustomControls,
+                  () => _toggleCustomControls(),
+                ),
               ],
             ),
           ),
@@ -501,7 +511,7 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
           // Custom controls (expandable)
           if (_showCustomControls) ...[
             const SizedBox(height: 16),
-            ...List.generate(_phaseLabels.length, (index) {
+            ...List.generate(_phaseLabels(context).length, (index) {
               return Padding(
                 padding: const EdgeInsets.only(bottom: 8),
                 child: _buildPhaseControl(index),
@@ -535,7 +545,7 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
   }
 
   Widget _buildPhaseControl(int index) {
-    final label = _phaseLabels[index];
+    final label = _phaseLabels(context)[index];
     final value = _customPhaseDurations[index];
 
     return Row(

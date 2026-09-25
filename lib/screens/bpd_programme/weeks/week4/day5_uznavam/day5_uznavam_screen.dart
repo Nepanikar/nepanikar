@@ -8,6 +8,7 @@ import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart'
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_messages.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_completion_page.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_flow_header.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/day_page_memory.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
 import 'package:nepanikar/services/db/bpd/bpd_rescue_item_model.dart';
 import 'package:nepanikar/utils/registry.dart';
@@ -35,10 +36,19 @@ class Week4Day5UznavamScreen extends StatefulWidget {
 
 class _Week4Day5UznavamScreenState extends State<Week4Day5UznavamScreen> {
   final PageController _pageController = PageController();
+  static const _pageMemory = BpdDayPageMemory(4, 5);
   int _currentPage = 0;
   static const int _totalPages = 5;
 
   BpdDaysDao get _bpdDaysDao => registry.get<BpdDaysDao>();
+
+  @override
+  void initState() {
+    super.initState();
+    _pageMemory.restore(this, _pageController, _totalPages, (page) {
+      setState(() => _currentPage = page);
+    });
+  }
 
   @override
   void dispose() {
@@ -89,7 +99,10 @@ class _Week4Day5UznavamScreenState extends State<Week4Day5UznavamScreen> {
               child: PageView(
                 controller: _pageController,
                 physics: const NeverScrollableScrollPhysics(),
-                onPageChanged: (page) => setState(() => _currentPage = page),
+                onPageChanged: (page) {
+                  setState(() => _currentPage = page);
+                  _pageMemory.remember(page);
+                },
                 children: [
                   Week4Day5IntroChatPage(onNext: _goToNextPage),
                   AcronymSkillPage(

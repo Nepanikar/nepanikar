@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/worksheet_parts.dart';
 import 'package:nepanikar/services/db/bpd/bpd_worksheet_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
@@ -76,7 +77,7 @@ class StructuredWorksheet extends StatefulWidget {
     required this.worksheetId,
     required this.sections,
     this.example,
-    this.exampleTitle = 'Zobrazit příklad',
+    this.exampleTitle,
     this.exampleNote,
     this.visibleSectionLimit,
     this.revealMoreLabel,
@@ -97,7 +98,7 @@ class StructuredWorksheet extends StatefulWidget {
 
   /// Worked example as (label, text) pairs, revealed on tap.
   final List<(String, String)>? example;
-  final String exampleTitle;
+  final String? exampleTitle;
 
   /// Shown under the example — used to mark copy that the author has not
   /// approved yet.
@@ -213,7 +214,7 @@ class _StructuredWorksheetState extends State<StructuredWorksheet> {
       child: OutlinedButton.icon(
         onPressed: () => setState(() => _isFullListRevealed = true),
         icon: const Icon(Icons.add, size: 18),
-        label: Text(widget.revealMoreLabel ?? 'Chci pokračovat (dalších $hiddenCount)'),
+        label: Text(widget.revealMoreLabel ?? context.l10n.dbt_show_more(hiddenCount)),
         style: OutlinedButton.styleFrom(
           foregroundColor: primaryColor,
           side: BorderSide(color: primaryColor.withOpacity(0.4)),
@@ -250,7 +251,7 @@ class _StructuredWorksheetState extends State<StructuredWorksheet> {
   }
 
   Widget _buildExample() => WorksheetExampleCard(
-    title: widget.exampleTitle,
+    title: widget.exampleTitle ?? context.l10n.dbt_show_example,
     entries: widget.example!,
     note: widget.exampleNote,
     isOpen: _isExampleOpen,

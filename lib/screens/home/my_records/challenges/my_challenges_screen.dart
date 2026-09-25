@@ -1,5 +1,6 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/home/my_records/challenges/challenge_card.dart';
 import 'package:nepanikar/services/db/bpd/bpd_challenge_model.dart';
@@ -40,12 +41,13 @@ class _MyChallengesScreenState extends State<MyChallengesScreen> {
   }
 
   Future<void> _editReminder(BuildContext context, BpdChallenge challenge) async {
+    final l10n = context.l10n;
     final allowed = await _notifications.requestPermissionIfNeeded();
     if (!context.mounted) return;
     if (!allowed) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Notifikace jsou vypnuté. Povol je v nastavení.')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(context.l10n.dbt_challenge_notifications_disabled)));
       return;
     }
     final picked = await showTimePicker(
@@ -55,15 +57,16 @@ class _MyChallengesScreenState extends State<MyChallengesScreen> {
     if (picked == null) return;
     await _dao.setReminder(id: challenge.id, time: picked);
     await _notifications.scheduleChallengeReminder(
+      l10n: l10n,
       notificationId: challenge.notificationId,
       challengeText: challenge.text,
       hour: picked.hour,
       minute: picked.minute,
     );
     if (!context.mounted) return;
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text('Připomínka nastavena na ${picked.format(context)}')));
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(context.l10n.dbt_challenge_reminder_set(picked.format(context)))),
+    );
   }
 
   Future<void> _removeReminder(BpdChallenge challenge) async {
@@ -75,11 +78,17 @@ class _MyChallengesScreenState extends State<MyChallengesScreen> {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Odebrat výzvu?'),
-        content: const Text('Výzva i její historie plnění se odstraní.'),
+        title: Text(context.l10n.dbt_challenge_remove_title),
+        content: Text(context.l10n.dbt_challenge_remove_description),
         actions: [
-          TextButton(onPressed: () => Navigator.of(ctx).pop(false), child: const Text('Zrušit')),
-          TextButton(onPressed: () => Navigator.of(ctx).pop(true), child: const Text('Odebrat')),
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(false),
+            child: Text(context.l10n.cancel),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(true),
+            child: Text(context.l10n.dbt_remove),
+          ),
         ],
       ),
     );
@@ -107,7 +116,7 @@ class _MyChallengesScreenState extends State<MyChallengesScreen> {
   @override
   Widget build(BuildContext context) {
     return NepanikarScreenWrapper(
-      appBarTitle: 'Moje výzvy',
+      appBarTitle: context.l10n.dbt_challenges,
       children: [
         StreamBuilder<List<BpdChallenge>>(
           stream: _dao.watchAll(),
@@ -136,8 +145,7 @@ class _MyChallengesScreenState extends State<MyChallengesScreen> {
                 Padding(
                   padding: const EdgeInsets.only(top: 44, bottom: 14),
                   child: Text(
-                    'Výzvy, které sis vybral/a v průvodci. Odškrtávej si je '
-                    'každý den a nastav si připomínku.',
+                    context.l10n.dbt_challenges_intro,
                     style: TextStyle(
                       fontSize: 14,
                       height: 1.45,
@@ -190,7 +198,11 @@ class _AreaFilterChips extends StatelessWidget {
       clipBehavior: Clip.none,
       child: Row(
         children: [
-          _FilterChip(label: 'Vše', isSelected: selected == null, onTap: () => onSelected(null)),
+          _FilterChip(
+            label: context.l10n.dbt_challenges_filter_all,
+            isSelected: selected == null,
+            onTap: () => onSelected(null),
+          ),
           ...areas.map(
             (area) => Padding(
               padding: const EdgeInsets.only(left: 8),
@@ -265,7 +277,7 @@ class _EmptyState extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           Text(
-            'Zatím žádné výzvy',
+            context.l10n.dbt_challenges_empty_title,
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -274,8 +286,7 @@ class _EmptyState extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'Až si v průvodci vybereš nějakou výzvu, objeví se tady a budeš '
-            'si ji moct odškrtávat každý den.',
+            context.l10n.dbt_challenges_empty_description,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 14,

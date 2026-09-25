@@ -5,6 +5,7 @@ import 'package:nepanikar/screens/bpd_programme/widgets/bpd_help_button.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/day7_reflection/completion_page.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/day7_reflection/recall_chat_page.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/day7_reflection/reflection_page.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/day_page_memory.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/reflection_autosave.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
@@ -31,6 +32,7 @@ class Week1Day7ReflectionScreen extends StatefulWidget {
 class _Week1Day7ReflectionScreenState extends State<Week1Day7ReflectionScreen>
     with ReflectionAutosave<Week1Day7ReflectionScreen> {
   final PageController _pageController = PageController();
+  static const _pageMemory = BpdDayPageMemory(_weekNumber, 7);
   int _currentPage = 0;
   static const int _totalPages = 3;
   static const int _weekNumber = 1;
@@ -42,6 +44,9 @@ class _Week1Day7ReflectionScreenState extends State<Week1Day7ReflectionScreen>
   @override
   void initState() {
     super.initState();
+    _pageMemory.restore(this, _pageController, _totalPages, (page) {
+      setState(() => _currentPage = page);
+    });
     initReflectionAutosave(weekNumber: _weekNumber, controllers: _controllers);
   }
 
@@ -87,7 +92,10 @@ class _Week1Day7ReflectionScreenState extends State<Week1Day7ReflectionScreen>
               child: PageView(
                 controller: _pageController,
                 physics: const NeverScrollableScrollPhysics(),
-                onPageChanged: (page) => setState(() => _currentPage = page),
+                onPageChanged: (page) {
+                  setState(() => _currentPage = page);
+                  _pageMemory.remember(page);
+                },
                 children: [
                   Day7RecallChatPage(onNext: _nextPage),
                   Day7ReflectionPage(controllers: _controllers, onNext: _nextPage),

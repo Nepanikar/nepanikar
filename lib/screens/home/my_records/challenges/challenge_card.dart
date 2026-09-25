@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/services/db/bpd/bpd_challenge_model.dart';
+
+/// Weekday initials in the active locale, Monday first.
+///
+/// Both grids below are laid out Mon→Sun; 1 January 2024 was a Monday, so the
+/// week starting there gives the labels in that order.
+List<String> _weekdayLabels(BuildContext context) {
+  final locale = Localizations.localeOf(context).toString();
+  return [for (var i = 0; i < 7; i++) DateFormat.E(locale).format(DateTime(2024, 1, i + 1))];
+}
 
 /// A single tracked DBT challenge: source, daily check-off, 7-day history,
 /// streak, an expandable month calendar and an optional reminder.
@@ -82,7 +93,9 @@ class _ChallengeCardState extends State<ChallengeCard> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text(
-                      '${challenge.weekNumber}. týden · ${challenge.area}',
+                      // The area is programme copy, so it stays as authored.
+                      '${context.l10n.dbt_challenge_week(challenge.weekNumber)}'
+                      ' · ${challenge.area}',
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         fontSize: 11,
@@ -142,7 +155,9 @@ class _ChallengeCardState extends State<ChallengeCard> {
                   ),
                   const SizedBox(width: 6),
                   Text(
-                    _calendarExpanded ? 'Skrýt kalendář' : 'Celý kalendář',
+                    _calendarExpanded
+                        ? context.l10n.dbt_challenge_calendar_hide
+                        : context.l10n.dbt_challenge_calendar_show,
                     style: TextStyle(
                       fontSize: 12.5,
                       fontWeight: FontWeight.w600,
@@ -189,9 +204,9 @@ class _TodayButton extends StatelessWidget {
           ? ElevatedButton.icon(
               onPressed: onTap,
               icon: const Icon(Icons.check_circle, size: 20),
-              label: const Text(
-                'Splněno dnes',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              label: Text(
+                context.l10n.dbt_challenge_done_today,
+                style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: NepanikarColors.success,
@@ -203,9 +218,9 @@ class _TodayButton extends StatelessWidget {
           : OutlinedButton.icon(
               onPressed: onTap,
               icon: const Icon(Icons.check_circle_outline, size: 20),
-              label: const Text(
-                'Označit jako splněno',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              label: Text(
+                context.l10n.dbt_challenge_mark_done,
+                style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               ),
               style: OutlinedButton.styleFrom(
                 foregroundColor: primaryColor,
@@ -247,8 +262,8 @@ class _ReminderRow extends StatelessWidget {
             const SizedBox(width: 8),
             Text(
               hasReminder && time != null
-                  ? 'Připomínka ${time.format(context)}'
-                  : 'Přidat připomínku',
+                  ? context.l10n.dbt_challenge_reminder_at(time.format(context))
+                  : context.l10n.dbt_challenge_reminder_add,
               style: TextStyle(fontSize: 13.5, fontWeight: FontWeight.w600, color: color),
             ),
           ],
@@ -264,11 +279,10 @@ class _WeekHistory extends StatelessWidget {
   final BpdChallenge challenge;
   final Color primaryColor;
 
-  static const _weekdayLabels = ['Po', 'Út', 'St', 'Čt', 'Pá', 'So', 'Ne'];
-
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final weekdays = _weekdayLabels(context);
     final today = DateTime.now();
     // Last 7 days, oldest → today.
     final days = List.generate(
@@ -281,7 +295,7 @@ class _WeekHistory extends StatelessWidget {
       children: days.map((d) {
         final done = challenge.isCompletedOn(BpdChallenge.dateKey(d));
         // DateTime.weekday: Mon=1..Sun=7.
-        final label = _weekdayLabels[d.weekday - 1];
+        final label = weekdays[d.weekday - 1];
         return Column(
           children: [
             Container(
@@ -331,25 +345,10 @@ class _MonthCalendar extends StatelessWidget {
   final VoidCallback onPrev;
   final VoidCallback onNext;
 
-  static const _weekdayLabels = ['Po', 'Út', 'St', 'Čt', 'Pá', 'So', 'Ne'];
-  static const _monthNames = [
-    'Leden',
-    'Únor',
-    'Březen',
-    'Duben',
-    'Květen',
-    'Červen',
-    'Červenec',
-    'Srpen',
-    'Září',
-    'Říjen',
-    'Listopad',
-    'Prosinec',
-  ];
-
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final locale = Localizations.localeOf(context).toString();
     final primaryColor = Theme.of(context).primaryColor;
     final mutedColor = isDarkMode ? Colors.white54 : NepanikarColors.dark.withOpacity(0.5);
     final textColor = isDarkMode ? Colors.white : NepanikarColors.dark;
@@ -383,7 +382,7 @@ class _MonthCalendar extends StatelessWidget {
               Expanded(
                 child: Center(
                   child: Text(
-                    '${_monthNames[month.month - 1]} ${month.year}',
+                    DateFormat.yMMMM(locale).format(month),
                     style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: textColor),
                   ),
                 ),
@@ -393,7 +392,7 @@ class _MonthCalendar extends StatelessWidget {
           ),
           const SizedBox(height: 6),
           Row(
-            children: _weekdayLabels
+            children: _weekdayLabels(context)
                 .map(
                   (l) => Expanded(
                     child: Center(
@@ -513,11 +512,18 @@ class _CardMenu extends StatelessWidget {
       itemBuilder: (context) => [
         PopupMenuItem(
           value: 'reminder',
-          child: Text(hasReminder ? 'Změnit připomínku' : 'Přidat připomínku'),
+          child: Text(
+            hasReminder
+                ? context.l10n.dbt_challenge_reminder_change
+                : context.l10n.dbt_challenge_reminder_add,
+          ),
         ),
         if (hasReminder)
-          const PopupMenuItem(value: 'remove_reminder', child: Text('Zrušit připomínku')),
-        const PopupMenuItem(value: 'delete', child: Text('Odebrat výzvu')),
+          PopupMenuItem(
+            value: 'remove_reminder',
+            child: Text(context.l10n.dbt_challenge_reminder_cancel),
+          ),
+        PopupMenuItem(value: 'delete', child: Text(context.l10n.dbt_challenge_remove)),
       ],
       // A plain child (instead of `icon:`) avoids the built-in 48px IconButton
       // box, so the dots hug the card's right edge.

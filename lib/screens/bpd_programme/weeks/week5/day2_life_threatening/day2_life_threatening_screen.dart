@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week5/day2_life_threatening/day2_content.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/acronym_skill_page.dart';
@@ -8,6 +9,7 @@ import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_messages.dart'
 import 'package:nepanikar/screens/bpd_programme/widgets/day_completion_page.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_flow_header.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/day_page_memory.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/structured_worksheet.dart';
 import 'package:nepanikar/screens/contacts/region_contacts_screen.dart';
 import 'package:nepanikar/screens/home/my_records/rescue_package/rescue_package_screen.dart';
@@ -43,10 +45,19 @@ class Week5Day2LifeThreateningScreen extends StatefulWidget {
 
 class _Week5Day2LifeThreateningScreenState extends State<Week5Day2LifeThreateningScreen> {
   final PageController _pageController = PageController();
+  static const _pageMemory = BpdDayPageMemory(5, 2);
   int _currentPage = 0;
   static const int _totalPages = 6;
 
   BpdDaysDao get _bpdDaysDao => registry.get<BpdDaysDao>();
+
+  @override
+  void initState() {
+    super.initState();
+    _pageMemory.restore(this, _pageController, _totalPages, (page) {
+      setState(() => _currentPage = page);
+    });
+  }
 
   @override
   void dispose() {
@@ -123,7 +134,10 @@ class _Week5Day2LifeThreateningScreenState extends State<Week5Day2LifeThreatenin
               child: PageView(
                 controller: _pageController,
                 physics: const NeverScrollableScrollPhysics(),
-                onPageChanged: (page) => setState(() => _currentPage = page),
+                onPageChanged: (page) {
+                  setState(() => _currentPage = page);
+                  _pageMemory.remember(page);
+                },
                 children: [
                   Week5Day2WarningPage(onNext: _goToNextPage, onSkip: _skipDay),
                   Week5Day2EducationPage(onNext: _goToNextPage),
@@ -292,7 +306,7 @@ class _Week5Day2ReliefListPageState extends State<Week5Day2ReliefListPage> {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return DayPageBase(
-      buttonText: 'Pokračovat',
+      buttonText: context.l10n.dbt_continue,
       onButtonPressed: _saveAndContinue,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

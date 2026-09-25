@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 
 /// Data model for Day Preview
@@ -138,7 +139,7 @@ class DayPreviewSheet extends StatelessWidget {
               ),
               const SizedBox(width: 6),
               Text(
-                'Den ${data.dayNumber}',
+                context.l10n.dbt_day(data.dayNumber),
                 style: TextStyle(
                   fontSize: 13,
                   fontWeight: FontWeight.w600,
@@ -152,7 +153,7 @@ class DayPreviewSheet extends StatelessWidget {
 
         // Week indicator
         Text(
-          'Týden ${data.weekNumber}',
+          context.l10n.dbt_week(data.weekNumber),
           style: TextStyle(fontSize: 14, color: isDarkMode ? Colors.white54 : Colors.grey.shade500),
         ),
 
@@ -211,7 +212,7 @@ class DayPreviewSheet extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              data.isCompleted ? 'Zopakovat den' : 'Začít den',
+              data.isCompleted ? context.l10n.dbt_repeat_day : context.l10n.dbt_start_day,
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
             ),
             const SizedBox(width: 8),

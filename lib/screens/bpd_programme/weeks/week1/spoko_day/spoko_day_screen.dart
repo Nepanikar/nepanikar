@@ -6,6 +6,7 @@ import 'package:nepanikar/screens/bpd_programme/weeks/week1/spoko_day/spoko_chal
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/spoko_day/spoko_completion_page.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/spoko_day/spoko_day_data.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/spoko_day/spoko_education_chat_page.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/day_page_memory.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 
@@ -56,10 +57,19 @@ class SpokoDayScreen extends StatefulWidget {
 
 class _SpokoDayScreenState extends State<SpokoDayScreen> {
   final PageController _pageController = PageController();
+  late final _pageMemory = BpdDayPageMemory(widget.data.weekNumber, widget.data.dayNumber);
   int _currentPage = 0;
   static const int _totalPages = 3;
 
   BpdDaysDao get _bpdDaysDao => registry.get<BpdDaysDao>();
+
+  @override
+  void initState() {
+    super.initState();
+    _pageMemory.restore(this, _pageController, _totalPages, (page) {
+      setState(() => _currentPage = page);
+    });
+  }
 
   @override
   void dispose() {
@@ -98,7 +108,10 @@ class _SpokoDayScreenState extends State<SpokoDayScreen> {
               child: PageView(
                 controller: _pageController,
                 physics: const NeverScrollableScrollPhysics(),
-                onPageChanged: (page) => setState(() => _currentPage = page),
+                onPageChanged: (page) {
+                  setState(() => _currentPage = page);
+                  _pageMemory.remember(page);
+                },
                 children: [
                   SpokoEducationChatPage(data: widget.data, onNext: _nextPage),
                   SpokoChallengePage(data: widget.data, onNext: _nextPage),

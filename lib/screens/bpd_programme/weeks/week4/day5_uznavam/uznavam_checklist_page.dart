@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week4/day5_uznavam/day5_content.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
@@ -96,7 +97,7 @@ class _UznavamChecklistPageState extends State<UznavamChecklistPage> {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return DayPageBase(
-      buttonText: 'Pokračovat',
+      buttonText: context.l10n.dbt_continue,
       onButtonPressed: _onContinue,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

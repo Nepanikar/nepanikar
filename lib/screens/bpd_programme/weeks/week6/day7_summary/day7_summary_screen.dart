@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_lists.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_messages.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_flow_header.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/day_page_memory.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/reflection_autosave.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/reflection_fields.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/week_completion_page.dart';
@@ -36,6 +38,7 @@ class Week6Day7SummaryScreen extends StatefulWidget {
 class _Week6Day7SummaryScreenState extends State<Week6Day7SummaryScreen>
     with ReflectionAutosave<Week6Day7SummaryScreen> {
   final PageController _pageController = PageController();
+  static const _pageMemory = BpdDayPageMemory(_weekNumber, 7);
   int _currentPage = 0;
   static const int _totalPages = 3;
   static const int _weekNumber = 6;
@@ -91,6 +94,9 @@ class _Week6Day7SummaryScreenState extends State<Week6Day7SummaryScreen>
   @override
   void initState() {
     super.initState();
+    _pageMemory.restore(this, _pageController, _totalPages, (page) {
+      setState(() => _currentPage = page);
+    });
     initReflectionAutosave(weekNumber: _weekNumber, controllers: _controllers);
   }
 
@@ -148,7 +154,10 @@ class _Week6Day7SummaryScreenState extends State<Week6Day7SummaryScreen>
               child: PageView(
                 controller: _pageController,
                 physics: const NeverScrollableScrollPhysics(),
-                onPageChanged: (page) => setState(() => _currentPage = page),
+                onPageChanged: (page) {
+                  setState(() => _currentPage = page);
+                  _pageMemory.remember(page);
+                },
                 children: [
                   ChatDayPage(
                     onCompleted: _goToNextPage,
@@ -188,7 +197,7 @@ class _ReflectionPage extends StatelessWidget {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return DayPageBase(
-      buttonText: 'Pokračovat',
+      buttonText: context.l10n.dbt_continue,
       onButtonPressed: onNext,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

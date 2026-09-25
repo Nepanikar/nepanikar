@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 
 /// Closing page of a week's reflection day: celebration badge, eyebrow label,
@@ -10,14 +11,14 @@ class WeekCompletionPage extends StatelessWidget {
     required this.praise,
     required this.onComplete,
     this.heading = 'Gratulujeme!',
-    this.buttonText = 'Dokončit týden',
+    this.buttonText,
     this.eyebrow,
   });
 
   final int weekNumber;
   final String praise;
   final String heading;
-  final String buttonText;
+  final String? buttonText;
 
   /// Small label above the heading. Defaults to "TÝDEN n DOKONČEN"; Week 7
   /// overrides it because that screen ends the whole programme, not a week.
@@ -71,7 +72,7 @@ class WeekCompletionPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 24),
                     Text(
-                      eyebrow ?? 'TÝDEN $weekNumber DOKONČEN',
+                      eyebrow ?? context.l10n.dbt_week_completed(weekNumber),
                       style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
@@ -113,7 +114,7 @@ class WeekCompletionPage extends StatelessWidget {
                   elevation: 2,
                 ),
                 child: Text(
-                  buttonText,
+                  buttonText ?? context.l10n.dbt_finish_week,
                   style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),

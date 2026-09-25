@@ -81,7 +81,7 @@ class _ReminderPageState extends State<ReminderPage> {
     final primaryColor = Theme.of(context).primaryColor;
 
     return DayPageBase(
-      buttonText: 'Pokračovat',
+      buttonText: context.l10n.dbt_continue,
       onButtonPressed: widget.onNext,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -114,7 +114,7 @@ class _ReminderPageState extends State<ReminderPage> {
                     Icon(Icons.notifications_none, color: primaryColor, size: 20),
                     const SizedBox(width: 8),
                     Text(
-                      NotificationType.mindfulnessReminder.customTitle!,
+                      NotificationType.mindfulnessReminder.customTitle(context.l10n)!,
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
@@ -125,7 +125,7 @@ class _ReminderPageState extends State<ReminderPage> {
                 ),
                 const SizedBox(height: 6),
                 Text(
-                  NotificationType.mindfulnessReminderBody,
+                  context.l10n.dbt_notification_mindfulness_body,
                   style: TextStyle(
                     fontSize: 14,
                     height: 1.45,

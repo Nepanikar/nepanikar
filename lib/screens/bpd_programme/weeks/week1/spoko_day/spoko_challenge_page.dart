@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/spoko_day/spoko_day_data.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
@@ -76,7 +77,7 @@ class _SpokoChallengePageState extends State<SpokoChallengePage> {
   void _onFutureChallenge() {
     ScaffoldMessenger.of(
       context,
-    ).showSnackBar(const SnackBar(content: Text('Tato funkce se připravuje.')));
+    ).showSnackBar(SnackBar(content: Text(context.l10n.dbt_feature_coming)));
   }
 
   @override
@@ -85,14 +86,14 @@ class _SpokoChallengePageState extends State<SpokoChallengePage> {
     final secondaryText = isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.7);
 
     return DayPageBase(
-      buttonText: 'Pokračovat',
+      buttonText: context.l10n.dbt_continue,
       onButtonPressed: _onContinue,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 12),
           Text(
-            'Dnešní výzva',
+            context.l10n.dbt_todays_challenge,
             style: TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.bold,

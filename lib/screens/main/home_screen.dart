@@ -72,7 +72,7 @@ class HomeScreen extends StatelessWidget {
         location: const EatingDisorderRoute().location,
       ),
       HomeTile(
-        text: 'DBT průvodce',
+        text: context.l10n.dbt_programme,
         image: Assets.illustrations.modules.dbt.svg(colorFilter: colorFilter),
         location: bpdLocation,
       ),

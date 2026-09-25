@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/bpd_research.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week7/day7_conclusion/day7_content.dart';
@@ -7,6 +8,7 @@ import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart'
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_messages.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_flow_header.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/day_page_memory.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/external_link_button.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/structured_worksheet.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/week_completion_page.dart';
@@ -41,6 +43,7 @@ class Week7Day7ConclusionScreen extends StatefulWidget {
 
 class _Week7Day7ConclusionScreenState extends State<Week7Day7ConclusionScreen> {
   final PageController _pageController = PageController();
+  static const _pageMemory = BpdDayPageMemory(7, 7);
   int _currentPage = 0;
   static const int _totalPages = 6;
 
@@ -49,6 +52,14 @@ class _Week7Day7ConclusionScreenState extends State<Week7Day7ConclusionScreen> {
   BpdWorksheetDao get _worksheetDao => registry.get<BpdWorksheetDao>();
 
   BpdRescuePackageDao get _rescueDao => registry.get<BpdRescuePackageDao>();
+
+  @override
+  void initState() {
+    super.initState();
+    _pageMemory.restore(this, _pageController, _totalPages, (page) {
+      setState(() => _currentPage = page);
+    });
+  }
 
   @override
   void dispose() {
@@ -128,7 +139,10 @@ class _Week7Day7ConclusionScreenState extends State<Week7Day7ConclusionScreen> {
               child: PageView(
                 controller: _pageController,
                 physics: const NeverScrollableScrollPhysics(),
-                onPageChanged: (page) => setState(() => _currentPage = page),
+                onPageChanged: (page) {
+                  setState(() => _currentPage = page);
+                  _pageMemory.remember(page);
+                },
                 children: [
                   Week7Day7OpeningPage(onNext: _goToNextPage),
                   Week7Day7ThreeSkillsPage(onNext: _saveThreeSkillsAndContinue),
@@ -167,7 +181,7 @@ class Week7Day7OpeningPage extends StatelessWidget {
         for (var i = 0; i < day7Opening.length; i++)
           ChatStep(
             messages: [ChatBotBubble(text: day7Opening[i], showAvatar: i == 0)],
-            buttonLabel: i == day7Opening.length - 1 ? 'Pokračovat' : null,
+            buttonLabel: i == day7Opening.length - 1 ? context.l10n.dbt_continue : null,
           ),
       ],
     );
@@ -185,7 +199,7 @@ class Week7Day7ThreeSkillsPage extends StatelessWidget {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return DayPageBase(
-      buttonText: 'Pokračovat',
+      buttonText: context.l10n.dbt_continue,
       onButtonPressed: onNext,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -249,9 +263,9 @@ class Week7Day7SupportPage extends StatelessWidget {
             ),
           ],
         ),
-        const ChatStep(
-          messages: [ChatBotBubble(text: day7JustTheBeginning, showAvatar: true)],
-          buttonLabel: 'Pokračovat',
+        ChatStep(
+          messages: [const ChatBotBubble(text: day7JustTheBeginning, showAvatar: true)],
+          buttonLabel: context.l10n.dbt_continue,
         ),
       ],
     );
@@ -269,7 +283,7 @@ class Week7Day7ClosingWritingPage extends StatelessWidget {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return DayPageBase(
-      buttonText: 'Pokračovat',
+      buttonText: context.l10n.dbt_continue,
       onButtonPressed: onNext,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -321,7 +335,7 @@ class Week7Day7StudyPage extends StatelessWidget {
     final bodyColor = isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.78);
 
     return DayPageBase(
-      buttonText: day7StudyCloseButton,
+      buttonText: context.l10n.dbt_close,
       onButtonPressed: onClose,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

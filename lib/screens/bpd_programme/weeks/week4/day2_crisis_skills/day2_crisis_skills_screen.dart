@@ -5,6 +5,7 @@ import 'package:nepanikar/screens/bpd_programme/weeks/week4/day2_crisis_skills/d
 import 'package:nepanikar/screens/bpd_programme/weeks/week4/day2_crisis_skills/day2_pages.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_completion_page.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_flow_header.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/day_page_memory.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 
@@ -33,10 +34,19 @@ class Week4Day2CrisisSkillsScreen extends StatefulWidget {
 
 class _Week4Day2CrisisSkillsScreenState extends State<Week4Day2CrisisSkillsScreen> {
   final PageController _pageController = PageController();
+  static const _pageMemory = BpdDayPageMemory(4, 2);
   int _currentPage = 0;
   static const int _totalPages = 6;
 
   BpdDaysDao get _bpdDaysDao => registry.get<BpdDaysDao>();
+
+  @override
+  void initState() {
+    super.initState();
+    _pageMemory.restore(this, _pageController, _totalPages, (page) {
+      setState(() => _currentPage = page);
+    });
+  }
 
   @override
   void dispose() {
@@ -87,7 +97,10 @@ class _Week4Day2CrisisSkillsScreenState extends State<Week4Day2CrisisSkillsScree
               child: PageView(
                 controller: _pageController,
                 physics: const NeverScrollableScrollPhysics(),
-                onPageChanged: (page) => setState(() => _currentPage = page),
+                onPageChanged: (page) {
+                  setState(() => _currentPage = page);
+                  _pageMemory.remember(page);
+                },
                 children: [
                   Week4Day2CrisisChatPage(onNext: _goToNextPage),
                   Week4Day2WhenChatPage(onNext: _goToNextPage),

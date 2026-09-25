@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_messages.dart';
@@ -62,19 +63,19 @@ class Week1Day2EducationChatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChatDayPage(
       onCompleted: onNext,
-      steps: const [
-        ChatStep(messages: [ChatBotBubble(text: _intro, showAvatar: true)]),
-        ChatStep(messages: [ChatRichMessage(child: _SpokoLetterCard())]),
-        ChatStep(messages: [ChatBotBubble(text: _duringWeek, showAvatar: true)]),
-        ChatStep(messages: [ChatInfoCard(text: _infoText)]),
-        ChatStep(
+      steps: [
+        const ChatStep(messages: [ChatBotBubble(text: _intro, showAvatar: true)]),
+        const ChatStep(messages: [ChatRichMessage(child: _SpokoLetterCard())]),
+        const ChatStep(messages: [ChatBotBubble(text: _duringWeek, showAvatar: true)]),
+        const ChatStep(messages: [ChatInfoCard(text: _infoText)]),
+        const ChatStep(
           messages: [ChatConceptCard(badge: 'S', title: 'spánek', body: _sleepBody)],
         ),
-        ChatStep(messages: [ChatBotBubble(text: _note1, showAvatar: true)]),
-        ChatStep(messages: [ChatBotBubble(text: _note2)]),
+        const ChatStep(messages: [ChatBotBubble(text: _note1, showAvatar: true)]),
+        const ChatStep(messages: [ChatBotBubble(text: _note2)]),
         ChatStep(
-          messages: [ChatNumberedList(caption: 'Zamysli se', items: _questions)],
-          buttonLabel: 'Vybrat výzvu',
+          messages: [const ChatNumberedList(caption: 'Zamysli se', items: _questions)],
+          buttonLabel: context.l10n.dbt_pick_challenge,
         ),
       ],
     );

@@ -52,7 +52,13 @@ class BpdDaysDao {
   Future<void> markDayCompleted(int weekNumber, int dayNumber) async {
     final dayProgress = await getDayProgress(weekNumber, dayNumber);
     if (dayProgress != null) {
-      final updated = dayProgress.copyWith(isCompleted: true, completedAt: DateTime.now());
+      // `lastPage` goes back to the start: the day is done, and someone
+      // re-reading it wants the lesson from the top, not its closing page.
+      final updated = dayProgress.copyWith(
+        isCompleted: true,
+        completedAt: DateTime.now(),
+        lastPage: 0,
+      );
       await saveDayProgress(updated);
       // Only the first completion counts. Days can be re-walked freely, and
       // counting a re-read as progress would bend the pilot's drop-off curve.
@@ -73,6 +79,20 @@ class BpdDaysDao {
     if (days.any((day) => !day.isCompleted)) return;
     await registry.get<BpdWeeksDao>().markWeekCompleted(weekNumber);
   }
+
+  /// Remembers which page of the day's flow the user is on.
+  ///
+  /// Silently does nothing when the day has no record yet: days are written a
+  /// week at a time when the week is opened, so that only happens if a screen
+  /// is reached by a route typed by hand.
+  Future<void> saveDayPage(int weekNumber, int dayNumber, int page) async {
+    final dayProgress = await getDayProgress(weekNumber, dayNumber);
+    if (dayProgress == null || dayProgress.lastPage == page) return;
+    await saveDayProgress(dayProgress.copyWith(lastPage: page));
+  }
+
+  Future<int> getDayPage(int weekNumber, int dayNumber) async =>
+      (await getDayProgress(weekNumber, dayNumber))?.lastPage ?? 0;
 
   Future<void> markDayStarted(int weekNumber, int dayNumber) async {
     final dayProgress = await getDayProgress(weekNumber, dayNumber);

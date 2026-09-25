@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_messages.dart';
 
 /// One tap-through batch of chat messages.
@@ -24,13 +25,13 @@ class ChatDayPage extends StatefulWidget {
     super.key,
     required this.steps,
     required this.onCompleted,
-    this.defaultButtonLabel = 'Pokračovat',
+    this.defaultButtonLabel,
     this.secondaryAction,
   });
 
   final List<ChatStep> steps;
   final VoidCallback onCompleted;
-  final String defaultButtonLabel;
+  final String? defaultButtonLabel;
 
   /// Optional second action under the main button, shown on every step.
   ///
@@ -126,19 +127,17 @@ class _ChatDayPageState extends State<ChatDayPage> {
   }
 
   Widget _buildButton(BuildContext context) {
+    final label =
+        _currentStep.buttonLabel ?? widget.defaultButtonLabel ?? context.l10n.dbt_continue;
     final enabledListenable = _currentStep.enabled;
     if (enabledListenable == null) {
-      return _BottomButton(
-        label: _currentStep.buttonLabel ?? widget.defaultButtonLabel,
-        enabled: !_isTyping,
-        onPressed: _onButtonPressed,
-      );
+      return _BottomButton(label: label, enabled: !_isTyping, onPressed: _onButtonPressed);
     }
     return ValueListenableBuilder<bool>(
       valueListenable: enabledListenable,
       builder: (context, enabled, _) {
         return _BottomButton(
-          label: _currentStep.buttonLabel ?? widget.defaultButtonLabel,
+          label: label,
           enabled: enabled && !_isTyping,
           onPressed: _onButtonPressed,
         );

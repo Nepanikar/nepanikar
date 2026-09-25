@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
 import 'package:nepanikar/services/db/bpd/bpd_challenge_tracker_dao.dart';
@@ -90,7 +91,7 @@ class _Day2ChallengePageState extends State<Day2ChallengePage> {
   void _onFutureChallenge() {
     ScaffoldMessenger.of(
       context,
-    ).showSnackBar(const SnackBar(content: Text('Tato funkce se připravuje.')));
+    ).showSnackBar(SnackBar(content: Text(context.l10n.dbt_feature_coming)));
   }
 
   @override
@@ -98,14 +99,14 @@ class _Day2ChallengePageState extends State<Day2ChallengePage> {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return DayPageBase(
-      buttonText: 'Pokračovat',
+      buttonText: context.l10n.dbt_continue,
       onButtonPressed: _onContinue,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 12),
           Text(
-            'Dnešní výzva',
+            context.l10n.dbt_todays_challenge,
             style: TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.bold,

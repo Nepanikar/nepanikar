@@ -209,32 +209,51 @@ found three things not in this list, all fixed in the same pass:
   Still open: `BpdExpectationsDao` (Day 1 expectations) is written but never
   read back anywhere.
 
-- [~] **GEN-03 — Localisation pass.** Programme copy is inline **Czech** strings
-  in Dart (Weeks 1–2 are now consistent; the Slovak Week 2 was rewritten
-  2026-08-03). Still to decide: whether it eventually goes through
-  `context.l10n` / ARB. It is content rather than UI chrome, so the current
-  choice is to keep it in Dart alongside `docs/hpo/source/*.md` — revisit if the
-  programme has to ship in more than one language.
+- [~] **GEN-03 — Localisation pass.**
+  - ✅ **Chrome is in ARB, in all 20 locales (done 2026-09-22).** Everything
+    that is the app talking rather than the programme's content now goes
+    through `context.l10n`: the module's tiles and app-bar titles, the landing
+    screen, the weeks overview and its locked-week sheet, the day list with
+    both refusal dialogs, the day/week completion pages, the shared worksheet
+    and technique widgets, the pause day, the programme's notifications, and
+    the whole My records → DBT branch (challenges, SMART goals, rescue package,
+    emotion dictionary). 139 `dbt_*` keys, hand-filled for every supported
+    locale rather than left to Localazy, because the pilot ships before the
+    next sync.
+    Dates and weekday/month names come from `DateFormat` in the active locale;
+    the day-list activity chips are an enum (`_DayActivity`) rather than
+    repeated Czech strings.
+    **Watch out:** gen-l10n orders placeholders **alphabetically**, not by
+    where they appear in the sentence, and the generated parameters are
+    positional `Object`s — so `{lesson} … {date}` is called `(date, lesson)`.
+    Two call sites shipped swapped until a screenshot caught it.
+  - **Programme copy stays inline Czech.** The day screens and their
+    `dayN_content.dart` (~2 000 strings) are the author's verbatim clinical copy,
+    with `docs/hpo/source/*.md` as the source of truth, and the pilot is Czech.
+    Machine-translating it would be wrong; revisit only if the programme has to
+    run in another language, and then with a translator.
+  - Known seams where translated chrome frames Czech content: the SMART
+    worksheet questions (`smart_goal_fields.dart`, mirrored in
+    `my_goals_screen.dart`), the SPOKO area labels (`bpd_challenge_model.dart`,
+    an acronym that only works in Czech), week titles from
+    `bpd_weeks_data.json`, and the emotion dictionary entries.
 
 - [?] **GEN-06 — Unlock policy.** Asked by the author (2026-08-12).
   - ✅ **Midnight (done 2026-08-18).** Unlocks used to land at the clock time the
     user pressed "Začít svou cestu" — start at 23:50 and day 2 arrived at 23:50
     the next evening. `bpd_unlock_schedule.dart` now floors every unlock to local
-    midnight (flooring *after* adding the days, so DST cannot shift it off the
-    hour). Verified on a clean install: all seven weeks logged at `00:00:00`,
-    exactly 7 days apart.
-  - [?] **No progress gate.** Skipping days 1–3 still opens day 4 on schedule.
-    Should the next day wait until the previous one is completed?
-  - [?] **Weeks are not time-gated at all.** `bpd_weeks_screen.dart:60` opens a
-    week when `kImplementedBpdWeeks` contains it — the `unlockDate` computed by
-    `BpdWeeksDao` is only used for the "Odemkne se …" label on weeks we have not
-    built. So on a fresh install *every implemented week is open at once*, and
-    a user on Week 1 Day 1 can still open Week 4's day list. **Since GEN-04
-    (2026-09-18) its days are at least locked**: day records now derive from the
-    week's own `unlockDate`, so a week opened early shows seven locked days and
-    a countdown rather than seven usable ones. The week itself is still
-    browsable. Decide whether that preview is wanted, or whether the tree should
-    follow `unlockDate` too.
+    midnight. Dates are counted in calendar days (`DateTime(y, m, d + n)`), not
+    by adding 24-hour durations — the latter slid a day backwards across the
+    25 October 2026 DST change and would have opened weeks 6 and 7 on a Sunday.
+    Covered by `test/bpd_unlock_schedule_test.dart`.
+  - ✅ **Progress gate (done 2026-09-20).** A lesson opens only once every
+    earlier one is finished: `BpdDaysDao.firstUnfinishedDayBefore` names the
+    blocking lesson and `bpd_week_detail_screen.dart` offers to jump to it.
+    The calendar still unlocks one lesson a day regardless, so a missed day is
+    caught up in the programme's own pause days.
+  - ✅ **Weeks follow `unlockDate` (done 2026-09-20).** `_isWeekOpen` used to
+    check only `kImplementedBpdWeeks`, so every built week was browsable from a
+    fresh install. It now also requires the week's `unlockDate` to have passed.
 
 - [x] **W1-11 — Week 1 education → chat.** ✅ Done 2026-08-19. The author noticed
   Week 1 behaved differently from Weeks 2–4: only Day 1 used the chat template.

@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/technique_menu_page.dart';
 
@@ -52,7 +53,11 @@ class _TechniqueRandomiserState extends State<TechniqueRandomiser> {
   Widget build(BuildContext context) {
     final drawn = _drawn;
     if (drawn == null) {
-      return _DrawButton(label: 'Vylosovat techniku', icon: Icons.casino_outlined, onTap: _draw);
+      return _DrawButton(
+        label: context.l10n.dbt_draw_technique,
+        icon: Icons.casino_outlined,
+        onTap: _draw,
+      );
     }
 
     return Column(
@@ -60,7 +65,12 @@ class _TechniqueRandomiserState extends State<TechniqueRandomiser> {
       children: [
         _DrawnCard(technique: drawn, sourceLabel: widget.sourceLabel),
         const SizedBox(height: 10),
-        _DrawButton(label: 'Vylosovat jinou', icon: Icons.refresh, onTap: _draw, ghost: true),
+        _DrawButton(
+          label: context.l10n.dbt_draw_another,
+          icon: Icons.refresh,
+          onTap: _draw,
+          ghost: true,
+        ),
       ],
     );
   }
@@ -138,7 +148,7 @@ class _DrawnCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(999),
             ),
             child: Text(
-              'VYLOSOVÁNO',
+              context.l10n.dbt_drawn,
               style: TextStyle(
                 fontSize: 11,
                 fontWeight: FontWeight.w900,
@@ -182,7 +192,7 @@ class _DrawnCard extends StatelessWidget {
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                 textStyle: const TextStyle(fontSize: 15, fontWeight: FontWeight.w800),
               ),
-              child: const Text('Otevřít techniku'),
+              child: Text(context.l10n.dbt_open_technique),
             ),
           ),
         ],

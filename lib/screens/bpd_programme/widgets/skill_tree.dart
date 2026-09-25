@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 
 /// Visual state of a node on the skill tree path.
@@ -347,7 +348,7 @@ class _TodayBadge extends StatelessWidget {
         ],
       ),
       child: Text(
-        'TEĎ',
+        context.l10n.dbt_tree_current,
         style: TextStyle(
           fontSize: 11,
           fontWeight: FontWeight.w900,
