@@ -5,6 +5,8 @@ import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart'
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_messages.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/external_link_button.dart';
 import 'package:nepanikar/services/db/bpd/bpd_user_profile_model.dart';
+import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
+import 'package:nepanikar/utils/registry.dart';
 
 /// Page 1/7 — Welcome + how the programme works + name/pronoun, in chat form
 /// (verbatim, source: tyzden-1.md §1 "Představení programu").
@@ -29,6 +31,27 @@ class _Day1WelcomeChatPageState extends State<Day1WelcomeChatPage> {
     'mezilidské vztahy',
     'sebepojetí',
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    _prefillSavedProfile();
+  }
+
+  /// Puts an already saved name and pronoun back into the form.
+  ///
+  /// The profile is stored the first time this page is completed, but nothing
+  /// ever read it back, so walking through Day 1 again showed an empty field —
+  /// which looks exactly like the answer was never saved.
+  Future<void> _prefillSavedProfile() async {
+    final profile = await registry.get<UserSettingsDao>().getBpdUserProfile();
+    if (profile == null || !mounted) return;
+    setState(() {
+      _nameController.text = profile.name;
+      _selectedPronoun = profile.pronoun;
+    });
+    _revalidate();
+  }
 
   @override
   void dispose() {
