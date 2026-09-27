@@ -197,8 +197,9 @@ class _MainScreenState extends State<MainScreen> {
 
 /// The DBT tab's body.
 ///
-/// The tab has no screen of its own — it opens the landing screen full-screen,
-/// over the bottom bar — so this is only ever what sits behind it.
+/// The tab has no screen of its own — it opens the landing route full-screen,
+/// over the bottom bar (and the landing route sends anyone who has already
+/// started on to their weeks) — so this is only ever what sits behind it.
 class _BpdLandingNavigator extends StatefulWidget {
   const _BpdLandingNavigator({required this.onDismissed});
 

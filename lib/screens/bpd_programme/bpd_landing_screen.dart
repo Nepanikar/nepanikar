@@ -17,6 +17,22 @@ part 'bpd_landing_screen.g.dart';
 class BpdLandingScreenRoute extends GoRouteData with $BpdLandingScreenRoute {
   const BpdLandingScreenRoute();
 
+  /// Sends anyone who has already started straight into their weeks.
+  ///
+  /// Both ways into the programme — the DBT tab and the home tile — point at
+  /// this route, and it is an introduction ending in a "start" button. Without
+  /// this, someone in week 4 was met by the pitch for the programme every time
+  /// and had to press „Začít svou cestu“ again to reach it.
+  ///
+  /// It lives here rather than at the two entry points so that anything else
+  /// linking to the landing screen later — a notification, a deep link — is
+  /// treated the same way.
+  @override
+  Future<String?> redirect(BuildContext context, GoRouterState state) async {
+    final status = await registry.get<UserSettingsDao>().getBpdProgrammeStatus();
+    return status.hasStarted ? const BpdWeeksScreenRoute().location : null;
+  }
+
   @override
   Widget build(BuildContext context, _) => const BpdLandingScreen();
 }
