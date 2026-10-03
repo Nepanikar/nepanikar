@@ -64,7 +64,7 @@ class _ChallengeCardState extends State<ChallengeCard> {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final primaryColor = Theme.of(context).primaryColor;
     final textColor = isDarkMode ? Colors.white : NepanikarColors.dark;
-    final mutedColor = isDarkMode ? Colors.white54 : NepanikarColors.dark.withValues(alpha:0.5);
+    final mutedColor = isDarkMode ? Colors.white54 : NepanikarColors.dark.withValues(alpha: 0.5);
     final doneToday = challenge.isCompletedToday;
     final streak = challenge.currentStreak;
 
@@ -72,10 +72,12 @@ class _ChallengeCardState extends State<ChallengeCard> {
       margin: const EdgeInsets.only(bottom: 14),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: isDarkMode ? Colors.white.withValues(alpha:0.05) : Colors.white,
+        color: isDarkMode ? Colors.white.withValues(alpha: 0.05) : Colors.white,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: isDarkMode ? Colors.white.withValues(alpha:0.1) : primaryColor.withValues(alpha:0.15),
+          color: isDarkMode
+              ? Colors.white.withValues(alpha: 0.1)
+              : primaryColor.withValues(alpha: 0.15),
         ),
       ),
       child: Column(
@@ -89,7 +91,7 @@ class _ChallengeCardState extends State<ChallengeCard> {
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                     decoration: BoxDecoration(
-                      color: primaryColor.withValues(alpha:0.12),
+                      color: primaryColor.withValues(alpha: 0.12),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text(
@@ -244,7 +246,7 @@ class _ReminderRow extends StatelessWidget {
     final hasReminder = challenge.hasReminder;
     final color = hasReminder
         ? NepanikarColors.secondary
-        : (isDarkMode ? Colors.white60 : NepanikarColors.dark.withValues(alpha:0.55));
+        : (isDarkMode ? Colors.white60 : NepanikarColors.dark.withValues(alpha: 0.55));
     final time = challenge.reminderTime;
 
     return InkWell(
@@ -305,8 +307,8 @@ class _WeekHistory extends StatelessWidget {
                 color: done
                     ? primaryColor
                     : (isDarkMode
-                          ? Colors.white.withValues(alpha:0.07)
-                          : primaryColor.withValues(alpha:0.08)),
+                          ? Colors.white.withValues(alpha: 0.07)
+                          : primaryColor.withValues(alpha: 0.08)),
                 shape: BoxShape.circle,
               ),
               child: done ? const Icon(Icons.check, size: 15, color: Colors.white) : null,
@@ -317,7 +319,7 @@ class _WeekHistory extends StatelessWidget {
               style: TextStyle(
                 fontSize: 10,
                 fontWeight: FontWeight.w600,
-                color: isDarkMode ? Colors.white54 : NepanikarColors.dark.withValues(alpha:0.5),
+                color: isDarkMode ? Colors.white54 : NepanikarColors.dark.withValues(alpha: 0.5),
               ),
             ),
           ],
@@ -350,7 +352,7 @@ class _MonthCalendar extends StatelessWidget {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final locale = Localizations.localeOf(context).toString();
     final primaryColor = Theme.of(context).primaryColor;
-    final mutedColor = isDarkMode ? Colors.white54 : NepanikarColors.dark.withValues(alpha:0.5);
+    final mutedColor = isDarkMode ? Colors.white54 : NepanikarColors.dark.withValues(alpha: 0.5);
     final textColor = isDarkMode ? Colors.white : NepanikarColors.dark;
 
     final daysInMonth = DateTime(month.year, month.month + 1, 0).day;
@@ -371,7 +373,9 @@ class _MonthCalendar extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.fromLTRB(8, 6, 8, 10),
       decoration: BoxDecoration(
-        color: isDarkMode ? Colors.white.withValues(alpha:0.04) : primaryColor.withValues(alpha:0.04),
+        color: isDarkMode
+            ? Colors.white.withValues(alpha: 0.04)
+            : primaryColor.withValues(alpha: 0.04),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
@@ -441,7 +445,7 @@ class _MonthCalendar extends StatelessWidget {
                               fontWeight: done || isToday ? FontWeight.w800 : FontWeight.w500,
                               color: done
                                   ? Colors.white
-                                  : (isFuture ? mutedColor.withValues(alpha:0.4) : textColor),
+                                  : (isFuture ? mutedColor.withValues(alpha: 0.4) : textColor),
                             ),
                           ),
                         ),
@@ -475,7 +479,7 @@ class _NavArrow extends StatelessWidget {
       borderRadius: BorderRadius.circular(8),
       child: Padding(
         padding: const EdgeInsets.all(6),
-        child: Icon(icon, size: 20, color: enabled ? color : color.withValues(alpha:0.25)),
+        child: Icon(icon, size: 20, color: enabled ? color : color.withValues(alpha: 0.25)),
       ),
     );
   }
@@ -532,7 +536,7 @@ class _CardMenu extends StatelessWidget {
         child: Icon(
           Icons.more_vert,
           size: 20,
-          color: isDarkMode ? Colors.white60 : NepanikarColors.dark.withValues(alpha:0.5),
+          color: isDarkMode ? Colors.white60 : NepanikarColors.dark.withValues(alpha: 0.5),
         ),
       ),
     );

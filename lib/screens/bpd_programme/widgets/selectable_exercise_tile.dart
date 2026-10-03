@@ -35,13 +35,15 @@ class SelectableExerciseTile extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
         decoration: BoxDecoration(
           color: selected
-              ? primaryColor.withValues(alpha:0.12)
-              : (isDarkMode ? Colors.white.withValues(alpha:0.05) : Colors.white),
+              ? primaryColor.withValues(alpha: 0.12)
+              : (isDarkMode ? Colors.white.withValues(alpha: 0.05) : Colors.white),
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
             color: selected
                 ? primaryColor
-                : (isDarkMode ? Colors.white.withValues(alpha:0.15) : primaryColor.withValues(alpha:0.2)),
+                : (isDarkMode
+                      ? Colors.white.withValues(alpha: 0.15)
+                      : primaryColor.withValues(alpha: 0.2)),
             width: 1.5,
           ),
         ),
@@ -80,7 +82,9 @@ class SelectableExerciseTile extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 13,
                         height: 1.4,
-                        color: isDarkMode ? Colors.white60 : NepanikarColors.dark.withValues(alpha:0.65),
+                        color: isDarkMode
+                            ? Colors.white60
+                            : NepanikarColors.dark.withValues(alpha: 0.65),
                       ),
                     ),
                   ],
@@ -110,7 +114,7 @@ class _Checkbox extends StatelessWidget {
         color: selected ? primaryColor : Colors.transparent,
         borderRadius: BorderRadius.circular(6),
         border: Border.all(
-          color: selected ? primaryColor : primaryColor.withValues(alpha:0.3),
+          color: selected ? primaryColor : primaryColor.withValues(alpha: 0.3),
           width: 2,
         ),
       ),
@@ -141,7 +145,7 @@ class PickCounterHint extends StatelessWidget {
     final isMet = picked >= minimum && (picked > 0 || !hasTarget);
     final color = isMet
         ? primaryColor
-        : (isDarkMode ? Colors.white60 : NepanikarColors.dark.withValues(alpha:0.6));
+        : (isDarkMode ? Colors.white60 : NepanikarColors.dark.withValues(alpha: 0.6));
 
     return Row(
       children: [

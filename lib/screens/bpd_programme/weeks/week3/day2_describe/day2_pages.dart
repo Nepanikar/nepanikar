@@ -55,7 +55,7 @@ class Day2ModelPage extends StatelessWidget {
             style: TextStyle(
               fontSize: 15,
               height: 1.55,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.85),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha: 0.85),
             ),
           ),
           const SizedBox(height: 16),
@@ -99,7 +99,7 @@ class Day2WorksheetPage extends StatelessWidget {
             style: TextStyle(
               fontSize: 15,
               height: 1.55,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.85),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha: 0.85),
             ),
           ),
           const SizedBox(height: 8),
@@ -109,7 +109,7 @@ class Day2WorksheetPage extends StatelessWidget {
             style: TextStyle(
               fontSize: 13,
               height: 1.45,
-              color: isDarkMode ? Colors.white54 : NepanikarColors.dark.withValues(alpha:0.6),
+              color: isDarkMode ? Colors.white54 : NepanikarColors.dark.withValues(alpha: 0.6),
             ),
           ),
           const SizedBox(height: 16),
@@ -157,7 +157,7 @@ class Day2ValidationPage extends StatelessWidget {
             style: TextStyle(
               fontSize: 15,
               height: 1.55,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.85),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha: 0.85),
             ),
           ),
           const SizedBox(height: 18),
@@ -223,7 +223,7 @@ class Day2StemsPage extends StatelessWidget {
             style: TextStyle(
               fontSize: 15,
               height: 1.55,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.85),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha: 0.85),
             ),
           ),
           const SizedBox(height: 18),

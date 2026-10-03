@@ -36,7 +36,7 @@ class Week2ReflectionPage extends StatelessWidget {
             style: TextStyle(
               fontSize: 14,
               height: 1.5,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.65),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha: 0.65),
             ),
           ),
           const SizedBox(height: 20),

@@ -143,7 +143,9 @@ class _Week1Day7ReflectionScreenState extends State<Week1Day7ReflectionScreen>
                       decoration: BoxDecoration(
                         color: index <= _currentPage
                             ? primaryColor
-                            : (isDarkMode ? Colors.white.withValues(alpha:0.2) : Colors.grey.shade300),
+                            : (isDarkMode
+                                  ? Colors.white.withValues(alpha: 0.2)
+                                  : Colors.grey.shade300),
                         borderRadius: BorderRadius.circular(2),
                       ),
                     ),
@@ -157,7 +159,7 @@ class _Week1Day7ReflectionScreenState extends State<Week1Day7ReflectionScreen>
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w600,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.7),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha: 0.7),
             ),
           ),
           const Padding(

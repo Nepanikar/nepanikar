@@ -54,7 +54,7 @@ class AcronymSkillPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    final secondaryText = isDarkMode ? Colors.white70 : Colors.black.withValues(alpha:0.75);
+    final secondaryText = isDarkMode ? Colors.white70 : Colors.black.withValues(alpha: 0.75);
 
     return DayPageBase(
       buttonText: buttonText ?? context.l10n.dbt_continue,

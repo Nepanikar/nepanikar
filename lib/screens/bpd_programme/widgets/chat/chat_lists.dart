@@ -42,7 +42,7 @@ class ChatFeatureList extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
-          color: isDarkMode ? Colors.white.withValues(alpha:0.07) : Colors.white,
+          color: isDarkMode ? Colors.white.withValues(alpha: 0.07) : Colors.white,
           borderRadius: BorderRadius.circular(16),
           boxShadow: isDarkMode ? null : NepanikarColors.cardShadow(context),
         ),
@@ -71,8 +71,8 @@ class ChatFeatureList extends StatelessWidget {
                       height: 32,
                       decoration: BoxDecoration(
                         color: isDarkMode
-                            ? Colors.white.withValues(alpha:0.12)
-                            : primaryColor.withValues(alpha:0.12),
+                            ? Colors.white.withValues(alpha: 0.12)
+                            : primaryColor.withValues(alpha: 0.12),
                         borderRadius: BorderRadius.circular(9),
                       ),
                       child: Icon(
@@ -104,7 +104,7 @@ class ChatFeatureList extends StatelessWidget {
                                 height: 1.4,
                                 color: isDarkMode
                                     ? Colors.white60
-                                    : NepanikarColors.dark.withValues(alpha:0.65),
+                                    : NepanikarColors.dark.withValues(alpha: 0.65),
                               ),
                             ),
                           ],
@@ -152,7 +152,7 @@ class ChatLinksCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.fromLTRB(14, 14, 14, 8),
         decoration: BoxDecoration(
-          color: isDarkMode ? Colors.white.withValues(alpha:0.07) : Colors.white,
+          color: isDarkMode ? Colors.white.withValues(alpha: 0.07) : Colors.white,
           borderRadius: BorderRadius.circular(16),
           boxShadow: isDarkMode ? null : NepanikarColors.cardShadow(context),
         ),

@@ -43,7 +43,7 @@ class WorksheetNumberedSection extends StatelessWidget {
               height: 26,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: primaryColor.withValues(alpha:0.12),
+                color: primaryColor.withValues(alpha: 0.12),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
@@ -81,7 +81,7 @@ class WorksheetNumberedSection extends StatelessWidget {
               style: TextStyle(
                 fontSize: 13,
                 height: 1.45,
-                color: isDarkMode ? Colors.white60 : NepanikarColors.dark.withValues(alpha:0.6),
+                color: isDarkMode ? Colors.white60 : NepanikarColors.dark.withValues(alpha: 0.6),
               ),
             ),
           ),
@@ -100,7 +100,9 @@ class WorksheetNumberedSection extends StatelessWidget {
                       fontSize: 13,
                       fontWeight: FontWeight.w700,
                       height: 1.4,
-                      color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.8),
+                      color: isDarkMode
+                          ? Colors.white70
+                          : NepanikarColors.dark.withValues(alpha: 0.8),
                     ),
                   ),
                   const SizedBox(height: 6),
@@ -151,7 +153,7 @@ class WorksheetMythSection extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: isDarkMode ? Colors.white.withValues(alpha:0.04) : Colors.grey.shade100,
+        color: isDarkMode ? Colors.white.withValues(alpha: 0.04) : Colors.grey.shade100,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: isDarkMode ? Colors.white12 : Colors.grey.shade300),
       ),
@@ -247,7 +249,7 @@ class WorksheetFieldExample extends StatelessWidget {
             style: TextStyle(
               fontSize: 13,
               height: 1.45,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.75),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha: 0.75),
             ),
           ),
       ],
@@ -281,9 +283,9 @@ class WorksheetExampleCard extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: primaryColor.withValues(alpha:isDarkMode ? 0.12 : 0.06),
+        color: primaryColor.withValues(alpha: isDarkMode ? 0.12 : 0.06),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: primaryColor.withValues(alpha:0.25)),
+        border: Border.all(color: primaryColor.withValues(alpha: 0.25)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -348,7 +350,7 @@ class WorksheetExampleCard extends StatelessWidget {
                               height: 1.45,
                               color: isDarkMode
                                   ? Colors.white70
-                                  : NepanikarColors.dark.withValues(alpha:0.8),
+                                  : NepanikarColors.dark.withValues(alpha: 0.8),
                             ),
                           ),
                         ],

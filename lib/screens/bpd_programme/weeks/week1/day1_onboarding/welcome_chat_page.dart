@@ -234,7 +234,7 @@ class _Day1WelcomeChatPageState extends State<Day1WelcomeChatPage> {
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: isDarkMode ? Colors.white.withValues(alpha:0.07) : Colors.white,
+        color: isDarkMode ? Colors.white.withValues(alpha: 0.07) : Colors.white,
         borderRadius: BorderRadius.circular(16),
         boxShadow: isDarkMode ? null : NepanikarColors.cardShadow(context),
       ),
@@ -259,7 +259,7 @@ class _Day1WelcomeChatPageState extends State<Day1WelcomeChatPage> {
               hintStyle: TextStyle(color: isDarkMode ? Colors.white38 : Colors.grey.shade400),
               filled: true,
               fillColor: isDarkMode
-                  ? Colors.white.withValues(alpha:0.05)
+                  ? Colors.white.withValues(alpha: 0.05)
                   : NepanikarColors.filledContainer,
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
@@ -330,12 +330,12 @@ class _PronounPill extends StatelessWidget {
           decoration: BoxDecoration(
             color: selected
                 ? primaryColor
-                : (isDarkMode ? Colors.white.withValues(alpha:0.05) : Colors.white),
+                : (isDarkMode ? Colors.white.withValues(alpha: 0.05) : Colors.white),
             borderRadius: BorderRadius.circular(10),
             border: Border.all(
               color: selected
                   ? primaryColor
-                  : (isDarkMode ? Colors.white.withValues(alpha:0.2) : NepanikarColors.purple200),
+                  : (isDarkMode ? Colors.white.withValues(alpha: 0.2) : NepanikarColors.purple200),
               width: 1.5,
             ),
           ),
@@ -346,7 +346,7 @@ class _PronounPill extends StatelessWidget {
               fontWeight: FontWeight.bold,
               color: selected
                   ? Colors.white
-                  : (isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.6)),
+                  : (isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha: 0.6)),
             ),
           ),
         ),

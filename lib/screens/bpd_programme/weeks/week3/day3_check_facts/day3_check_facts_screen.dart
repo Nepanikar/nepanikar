@@ -214,7 +214,7 @@ class Day3WorksheetPage extends StatelessWidget {
             style: TextStyle(
               fontSize: 15,
               height: 1.55,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.85),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha: 0.85),
             ),
           ),
           const SizedBox(height: 8),
@@ -224,7 +224,7 @@ class Day3WorksheetPage extends StatelessWidget {
             style: TextStyle(
               fontSize: 13,
               height: 1.45,
-              color: isDarkMode ? Colors.white54 : NepanikarColors.dark.withValues(alpha:0.6),
+              color: isDarkMode ? Colors.white54 : NepanikarColors.dark.withValues(alpha: 0.6),
             ),
           ),
           const SizedBox(height: 16),

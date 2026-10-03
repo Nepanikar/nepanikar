@@ -35,7 +35,7 @@ class Day1MoodCheckinPage extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             decoration: BoxDecoration(
-              color: primaryColor.withValues(alpha:0.12),
+              color: primaryColor.withValues(alpha: 0.12),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Text(
@@ -55,14 +55,14 @@ class Day1MoodCheckinPage extends StatelessWidget {
             style: TextStyle(
               fontSize: 15,
               height: 1.5,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.7),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha: 0.7),
             ),
           ),
           const SizedBox(height: 18),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
             decoration: BoxDecoration(
-              color: isDarkMode ? Colors.white.withValues(alpha:0.05) : Colors.grey.shade50,
+              color: isDarkMode ? Colors.white.withValues(alpha: 0.05) : Colors.grey.shade50,
               borderRadius: BorderRadius.circular(16),
             ),
             child: Column(
@@ -86,7 +86,7 @@ class Day1MoodCheckinPage extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                             color: isDarkMode
                                 ? Colors.white60
-                                : NepanikarColors.dark.withValues(alpha:0.55),
+                                : NepanikarColors.dark.withValues(alpha: 0.55),
                           ),
                         ),
                       ],

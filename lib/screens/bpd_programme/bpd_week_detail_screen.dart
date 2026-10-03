@@ -956,7 +956,7 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
                 color: primaryColor,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withValues(alpha:0.1),
+                    color: Colors.black.withValues(alpha: 0.1),
                     blurRadius: 4,
                     offset: const Offset(0, 2),
                   ),
@@ -1042,17 +1042,21 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
         child: Container(
           decoration: BoxDecoration(
             color: isCompleted
-                ? (isDarkMode ? Colors.white.withValues(alpha:0.07) : primaryColor.withValues(alpha:0.1))
+                ? (isDarkMode
+                      ? Colors.white.withValues(alpha: 0.07)
+                      : primaryColor.withValues(alpha: 0.1))
                 : (isActive
-                      ? (isDarkMode ? Colors.white.withValues(alpha:0.12) : Colors.white)
-                      : (isDarkMode ? Colors.white.withValues(alpha:0.05) : Colors.white)),
+                      ? (isDarkMode ? Colors.white.withValues(alpha: 0.12) : Colors.white)
+                      : (isDarkMode ? Colors.white.withValues(alpha: 0.05) : Colors.white)),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
               color: isActive
                   ? primaryColor
                   : (isCompleted
-                        ? primaryColor.withValues(alpha:0.3)
-                        : (isDarkMode ? Colors.white.withValues(alpha:0.1) : Colors.grey.shade300)),
+                        ? primaryColor.withValues(alpha: 0.3)
+                        : (isDarkMode
+                              ? Colors.white.withValues(alpha: 0.1)
+                              : Colors.grey.shade300)),
               width: isActive ? 2 : 1,
             ),
           ),
@@ -1097,11 +1101,11 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
                       height: 40,
                       decoration: BoxDecoration(
                         color: isCompleted
-                            ? primaryColor.withValues(alpha:0.15)
+                            ? primaryColor.withValues(alpha: 0.15)
                             : (isActive
                                   ? primaryColor
                                   : (isDarkMode
-                                        ? Colors.white.withValues(alpha:0.1)
+                                        ? Colors.white.withValues(alpha: 0.1)
                                         : Colors.grey.shade200)),
                         shape: BoxShape.circle,
                       ),
@@ -1124,7 +1128,7 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
                   width: double.infinity,
                   padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                   decoration: BoxDecoration(
-                    color: primaryColor.withValues(alpha:0.05),
+                    color: primaryColor.withValues(alpha: 0.05),
                     borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(16),
                       bottomRight: Radius.circular(16),
@@ -1151,7 +1155,7 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
                   width: double.infinity,
                   padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                   decoration: BoxDecoration(
-                    color: isDarkMode ? Colors.white.withValues(alpha:0.03) : Colors.grey.shade100,
+                    color: isDarkMode ? Colors.white.withValues(alpha: 0.03) : Colors.grey.shade100,
                     borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(16),
                       bottomRight: Radius.circular(16),

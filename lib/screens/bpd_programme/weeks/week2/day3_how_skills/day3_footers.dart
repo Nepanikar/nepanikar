@@ -36,10 +36,10 @@ class NonJudgmentalExamples extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
-                color: isDarkMode ? Colors.white.withValues(alpha:0.05) : Colors.grey.shade50,
+                color: isDarkMode ? Colors.white.withValues(alpha: 0.05) : Colors.grey.shade50,
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: isDarkMode ? Colors.white.withValues(alpha:0.1) : Colors.grey.shade200,
+                  color: isDarkMode ? Colors.white.withValues(alpha: 0.1) : Colors.grey.shade200,
                 ),
               ),
               child: Column(
@@ -92,7 +92,7 @@ class _ExampleLine extends StatelessWidget {
           width: 20,
           height: 20,
           margin: const EdgeInsets.only(top: 2),
-          decoration: BoxDecoration(color: color.withValues(alpha:0.15), shape: BoxShape.circle),
+          decoration: BoxDecoration(color: color.withValues(alpha: 0.15), shape: BoxShape.circle),
           child: Icon(icon, size: 13, color: color),
         ),
         const SizedBox(width: 10),
@@ -111,7 +111,7 @@ class _ExampleLine extends StatelessWidget {
                   fontSize: 14,
                   height: 1.45,
                   fontStyle: FontStyle.italic,
-                  color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.8),
+                  color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha: 0.8),
                 ),
               ),
             ],
@@ -164,9 +164,9 @@ class _SmartGoalReminderState extends State<SmartGoalReminder> {
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: primaryColor.withValues(alpha:0.1),
+        color: primaryColor.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: primaryColor.withValues(alpha:0.3)),
+        border: Border.all(color: primaryColor.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -188,7 +188,7 @@ class _SmartGoalReminderState extends State<SmartGoalReminder> {
             style: TextStyle(
               fontSize: 14,
               height: 1.45,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.8),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha: 0.8),
             ),
           ),
           if (goal != null) ...[
@@ -197,7 +197,7 @@ class _SmartGoalReminderState extends State<SmartGoalReminder> {
               width: double.infinity,
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: isDarkMode ? Colors.white.withValues(alpha:0.06) : Colors.white,
+                color: isDarkMode ? Colors.white.withValues(alpha: 0.06) : Colors.white,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Text(

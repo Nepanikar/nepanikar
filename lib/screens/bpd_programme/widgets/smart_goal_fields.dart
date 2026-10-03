@@ -132,7 +132,7 @@ class _SmartGoalFieldsState extends State<SmartGoalFields> {
             width: double.infinity,
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: NepanikarColors.secondary.withValues(alpha:0.1),
+              color: NepanikarColors.secondary.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Text(
@@ -141,7 +141,7 @@ class _SmartGoalFieldsState extends State<SmartGoalFields> {
                 fontSize: 12.5,
                 height: 1.45,
                 fontStyle: FontStyle.italic,
-                color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.75),
+                color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha: 0.75),
               ),
             ),
           ),
@@ -155,11 +155,11 @@ class _SmartGoalFieldsState extends State<SmartGoalFields> {
             hintText: field.prompt,
             hintStyle: TextStyle(color: isDarkMode ? Colors.white38 : Colors.grey.shade400),
             filled: true,
-            fillColor: isDarkMode ? Colors.white.withValues(alpha:0.05) : Colors.grey.shade50,
+            fillColor: isDarkMode ? Colors.white.withValues(alpha: 0.05) : Colors.grey.shade50,
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide(
-                color: isDarkMode ? Colors.white.withValues(alpha:0.1) : Colors.grey.shade300,
+                color: isDarkMode ? Colors.white.withValues(alpha: 0.1) : Colors.grey.shade300,
               ),
             ),
             focusedBorder: OutlineInputBorder(

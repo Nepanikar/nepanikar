@@ -33,7 +33,7 @@ class ExternalLinkButton extends StatelessWidget {
       style: OutlinedButton.styleFrom(
         foregroundColor: foreground,
         minimumSize: const Size(double.infinity, 48),
-        side: BorderSide(color: foreground.withValues(alpha:0.5), width: 1.5),
+        side: BorderSide(color: foreground.withValues(alpha: 0.5), width: 1.5),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
       child: Row(
@@ -87,7 +87,7 @@ class ExternalLinkText extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                   color: foreground,
                   decoration: TextDecoration.underline,
-                  decorationColor: foreground.withValues(alpha:0.4),
+                  decorationColor: foreground.withValues(alpha: 0.4),
                 ),
               ),
             ),
@@ -114,7 +114,7 @@ class LinkLeadText extends StatelessWidget {
       style: TextStyle(
         fontSize: 13,
         height: 1.4,
-        color: isDarkMode ? Colors.white60 : NepanikarColors.dark.withValues(alpha:0.6),
+        color: isDarkMode ? Colors.white60 : NepanikarColors.dark.withValues(alpha: 0.6),
       ),
     );
   }

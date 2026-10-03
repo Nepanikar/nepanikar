@@ -239,7 +239,9 @@ class _FilterChip extends StatelessWidget {
         decoration: BoxDecoration(
           color: isSelected
               ? primaryColor
-              : (isDarkMode ? Colors.white.withValues(alpha:0.08) : primaryColor.withValues(alpha:0.1)),
+              : (isDarkMode
+                    ? Colors.white.withValues(alpha: 0.08)
+                    : primaryColor.withValues(alpha: 0.1)),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Text(
@@ -270,7 +272,7 @@ class _EmptyState extends StatelessWidget {
             width: 84,
             height: 84,
             decoration: BoxDecoration(
-              color: primaryColor.withValues(alpha:0.12),
+              color: primaryColor.withValues(alpha: 0.12),
               shape: BoxShape.circle,
             ),
             child: Icon(Icons.flag_outlined, size: 40, color: primaryColor),
@@ -291,7 +293,7 @@ class _EmptyState extends StatelessWidget {
             style: TextStyle(
               fontSize: 14,
               height: 1.45,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.65),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha: 0.65),
             ),
           ),
         ],

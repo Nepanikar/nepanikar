@@ -217,7 +217,7 @@ class _StructuredWorksheetState extends State<StructuredWorksheet> {
         label: Text(widget.revealMoreLabel ?? context.l10n.dbt_show_more(hiddenCount)),
         style: OutlinedButton.styleFrom(
           foregroundColor: primaryColor,
-          side: BorderSide(color: primaryColor.withValues(alpha:0.4)),
+          side: BorderSide(color: primaryColor.withValues(alpha: 0.4)),
           padding: const EdgeInsets.symmetric(vertical: 14),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),

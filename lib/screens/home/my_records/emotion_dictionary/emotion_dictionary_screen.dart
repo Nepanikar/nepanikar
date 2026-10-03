@@ -40,7 +40,7 @@ class EmotionDictionaryScreen extends StatelessWidget {
               fontSize: 14,
               height: 1.45,
               fontWeight: FontWeight.w700,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.75),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha: 0.75),
             ),
           ),
         ),
@@ -76,10 +76,10 @@ class EmotionCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: isDarkMode ? Colors.white.withValues(alpha:0.05) : Colors.white,
+        color: isDarkMode ? Colors.white.withValues(alpha: 0.05) : Colors.white,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: isDarkMode ? Colors.white.withValues(alpha:0.1) : Colors.grey.shade200,
+          color: isDarkMode ? Colors.white.withValues(alpha: 0.1) : Colors.grey.shade200,
         ),
       ),
       child: Row(
@@ -89,7 +89,7 @@ class EmotionCard extends StatelessWidget {
             width: 40,
             height: 40,
             decoration: BoxDecoration(
-              color: primaryColor.withValues(alpha:0.12),
+              color: primaryColor.withValues(alpha: 0.12),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Icon(emotion.icon, size: 20, color: primaryColor),
@@ -113,7 +113,9 @@ class EmotionCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 13,
                     height: 1.45,
-                    color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.7),
+                    color: isDarkMode
+                        ? Colors.white70
+                        : NepanikarColors.dark.withValues(alpha: 0.7),
                   ),
                 ),
               ],

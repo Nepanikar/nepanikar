@@ -207,7 +207,7 @@ class _Day1OnboardingScreenState extends State<Day1OnboardingScreen> {
       margin: const EdgeInsets.fromLTRB(16, 2, 16, 8),
       padding: const EdgeInsets.fromLTRB(14, 8, 6, 8),
       decoration: BoxDecoration(
-        color: primaryColor.withValues(alpha:0.1),
+        color: primaryColor.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
@@ -277,7 +277,9 @@ class _Day1OnboardingScreenState extends State<Day1OnboardingScreen> {
                       decoration: BoxDecoration(
                         color: index <= _currentPage
                             ? primaryColor
-                            : (isDarkMode ? Colors.white.withValues(alpha:0.2) : Colors.grey.shade300),
+                            : (isDarkMode
+                                  ? Colors.white.withValues(alpha: 0.2)
+                                  : Colors.grey.shade300),
                         borderRadius: BorderRadius.circular(2),
                       ),
                     ),
@@ -291,7 +293,7 @@ class _Day1OnboardingScreenState extends State<Day1OnboardingScreen> {
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w600,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.7),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha: 0.7),
             ),
           ),
           const Padding(

@@ -136,7 +136,7 @@ class DayPauseScreen extends StatelessWidget {
                           fontSize: 16,
                           color: isDarkMode
                               ? Colors.white70
-                              : NepanikarColors.dark.withValues(alpha:0.7),
+                              : NepanikarColors.dark.withValues(alpha: 0.7),
                           height: 1.5,
                         ),
                         textAlign: TextAlign.center,
@@ -216,7 +216,7 @@ class DayPauseScreen extends StatelessWidget {
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
-                color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.7),
+                color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha: 0.7),
                 letterSpacing: 0.5,
               ),
               textAlign: TextAlign.center,
@@ -234,7 +234,10 @@ class DayPauseScreen extends StatelessWidget {
     return Container(
       width: 200,
       height: 200,
-      decoration: BoxDecoration(color: primaryColor.withValues(alpha:0.08), shape: BoxShape.circle),
+      decoration: BoxDecoration(
+        color: primaryColor.withValues(alpha: 0.08),
+        shape: BoxShape.circle,
+      ),
       child: Stack(
         alignment: Alignment.center,
         children: [
@@ -242,10 +245,13 @@ class DayPauseScreen extends StatelessWidget {
           Container(
             width: 160,
             height: 160,
-            decoration: BoxDecoration(color: primaryColor.withValues(alpha:0.1), shape: BoxShape.circle),
+            decoration: BoxDecoration(
+              color: primaryColor.withValues(alpha: 0.1),
+              shape: BoxShape.circle,
+            ),
           ),
           // Person meditating icon
-          Icon(Icons.self_improvement, size: 100, color: primaryColor.withValues(alpha:0.7)),
+          Icon(Icons.self_improvement, size: 100, color: primaryColor.withValues(alpha: 0.7)),
           // Small decorative elements
           Positioned(
             top: 30,
@@ -254,7 +260,7 @@ class DayPauseScreen extends StatelessWidget {
               width: 12,
               height: 12,
               decoration: BoxDecoration(
-                color: Colors.amber.withValues(alpha:0.6),
+                color: Colors.amber.withValues(alpha: 0.6),
                 shape: BoxShape.circle,
               ),
             ),
@@ -266,7 +272,7 @@ class DayPauseScreen extends StatelessWidget {
               width: 8,
               height: 8,
               decoration: BoxDecoration(
-                color: Colors.pink.withValues(alpha:0.5),
+                color: Colors.pink.withValues(alpha: 0.5),
                 shape: BoxShape.circle,
               ),
             ),
@@ -274,7 +280,7 @@ class DayPauseScreen extends StatelessWidget {
           Positioned(
             bottom: 40,
             right: 30,
-            child: Icon(Icons.favorite, size: 16, color: Colors.pink.withValues(alpha:0.5)),
+            child: Icon(Icons.favorite, size: 16, color: Colors.pink.withValues(alpha: 0.5)),
           ),
         ],
       ),
@@ -289,7 +295,7 @@ class DayPauseScreen extends StatelessWidget {
         onPressed: () => const MoodPickerRoute().push<void>(context),
         style: OutlinedButton.styleFrom(
           foregroundColor: primaryColor,
-          side: BorderSide(color: primaryColor.withValues(alpha:0.5), width: 1.5),
+          side: BorderSide(color: primaryColor.withValues(alpha: 0.5), width: 1.5),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),
         child: Row(
@@ -312,16 +318,16 @@ class DayPauseScreen extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: isDarkMode ? Colors.white.withValues(alpha:0.05) : Colors.white,
+        color: isDarkMode ? Colors.white.withValues(alpha: 0.05) : Colors.white,
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: isDarkMode ? Colors.white.withValues(alpha:0.1) : Colors.grey.shade200,
+          color: isDarkMode ? Colors.white.withValues(alpha: 0.1) : Colors.grey.shade200,
         ),
         boxShadow: isDarkMode
             ? null
             : [
                 BoxShadow(
-                  color: Colors.black.withValues(alpha:0.04),
+                  color: Colors.black.withValues(alpha: 0.04),
                   blurRadius: 12,
                   offset: const Offset(0, 4),
                 ),
@@ -337,7 +343,7 @@ class DayPauseScreen extends StatelessWidget {
                 width: 40,
                 height: 40,
                 decoration: BoxDecoration(
-                  color: Colors.amber.withValues(alpha:0.15),
+                  color: Colors.amber.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Icon(Icons.lightbulb_outline, color: Colors.amber.shade700, size: 22),
@@ -361,7 +367,7 @@ class DayPauseScreen extends StatelessWidget {
             'Zkus si dát 5 minut jen pro sebe. Pusť si oblíbenou hudbu, napiš si poznámku, nebo jen tak seď.',
             style: TextStyle(
               fontSize: 15,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.8),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha: 0.8),
               height: 1.5,
             ),
           ),

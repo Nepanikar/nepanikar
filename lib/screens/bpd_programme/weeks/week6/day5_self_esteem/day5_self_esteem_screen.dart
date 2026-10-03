@@ -210,7 +210,7 @@ class Week6Day5WorksheetPage extends StatelessWidget {
             style: TextStyle(
               fontSize: 14,
               height: 1.55,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.78),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha: 0.78),
             ),
           ),
           const SizedBox(height: 18),

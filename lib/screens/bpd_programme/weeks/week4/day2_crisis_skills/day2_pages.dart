@@ -91,9 +91,9 @@ class _CrisisHelpRow extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
           decoration: BoxDecoration(
-            color: teal.withValues(alpha:0.1),
+            color: teal.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: teal.withValues(alpha:0.35)),
+            border: Border.all(color: teal.withValues(alpha: 0.35)),
           ),
           child: const Row(
             children: [
@@ -200,7 +200,7 @@ class _BreathingLinkButton extends StatelessWidget {
       style: OutlinedButton.styleFrom(
         foregroundColor: primaryColor,
         alignment: Alignment.centerLeft,
-        side: BorderSide(color: primaryColor.withValues(alpha:0.4), width: 1.5),
+        side: BorderSide(color: primaryColor.withValues(alpha: 0.4), width: 1.5),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
       ),
@@ -221,7 +221,9 @@ class Week4Day2RelaxationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    final secondaryText = isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.75);
+    final secondaryText = isDarkMode
+        ? Colors.white70
+        : NepanikarColors.dark.withValues(alpha: 0.75);
 
     return DayPageBase(
       // Never "Splnit cvičení" — someone who does not play the video has not

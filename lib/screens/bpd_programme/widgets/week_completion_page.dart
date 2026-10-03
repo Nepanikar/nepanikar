@@ -48,7 +48,7 @@ class WeekCompletionPage extends StatelessWidget {
                           width: 120,
                           height: 120,
                           decoration: BoxDecoration(
-                            color: accent.withValues(alpha:0.15),
+                            color: accent.withValues(alpha: 0.15),
                             shape: BoxShape.circle,
                           ),
                           child: Icon(Icons.celebration, size: 58, color: accent),
@@ -92,7 +92,9 @@ class WeekCompletionPage extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 15,
                         height: 1.6,
-                        color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.75),
+                        color: isDarkMode
+                            ? Colors.white70
+                            : NepanikarColors.dark.withValues(alpha: 0.75),
                       ),
                     ),
                   ],

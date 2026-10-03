@@ -35,7 +35,7 @@ class Day7ReflectionPage extends StatelessWidget {
                 width: 44,
                 height: 44,
                 decoration: BoxDecoration(
-                  color: primaryColor.withValues(alpha:0.15),
+                  color: primaryColor.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(11),
                 ),
                 child: Icon(Icons.edit_outlined, color: primaryColor, size: 22),
@@ -56,7 +56,7 @@ class Day7ReflectionPage extends StatelessWidget {
             'Pojďme tento první týden shrnout.',
             style: TextStyle(
               fontSize: 14,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.65),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha: 0.65),
             ),
           ),
           const SizedBox(height: 20),
@@ -99,9 +99,9 @@ class _ReflectionField extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: isDarkMode ? Colors.white.withValues(alpha:0.05) : Colors.white,
+        color: isDarkMode ? Colors.white.withValues(alpha: 0.05) : Colors.white,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: primaryColor.withValues(alpha:0.2), width: 1.5),
+        border: Border.all(color: primaryColor.withValues(alpha: 0.2), width: 1.5),
       ),
       child: TextField(
         controller: controller,

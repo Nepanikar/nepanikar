@@ -207,7 +207,9 @@ class Week5Day5PracticePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    final secondaryText = isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.75);
+    final secondaryText = isDarkMode
+        ? Colors.white70
+        : NepanikarColors.dark.withValues(alpha: 0.75);
 
     return DayPageBase(
       // Not "Hotovo" — the day is complete whether or not the technique was
@@ -280,7 +282,7 @@ class _PickYourselfButton extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: isDarkMode ? Colors.white24 : primaryColor.withValues(alpha:0.35),
+            color: isDarkMode ? Colors.white24 : primaryColor.withValues(alpha: 0.35),
             width: 1.5,
           ),
         ),

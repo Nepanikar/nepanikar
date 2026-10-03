@@ -62,7 +62,7 @@ class DayCompletionPage extends StatelessWidget {
             width: 120,
             height: 120,
             decoration: BoxDecoration(
-              color: NepanikarColors.progressGreen.withValues(alpha:0.15),
+              color: NepanikarColors.progressGreen.withValues(alpha: 0.15),
               shape: BoxShape.circle,
             ),
             child: const Icon(Icons.check_circle, size: 70, color: NepanikarColors.progressGreen),
@@ -90,7 +90,7 @@ class DayCompletionPage extends StatelessWidget {
             style: TextStyle(
               fontSize: 16,
               height: 1.5,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.8),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha: 0.8),
             ),
           ),
           if (extraContent != null) ...[const SizedBox(height: 24), extraContent!],
@@ -100,9 +100,9 @@ class DayCompletionPage extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: accent.withValues(alpha:0.1),
+                color: accent.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: accent.withValues(alpha:0.3)),
+                border: Border.all(color: accent.withValues(alpha: 0.3)),
               ),
               child: Column(
                 children: [

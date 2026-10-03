@@ -8,8 +8,7 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:sembast/sembast.dart';
 
 class BpdDaysDao {
-  BpdDaysDao({required this._dbService})
-    : _store = StoreRef(_storeKeyName);
+  BpdDaysDao({required this._dbService}) : _store = StoreRef(_storeKeyName);
 
   Future<BpdDaysDao> init() async {
     registry.registerSingleton<BpdDaysDao>(this);

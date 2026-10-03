@@ -216,7 +216,7 @@ class Week7Day7ThreeSkillsPage extends StatelessWidget {
             style: TextStyle(
               fontSize: 14,
               height: 1.55,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.78),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha: 0.78),
             ),
           ),
           const SizedBox(height: 18),
@@ -300,7 +300,7 @@ class Week7Day7ClosingWritingPage extends StatelessWidget {
             style: TextStyle(
               fontSize: 14,
               height: 1.55,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.78),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha: 0.78),
             ),
           ),
           const SizedBox(height: 18),
@@ -332,7 +332,7 @@ class Week7Day7StudyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    final bodyColor = isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.78);
+    final bodyColor = isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha: 0.78);
 
     return DayPageBase(
       buttonText: context.l10n.dbt_close,
@@ -394,9 +394,9 @@ class _ContactsCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 13),
         decoration: BoxDecoration(
-          color: NepanikarColors.secondary.withValues(alpha:isDarkMode ? 0.22 : 0.1),
+          color: NepanikarColors.secondary.withValues(alpha: isDarkMode ? 0.22 : 0.1),
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: NepanikarColors.secondary.withValues(alpha:0.4)),
+          border: Border.all(color: NepanikarColors.secondary.withValues(alpha: 0.4)),
         ),
         child: Row(
           children: [

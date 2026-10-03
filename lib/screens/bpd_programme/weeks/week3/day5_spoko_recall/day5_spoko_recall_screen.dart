@@ -157,7 +157,7 @@ class Day5RecallPage extends StatelessWidget {
             style: TextStyle(
               fontSize: 15,
               height: 1.55,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.85),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha: 0.85),
             ),
           ),
           const SizedBox(height: 18),
@@ -179,7 +179,7 @@ class Day5RecallPage extends StatelessWidget {
               label: const Text('Otevřít Moje výzvy'),
               style: OutlinedButton.styleFrom(
                 foregroundColor: Theme.of(context).primaryColor,
-                side: BorderSide(color: Theme.of(context).primaryColor.withValues(alpha:0.4)),
+                side: BorderSide(color: Theme.of(context).primaryColor.withValues(alpha: 0.4)),
                 padding: const EdgeInsets.symmetric(vertical: 14),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
               ),
