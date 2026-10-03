@@ -86,7 +86,7 @@ class SectionHeader extends StatelessWidget {
           width: 48,
           height: 48,
           decoration: BoxDecoration(
-            color: isDarkMode ? Colors.white.withOpacity(0.15) : primaryColor.withOpacity(0.15),
+            color: isDarkMode ? Colors.white.withValues(alpha:0.15) : primaryColor.withValues(alpha:0.15),
             borderRadius: BorderRadius.circular(12),
           ),
           child: Icon(icon, color: isDarkMode ? Colors.white : primaryColor, size: 26),
@@ -141,10 +141,10 @@ class FeatureCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: isDarkMode ? Colors.white.withOpacity(0.05) : Colors.white,
+        color: isDarkMode ? Colors.white.withValues(alpha:0.05) : Colors.white,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: isDarkMode ? Colors.white.withOpacity(0.1) : Colors.grey.shade200,
+          color: isDarkMode ? Colors.white.withValues(alpha:0.1) : Colors.grey.shade200,
         ),
       ),
       child: Row(
@@ -153,7 +153,7 @@ class FeatureCard extends StatelessWidget {
             width: 44,
             height: 44,
             decoration: BoxDecoration(
-              color: effectiveIconColor.withOpacity(0.15),
+              color: effectiveIconColor.withValues(alpha:0.15),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Icon(icon, color: effectiveIconColor, size: 24),
@@ -176,7 +176,7 @@ class FeatureCard extends StatelessWidget {
                   description,
                   style: TextStyle(
                     fontSize: 13,
-                    color: isDarkMode ? Colors.white60 : NepanikarColors.dark.withOpacity(0.6),
+                    color: isDarkMode ? Colors.white60 : NepanikarColors.dark.withValues(alpha:0.6),
                   ),
                 ),
               ],
@@ -209,10 +209,10 @@ class NumberedBenefit extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: isDarkMode ? Colors.white.withOpacity(0.05) : Colors.white,
+        color: isDarkMode ? Colors.white.withValues(alpha:0.05) : Colors.white,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: isDarkMode ? Colors.white.withOpacity(0.1) : Colors.grey.shade200,
+          color: isDarkMode ? Colors.white.withValues(alpha:0.1) : Colors.grey.shade200,
         ),
       ),
       child: Row(
@@ -250,7 +250,7 @@ class NumberedBenefit extends StatelessWidget {
                   description,
                   style: TextStyle(
                     fontSize: 13,
-                    color: isDarkMode ? Colors.white60 : NepanikarColors.dark.withOpacity(0.6),
+                    color: isDarkMode ? Colors.white60 : NepanikarColors.dark.withValues(alpha:0.6),
                   ),
                 ),
               ],
@@ -289,9 +289,9 @@ class InfoBox extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: effectiveColor.withOpacity(0.1),
+        color: effectiveColor.withValues(alpha:0.1),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: effectiveColor.withOpacity(0.3)),
+        border: Border.all(color: effectiveColor.withValues(alpha:0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -311,7 +311,7 @@ class InfoBox extends StatelessWidget {
             text,
             style: TextStyle(
               fontSize: 14,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.8),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.8),
               height: 1.4,
             ),
           ),

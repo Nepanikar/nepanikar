@@ -163,7 +163,7 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
                   width: 64,
                   height: 64,
                   decoration: BoxDecoration(
-                    color: isDarkMode ? Colors.white.withOpacity(0.08) : NepanikarColors.purple200,
+                    color: isDarkMode ? Colors.white.withValues(alpha:0.08) : NepanikarColors.purple200,
                     shape: BoxShape.circle,
                   ),
                   child: Icon(
@@ -183,7 +183,7 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
                 Text(
                   subtitle,
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 14, height: 1.5, color: textColor.withOpacity(0.7)),
+                  style: TextStyle(fontSize: 14, height: 1.5, color: textColor.withValues(alpha:0.7)),
                 ),
                 const SizedBox(height: 18),
                 Container(
@@ -191,7 +191,7 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
                   padding: const EdgeInsets.all(14),
                   decoration: BoxDecoration(
                     color: isDarkMode
-                        ? Colors.white.withOpacity(0.06)
+                        ? Colors.white.withValues(alpha:0.06)
                         : NepanikarColors.filledContainer,
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -271,7 +271,7 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
                   color: primaryColor,
                   boxShadow: [
                     BoxShadow(
-                      color: primaryColor.withOpacity(0.3),
+                      color: primaryColor.withValues(alpha:0.3),
                       blurRadius: 10,
                       offset: const Offset(0, 3),
                     ),

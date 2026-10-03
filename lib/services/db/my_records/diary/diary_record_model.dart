@@ -7,7 +7,6 @@ part 'diary_record_model.g.dart';
 @freezed
 abstract class DiaryRecord with _$DiaryRecord {
   const factory DiaryRecord({
-    // ignore: invalid_annotation_target
     @JsonKey(name: FilterKeys.dateWithTime) required DateTime dateTime,
     required String title,
     required String text,

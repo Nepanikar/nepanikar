@@ -35,7 +35,7 @@ class Day1GoalsExpectationsPage extends StatelessWidget {
             'Pojďme si ještě zlehka popovídat… :)',
             style: TextStyle(
               fontSize: 15,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.7),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.7),
             ),
           ),
           const SizedBox(height: 24),
@@ -104,11 +104,11 @@ class _MultilineField extends StatelessWidget {
         hintText: hint,
         hintStyle: TextStyle(color: isDarkMode ? Colors.white38 : Colors.grey.shade400),
         filled: true,
-        fillColor: isDarkMode ? Colors.white.withOpacity(0.05) : Colors.grey.shade50,
+        fillColor: isDarkMode ? Colors.white.withValues(alpha:0.05) : Colors.grey.shade50,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(
-            color: isDarkMode ? Colors.white.withOpacity(0.1) : Colors.grey.shade300,
+            color: isDarkMode ? Colors.white.withValues(alpha:0.1) : Colors.grey.shade300,
           ),
         ),
         focusedBorder: OutlineInputBorder(

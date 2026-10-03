@@ -38,7 +38,7 @@ Future<bool> maybeOfferNotifications(BuildContext context) async {
   await userSettingsDao.markNotificationPermissionAsked();
 
   if (accepted != true) return false;
-  return notificationsService.requestPermissionIfNeeded();
+  return await notificationsService.requestPermissionIfNeeded();
 }
 
 class _NotificationOptInDialog extends StatelessWidget {
@@ -63,7 +63,7 @@ class _NotificationOptInDialog extends StatelessWidget {
       content: Text(
         l10n.notifications_opt_in_description,
         style: NepanikarFonts.bodySmallMedium.copyWith(
-          color: textColor.withOpacity(0.8),
+          color: textColor.withValues(alpha:0.8),
           height: 1.4,
         ),
       ),
@@ -72,7 +72,7 @@ class _NotificationOptInDialog extends StatelessWidget {
           onPressed: () => Navigator.of(context).pop(false),
           child: Text(
             l10n.notifications_opt_in_dismiss,
-            style: TextStyle(color: textColor.withOpacity(0.7)),
+            style: TextStyle(color: textColor.withValues(alpha:0.7)),
           ),
         ),
         TextButton(

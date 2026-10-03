@@ -39,7 +39,7 @@ class BpdHelpButton extends StatelessWidget {
           color: NepanikarColors.secondary,
           shape: CircleBorder(
             side: onDarkBackground
-                ? const BorderSide(color: Colors.white24, width: 1)
+                ? const BorderSide(color: Colors.white24)
                 : BorderSide.none,
           ),
           clipBehavior: Clip.antiAlias,

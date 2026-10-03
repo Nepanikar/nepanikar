@@ -50,7 +50,7 @@ class Week3MythsListPage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 15,
                 height: 1.55,
-                color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.85),
+                color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.85),
               ),
             ),
           if (isFirstHalf) const SizedBox(height: 16),
@@ -80,7 +80,7 @@ class _MythTile extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: isDarkMode ? Colors.white.withOpacity(0.04) : Colors.grey.shade100,
+        color: isDarkMode ? Colors.white.withValues(alpha:0.04) : Colors.grey.shade100,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: isDarkMode ? Colors.white12 : Colors.grey.shade300),
       ),

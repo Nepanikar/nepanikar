@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
-import 'package:nepanikar/services/notifications/notifications_service.dart';
+import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/bpd_weeks_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/bpd_help_button.dart';
 import 'package:nepanikar/screens/main/main_screen.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
+import 'package:nepanikar/services/notifications/notifications_service.dart';
 import 'package:nepanikar/utils/crashlytics_utils.dart';
 import 'package:nepanikar/utils/registry.dart';
 
@@ -100,7 +100,7 @@ class BpdLandingScreen extends StatelessWidget {
                         width: 100,
                         height: 100,
                         decoration: BoxDecoration(
-                          color: primaryColor.withOpacity(0.1),
+                          color: primaryColor.withValues(alpha:0.1),
                           shape: BoxShape.circle,
                         ),
                         child: Icon(Icons.settings, size: 50, color: primaryColor),
@@ -133,7 +133,7 @@ class BpdLandingScreen extends StatelessWidget {
                           fontSize: 15,
                           color: isDarkMode
                               ? Colors.white70
-                              : NepanikarColors.dark.withOpacity(0.8),
+                              : NepanikarColors.dark.withValues(alpha:0.8),
                           height: 1.45,
                         ),
                         textAlign: TextAlign.center,
@@ -208,7 +208,7 @@ class BpdLandingScreen extends StatelessWidget {
           width: 38,
           height: 38,
           margin: const EdgeInsets.only(top: 2),
-          decoration: BoxDecoration(color: primaryColor.withOpacity(0.2), shape: BoxShape.circle),
+          decoration: BoxDecoration(color: primaryColor.withValues(alpha:0.2), shape: BoxShape.circle),
           child: Icon(Icons.check_circle, color: primaryColor, size: 22),
         ),
         const SizedBox(width: 14),
@@ -229,7 +229,7 @@ class BpdLandingScreen extends StatelessWidget {
                 description,
                 style: TextStyle(
                   fontSize: 13.5,
-                  color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.7),
+                  color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.7),
                   height: 1.35,
                 ),
               ),

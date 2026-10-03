@@ -194,7 +194,7 @@ class _BottomButton extends StatelessWidget {
           backgroundColor: primaryColor,
           foregroundColor: Colors.white,
           disabledBackgroundColor: isDarkMode
-              ? Colors.white.withOpacity(0.1)
+              ? Colors.white.withValues(alpha:0.1)
               : Colors.grey.shade300,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           elevation: enabled ? 2 : 0,

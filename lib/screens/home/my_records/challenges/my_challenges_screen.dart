@@ -1,5 +1,5 @@
-import 'package:material_ui/material_ui.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/home/my_records/challenges/challenge_card.dart';
@@ -239,7 +239,7 @@ class _FilterChip extends StatelessWidget {
         decoration: BoxDecoration(
           color: isSelected
               ? primaryColor
-              : (isDarkMode ? Colors.white.withOpacity(0.08) : primaryColor.withOpacity(0.1)),
+              : (isDarkMode ? Colors.white.withValues(alpha:0.08) : primaryColor.withValues(alpha:0.1)),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Text(
@@ -270,7 +270,7 @@ class _EmptyState extends StatelessWidget {
             width: 84,
             height: 84,
             decoration: BoxDecoration(
-              color: primaryColor.withOpacity(0.12),
+              color: primaryColor.withValues(alpha:0.12),
               shape: BoxShape.circle,
             ),
             child: Icon(Icons.flag_outlined, size: 40, color: primaryColor),
@@ -291,7 +291,7 @@ class _EmptyState extends StatelessWidget {
             style: TextStyle(
               fontSize: 14,
               height: 1.45,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.65),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.65),
             ),
           ),
         ],

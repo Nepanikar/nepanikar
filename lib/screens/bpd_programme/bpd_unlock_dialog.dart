@@ -64,7 +64,7 @@ class _BpdUnlockDialogState extends State<_BpdUnlockDialog> {
           Text(
             l10n.bpd_unlock_description,
             style: NepanikarFonts.bodySmallMedium.copyWith(
-              color: textColor.withOpacity(0.8),
+              color: textColor.withValues(alpha:0.8),
               height: 1.4,
             ),
           ),
@@ -83,7 +83,7 @@ class _BpdUnlockDialogState extends State<_BpdUnlockDialog> {
               errorText: _showError ? l10n.bpd_unlock_code_invalid : null,
               filled: true,
               fillColor: isDarkMode
-                  ? Colors.white.withOpacity(0.08)
+                  ? Colors.white.withValues(alpha:0.08)
                   : NepanikarColors.primarySwatch(primaryColor).shade50,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
@@ -105,7 +105,7 @@ class _BpdUnlockDialogState extends State<_BpdUnlockDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: Text(l10n.cancel, style: TextStyle(color: textColor.withOpacity(0.7))),
+          child: Text(l10n.cancel, style: TextStyle(color: textColor.withValues(alpha:0.7))),
         ),
         TextButton(
           onPressed: _submit,

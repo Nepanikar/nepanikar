@@ -79,7 +79,7 @@ class _ContactCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
-          color: NepanikarColors.secondary.withOpacity(0.1),
+          color: NepanikarColors.secondary.withValues(alpha:0.1),
           borderRadius: BorderRadius.circular(14),
           border: Border.all(color: NepanikarColors.secondary, width: 1.5),
         ),
@@ -104,7 +104,7 @@ class _ContactCard extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 12.5,
                       height: 1.45,
-                      color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.8),
+                      color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.8),
                     ),
                   ),
                   const SizedBox(height: 4),

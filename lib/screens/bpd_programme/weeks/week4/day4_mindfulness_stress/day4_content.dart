@@ -1,5 +1,3 @@
-// ignore_for_file: no_adjacent_strings_in_list
-
 /// Week 4, Day 4 — všímavost u stresu.
 ///
 /// Copy verbatim from `docs/hpo/source/tyzden-4.md` §4, including the source's

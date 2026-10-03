@@ -5,9 +5,8 @@ import 'package:nepanikar/utils/registry.dart';
 import 'package:sembast/sembast.dart';
 
 class BpdSmartGoalsDao {
-  BpdSmartGoalsDao({required DatabaseService dbService})
-    : _dbService = dbService,
-      _store = stringMapStoreFactory.store(_storeKeyName);
+  BpdSmartGoalsDao({required this._dbService})
+    : _store = stringMapStoreFactory.store(_storeKeyName);
 
   Future<BpdSmartGoalsDao> init() async {
     registry.registerSingleton<BpdSmartGoalsDao>(this);

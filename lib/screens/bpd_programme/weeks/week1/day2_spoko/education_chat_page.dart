@@ -137,7 +137,7 @@ class _SpokoLetterRow extends StatelessWidget {
 
     final rowColor = isToday
         ? primaryColor
-        : (isDarkMode ? Colors.white.withOpacity(0.06) : primaryColor.withOpacity(0.08));
+        : (isDarkMode ? Colors.white.withValues(alpha:0.06) : primaryColor.withValues(alpha:0.08));
     final letterBg = isToday ? Colors.white : primaryColor;
     final letterColor = isToday ? primaryColor : Colors.white;
     final wordColor = isToday ? Colors.white : (isDarkMode ? Colors.white : NepanikarColors.dark);

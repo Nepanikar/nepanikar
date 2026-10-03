@@ -115,7 +115,7 @@ class _UznavamChecklistPageState extends State<UznavamChecklistPage> {
               style: TextStyle(
                 fontSize: 15,
                 height: 1.5,
-                color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.7),
+                color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.7),
               ),
             ),
           ],

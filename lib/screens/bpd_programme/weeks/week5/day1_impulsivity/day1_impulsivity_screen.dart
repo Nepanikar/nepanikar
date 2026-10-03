@@ -265,7 +265,7 @@ class Week5Day1ChainWorksheetPage extends StatelessWidget {
             style: TextStyle(
               fontSize: 14,
               height: 1.55,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.7),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.7),
             ),
           ),
           const SizedBox(height: 16),
@@ -303,7 +303,7 @@ class Week5Day1MissingLinksPage extends StatelessWidget {
             style: TextStyle(
               fontSize: 14,
               height: 1.55,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.75),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.75),
             ),
           ),
           const SizedBox(height: 6),

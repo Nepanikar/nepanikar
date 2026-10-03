@@ -95,16 +95,16 @@ class _ReminderPageState extends State<ReminderPage> {
             style: TextStyle(
               fontSize: 16,
               height: 1.55,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.85),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.85),
             ),
           ),
           const SizedBox(height: 20),
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: primaryColor.withOpacity(0.1),
+              color: primaryColor.withValues(alpha:0.1),
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: primaryColor.withOpacity(0.3)),
+              border: Border.all(color: primaryColor.withValues(alpha:0.3)),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -129,7 +129,7 @@ class _ReminderPageState extends State<ReminderPage> {
                   style: TextStyle(
                     fontSize: 14,
                     height: 1.45,
-                    color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.8),
+                    color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.8),
                   ),
                 ),
               ],

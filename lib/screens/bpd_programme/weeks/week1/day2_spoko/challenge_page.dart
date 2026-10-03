@@ -119,7 +119,7 @@ class _Day2ChallengePageState extends State<Day2ChallengePage> {
             style: TextStyle(
               fontSize: 14,
               height: 1.5,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.7),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.7),
             ),
           ),
           const SizedBox(height: 18),
@@ -139,7 +139,7 @@ class _Day2ChallengePageState extends State<Day2ChallengePage> {
             style: TextStyle(
               fontSize: 14,
               height: 1.5,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.7),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.7),
             ),
           ),
           const SizedBox(height: 12),
@@ -193,13 +193,13 @@ class _ChallengeTile extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
         decoration: BoxDecoration(
           color: selected
-              ? primaryColor.withOpacity(0.12)
-              : (isDarkMode ? Colors.white.withOpacity(0.05) : Colors.white),
+              ? primaryColor.withValues(alpha:0.12)
+              : (isDarkMode ? Colors.white.withValues(alpha:0.05) : Colors.white),
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
             color: selected
                 ? primaryColor
-                : (isDarkMode ? Colors.white.withOpacity(0.15) : primaryColor.withOpacity(0.2)),
+                : (isDarkMode ? Colors.white.withValues(alpha:0.15) : primaryColor.withValues(alpha:0.2)),
             width: 1.5,
           ),
         ),
@@ -212,7 +212,7 @@ class _ChallengeTile extends StatelessWidget {
                 color: selected ? primaryColor : Colors.transparent,
                 borderRadius: BorderRadius.circular(6),
                 border: Border.all(
-                  color: selected ? primaryColor : primaryColor.withOpacity(0.3),
+                  color: selected ? primaryColor : primaryColor.withValues(alpha:0.3),
                   width: 2,
                 ),
               ),

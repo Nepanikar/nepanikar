@@ -219,7 +219,7 @@ class _RescuePackageLink extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 13),
         decoration: BoxDecoration(
-          color: isDarkMode ? Colors.white.withOpacity(0.07) : NepanikarColors.purple200,
+          color: isDarkMode ? Colors.white.withValues(alpha:0.07) : NepanikarColors.purple200,
           borderRadius: BorderRadius.circular(12),
         ),
         child: Row(
@@ -236,7 +236,7 @@ class _RescuePackageLink extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 13,
                   height: 1.45,
-                  color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.8),
+                  color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.8),
                 ),
               ),
             ),

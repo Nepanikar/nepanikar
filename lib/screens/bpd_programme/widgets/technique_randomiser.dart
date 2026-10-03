@@ -135,7 +135,7 @@ class _DrawnCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: isDarkMode ? Colors.white.withOpacity(0.05) : Colors.white,
+        color: isDarkMode ? Colors.white.withValues(alpha:0.05) : Colors.white,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: isDarkMode ? Colors.white54 : primaryColor, width: 2),
       ),
@@ -144,7 +144,7 @@ class _DrawnCard extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
             decoration: BoxDecoration(
-              color: primaryColor.withOpacity(0.12),
+              color: primaryColor.withValues(alpha:0.12),
               borderRadius: BorderRadius.circular(999),
             ),
             child: Text(
@@ -176,7 +176,7 @@ class _DrawnCard extends StatelessWidget {
             style: TextStyle(
               fontSize: 14,
               height: 1.5,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.7),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.7),
             ),
           ),
           const SizedBox(height: 16),

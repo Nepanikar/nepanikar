@@ -65,7 +65,7 @@ class _Day1SmartIntroPageState extends State<Day1SmartIntroPage> {
             style: TextStyle(
               fontSize: 15,
               height: 1.5,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.7),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.7),
             ),
           ),
           const SizedBox(height: 16),
@@ -107,13 +107,13 @@ class _SmartTile extends StatelessWidget {
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: isOpen
-              ? primaryColor.withOpacity(0.12)
-              : (isDarkMode ? Colors.white.withOpacity(0.05) : Colors.white),
+              ? primaryColor.withValues(alpha:0.12)
+              : (isDarkMode ? Colors.white.withValues(alpha:0.05) : Colors.white),
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
             color: isOpen
                 ? primaryColor
-                : (isDarkMode ? Colors.white.withOpacity(0.1) : Colors.grey.shade300),
+                : (isDarkMode ? Colors.white.withValues(alpha:0.1) : Colors.grey.shade300),
             width: isOpen ? 2 : 1,
           ),
         ),
@@ -163,7 +163,7 @@ class _SmartTile extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 13.5,
                       height: 1.5,
-                      color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.75),
+                      color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.75),
                     ),
                   ),
                 ),

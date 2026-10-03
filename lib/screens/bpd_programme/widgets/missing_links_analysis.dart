@@ -226,7 +226,7 @@ class _StepCard extends StatelessWidget {
           margin: const EdgeInsets.only(top: 12),
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
           decoration: BoxDecoration(
-            color: isDarkMode ? Colors.white.withOpacity(0.07) : NepanikarColors.purple200,
+            color: isDarkMode ? Colors.white.withValues(alpha:0.07) : NepanikarColors.purple200,
             borderRadius: BorderRadius.circular(14),
           ),
           child: Row(
@@ -239,7 +239,7 @@ class _StepCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 13.5,
                     height: 1.4,
-                    color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.7),
+                    color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.7),
                   ),
                 ),
               ),
@@ -266,7 +266,7 @@ class _StepCard extends StatelessWidget {
       margin: const EdgeInsets.only(top: 12),
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
-        color: isDarkMode ? Colors.white.withOpacity(0.07) : Colors.white,
+        color: isDarkMode ? Colors.white.withValues(alpha:0.07) : Colors.white,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: isDarkMode ? Colors.white24 : NepanikarColors.purple200,
@@ -283,7 +283,7 @@ class _StepCard extends StatelessWidget {
               fontSize: 11,
               fontWeight: FontWeight.w900,
               letterSpacing: 0.7,
-              color: isDarkMode ? Colors.white38 : NepanikarColors.dark.withOpacity(0.4),
+              color: isDarkMode ? Colors.white38 : NepanikarColors.dark.withValues(alpha:0.4),
             ),
           ),
           const SizedBox(height: 5),
@@ -340,7 +340,7 @@ class _StepCard extends StatelessWidget {
                         fontSize: 13,
                         fontWeight: FontWeight.w700,
                         height: 1.4,
-                        color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.8),
+                        color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.8),
                       ),
                     ),
                     const SizedBox(height: 6),
@@ -431,7 +431,7 @@ class _ChainDivider extends StatelessWidget {
               label,
               style: TextStyle(
                 fontSize: 12,
-                color: isDarkMode ? Colors.white38 : NepanikarColors.dark.withOpacity(0.42),
+                color: isDarkMode ? Colors.white38 : NepanikarColors.dark.withValues(alpha:0.42),
               ),
             ),
           ),

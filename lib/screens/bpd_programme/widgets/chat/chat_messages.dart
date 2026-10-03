@@ -52,7 +52,7 @@ class ChatBotBubble extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
               decoration: BoxDecoration(
-                color: isDarkMode ? Colors.white.withOpacity(0.07) : Colors.white,
+                color: isDarkMode ? Colors.white.withValues(alpha:0.07) : Colors.white,
                 borderRadius: BorderRadius.only(
                   topLeft: const Radius.circular(18),
                   topRight: const Radius.circular(18),
@@ -107,7 +107,7 @@ class ChatDayStamp extends StatelessWidget {
         margin: const EdgeInsets.only(bottom: 12),
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
         decoration: BoxDecoration(
-          color: isDarkMode ? Colors.white.withOpacity(0.08) : NepanikarColors.filledContainer,
+          color: isDarkMode ? Colors.white.withValues(alpha:0.08) : NepanikarColors.filledContainer,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Text(
@@ -115,7 +115,7 @@ class ChatDayStamp extends StatelessWidget {
           style: TextStyle(
             fontSize: 11,
             fontWeight: FontWeight.w700,
-            color: isDarkMode ? Colors.white54 : NepanikarColors.dark.withOpacity(0.4),
+            color: isDarkMode ? Colors.white54 : NepanikarColors.dark.withValues(alpha:0.4),
           ),
         ),
       ),
@@ -140,7 +140,7 @@ class ChatInfoCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
         decoration: BoxDecoration(
-          color: isDarkMode ? Colors.white.withOpacity(0.08) : NepanikarColors.purple200,
+          color: isDarkMode ? Colors.white.withValues(alpha:0.08) : NepanikarColors.purple200,
           borderRadius: BorderRadius.circular(14),
           border: Border(
             left: BorderSide(color: isDarkMode ? Colors.white38 : primaryColor, width: 4),
@@ -209,7 +209,7 @@ class ChatConceptCard extends StatelessWidget {
       child: Container(
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
-          color: isDarkMode ? Colors.white.withOpacity(0.07) : Colors.white,
+          color: isDarkMode ? Colors.white.withValues(alpha:0.07) : Colors.white,
           borderRadius: BorderRadius.circular(16),
           boxShadow: isDarkMode ? null : NepanikarColors.cardShadow(context),
         ),
@@ -231,7 +231,7 @@ class ChatConceptCard extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.18),
+                      color: Colors.white.withValues(alpha:0.18),
                       borderRadius: BorderRadius.circular(9),
                     ),
                     child: Text(
@@ -326,7 +326,7 @@ class ChatNumberedList extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
-          color: isDarkMode ? Colors.white.withOpacity(0.07) : Colors.white,
+          color: isDarkMode ? Colors.white.withValues(alpha:0.07) : Colors.white,
           borderRadius: BorderRadius.circular(16),
           boxShadow: isDarkMode ? null : NepanikarColors.cardShadow(context),
         ),
@@ -403,7 +403,7 @@ class ChatStatsRow extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: isDarkMode ? Colors.white.withOpacity(0.07) : Colors.white,
+          color: isDarkMode ? Colors.white.withValues(alpha:0.07) : Colors.white,
           borderRadius: BorderRadius.circular(16),
           boxShadow: isDarkMode ? null : NepanikarColors.cardShadow(context),
         ),
@@ -416,7 +416,7 @@ class ChatStatsRow extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 10),
                   decoration: BoxDecoration(
                     color: isDarkMode
-                        ? Colors.white.withOpacity(0.06)
+                        ? Colors.white.withValues(alpha:0.06)
                         : NepanikarColors.filledContainer,
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -440,7 +440,7 @@ class ChatStatsRow extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                           color: isDarkMode
                               ? Colors.white60
-                              : NepanikarColors.dark.withOpacity(0.6),
+                              : NepanikarColors.dark.withValues(alpha:0.6),
                         ),
                       ),
                     ],
@@ -527,7 +527,7 @@ class _ChatTypingIndicatorState extends State<ChatTypingIndicator>
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
             decoration: BoxDecoration(
-              color: isDarkMode ? Colors.white.withOpacity(0.07) : Colors.white,
+              color: isDarkMode ? Colors.white.withValues(alpha:0.07) : Colors.white,
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(18),
                 topRight: Radius.circular(18),
@@ -550,7 +550,7 @@ class _ChatTypingIndicatorState extends State<ChatTypingIndicator>
                       margin: EdgeInsets.only(right: i == 2 ? 0 : 4),
                       transform: Matrix4.translationValues(0, active ? -3 : 0, 0),
                       decoration: BoxDecoration(
-                        color: (isDarkMode ? Colors.white : NepanikarColors.purple200).withOpacity(
+                        color: (isDarkMode ? Colors.white : NepanikarColors.purple200).withValues(alpha:
                           active ? 1 : 0.45,
                         ),
                         shape: BoxShape.circle,

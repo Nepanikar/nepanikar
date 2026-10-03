@@ -171,7 +171,7 @@ class _GoalCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
-        color: isDarkMode ? Colors.white.withOpacity(0.07) : Colors.white,
+        color: isDarkMode ? Colors.white.withValues(alpha:0.07) : Colors.white,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: isDarkMode ? Colors.white24 : NepanikarColors.purple200,
@@ -187,7 +187,7 @@ class _GoalCard extends StatelessWidget {
               fontSize: 11,
               fontWeight: FontWeight.w900,
               letterSpacing: 0.7,
-              color: isDarkMode ? Colors.white38 : NepanikarColors.dark.withOpacity(0.4),
+              color: isDarkMode ? Colors.white38 : NepanikarColors.dark.withValues(alpha:0.4),
             ),
           ),
           const SizedBox(height: 10),
@@ -202,7 +202,7 @@ class _GoalCard extends StatelessWidget {
                     height: 24,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      color: primaryColor.withOpacity(isDarkMode ? 0.3 : 0.12),
+                      color: primaryColor.withValues(alpha:isDarkMode ? 0.3 : 0.12),
                       borderRadius: BorderRadius.circular(7),
                     ),
                     child: Text(
@@ -226,7 +226,7 @@ class _GoalCard extends StatelessWidget {
                             fontWeight: FontWeight.w700,
                             color: isDarkMode
                                 ? Colors.white60
-                                : NepanikarColors.dark.withOpacity(0.55),
+                                : NepanikarColors.dark.withValues(alpha:0.55),
                           ),
                         ),
                         const SizedBox(height: 2),
@@ -251,7 +251,7 @@ class _GoalCard extends StatelessWidget {
               fontSize: 13,
               fontWeight: FontWeight.w700,
               height: 1.4,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.8),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.8),
             ),
           ),
           const SizedBox(height: 6),

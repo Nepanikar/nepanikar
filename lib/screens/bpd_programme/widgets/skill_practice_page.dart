@@ -131,7 +131,7 @@ class _SkillPracticePageState extends State<SkillPracticePage> {
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    final secondaryText = isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.85);
+    final secondaryText = isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.85);
 
     return DayPageBase(
       buttonText: context.l10n.dbt_continue,

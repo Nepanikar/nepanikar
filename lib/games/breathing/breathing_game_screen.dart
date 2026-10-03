@@ -478,7 +478,7 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
       margin: const EdgeInsets.all(16),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.black.withOpacity(0.2),
+        color: Colors.black.withValues(alpha:0.2),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -529,7 +529,7 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         decoration: BoxDecoration(
-          color: isSelected ? Colors.white : Colors.white.withOpacity(0.2),
+          color: isSelected ? Colors.white : Colors.white.withValues(alpha:0.2),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Text(
@@ -585,10 +585,10 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
         width: 36,
         height: 36,
         decoration: BoxDecoration(
-          color: enabled ? Colors.white.withOpacity(0.2) : Colors.white.withOpacity(0.1),
+          color: enabled ? Colors.white.withValues(alpha:0.2) : Colors.white.withValues(alpha:0.1),
           shape: BoxShape.circle,
         ),
-        child: Icon(icon, color: enabled ? Colors.white : Colors.white.withOpacity(0.3), size: 20),
+        child: Icon(icon, color: enabled ? Colors.white : Colors.white.withValues(alpha:0.3), size: 20),
       ),
     );
   }

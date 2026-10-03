@@ -9,7 +9,7 @@ BottomNavigationBarItem buildBottomNavigationBarItem({
   required String label,
   required BuildContext context,
 }) {
-  var isDarkMode = Theme.of(context).brightness == Brightness.dark;
+  final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
   return BottomNavigationBarItem(
     icon: Column(

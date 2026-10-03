@@ -72,7 +72,7 @@ class SkillTreeBanner extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: primaryColor.withOpacity(0.25),
+            color: primaryColor.withValues(alpha:0.25),
             blurRadius: 32,
             offset: const Offset(0, 8),
           ),
@@ -90,7 +90,7 @@ class SkillTreeBanner extends StatelessWidget {
                     fontSize: 11,
                     fontWeight: FontWeight.w800,
                     letterSpacing: 1,
-                    color: Colors.white.withOpacity(0.75),
+                    color: Colors.white.withValues(alpha:0.75),
                   ),
                 ),
                 const SizedBox(height: 2),
@@ -108,7 +108,7 @@ class SkillTreeBanner extends StatelessWidget {
                   child: LinearProgressIndicator(
                     value: progress,
                     minHeight: 6,
-                    backgroundColor: Colors.white.withOpacity(0.25),
+                    backgroundColor: Colors.white.withValues(alpha:0.25),
                     valueColor: const AlwaysStoppedAnimation<Color>(NepanikarColors.progressGreen),
                   ),
                 ),
@@ -118,7 +118,7 @@ class SkillTreeBanner extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 11,
                     fontWeight: FontWeight.w700,
-                    color: Colors.white.withOpacity(0.8),
+                    color: Colors.white.withValues(alpha:0.8),
                   ),
                 ),
               ],
@@ -184,7 +184,7 @@ class _SkillTreePathState extends State<SkillTreePath> with SingleTickerProvider
                 child: CustomPaint(
                   painter: _SkillTreePathPainter(
                     centers: centers,
-                    color: isDarkMode ? Colors.white.withOpacity(0.18) : NepanikarColors.purple200,
+                    color: isDarkMode ? Colors.white.withValues(alpha:0.18) : NepanikarColors.purple200,
                   ),
                 ),
               ),
@@ -235,9 +235,9 @@ class _SkillTreeNode extends StatelessWidget {
         fillColor = primaryColor;
         shadowColor = NepanikarColors.lightness(primaryColor, -0.15);
       case SkillTreeNodeState.locked:
-        fillColor = isDarkMode ? Colors.white.withOpacity(0.08) : NepanikarColors.purple200;
+        fillColor = isDarkMode ? Colors.white.withValues(alpha:0.08) : NepanikarColors.purple200;
         shadowColor = isDarkMode
-            ? Colors.black.withOpacity(0.3)
+            ? Colors.black.withValues(alpha:0.3)
             : NepanikarColors.lightness(NepanikarColors.purple200, -0.06);
     }
 
@@ -287,7 +287,7 @@ class _SkillTreeNode extends StatelessWidget {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(
-                            color: primaryColor.withOpacity(0.15 + 0.2 * math.sin(t * math.pi)),
+                            color: primaryColor.withValues(alpha:0.15 + 0.2 * math.sin(t * math.pi)),
                             width: 4,
                           ),
                         ),
@@ -314,8 +314,8 @@ class _SkillTreeNode extends StatelessWidget {
               height: 1.25,
               fontWeight: FontWeight.w700,
               color: node.state == SkillTreeNodeState.locked
-                  ? (isDarkMode ? Colors.white30 : NepanikarColors.dark.withOpacity(0.35))
-                  : (isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.65)),
+                  ? (isDarkMode ? Colors.white30 : NepanikarColors.dark.withValues(alpha:0.35))
+                  : (isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.65)),
             ),
           ),
         ],
@@ -338,10 +338,10 @@ class _TodayBadge extends StatelessWidget {
       decoration: BoxDecoration(
         color: isDarkMode ? NepanikarColors.dark : Colors.white,
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: NepanikarColors.purple200.withOpacity(isDarkMode ? 0.4 : 1)),
+        border: Border.all(color: NepanikarColors.purple200.withValues(alpha:isDarkMode ? 0.4 : 1)),
         boxShadow: [
           BoxShadow(
-            color: primaryColor.withOpacity(0.15),
+            color: primaryColor.withValues(alpha:0.15),
             blurRadius: 12,
             offset: const Offset(0, 4),
           ),

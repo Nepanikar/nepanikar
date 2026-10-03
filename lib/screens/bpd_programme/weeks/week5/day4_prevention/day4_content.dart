@@ -1,5 +1,3 @@
-// ignore_for_file: no_adjacent_strings_in_list
-
 /// Week 5, Day 4 — plánování a prevence.
 ///
 /// Copy verbatim from `docs/hpo/source/tyzden-5.md` §4.

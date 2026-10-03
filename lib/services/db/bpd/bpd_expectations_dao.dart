@@ -6,9 +6,8 @@ import 'package:sembast/sembast.dart';
 /// Stores the user's free-text expectations and goals written on Week 1, Day 1.
 /// These are re-surfaced in the final week of the programme (see GEN-02 / W1-06).
 class BpdExpectationsDao {
-  BpdExpectationsDao({required DatabaseService dbService})
-    : _dbService = dbService,
-      _store = stringMapStoreFactory.store(_storeKeyName);
+  BpdExpectationsDao({required this._dbService})
+    : _store = stringMapStoreFactory.store(_storeKeyName);
 
   Future<BpdExpectationsDao> init() async {
     registry.registerSingleton<BpdExpectationsDao>(this);

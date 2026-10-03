@@ -292,7 +292,7 @@ class _SettingsMenuItem extends StatelessWidget {
                   color: isDarkMode ? Colors.white : const Color(0xffCDD1D5),
                 ),
               ),
-              if (trailing != null) trailing!,
+              ?trailing,
             ],
           ),
         ),

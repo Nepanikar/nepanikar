@@ -40,7 +40,6 @@ abstract class JournalRecordAnswer with _$JournalRecordAnswer {
 @freezed
 abstract class JournalRecord with _$JournalRecord {
   const factory JournalRecord({
-    // ignore: invalid_annotation_target
     @JsonKey(name: FilterKeys.dateWithTime) required DateTime dateTime,
     required List<JournalRecordAnswer> answers,
   }) = _JournalRecord;

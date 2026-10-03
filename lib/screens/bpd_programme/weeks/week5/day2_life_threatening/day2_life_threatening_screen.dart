@@ -323,7 +323,7 @@ class _Week5Day2ReliefListPageState extends State<Week5Day2ReliefListPage> {
             style: TextStyle(
               fontSize: 14,
               height: 1.55,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.75),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.75),
             ),
           ),
           const SizedBox(height: 16),
@@ -401,9 +401,9 @@ class _CrisisContactsCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 13),
         decoration: BoxDecoration(
-          color: NepanikarColors.secondary.withOpacity(isDarkMode ? 0.22 : 0.1),
+          color: NepanikarColors.secondary.withValues(alpha:isDarkMode ? 0.22 : 0.1),
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: NepanikarColors.secondary.withOpacity(0.4)),
+          border: Border.all(color: NepanikarColors.secondary.withValues(alpha:0.4)),
         ),
         child: Row(
           children: [
@@ -483,7 +483,7 @@ class _ExampleChip extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         decoration: BoxDecoration(
-          color: isDarkMode ? Colors.white.withOpacity(0.08) : NepanikarColors.purple200,
+          color: isDarkMode ? Colors.white.withValues(alpha:0.08) : NepanikarColors.purple200,
           borderRadius: BorderRadius.circular(999),
         ),
         child: Text(
@@ -515,7 +515,7 @@ class _RescueHint extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 13),
         decoration: BoxDecoration(
-          color: isDarkMode ? Colors.white.withOpacity(0.07) : NepanikarColors.purple200,
+          color: isDarkMode ? Colors.white.withValues(alpha:0.07) : NepanikarColors.purple200,
           borderRadius: BorderRadius.circular(12),
         ),
         child: Row(
@@ -532,7 +532,7 @@ class _RescueHint extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 13,
                   height: 1.45,
-                  color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.8),
+                  color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.8),
                 ),
               ),
             ),
@@ -573,7 +573,7 @@ class Week5Day2SafetyPage extends StatelessWidget {
             width: 84,
             height: 84,
             decoration: BoxDecoration(
-              color: NepanikarColors.secondary.withOpacity(isDarkMode ? 0.25 : 0.12),
+              color: NepanikarColors.secondary.withValues(alpha:isDarkMode ? 0.25 : 0.12),
               shape: BoxShape.circle,
             ),
             child: const Icon(
@@ -617,7 +617,7 @@ class Week5Day2CareLinks extends StatelessWidget {
           style: TextStyle(
             fontSize: 15,
             height: 1.5,
-            color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.8),
+            color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.8),
           ),
         ),
         const SizedBox(height: 14),
@@ -657,7 +657,7 @@ class _CareLink extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: isDarkMode ? Colors.white24 : primaryColor.withOpacity(0.35),
+            color: isDarkMode ? Colors.white24 : primaryColor.withValues(alpha:0.35),
             width: 1.5,
           ),
         ),

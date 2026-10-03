@@ -36,7 +36,7 @@ Future<bool?> showDayPreviewSheet({
     context: context,
     isScrollControlled: true,
     backgroundColor: Colors.transparent,
-    barrierColor: Colors.black.withOpacity(0.5),
+    barrierColor: Colors.black.withValues(alpha:0.5),
     builder: (context) =>
         DayPreviewSheet(data: data, onStart: onStart, onFavoriteToggle: onFavoriteToggle),
   );
@@ -126,7 +126,7 @@ class DayPreviewSheet extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
           decoration: BoxDecoration(
-            color: primaryColor.withOpacity(0.1),
+            color: primaryColor.withValues(alpha:0.1),
             borderRadius: BorderRadius.circular(8),
           ),
           child: Row(

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/theme/colors.dart';
-import 'package:nepanikar/screens/bpd_programme/widgets/bpd_help_button.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/day7_reflection/completion_page.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/day7_reflection/recall_chat_page.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/day7_reflection/reflection_page.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/bpd_help_button.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_memory.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/reflection_autosave.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
@@ -143,7 +143,7 @@ class _Week1Day7ReflectionScreenState extends State<Week1Day7ReflectionScreen>
                       decoration: BoxDecoration(
                         color: index <= _currentPage
                             ? primaryColor
-                            : (isDarkMode ? Colors.white.withOpacity(0.2) : Colors.grey.shade300),
+                            : (isDarkMode ? Colors.white.withValues(alpha:0.2) : Colors.grey.shade300),
                         borderRadius: BorderRadius.circular(2),
                       ),
                     ),
@@ -157,7 +157,7 @@ class _Week1Day7ReflectionScreenState extends State<Week1Day7ReflectionScreen>
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w600,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.7),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.7),
             ),
           ),
           const Padding(

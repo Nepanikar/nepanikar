@@ -90,10 +90,10 @@ class _RescueItemCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: isDarkMode ? Colors.white.withOpacity(0.05) : Colors.white,
+        color: isDarkMode ? Colors.white.withValues(alpha:0.05) : Colors.white,
         borderRadius: BorderRadius.circular(14),
         border: Border.all(
-          color: isDarkMode ? Colors.white.withOpacity(0.1) : Colors.grey.shade200,
+          color: isDarkMode ? Colors.white.withValues(alpha:0.1) : Colors.grey.shade200,
         ),
       ),
       child: Column(
@@ -105,7 +105,7 @@ class _RescueItemCard extends StatelessWidget {
                 width: 44,
                 height: 44,
                 decoration: BoxDecoration(
-                  color: primaryColor.withOpacity(0.12),
+                  color: primaryColor.withValues(alpha:0.12),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Icon(item.icon, color: primaryColor, size: 24),
@@ -132,7 +132,7 @@ class _RescueItemCard extends StatelessWidget {
                 icon: Icon(
                   Icons.delete_outline,
                   size: 22,
-                  color: isDarkMode ? Colors.white54 : NepanikarColors.dark.withOpacity(0.5),
+                  color: isDarkMode ? Colors.white54 : NepanikarColors.dark.withValues(alpha:0.5),
                 ),
                 tooltip: context.l10n.dbt_rescue_remove,
                 onPressed: onRemove,
@@ -146,7 +146,7 @@ class _RescueItemCard extends StatelessWidget {
               style: TextStyle(
                 fontSize: 14,
                 height: 1.45,
-                color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.75),
+                color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.75),
               ),
             ),
           ],
@@ -176,7 +176,7 @@ class _EmptyState extends StatelessWidget {
             width: 84,
             height: 84,
             decoration: BoxDecoration(
-              color: primaryColor.withOpacity(0.12),
+              color: primaryColor.withValues(alpha:0.12),
               shape: BoxShape.circle,
             ),
             child: Icon(Icons.medical_services_outlined, size: 40, color: primaryColor),
@@ -197,7 +197,7 @@ class _EmptyState extends StatelessWidget {
             style: TextStyle(
               fontSize: 14,
               height: 1.45,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.65),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.65),
             ),
           ),
         ],

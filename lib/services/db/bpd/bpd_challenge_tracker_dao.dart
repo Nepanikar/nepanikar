@@ -10,9 +10,8 @@ import 'package:sembast/sembast.dart';
 /// a day's flow), this stores a durable, cross-week list of challenges the user
 /// commits to — with daily check-offs and an optional per-challenge reminder.
 class BpdChallengeTrackerDao {
-  BpdChallengeTrackerDao({required DatabaseService dbService})
-    : _dbService = dbService,
-      _store = stringMapStoreFactory.store(_storeKeyName);
+  BpdChallengeTrackerDao({required this._dbService})
+    : _store = stringMapStoreFactory.store(_storeKeyName);
 
   Future<BpdChallengeTrackerDao> init() async {
     registry.registerSingleton<BpdChallengeTrackerDao>(this);

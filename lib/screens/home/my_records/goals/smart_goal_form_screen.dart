@@ -75,7 +75,7 @@ class _SmartGoalFormScreenState extends State<SmartGoalFormScreen> {
                 context.l10n.dbt_goal_form_intro,
                 style: TextStyle(
                   fontSize: 13.5,
-                  color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.65),
+                  color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.65),
                 ),
               ),
               const SizedBox(height: 20),

@@ -8,9 +8,8 @@ import 'package:sembast/sembast.dart';
 /// the HPO programme to come back to later ("Ke zbylým cvičením se můžeš kdykoliv
 /// vrátit nebo si je uložit do záchranného balíčku").
 class BpdRescuePackageDao {
-  BpdRescuePackageDao({required DatabaseService dbService})
-    : _dbService = dbService,
-      _store = stringMapStoreFactory.store(_storeKeyName);
+  BpdRescuePackageDao({required this._dbService})
+    : _store = stringMapStoreFactory.store(_storeKeyName);
 
   Future<BpdRescuePackageDao> init() async {
     registry.registerSingleton<BpdRescuePackageDao>(this);

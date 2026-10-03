@@ -178,7 +178,7 @@ class Week7Day1ProudPage extends StatelessWidget {
             style: TextStyle(
               fontSize: 14,
               height: 1.55,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.78),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.78),
             ),
           ),
           const SizedBox(height: 18),
@@ -202,7 +202,7 @@ class Week7Day1SmartReviewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    final secondary = isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.78);
+    final secondary = isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.78);
 
     return DayPageBase(
       buttonText: context.l10n.dbt_continue,

@@ -55,7 +55,7 @@ class DayFlowHeader extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: index <= currentPage
                             ? primaryColor
-                            : (isDarkMode ? Colors.white.withOpacity(0.2) : Colors.grey.shade300),
+                            : (isDarkMode ? Colors.white.withValues(alpha:0.2) : Colors.grey.shade300),
                         borderRadius: BorderRadius.circular(2),
                       ),
                     ),
@@ -69,7 +69,7 @@ class DayFlowHeader extends StatelessWidget {
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w600,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.7),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.7),
             ),
           ),
           // Help is one tap away on every page of every day — see

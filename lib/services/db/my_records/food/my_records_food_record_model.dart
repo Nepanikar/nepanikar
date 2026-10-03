@@ -59,7 +59,6 @@ abstract class DailyFoodRecordAnswer with _$DailyFoodRecordAnswer {
 @freezed
 abstract class DailyFoodRecord with _$DailyFoodRecord {
   const factory DailyFoodRecord({
-    // ignore: invalid_annotation_target
     @JsonKey(name: FilterKeys.dateWithTime) required DateTime dateTime,
     required List<DailyFoodRecordAnswer> answers,
   }) = _DailyFoodRecord;

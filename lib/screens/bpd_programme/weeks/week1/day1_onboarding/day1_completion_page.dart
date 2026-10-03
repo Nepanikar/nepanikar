@@ -29,7 +29,7 @@ class Day1CompletionPage extends StatelessWidget {
                           width: 120,
                           height: 120,
                           decoration: BoxDecoration(
-                            color: primaryColor.withOpacity(0.15),
+                            color: primaryColor.withValues(alpha:0.15),
                             shape: BoxShape.circle,
                           ),
                           child: Icon(Icons.celebration, size: 58, color: primaryColor),
@@ -80,7 +80,7 @@ class Day1CompletionPage extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 15,
                         height: 1.6,
-                        color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.75),
+                        color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.75),
                       ),
                     ),
                   ],

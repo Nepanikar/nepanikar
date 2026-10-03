@@ -89,7 +89,7 @@ class TechniqueMenuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    final secondaryText = isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.85);
+    final secondaryText = isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.85);
 
     return DayPageBase(
       buttonText: context.l10n.dbt_continue,
@@ -111,7 +111,7 @@ class TechniqueMenuPage extends StatelessWidget {
             dayLabel,
             style: TextStyle(
               fontSize: 16,
-              color: isDarkMode ? Colors.white60 : NepanikarColors.dark.withOpacity(0.6),
+              color: isDarkMode ? Colors.white60 : NepanikarColors.dark.withValues(alpha:0.6),
             ),
           ),
           const SizedBox(height: 24),
@@ -180,10 +180,10 @@ class _TechniqueCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: isDarkMode ? Colors.white.withOpacity(0.05) : Colors.white,
+          color: isDarkMode ? Colors.white.withValues(alpha:0.05) : Colors.white,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: isDarkMode ? Colors.white.withOpacity(0.12) : primaryColor.withOpacity(0.2),
+            color: isDarkMode ? Colors.white.withValues(alpha:0.12) : primaryColor.withValues(alpha:0.2),
             width: 1.5,
           ),
         ),
@@ -193,7 +193,7 @@ class _TechniqueCard extends StatelessWidget {
               width: 44,
               height: 44,
               decoration: BoxDecoration(
-                color: isDarkMode ? Colors.white.withOpacity(0.12) : primaryColor.withOpacity(0.12),
+                color: isDarkMode ? Colors.white.withValues(alpha:0.12) : primaryColor.withValues(alpha:0.12),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Icon(
@@ -221,7 +221,7 @@ class _TechniqueCard extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 13,
                       height: 1.4,
-                      color: isDarkMode ? Colors.white60 : NepanikarColors.dark.withOpacity(0.65),
+                      color: isDarkMode ? Colors.white60 : NepanikarColors.dark.withValues(alpha:0.65),
                     ),
                   ),
                 ],
@@ -296,8 +296,8 @@ class _TechniqueDetailSheet extends StatelessWidget {
                     height: 50,
                     decoration: BoxDecoration(
                       color: isDarkMode
-                          ? Colors.white.withOpacity(0.15)
-                          : primaryColor.withOpacity(0.15),
+                          ? Colors.white.withValues(alpha:0.15)
+                          : primaryColor.withValues(alpha:0.15),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Icon(
@@ -328,7 +328,7 @@ class _TechniqueDetailSheet extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 15,
                       height: 1.55,
-                      color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.85),
+                      color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.85),
                     ),
                   ),
                 ),

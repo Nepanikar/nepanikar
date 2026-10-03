@@ -6,9 +6,8 @@ import 'package:sembast/sembast.dart';
 /// Stores the free-text answers from a week's reflection day (Week 1, Day 7 –
 /// SPOKO reflection). Persisted per week so they can be re-surfaced later.
 class BpdReflectionDao {
-  BpdReflectionDao({required DatabaseService dbService})
-    : _dbService = dbService,
-      _store = stringMapStoreFactory.store(_storeKeyName);
+  BpdReflectionDao({required this._dbService})
+    : _store = stringMapStoreFactory.store(_storeKeyName);
 
   Future<BpdReflectionDao> init() async {
     registry.registerSingleton<BpdReflectionDao>(this);

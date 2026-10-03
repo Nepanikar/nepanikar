@@ -41,7 +41,7 @@ class _SpokoRecallListState extends State<SpokoRecallList> {
           widget.hint ?? context.l10n.dbt_spoko_tap_hint,
           style: TextStyle(
             fontSize: 13,
-            color: isDarkMode ? Colors.white60 : NepanikarColors.dark.withOpacity(0.6),
+            color: isDarkMode ? Colors.white60 : NepanikarColors.dark.withValues(alpha:0.6),
           ),
         ),
         const SizedBox(height: 14),
@@ -88,9 +88,9 @@ class _RevealCard extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 14),
           decoration: BoxDecoration(
-            color: isDarkMode ? Colors.white.withOpacity(0.04) : Colors.white,
+            color: isDarkMode ? Colors.white.withValues(alpha:0.04) : Colors.white,
             borderRadius: BorderRadius.circular(14),
-            border: Border.all(color: primaryColor.withOpacity(0.3), width: 1.5),
+            border: Border.all(color: primaryColor.withValues(alpha:0.3), width: 1.5),
           ),
           child: Center(
             child: Text(
@@ -98,7 +98,7 @@ class _RevealCard extends StatelessWidget {
               style: TextStyle(
                 fontSize: 13,
                 fontWeight: FontWeight.w700,
-                color: isDarkMode ? Colors.white54 : primaryColor.withOpacity(0.6),
+                color: isDarkMode ? Colors.white54 : primaryColor.withValues(alpha:0.6),
               ),
             ),
           ),
@@ -109,7 +109,7 @@ class _RevealCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(13),
       decoration: BoxDecoration(
-        color: isDarkMode ? Colors.white.withOpacity(0.06) : primaryColor.withOpacity(0.08),
+        color: isDarkMode ? Colors.white.withValues(alpha:0.06) : primaryColor.withValues(alpha:0.08),
         borderRadius: BorderRadius.circular(14),
       ),
       child: Row(

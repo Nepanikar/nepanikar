@@ -139,10 +139,10 @@ class _GoalCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 14),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: isDarkMode ? Colors.white.withOpacity(0.05) : Colors.white,
+        color: isDarkMode ? Colors.white.withValues(alpha:0.05) : Colors.white,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: isDarkMode ? Colors.white.withOpacity(0.1) : primaryColor.withOpacity(0.15),
+          color: isDarkMode ? Colors.white.withValues(alpha:0.1) : primaryColor.withValues(alpha:0.15),
         ),
       ),
       child: Column(
@@ -156,7 +156,7 @@ class _GoalCard extends StatelessWidget {
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                     decoration: BoxDecoration(
-                      color: primaryColor.withOpacity(0.12),
+                      color: primaryColor.withValues(alpha:0.12),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text(
@@ -242,7 +242,7 @@ class _GoalField extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
-                    color: isDarkMode ? Colors.white54 : NepanikarColors.dark.withOpacity(0.55),
+                    color: isDarkMode ? Colors.white54 : NepanikarColors.dark.withValues(alpha:0.55),
                   ),
                 ),
               ),
@@ -290,7 +290,7 @@ class _CardMenu extends StatelessWidget {
         child: Icon(
           Icons.more_vert,
           size: 20,
-          color: isDarkMode ? Colors.white60 : NepanikarColors.dark.withOpacity(0.5),
+          color: isDarkMode ? Colors.white60 : NepanikarColors.dark.withValues(alpha:0.5),
         ),
       ),
     );
@@ -312,7 +312,7 @@ class _EmptyState extends StatelessWidget {
             width: 84,
             height: 84,
             decoration: BoxDecoration(
-              color: primaryColor.withOpacity(0.12),
+              color: primaryColor.withValues(alpha:0.12),
               shape: BoxShape.circle,
             ),
             child: Icon(Icons.track_changes, size: 40, color: primaryColor),
@@ -333,7 +333,7 @@ class _EmptyState extends StatelessWidget {
             style: TextStyle(
               fontSize: 14,
               height: 1.45,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.65),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.65),
             ),
           ),
         ],

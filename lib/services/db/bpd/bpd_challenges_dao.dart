@@ -12,9 +12,8 @@ import 'package:sembast/sembast.dart';
 /// participace). Selection is voluntary; we persist only the texts the user
 /// checked, keyed per week + day (+ section), so they can be re-surfaced later.
 class BpdChallengesDao {
-  BpdChallengesDao({required DatabaseService dbService})
-    : _dbService = dbService,
-      _store = stringMapStoreFactory.store(_storeKeyName);
+  BpdChallengesDao({required this._dbService})
+    : _store = stringMapStoreFactory.store(_storeKeyName);
 
   Future<BpdChallengesDao> init() async {
     registry.registerSingleton<BpdChallengesDao>(this);

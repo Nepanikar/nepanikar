@@ -16,9 +16,9 @@ class ReflectionField extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: isDarkMode ? Colors.white.withOpacity(0.05) : Colors.white,
+        color: isDarkMode ? Colors.white.withValues(alpha:0.05) : Colors.white,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: primaryColor.withOpacity(0.2), width: 1.5),
+        border: Border.all(color: primaryColor.withValues(alpha:0.2), width: 1.5),
       ),
       child: TextField(
         controller: controller,

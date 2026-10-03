@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nepanikar/app/theme/colors.dart';
-import 'package:nepanikar/screens/bpd_programme/widgets/bpd_help_button.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/day2_spoko/challenge_page.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/day2_spoko/completion_page.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/day2_spoko/education_chat_page.dart';
+import 'package:nepanikar/screens/bpd_programme/widgets/bpd_help_button.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_memory.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
@@ -131,7 +131,7 @@ class _Week1Day2SpokoScreenState extends State<Week1Day2SpokoScreen> {
                       decoration: BoxDecoration(
                         color: index <= _currentPage
                             ? primaryColor
-                            : (isDarkMode ? Colors.white.withOpacity(0.2) : Colors.grey.shade300),
+                            : (isDarkMode ? Colors.white.withValues(alpha:0.2) : Colors.grey.shade300),
                         borderRadius: BorderRadius.circular(2),
                       ),
                     ),
@@ -145,7 +145,7 @@ class _Week1Day2SpokoScreenState extends State<Week1Day2SpokoScreen> {
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w600,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.7),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.7),
             ),
           ),
           const Padding(

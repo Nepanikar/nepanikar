@@ -89,7 +89,7 @@ class _NepanikarButtonState extends State<NepanikarButton> with SingleTickerProv
     if (widget.buttonType.isAsync) {
       if (mounted) {
         setState(() => _isLoading = true);
-        unawaited(_animController.repeat());
+        _animController.repeat();
       }
       await widget.onTapAsync?.call();
       if (mounted) {

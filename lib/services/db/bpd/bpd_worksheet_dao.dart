@@ -15,9 +15,8 @@ import 'package:sembast/sembast.dart';
 /// Worksheet ids in use: `week3_day1_myths`, `week3_day2_model`,
 /// `week3_day2_validation`, `week3_day3_facts`.
 class BpdWorksheetDao {
-  BpdWorksheetDao({required DatabaseService dbService})
-    : _dbService = dbService,
-      _store = stringMapStoreFactory.store(_storeKeyName);
+  BpdWorksheetDao({required this._dbService})
+    : _store = stringMapStoreFactory.store(_storeKeyName);
 
   Future<BpdWorksheetDao> init() async {
     registry.registerSingleton<BpdWorksheetDao>(this);

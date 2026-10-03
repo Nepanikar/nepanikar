@@ -185,7 +185,7 @@ class Week4Day4DrawPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    final secondaryText = isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.75);
+    final secondaryText = isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.75);
 
     return DayPageBase(
       // Not "Hotovo" — the day is complete whether or not the drawn technique

@@ -98,7 +98,6 @@ enum Mood {
 abstract class MoodTrack with _$MoodTrack {
   const factory MoodTrack({
     required Mood mood,
-    // ignore: invalid_annotation_target
     @JsonKey(name: FilterKeys.date) required DateTime date,
     List<String>? emotions,
     String? summary,

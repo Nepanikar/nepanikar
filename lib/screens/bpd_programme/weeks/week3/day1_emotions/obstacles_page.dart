@@ -32,7 +32,7 @@ class Week3ObstaclesPage extends StatelessWidget {
             style: TextStyle(
               fontSize: 16,
               height: 1.55,
-              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withOpacity(0.85),
+              color: isDarkMode ? Colors.white70 : NepanikarColors.dark.withValues(alpha:0.85),
             ),
           ),
           const SizedBox(height: 16),
