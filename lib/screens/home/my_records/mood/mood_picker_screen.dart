@@ -90,7 +90,6 @@ class _MoodPickerScreenState<T extends MoodTrackDao> extends State<MoodPickerScr
 
   @override
   void dispose() {
-    // Dispose the controller when the state is disposed
     _newEmotionController.dispose();
     super.dispose();
   }
@@ -151,7 +150,6 @@ class _MoodPickerScreenState<T extends MoodTrackDao> extends State<MoodPickerScr
 
     final formattedDate = DateFormat('d. MMM. yyyy   HH:mm').format(_now);
 
-    //Colors
     final textStyleColor = customColorsBasedOnDarkMode(
       context,
       NepanikarColors.white,
@@ -322,7 +320,7 @@ class _MoodPickerScreenState<T extends MoodTrackDao> extends State<MoodPickerScr
                   ),
                   child: Text(
                     context.l10n.save,
-                    style: const TextStyle(color: Colors.white, fontSize: 25), // Text color
+                    style: const TextStyle(color: Colors.white, fontSize: 25),
                   ),
                 ),
               ),

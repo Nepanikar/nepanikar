@@ -35,7 +35,6 @@ class HeatMapMonthText extends StatelessWidget {
     // Set true if previous week was the first day of the month.
     bool write = false;
 
-    // Loop until check every given weeks.
     for (int label = 0; label < (firstDayInfos?.length ?? 0); label++) {
       // If given week is first week of given datesets or
       // first week of month, create labels

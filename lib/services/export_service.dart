@@ -49,7 +49,6 @@ class ExportService {
         final data = await File(filePath).readAsString();
         final parsed = jsonDecode(data) as Map<String, dynamic>;
 
-        // Clear the database beforehand.
         await clear();
 
         // `importDatabase` creates a new DB and would require to restart sembast.

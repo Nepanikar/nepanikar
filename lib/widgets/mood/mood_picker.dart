@@ -18,7 +18,6 @@ class MoodPicker extends StatefulWidget {
   const MoodPicker({
     super.key,
     required this.onPick,
-    // required this.onPickMessage,
     this.activeMood,
     this.header,
     this.autoSizeTitle = true,
@@ -28,7 +27,6 @@ class MoodPicker extends StatefulWidget {
   final Mood? activeMood;
   final ValueChanged<Mood> onPick;
   final String? header;
-  // final String onPickMessage;
   final bool autoSizeTitle;
   final bool showLabels;
 

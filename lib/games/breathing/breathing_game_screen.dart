@@ -114,7 +114,6 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
   }
 
   void _initPhaseConfig() {
-    // Parse preset parameter to get phase configuration
     switch (widget.preset) {
       case 'box':
         _phaseConfig = BreathingPhaseConfig.box;
@@ -128,7 +127,6 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
   }
 
   void initSteps() {
-    // If using custom config, build steps from it
     if (_useCustomPhases) {
       final config = _phaseConfig!;
       final newSteps = <String>[];
@@ -219,10 +217,8 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
       setState(() {});
     }
 
-    // Calculate countdown: slider value = seconds per phase
     final secondsPerPhase = _currentSliderValue.round();
 
-    // Calculate progress within current phase
     final phaseProgress = (_controller.value * phaseCount) - newIndex;
     final secondsRemainingInPhase = (secondsPerPhase * (1 - phaseProgress)).ceil().clamp(
       1,
@@ -280,7 +276,6 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
 
     _initPhaseConfig();
 
-    // Initialize custom phase durations based on shape
     switch (widget.shape) {
       case BreathingGameShape.square:
         _customPhaseDurations = [4, 4, 4, 4];
@@ -290,7 +285,6 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
         _customPhaseDurations = [4, 4];
     }
 
-    // Set animation duration based on config or default
     final duration = _useCustomPhases
         ? Duration(seconds: _phaseConfig!.totalSeconds)
         : const Duration(seconds: 10);
@@ -309,7 +303,6 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
     super.didChangeDependencies();
     initSteps();
 
-    // Initialize countdown and duration
     if (_useCustomPhases) {
       _countDownNotifier.value = _phaseConfig!.getCountdown(0);
     } else if (widget.shape == BreathingGameShape.circle) {
@@ -431,7 +424,6 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
                 ),
               ],
             ),
-            // Controls at the bottom
             if (widget.shape == BreathingGameShape.circle && !_useCustomPhases)
               // Simple slider for circle
               Column(
@@ -484,7 +476,6 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Preset buttons row
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
@@ -498,7 +489,6 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
                     child: _buildPresetButton(preset.name, isSelected, () => _selectPreset(index)),
                   );
                 }),
-                // Custom button
                 _buildPresetButton(
                   context.l10n.chart_filter_custom,
                   _showCustomControls,
@@ -627,7 +617,6 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
   }
 
   void _applyPhaseDurations(List<int> durations) {
-    // Create phase config from durations
     BreathingPhaseConfig config;
     if (widget.shape == BreathingGameShape.square) {
       config = BreathingPhaseConfig(
@@ -651,7 +640,6 @@ class _BreathingGameScreenState extends State<BreathingGameScreen> with TickerPr
     _countDownNotifier.value = config.getCountdown(0);
     initSteps();
 
-    // Restart animation with new duration
     _controller.reset();
     _controller.repeat();
   }

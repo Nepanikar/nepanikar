@@ -32,11 +32,9 @@ class SelfHarmTimerDao {
   }
 
   Future<void> stopSelfHarmTimer() async {
-    // Get start DateTime of the just stopped timer and remove the value.
     final timerStartDate = await getCurrentTimerStartDateTime();
     await _store.record(_selfHarmTimerCurrentTimestampKey).delete(_db);
 
-    // Check if this is a new record.
     if (timerStartDate != null) {
       final dateTimeNow = DateTime.now().toUtc();
       final newPossibleRecordRange = DateTimeRange(start: timerStartDate, end: dateTimeNow);

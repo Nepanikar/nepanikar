@@ -42,7 +42,6 @@ class HeatMapCalendarRow extends StatelessWidget {
                  height: size ?? 42,
                  margin: margin ?? const EdgeInsets.all(2),
                )
-             // If the day is not a empty one then create HeatMapContainer.
              : HeatMapContainer(
                  // Given information about the week is that
                  // start day of week value and end day of week.

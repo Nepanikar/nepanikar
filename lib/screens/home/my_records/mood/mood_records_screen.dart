@@ -67,7 +67,6 @@ class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsS
   //////////////// Build Method //////////////////////////
   @override
   Widget build(BuildContext context) {
-    //Colors
     final containerColor = customColorsBasedOnDarkMode(
       context,
       NepanikarColors.container(context),
@@ -227,7 +226,6 @@ class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsS
                         ),
                       );
                     } else {
-                      // You can return an empty Container or SizedBox if there's nothing to show
                       return const SizedBox();
                     }
                   },
@@ -264,7 +262,6 @@ class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsS
 
   AppBar _appBarForPageIndex(int index) {
     switch (index) {
-      //Mood Chart AppBar
       case 0:
         return AppBar(
           title: Text(
@@ -298,7 +295,6 @@ class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsS
             ),
           ],
         );
-      //Mood Entries AppBar
       case 1:
         return AppBar(
           title: Text(
@@ -450,17 +446,14 @@ class _MoodRecordsScreenState<T extends MoodTrackDao> extends State<MoodRecordsS
   }
 
   ////////////////////////////////////////////////////////////////////////////////
-  //Helper function to calculate average score for each requested day of date range
   Map<DateTime, int> calculateAverageMoodScores(List<MoodTrack> moodTracks) {
     final Map<DateTime, List<int>> dayToScores = {};
-    // Group scores by date
     for (final track in moodTracks) {
       final date = DateTime(track.date.year, track.date.month, track.date.day);
       final score = track.mood.getMoodScore(track.mood);
       dayToScores.putIfAbsent(date, () => []).add(score);
     }
 
-    // Calculate average score for each date
     final Map<DateTime, int> dayToAverageScore = {};
     dayToScores.forEach((date, scores) {
       final averageScore = scores.reduce((a, b) => a + b) / scores.length;

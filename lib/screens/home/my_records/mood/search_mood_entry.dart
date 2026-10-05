@@ -60,7 +60,6 @@ class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntr
 
   @override
   void dispose() {
-    // Dispose the controller when the state is disposed
     _searchController.dispose();
     super.dispose();
   }
@@ -180,7 +179,7 @@ class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntr
                         ),
                         child: Text(
                           context.l10n.search,
-                          style: const TextStyle(color: Colors.white, fontSize: 14), // Text color
+                          style: const TextStyle(color: Colors.white, fontSize: 14),
                         ),
                       ),
                     ),
@@ -205,7 +204,7 @@ class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntr
                         ),
                         child: Text(
                           context.l10n.clear_button,
-                          style: const TextStyle(color: Colors.white, fontSize: 14), // Text color
+                          style: const TextStyle(color: Colors.white, fontSize: 14),
                         ),
                       ),
                     ),
@@ -221,9 +220,9 @@ class _SearchMoodEntryState<T extends MoodTrackDao> extends State<SearchMoodEntr
                     ListView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      itemCount: _searchResults.length, // Use the length of the search results list
+                      itemCount: _searchResults.length,
                       itemBuilder: (context, index) {
-                        final moodEntry = _searchResults[index]; // Access the search result item
+                        final moodEntry = _searchResults[index];
                         return Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
                           child: MoodEntryCard(

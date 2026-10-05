@@ -2,12 +2,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/widgets/heatmap/util/date_util.dart';
 
 class HeatMapMonth2 extends StatelessWidget {
-  const HeatMapMonth2({
-    super.key,
-    required this.month, // Now just a single int representing the month
-    this.fontSize,
-    this.fontColor,
-  });
+  const HeatMapMonth2({super.key, required this.month, this.fontSize, this.fontColor});
 
   /// The month value.
   ///
@@ -22,13 +17,7 @@ class HeatMapMonth2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Use the `month` to directly index into `DateUtil.SHORT_MONTH_LABEL`
-    // Remember to adjust the index if necessary (e.g., if `month` is 1-based but the array is 0-based)
-    final String monthText = DateUtil.monthLabels(
-      month - 1,
-      true,
-      context,
-    ); // Assuming month is 1-based and your array is 0-based
+    final String monthText = DateUtil.monthLabels(month - 1, true, context);
 
     return Text(
       monthText,

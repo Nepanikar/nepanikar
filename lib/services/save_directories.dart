@@ -10,7 +10,6 @@ class SaveDirectories {
   Future<void> init() async {
     supportDir = await getApplicationSupportDirectory();
 
-    // Creates a directory for db, if it doesn't exist.
     await Directory(dbDirPath).create(recursive: true);
   }
 

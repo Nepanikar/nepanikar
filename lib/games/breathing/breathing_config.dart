@@ -81,7 +81,6 @@ class BreathingPhaseConfig {
     final phaseIndex = getPhaseIndex(progress);
     final phaseDuration = phaseDurations[phaseIndex];
 
-    // Calculate how far into this phase we are
     final phaseStart = boundaries[phaseIndex];
     final phaseEnd = boundaries[phaseIndex + 1];
     final phaseProgress = (progress - phaseStart) / (phaseEnd - phaseStart);

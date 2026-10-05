@@ -87,7 +87,6 @@ class LongTile extends StatelessWidget {
                           children: [
                             Text(
                               text,
-                              //style: textTextStyle,
                               style: isDarkMode
                                   ? textTextStyle.copyWith(color: Colors.white)
                                   : textTextStyle,

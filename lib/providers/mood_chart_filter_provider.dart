@@ -144,11 +144,9 @@ extension MoodChartFilterExt on Iterable<MoodTrack> {
     final moodTracks = map((moodTrack) {
       final originalDate = moodTrack.date;
       final normalizedDate = DateTime(originalDate.year, originalDate.month, originalDate.day);
-      // Assuming your MoodTrack class has a copyWith method
       return moodTrack.copyWith(date: normalizedDate);
     }).toList();
 
-    // Filter MoodTracks based on normalized date
     final filteredMap = <DateTime, List<MoodTrack>>{};
     for (final moodTrack in moodTracks) {
       final moodTrackDate = DateTime(moodTrack.date.year, moodTrack.date.month, moodTrack.date.day);

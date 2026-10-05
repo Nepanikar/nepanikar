@@ -26,8 +26,6 @@ import 'package:nepanikar/widgets/semantics/semantics_widget_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingsScreen extends StatefulWidget {
-  //final ThemeManager themeManager;
-
   const SettingsScreen({super.key});
 
   @override

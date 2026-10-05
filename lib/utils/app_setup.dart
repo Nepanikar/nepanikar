@@ -41,18 +41,14 @@ Future<void> setup() async {
   };
   await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(!kDebugMode);
 
-  // Analytics
   registry.registerSingleton<FirebaseAnalytics>(FirebaseAnalytics.instance);
   await registry.get<FirebaseAnalytics>().setAnalyticsCollectionEnabled(kReleaseMode);
 
-  // Initialize intl localizations.
   loadDateIntlDataIfNotLoaded();
 
-  // router
   registry.registerSingleton<GoRouter>(goRouterConfig);
   registry.registerLazySingleton<GlobalKey<NavigatorState>>(() => GlobalKey<NavigatorState>());
 
-  // services
   registry.registerSingleton<SaveDirectories>(SaveDirectories());
   await registry.get<SaveDirectories>().init();
 
@@ -72,7 +68,6 @@ Future<void> setup() async {
 
   registry.registerSingleton(ExportService(databaseService: registry.get<DatabaseService>()));
 
-  // utils
   final appInfo = await PackageInfo.fromPlatform();
   final config = AppConfig(
     packageInfo: appInfo,

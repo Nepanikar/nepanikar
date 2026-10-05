@@ -111,15 +111,12 @@ class HeatMapCalendar extends StatefulWidget {
 }
 
 class _HeatMapCalendar extends State<HeatMapCalendar> {
-  // The DateTime value of first day of the current month.
   DateTime? _currentDate;
 
   @override
   void initState() {
     super.initState();
     setState(() {
-      // Set _currentDate value to first day of initialized date or
-      // today's month if widget.initDate is null.
       _currentDate = DateUtil.startDayOfMonth(widget.initDate ?? DateTime.now());
     });
   }
@@ -135,19 +132,16 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        // Previous month button.
         IconButton(
           icon: const Icon(Icons.arrow_back_ios, size: 14),
           onPressed: () => changeMonth(-1),
         ),
 
-        // Text which shows the current year and month
         Text(
           '${DateUtil.monthLabels(_currentDate?.month ?? 0, false, context)} ${_currentDate?.year}',
           style: TextStyle(fontSize: widget.monthFontSize ?? 12, fontWeight: FontWeight.bold),
         ),
 
-        // Next month button.
         IconButton(
           icon: const Icon(Icons.arrow_forward_ios, size: 14),
           onPressed: () => changeMonth(1),

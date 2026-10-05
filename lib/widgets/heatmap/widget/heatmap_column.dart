@@ -23,8 +23,7 @@ class HeatMapColumn extends StatelessWidget {
     this.onClick,
     this.maxValue,
     this.showText,
-  }) : // Init list.
-       dayContainers = List.generate(numDays, (i) {
+  }) : dayContainers = List.generate(numDays, (i) {
          final currentDate = DateUtil.changeDay(startDate, i);
          final isSelected = datasets?.keys.contains(currentDate) ?? false;
 

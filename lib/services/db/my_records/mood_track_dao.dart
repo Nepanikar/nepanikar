@@ -133,19 +133,16 @@ class MoodTrackDao with CustomFilters {
         .query(finder: finder)
         .onSnapshots(_db)
         .map(
-          (snapshotList) =>
-              snapshotList // Ensure the snapshot has data
-                  .map((snapshot) {
-                    final value = snapshot.value;
-                    if (value.isNotEmpty) {
-                      return MoodTrack.fromJson(value);
-                    }
-                    return null; // Or handle the case where value is not as expected
-                  })
-                  .whereType<
-                    MoodTrack
-                  >() // Ensure that only non-null MoodTrack objects are included
-                  .toList(),
+          (snapshotList) => snapshotList
+              .map((snapshot) {
+                final value = snapshot.value;
+                if (value.isNotEmpty) {
+                  return MoodTrack.fromJson(value);
+                }
+                return null;
+              })
+              .whereType<MoodTrack>()
+              .toList(),
         );
   }
 

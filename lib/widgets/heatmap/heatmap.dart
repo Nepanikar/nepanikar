@@ -124,7 +124,6 @@ class _HeatMap extends State<HeatMap> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        // Heatmap Widget.
         _scrollableHeatMap(
           HeatMapPage(
             endDate: widget.endDate ?? DateTime.now(),
@@ -143,7 +142,6 @@ class _HeatMap extends State<HeatMap> {
           ),
         ),
 
-        // Show HeatMapColorTip if showColorTip is true.
         if (widget.showColorTip == true)
           HeatMapColorTip(
             colorMode: widget.colorMode,
