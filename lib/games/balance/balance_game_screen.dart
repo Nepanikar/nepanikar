@@ -47,25 +47,21 @@ class _BalanceGameScreenState extends State<BalanceGameScreen> {
           speed = speed + (math.Random().nextDouble() - 0.5);
         });
       }
-      // Left wind active
       if (leftButtonActive) {
         setState(() {
           speed = speed + windStrength;
         });
       }
-      // Right wind active
       if (rightButtonActive) {
         setState(() {
           speed = speed - windStrength;
         });
       }
-      // Final angle
       final newSpeed = speed + (angle * 0.001);
       setState(() {
         speed = newSpeed;
         angle = angle + newSpeed;
       });
-      // Fail check
       if (angle.abs() > limitAngle) {
         setState(() {
           speed = 0;
@@ -176,7 +172,6 @@ class _HeartSpray extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        // spawn 10 hearts
         for (var i = 0; i < 10; i++)
           Padding(
             padding: EdgeInsets.only(
@@ -188,7 +183,6 @@ class _HeartSpray extends StatelessWidget {
                 .animate(
                   delay: (i * 0.1).seconds,
                   onPlay: (controller) {
-                    // repeat animation when finished
                     controller.repeat();
                   },
                 )

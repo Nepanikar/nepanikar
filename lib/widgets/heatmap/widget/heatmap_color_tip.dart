@@ -73,7 +73,6 @@ class HeatMapColorTip extends StatelessWidget {
     );
 
     for (int i = 0; i < (containerCount ?? _defaultLength); i++) {
-      // Correctly calculate index within bounds and use elements
       final int index = ((sortedColorset.length / (containerCount ?? _defaultLength)) * i).floor();
       final Color color = sortedColorset.values.elementAt(index);
       children.add(_tipContainer(color));

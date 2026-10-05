@@ -20,16 +20,7 @@ class HeatMapPage extends StatelessWidget {
     this.onClick,
     this.margin,
     this.showText,
-  }) // : _dateDifferent = endDate.difference(startDate).inDays,
-  : maxValue = DatasetsUtil.getMaxValue(datasets);
-
-  /// List value of every sunday's month information.
-  ///
-  /// From 1: January to 12: December.
-  // final List<int> _firstDayInfos = [];
-
-  /// The number of days between [startDate] and [endDate].
-  // final int _dateDifferent;
+  }) : maxValue = DatasetsUtil.getMaxValue(datasets);
 
   /// The Date value of start day of heatmap.
   ///
@@ -145,7 +136,6 @@ class HeatMapPage extends StatelessWidget {
       );
     }
 
-    // Return a Row that contains all the monthly columns
     return SingleChildScrollView(child: Row(children: monthlyColumns));
   }
 

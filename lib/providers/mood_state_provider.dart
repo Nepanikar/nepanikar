@@ -1,6 +1,6 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/services/db/my_records/emotions_dao.dart';
-import 'package:nepanikar/services/db/my_records/mood_track_dao.dart'; // Adjust the import based on your project structure
+import 'package:nepanikar/services/db/my_records/mood_track_dao.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
 
 class MoodState with ChangeNotifier {
@@ -63,7 +63,7 @@ class MoodState with ChangeNotifier {
 
   Future<bool> addEmotion(String emotion) async {
     final succeed = await _emotionsDao.addEmotion(emotion);
-    await _loadEmotions(); // Reload emotions to include the new one
+    await _loadEmotions();
     return succeed;
   }
 

@@ -7,7 +7,6 @@ class NepanikarColors {
     if (Theme.of(context).brightness == Brightness.light) {
       return Theme.of(context).primaryColor;
     } else {
-      //primaryD
       return Theme.of(context).primaryColor;
     }
   }
@@ -84,12 +83,12 @@ class NepanikarColors {
       BoxShadow(
         color: Theme.of(context).primaryColor.withValues(alpha: 0.08),
         blurRadius: 32,
-        offset: const Offset(0, 8), // changes position of shadow
+        offset: const Offset(0, 8),
       ),
       BoxShadow(
         color: Theme.of(context).primaryColor.withValues(alpha: 0.04),
         blurRadius: 4,
-        offset: const Offset(0, 2), // changes position of shadow
+        offset: const Offset(0, 2),
       ),
     ];
   }

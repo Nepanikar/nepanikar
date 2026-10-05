@@ -27,14 +27,12 @@ enum HeatmapFilter {
 
     DateTimeRange shiftMonths(DateTime startDate, int months) {
       final adjustedStart = DateTime(startDate.year, startDate.month + months);
-      // Correctly finds the end of the target month
       final endOfMonth = DateTime(adjustedStart.year, adjustedStart.month + 1, 0);
 
       return DateTimeRange(start: adjustedStart, end: endOfMonth);
     }
 
     if (customDateRange == null && dateRangeSwitch == null) {
-      // Initialization logic for the current period
       switch (this) {
         case HeatmapFilter.month:
           start = DateTime(now.year, now.month);
@@ -44,7 +42,6 @@ enum HeatmapFilter {
           end = DateTime(now.year, 12, 31);
       }
     } else if (customDateRange != null) {
-      // Use the custom date range if provided
       start = customDateRange.start;
       end = customDateRange.end;
     } else {
@@ -55,19 +52,19 @@ enum HeatmapFilter {
     switch (this) {
       case HeatmapFilter.month:
         if (dateRangeSwitch == DateRangeSwitch.previous) {
-          return shiftMonths(start, -1); // Shift 1 month back for previous or initialize
+          return shiftMonths(start, -1);
         } else if (dateRangeSwitch == null) {
           return DateTimeRange(start: start, end: end);
         } else {
-          return shiftMonths(end, 1); // Shift 1 month forward for next
+          return shiftMonths(end, 1);
         }
       case HeatmapFilter.year:
         if (dateRangeSwitch == DateRangeSwitch.previous) {
-          return shiftMonths(start, -12); // Shift 12 months back for previous or initialize
+          return shiftMonths(start, -12);
         } else if (dateRangeSwitch == null) {
           return DateTimeRange(start: start, end: end);
         } else {
-          return shiftMonths(end, 12); // Shift 12 months forward for next
+          return shiftMonths(end, 12);
         }
     }
   }

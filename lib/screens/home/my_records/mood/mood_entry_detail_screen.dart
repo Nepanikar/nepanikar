@@ -178,7 +178,6 @@ class _MoodEntryDetailState<T extends MoodTrackDao> extends State<MoodEntryDetai
                         child: Text(
                           context.l10n.description,
                           style: TextStyle(
-                            // Replace with your style
                             color: textStyleColor,
                             fontSize: 50,
                             fontWeight: FontWeight.bold,
@@ -208,16 +207,16 @@ class _MoodEntryDetailState<T extends MoodTrackDao> extends State<MoodEntryDetai
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.transparent, // Makes the BottomAppBar transparent
-        elevation: 0, // Removes the shadow
+        color: Colors.transparent,
+        elevation: 0,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               SizedBox(
-                width: 130, // Set the width of the SizedBox to define the size of the button
-                height: 60, // Set the height of the SizedBox to define the size of the button
+                width: 130,
+                height: 60,
                 child: ElevatedButton(
                   onPressed: () async {
                     final success = await _deleteMoodEntry(context, moodEntry);

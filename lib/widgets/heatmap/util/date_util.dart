@@ -66,45 +66,4 @@ class DateUtil {
   /// Change month of [referenceDate].
   static DateTime changeMonth(DateTime referenceDate, int monthCount) =>
       DateTime(referenceDate.year, referenceDate.month + monthCount, referenceDate.day);
-
-  //#region unused methods.
-
-  // static int weekCount(final DateTime referenceDate) {
-  //   return ((startDayOfMonth(referenceDate).weekday % DAYS_IN_WEEK +
-  //               endDayOfMonth(referenceDate).day) /
-  //           DAYS_IN_WEEK)
-  //       .ceil();
-  // }
-
-  // static int weekPos(final DateTime referenceDate) =>
-  //     (referenceDate.day +
-  //         startDayOfMonth(referenceDate).weekday % DAYS_IN_WEEK) ~/
-  //     DAYS_IN_WEEK;
-
-  // static DateTime startDayOfWeek(final DateTime referenceDate) =>
-  //     weekPos(referenceDate) == 0
-  //         ? startDayOfMonth(referenceDate)
-  //         : DateTime(referenceDate.year, referenceDate.month,
-  //             referenceDate.day - referenceDate.weekday % DAYS_IN_WEEK);
-
-  // static DateTime endDayOfWeek(final DateTime referenceDate) {
-  //   return weekPos(referenceDate) != (weekCount(referenceDate) - 1)
-  //       ? DateTime(referenceDate.year, referenceDate.month,
-  //           referenceDate.day - referenceDate.weekday % DAYS_IN_WEEK + 6)
-  //       : endDayOfMonth(referenceDate);
-  // }
-
-  // static DateTime changeWeek(final DateTime referenceDate, int weekCount) =>
-  //     DateTime(referenceDate.year, referenceDate.month,
-  //         1 + DAYS_IN_WEEK * weekCount);
-
-  // static bool compareDate(final DateTime first, final DateTime second) =>
-  //     first.year == second.year &&
-  //     first.month == second.month &&
-  //     first.day == second.day;
-
-  // static bool isStartDayOfMonth(final DateTime referenceDate) =>
-  //     compareDate(referenceDate, startDayOfMonth(referenceDate));
-
-  //#endregion
 }

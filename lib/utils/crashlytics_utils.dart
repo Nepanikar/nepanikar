@@ -11,10 +11,7 @@ Future<void> logExceptionToCrashlytics(
     debugPrint(exception.toString());
     debugPrint(stackTrace.toString());
   } else {
-    // Logs a message that's included in the next fatal or non-fatal report.
     await FirebaseCrashlytics.instance.log(logMessage);
-
-    // Submits a Crashlytics report of a caught error.
     await FirebaseCrashlytics.instance.recordError(exception, stackTrace);
   }
 }
