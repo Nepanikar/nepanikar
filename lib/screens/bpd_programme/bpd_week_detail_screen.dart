@@ -746,6 +746,10 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
           isCompleted: dayProgress.isCompleted,
         ),
         onStart: () {
+          // Every lesson is opened from here, whichever screen the switch
+          // below picks — so this is the one place that can record a day as
+          // reached. Fire and forget: telemetry never delays the lesson.
+          unawaited(_bpdDaysDao.markDayStarted(widget.weekNumber, dayProgress.dayNumber));
           // Navigate based on route type
           switch (dayContent.routeType) {
             case _DayRouteType.onboarding:

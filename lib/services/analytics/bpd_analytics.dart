@@ -22,6 +22,7 @@ class BpdAnalytics {
   const BpdAnalytics._();
 
   static const _programmeStarted = 'bpd_programme_started';
+  static const _dayOpened = 'bpd_day_opened';
   static const _dayCompleted = 'bpd_day_completed';
   static const _weekCompleted = 'bpd_week_completed';
   static const _programmeCompleted = 'bpd_programme_completed';
@@ -46,6 +47,16 @@ class BpdAnalytics {
   }
 
   static Future<void> logProgrammeStarted() => _log(_programmeStarted);
+
+  /// One event the first time anyone reaches a lesson.
+  ///
+  /// The pair opened/completed is what makes a single day answerable: how
+  /// many got there, how many got through it, and therefore which lesson
+  /// people put down. Screen views cannot answer that — several days share a
+  /// screen (every rest day is the same one), and a re-read looks like a new
+  /// visit.
+  static Future<void> logDayOpened(int weekNumber, int dayNumber) =>
+      _log(_dayOpened, {'week': weekNumber, 'day': dayNumber});
 
   /// The drop-off curve itself: one event per day anyone finishes.
   static Future<void> logDayCompleted(int weekNumber, int dayNumber) =>
