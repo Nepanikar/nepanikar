@@ -92,11 +92,17 @@ class BpdDaysDao {
   Future<int> getDayPage(int weekNumber, int dayNumber) async =>
       (await getDayProgress(weekNumber, dayNumber))?.lastPage ?? 0;
 
+  /// Records that a lesson was reached, the first time it is.
+  ///
+  /// Mirrors [markDayCompleted]: only the first visit counts, because a day
+  /// can be re-walked freely and counting re-reads would bend the pilot's
+  /// curve the same way it would bend the completion one.
   Future<void> markDayStarted(int weekNumber, int dayNumber) async {
     final dayProgress = await getDayProgress(weekNumber, dayNumber);
     if (dayProgress != null && dayProgress.startedAt == null) {
       final updated = dayProgress.copyWith(startedAt: DateTime.now());
       await saveDayProgress(updated);
+      await BpdAnalytics.logDayOpened(weekNumber, dayNumber);
     }
   }
 
