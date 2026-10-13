@@ -168,7 +168,7 @@ class DayPauseScreen extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () => _completeDay(context),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: primaryColor,
+                    backgroundColor: NepanikarColors.ctaBackground(context),
                     foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                     elevation: 2,

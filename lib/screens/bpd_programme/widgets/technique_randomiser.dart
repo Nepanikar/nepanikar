@@ -111,7 +111,7 @@ class _DrawButton extends StatelessWidget {
       icon: Icon(icon, size: 20),
       label: Text(label),
       style: ElevatedButton.styleFrom(
-        backgroundColor: primaryColor,
+        backgroundColor: NepanikarColors.ctaBackground(context),
         foregroundColor: Colors.white,
         minimumSize: const Size(double.infinity, 54),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -186,7 +186,7 @@ class _DrawnCard extends StatelessWidget {
               onPressed: () =>
                   showTechniqueDetailSheet(context, technique: technique, sourceLabel: sourceLabel),
               style: ElevatedButton.styleFrom(
-                backgroundColor: primaryColor,
+                backgroundColor: NepanikarColors.ctaBackground(context),
                 foregroundColor: Colors.white,
                 minimumSize: const Size(double.infinity, 46),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),

@@ -388,8 +388,6 @@ class _StartBreathingButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final primaryColor = Theme.of(context).primaryColor;
-
     return SizedBox(
       width: double.infinity,
       height: 50,
@@ -403,7 +401,7 @@ class _StartBreathingButton extends StatelessWidget {
           router.push<void>(location);
         },
         style: ElevatedButton.styleFrom(
-          backgroundColor: primaryColor,
+          backgroundColor: NepanikarColors.ctaBackground(context),
           foregroundColor: Colors.white,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           elevation: 1,

@@ -226,7 +226,7 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
                   child: ElevatedButton(
                     onPressed: () => Navigator.of(sheetContext).pop(),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: primaryColor,
+                      backgroundColor: NepanikarColors.ctaBackground(context),
                       foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                     ),

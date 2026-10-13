@@ -76,6 +76,10 @@ class BpdLandingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final primaryColor = Theme.of(context).primaryColor;
+    // Everything tinted with the main colour that is *not* a filled button:
+    // in dark mode the raw main colour is all but invisible on this screen's
+    // own background. See NepanikarColors.accent.
+    final accent = NepanikarColors.accent(context);
 
     return Scaffold(
       backgroundColor: isDarkMode
@@ -100,10 +104,10 @@ class BpdLandingScreen extends StatelessWidget {
                         width: 100,
                         height: 100,
                         decoration: BoxDecoration(
-                          color: primaryColor.withValues(alpha: 0.1),
+                          color: accent.withValues(alpha: 0.1),
                           shape: BoxShape.circle,
                         ),
-                        child: Icon(Icons.settings, size: 50, color: primaryColor),
+                        child: Icon(Icons.settings, size: 50, color: accent),
                       ),
 
                       const SizedBox(height: 24),
@@ -146,14 +150,14 @@ class BpdLandingScreen extends StatelessWidget {
                         context.l10n.dbt_landing_coping_title,
                         context.l10n.dbt_landing_coping_description,
                         isDarkMode,
-                        primaryColor,
+                        accent,
                       ),
                       const SizedBox(height: 20),
                       _buildBulletPoint(
                         context.l10n.dbt_landing_mood_title,
                         context.l10n.dbt_landing_mood_description,
                         isDarkMode,
-                        primaryColor,
+                        accent,
                       ),
 
                       const SizedBox(height: 32),
@@ -169,7 +173,7 @@ class BpdLandingScreen extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () => _handleStartJourney(context),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: primaryColor,
+                    backgroundColor: NepanikarColors.ctaBackground(context),
                     foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                     elevation: 4,
@@ -188,7 +192,7 @@ class BpdLandingScreen extends StatelessWidget {
                 onPressed: () => _handleMaybeLater(context),
                 child: Text(
                   context.l10n.dbt_landing_later,
-                  style: TextStyle(fontSize: 16, color: primaryColor, fontWeight: FontWeight.w600),
+                  style: TextStyle(fontSize: 16, color: accent, fontWeight: FontWeight.w600),
                 ),
               ),
 
@@ -200,7 +204,7 @@ class BpdLandingScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildBulletPoint(String title, String description, bool isDarkMode, Color primaryColor) {
+  Widget _buildBulletPoint(String title, String description, bool isDarkMode, Color accent) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -208,11 +212,8 @@ class BpdLandingScreen extends StatelessWidget {
           width: 38,
           height: 38,
           margin: const EdgeInsets.only(top: 2),
-          decoration: BoxDecoration(
-            color: primaryColor.withValues(alpha: 0.2),
-            shape: BoxShape.circle,
-          ),
-          child: Icon(Icons.check_circle, color: primaryColor, size: 22),
+          decoration: BoxDecoration(color: accent.withValues(alpha: 0.2), shape: BoxShape.circle),
+          child: Icon(Icons.check_circle, color: accent, size: 22),
         ),
         const SizedBox(width: 14),
         Expanded(

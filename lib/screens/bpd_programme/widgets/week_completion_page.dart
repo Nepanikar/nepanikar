@@ -110,7 +110,7 @@ class WeekCompletionPage extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: onComplete,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: primaryColor,
+                  backgroundColor: NepanikarColors.ctaBackground(context),
                   foregroundColor: Colors.white,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                   elevation: 2,

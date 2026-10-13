@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
+import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_messages.dart';
 
 /// One tap-through batch of chat messages.
@@ -183,7 +184,6 @@ class _BottomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    final primaryColor = Theme.of(context).primaryColor;
 
     return SizedBox(
       width: double.infinity,
@@ -191,7 +191,7 @@ class _BottomButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: enabled ? onPressed : null,
         style: ElevatedButton.styleFrom(
-          backgroundColor: primaryColor,
+          backgroundColor: NepanikarColors.ctaBackground(context),
           foregroundColor: Colors.white,
           disabledBackgroundColor: isDarkMode
               ? Colors.white.withValues(alpha: 0.1)
