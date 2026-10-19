@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 
@@ -56,7 +56,11 @@ class DayPreviewSheet extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: isDarkMode ? NepanikarColors.dark : Colors.white,
+        // The sheet sits on the programme's own surface rather than the
+        // app's darkest purple: the day screens behind it use
+        // [containerColor], and a darker sheet left the filled button on it
+        // almost indistinguishable from its background.
+        color: isDarkMode ? NepanikarColors.containerColor(primaryColor) : Colors.white,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
       ),
       child: SafeArea(

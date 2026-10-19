@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 
 /// The five SMART goal input fields (S, M, A, R, T), each with a tappable
@@ -164,7 +164,7 @@ class _SmartGoalFieldsState extends State<SmartGoalFields> {
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(color: primaryColor, width: 2),
+              borderSide: BorderSide(color: NepanikarColors.accent(context), width: 2),
             ),
             contentPadding: const EdgeInsets.all(13),
           ),

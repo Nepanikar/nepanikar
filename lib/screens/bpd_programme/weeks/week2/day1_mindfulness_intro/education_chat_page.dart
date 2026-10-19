@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week2/day1_mindfulness_intro/day1_content.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart';

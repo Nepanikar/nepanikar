@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 
 /// Page 4/4 — Day 2 completion (verbatim, source: tyzden-1.md §2, closing).
@@ -31,7 +31,11 @@ class Day2CompletionPage extends StatelessWidget {
                             color: primaryColor.withValues(alpha: 0.15),
                             shape: BoxShape.circle,
                           ),
-                          child: Icon(Icons.nightlight_round, size: 58, color: primaryColor),
+                          child: Icon(
+                            Icons.nightlight_round,
+                            size: 58,
+                            color: NepanikarColors.accent(context),
+                          ),
                         ),
                         Container(
                           width: 38,
@@ -66,7 +70,7 @@ class Day2CompletionPage extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
-                        color: primaryColor,
+                        color: NepanikarColors.accent(context),
                       ),
                     ),
                     const SizedBox(height: 16),

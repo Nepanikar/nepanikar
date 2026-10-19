@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
@@ -38,7 +38,7 @@ class Day7ReflectionPage extends StatelessWidget {
                   color: primaryColor.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(11),
                 ),
-                child: Icon(Icons.edit_outlined, color: primaryColor, size: 22),
+                child: Icon(Icons.edit_outlined, color: NepanikarColors.accent(context), size: 22),
               ),
               const SizedBox(width: 12),
               Text(

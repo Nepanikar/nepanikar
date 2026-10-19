@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/shared/day_pause_screen.dart';
@@ -1141,14 +1141,14 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.access_time, size: 16, color: primaryColor),
+                      Icon(Icons.access_time, size: 16, color: NepanikarColors.accent(context)),
                       const SizedBox(width: 8),
                       Text(
                         context.l10n.dbt_next_lesson_in(_formatCountdown(nextUnlockIn)),
                         style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
-                          color: primaryColor,
+                          color: NepanikarColors.accent(context),
                         ),
                       ),
                     ],

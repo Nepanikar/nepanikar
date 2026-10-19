@@ -1,6 +1,6 @@
 // ignore_for_file: no_adjacent_strings_in_list
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/acronym_skill_page.dart';
 
 /// Week 4, Day 5 — techniky pro zvládnutí okamžiku krize (UZNÁVÁM).

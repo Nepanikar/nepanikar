@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
 
@@ -148,7 +148,7 @@ class _SmartTile extends StatelessWidget {
                 ),
                 Icon(
                   isOpen ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
-                  color: primaryColor,
+                  color: NepanikarColors.accent(context),
                 ),
               ],
             ),

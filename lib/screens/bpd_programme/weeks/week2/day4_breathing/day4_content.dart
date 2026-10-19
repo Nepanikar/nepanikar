@@ -1,6 +1,6 @@
 // ignore_for_file: no_adjacent_strings_in_list
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/games/breathing/breathing_game_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/technique_menu_page.dart';
 

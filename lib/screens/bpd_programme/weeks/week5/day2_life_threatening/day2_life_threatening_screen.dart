@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week5/day2_life_threatening/day2_content.dart';
@@ -368,14 +368,12 @@ class _SkipButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final primaryColor = Theme.of(context).primaryColor;
-
     return SizedBox(
       width: double.infinity,
       height: 48,
       child: TextButton(
         onPressed: onTap,
-        style: TextButton.styleFrom(foregroundColor: primaryColor),
+        style: TextButton.styleFrom(foregroundColor: NepanikarColors.accent(context)),
         child: const Text(
           day2SkipLabel,
           style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700),

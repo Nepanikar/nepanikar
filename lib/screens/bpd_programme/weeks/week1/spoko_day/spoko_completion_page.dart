@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/spoko_day/spoko_day_data.dart';
 
@@ -33,7 +33,11 @@ class SpokoCompletionPage extends StatelessWidget {
                             color: primaryColor.withValues(alpha: 0.15),
                             shape: BoxShape.circle,
                           ),
-                          child: Icon(data.completionIcon, size: 58, color: primaryColor),
+                          child: Icon(
+                            data.completionIcon,
+                            size: 58,
+                            color: NepanikarColors.accent(context),
+                          ),
                         ),
                         Container(
                           width: 38,
@@ -68,7 +72,7 @@ class SpokoCompletionPage extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
-                        color: primaryColor,
+                        color: NepanikarColors.accent(context),
                       ),
                     ),
                     const SizedBox(height: 16),

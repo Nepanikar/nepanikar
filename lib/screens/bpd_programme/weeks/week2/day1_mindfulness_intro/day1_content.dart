@@ -4,7 +4,7 @@
 /// Verbatim from `docs/hpo/source/tyzden-2.md` §1 unless marked otherwise.
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_lists.dart';
 
 /// Opening messages — what this week is about and what mindfulness is (§1,

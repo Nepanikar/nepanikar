@@ -111,14 +111,18 @@ class _ReminderPageState extends State<ReminderPage> {
               children: [
                 Row(
                   children: [
-                    Icon(Icons.notifications_none, color: primaryColor, size: 20),
+                    Icon(
+                      Icons.notifications_none,
+                      color: NepanikarColors.accent(context),
+                      size: 20,
+                    ),
                     const SizedBox(width: 8),
                     Text(
                       NotificationType.mindfulnessReminder.customTitle(context.l10n)!,
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
-                        color: primaryColor,
+                        color: NepanikarColors.accent(context),
                       ),
                     ),
                   ],
@@ -159,7 +163,7 @@ class _ReminderPageState extends State<ReminderPage> {
             ListTile(
               contentPadding: EdgeInsets.zero,
               onTap: _pickTime,
-              leading: Icon(Icons.schedule, color: primaryColor),
+              leading: Icon(Icons.schedule, color: NepanikarColors.accent(context)),
               title: Text(
                 'Čas připomínky',
                 style: TextStyle(
@@ -169,7 +173,11 @@ class _ReminderPageState extends State<ReminderPage> {
               ),
               trailing: Text(
                 _time.format(context),
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: primaryColor),
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: NepanikarColors.accent(context),
+                ),
               ),
             ),
           ],

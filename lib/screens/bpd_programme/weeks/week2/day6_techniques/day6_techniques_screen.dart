@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week2/day6_techniques/day6_content.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_completion_page.dart';

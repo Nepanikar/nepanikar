@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/bpd_help_button.dart';
@@ -112,7 +112,7 @@ class DayPauseScreen extends StatelessWidget {
                       const SizedBox(height: 32),
 
                       // Illustration
-                      _buildIllustration(primaryColor),
+                      _buildIllustration(primaryColor, NepanikarColors.accent(context)),
 
                       const SizedBox(height: 32),
 
@@ -230,7 +230,7 @@ class DayPauseScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildIllustration(Color primaryColor) {
+  Widget _buildIllustration(Color primaryColor, Color accent) {
     return Container(
       width: 200,
       height: 200,
@@ -251,7 +251,7 @@ class DayPauseScreen extends StatelessWidget {
             ),
           ),
           // Person meditating icon
-          Icon(Icons.self_improvement, size: 100, color: primaryColor.withValues(alpha: 0.7)),
+          Icon(Icons.self_improvement, size: 100, color: accent.withValues(alpha: 0.7)),
           // Small decorative elements
           Positioned(
             top: 30,
@@ -295,7 +295,10 @@ class DayPauseScreen extends StatelessWidget {
         onPressed: () => const MoodPickerRoute().push<void>(context),
         style: OutlinedButton.styleFrom(
           foregroundColor: primaryColor,
-          side: BorderSide(color: primaryColor.withValues(alpha: 0.5), width: 1.5),
+          side: BorderSide(
+            color: NepanikarColors.accent(context).withValues(alpha: 0.5),
+            width: 1.5,
+          ),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),
         child: Row(

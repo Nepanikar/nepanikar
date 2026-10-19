@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_completion_page.dart';
@@ -179,7 +179,7 @@ class Day5RecallPage extends StatelessWidget {
               label: const Text('Otevřít Moje výzvy'),
               style: OutlinedButton.styleFrom(
                 foregroundColor: Theme.of(context).primaryColor,
-                side: BorderSide(color: Theme.of(context).primaryColor.withValues(alpha: 0.4)),
+                side: BorderSide(color: NepanikarColors.accent(context).withValues(alpha: 0.4)),
                 padding: const EdgeInsets.symmetric(vertical: 14),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
               ),

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week2/day2_what_skills/day2_content.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_lists.dart';

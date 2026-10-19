@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/bpd_research.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart';
@@ -267,7 +267,7 @@ class _Day1WelcomeChatPageState extends State<Day1WelcomeChatPage> {
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: primaryColor, width: 2),
+                borderSide: BorderSide(color: NepanikarColors.accent(context), width: 2),
               ),
               contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
             ),

@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week2/day3_how_skills/day3_content.dart';
 import 'package:nepanikar/screens/home/my_records/goals/my_goals_screen.dart';
@@ -15,7 +15,6 @@ class NonJudgmentalExamples extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    final primaryColor = Theme.of(context).primaryColor;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,7 +25,7 @@ class NonJudgmentalExamples extends StatelessWidget {
             fontSize: 13,
             fontWeight: FontWeight.w700,
             letterSpacing: 1.2,
-            color: primaryColor,
+            color: NepanikarColors.accent(context),
           ),
         ),
         const SizedBox(height: 12),
@@ -173,11 +172,15 @@ class _SmartGoalReminderState extends State<SmartGoalReminder> {
         children: [
           Row(
             children: [
-              Icon(Icons.track_changes, color: primaryColor, size: 20),
+              Icon(Icons.track_changes, color: NepanikarColors.accent(context), size: 20),
               const SizedBox(width: 8),
               Text(
                 'Tvůj SMART cíl',
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: primaryColor),
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: NepanikarColors.accent(context),
+                ),
               ),
             ],
           ),
