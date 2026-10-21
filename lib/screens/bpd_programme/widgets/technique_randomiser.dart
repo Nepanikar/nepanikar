@@ -91,15 +91,13 @@ class _DrawButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final primaryColor = Theme.of(context).primaryColor;
-
     if (ghost) {
       return TextButton.icon(
         onPressed: onTap,
         icon: Icon(icon, size: 18),
         label: Text(label),
         style: TextButton.styleFrom(
-          foregroundColor: primaryColor,
+          foregroundColor: NepanikarColors.accent(context),
           minimumSize: const Size(0, 44),
           textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
         ),

@@ -224,7 +224,6 @@ class WorksheetFieldExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    final primaryColor = Theme.of(context).primaryColor;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -236,7 +235,7 @@ class WorksheetFieldExample extends StatelessWidget {
             icon: Icon(isOpen ? Icons.expand_less : Icons.lightbulb_outline, size: 16),
             label: Text(isOpen ? context.l10n.dbt_hide_example : context.l10n.dbt_show_example),
             style: TextButton.styleFrom(
-              foregroundColor: primaryColor,
+              foregroundColor: NepanikarColors.accent(context),
               padding: const EdgeInsets.symmetric(horizontal: 4),
               minimumSize: const Size(0, 32),
               textStyle: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700),

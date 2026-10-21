@@ -294,7 +294,7 @@ class DayPauseScreen extends StatelessWidget {
       child: OutlinedButton(
         onPressed: () => const MoodPickerRoute().push<void>(context),
         style: OutlinedButton.styleFrom(
-          foregroundColor: primaryColor,
+          foregroundColor: NepanikarColors.accent(context),
           side: BorderSide(
             color: NepanikarColors.accent(context).withValues(alpha: 0.5),
             width: 1.5,

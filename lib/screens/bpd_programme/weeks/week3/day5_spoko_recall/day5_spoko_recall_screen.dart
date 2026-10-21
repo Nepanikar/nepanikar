@@ -178,7 +178,7 @@ class Day5RecallPage extends StatelessWidget {
               icon: const Icon(Icons.flag_outlined, size: 18),
               label: const Text('Otevřít Moje výzvy'),
               style: OutlinedButton.styleFrom(
-                foregroundColor: Theme.of(context).primaryColor,
+                foregroundColor: NepanikarColors.accent(context),
                 side: BorderSide(color: NepanikarColors.accent(context).withValues(alpha: 0.4)),
                 padding: const EdgeInsets.symmetric(vertical: 14),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),

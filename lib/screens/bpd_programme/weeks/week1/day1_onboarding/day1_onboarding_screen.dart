@@ -228,7 +228,7 @@ class _Day1OnboardingScreenState extends State<Day1OnboardingScreen> {
           TextButton(
             onPressed: () => _pageController.jumpToPage(_smartWorksheetPage),
             style: TextButton.styleFrom(
-              foregroundColor: primaryColor,
+              foregroundColor: NepanikarColors.accent(context),
               padding: const EdgeInsets.symmetric(horizontal: 8),
               minimumSize: const Size(0, 36),
               tapTargetSize: MaterialTapTargetSize.shrinkWrap,

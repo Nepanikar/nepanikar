@@ -220,7 +220,7 @@ class _SmartGoalReminderState extends State<SmartGoalReminder> {
             child: TextButton(
               onPressed: () => context.push(const MyGoalsRoute().location),
               style: TextButton.styleFrom(
-                foregroundColor: primaryColor,
+                foregroundColor: NepanikarColors.accent(context),
                 padding: const EdgeInsets.symmetric(horizontal: 4),
               ),
               child: Text(
