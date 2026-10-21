@@ -86,17 +86,25 @@ void main() {
       expect(format(DateTime(2026, 5, 9)), startsWith('9. května'));
     });
 
-    test('says how far off the day is', () {
+    // Counted in calendar days, not by adding 24-hour durations: run this in
+    // the week before a DST change and `add(Duration(days: 9))` lands at 23:00
+    // on the eighth day, so the test asked for nine days and checked eight.
+    // The same trap GEN-06 fixed in the unlock dates themselves.
+    DateTime daysFromToday(int n) {
       final today = startOfDay(DateTime.now());
-      expect(format(today), contains('(dnes)'));
-      expect(format(today.add(const Duration(days: 1))), contains('(zítra)'));
-      expect(format(today.add(const Duration(days: 3))), contains('(za 3 dny)'));
+      return DateTime(today.year, today.month, today.day + n);
+    }
+
+    test('says how far off the day is', () {
+      expect(format(daysFromToday(0)), contains('(dnes)'));
+      expect(format(daysFromToday(1)), contains('(zítra)'));
+      expect(format(daysFromToday(3)), contains('(za 3 dny)'));
       // Czech switches counted nouns after four.
-      expect(format(today.add(const Duration(days: 9))), contains('(za 9 dní)'));
+      expect(format(daysFromToday(9)), contains('(za 9 dní)'));
     });
 
     test('a date already past reads as today rather than going negative', () {
-      final yesterday = startOfDay(DateTime.now()).subtract(const Duration(days: 1));
+      final yesterday = daysFromToday(-1);
       expect(format(yesterday), contains('(dnes)'));
     });
   });
