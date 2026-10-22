@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/services/db/bpd/bpd_challenge_model.dart';
@@ -91,7 +91,9 @@ class _ChallengeCardState extends State<ChallengeCard> {
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                     decoration: BoxDecoration(
-                      color: primaryColor.withValues(alpha: 0.12),
+                      color: isDarkMode
+                          ? Colors.white.withValues(alpha: 0.12)
+                          : primaryColor.withValues(alpha: 0.12),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text(
@@ -102,7 +104,7 @@ class _ChallengeCardState extends State<ChallengeCard> {
                       style: TextStyle(
                         fontSize: 11,
                         fontWeight: FontWeight.w700,
-                        color: primaryColor,
+                        color: NepanikarColors.accent(context),
                       ),
                     ),
                   ),
@@ -225,8 +227,8 @@ class _TodayButton extends StatelessWidget {
                 style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               ),
               style: OutlinedButton.styleFrom(
-                foregroundColor: primaryColor,
-                side: BorderSide(color: primaryColor, width: 1.5),
+                foregroundColor: NepanikarColors.accent(context),
+                side: BorderSide(color: NepanikarColors.accent(context), width: 1.5),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
               ),
             ),
@@ -434,7 +436,7 @@ class _MonthCalendar extends StatelessWidget {
                           color: done ? primaryColor : Colors.transparent,
                           shape: BoxShape.circle,
                           border: isToday && !done
-                              ? Border.all(color: primaryColor, width: 1.5)
+                              ? Border.all(color: NepanikarColors.accent(context), width: 1.5)
                               : null,
                         ),
                         child: Center(
