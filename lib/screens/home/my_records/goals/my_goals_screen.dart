@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/home/my_records/goals/smart_goal_form_screen.dart';
@@ -158,7 +158,9 @@ class _GoalCard extends StatelessWidget {
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                     decoration: BoxDecoration(
-                      color: primaryColor.withValues(alpha: 0.12),
+                      color: isDarkMode
+                          ? Colors.white.withValues(alpha: 0.12)
+                          : primaryColor.withValues(alpha: 0.12),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text(
@@ -167,7 +169,7 @@ class _GoalCard extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 11,
                         fontWeight: FontWeight.w700,
-                        color: primaryColor,
+                        color: NepanikarColors.accent(context),
                       ),
                     ),
                   ),
@@ -316,10 +318,12 @@ class _EmptyState extends StatelessWidget {
             width: 84,
             height: 84,
             decoration: BoxDecoration(
-              color: primaryColor.withValues(alpha: 0.12),
+              color: isDarkMode
+                  ? Colors.white.withValues(alpha: 0.12)
+                  : primaryColor.withValues(alpha: 0.12),
               shape: BoxShape.circle,
             ),
-            child: Icon(Icons.track_changes, size: 40, color: primaryColor),
+            child: Icon(Icons.track_changes, size: 40, color: NepanikarColors.accent(context)),
           ),
           const SizedBox(height: 20),
           Text(

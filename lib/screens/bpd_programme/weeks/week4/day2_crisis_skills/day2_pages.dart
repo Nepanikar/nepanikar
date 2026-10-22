@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/games/breathing/breathing_game_screen.dart';
@@ -188,8 +188,6 @@ class _BreathingLinkButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final primaryColor = Theme.of(context).primaryColor;
-
     return OutlinedButton.icon(
       onPressed: () => const BreathingGameRoute(
         shape: BreathingGameShape.circle,
@@ -198,9 +196,9 @@ class _BreathingLinkButton extends StatelessWidget {
       icon: const Icon(Icons.air, size: 18),
       label: const Text('Otevřít dechové cvičení'),
       style: OutlinedButton.styleFrom(
-        foregroundColor: primaryColor,
+        foregroundColor: NepanikarColors.accent(context),
         alignment: Alignment.centerLeft,
-        side: BorderSide(color: primaryColor.withValues(alpha: 0.4), width: 1.5),
+        side: BorderSide(color: NepanikarColors.accent(context).withValues(alpha: 0.4), width: 1.5),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
       ),

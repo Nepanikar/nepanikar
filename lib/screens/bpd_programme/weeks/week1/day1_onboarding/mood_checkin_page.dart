@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
@@ -40,7 +40,11 @@ class Day1MoodCheckinPage extends StatelessWidget {
             ),
             child: Text(
               '📝 První aktivita',
-              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: primaryColor),
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: NepanikarColors.accent(context),
+              ),
             ),
           ),
           const SizedBox(height: 14),
@@ -69,7 +73,11 @@ class Day1MoodCheckinPage extends StatelessWidget {
               children: [
                 Text(
                   'Jak se dnes máš?',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: primaryColor),
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: NepanikarColors.accent(context),
+                  ),
                 ),
                 const SizedBox(height: 14),
                 Row(
@@ -108,7 +116,7 @@ class Day1MoodCheckinPage extends StatelessWidget {
                 style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
               style: ElevatedButton.styleFrom(
-                backgroundColor: primaryColor,
+                backgroundColor: NepanikarColors.ctaBackground(context),
                 foregroundColor: Colors.white,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                 elevation: 2,

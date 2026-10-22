@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
+import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/worksheet_parts.dart';
 import 'package:nepanikar/services/db/bpd/bpd_worksheet_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
@@ -207,8 +208,6 @@ class _StructuredWorksheetState extends State<StructuredWorksheet> {
   }
 
   Widget _buildRevealMore(int hiddenCount) {
-    final primaryColor = Theme.of(context).primaryColor;
-
     return SizedBox(
       width: double.infinity,
       child: OutlinedButton.icon(
@@ -216,8 +215,8 @@ class _StructuredWorksheetState extends State<StructuredWorksheet> {
         icon: const Icon(Icons.add, size: 18),
         label: Text(widget.revealMoreLabel ?? context.l10n.dbt_show_more(hiddenCount)),
         style: OutlinedButton.styleFrom(
-          foregroundColor: primaryColor,
-          side: BorderSide(color: primaryColor.withValues(alpha: 0.4)),
+          foregroundColor: NepanikarColors.accent(context),
+          side: BorderSide(color: NepanikarColors.accent(context).withValues(alpha: 0.4)),
           padding: const EdgeInsets.symmetric(vertical: 14),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),

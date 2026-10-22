@@ -52,6 +52,50 @@ class NepanikarColors {
     return MaterialColor(color.toARGB32(), swatch);
   }
 
+  /// Background for a filled call-to-action.
+  ///
+  /// The main colour is picked off a hue wheel at a fixed lightness of 0.27,
+  /// and in dark mode the screen behind sits at that same colour lightened by
+  /// 0.1 ([containerColor]). A button painted in the main colour therefore
+  /// differs from its own background by one tenth of a step and all but
+  /// disappears — which is what the programme's screens did by setting
+  /// `backgroundColor: primaryColor` and bypassing the theme.
+  ///
+  /// This is the shade the app's own `elevatedButtonTheme` already uses in the
+  /// dark theme, so a button styled with it matches every other button in the
+  /// app rather than introducing a third convention.
+  static Color ctaBackground(BuildContext context) {
+    final primary = Theme.of(context).primaryColor;
+    return Theme.of(context).brightness == Brightness.light
+        ? primary
+        : primarySwatch(primary).shade700;
+  }
+
+  /// Text and icons tinted with the main colour, sitting on the screen's own
+  /// background rather than on a filled button.
+  ///
+  /// Same trap as [ctaBackground] and worse for a thin glyph, so dark mode
+  /// drops the tint altogether. White is not a guess: it is what these very
+  /// screens already use for their headings and body text in dark mode, and
+  /// it is the only option that holds up across the whole hue wheel. Contrast
+  /// against the dark-mode background, for three main colours:
+  ///
+  /// |                      | purple | red  | teal |
+  /// |----------------------|--------|------|------|
+  /// | main colour (before) |   1.35 | 1.42 | 1.72 |
+  /// | lighter main colour  |   2.31 | 2.00 | 1.94 |
+  /// | white                |   9.49 | 4.59 | 2.94 |
+  ///
+  /// A lighter shade of the main colour is the obvious choice and what
+  /// [NepanikarButton] uses for its secondary label, but that label sits on a
+  /// button fill rather than on this background, and here it barely helps.
+  ///
+  /// Both helpers return the main colour unchanged in light mode, so switching
+  /// a call site over cannot alter the light appearance.
+  static Color accent(BuildContext context) => Theme.of(context).brightness == Brightness.light
+      ? Theme.of(context).primaryColor
+      : Colors.white;
+
   static Color primaryColorShade(BuildContext context, double shade) {
     return Theme.of(context).brightness == Brightness.light
         ? lightness(Theme.of(context).primaryColor, shade)

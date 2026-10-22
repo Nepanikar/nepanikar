@@ -2,7 +2,7 @@
 // (required for const context); the resulting list elements are intentional.
 // ignore_for_file: no_adjacent_strings_in_list
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// What the optional safety contact deep-link on a SPOKO day should do.
 enum SpokoContactAction {

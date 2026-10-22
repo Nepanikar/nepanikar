@@ -20,7 +20,7 @@
 /// they learned. Only `shortDescription` is ours.
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week3/day3_check_facts/day3_content.dart'
     as w3_facts;
 import 'package:nepanikar/screens/bpd_programme/weeks/week3/day4_opposite_action/day4_content.dart'

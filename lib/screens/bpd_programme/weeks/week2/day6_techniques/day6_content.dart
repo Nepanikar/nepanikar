@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/technique_menu_page.dart';
 
 /// Week 2, Day 6 — the mindfulness techniques offered as a menu.

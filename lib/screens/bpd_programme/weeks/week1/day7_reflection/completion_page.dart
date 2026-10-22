@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 
@@ -39,7 +39,11 @@ class Day7CompletionPage extends StatelessWidget {
                             color: primaryColor.withValues(alpha: 0.15),
                             shape: BoxShape.circle,
                           ),
-                          child: Icon(Icons.celebration, size: 58, color: primaryColor),
+                          child: Icon(
+                            Icons.celebration,
+                            size: 58,
+                            color: NepanikarColors.accent(context),
+                          ),
                         ),
                         Container(
                           width: 38,
@@ -74,7 +78,7 @@ class Day7CompletionPage extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
-                        color: primaryColor,
+                        color: NepanikarColors.accent(context),
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -102,7 +106,7 @@ class Day7CompletionPage extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: onComplete,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: primaryColor,
+                  backgroundColor: NepanikarColors.ctaBackground(context),
                   foregroundColor: Colors.white,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                   elevation: 2,

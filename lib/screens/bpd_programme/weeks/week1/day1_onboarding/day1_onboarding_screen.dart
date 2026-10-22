@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/day1_onboarding/day1_completion_page.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/day1_onboarding/education_chat_page.dart';
@@ -212,7 +212,7 @@ class _Day1OnboardingScreenState extends State<Day1OnboardingScreen> {
       ),
       child: Row(
         children: [
-          Icon(Icons.check_circle, size: 18, color: primaryColor),
+          Icon(Icons.check_circle, size: 18, color: NepanikarColors.accent(context)),
           const SizedBox(width: 10),
           Expanded(
             child: Text(
@@ -228,7 +228,7 @@ class _Day1OnboardingScreenState extends State<Day1OnboardingScreen> {
           TextButton(
             onPressed: () => _pageController.jumpToPage(_smartWorksheetPage),
             style: TextButton.styleFrom(
-              foregroundColor: primaryColor,
+              foregroundColor: NepanikarColors.accent(context),
               padding: const EdgeInsets.symmetric(horizontal: 8),
               minimumSize: const Size(0, 36),
               tapTargetSize: MaterialTapTargetSize.shrinkWrap,

@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/technique_menu_page.dart';
@@ -91,15 +91,13 @@ class _DrawButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final primaryColor = Theme.of(context).primaryColor;
-
     if (ghost) {
       return TextButton.icon(
         onPressed: onTap,
         icon: Icon(icon, size: 18),
         label: Text(label),
         style: TextButton.styleFrom(
-          foregroundColor: primaryColor,
+          foregroundColor: NepanikarColors.accent(context),
           minimumSize: const Size(0, 44),
           textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
         ),
@@ -111,7 +109,7 @@ class _DrawButton extends StatelessWidget {
       icon: Icon(icon, size: 20),
       label: Text(label),
       style: ElevatedButton.styleFrom(
-        backgroundColor: primaryColor,
+        backgroundColor: NepanikarColors.ctaBackground(context),
         foregroundColor: Colors.white,
         minimumSize: const Size(double.infinity, 54),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -186,7 +184,7 @@ class _DrawnCard extends StatelessWidget {
               onPressed: () =>
                   showTechniqueDetailSheet(context, technique: technique, sourceLabel: sourceLabel),
               style: ElevatedButton.styleFrom(
-                backgroundColor: primaryColor,
+                backgroundColor: NepanikarColors.ctaBackground(context),
                 foregroundColor: Colors.white,
                 minimumSize: const Size(double.infinity, 46),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
