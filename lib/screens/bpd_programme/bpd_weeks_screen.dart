@@ -249,7 +249,6 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final primaryColor = Theme.of(context).primaryColor;
 
-    // Set status bar color to match the purple header
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
         statusBarColor: primaryColor,
@@ -271,7 +270,6 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
         body: SafeArea(
           child: Column(
             children: [
-              // Header
               Container(
                 decoration: BoxDecoration(
                   color: primaryColor,
@@ -288,7 +286,6 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
-                      // Centered title
                       Text(
                         context.l10n.dbt_programme,
                         style: const TextStyle(
@@ -297,7 +294,6 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
                           color: Colors.white,
                         ),
                       ),
-                      // Close button on the left
                       Align(
                         alignment: Alignment.centerLeft,
                         child: IconButton(
@@ -317,7 +313,6 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
                 ),
               ),
 
-              // Skill tree of programme weeks
               Expanded(
                 child: _isLoading
                     ? const Center(child: CircularProgressIndicator())

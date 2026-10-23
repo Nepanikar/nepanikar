@@ -132,7 +132,6 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
   bool _isLoading = true;
   Timer? _timer;
 
-  // Day content data for each week - based on the BPD program PDF
   final Map<int, List<_DayContentData>> _weekDaysContent = {
     1: [
       const _DayContentData(
@@ -192,7 +191,6 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
         routeType: _DayRouteType.week1Day7Reflexe,
       ),
     ],
-    // Week 2 - Všímavost
     2: [
       const _DayContentData(
         title: 'Edukace všímavosti',
@@ -573,7 +571,6 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
   void initState() {
     super.initState();
     _loadDaysProgress();
-    // Update timer every second for countdown
     _timer = Timer.periodic(const Duration(seconds: 1), (_) {
       if (mounted) {
         setState(() {});
@@ -729,7 +726,6 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
 
     if (!mounted) return;
 
-    // Show Day Preview Sheet
     final dayContent = _getDayContent(dayProgress.dayNumber);
     if (dayContent == null) return;
 
@@ -750,7 +746,6 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
           // below picks — so this is the one place that can record a day as
           // reached. Fire and forget: telemetry never delays the lesson.
           unawaited(_bpdDaysDao.markDayStarted(widget.weekNumber, dayProgress.dayNumber));
-          // Navigate based on route type
           switch (dayContent.routeType) {
             case _DayRouteType.onboarding:
               const Day1OnboardingScreenRoute().push(context).then((_) {
@@ -953,7 +948,6 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            // Header
             Container(
               width: double.infinity,
               decoration: BoxDecoration(
@@ -998,7 +992,6 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
               ),
             ),
 
-            // Days list
             Expanded(
               child: _isLoading
                   ? const Center(child: CircularProgressIndicator())
@@ -1099,7 +1092,6 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
                       ),
                     ),
                     const SizedBox(width: 12),
-                    // Status icon
                     Container(
                       width: 40,
                       height: 40,
@@ -1126,7 +1118,6 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
                   ],
                 ),
               ),
-              // Countdown or unlock info
               if (isActive && nextUnlockIn != null && !nextUnlockIn.isNegative)
                 Container(
                   width: double.infinity,
@@ -1194,7 +1185,6 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
   }
 }
 
-/// Helper class for day content data
 /// What a day asks of the reader, shown as a chip in the day list.
 ///
 /// An enum rather than the label itself: the same nine categories repeat across

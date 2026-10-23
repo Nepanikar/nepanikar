@@ -62,7 +62,6 @@ class BpdLandingScreen extends StatelessWidget {
         logMessage: 'BPD_LANDING: Could not schedule reminders on programme start',
       );
     }
-    // Navigate to BPD weeks screen
     if (context.mounted) {
       context.go(const BpdWeeksScreenRoute().location);
     }
@@ -99,7 +98,6 @@ class BpdLandingScreen extends StatelessWidget {
                     children: [
                       const SizedBox(height: 20),
 
-                      // Purple gear icon
                       Container(
                         width: 100,
                         height: 100,
@@ -112,7 +110,6 @@ class BpdLandingScreen extends StatelessWidget {
 
                       const SizedBox(height: 24),
 
-                      // Title
                       Text(
                         context.l10n.dbt_landing_title,
                         style: TextStyle(
@@ -145,7 +142,6 @@ class BpdLandingScreen extends StatelessWidget {
 
                       const SizedBox(height: 28),
 
-                      // Bullet points
                       _buildBulletPoint(
                         context.l10n.dbt_landing_coping_title,
                         context.l10n.dbt_landing_coping_description,
@@ -166,7 +162,6 @@ class BpdLandingScreen extends StatelessWidget {
                 ),
               ),
 
-              // Start button - fixed at bottom
               SizedBox(
                 width: double.infinity,
                 height: 54,
@@ -187,7 +182,6 @@ class BpdLandingScreen extends StatelessWidget {
 
               const SizedBox(height: 14),
 
-              // Maybe later button
               TextButton(
                 onPressed: () => _handleMaybeLater(context),
                 child: Text(

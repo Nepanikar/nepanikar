@@ -99,10 +99,8 @@ class DayPauseScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            // Header
             _buildHeader(context, primaryColor, isDarkMode),
 
-            // Content
             Expanded(
               child: SingleChildScrollView(
                 child: Padding(
@@ -111,12 +109,10 @@ class DayPauseScreen extends StatelessWidget {
                     children: [
                       const SizedBox(height: 32),
 
-                      // Illustration
                       _buildIllustration(primaryColor, NepanikarColors.accent(context)),
 
                       const SizedBox(height: 32),
 
-                      // Title
                       Text(
                         context.l10n.dbt_pause_title,
                         style: TextStyle(
@@ -129,7 +125,6 @@ class DayPauseScreen extends StatelessWidget {
 
                       const SizedBox(height: 12),
 
-                      // Subtitle
                       Text(
                         _pauseText,
                         style: TextStyle(
@@ -149,7 +144,6 @@ class DayPauseScreen extends StatelessWidget {
 
                       const SizedBox(height: 24),
 
-                      // Tip card
                       _buildTipCard(context, primaryColor, isDarkMode),
 
                       const SizedBox(height: 32),
@@ -159,7 +153,6 @@ class DayPauseScreen extends StatelessWidget {
               ),
             ),
 
-            // Complete button
             Padding(
               padding: const EdgeInsets.fromLTRB(24, 0, 24, 32),
               child: SizedBox(
@@ -241,7 +234,6 @@ class DayPauseScreen extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          // Background circle
           Container(
             width: 160,
             height: 160,
@@ -250,9 +242,7 @@ class DayPauseScreen extends StatelessWidget {
               shape: BoxShape.circle,
             ),
           ),
-          // Person meditating icon
           Icon(Icons.self_improvement, size: 100, color: accent.withValues(alpha: 0.7)),
-          // Small decorative elements
           Positioned(
             top: 30,
             right: 40,
@@ -339,7 +329,6 @@ class DayPauseScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Header with icon
           Row(
             children: [
               Container(
@@ -365,7 +354,6 @@ class DayPauseScreen extends StatelessWidget {
 
           const SizedBox(height: 16),
 
-          // Tip text
           Text(
             'Zkus si dát 5 minut jen pro sebe. Pusť si oblíbenou hudbu, napiš si poznámku, nebo jen tak seď.',
             style: TextStyle(

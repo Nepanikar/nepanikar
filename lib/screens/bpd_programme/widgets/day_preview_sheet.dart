@@ -71,7 +71,6 @@ class DayPreviewSheet extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Drag handle
               Center(
                 child: Container(
                   width: 40,
@@ -84,11 +83,9 @@ class DayPreviewSheet extends StatelessWidget {
               ),
               const SizedBox(height: 20),
 
-              // Header row: Day badge, Week, Favorite
               _buildHeader(context, isDarkMode, primaryColor),
               const SizedBox(height: 16),
 
-              // Title
               Text(
                 data.title,
                 style: TextStyle(
@@ -99,7 +96,6 @@ class DayPreviewSheet extends StatelessWidget {
               ),
               const SizedBox(height: 12),
 
-              // Description
               Text(
                 data.description,
                 style: TextStyle(
@@ -110,11 +106,9 @@ class DayPreviewSheet extends StatelessWidget {
               ),
               const SizedBox(height: 20),
 
-              // Meta info row
               _buildMetaInfo(context, isDarkMode),
               const SizedBox(height: 24),
 
-              // CTA Button
               _buildCTAButton(context, primaryColor),
             ],
           ),
@@ -126,7 +120,6 @@ class DayPreviewSheet extends StatelessWidget {
   Widget _buildHeader(BuildContext context, bool isDarkMode, Color primaryColor) {
     return Row(
       children: [
-        // Day badge
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
           decoration: BoxDecoration(
@@ -155,7 +148,6 @@ class DayPreviewSheet extends StatelessWidget {
         ),
         const SizedBox(width: 12),
 
-        // Week indicator
         Text(
           context.l10n.dbt_week(data.weekNumber),
           style: TextStyle(fontSize: 14, color: isDarkMode ? Colors.white54 : Colors.grey.shade500),
@@ -163,7 +155,6 @@ class DayPreviewSheet extends StatelessWidget {
 
         const Spacer(),
 
-        // Favorite button
         GestureDetector(
           onTap: onFavoriteToggle,
           child: Icon(
@@ -183,13 +174,11 @@ class DayPreviewSheet extends StatelessWidget {
 
     return Row(
       children: [
-        // Estimated time
         Icon(Icons.access_time, size: 18, color: metaColor),
         const SizedBox(width: 6),
         Text(data.estimatedTime, style: TextStyle(fontSize: 14, color: metaColor)),
         const SizedBox(width: 24),
 
-        // Activity type
         Icon(Icons.description_outlined, size: 18, color: metaColor),
         const SizedBox(width: 6),
         Text(data.activityType, style: TextStyle(fontSize: 14, color: metaColor)),
