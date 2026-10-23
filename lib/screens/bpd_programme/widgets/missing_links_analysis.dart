@@ -247,7 +247,7 @@ class _StepCard extends StatelessWidget {
               ),
               const SizedBox(width: 10),
               Text(
-                answer == 'ano' ? 'Ano' : 'Ne',
+                answer == 'ano' ? context.l10n.dbt_yes : context.l10n.dbt_no,
                 style: TextStyle(
                   fontSize: 13,
                   fontWeight: FontWeight.w900,
@@ -304,7 +304,7 @@ class _StepCard extends StatelessWidget {
               children: [
                 Expanded(
                   child: _AnswerButton(
-                    label: 'Ano',
+                    label: context.l10n.dbt_yes,
                     isOn: answer == 'ano',
                     onTap: () => onAnswer('ano'),
                   ),
@@ -312,7 +312,7 @@ class _StepCard extends StatelessWidget {
                 const SizedBox(width: 10),
                 Expanded(
                   child: _AnswerButton(
-                    label: 'Ne',
+                    label: context.l10n.dbt_no,
                     isOn: answer == 'ne',
                     onTap: () => onAnswer('ne'),
                   ),

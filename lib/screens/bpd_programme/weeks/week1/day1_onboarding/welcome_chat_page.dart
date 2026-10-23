@@ -1,4 +1,5 @@
 import 'package:material_ui/material_ui.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/bpd_research.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart';
@@ -209,7 +210,7 @@ class _Day1WelcomeChatPageState extends State<Day1WelcomeChatPage> {
           ],
         ),
         ChatStep(
-          buttonLabel: 'Uložit a pokračovat',
+          buttonLabel: context.l10n.dbt_save_and_continue,
           enabled: _formValid,
           messages: [
             const ChatBotBubble(
@@ -242,7 +243,7 @@ class _Day1WelcomeChatPageState extends State<Day1WelcomeChatPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Tvoje křestní jméno',
+            context.l10n.dbt_your_name,
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w800,
@@ -255,7 +256,7 @@ class _Day1WelcomeChatPageState extends State<Day1WelcomeChatPage> {
             onChanged: (_) => _revalidate(),
             style: TextStyle(fontSize: 15, color: textColor),
             decoration: InputDecoration(
-              hintText: 'Napiš svoje jméno…',
+              hintText: context.l10n.dbt_your_name_hint,
               hintStyle: TextStyle(color: isDarkMode ? Colors.white38 : Colors.grey.shade400),
               filled: true,
               fillColor: isDarkMode
@@ -274,7 +275,7 @@ class _Day1WelcomeChatPageState extends State<Day1WelcomeChatPage> {
           ),
           const SizedBox(height: 14),
           Text(
-            'Jak chceš, aby tě Nepanikař oslovoval?',
+            context.l10n.dbt_pronoun_question(context.l10n.app_name),
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w800,
@@ -285,19 +286,19 @@ class _Day1WelcomeChatPageState extends State<Day1WelcomeChatPage> {
           Row(
             children: [
               _PronounPill(
-                label: 'On',
+                label: context.l10n.dbt_pronoun_he,
                 selected: _selectedPronoun == BpdPronoun.he,
                 onTap: () => _selectPronoun(BpdPronoun.he),
               ),
               const SizedBox(width: 6),
               _PronounPill(
-                label: 'Ona',
+                label: context.l10n.dbt_pronoun_she,
                 selected: _selectedPronoun == BpdPronoun.she,
                 onTap: () => _selectPronoun(BpdPronoun.she),
               ),
               const SizedBox(width: 6),
               _PronounPill(
-                label: 'Oni',
+                label: context.l10n.dbt_pronoun_they,
                 selected: _selectedPronoun == BpdPronoun.they,
                 onTap: () => _selectPronoun(BpdPronoun.they),
               ),

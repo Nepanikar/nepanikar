@@ -152,7 +152,7 @@ class _ReminderPageState extends State<ReminderPage> {
               value: _isEnabled,
               onChanged: _toggle,
               title: Text(
-                'Posílat připomínku každý den',
+                context.l10n.dbt_reminder_daily,
                 style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w700,
@@ -165,7 +165,7 @@ class _ReminderPageState extends State<ReminderPage> {
               onTap: _pickTime,
               leading: Icon(Icons.schedule, color: NepanikarColors.accent(context)),
               title: Text(
-                'Čas připomínky',
+                context.l10n.dbt_reminder_time,
                 style: TextStyle(
                   fontSize: 15,
                   color: isDarkMode ? Colors.white : NepanikarColors.dark,

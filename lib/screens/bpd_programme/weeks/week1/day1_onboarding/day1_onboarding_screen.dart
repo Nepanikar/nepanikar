@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/day1_onboarding/day1_completion_page.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week1/day1_onboarding/education_chat_page.dart';
@@ -216,7 +217,7 @@ class _Day1OnboardingScreenState extends State<Day1OnboardingScreen> {
           const SizedBox(width: 10),
           Expanded(
             child: Text(
-              'Tento den už máš hotový.',
+              context.l10n.dbt_day_already_done,
               style: TextStyle(
                 fontSize: 13,
                 fontWeight: FontWeight.w600,
@@ -233,9 +234,9 @@ class _Day1OnboardingScreenState extends State<Day1OnboardingScreen> {
               minimumSize: const Size(0, 36),
               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
             ),
-            child: const Text(
-              'Rovnou k cíli',
-              style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+            child: Text(
+              context.l10n.dbt_straight_to_goal,
+              style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
             ),
           ),
         ],

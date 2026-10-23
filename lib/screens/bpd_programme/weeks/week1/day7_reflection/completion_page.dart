@@ -63,9 +63,9 @@ class Day7CompletionPage extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 24),
-                    const Text(
-                      'TÝDEN 1 DOKONČEN',
-                      style: TextStyle(
+                    Text(
+                      context.l10n.dbt_week_completed(1),
+                      style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 0.5,
@@ -74,7 +74,7 @@ class Day7CompletionPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Gratulujeme!',
+                      context.l10n.dbt_congratulations,
                       style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,

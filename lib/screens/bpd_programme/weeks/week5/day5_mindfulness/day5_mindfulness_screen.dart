@@ -287,7 +287,7 @@ class _PickYourselfButton extends StatelessWidget {
           ),
         ),
         child: Text(
-          'Vybrat si sám/sama',
+          context.l10n.dbt_pick_myself,
           style: TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.w800,
@@ -331,7 +331,7 @@ class _TechniquePickerSheet extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             Text(
-              'Vyber si techniku',
+              context.l10n.dbt_pick_technique,
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,

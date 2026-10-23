@@ -1,4 +1,5 @@
 import 'package:material_ui/material_ui.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_lists.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_messages.dart';
@@ -44,11 +45,11 @@ class Week2RecapChatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChatDayPage(
       onCompleted: onNext,
-      steps: const [
-        ChatStep(messages: [ChatBotBubble(text: _lead, showAvatar: true)]),
+      steps: [
+        const ChatStep(messages: [ChatBotBubble(text: _lead, showAvatar: true)]),
         ChatStep(
-          messages: [ChatFeatureList(caption: 'Co jsme prošli', items: _learned)],
-          buttonLabel: 'Reflexe týdne',
+          messages: const [ChatFeatureList(caption: 'Co jsme prošli', items: _learned)],
+          buttonLabel: context.l10n.dbt_week_reflection,
         ),
       ],
     );

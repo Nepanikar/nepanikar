@@ -454,7 +454,7 @@ class _ExamplesToggle extends StatelessWidget {
             Icon(isOpen ? Icons.expand_less : Icons.expand_more, size: 18, color: color),
             const SizedBox(width: 6),
             Text(
-              'Nevíš, co napsat?',
+              context.l10n.dbt_stuck_hint,
               style: TextStyle(fontSize: 13, fontWeight: FontWeight.w800, color: color),
             ),
           ],

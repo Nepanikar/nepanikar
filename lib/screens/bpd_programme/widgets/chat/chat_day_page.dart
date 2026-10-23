@@ -98,7 +98,7 @@ class _ChatDayPageState extends State<ChatDayPage> {
               controller: _scrollController,
               padding: const EdgeInsets.only(top: 16, bottom: 12),
               children: [
-                const ChatDayStamp(label: 'Dnes'),
+                ChatDayStamp(label: context.l10n.dbt_today),
                 for (var i = 0; i < _visibleSteps; i++)
                   _RevealedStep(
                     key: ValueKey('chat-step-$i'),

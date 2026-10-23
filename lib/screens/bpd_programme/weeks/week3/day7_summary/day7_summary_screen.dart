@@ -136,13 +136,13 @@ class _Week3Day7SummaryScreenState extends State<Week3Day7SummaryScreen>
                 children: [
                   ChatDayPage(
                     onCompleted: _goToNextPage,
-                    steps: const [
-                      ChatStep(messages: [ChatBotBubble(text: _praise, showAvatar: true)]),
+                    steps: [
+                      const ChatStep(messages: [ChatBotBubble(text: _praise, showAvatar: true)]),
                       ChatStep(
-                        messages: [
+                        messages: const [
                           ChatNumberedList(caption: 'Co jsme prošli', items: _recapTopics),
                         ],
-                        buttonLabel: 'Reflexe týdne',
+                        buttonLabel: context.l10n.dbt_week_reflection,
                       ),
                     ],
                   ),

@@ -174,9 +174,9 @@ class _SpokoLetterRow extends StatelessWidget {
                 color: NepanikarColors.info,
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: const Text(
-                'DNES',
-                style: TextStyle(
+              child: Text(
+                context.l10n.dbt_today.toUpperCase(),
+                style: const TextStyle(
                   fontSize: 10,
                   fontWeight: FontWeight.w900,
                   color: NepanikarColors.dark,

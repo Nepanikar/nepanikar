@@ -120,7 +120,7 @@ class _UznavamChecklistPageState extends State<UznavamChecklistPage> {
             ),
           ],
           const SizedBox(height: 12),
-          PickCounterHint(picked: _tickedCount, minimum: 0, label: 'Označeno:'),
+          PickCounterHint(picked: _tickedCount, minimum: 0, label: context.l10n.dbt_ticked),
           ...widget.groups.map(_buildGroup),
           const SizedBox(height: 24),
         ],

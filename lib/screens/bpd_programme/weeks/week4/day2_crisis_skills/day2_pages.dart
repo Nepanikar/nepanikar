@@ -194,7 +194,7 @@ class _BreathingLinkButton extends StatelessWidget {
         preset: 'slow-exhale',
       ).push<void>(context),
       icon: const Icon(Icons.air, size: 18),
-      label: const Text('Otevřít dechové cvičení'),
+      label: Text(context.l10n.dbt_open_breathing),
       style: OutlinedButton.styleFrom(
         foregroundColor: NepanikarColors.accent(context),
         alignment: Alignment.centerLeft,

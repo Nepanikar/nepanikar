@@ -151,19 +151,19 @@ class _Day2ChallengePageState extends State<Day2ChallengePage> {
               side: const BorderSide(color: NepanikarColors.secondary, width: 1.5),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             ),
-            child: const Row(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.flag_outlined, size: 20),
-                SizedBox(width: 8),
+                const Icon(Icons.flag_outlined, size: 20),
+                const SizedBox(width: 8),
                 Flexible(
                   child: Text(
-                    'Nastavit výzvu i do budoucna',
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                    context.l10n.dbt_set_challenge_future,
+                    style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                   ),
                 ),
-                SizedBox(width: 8),
-                Icon(Icons.arrow_forward, size: 18),
+                const SizedBox(width: 8),
+                const Icon(Icons.arrow_forward, size: 18),
               ],
             ),
           ),

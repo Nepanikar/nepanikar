@@ -176,7 +176,7 @@ class Day5RecallPage extends StatelessWidget {
             child: OutlinedButton.icon(
               onPressed: () => context.push(const MyChallengesRoute().location),
               icon: const Icon(Icons.flag_outlined, size: 18),
-              label: const Text('Otevřít Moje výzvy'),
+              label: Text(context.l10n.dbt_open_challenges),
               style: OutlinedButton.styleFrom(
                 foregroundColor: NepanikarColors.accent(context),
                 side: BorderSide(color: NepanikarColors.accent(context).withValues(alpha: 0.4)),

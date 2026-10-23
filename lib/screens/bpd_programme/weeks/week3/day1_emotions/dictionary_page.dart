@@ -54,7 +54,7 @@ class Week3DictionaryPage extends StatelessWidget {
                 'v sekci DBT průvodce.',
           ),
           const SizedBox(height: 18),
-          const LinkLeadText('Chci vědět víc:'),
+          LinkLeadText(context.l10n.dbt_emotion_dictionary_more),
           const SizedBox(height: 8),
           const ExternalLinkButton(
             label: emotionDictionaryLinkLabel,
