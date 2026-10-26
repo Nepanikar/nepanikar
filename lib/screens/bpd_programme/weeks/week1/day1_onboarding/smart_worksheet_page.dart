@@ -4,7 +4,7 @@ import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/smart_goal_fields.dart';
 
-/// Page 9/10 — SMART worksheet (verbatim, source: tyzden-1.md §1, Pracovní list).
+/// Page 6/7 — SMART worksheet (verbatim, source: tyzden-1.md §1, Pracovní list).
 class Day1SmartWorksheetPage extends StatelessWidget {
   const Day1SmartWorksheetPage({super.key, required this.onComplete, required this.controllers});
 

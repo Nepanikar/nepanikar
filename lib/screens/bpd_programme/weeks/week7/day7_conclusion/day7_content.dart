@@ -9,7 +9,7 @@ library;
 import 'package:nepanikar/screens/bpd_programme/widgets/structured_worksheet.dart';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Page 1/5 — you made it
+// Page 1/6 — you made it
 // ─────────────────────────────────────────────────────────────────────────────
 
 const day7Opening = <String>[
@@ -20,7 +20,7 @@ const day7Opening = <String>[
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Page 2/5 — three skills to keep
+// Page 2/6 — three skills to keep
 // ─────────────────────────────────────────────────────────────────────────────
 
 const day7SkillsWorksheetId = 'week7_day7_three_skills';
@@ -56,7 +56,7 @@ const day7SkillsRescueId = 'week7_three_skills';
 const day7SkillsRescueTitle = 'Mé tři dovednosti';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Page 3/5 — where to come back to
+// Page 3/6 — where to come back to
 // ─────────────────────────────────────────────────────────────────────────────
 
 const day7MindfulnessReminder =
@@ -82,7 +82,7 @@ const day7JustTheBeginning =
     'ho dál.';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Page 4/5 — what I take away
+// Page 4/6 — what I take away
 // ─────────────────────────────────────────────────────────────────────────────
 
 const day7ClosingWorksheetId = 'week7_day7_closing';
@@ -106,7 +106,7 @@ const day7ClosingWorksheet = <WorksheetSection>[
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Page 5/5 — the end of the programme
+// Page 5/6 — the end of the programme
 // ─────────────────────────────────────────────────────────────────────────────
 
 /// Verbatim, including "Za těch sedm týdnu" (OQ-2).

@@ -2,7 +2,6 @@ import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 
-/// Data model for Day Preview
 class DayPreviewData {
   const DayPreviewData({
     required this.dayNumber,
@@ -25,7 +24,6 @@ class DayPreviewData {
   final bool isFavorite;
 }
 
-/// Shows the Day Preview bottom sheet
 Future<bool?> showDayPreviewSheet({
   required BuildContext context,
   required DayPreviewData data,

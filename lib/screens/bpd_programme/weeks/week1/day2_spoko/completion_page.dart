@@ -2,7 +2,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 
-/// Page 4/4 — Day 2 completion (verbatim, source: tyzden-1.md §2, closing).
+/// Page 3/3 — Day 2 completion (verbatim, source: tyzden-1.md §2, closing).
 class Day2CompletionPage extends StatelessWidget {
   const Day2CompletionPage({super.key, required this.onComplete});
 

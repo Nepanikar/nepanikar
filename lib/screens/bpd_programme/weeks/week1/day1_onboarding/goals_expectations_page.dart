@@ -3,7 +3,7 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
 
-/// Page 7/10 — Expectations + goals free-text (source: tyzden-1.md §1, Cíle a
+/// Page 4/7 — Expectations + goals free-text (source: tyzden-1.md §1, Cíle a
 /// očekávání). Persisted and re-surfaced in the final week.
 class Day1GoalsExpectationsPage extends StatelessWidget {
   const Day1GoalsExpectationsPage({

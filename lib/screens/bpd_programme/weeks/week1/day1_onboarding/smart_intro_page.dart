@@ -2,7 +2,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
 
-/// Page 8/10 — SMART explanation with tappable letters (source: tyzden-1.md §1).
+/// Page 5/7 — SMART explanation with tappable letters (source: tyzden-1.md §1).
 class Day1SmartIntroPage extends StatefulWidget {
   const Day1SmartIntroPage({super.key, required this.onNext});
 

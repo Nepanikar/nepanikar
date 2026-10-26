@@ -167,7 +167,7 @@ class _Week7Day7ConclusionScreenState extends State<Week7Day7ConclusionScreen> {
   }
 }
 
-/// Page 1/5 — you made it here.
+/// Page 1/6 — you made it here.
 class Week7Day7OpeningPage extends StatelessWidget {
   const Week7Day7OpeningPage({super.key, required this.onNext});
 
@@ -188,7 +188,7 @@ class Week7Day7OpeningPage extends StatelessWidget {
   }
 }
 
-/// Page 2/5 — the three skills to take away.
+/// Page 2/6 — the three skills to take away.
 class Week7Day7ThreeSkillsPage extends StatelessWidget {
   const Week7Day7ThreeSkillsPage({super.key, required this.onNext});
 
@@ -239,7 +239,7 @@ class Week7Day7ThreeSkillsPage extends StatelessWidget {
   }
 }
 
-/// Page 3/5 — where to come back to, including the crisis contacts.
+/// Page 3/6 — where to come back to, including the crisis contacts.
 class Week7Day7SupportPage extends StatelessWidget {
   const Week7Day7SupportPage({super.key, required this.onNext});
 
@@ -272,7 +272,7 @@ class Week7Day7SupportPage extends StatelessWidget {
   }
 }
 
-/// Page 4/5 — what I take away from the programme.
+/// Page 4/6 — what I take away from the programme.
 class Week7Day7ClosingWritingPage extends StatelessWidget {
   const Week7Day7ClosingWritingPage({super.key, required this.onNext});
 

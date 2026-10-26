@@ -168,7 +168,7 @@ class _Week5Day2LifeThreateningScreenState extends State<Week5Day2LifeThreatenin
   }
 }
 
-/// Page 1/5 — the warning, and a real way out.
+/// Page 1/6 — the warning, and a real way out.
 class Week5Day2WarningPage extends StatelessWidget {
   const Week5Day2WarningPage({super.key, required this.onNext, required this.onSkip});
 
@@ -201,7 +201,7 @@ class Week5Day2WarningPage extends StatelessWidget {
   }
 }
 
-/// Page 2/5 — what life-threatening behaviour is (education, chat).
+/// Page 2/6 — what life-threatening behaviour is (education, chat).
 class Week5Day2EducationPage extends StatelessWidget {
   const Week5Day2EducationPage({super.key, required this.onNext});
 
@@ -228,7 +228,7 @@ class Week5Day2EducationPage extends StatelessWidget {
   }
 }
 
-/// Page 3/5 — STOP.
+/// Page 3/6 — STOP.
 class Week5Day2StopPage extends StatelessWidget {
   const Week5Day2StopPage({super.key, required this.onNext});
 
@@ -255,7 +255,7 @@ class Week5Day2StopPage extends StatelessWidget {
   }
 }
 
-/// Page 4/5 — the five things that could help, saved somewhere reachable.
+/// Page 4/6 — the five things that could help, saved somewhere reachable.
 class Week5Day2ReliefListPage extends StatefulWidget {
   const Week5Day2ReliefListPage({super.key, required this.onNext});
 

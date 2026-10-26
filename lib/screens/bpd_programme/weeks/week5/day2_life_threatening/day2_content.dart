@@ -15,7 +15,7 @@ import 'package:nepanikar/screens/bpd_programme/widgets/acronym_skill_page.dart'
 import 'package:nepanikar/screens/bpd_programme/widgets/structured_worksheet.dart';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Page 1/5 — warning and voluntariness
+// Page 1/6 — warning and voluntariness
 // ─────────────────────────────────────────────────────────────────────────────
 
 /// One paragraph in the source, delivered as four bubbles. The last sentence
@@ -38,7 +38,7 @@ const day2SkipConfirmation = 'Dnešek jsme přeskočili. Zítra pokračujeme.';
 const day2CrisisLinkLabel = 'Kontakty pro těžké chvíle';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Page 2/5 — what it is
+// Page 2/6 — what it is
 // ─────────────────────────────────────────────────────────────────────────────
 
 const day2WhatItIs =
@@ -57,7 +57,7 @@ const day2NotWeakness =
     'sobě samému.';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Page 3/5 — STOP
+// Page 3/6 — STOP
 // ─────────────────────────────────────────────────────────────────────────────
 
 const day2StopLead = <String>[
@@ -90,7 +90,7 @@ const day2StopLetters = <AcronymLetter>[
 const day2StopRescueId = 'week4_stop';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Page 4/5 — five things that help
+// Page 4/6 — five things that help
 // ─────────────────────────────────────────────────────────────────────────────
 
 const day2ReliefListId = 'week5_day2_relief_list';
@@ -125,7 +125,7 @@ const day2ReliefFields = <WorksheetField>[
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Page 5/5 — completion and care
+// Page 5/6 — completion and care
 // ─────────────────────────────────────────────────────────────────────────────
 
 /// "můžeš jej opečovat zde (odkaz na nepanikař mód Chci si ublížit a znovu na

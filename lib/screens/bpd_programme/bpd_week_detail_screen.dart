@@ -53,7 +53,6 @@ part 'bpd_week_detail_screen.g.dart';
 /// (keep in sync with `_weekDaysContent` below).
 const Set<int> kImplementedBpdWeeks = {1, 2, 3, 4, 5, 6, 7};
 
-/// Route type for different day content screens
 enum _DayRouteType {
   regular,
   onboarding,
