@@ -161,8 +161,11 @@ class _Week5Day7SummaryScreenState extends State<Week5Day7SummaryScreen>
                     steps: [
                       const ChatStep(messages: [ChatBotBubble(text: _praise, showAvatar: true)]),
                       ChatStep(
-                        messages: const [
-                          ChatFeatureList(caption: 'Co jsme prošli', items: _recapTopics),
+                        messages: [
+                          ChatFeatureList(
+                            caption: context.l10n.dbt_what_we_covered,
+                            items: _recapTopics,
+                          ),
                         ],
                         buttonLabel: context.l10n.dbt_week_reflection,
                       ),
@@ -202,7 +205,7 @@ class _ReflectionPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 12),
-          const SectionHeader(icon: Icons.edit_outlined, title: 'Reflexe týdne'),
+          SectionHeader(icon: Icons.edit_outlined, title: context.l10n.dbt_week_reflection),
           const SizedBox(height: 12),
           Text(
             'Zkus se zamyslet — odpovědi zůstanou uložené, můžeš se k nim vrátit.',

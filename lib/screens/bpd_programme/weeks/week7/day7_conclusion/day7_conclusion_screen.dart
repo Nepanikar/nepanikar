@@ -203,10 +203,10 @@ class Week7Day7ThreeSkillsPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 12),
-          const SectionHeader(
+          SectionHeader(
             icon: Icons.workspace_premium_outlined,
             title: 'Tři dovednosti do života',
-            subtitle: 'Den 7 • Týden 7',
+            subtitle: context.l10n.dbt_day_week_plain(7, 7),
           ),
           const SizedBox(height: 14),
           Text(
@@ -287,10 +287,10 @@ class Week7Day7ClosingWritingPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 12),
-          const SectionHeader(
+          SectionHeader(
             icon: Icons.auto_stories_outlined,
             title: 'Co si odnáším',
-            subtitle: 'Den 7 • Týden 7',
+            subtitle: context.l10n.dbt_day_week_plain(7, 7),
           ),
           const SizedBox(height: 14),
           Text(

@@ -214,10 +214,10 @@ class Week5Day5PracticePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 24),
-          const SectionHeader(
+          SectionHeader(
             icon: Icons.self_improvement,
             title: 'Vyzkoušej si techniku',
-            subtitle: 'Den 5 • Týden 5',
+            subtitle: context.l10n.dbt_day_week_plain(5, 5),
           ),
           const SizedBox(height: 18),
           Text(

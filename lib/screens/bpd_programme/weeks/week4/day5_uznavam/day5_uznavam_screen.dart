@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week4/day5_uznavam/day5_content.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week4/day5_uznavam/uznavam_checklist_page.dart';
@@ -106,7 +107,7 @@ class _Week4Day5UznavamScreenState extends State<Week4Day5UznavamScreen> {
                   AcronymSkillPage(
                     icon: Icons.auto_awesome_outlined,
                     title: 'UZNÁVÁM',
-                    subtitle: 'Den 5 • Týden 4',
+                    subtitle: context.l10n.dbt_day_week_plain(5, 4),
                     letters: day5Letters,
                     rescueItem: BpdRescueItem(
                       id: 'week4_uznavam',

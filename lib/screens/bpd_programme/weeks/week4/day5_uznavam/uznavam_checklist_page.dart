@@ -102,7 +102,7 @@ class _UznavamChecklistPageState extends State<UznavamChecklistPage> {
           SectionHeader(
             icon: Icons.checklist_rtl,
             title: widget.title,
-            subtitle: 'Den 5 • Týden 4',
+            subtitle: context.l10n.dbt_day_week_plain(5, 4),
           ),
           if (widget.showLead) ...[
             const SizedBox(height: 16),

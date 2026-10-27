@@ -48,7 +48,7 @@ class Week2RecapChatPage extends StatelessWidget {
       steps: [
         const ChatStep(messages: [ChatBotBubble(text: _lead, showAvatar: true)]),
         ChatStep(
-          messages: const [ChatFeatureList(caption: 'Co jsme prošli', items: _learned)],
+          messages: [ChatFeatureList(caption: context.l10n.dbt_what_we_covered, items: _learned)],
           buttonLabel: context.l10n.dbt_week_reflection,
         ),
       ],

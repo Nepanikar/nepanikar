@@ -1,4 +1,5 @@
 import 'package:material_ui/material_ui.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week3/day1_emotions/day1_content.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
@@ -36,7 +37,7 @@ class Week3MythsListPage extends StatelessWidget {
           SectionHeader(
             icon: Icons.help_outline,
             title: 'Mýty o emocích',
-            subtitle: '${startIndex + 1}–$endIndex z ${day1Myths.length}',
+            subtitle: context.l10n.dbt_range_of_total(startIndex + 1, endIndex, day1Myths.length),
           ),
           const SizedBox(height: 12),
           if (isFirstHalf)

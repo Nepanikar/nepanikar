@@ -160,9 +160,9 @@ class Day5RecallPage extends StatelessWidget {
           const SizedBox(height: 18),
           const SpokoRecallList(),
           const SizedBox(height: 12),
-          const InfoBox(
+          InfoBox(
             icon: Icons.flag_outlined,
-            title: 'Tvoje výzvy',
+            title: context.l10n.dbt_your_challenges,
             text:
                 'V Mých záznamech máš uložené výzvy, které sis k jednotlivým '
                 'oblastem zadal/a v prvním týdnu. Mrkni, jak na tom jsou.',

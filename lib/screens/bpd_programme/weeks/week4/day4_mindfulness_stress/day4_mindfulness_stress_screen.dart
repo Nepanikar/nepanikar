@@ -197,10 +197,10 @@ class Week4Day4DrawPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 24),
-          const SectionHeader(
+          SectionHeader(
             icon: Icons.casino_outlined,
             title: 'Připomeňme si techniku',
-            subtitle: 'Den 4 • Týden 4',
+            subtitle: context.l10n.dbt_day_week_plain(4, 4),
           ),
           const SizedBox(height: 18),
           Text(

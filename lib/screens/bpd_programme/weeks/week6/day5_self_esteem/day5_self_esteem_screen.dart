@@ -164,7 +164,7 @@ class Week6Day5NezoufejPage extends StatelessWidget {
     return AcronymSkillPage(
       icon: Icons.shield_moon_outlined,
       title: 'neZOUFej',
-      subtitle: 'Den 5 • Týden 6',
+      subtitle: context.l10n.dbt_day_week_plain(5, 6),
       letters: day5NezoufejLetters,
       rescueItem: BpdRescueItem(
         id: day5NezoufejRescueId,
@@ -199,10 +199,10 @@ class Week6Day5WorksheetPage extends StatelessWidget {
           const SizedBox(height: 12),
           // The source titles this "worksheet “neZOUFej” – chráním své hranice";
           // the app never puts the word "worksheet" in a header.
-          const SectionHeader(
+          SectionHeader(
             icon: Icons.fence_outlined,
             title: 'neZOUFej – chráním své hranice',
-            subtitle: 'Den 5 • Týden 6',
+            subtitle: context.l10n.dbt_day_week_plain(5, 6),
           ),
           const SizedBox(height: 14),
           Text(

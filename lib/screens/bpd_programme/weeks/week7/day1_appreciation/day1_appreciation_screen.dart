@@ -165,10 +165,10 @@ class Week7Day1ProudPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 12),
-          const SectionHeader(
+          SectionHeader(
             icon: Icons.emoji_events_outlined,
             title: 'Na co jsem pyšný/á',
-            subtitle: 'Den 1 • Týden 7',
+            subtitle: context.l10n.dbt_day_week_plain(1, 7),
           ),
           const SizedBox(height: 14),
           Text(
@@ -209,10 +209,10 @@ class Week7Day1SmartReviewPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 12),
-          const SectionHeader(
+          SectionHeader(
             icon: Icons.flag_outlined,
             title: 'Moje SMART cíle',
-            subtitle: 'Den 1 • Týden 7',
+            subtitle: context.l10n.dbt_day_week_plain(1, 7),
           ),
           const SizedBox(height: 14),
           Text(day1SmartLead, style: TextStyle(fontSize: 14, height: 1.55, color: secondary)),

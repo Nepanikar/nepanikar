@@ -123,7 +123,7 @@ class Week4Day2StopPage extends StatelessWidget {
     return AcronymSkillPage(
       icon: Icons.back_hand_outlined,
       title: 'STOP',
-      subtitle: 'Den 2 • Týden 4',
+      subtitle: context.l10n.dbt_day_week_plain(2, 4),
       leadParagraphs: day2StopLead,
       letters: day2StopLetters,
       rescueItem: BpdRescueItem(
@@ -150,7 +150,7 @@ class Week4Day2TipsPage extends StatelessWidget {
     return AcronymSkillPage(
       icon: Icons.ac_unit,
       title: 'TIPS',
-      subtitle: 'Den 2 • Týden 4',
+      subtitle: context.l10n.dbt_day_week_plain(2, 4),
       leadParagraphs: const [day2TipsLead],
       letters: day2TipsLetters,
       afterLetter: const {
@@ -228,10 +228,10 @@ class Week4Day2RelaxationPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 24),
-          const SectionHeader(
+          SectionHeader(
             icon: Icons.spa_outlined,
             title: 'Progresivní svalová relaxace',
-            subtitle: 'Den 2 • Týden 4',
+            subtitle: context.l10n.dbt_day_week_plain(2, 4),
           ),
           const SizedBox(height: 18),
           Text(

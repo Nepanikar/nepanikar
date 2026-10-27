@@ -234,7 +234,7 @@ class Week5Day2StopPage extends StatelessWidget {
     return AcronymSkillPage(
       icon: Icons.back_hand_outlined,
       title: 'STOP',
-      subtitle: 'Den 2 • Týden 5',
+      subtitle: context.l10n.dbt_day_week_plain(2, 5),
       leadParagraphs: day2StopLead,
       letters: day2StopLetters,
       rescueItem: BpdRescueItem(
@@ -307,10 +307,10 @@ class _Week5Day2ReliefListPageState extends State<Week5Day2ReliefListPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 12),
-          const SectionHeader(
+          SectionHeader(
             icon: Icons.spa_outlined,
             title: 'Co udělám místo toho',
-            subtitle: 'Den 2 • Týden 5',
+            subtitle: context.l10n.dbt_day_week_plain(2, 5),
           ),
           const SizedBox(height: 14),
           Text(

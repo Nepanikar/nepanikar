@@ -54,9 +54,9 @@ class _ReminderPageState extends State<ReminderPage> {
     final allowed = await _notifications.requestPermissionIfNeeded();
     if (!mounted) return;
     if (!allowed) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Notifikace jsou vypnuté. Povol je v nastavení.')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(context.l10n.dbt_challenge_notifications_disabled)));
       return;
     }
     await _notifications.enableMindfulnessReminder(l10n, time: _time);
@@ -84,7 +84,10 @@ class _ReminderPageState extends State<ReminderPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 24),
-          const SectionHeader(icon: Icons.notifications_active_outlined, title: 'Čas na všímavost'),
+          SectionHeader(
+            icon: Icons.notifications_active_outlined,
+            title: context.l10n.dbt_notification_mindfulness_title,
+          ),
           const SizedBox(height: 18),
           Text(
             'Od dneška ti můžeme každý den poslat krátkou připomínku, ať na '

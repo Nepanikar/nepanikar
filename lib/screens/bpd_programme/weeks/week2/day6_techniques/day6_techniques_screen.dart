@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week2/day6_techniques/day6_content.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_completion_page.dart';
@@ -101,7 +102,7 @@ class _Week2Day6TechniquesScreenState extends State<Week2Day6TechniquesScreen> {
                 children: [
                   TechniqueMenuPage(
                     title: 'Techniky všímavosti',
-                    dayLabel: 'Den 6 • Týden 2',
+                    dayLabel: context.l10n.dbt_day_week_plain(6, 2),
                     leadParagraphs: const ['Dnes rozšíříme naši znalost všímavých technik.'],
                     pickLead:
                         'Můžeš si vybrat jedno cvičení z nabídky, které dnes '

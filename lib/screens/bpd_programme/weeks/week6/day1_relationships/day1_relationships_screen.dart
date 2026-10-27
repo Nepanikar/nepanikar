@@ -203,10 +203,10 @@ class Week6MythsPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 12),
-          const SectionHeader(
+          SectionHeader(
             icon: Icons.construction_outlined,
             title: 'Boření mýtů',
-            subtitle: 'Den 1 • Týden 6',
+            subtitle: context.l10n.dbt_day_week_plain(1, 6),
           ),
           const SizedBox(height: 14),
           Text(

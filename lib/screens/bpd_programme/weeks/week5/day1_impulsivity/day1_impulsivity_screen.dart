@@ -235,10 +235,10 @@ class Week5Day1ChainWorksheetPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 12),
-          const SectionHeader(
+          SectionHeader(
             icon: Icons.timeline_outlined,
             title: 'Řetězová analýza',
-            subtitle: 'Den 1 • Týden 5',
+            subtitle: context.l10n.dbt_day_week_plain(1, 5),
           ),
           const SizedBox(height: 14),
           const InfoBox(
@@ -288,10 +288,10 @@ class Week5Day1MissingLinksPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 12),
-          const SectionHeader(
+          SectionHeader(
             icon: Icons.link_outlined,
             title: 'Analýza chybějících článků',
-            subtitle: 'Den 1 • Týden 5',
+            subtitle: context.l10n.dbt_day_week_plain(1, 5),
           ),
           const SizedBox(height: 14),
           Text(
