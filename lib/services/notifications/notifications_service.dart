@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/app_localizations.dart';
 import 'package:nepanikar/helpers/date_helpers.dart';
+import 'package:nepanikar/helpers/localization_helpers.dart';
 import 'package:nepanikar/screens/settings/notification_settings_screen.dart';
 import 'package:nepanikar/services/db/bpd/bpd_challenge_tracker_dao.dart';
 import 'package:nepanikar/services/db/bpd/bpd_days_dao.dart';
@@ -51,10 +52,53 @@ class NotificationsService {
       onNotificationDisplayedMethod: NotificationController.onNotificationDisplayedMethod,
       onDismissActionReceivedMethod: NotificationController.onDismissActionReceivedMethod,
     );
+    unawaited(_rescheduleOnStartup());
+  }
+
+  /// Puts the queue back on every cold start.
+  ///
+  /// Nothing reschedules in the background, and the OS empties the queue
+  /// behind us in two ordinary situations: a reboot, and the force-stop most
+  /// Android skins perform when the app is swiped out of recents. A cold start
+  /// is the first moment the system lets us schedule again, so this no longer
+  /// waits for one of the five screens that happen to call
+  /// [rescheduleNotifications].
+  ///
+  /// Off the startup path and swallowing its own errors: notifications are not
+  /// worth a slower launch, and certainly not a failed one.
+  Future<void> _rescheduleOnStartup() async {
+    try {
+      if (!await isNotificationAllowed) return;
+      final locale = await _userSettingsDao.getLocale() ?? initialLocale;
+      await rescheduleNotifications(await AppLocalizations.delegate.load(locale));
+    } catch (e) {
+      debugPrint('NOTIFICATION_SERVICE: Could not reschedule on startup: $e');
+    }
   }
 
   /// Whether the OS currently lets the app post notifications.
   Future<bool> get isNotificationAllowed => _awesomeNotifications.isNotificationAllowed();
+
+  /// Whether the OS lets the app set *exact* alarms.
+  ///
+  /// Since Android 14 `SCHEDULE_EXACT_ALARM` is no longer granted on install,
+  /// so the manifest entry alone buys nothing — the user has to allow it under
+  /// "Alarms & reminders". Without it every schedule becomes an inexact alarm
+  /// with a ten-minute tolerance that Doze can stretch to hours, which is why
+  /// reminders arrive when the phone is next picked up rather than on time.
+  ///
+  /// Asked before scheduling rather than assumed: `preciseAlarm: true` without
+  /// the permission is the platform refusing work it was told to do.
+  Future<bool> get hasPreciseAlarms async {
+    final granted = await _awesomeNotifications.checkPermissionList(
+      permissions: const [NotificationPermission.PreciseAlarms],
+    );
+    return granted.contains(NotificationPermission.PreciseAlarms);
+  }
+
+  /// Opens the system's "Alarms & reminders" screen. There is no in-app dialog
+  /// for this permission; the OS only grants it from its own settings.
+  Future<void> openPreciseAlarmsSettings() => _awesomeNotifications.showAlarmPage();
 
   Future<void> checkPermission() async {
     final hasPermission = await _awesomeNotifications.isNotificationAllowed();
@@ -126,6 +170,7 @@ class NotificationsService {
         second: 0,
         repeats: true,
         allowWhileIdle: true,
+        preciseAlarm: await hasPreciseAlarms,
       ),
     );
     debugPrint(
@@ -235,8 +280,9 @@ class NotificationsService {
   /// derive from week and day, so re-running this never stacks duplicates.
   Future<void> _scheduleProgrammeUnlockReminders(
     AppLocalizations l10n,
-    int scheduleAheadDays,
-  ) async {
+    int scheduleAheadDays, {
+    required bool preciseAlarm,
+  }) async {
     if (!registry.isRegistered<BpdWeeksDao>()) return;
     if (!(await _userSettingsDao.getBpdProgrammeStatus()).hasStarted) return;
 
@@ -281,7 +327,14 @@ class NotificationsService {
               ),
             },
           ),
-          schedule: NotificationCalendar.fromDate(date: fireAt),
+          // `fromDate` leaves both of these off, unlike the main constructor:
+          // without them an unlock reminder is an inexact alarm that Doze holds
+          // until the phone is next used.
+          schedule: NotificationCalendar.fromDate(
+            date: fireAt,
+            allowWhileIdle: true,
+            preciseAlarm: preciseAlarm,
+          ),
         );
         debugPrint(
           'NOTIFICATION_SERVICE: Scheduled unlock reminder for week '
@@ -330,7 +383,9 @@ class NotificationsService {
     // the settings-driven types below add a handful more, so there is room; the
     // whole 49-day programme would not have left any.
     const scheduleAheadDays = 21;
-    await _scheduleProgrammeUnlockReminders(l10n, scheduleAheadDays);
+    // Read once: it is a platform call, and it cannot change mid-reschedule.
+    final preciseAlarm = await hasPreciseAlarms;
+    await _scheduleProgrammeUnlockReminders(l10n, scheduleAheadDays, preciseAlarm: preciseAlarm);
     final mindfulnessTapered = await _isMindfulnessModuleOver();
 
     final r = math.Random();
@@ -389,7 +444,11 @@ class NotificationsService {
         );
         await _awesomeNotifications.createNotification(
           content: notificationContent,
-          schedule: NotificationCalendar.fromDate(date: scheduledDate),
+          schedule: NotificationCalendar.fromDate(
+            date: scheduledDate,
+            allowWhileIdle: true,
+            preciseAlarm: preciseAlarm,
+          ),
         );
       }
     }

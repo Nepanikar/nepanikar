@@ -484,5 +484,10 @@
   "notifications_opt_in_confirm": "Activează",
   "notifications_opt_in_description": "Îți putem trimite un memento pentru notarea stării de spirit, pentru provocările tale sau pentru un moment de mindfulness. Trimitem doar ce ai configurat tu și poți dezactiva oricând din setări.",
   "notifications_opt_in_dismiss": "Nu acum",
+  "notifications_troubleshoot_title": "Nu primești notificările?",
+  "notifications_troubleshoot_body": "Unele telefoane opresc aplicația după închidere, iar notificările programate se anulează. Ajută să excluzi aplicația din optimizarea bateriei în setările telefonului.",
+  "notifications_exact_alarms_title": "Ore exacte pentru notificări",
+  "notifications_exact_alarms_body": "Fără această permisiune, telefonul poate întârzia notificările cu câteva ore.",
+  "notifications_exact_alarms_cta": "Permite în setări",
   "notifications_opt_in_title": "Activezi notificările?"
 }

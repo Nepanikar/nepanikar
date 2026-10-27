@@ -484,5 +484,10 @@
   "notifications_opt_in_confirm": "Укључи",
   "notifications_opt_in_description": "Можемо ти послати подсетник за бележење расположења, за твоје изазове или за кратак тренутак свесности. Шаљемо само оно што сам/сама подесиш, а у сваком тренутку можеш то искључити у подешавањима.",
   "notifications_opt_in_dismiss": "Не сада",
+  "notifications_troubleshoot_title": "Не стижу ти обавештења?",
+  "notifications_troubleshoot_body": "Неки телефони заустављају апликацију након затварања, чиме се отказују заказана обавештења. Помаже да апликацију изузмеш из оптимизације батерије у подешавањима телефона.",
+  "notifications_exact_alarms_title": "Тачна времена обавештења",
+  "notifications_exact_alarms_body": "Без ове дозволе телефон може одложити обавештења и по неколико сати.",
+  "notifications_exact_alarms_cta": "Дозволи у подешавањима",
   "notifications_opt_in_title": "Укључити обавештења?"
 }

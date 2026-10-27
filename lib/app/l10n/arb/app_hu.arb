@@ -484,5 +484,10 @@
   "notifications_opt_in_confirm": "Bekapcsolás",
   "notifications_opt_in_description": "Emlékeztetőt küldhetünk a hangulatnaplóra, a kihívásaidra vagy egy tudatossági szünetre. Csak azt küldjük, amit te magad állítasz be, és bármikor kikapcsolhatod a beállításokban.",
   "notifications_opt_in_dismiss": "Most nem",
+  "notifications_troubleshoot_title": "Nem érkeznek az értesítések?",
+  "notifications_troubleshoot_body": "Néhány telefon bezárás után leállítja az alkalmazást, és ezzel törli a beütemezett értesítéseket. Segít, ha a telefon beállításaiban kiveszed az alkalmazást az akkumulátor-optimalizálásból.",
+  "notifications_exact_alarms_title": "Pontos értesítési időpontok",
+  "notifications_exact_alarms_body": "Enélkül az engedély nélkül a telefon órákkal is késleltetheti az értesítéseket.",
+  "notifications_exact_alarms_cta": "Engedélyezés a beállításokban",
   "notifications_opt_in_title": "Bekapcsolod az értesítéseket?"
 }

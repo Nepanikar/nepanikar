@@ -11,6 +11,7 @@ import 'package:nepanikar/services/notifications/notifications_service.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/nepanikar_horizontal_divider.dart';
 import 'package:nepanikar/widgets/nepanikar_screen_wrapper.dart';
+import 'package:nepanikar/widgets/notifications/notification_delivery_help.dart';
 
 part 'notification_settings_screen.g.dart';
 
@@ -104,18 +105,19 @@ class NotificationSettingsScreen extends StatelessWidget {
           appBarTitle: context.l10n.notifications,
           isCardStackLayout: true,
           expandToMaxScreenHeight: true,
-          children: settingsTypes
-              .mapIndexed(
-                (i, notificationType) => _buildNotificationSection(
-                  context,
-                  i,
-                  notificationType,
-                  notificationTypeSettings.firstWhereOrNull(
-                    (typeSettings) => typeSettings.type == notificationType,
-                  ),
+          children: [
+            ...settingsTypes.mapIndexed(
+              (i, notificationType) => _buildNotificationSection(
+                context,
+                i,
+                notificationType,
+                notificationTypeSettings.firstWhereOrNull(
+                  (typeSettings) => typeSettings.type == notificationType,
                 ),
-              )
-              .toList(),
+              ),
+            ),
+            const NotificationDeliveryHelp(),
+          ],
         );
       },
     );

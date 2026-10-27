@@ -2,6 +2,10 @@
     package="org.dontpanic">
 
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <!-- awesome_notifications ships a BOOT_COMPLETED receiver that re-registers
+         every pending schedule, but declares no permission for it, so Android
+         never delivered the broadcast and a reboot silently emptied the queue. -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <application
         android:label="@string/app_name"
