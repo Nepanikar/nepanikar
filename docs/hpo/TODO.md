@@ -238,6 +238,24 @@ found three things not in this list, all fixed in the same pass:
     168 `dbt_*` keys now, still hand-filled for all 24 locales.
     `dbt_pronoun_question` takes the app name as a placeholder — it is
     Nepanikař, Nepanikár or Don't Panic depending on the locale.
+  - ✅ **The repeated day-screen labels (done 2026-10-27).** Found by sweeping
+    for patterns rather than by file, which is what these were: the same label
+    hand-written on twenty-odd screens. 25 × "Den 4 • Týden 2"
+    (`dbt_day_week_plain`), 5 × the "Reflexe týdne" header, 5 × "Co jsme
+    prošli" (`dbt_what_we_covered`), the myth counter "11–20 z 20"
+    (`dbt_range_of_total`), "Tvoje výzvy", and two strings that duplicated keys
+    that already existed. **485 keys, all 24 locales, no gaps and no
+    placeholder drift** — checked with a script, not by eye.
+    Dropping `const` from twenty widgets came with it: a localised string is
+    not a compile-time constant.
+  - ⚠️ **`sourceLabel` is persisted, so it is still Czech.** "Týden 5 • Den 2"
+    and "Týden 2 • připomenuto v 5. týdnu", 20 sites, are written into the
+    rescue package (`BpdRescueItem.sourceLabel`) and read back out of it.
+    Localising the call sites would only reach items saved afterwards; doing it
+    properly means storing the two week numbers and formatting on render.
+  - **Outside this module:** `lib/games/relaxation/relaxations_list_screen.dart`
+    has three hardcoded Czech tile labels ("Relaxace", "Ranní zastavení",
+    "Večerní zastavení"). Pre-existing, unrelated to the programme.
   - **Programme copy stays inline Czech.** The day screens and their
     `dayN_content.dart` (~2 000 strings) are the author's verbatim clinical copy,
     with `docs/hpo/source/*.md` as the source of truth, and the pilot is Czech.
