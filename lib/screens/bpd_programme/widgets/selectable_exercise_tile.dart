@@ -3,10 +3,8 @@ import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 
 /// Checkable tile for an exercise the user picks to try ("vyber si alespoň dvě
-/// cvičení z nabídky").
-///
-/// Shared by the Week 2 skill pages (Co / Jak dovednosti); the visual language
-/// matches the SPOKO challenge tiles of Week 1.
+/// cvičení z nabídky"). Shared by the Week 2 skill pages; the visual language
+/// matches Week 1's SPOKO challenge tiles.
 class SelectableExerciseTile extends StatelessWidget {
   const SelectableExerciseTile({
     super.key,
@@ -123,13 +121,10 @@ class _Checkbox extends StatelessWidget {
   }
 }
 
-/// "Vybráno 2 z minimálně 2" progress hint shown above a pick-list. Turns into
-/// the primary colour once [minimum] items are picked.
-///
-/// With [minimum] `0` the pick-list is a record of what the user already did
-/// rather than an assignment (Week 4's UZNÁVÁM checklist), so the target is
-/// dropped from the wording — "z minimálně 0" would read as a demand for
-/// nothing, and someone who tried none of it must not meet a grey zero.
+/// "Vybráno 2 z minimálně 2" progress hint above a pick-list, turning the
+/// primary colour once [minimum] items are picked. With [minimum] `0` the list
+/// records what the user already did (Week 4's UZNÁVÁM checklist), so the
+/// target is dropped — "z minimálně 0" would read as a demand for nothing.
 class PickCounterHint extends StatelessWidget {
   const PickCounterHint({super.key, required this.picked, required this.minimum, this.label});
 

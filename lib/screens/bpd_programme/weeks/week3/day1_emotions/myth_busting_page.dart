@@ -5,12 +5,9 @@ import 'package:nepanikar/screens/bpd_programme/weeks/week3/day1_emotions/day1_c
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/structured_worksheet.dart';
 
-/// Page 6/7 — the exercise: write your own sentence that breaks each myth.
-///
-/// The source expects all twenty. Twenty free-text answers in one day is far
-/// past the "5–20 minut denně" the programme promises, so five are offered and
-/// the rest are one tap away; answers to all twenty persist either way, so the
-/// user can keep chipping at them on later visits.
+/// Page 6/7 — write your own sentence that breaks each myth. The source expects
+/// all twenty, well past the promised "5–20 minut denně", so five are offered
+/// and the rest are one tap away. All twenty persist either way.
 class Week3MythBustingPage extends StatelessWidget {
   const Week3MythBustingPage({super.key, required this.onNext});
 

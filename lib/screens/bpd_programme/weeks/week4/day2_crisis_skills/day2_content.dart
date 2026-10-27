@@ -1,9 +1,8 @@
 // ignore_for_file: no_adjacent_strings_in_list
 
-/// Week 4, Day 2 — dovednosti pro překonání krize.
-///
-/// Copy verbatim from `docs/hpo/source/tyzden-4.md` §2, including its spacing
-/// and typos (OQ-9) — the author corrects her own text.
+/// Week 4, Day 2 — dovednosti pro překonání krize. Copy verbatim from
+/// `docs/hpo/source/tyzden-4.md` §2, including its spacing and typos (OQ-9) —
+/// the author corrects her own text.
 library;
 
 /// Bullets 1–3: what a crisis is and what these skills are for.
@@ -43,9 +42,8 @@ const day2NotFor =
     'Tyto dovednosti není dobré používat pro běžné každodenní problémy, pro '
     'řešení všech životních problémů ani pro hledání smyslu života.';
 
-/// Ours. The source promises "tři klíčové dovednosti" and then lists two —
-/// UZNÁVÁM arrives on Day 5. Rather than edit her sentence, we keep the promise
-/// by saying where the third one is (WEEK4_SCREEN_PLAN.md → OQ-12).
+/// Ours. The source promises "tři klíčové dovednosti" then lists two — UZNÁVÁM
+/// arrives on Day 5. We keep the promise by saying where the third is (OQ-12).
 // TODO: schválit autorem
 const day2ThirdSkillNote =
     'Dvě z nich — STOP a TIPS — si ukážeme dnes. Třetí, UZNÁVÁM, na tebe čeká '
@@ -114,11 +112,9 @@ const day2TipsLetters = <(String, String, String)>[
 ];
 
 /// Ours, and the one place we add to the author's clinical text (OQ-4).
-///
-/// Cold-water immersion with breath-holding deliberately slows the heart, and
-/// intense exercise can be a compensatory behaviour — this app ships an
-/// eating-disorder module and a self-harm module, so it reaches exactly the
-/// people for whom these two are not neutral. Flagged, never silently added.
+/// Cold-water immersion with breath-holding slows the heart and intense exercise
+/// can be compensatory; this app also ships an eating-disorder and a self-harm
+/// module, so it reaches exactly the people those two are not neutral for.
 // TODO: schválit autorem
 const day2TipsCautionTitle = 'Kdy zvolit jinou techniku';
 const day2TipsCaution =

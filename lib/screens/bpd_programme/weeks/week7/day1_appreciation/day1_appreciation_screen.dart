@@ -24,10 +24,8 @@ class Week7Day1AppreciationScreenRoute extends GoRouteData with $Week7Day1Apprec
   Widget build(BuildContext context, _) => const Week7Day1AppreciationScreen();
 }
 
-/// Week 7, Day 1 — ocenění. Verbatim, source: tyzden-7.md §1.
-///
-/// The only day in the programme that reads back what the user wrote six weeks
-/// earlier: their SMART goals from Week 1 (GEN-02).
+/// Week 7, Day 1 — ocenění. Verbatim, source: tyzden-7.md §1. The only day that
+/// reads back what the user wrote six weeks earlier: their SMART goals (GEN-02).
 class Week7Day1AppreciationScreen extends StatefulWidget {
   const Week7Day1AppreciationScreen({super.key});
 

@@ -17,16 +17,9 @@ part 'bpd_landing_screen.g.dart';
 class BpdLandingScreenRoute extends GoRouteData with $BpdLandingScreenRoute {
   const BpdLandingScreenRoute();
 
-  /// Sends anyone who has already started straight into their weeks.
-  ///
-  /// Both ways into the programme — the DBT tab and the home tile — point at
-  /// this route, and it is an introduction ending in a "start" button. Without
-  /// this, someone in week 4 was met by the pitch for the programme every time
-  /// and had to press „Začít svou cestu“ again to reach it.
-  ///
-  /// It lives here rather than at the two entry points so that anything else
-  /// linking to the landing screen later — a notification, a deep link — is
-  /// treated the same way.
+  /// Sends anyone who has already started straight into their weeks, instead of
+  /// meeting them with the pitch again in week 4. Here rather than at the two
+  /// entry points, so a later notification or deep link is treated the same way.
   @override
   Future<String?> redirect(BuildContext context, GoRouterState state) async {
     final status = await registry.get<UserSettingsDao>().getBpdProgrammeStatus();
@@ -45,14 +38,9 @@ class BpdLandingScreen extends StatelessWidget {
   Future<void> _handleStartJourney(BuildContext context) async {
     final l10n = context.l10n;
     await _userSettingsDao.markBpdProgrammeStarted();
-    // The week unlock dates only exist once the programme has started, so this
-    // is the first moment the day/week reminders can be scheduled. Without it
-    // they wait for some unrelated reschedule (a mood pick, a settings change)
-    // and a user who just starts and closes the app is never told a day opened.
-    //
-    // Scheduling is incidental to what the button promises, so it never gets to
-    // decide whether the person reaches the programme. `rescheduleNotifications`
-    // already refuses politely when permission is missing; this catches the rest.
+    // First moment the day/week reminders can be scheduled — the unlock dates only
+    // exist once the programme has started. Never blocks the navigation: scheduling
+    // is incidental to what the button promises.
     try {
       await registry.get<NotificationsService>().rescheduleNotifications(l10n);
     } catch (e, s) {
@@ -122,12 +110,8 @@ class BpdLandingScreen extends StatelessWidget {
 
                       const SizedBox(height: 18),
 
-                      // Description. Said "7denní" until 2026-08-18 — the
-                      // programme is seven *weeks* (the skill tree right below
-                      // counts "0 ze 7 týdnů"), and this is the first screen a
-                      // new user reads, so it set the wrong expectation about
-                      // the commitment. Not the author's copy; it predates the
-                      // HPO content.
+                      // Said "7denní" until 2026-08-18; the programme is seven *weeks*. Ours, not
+                      // the author's copy — it predates the HPO content.
                       Text(
                         context.l10n.dbt_landing_description,
                         style: TextStyle(

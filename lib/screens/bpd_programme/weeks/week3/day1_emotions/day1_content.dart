@@ -4,11 +4,9 @@
 /// Verbatim from `docs/hpo/source/tyzden-3.md` §1 unless marked otherwise.
 library;
 
-/// A myth about emotions together with the author's counter-statement.
-///
-/// The source lists twenty myths and, separately, twenty "busted" versions in
-/// the same order; they are paired up here so each myth can reveal its own
-/// example. The counter-statements are the author's words, not ours.
+/// A myth about emotions with the author's counter-statement. The source lists
+/// the twenty myths and the twenty "busted" versions separately but in the same
+/// order; pairing them lets each myth reveal its own. Both are her words.
 class EmotionMyth {
   const EmotionMyth({required this.myth, required this.busted});
 

@@ -11,16 +11,11 @@ import 'package:nepanikar/services/db/bpd/bpd_worksheet_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 
 /// Shows the SMART goals the user wrote in Week 1 and asks what to do with each
-/// of them now — the "first week vs last week" loop the programme promises
-/// (`docs/hpo/TODO.md` → GEN-02).
+/// now — the "first week vs last week" loop (`docs/hpo/TODO.md` → GEN-02).
 ///
-/// Unlike [StructuredWorksheet] the sections are not known at compile time:
-/// there may be no goals at all, or several. Answers are keyed by the goal's
-/// own record key, so a review stays attached to the goal it belongs to even if
-/// the user later adds more.
-///
-/// Nothing here grades the user. The source asks them to look at what worked
-/// and what did not, and explicitly says that not meeting a goal is fine — so
+/// Unlike [StructuredWorksheet] the sections are not known at compile time, so
+/// answers are keyed by the goal's own record key and stay attached to it.
+/// Nothing grades the user: the source says not meeting a goal is fine, so
 /// there is no done/not-done control, only an open field.
 class SmartGoalsReview extends StatefulWidget {
   const SmartGoalsReview({
@@ -146,12 +141,10 @@ class _GoalCard extends StatelessWidget {
   final TextEditingController controller;
   final String fieldLabel;
 
-  /// Letter, label and the value the user wrote in Week 1.
-  ///
-  /// The labels are copied from `week1/day1_onboarding/smart_intro_page.dart`
-  /// on purpose — the user met "Adekvátní" and "Termínovaný" there, so calling
-  /// the same fields "Dosažitelný" and "Časově ohraničený" here would read as a
-  /// different model rather than their own goal coming back.
+  /// Letter, label and the value the user wrote in Week 1. The labels are copied
+  /// from `week1/day1_onboarding/smart_intro_page.dart`: the user met "Adekvátní"
+  /// and "Termínovaný" there, and renaming them here would read as a different
+  /// model rather than their own goal coming back.
   List<(String, String, String)> get _lines => [
     ('S', 'Specifický', goal.specific),
     ('M', 'Měřitelný', goal.measurable),

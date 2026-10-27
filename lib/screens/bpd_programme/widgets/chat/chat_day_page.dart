@@ -34,11 +34,9 @@ class ChatDayPage extends StatefulWidget {
   final VoidCallback onCompleted;
   final String? defaultButtonLabel;
 
-  /// Optional second action under the main button, shown on every step.
-  ///
-  /// Week 5 Day 2 is the programme's only voluntary day, and the source says so
-  /// in its first sentence — so the way out has to be there from the first
-  /// screen, not only once the user has read the whole warning.
+  /// Optional second action under the main button, shown on every step. Week 5
+  /// Day 2 is the only voluntary day and the source says so in its first
+  /// sentence, so the way out has to be there from the first screen.
   final Widget? secondaryAction;
 
   @override

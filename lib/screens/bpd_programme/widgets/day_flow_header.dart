@@ -3,10 +3,8 @@ import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/bpd_help_button.dart';
 
 /// Header of a multi-page day flow: close/back button, segmented progress bar,
-/// an `n/N` counter and the help button.
-///
-/// Every HPO day screen repeated this ~55-line widget; new and reworked day
-/// screens use this shared one instead.
+/// an `n/N` counter and the help button. Every HPO day screen repeated this
+/// ~55-line widget; new and reworked ones use this shared version.
 class DayFlowHeader extends StatelessWidget {
   const DayFlowHeader({
     super.key,

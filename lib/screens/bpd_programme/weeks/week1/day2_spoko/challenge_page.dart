@@ -8,10 +8,8 @@ import 'package:nepanikar/services/notifications/notifications_service.dart';
 import 'package:nepanikar/utils/registry.dart';
 
 /// Page 2/3 — Sleep challenge pick-list (verbatim, source: tyzden-1.md §2).
-///
-/// The picked items are persisted (voluntarily) so they can be re-surfaced
-/// later. The "future challenge" action is a placeholder until the dedicated
-/// challenge-tracking feature exists.
+/// Picks are persisted so they can be re-surfaced later; the "future challenge"
+/// action is a placeholder until challenge tracking exists.
 class Day2ChallengePage extends StatefulWidget {
   const Day2ChallengePage({super.key, required this.onNext});
 

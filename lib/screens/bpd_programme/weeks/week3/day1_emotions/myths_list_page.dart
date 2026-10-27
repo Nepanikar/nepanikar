@@ -3,12 +3,9 @@ import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week3/day1_emotions/day1_content.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
 
-/// Pages 4/7 and 5/7 — the twenty myths about emotions, ten at a time.
-///
-/// Every myth is presented as a muted, quoted card under a "MÝTUS" label. These
-/// are statements like "Drama je cool" and "Mé emoce jsou tím, kým jsem"; a
-/// reader skimming the page must never be able to mistake them for the app's
-/// own advice.
+/// Pages 4/7 and 5/7 — the twenty myths about emotions, ten at a time. Muted,
+/// quoted cards under a "MÝTUS" label: statements like "Drama je cool" must
+/// never be mistaken for the app's own advice by someone skimming.
 class Week3MythsListPage extends StatelessWidget {
   const Week3MythsListPage({
     super.key,

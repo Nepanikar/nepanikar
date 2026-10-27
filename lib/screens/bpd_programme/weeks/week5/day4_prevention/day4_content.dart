@@ -1,11 +1,7 @@
-/// Week 5, Day 4 — plánování a prevence.
-///
-/// Copy verbatim from `docs/hpo/source/tyzden-5.md` §4.
-///
-/// The source gave this day five headings and ten instructions and nothing
-/// else — the introduction below came later, from the author (2026-09-18). The
-/// headings are hers; the field labels are ours, because an instruction in the
-/// imperative ("Napište si situace…") is not a label.
+/// Week 5, Day 4 — plánování a prevence. Copy verbatim from
+/// `docs/hpo/source/tyzden-5.md` §4. The source gave five headings and ten
+/// instructions and nothing else; the introduction came later from the author
+/// (2026-09-18). Headings hers, field labels ours — an imperative is not a label.
 library;
 
 import 'package:nepanikar/screens/bpd_programme/widgets/structured_worksheet.dart';

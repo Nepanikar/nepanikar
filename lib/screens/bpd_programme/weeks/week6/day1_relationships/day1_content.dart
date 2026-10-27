@@ -1,10 +1,8 @@
 // ignore_for_file: no_adjacent_strings_in_list
 
-/// Week 6, Day 1 — edukace o vztazích.
-///
-/// Copy verbatim from `docs/hpo/source/tyzden-6.md` §1, including the source's
-/// typos ("časo", "se tyto dovednosti zaměřuje") — see WEEK6_SCREEN_PLAN.md
-/// → OQ-2. The author corrects her own text; we never do it silently.
+/// Week 6, Day 1 — edukace o vztazích. Copy verbatim from
+/// `docs/hpo/source/tyzden-6.md` §1, including the typos "časo" and "se tyto
+/// dovednosti zaměřuje" (OQ-2) — the author corrects her own text.
 library;
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -67,28 +65,21 @@ const day1RelationshipsMythsTitle = 'Mýty, které brání v budování vztahů 
 /// pravdivé formulace, protipříklad zobrazit v nápovědě)".
 const day1MythFieldLabel = 'Jak to je ve skutečnosti?';
 
-/// A myth and the author's counter-statement, which the field reveals on tap.
-///
-/// A record rather than a class, since the pair is only ever read. The fields
-/// are named, unlike [AcronymLetter]'s: two bare strings in a row give a call
-/// site no way to show which of them is the myth.
+/// A myth and the author's counter-statement, revealed on tap. A record, since
+/// the pair is only ever read; the fields are named, unlike [AcronymLetter]'s,
+/// because two bare strings give a call site no way to show which is the myth.
 typedef RelationshipMyth = ({String myth, String busted});
 
-/// How many myths are offered before the user has to ask for the rest.
-///
-/// Twelve free-text answers per group is far past the "5–20 minut denně" the
-/// programme promises, so four are offered and the rest are one tap away.
-/// Answers to all twelve persist either way. Same reasoning as Week 3, Day 1.
+/// How many myths are offered before the user has to ask for the rest. Twelve
+/// free-text answers per group is past the promised "5–20 minut denně", so four
+/// are offered; all twelve persist. Same reasoning as Week 3, Day 1.
 const day1MythsOfferedCount = 4;
 
 const day1MythsRevealLabel = 'Chci zpochybnit i další mýty';
 
 /// Twelve myths with the author's counter-statements, verbatim and in source
-/// order.
-///
-/// The counter-statements arrived later than the myths (2026-09-18): the first
-/// version of Week 6 left twenty-four fields with no help at all, which Week 3
-/// had never done. They are revealed on tap, exactly as Week 3's are.
+/// order. The counter-statements arrived later (2026-09-18) — the first version
+/// left twenty-four fields with no help, which Week 3 had never done.
 const day1NeedsMyths = <RelationshipMyth>[
   (
     myth: 'Nezasloužím si dostat to, co chci nebo potřebuji.',

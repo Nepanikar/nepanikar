@@ -1,7 +1,5 @@
-/// Week 4, Day 4 — všímavost u stresu.
-///
-/// Copy verbatim from `docs/hpo/source/tyzden-4.md` §4, including the source's
-/// typo "už dobře známáé všímavost" (OQ-9).
+/// Week 4, Day 4 — všímavost u stresu. Copy verbatim from
+/// `docs/hpo/source/tyzden-4.md` §4, including the typo "známáé" (OQ-9).
 library;
 
 const day4OpeningChat =

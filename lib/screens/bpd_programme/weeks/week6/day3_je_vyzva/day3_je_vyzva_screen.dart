@@ -27,9 +27,7 @@ class Week6Day3JeVyzvaScreenRoute extends GoRouteData with $Week6Day3JeVyzvaScre
 }
 
 /// Week 6, Day 3 — Je VýZVa a všímavost ve vztazích. Source: tyzden-6.md §3.
-///
-/// Two topics in one day, so two content pages: the acronym first, then
-/// mindfulness applied to relationships and a menu of Week 2's techniques.
+/// Two topics, so two content pages: the acronym, then mindfulness in relationships.
 class Week6Day3JeVyzvaScreen extends StatefulWidget {
   const Week6Day3JeVyzvaScreen({super.key});
 

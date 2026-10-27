@@ -26,12 +26,9 @@ class Week5Day5MindfulnessScreenRoute extends GoRouteData with $Week5Day5Mindful
   Widget build(BuildContext context, _) => const Week5Day5MindfulnessScreen();
 }
 
-/// Week 5, Day 5 — všímavost. Verbatim, source: tyzden-5.md §5.
-///
-/// Structurally the same day as Week 4 Day 4: three education bullets, then one
-/// of Week 2's eight named techniques. The pool, the detail sheet and the
-/// rescue-package ids are reused unchanged, so a drawn technique behaves exactly
-/// as it did when the user first met it.
+/// Week 5, Day 5 — všímavost. Verbatim, source: tyzden-5.md §5. Structurally
+/// the same day as Week 4 Day 4: three education bullets, then one of Week 2's
+/// eight techniques, pool and rescue-package ids reused unchanged.
 class Week5Day5MindfulnessScreen extends StatefulWidget {
   const Week5Day5MindfulnessScreen({super.key});
 
@@ -193,12 +190,9 @@ class Week5Day5ChatPage extends StatelessWidget {
   }
 }
 
-/// Page 2/3 — draw a technique, or pick one.
-///
-/// The source asks for both: "prostor vybrat si z všímavých technik" (a menu)
-/// and "kolo štěstí" (a draw). The draw is primary because that is what was
-/// decided for the same request in Week 4; picking is one tap away for anyone
-/// who already knows what they want (WEEK5_SCREEN_PLAN.md → OQ-9).
+/// Page 2/3 — draw a technique, or pick one. The source asks for both, a menu
+/// and a "kolo štěstí". The draw is primary, as decided for the same request in
+/// Week 4; picking is one tap away for anyone who knows what they want (OQ-9).
 class Week5Day5PracticePage extends StatelessWidget {
   const Week5Day5PracticePage({super.key, required this.onNext});
 

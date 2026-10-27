@@ -26,10 +26,8 @@ class Week5Day1ImpulsivityScreenRoute extends GoRouteData with $Week5Day1Impulsi
 }
 
 /// Week 5, Day 1 — edukace o impulzivitě. Verbatim, source: tyzden-5.md §1.
-///
-/// The densest day of the programme: ten education bullets, a six-step model, a
-/// seven-field worksheet and a branching analysis. Five pages, so no single one
-/// is a wall of text.
+/// The densest day of the programme — ten education bullets, a six-step model,
+/// a seven-field worksheet and a branching analysis — split over five pages.
 class Week5Day1ImpulsivityScreen extends StatefulWidget {
   const Week5Day1ImpulsivityScreen({super.key});
 
@@ -115,10 +113,8 @@ class _Week5Day1ImpulsivityScreenState extends State<Week5Day1ImpulsivityScreen>
                     dayNumber: 1,
                     summary: day1CompletionText,
                     nextDay: const NextDayTeaser(
-                      // Ours. The day's own title is "Život ohrožující chování",
-                      // which is a hard thing to meet as a teaser with no context
-                      // — so the teaser leads with the fact that it is optional
-                      // (WEEK5_SCREEN_PLAN.md → OQ-12).
+                      // Ours. The day's own title, "Život ohrožující chování", is a hard thing to
+                      // meet as a teaser with no context, so this leads with it being optional (OQ-12).
                       // TODO: schválit autorem
                       title: 'Citlivé téma — dobrovolně',
                       description:

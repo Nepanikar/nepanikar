@@ -8,13 +8,9 @@ import 'package:nepanikar/services/db/bpd/bpd_challenges_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 
 /// A page of the UZNÁVÁM checklist — several lettered groups, each persisted
-/// under its own section key.
-///
-/// Not `SkillPracticePage`: that one teaches a single skill and then asks the
-/// user to pick at least two exercises *to do*. This is the other way round —
-/// several groups at once, and the ticks record what the user has **already
-/// tried**. So there is no minimum, no counter target, and ticking nothing is
-/// a perfectly good answer.
+/// under its own section key. Not `SkillPracticePage`: that one asks for at
+/// least two exercises to *do*, while these ticks record what was already
+/// tried, so there is no minimum and ticking nothing is a good answer.
 class UznavamChecklistPage extends StatefulWidget {
   const UznavamChecklistPage({
     super.key,

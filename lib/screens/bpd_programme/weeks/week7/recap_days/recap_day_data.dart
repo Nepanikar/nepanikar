@@ -1,23 +1,13 @@
 // ignore_for_file: no_adjacent_strings_in_list
 
-/// Week 7, Days 2–6 — the four module recaps plus the mindfulness day.
+/// Week 7, Days 2–6 — the four module recaps plus the mindfulness day. Copy
+/// verbatim from `docs/hpo/source/tyzden-7.md` §2–§6. All five share one shape,
+/// so they are one data-driven screen rather than five near-identical ones.
 ///
-/// Copy verbatim from `docs/hpo/source/tyzden-7.md` §2–§6.
-///
-/// Every one of these days has the same shape — one long recap paragraph, a
-/// menu of that module's skills, a closing line — so they are one data-driven
-/// screen rather than five near-identical ones (the pattern Week 1's SPOKO days
-/// established).
-///
-/// **The menus list only skills the programme actually taught.** The recap
-/// paragraphs used to name "PODPORA", "coping ahead" and "radikální přijetí"
-/// too, none of which appear anywhere in weeks 1–6; the author had them struck
-/// from the recaps (2026-09-18) rather than added to the earlier weeks, so the
-/// text and the menus now agree.
-///
-/// Every detail text is assembled from the constants the original day already
-/// ships, so the wording a user re-reads here is byte-identical to the wording
-/// they learned. Only `shortDescription` is ours.
+/// The menus list only skills the programme taught: the recaps used to name
+/// "PODPORA", "coping ahead" and "radikální přijetí", which appear nowhere in
+/// weeks 1–6, and the author had them struck (2026-09-18). Detail texts come
+/// from each original day's own constants, so the wording is byte-identical.
 library;
 
 import 'package:material_ui/material_ui.dart';

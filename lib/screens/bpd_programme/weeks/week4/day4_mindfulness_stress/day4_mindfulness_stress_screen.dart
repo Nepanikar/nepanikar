@@ -29,10 +29,9 @@ class Week4Day4MindfulnessScreenRoute extends GoRouteData with $Week4Day4Mindful
   Widget build(BuildContext context, _) => const Week4Day4MindfulnessScreen();
 }
 
-/// The eight named techniques of Week 2 — three breathing exercises (Day 4)
-/// and five mindfulness techniques (Day 6). Reused verbatim, detail sheet and
-/// rescue-package ids included, so a drawn technique behaves exactly as it did
-/// when the user first met it.
+/// The eight named techniques of Week 2 — three breathing exercises (Day 4) and
+/// five mindfulness techniques (Day 6). Reused verbatim, rescue-package ids
+/// included, so a drawn technique behaves as it did when the user first met it.
 final List<TechniqueData> week4DrawPool = [
   ...week2_breathing.week2Day4Techniques,
   ...week2_techniques.week2Day6Techniques,

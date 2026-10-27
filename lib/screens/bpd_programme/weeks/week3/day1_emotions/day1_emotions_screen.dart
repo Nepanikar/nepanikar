@@ -24,9 +24,8 @@ class Week3Day1EmotionsScreenRoute extends GoRouteData with $Week3Day1EmotionsSc
 }
 
 /// Week 3, Day 1 — Edukace o emocích. Verbatim, source: tyzden-3.md §1.
-///
-/// What regulation is (chat) → emotion dictionary → why regulation is hard →
-/// the twenty myths in two halves → busting them → completion.
+/// What regulation is (chat) → emotion dictionary → why it is hard → the twenty
+/// myths in two halves → busting them → completion.
 class Week3Day1EmotionsScreen extends StatefulWidget {
   const Week3Day1EmotionsScreen({super.key});
 

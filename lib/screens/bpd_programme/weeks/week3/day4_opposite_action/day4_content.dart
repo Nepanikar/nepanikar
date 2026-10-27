@@ -1,11 +1,8 @@
 // ignore_for_file: no_adjacent_strings_in_list
 
-/// Copy for Week 3, Day 4 — Změna odezvy na emoce: opačná akce.
-/// Verbatim from `docs/hpo/source/tyzden-3.md` §4.
-///
-/// Reading only — the source gives this day no exercise, and that is deliberate
-/// (confirmed with the author 2026-08-06). It is therefore delivered entirely in
-/// chat form, so a day without a task still moves at the user's pace.
+/// Copy for Week 3, Day 4 — Změna odezvy na emoce: opačná akce. Verbatim from
+/// `docs/hpo/source/tyzden-3.md` §4. Reading only: the source gives this day no
+/// exercise, deliberately (confirmed with the author 2026-08-06).
 library;
 
 const day4IntroChat = <String>[
@@ -17,10 +14,9 @@ const day4IntroChat = <String>[
       'emoce nepřiměřená nebo neprospěšná.',
 ];
 
-/// The safety boundary. The source states it only as a subordinate clause
-/// ("pokud by byla emoce nepřiměřená nebo neprospěšná"), but "do the opposite of
-/// what your emotion tells you" is dangerous advice when the fear is warranted,
-/// so it gets its own card next to the technique rather than a passing mention.
+/// The safety boundary. The source states it only as a subordinate clause, but
+/// "do the opposite of what your emotion tells you" is dangerous advice when the
+/// fear is warranted, so it gets its own card next to the technique.
 const day4WarningTitle = 'Kdy opačnou akci nepoužívat';
 const day4WarningBody =
     'Opačná akce je na emoce, které situaci neodpovídají nebo ti škodí. Pokud '

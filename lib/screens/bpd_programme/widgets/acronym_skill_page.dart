@@ -8,14 +8,10 @@ import 'package:nepanikar/services/db/bpd/bpd_rescue_item_model.dart';
 /// instruction. Verbatim from the programme source.
 typedef AcronymLetter = (String letter, String title, String description);
 
-/// A page that teaches one acronym — STOP, TIPS and UZNÁVÁM in Week 4.
-///
-/// The letters render through the existing [NumberedBenefit], whose `number` is
-/// a `String`, so an acronym needs no card widget of its own.
-///
-/// These are the techniques a user reaches for at the worst moment, so the page
-/// offers to save the whole acronym to the záchranný balíček — without that
-/// they would have to walk back through the programme to find it.
+/// A page that teaches one acronym — STOP, TIPS and UZNÁVÁM in Week 4. The
+/// letters render through [NumberedBenefit], whose `number` is a `String`, so
+/// an acronym needs no widget of its own. These are reached for at the worst
+/// moment, so the page offers to save the whole acronym to the balíček.
 class AcronymSkillPage extends StatelessWidget {
   const AcronymSkillPage({
     super.key,
@@ -39,10 +35,8 @@ class AcronymSkillPage extends StatelessWidget {
   final List<String> leadParagraphs;
   final List<AcronymLetter> letters;
 
-  /// Extra content rendered directly below a given letter, keyed by that
-  /// letter — TIPS hangs a breathing-exercise link under "P" and a caution
-  /// card under "I", both of which belong to their letter rather than to the
-  /// bottom of the page.
+  /// Extra content rendered directly below a given letter — TIPS hangs a
+  /// breathing link under "P" and a caution card under "I", where they belong.
   final Map<String, Widget> afterLetter;
 
   /// When set, the page offers to save the acronym to the rescue package.

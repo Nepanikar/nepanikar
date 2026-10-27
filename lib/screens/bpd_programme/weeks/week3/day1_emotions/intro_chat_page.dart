@@ -4,9 +4,7 @@ import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart'
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_messages.dart';
 
 /// Page 1/7 — what emotional regulation is, and that emotions are not facts.
-///
-/// Education in chat form: the week's framing arrives a message at a time
-/// instead of as one wall of text.
+/// Education in chat form, a message at a time rather than one wall of text.
 class Week3IntroChatPage extends StatelessWidget {
   const Week3IntroChatPage({super.key, required this.onNext});
 

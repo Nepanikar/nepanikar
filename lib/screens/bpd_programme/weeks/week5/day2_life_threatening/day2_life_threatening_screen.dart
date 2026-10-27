@@ -32,10 +32,8 @@ class Week5Day2LifeThreateningScreenRoute extends GoRouteData
 }
 
 /// Week 5, Day 2 — život ohrožující chování. Verbatim, source: tyzden-5.md §2.
-///
-/// The one day the source itself declares optional, so it is also the one day
-/// with a way out on every screen. Skipping marks it done rather than leaving
-/// the week stuck at 6/7 — the author's call (2026-09-18).
+/// The one day the source declares optional, so the one day with a way out on
+/// every screen. Skipping marks it done — the author's call (2026-09-18).
 class Week5Day2LifeThreateningScreen extends StatefulWidget {
   const Week5Day2LifeThreateningScreen({super.key});
 
@@ -97,12 +95,9 @@ class _Week5Day2LifeThreateningScreenState extends State<Week5Day2LifeThreatenin
     context.pop();
   }
 
-  /// Skipping counts as done — the author's call. Anything else and the week
-  /// could never reach 7/7 for someone who, quite reasonably, sat this one out.
-  ///
-  /// It jumps to the safety page instead of leaving outright: someone who backs
-  /// out of the life-threatening day is the last person who should be shown the
-  /// door without being told where help is.
+  /// Skipping counts as done — the author's call; otherwise the week could never
+  /// reach 7/7 for someone who sat this one out. It jumps to the safety page
+  /// rather than leaving, so nobody backs out without being told where help is.
   void _skipDay() {
     setState(() => _wasSkipped = true);
     _pageController.animateToPage(
@@ -541,16 +536,9 @@ class _RescueHint extends StatelessWidget {
   }
 }
 
-/// Shown on the completion page: the source's two care links, above the thanks
-/// so that someone who is leaving does not have to scroll to find them.
-/// Page 6/6 — the safety screen, the last thing this day shows.
-///
-/// Asked for by the study's supervisors: the day discusses life-threatening
-/// behaviour, and someone can be left unsettled by it after they have closed
-/// the app. Both ways out of the day lead here — walking it and skipping it —
-/// and the day is only marked done once this page is dismissed.
-///
-/// Deliberately plain: no alarm colours, no warning icon. Someone who is
+/// Page 6/6 — the safety screen, the last thing this day shows. Asked for by
+/// the study's supervisors: both ways out of the day lead here, and the day is
+/// only marked done once this page is dismissed. Deliberately plain — someone
 /// already overwhelmed does not need the app to look alarmed at them.
 class Week5Day2SafetyPage extends StatelessWidget {
   const Week5Day2SafetyPage({super.key, required this.onDone});

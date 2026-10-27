@@ -38,12 +38,10 @@ class SkillSectionData {
   final List<PracticeExercise> exercises;
 }
 
-/// A mindfulness skill page: short education, then a pick-list of exercises the
-/// user chooses from ("Vyber si alespoň dvě cvičení z nabídky").
-///
-/// Shared by Week 2 Day 2 (Co dovednosti) and Day 3 (Jak dovednosti) — six pages
-/// with the same shape. Picks are persisted per week + day + [sectionKey] via
-/// [BpdChallengesDao], so re-opening the day shows what was already chosen.
+/// A mindfulness skill page: short education, then a pick-list of exercises
+/// ("Vyber si alespoň dvě cvičení z nabídky"). Shared by Week 2 Days 2 and 3 —
+/// six pages with the same shape. Picks persist per week + day + [sectionKey]
+/// via [BpdChallengesDao], so re-opening the day shows what was chosen.
 class SkillPracticePage extends StatefulWidget {
   const SkillPracticePage({
     super.key,

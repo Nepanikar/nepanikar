@@ -6,12 +6,9 @@ import 'package:nepanikar/services/notifications/notification_type.dart';
 import 'package:nepanikar/services/notifications/notifications_service.dart';
 import 'package:nepanikar/utils/registry.dart';
 
-/// Page offering the daily mindfulness reminder the programme introduces on
-/// Day 4 ("Čas na všímavost – věnuj teď tři minuty všímavosti. Nezapomeň co a
-/// jak.", source: §3).
-///
-/// Opt-in on purpose: scheduling a daily notification without asking would be a
-/// surprise, and notification permission has to be requested anyway.
+/// The daily mindfulness reminder introduced on Day 4 ("Čas na všímavost…",
+/// source: §3). Opt-in on purpose — a daily notification nobody asked for is a
+/// surprise, and permission has to be requested anyway.
 class ReminderPage extends StatefulWidget {
   const ReminderPage({super.key, required this.onNext});
 

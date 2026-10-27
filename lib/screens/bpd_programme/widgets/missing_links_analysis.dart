@@ -9,10 +9,8 @@ import 'package:nepanikar/screens/bpd_programme/widgets/worksheet_parts.dart';
 import 'package:nepanikar/services/db/bpd/bpd_worksheet_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 
-/// One link of a [MissingLinksAnalysis] chain.
-///
-/// [id] is what the yes/no answer is stored under, so it must stay stable once
-/// shipped — the same rule as [WorksheetField.id].
+/// One link of a [MissingLinksAnalysis] chain. [id] is what the yes/no answer
+/// is stored under, so it must stay stable once shipped — as [WorksheetField.id].
 class MissingLinkStep {
   const MissingLinkStep({
     required this.id,
@@ -36,17 +34,10 @@ class MissingLinkStep {
 /// "Analýza chybějících článků" — Week 5, Day 1.
 ///
 /// A chain rather than a form: each question is asked only if the previous one
-/// was answered "ano", and an "ne" opens two text fields and stops. That
-/// branching is the exercise — a flat list of all seven fields would ask people
-/// about obstacles they did not hit and lose the point of finding the *missing*
-/// link.
-///
-/// Answers persist through the existing [BpdWorksheetDao]: the free text under
-/// its field id, the yes/no answers under the step id as `ano`/`ne`. No new
-/// store and no migration — the DAO is already a `Map<String, String>`.
-///
-/// Nothing is required and no answer is "wrong": the page never grades, and the
-/// day's button stays enabled whatever the user does here.
+/// was answered "ano", and a "ne" opens two text fields and stops. That
+/// branching *is* the exercise. Answers persist through [BpdWorksheetDao] — free
+/// text under its field id, yes/no under the step id. Nothing is required and no
+/// answer is wrong; the day's button stays enabled whatever happens here.
 class MissingLinksAnalysis extends StatefulWidget {
   const MissingLinksAnalysis({super.key, required this.worksheetId, required this.steps});
 

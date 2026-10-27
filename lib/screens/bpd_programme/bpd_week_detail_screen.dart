@@ -643,11 +643,9 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
     );
   }
 
-  /// The lesson is open by the calendar, but an earlier one is unfinished.
-  ///
-  /// Offers the way there rather than only refusing: the whole point of the
-  /// rule is that someone behind can catch up, and making them find the day
-  /// themselves is the friction that stops them.
+  /// The lesson is open by the calendar, but an earlier one is unfinished. Offers
+  /// the way there rather than only refusing — catching up is the point of the
+  /// rule, and making someone hunt for the day is the friction that stops them.
   Future<void> _showOutOfOrderDialog(int week, int day) async {
     final title = _weekDaysContent[week]?.elementAtOrNull(day - 1)?.title;
     final shouldGo = await showDialog<bool>(
@@ -698,13 +696,9 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
     return null;
   }
 
-  /// Two gates, and they say different things.
-  ///
-  /// The calendar gate is "not yet" — one lesson opens per day and this one's
-  /// day has not come. The sequence gate is "not this one first" — the lesson
-  /// is open, but an earlier one is unfinished, and the programme builds on
-  /// itself. Telling someone "zamčeno" in the second case would be a lie: the
-  /// day is not locked, they are simply not there yet, and they can fix it now.
+  /// Two gates, and they say different things: the calendar gate is "not yet",
+  /// the sequence gate is "not this one first". Saying "zamčeno" for the second
+  /// would be a lie — the day is open, and they can fix it now.
   Future<void> _handleDayTap(BpdDayProgress dayProgress) async {
     if (!dayProgress.isUnlocked() && !dayProgress.isCompleted) {
       await _showNotYetOpenDialog(dayProgress);
@@ -1184,10 +1178,9 @@ class _BpdWeekDetailScreenState extends State<BpdWeekDetailScreen> {
   }
 }
 
-/// What a day asks of the reader, shown as a chip in the day list.
-///
-/// An enum rather than the label itself: the same nine categories repeat across
-/// all 49 days, and they are the app's words, not the author's copy.
+/// What a day asks of the reader, shown as a chip in the day list. An enum
+/// because the nine categories repeat across all 49 days and are the app's
+/// words, not the author's copy.
 enum _DayActivity {
   education,
   exercise,

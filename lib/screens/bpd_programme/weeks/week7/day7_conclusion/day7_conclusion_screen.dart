@@ -29,11 +29,9 @@ class Week7Day7ConclusionScreenRoute extends GoRouteData with $Week7Day7Conclusi
   Widget build(BuildContext context, _) => const Week7Day7ConclusionScreen();
 }
 
-/// Week 7, Day 7 — shrnutí a ohlédnutí. Verbatim, source: tyzden-7.md §7.
-///
-/// The last screen of the seven-week programme. Five pages rather than three:
-/// the source closes with two written exercises and a hand-off to the crisis
-/// contacts, and none of that should be crammed under a farewell.
+/// Week 7, Day 7 — shrnutí a ohlédnutí. Verbatim, source: tyzden-7.md §7. The
+/// last screen of the programme, in five pages rather than three: the source
+/// closes with two written exercises and a hand-off to the crisis contacts.
 class Week7Day7ConclusionScreen extends StatefulWidget {
   const Week7Day7ConclusionScreen({super.key});
 
@@ -315,15 +313,10 @@ class Week7Day7ClosingWritingPage extends StatelessWidget {
   }
 }
 
-/// Page 6/6 — the pilot study's closing ask.
-///
-/// Deliberately after the celebration, not instead of it: the programme is the
-/// thing the person came for, and the questionnaire is what we need from them.
-/// The order says which is which.
-///
-/// Nothing on this page collects anything. The questionnaire is a Microsoft
-/// Form on the university's tenant and this is a link to it, which is the whole
-/// of the app's part in the study.
+/// Page 6/6 — the pilot study's closing ask. Deliberately after the
+/// celebration, not instead of it: the order says which is which. Nothing here
+/// collects anything — the questionnaire is a Microsoft Form on the
+/// university's tenant, and this is a link to it.
 class Week7Day7StudyPage extends StatelessWidget {
   const Week7Day7StudyPage({super.key, required this.onClose});
 

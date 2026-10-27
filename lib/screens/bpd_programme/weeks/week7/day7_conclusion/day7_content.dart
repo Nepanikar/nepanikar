@@ -1,9 +1,7 @@
 // ignore_for_file: no_adjacent_strings_in_list
 
-/// Week 7, Day 7 — shrnutí a ohlédnutí. The last screen of the programme.
-///
-/// Copy verbatim from `docs/hpo/source/tyzden-7.md` §7, including "Za těch sedm
-/// týdnu" (WEEK7_SCREEN_PLAN.md → OQ-2).
+/// Week 7, Day 7 — shrnutí a ohlédnutí, the last screen of the programme. Copy
+/// verbatim from `docs/hpo/source/tyzden-7.md` §7, "Za těch sedm týdnu" (OQ-2).
 library;
 
 import 'package:nepanikar/screens/bpd_programme/widgets/structured_worksheet.dart';
@@ -128,8 +126,7 @@ const day7FinalButton = 'Dokončit průvodce';
 
 /// Verbatim from the researcher (2026-09-20). Hers, not ours — the pressure in
 /// "nezbytnou podmínkou" and "zůstane studie neúplná" is deliberate and
-/// approved, and it is the one place in the programme that asks for something
-/// back.
+/// approved, and it is the one place in the programme that asks for something back.
 const day7StudyHeading = 'Skvělá práce k dokončení průvodce! 🎉';
 const day7StudyThanks =
     'Děkujeme za veškerý čas a úsilí při nácviku dovedností v uplynulých '

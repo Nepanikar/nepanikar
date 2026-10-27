@@ -39,10 +39,8 @@ class _Day1WelcomeChatPageState extends State<Day1WelcomeChatPage> {
     _prefillSavedProfile();
   }
 
-  /// Puts an already saved name and pronoun back into the form.
-  ///
-  /// The profile is stored the first time this page is completed, but nothing
-  /// ever read it back, so walking through Day 1 again showed an empty field —
+  /// Puts an already saved name and pronoun back into the form. The profile was
+  /// stored but never read back, so re-walking Day 1 showed an empty field —
   /// which looks exactly like the answer was never saved.
   Future<void> _prefillSavedProfile() async {
     final profile = await registry.get<UserSettingsDao>().getBpdUserProfile();
@@ -173,11 +171,9 @@ class _Day1WelcomeChatPageState extends State<Day1WelcomeChatPage> {
             ),
           ],
         ),
-        // Ours, not the author's copy: the pilot study did not exist when she
-        // wrote the introduction. It sits here, one step before the name form,
-        // so it is read after the programme has been explained and before
-        // anyone has invested anything in it. Facts and wording follow the
-        // entry form itself — see bpd_research.dart.
+        // Ours, not the author's copy — the pilot did not exist when she wrote the
+        // introduction. One step before the name form: read after the programme is
+        // explained, before anyone has invested anything. Facts: bpd_research.dart.
         const ChatStep(
           messages: [
             ChatBotBubble(

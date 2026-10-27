@@ -5,10 +5,8 @@ import 'package:nepanikar/services/db/bpd/bpd_rescue_package_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 
 /// "Uložit do záchranného balíčku" toggle for one exercise, used on the Week 2
-/// breathing + mindfulness technique pages.
-///
-/// Reflects whether the exercise is already saved, so re-opening a technique
-/// shows the current state instead of offering to save it twice.
+/// breathing and mindfulness technique pages. Reflects whether it is already
+/// saved, so re-opening a technique does not offer to save it twice.
 class RescueSaveButton extends StatefulWidget {
   const RescueSaveButton({super.key, required this.item});
 

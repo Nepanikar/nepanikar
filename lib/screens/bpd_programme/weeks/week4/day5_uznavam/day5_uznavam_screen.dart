@@ -23,10 +23,8 @@ class Week4Day5UznavamScreenRoute extends GoRouteData with $Week4Day5UznavamScre
   Widget build(BuildContext context, _) => const Week4Day5UznavamScreen();
 }
 
-/// Week 4, Day 5 — techniky pro zvládnutí okamžiku krize. Source: tyzden-4.md §5.
-///
-/// Chat intro → the seven tricks → the 22-item checklist over two pages →
-/// completion.
+/// Week 4, Day 5 — techniky pro zvládnutí okamžiku krize. Source: tyzden-4.md
+/// §5. Chat intro → the seven tricks → the 22-item checklist over two pages.
 class Week4Day5UznavamScreen extends StatefulWidget {
   const Week4Day5UznavamScreen({super.key});
 

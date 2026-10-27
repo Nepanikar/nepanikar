@@ -23,10 +23,8 @@ class Week3Day7SummaryScreenRoute extends GoRouteData with $Week3Day7SummaryScre
   Widget build(BuildContext context, _) => const Week3Day7SummaryScreen();
 }
 
-/// Week 3, Day 7 — Shrnutí. Verbatim, source: tyzden-3.md §7.
-///
-/// Recap (chat) → three free-text questions → week congratulations. The answers
-/// autosave, so leaving before the last page keeps them.
+/// Week 3, Day 7 — Shrnutí. Verbatim, source: tyzden-3.md §7. Recap (chat) →
+/// three free-text questions → week congratulations. The answers autosave.
 class Week3Day7SummaryScreen extends StatefulWidget {
   const Week3Day7SummaryScreen({super.key});
 

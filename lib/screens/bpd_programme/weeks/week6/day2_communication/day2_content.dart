@@ -1,12 +1,8 @@
 // ignore_for_file: no_adjacent_strings_in_list
 
-/// Week 6, Day 2 — dovednosti pro komunikaci s druhými.
-///
-/// Copy verbatim from `docs/hpo/source/tyzden-6.md` §2.
-///
-/// Notable: the worked example ("vzor") is the **author's** — the first one
-/// since Week 3 that we did not have to invent — so unlike the Week 3 Day 3
-/// example it needs no "schválit autorem" note.
+/// Week 6, Day 2 — dovednosti pro komunikaci s druhými. Copy verbatim from
+/// `docs/hpo/source/tyzden-6.md` §2. The worked example ("vzor") is the
+/// author's — the first since Week 3 — so it needs no "schválit autorem" note.
 library;
 
 import 'package:nepanikar/screens/bpd_programme/widgets/acronym_skill_page.dart';
@@ -74,10 +70,8 @@ const day2WorksheetLead =
     'zkušenost. Pomůže ti to procvičit, jak vyjádřit své pocity a potřeby '
     'uvědoměle a sebevědomě, aniž bys podlehl/a impulzivní reakci.';
 
-/// Situation first, then one field per letter — eight in all.
-///
-/// No `visibleSectionLimit`: splitting the acronym across a "show more" would
-/// break the very sequence the day is teaching, and the answers are short.
+/// Situation first, then one field per letter — eight in all. No
+/// `visibleSectionLimit`: a "show more" would break the sequence being taught.
 const day2PsanickoWorksheet = <WorksheetSection>[
   WorksheetSection(
     title: 'Situace',
@@ -137,11 +131,9 @@ const day2PsanickoWorksheet = <WorksheetSection>[
   ),
 ];
 
-/// The author's worked example, verbatim and in her order.
-///
-/// One collapsible block above the fields rather than one per field: it is a
-/// single continuous story about one situation, and split into eight pieces it
-/// would stop making sense.
+/// The author's worked example, verbatim and in her order. One collapsible
+/// block above the fields rather than one per field: it is a single continuous
+/// story, and split into eight pieces it would stop making sense.
 const day2PsanickoExample = <(String, String)>[
   ('Situace', 'Známý ti opakovaně píše nebo říká urážlivé věci, když se neshodnete.'),
   (

@@ -4,11 +4,9 @@ import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart'
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_messages.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/spoko_recall.dart';
 
-/// Page 1/3 — week recap + SPOKO recall (reveal-on-tap), taught as a chat.
-///
-/// Replaces `Day7RecallPage`, matching the recap chats that close Weeks 2 and 4.
-/// The recall list stays interactive — it is an exercise, not a message — so it
-/// rides along as a rich message. Copy verbatim, source: tyzden-1.md §7.
+/// Page 1/3 — week recap + SPOKO recall (reveal-on-tap), as a chat. Verbatim,
+/// source: tyzden-1.md §7. The recall list stays interactive — it is an
+/// exercise, not a message — so it rides along as a rich message.
 class Day7RecallChatPage extends StatelessWidget {
   const Day7RecallChatPage({super.key, required this.onNext});
 

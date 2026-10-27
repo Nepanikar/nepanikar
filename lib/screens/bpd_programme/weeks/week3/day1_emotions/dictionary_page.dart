@@ -7,11 +7,9 @@ import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/external_link_button.dart';
 import 'package:nepanikar/screens/home/my_records/emotion_dictionary/emotion_dictionary_screen.dart';
 
-/// Page 2/7 — the emotion dictionary: ten emotions and what each is for.
-///
-/// The same content lives permanently in *Moje záznamy → DBT program*, and the
-/// page says so — the source asks twice for this to be something the user can
-/// return to, which only works if they know where it went.
+/// Page 2/7 — the emotion dictionary: ten emotions and what each is for. The
+/// page says the same content lives in *Moje záznamy → DBT program*: the source
+/// asks twice for something to come back to, which needs saying where it went.
 class Week3DictionaryPage extends StatelessWidget {
   const Week3DictionaryPage({super.key, required this.onNext});
 

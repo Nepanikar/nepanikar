@@ -47,11 +47,8 @@ class TechniqueData {
 }
 
 /// A "pick from the menu" page: the day's techniques as tappable cards, each
-/// opening a detail sheet.
-///
-/// This replaces walking the user through every technique in sequence — the
-/// programme source offers them as a choice ("Můžeš si vybrat jedno cvičení z
-/// nabídky, které dnes vyzkoušíš. Zbytek si můžeš nechat na jindy.").
+/// opening a detail sheet. The source offers them as a choice rather than a
+/// sequence ("Můžeš si vybrat jedno cvičení z nabídky…").
 class TechniqueMenuPage extends StatelessWidget {
   const TechniqueMenuPage({
     super.key,
