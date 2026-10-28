@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week4/day4_mindfulness_stress/day4_mindfulness_stress_screen.dart'
@@ -27,9 +27,7 @@ class Week6Day3JeVyzvaScreenRoute extends GoRouteData with $Week6Day3JeVyzvaScre
 }
 
 /// Week 6, Day 3 — Je VýZVa a všímavost ve vztazích. Source: tyzden-6.md §3.
-///
-/// Two topics in one day, so two content pages: the acronym first, then
-/// mindfulness applied to relationships and a menu of Week 2's techniques.
+/// Two topics, so two content pages: the acronym, then mindfulness in relationships.
 class Week6Day3JeVyzvaScreen extends StatefulWidget {
   const Week6Day3JeVyzvaScreen({super.key});
 
@@ -113,7 +111,7 @@ class _Week6Day3JeVyzvaScreenState extends State<Week6Day3JeVyzvaScreen> {
                   // nejvíc vyhovuje" — a menu, not the draw Week 5 asked for.
                   TechniqueMenuPage(
                     title: 'Všímavost ve vztazích',
-                    dayLabel: 'Den 3 • Týden 6',
+                    dayLabel: context.l10n.dbt_day_week_plain(3, 6),
                     pickLead: day3PickInvitation,
                     techniques: week4DrawPool,
                     sourceLabel: 'Týden 2 • připomenuto v 6. týdnu',
@@ -149,7 +147,7 @@ class Week6Day3JeVyzvaPage extends StatelessWidget {
     return AcronymSkillPage(
       icon: Icons.volunteer_activism_outlined,
       title: 'Je VýZVa',
-      subtitle: 'Den 3 • Týden 6',
+      subtitle: context.l10n.dbt_day_week_plain(3, 6),
       leadParagraphs: day3JeVyzvaIntro,
       letters: day3JeVyzvaLetters,
       rescueItem: BpdRescueItem(

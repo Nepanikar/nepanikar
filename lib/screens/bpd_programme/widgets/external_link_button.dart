@@ -1,13 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/helpers/contact_action_helpers.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-/// Outlined "Chci vědět víc" style button that opens an external URL (article,
-/// Google Doc, guided-exercise video) in the system browser.
-///
-/// Used by the HPO programme day pages, where the source content links out to
-/// supporting material.
+/// Outlined "Chci vědět víc" button opening an external URL (article, Google
+/// Doc, guided-exercise video) in the system browser, for the day pages' links.
 class ExternalLinkButton extends StatelessWidget {
   const ExternalLinkButton({
     super.key,

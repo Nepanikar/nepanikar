@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// An exercise the user saved into their "záchranný balíček" (rescue package) —
 /// a personal shortlist of techniques to reach for when things get hard.

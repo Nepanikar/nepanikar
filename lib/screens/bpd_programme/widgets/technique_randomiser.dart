@@ -1,21 +1,16 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/technique_menu_page.dart';
 
 /// Draws one technique at random out of [techniques] and shows it as a card.
 ///
-/// Week 4 Day 4 asks the user to revisit a mindfulness technique from Week 2;
-/// the source suggests doing it "například i formou „kola štěstí"". A button
-/// rather than a spinning wheel: it works with a screen reader, needs no
-/// motion, and the point of drawing — removing the paralysis of choosing from
-/// eight options — survives either way.
-///
-/// Nothing is persisted. This is a nudge, not a record, and it must always be
-/// possible to draw again: a draw the user cannot refuse would turn a playful
-/// prompt into an assignment.
+/// The source suggests "například i formou „kola štěstí"". A button rather than
+/// a spinning wheel: it works with a screen reader and needs no motion, and the
+/// point — removing the paralysis of choosing from eight — survives. Nothing is
+/// persisted, and it must always be possible to draw again.
 class TechniqueRandomiser extends StatefulWidget {
   const TechniqueRandomiser({super.key, required this.techniques, required this.sourceLabel});
 
@@ -91,15 +86,13 @@ class _DrawButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final primaryColor = Theme.of(context).primaryColor;
-
     if (ghost) {
       return TextButton.icon(
         onPressed: onTap,
         icon: Icon(icon, size: 18),
         label: Text(label),
         style: TextButton.styleFrom(
-          foregroundColor: primaryColor,
+          foregroundColor: NepanikarColors.accent(context),
           minimumSize: const Size(0, 44),
           textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
         ),
@@ -111,7 +104,7 @@ class _DrawButton extends StatelessWidget {
       icon: Icon(icon, size: 20),
       label: Text(label),
       style: ElevatedButton.styleFrom(
-        backgroundColor: primaryColor,
+        backgroundColor: NepanikarColors.ctaBackground(context),
         foregroundColor: Colors.white,
         minimumSize: const Size(double.infinity, 54),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -186,7 +179,7 @@ class _DrawnCard extends StatelessWidget {
               onPressed: () =>
                   showTechniqueDetailSheet(context, technique: technique, sourceLabel: sourceLabel),
               style: ElevatedButton.styleFrom(
-                backgroundColor: primaryColor,
+                backgroundColor: NepanikarColors.ctaBackground(context),
                 foregroundColor: Colors.white,
                 minimumSize: const Size(double.infinity, 46),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),

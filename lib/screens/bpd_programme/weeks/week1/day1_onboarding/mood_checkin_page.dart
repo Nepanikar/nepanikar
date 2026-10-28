@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
 import 'package:nepanikar/screens/home/my_records/mood/mood_picker_screen.dart';
 
-/// Page 6/10 — First activity: mood check-in. Deep-links into the existing
+/// Page 3/7 — First activity: mood check-in. Deep-links into the existing
 /// "Moje záznamy" mood recording (source: tyzden-1.md §1, Moje záznamy).
 class Day1MoodCheckinPage extends StatelessWidget {
   const Day1MoodCheckinPage({super.key, required this.onNext});
@@ -40,7 +40,11 @@ class Day1MoodCheckinPage extends StatelessWidget {
             ),
             child: Text(
               '📝 První aktivita',
-              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: primaryColor),
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: NepanikarColors.accent(context),
+              ),
             ),
           ),
           const SizedBox(height: 14),
@@ -69,7 +73,11 @@ class Day1MoodCheckinPage extends StatelessWidget {
               children: [
                 Text(
                   'Jak se dnes máš?',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: primaryColor),
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: NepanikarColors.accent(context),
+                  ),
                 ),
                 const SizedBox(height: 14),
                 Row(
@@ -108,7 +116,7 @@ class Day1MoodCheckinPage extends StatelessWidget {
                 style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
               style: ElevatedButton.styleFrom(
-                backgroundColor: primaryColor,
+                backgroundColor: NepanikarColors.ctaBackground(context),
                 foregroundColor: Colors.white,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                 elevation: 2,

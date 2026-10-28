@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/app/theme/fonts.dart';
@@ -6,11 +6,8 @@ import 'package:nepanikar/screens/bpd_programme/bpd_access_code.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 
-/// Asks for the DBT programme access code.
-///
-/// Returns `true` once the programme has been unlocked, `null` if the user
-/// backed out. The caller does not have to persist anything — this writes the
-/// unlocked state itself.
+/// Asks for the DBT programme access code. Returns `true` once unlocked, `null`
+/// if the user backed out; writes the unlocked state itself.
 Future<bool?> showBpdUnlockDialog(BuildContext context) {
   return showDialog<bool>(context: context, builder: (_) => const _BpdUnlockDialog());
 }

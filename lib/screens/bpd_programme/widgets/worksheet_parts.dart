@@ -1,14 +1,12 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/reflection_fields.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/structured_worksheet.dart';
 
-/// Presentation pieces of [StructuredWorksheet].
-///
-/// Split out so the worksheet file stays about its actual job — loading,
-/// autosaving and laying out answers — rather than being mostly decoration.
-/// These take their open/closed state from the parent; nothing here owns state.
+/// Presentation pieces of [StructuredWorksheet], split out so the worksheet
+/// file stays about loading, autosaving and laying out answers. These take
+/// their open/closed state from the parent; nothing here owns state.
 
 /// A numbered step: badge, heading, optional guidance, then its fields.
 class WorksheetNumberedSection extends StatelessWidget {
@@ -126,10 +124,8 @@ class WorksheetNumberedSection extends StatelessWidget {
   }
 }
 
-/// A myth the user is asked to argue against.
-///
-/// Deliberately muted and in quotation marks under a "MÝTUS" label. The
-/// statements are things like "Drama je cool" and "Mé emoce jsou tím, kým jsem";
+/// A myth the user is asked to argue against. Muted and in quotation marks
+/// under a "MÝTUS" label: the statements are things like "Drama je cool", and
 /// nothing about the card may read as the app agreeing with them.
 class WorksheetMythSection extends StatelessWidget {
   const WorksheetMythSection({
@@ -205,10 +201,8 @@ class WorksheetMythSection extends StatelessWidget {
   }
 }
 
-/// Per-field worked example behind a toggle.
-///
-/// Hidden by default on purpose: the point of the exercise is that the user
-/// tries first, so the answer must not be the first thing they read.
+/// Per-field worked example behind a toggle. Hidden by default — the point of
+/// the exercise is that the user tries first.
 class WorksheetFieldExample extends StatelessWidget {
   const WorksheetFieldExample({
     super.key,
@@ -224,7 +218,6 @@ class WorksheetFieldExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    final primaryColor = Theme.of(context).primaryColor;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -236,7 +229,7 @@ class WorksheetFieldExample extends StatelessWidget {
             icon: Icon(isOpen ? Icons.expand_less : Icons.lightbulb_outline, size: 16),
             label: Text(isOpen ? context.l10n.dbt_hide_example : context.l10n.dbt_show_example),
             style: TextButton.styleFrom(
-              foregroundColor: primaryColor,
+              foregroundColor: NepanikarColors.accent(context),
               padding: const EdgeInsets.symmetric(horizontal: 4),
               minimumSize: const Size(0, 32),
               textStyle: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700),

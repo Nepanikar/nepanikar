@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/external_link_button.dart';
@@ -105,10 +105,12 @@ class _RescueItemCard extends StatelessWidget {
                 width: 44,
                 height: 44,
                 decoration: BoxDecoration(
-                  color: primaryColor.withValues(alpha: 0.12),
+                  color: isDarkMode
+                      ? Colors.white.withValues(alpha: 0.12)
+                      : primaryColor.withValues(alpha: 0.12),
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Icon(item.icon, color: primaryColor, size: 24),
+                child: Icon(item.icon, color: NepanikarColors.accent(context), size: 24),
               ),
               const SizedBox(width: 14),
               Expanded(
@@ -124,7 +126,10 @@ class _RescueItemCard extends StatelessWidget {
                       ),
                     ),
                     if (item.sourceLabel.isNotEmpty)
-                      Text(item.sourceLabel, style: TextStyle(fontSize: 13, color: primaryColor)),
+                      Text(
+                        item.sourceLabel,
+                        style: TextStyle(fontSize: 13, color: NepanikarColors.accent(context)),
+                      ),
                   ],
                 ),
               ),
@@ -176,10 +181,16 @@ class _EmptyState extends StatelessWidget {
             width: 84,
             height: 84,
             decoration: BoxDecoration(
-              color: primaryColor.withValues(alpha: 0.12),
+              color: isDarkMode
+                  ? Colors.white.withValues(alpha: 0.12)
+                  : primaryColor.withValues(alpha: 0.12),
               shape: BoxShape.circle,
             ),
-            child: Icon(Icons.medical_services_outlined, size: 40, color: primaryColor),
+            child: Icon(
+              Icons.medical_services_outlined,
+              size: 40,
+              color: NepanikarColors.accent(context),
+            ),
           ),
           const SizedBox(height: 20),
           Text(

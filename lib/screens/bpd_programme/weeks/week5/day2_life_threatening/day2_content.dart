@@ -1,21 +1,16 @@
 // ignore_for_file: no_adjacent_strings_in_list
 
-/// Week 5, Day 2 — život ohrožující chování.
-///
-/// Copy verbatim from `docs/hpo/source/tyzden-5.md` §2, typos included
-/// ("alepsoň", "co by Ti mohli" — see WEEK5_SCREEN_PLAN.md → OQ-4).
-///
-/// This is the most sensitive day of the programme. The source handles that
-/// itself — it warns first, makes the day optional and offers help twice — so
-/// nothing here softens, reorders or adds to what she wrote; the day only wires
-/// her three "proklik" notes to the app's existing crisis surfaces.
+/// Week 5, Day 2 — život ohrožující chování. Copy verbatim from
+/// `docs/hpo/source/tyzden-5.md` §2, typos included ("alepsoň", OQ-4). The
+/// source handles the sensitivity itself — warns first, makes the day optional,
+/// offers help twice — so the day only wires her "proklik" notes to the app.
 library;
 
 import 'package:nepanikar/screens/bpd_programme/widgets/acronym_skill_page.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/structured_worksheet.dart';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Page 1/5 — warning and voluntariness
+// Page 1/6 — warning and voluntariness
 // ─────────────────────────────────────────────────────────────────────────────
 
 /// One paragraph in the source, delivered as four bubbles. The last sentence
@@ -38,7 +33,7 @@ const day2SkipConfirmation = 'Dnešek jsme přeskočili. Zítra pokračujeme.';
 const day2CrisisLinkLabel = 'Kontakty pro těžké chvíle';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Page 2/5 — what it is
+// Page 2/6 — what it is
 // ─────────────────────────────────────────────────────────────────────────────
 
 const day2WhatItIs =
@@ -57,7 +52,7 @@ const day2NotWeakness =
     'sobě samému.';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Page 3/5 — STOP
+// Page 3/6 — STOP
 // ─────────────────────────────────────────────────────────────────────────────
 
 const day2StopLead = <String>[
@@ -66,12 +61,9 @@ const day2StopLead = <String>[
       'šanci vybrat si jinou cestu.',
 ];
 
-/// The Czech wording from Week 4 Day 2, not this week's source.
-///
-/// The source words the letters in English with a Czech gloss, which would have
-/// shown the same technique two different ways — and people have the week-4
-/// version saved in their rescue packages already. The author chose Czech for
-/// both (2026-09-18).
+/// The Czech wording from Week 4 Day 2, not this week's source, which words the
+/// letters in English with a Czech gloss. One technique shown two ways, and
+/// people already have the week-4 version saved. The author's call (2026-09-18).
 const day2StopLetters = <AcronymLetter>[
   ('S', 'Stop!', 'zastav se na chvíli -  nic nedělej, nic neříkej.'),
   ('T', 'Tah zpátky', 'udělej krok zpět, dej si čas.'),
@@ -90,7 +82,7 @@ const day2StopLetters = <AcronymLetter>[
 const day2StopRescueId = 'week4_stop';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Page 4/5 — five things that help
+// Page 4/6 — five things that help
 // ─────────────────────────────────────────────────────────────────────────────
 
 const day2ReliefListId = 'week5_day2_relief_list';
@@ -125,7 +117,7 @@ const day2ReliefFields = <WorksheetField>[
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Page 5/5 — completion and care
+// Page 5/6 — completion and care
 // ─────────────────────────────────────────────────────────────────────────────
 
 /// "můžeš jej opečovat zde (odkaz na nepanikař mód Chci si ublížit a znovu na
@@ -134,11 +126,9 @@ const day2CareLead =
     'Pokud je pro tebe život ohrožující chování náročným tématem, můžeš jej '
     'opečovat zde';
 
-/// Page 6/6 — the safety screen the study's supervisors asked for.
-///
-/// Not from the source: written by the researcher after an ethics review with
-/// her supervisor and Mgr. Horký (2026-09-18), because this is the day that can
-/// leave someone unsettled after they close the app.
+/// Page 6/6 — the safety screen. Not from the source: written by the researcher
+/// after an ethics review with her supervisor and Mgr. Horký (2026-09-18),
+/// because this is the day that can leave someone unsettled after they close it.
 const day2SafetyMessage =
     'V náročných chvílích nemusíš být na nic bez pomoci. Pokud cítíš zahlcení, '
     'silný tlak nebo úzkost, spojit se s odborníky je naprosto v pořádku – '

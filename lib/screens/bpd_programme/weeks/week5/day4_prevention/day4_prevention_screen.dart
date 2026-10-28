@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week5/day4_prevention/day4_content.dart';
@@ -176,10 +176,10 @@ class _Week5Day4WorksheetPageState extends State<Week5Day4WorksheetPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 12),
-          const SectionHeader(
+          SectionHeader(
             icon: Icons.shield_outlined,
             title: 'Plánování a prevence',
-            subtitle: 'Den 4 • Týden 5',
+            subtitle: context.l10n.dbt_day_week_plain(4, 5),
           ),
           const SizedBox(height: 14),
           // TODO: schválit autorem — the source opens this day with no

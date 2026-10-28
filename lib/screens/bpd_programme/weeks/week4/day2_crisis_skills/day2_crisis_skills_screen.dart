@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week4/day2_crisis_skills/day2_content.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week4/day2_crisis_skills/day2_pages.dart';
@@ -19,12 +19,10 @@ class Week4Day2CrisisSkillsScreenRoute extends GoRouteData with $Week4Day2Crisis
   Widget build(BuildContext context, _) => const Week4Day2CrisisSkillsScreen();
 }
 
-/// Week 4, Day 2 — dovednosti pro překonání krize. Source: tyzden-4.md §2.
-///
-/// Six pages: the framing arrives as chat, then the two acronyms as pages the
-/// user can save, then the relaxation video, then the closing page. The
-/// framing comes first on purpose — a crisis tool handed over without its
-/// limits is the one thing this day must not do.
+/// Week 4, Day 2 — dovednosti pro překonání krize. Source: tyzden-4.md §2. Six
+/// pages: framing as chat, the two acronyms as saveable pages, the relaxation
+/// video, the closing page. Framing first — a crisis tool handed over without
+/// its limits is the one thing this day must not do.
 class Week4Day2CrisisSkillsScreen extends StatefulWidget {
   const Week4Day2CrisisSkillsScreen({super.key});
 

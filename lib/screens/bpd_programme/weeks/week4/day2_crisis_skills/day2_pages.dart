@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/games/breathing/breathing_game_screen.dart';
@@ -31,10 +31,8 @@ class Week4Day2CrisisChatPage extends StatelessWidget {
 }
 
 /// Page 2/6 — recognising a crisis, when to use these skills and when not to.
-///
-/// The "when NOT to" boundary stays on this page rather than becoming its own
-/// step: a user who taps away after "when to use" would otherwise walk off with
-/// a crisis tool and no idea of its limits.
+/// The "when NOT to" boundary stays on this page: someone who taps away after
+/// "when to use" would walk off with a crisis tool and no idea of its limits.
 class Week4Day2WhenChatPage extends StatelessWidget {
   const Week4Day2WhenChatPage({super.key, required this.onNext});
 
@@ -125,7 +123,7 @@ class Week4Day2StopPage extends StatelessWidget {
     return AcronymSkillPage(
       icon: Icons.back_hand_outlined,
       title: 'STOP',
-      subtitle: 'Den 2 • Týden 4',
+      subtitle: context.l10n.dbt_day_week_plain(2, 4),
       leadParagraphs: day2StopLead,
       letters: day2StopLetters,
       rescueItem: BpdRescueItem(
@@ -152,7 +150,7 @@ class Week4Day2TipsPage extends StatelessWidget {
     return AcronymSkillPage(
       icon: Icons.ac_unit,
       title: 'TIPS',
-      subtitle: 'Den 2 • Týden 4',
+      subtitle: context.l10n.dbt_day_week_plain(2, 4),
       leadParagraphs: const [day2TipsLead],
       letters: day2TipsLetters,
       afterLetter: const {
@@ -188,19 +186,17 @@ class _BreathingLinkButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final primaryColor = Theme.of(context).primaryColor;
-
     return OutlinedButton.icon(
       onPressed: () => const BreathingGameRoute(
         shape: BreathingGameShape.circle,
         preset: 'slow-exhale',
       ).push<void>(context),
       icon: const Icon(Icons.air, size: 18),
-      label: const Text('Otevřít dechové cvičení'),
+      label: Text(context.l10n.dbt_open_breathing),
       style: OutlinedButton.styleFrom(
-        foregroundColor: primaryColor,
+        foregroundColor: NepanikarColors.accent(context),
         alignment: Alignment.centerLeft,
-        side: BorderSide(color: primaryColor.withValues(alpha: 0.4), width: 1.5),
+        side: BorderSide(color: NepanikarColors.accent(context).withValues(alpha: 0.4), width: 1.5),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
       ),
@@ -208,11 +204,9 @@ class _BreathingLinkButton extends StatelessWidget {
   }
 }
 
-/// Page 5/6 — progressive muscle relaxation.
-///
-/// Its own page because the source invites the user to *do* it now
-/// ("Pojďme si teď společně vyzkoušet"), and an invitation buried as one line
-/// under letter S would be read past.
+/// Page 5/6 — progressive muscle relaxation. Its own page because the source
+/// invites the user to *do* it now ("Pojďme si teď společně vyzkoušet"), and an
+/// invitation buried under letter S would be read past.
 class Week4Day2RelaxationPage extends StatelessWidget {
   const Week4Day2RelaxationPage({super.key, required this.onNext});
 
@@ -234,10 +228,10 @@ class Week4Day2RelaxationPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 24),
-          const SectionHeader(
+          SectionHeader(
             icon: Icons.spa_outlined,
             title: 'Progresivní svalová relaxace',
-            subtitle: 'Den 2 • Týden 4',
+            subtitle: context.l10n.dbt_day_week_plain(2, 4),
           ),
           const SizedBox(height: 18),
           Text(

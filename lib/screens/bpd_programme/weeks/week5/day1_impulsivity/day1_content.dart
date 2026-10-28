@@ -1,12 +1,9 @@
 // ignore_for_file: no_adjacent_strings_in_list
 
-/// Week 5, Day 1 — edukace o impulzivitě.
-///
-/// Copy verbatim from `docs/hpo/source/tyzden-5.md` §1. The source's typos and
-/// spacing are left exactly as written (see WEEK5_SCREEN_PLAN.md → OQ-4) — the
-/// author corrects her own text, we never do it silently. Notably: the double
-/// spaces in "Jeden z  DBT nástrojů", the unpaired quote in "průběh událostí“",
-/// "apod" without a period, and "zaátek" in the closing line.
+/// Week 5, Day 1 — edukace o impulzivitě. Copy verbatim from
+/// `docs/hpo/source/tyzden-5.md` §1, typos and spacing included (OQ-4): the
+/// double space in "Jeden z  DBT nástrojů", the unpaired quote in "událostí“",
+/// "apod" without a period, "zaátek" in the closing line.
 library;
 
 import 'package:nepanikar/screens/bpd_programme/widgets/missing_links_analysis.dart';
@@ -107,9 +104,8 @@ const day1Challenge =
 const day1WorksheetId = 'week5_day1_chain';
 
 /// The source's own permission to take it slowly. It sits *after* the seven
-/// fields in the source; here it opens the page, because someone who finds this
-/// hard will never scroll past field seven to be told they may go slowly
-/// (WEEK5_SCREEN_PLAN.md → OQ-3).
+/// fields there; here it opens the page, because someone who finds this hard
+/// will never scroll past field seven to be told they may go slowly (OQ-3).
 const day1WorksheetPermission =
     'Tento worksheet můžete vyplnit pomalu, krok za krokem, a využít ho jako '
     'nástroj k uvědomění a prevenci dalších impulzivních reakcí.';
@@ -196,11 +192,8 @@ const day1MissingLinksIntro =
     'nebo chovat se tak, jak jsi potřeboval/a.';
 
 /// The chain, verbatim. Each question is asked only when the one before it was
-/// answered "ano"; "ne" opens the two follow-ups and ends the chain.
-///
-/// The last step has no yes/no in the source — it is an open question with a
-/// list of possible obstacles — so it renders its fields straight away
-/// (WEEK5_SCREEN_PLAN.md → OQ-7).
+/// answered "ano"; "ne" opens the two follow-ups and ends the chain. The last
+/// step has no yes/no in the source, so it renders its fields at once (OQ-7).
 const day1MissingLinks = <MissingLinkStep>[
   MissingLinkStep(
     id: 'q1_knew',

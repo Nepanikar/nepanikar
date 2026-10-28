@@ -5,7 +5,7 @@ on:
   pull_request:
 
 env:
-  flutter_version: '3.47.6'
+  flutter_version: '3.47.7'
 
 jobs:
   format:
@@ -28,10 +28,6 @@ jobs:
         run: flutter pub run build_runner build --delete-conflicting-outputs
 
       - name: Generate code in packages
-        # The contacts package has its own build_runner, and the root run does
-        # not reach it. Its generated files used to be committed, so this gap
-        # was invisible until bb8a11d stopped tracking them and every
-        # CountryContacts getter went undefined.
         run: flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs
         working-directory: packages/nepanikar_contacts_gen
 
@@ -61,10 +57,6 @@ jobs:
         run: flutter pub run build_runner build --delete-conflicting-outputs
 
       - name: Generate code in packages
-        # The contacts package has its own build_runner, and the root run does
-        # not reach it. Its generated files used to be committed, so this gap
-        # was invisible until bb8a11d stopped tracking them and every
-        # CountryContacts getter went undefined.
         run: flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs
         working-directory: packages/nepanikar_contacts_gen
 

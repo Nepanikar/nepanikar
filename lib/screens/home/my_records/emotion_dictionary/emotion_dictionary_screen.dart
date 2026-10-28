@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week3/emotion_dictionary_data.dart';
@@ -89,10 +89,12 @@ class EmotionCard extends StatelessWidget {
             width: 40,
             height: 40,
             decoration: BoxDecoration(
-              color: primaryColor.withValues(alpha: 0.12),
+              color: isDarkMode
+                  ? Colors.white.withValues(alpha: 0.12)
+                  : primaryColor.withValues(alpha: 0.12),
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Icon(emotion.icon, size: 20, color: primaryColor),
+            child: Icon(emotion.icon, size: 20, color: NepanikarColors.accent(context)),
           ),
           const SizedBox(width: 12),
           Expanded(

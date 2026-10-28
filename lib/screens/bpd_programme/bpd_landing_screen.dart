@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/router/routes.dart';
 import 'package:nepanikar/app/theme/colors.dart';
@@ -17,16 +17,9 @@ part 'bpd_landing_screen.g.dart';
 class BpdLandingScreenRoute extends GoRouteData with $BpdLandingScreenRoute {
   const BpdLandingScreenRoute();
 
-  /// Sends anyone who has already started straight into their weeks.
-  ///
-  /// Both ways into the programme — the DBT tab and the home tile — point at
-  /// this route, and it is an introduction ending in a "start" button. Without
-  /// this, someone in week 4 was met by the pitch for the programme every time
-  /// and had to press „Začít svou cestu“ again to reach it.
-  ///
-  /// It lives here rather than at the two entry points so that anything else
-  /// linking to the landing screen later — a notification, a deep link — is
-  /// treated the same way.
+  /// Sends anyone who has already started straight into their weeks, instead of
+  /// meeting them with the pitch again in week 4. Here rather than at the two
+  /// entry points, so a later notification or deep link is treated the same way.
   @override
   Future<String?> redirect(BuildContext context, GoRouterState state) async {
     final status = await registry.get<UserSettingsDao>().getBpdProgrammeStatus();
@@ -45,14 +38,9 @@ class BpdLandingScreen extends StatelessWidget {
   Future<void> _handleStartJourney(BuildContext context) async {
     final l10n = context.l10n;
     await _userSettingsDao.markBpdProgrammeStarted();
-    // The week unlock dates only exist once the programme has started, so this
-    // is the first moment the day/week reminders can be scheduled. Without it
-    // they wait for some unrelated reschedule (a mood pick, a settings change)
-    // and a user who just starts and closes the app is never told a day opened.
-    //
-    // Scheduling is incidental to what the button promises, so it never gets to
-    // decide whether the person reaches the programme. `rescheduleNotifications`
-    // already refuses politely when permission is missing; this catches the rest.
+    // First moment the day/week reminders can be scheduled — the unlock dates only
+    // exist once the programme has started. Never blocks the navigation: scheduling
+    // is incidental to what the button promises.
     try {
       await registry.get<NotificationsService>().rescheduleNotifications(l10n);
     } catch (e, s) {
@@ -62,7 +50,6 @@ class BpdLandingScreen extends StatelessWidget {
         logMessage: 'BPD_LANDING: Could not schedule reminders on programme start',
       );
     }
-    // Navigate to BPD weeks screen
     if (context.mounted) {
       context.go(const BpdWeeksScreenRoute().location);
     }
@@ -76,6 +63,10 @@ class BpdLandingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final primaryColor = Theme.of(context).primaryColor;
+    // Everything tinted with the main colour that is *not* a filled button:
+    // in dark mode the raw main colour is all but invisible on this screen's
+    // own background. See NepanikarColors.accent.
+    final accent = NepanikarColors.accent(context);
 
     return Scaffold(
       backgroundColor: isDarkMode
@@ -95,20 +86,18 @@ class BpdLandingScreen extends StatelessWidget {
                     children: [
                       const SizedBox(height: 20),
 
-                      // Purple gear icon
                       Container(
                         width: 100,
                         height: 100,
                         decoration: BoxDecoration(
-                          color: primaryColor.withValues(alpha: 0.1),
+                          color: accent.withValues(alpha: 0.1),
                           shape: BoxShape.circle,
                         ),
-                        child: Icon(Icons.settings, size: 50, color: primaryColor),
+                        child: Icon(Icons.settings, size: 50, color: accent),
                       ),
 
                       const SizedBox(height: 24),
 
-                      // Title
                       Text(
                         context.l10n.dbt_landing_title,
                         style: TextStyle(
@@ -121,12 +110,8 @@ class BpdLandingScreen extends StatelessWidget {
 
                       const SizedBox(height: 18),
 
-                      // Description. Said "7denní" until 2026-08-18 — the
-                      // programme is seven *weeks* (the skill tree right below
-                      // counts "0 ze 7 týdnů"), and this is the first screen a
-                      // new user reads, so it set the wrong expectation about
-                      // the commitment. Not the author's copy; it predates the
-                      // HPO content.
+                      // Said "7denní" until 2026-08-18; the programme is seven *weeks*. Ours, not
+                      // the author's copy — it predates the HPO content.
                       Text(
                         context.l10n.dbt_landing_description,
                         style: TextStyle(
@@ -141,19 +126,18 @@ class BpdLandingScreen extends StatelessWidget {
 
                       const SizedBox(height: 28),
 
-                      // Bullet points
                       _buildBulletPoint(
                         context.l10n.dbt_landing_coping_title,
                         context.l10n.dbt_landing_coping_description,
                         isDarkMode,
-                        primaryColor,
+                        accent,
                       ),
                       const SizedBox(height: 20),
                       _buildBulletPoint(
                         context.l10n.dbt_landing_mood_title,
                         context.l10n.dbt_landing_mood_description,
                         isDarkMode,
-                        primaryColor,
+                        accent,
                       ),
 
                       const SizedBox(height: 32),
@@ -162,14 +146,13 @@ class BpdLandingScreen extends StatelessWidget {
                 ),
               ),
 
-              // Start button - fixed at bottom
               SizedBox(
                 width: double.infinity,
                 height: 54,
                 child: ElevatedButton(
                   onPressed: () => _handleStartJourney(context),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: primaryColor,
+                    backgroundColor: NepanikarColors.ctaBackground(context),
                     foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                     elevation: 4,
@@ -183,12 +166,11 @@ class BpdLandingScreen extends StatelessWidget {
 
               const SizedBox(height: 14),
 
-              // Maybe later button
               TextButton(
                 onPressed: () => _handleMaybeLater(context),
                 child: Text(
                   context.l10n.dbt_landing_later,
-                  style: TextStyle(fontSize: 16, color: primaryColor, fontWeight: FontWeight.w600),
+                  style: TextStyle(fontSize: 16, color: accent, fontWeight: FontWeight.w600),
                 ),
               ),
 
@@ -200,7 +182,7 @@ class BpdLandingScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildBulletPoint(String title, String description, bool isDarkMode, Color primaryColor) {
+  Widget _buildBulletPoint(String title, String description, bool isDarkMode, Color accent) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -208,11 +190,8 @@ class BpdLandingScreen extends StatelessWidget {
           width: 38,
           height: 38,
           margin: const EdgeInsets.only(top: 2),
-          decoration: BoxDecoration(
-            color: primaryColor.withValues(alpha: 0.2),
-            shape: BoxShape.circle,
-          ),
-          child: Icon(Icons.check_circle, color: primaryColor, size: 22),
+          decoration: BoxDecoration(color: accent.withValues(alpha: 0.2), shape: BoxShape.circle),
+          child: Icon(Icons.check_circle, color: accent, size: 22),
         ),
         const SizedBox(width: 14),
         Expanded(

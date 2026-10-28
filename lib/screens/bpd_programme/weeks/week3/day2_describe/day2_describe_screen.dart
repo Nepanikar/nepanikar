@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week3/day2_describe/day2_content.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week3/day2_describe/day2_pages.dart';
@@ -20,10 +20,8 @@ class Week3Day2DescribeScreenRoute extends GoRouteData with $Week3Day2DescribeSc
 }
 
 /// Week 3, Day 2 — Validace a popis emocí. Verbatim, source: tyzden-3.md §2.
-///
-/// Why naming helps (chat) → the six-step model → the model applied to the
-/// user's own situation → what validation is → five sentence frames →
-/// completion.
+/// Why naming helps (chat) → the six-step model → the model on the user's own
+/// situation → what validation is → five sentence frames → completion.
 class Week3Day2DescribeScreen extends StatefulWidget {
   const Week3Day2DescribeScreen({super.key});
 

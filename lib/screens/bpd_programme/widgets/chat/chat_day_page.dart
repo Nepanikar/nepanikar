@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
+import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_messages.dart';
 
 /// One tap-through batch of chat messages.
@@ -33,11 +34,9 @@ class ChatDayPage extends StatefulWidget {
   final VoidCallback onCompleted;
   final String? defaultButtonLabel;
 
-  /// Optional second action under the main button, shown on every step.
-  ///
-  /// Week 5 Day 2 is the programme's only voluntary day, and the source says so
-  /// in its first sentence — so the way out has to be there from the first
-  /// screen, not only once the user has read the whole warning.
+  /// Optional second action under the main button, shown on every step. Week 5
+  /// Day 2 is the only voluntary day and the source says so in its first
+  /// sentence, so the way out has to be there from the first screen.
   final Widget? secondaryAction;
 
   @override
@@ -97,7 +96,7 @@ class _ChatDayPageState extends State<ChatDayPage> {
               controller: _scrollController,
               padding: const EdgeInsets.only(top: 16, bottom: 12),
               children: [
-                const ChatDayStamp(label: 'Dnes'),
+                ChatDayStamp(label: context.l10n.dbt_today),
                 for (var i = 0; i < _visibleSteps; i++)
                   _RevealedStep(
                     key: ValueKey('chat-step-$i'),
@@ -183,7 +182,6 @@ class _BottomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    final primaryColor = Theme.of(context).primaryColor;
 
     return SizedBox(
       width: double.infinity,
@@ -191,7 +189,7 @@ class _BottomButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: enabled ? onPressed : null,
         style: ElevatedButton.styleFrom(
-          backgroundColor: primaryColor,
+          backgroundColor: NepanikarColors.ctaBackground(context),
           foregroundColor: Colors.white,
           disabledBackgroundColor: isDarkMode
               ? Colors.white.withValues(alpha: 0.1)

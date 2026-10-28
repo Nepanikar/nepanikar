@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week7/day1_appreciation/day1_content.dart';
@@ -24,10 +24,8 @@ class Week7Day1AppreciationScreenRoute extends GoRouteData with $Week7Day1Apprec
   Widget build(BuildContext context, _) => const Week7Day1AppreciationScreen();
 }
 
-/// Week 7, Day 1 — ocenění. Verbatim, source: tyzden-7.md §1.
-///
-/// The only day in the programme that reads back what the user wrote six weeks
-/// earlier: their SMART goals from Week 1 (GEN-02).
+/// Week 7, Day 1 — ocenění. Verbatim, source: tyzden-7.md §1. The only day that
+/// reads back what the user wrote six weeks earlier: their SMART goals (GEN-02).
 class Week7Day1AppreciationScreen extends StatefulWidget {
   const Week7Day1AppreciationScreen({super.key});
 
@@ -167,10 +165,10 @@ class Week7Day1ProudPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 12),
-          const SectionHeader(
+          SectionHeader(
             icon: Icons.emoji_events_outlined,
             title: 'Na co jsem pyšný/á',
-            subtitle: 'Den 1 • Týden 7',
+            subtitle: context.l10n.dbt_day_week_plain(1, 7),
           ),
           const SizedBox(height: 14),
           Text(
@@ -211,10 +209,10 @@ class Week7Day1SmartReviewPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 12),
-          const SectionHeader(
+          SectionHeader(
             icon: Icons.flag_outlined,
             title: 'Moje SMART cíle',
-            subtitle: 'Den 1 • Týden 7',
+            subtitle: context.l10n.dbt_day_week_plain(1, 7),
           ),
           const SizedBox(height: 14),
           Text(day1SmartLead, style: TextStyle(fontSize: 14, height: 1.55, color: secondary)),

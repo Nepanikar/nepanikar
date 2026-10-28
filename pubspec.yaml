@@ -15,9 +15,9 @@ dependencies:
   cupertino_ui: any
   email_validator: ^3.0.0
   equatable: ^2.0.5
-  firebase_analytics: ^12.6.0
-  firebase_core: ^4.15.0
-  firebase_crashlytics: ^5.4.0
+  firebase_analytics: ^13.0.0
+  firebase_core: ^5.0.0
+  firebase_crashlytics: ^6.0.0
   fl_chart: ^1.1.1
   flutter:
     sdk: flutter
@@ -32,7 +32,7 @@ dependencies:
   go_router: ^18.0.1
   ini: any
   intl: ^0.20.2
-  json_annotation: ^4.9.0
+  json_annotation: ^4.12.0
   just_audio: ^0.10.5
   linkify: ^5.0.0
   lottie: ^3.3.0

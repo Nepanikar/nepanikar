@@ -1,21 +1,9 @@
-/// Access code for the DBT programme.
+/// Access code for the closed DBT pilot: the home tile and the DBT tab stay
+/// hidden until someone types it in Settings. Shared, not per-user.
 ///
-/// The programme runs as a closed pilot: its home tile and its bottom-bar tab
-/// stay hidden until someone types this code in Settings. Anyone who has the
-/// code can unlock the app for themselves — that is the point, it is not
-/// per-user.
-///
-/// This is a gate, **not** protection. The string ships inside the APK and can
-/// be read out of it, so nothing that must stay secret may depend on it. What
-/// it does buy is that the programme cannot be stumbled into, and the code
-/// cannot be guessed: it is 12 random characters (~55 bits).
-///
-/// The alphabet deliberately leaves out the characters people mix up when they
-/// copy a code off a leaflet — `0/O`, `1/I/L`, `5/S`, `2/Z`, `8/B`.
-///
-/// Changing the code is a one-line edit here, but it takes a new build, and it
-/// does not re-lock anyone: [UserSettingsDao.unlockBpdProgramme] stores the
-/// unlocked state, not the code.
+/// A gate, **not** protection — the string ships inside the APK. Twelve random
+/// characters, leaving out `0/O`, `1/I/L`, `5/S`, `2/Z`, `8/B` so it survives
+/// being read off a leaflet. Changing it takes a build and re-locks nobody.
 const kBpdAccessCode = 'AVFK-GXN4-T966';
 
 /// Everything that is not a letter or a digit, plus letter case, is noise: the

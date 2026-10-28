@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/games/breathing/breathing_game_screen.dart';
@@ -47,11 +47,8 @@ class TechniqueData {
 }
 
 /// A "pick from the menu" page: the day's techniques as tappable cards, each
-/// opening a detail sheet.
-///
-/// This replaces walking the user through every technique in sequence — the
-/// programme source offers them as a choice ("Můžeš si vybrat jedno cvičení z
-/// nabídky, které dnes vyzkoušíš. Zbytek si můžeš nechat na jindy.").
+/// opening a detail sheet. The source offers them as a choice rather than a
+/// sequence ("Můžeš si vybrat jedno cvičení z nabídky…").
 class TechniqueMenuPage extends StatelessWidget {
   const TechniqueMenuPage({
     super.key,
@@ -388,8 +385,6 @@ class _StartBreathingButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final primaryColor = Theme.of(context).primaryColor;
-
     return SizedBox(
       width: double.infinity,
       height: 50,
@@ -403,7 +398,7 @@ class _StartBreathingButton extends StatelessWidget {
           router.push<void>(location);
         },
         style: ElevatedButton.styleFrom(
-          backgroundColor: primaryColor,
+          backgroundColor: NepanikarColors.ctaBackground(context),
           foregroundColor: Colors.white,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           elevation: 1,

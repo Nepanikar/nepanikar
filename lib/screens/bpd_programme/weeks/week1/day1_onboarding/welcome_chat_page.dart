@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/bpd_research.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart';
@@ -38,10 +39,8 @@ class _Day1WelcomeChatPageState extends State<Day1WelcomeChatPage> {
     _prefillSavedProfile();
   }
 
-  /// Puts an already saved name and pronoun back into the form.
-  ///
-  /// The profile is stored the first time this page is completed, but nothing
-  /// ever read it back, so walking through Day 1 again showed an empty field —
+  /// Puts an already saved name and pronoun back into the form. The profile was
+  /// stored but never read back, so re-walking Day 1 showed an empty field —
   /// which looks exactly like the answer was never saved.
   Future<void> _prefillSavedProfile() async {
     final profile = await registry.get<UserSettingsDao>().getBpdUserProfile();
@@ -172,11 +171,9 @@ class _Day1WelcomeChatPageState extends State<Day1WelcomeChatPage> {
             ),
           ],
         ),
-        // Ours, not the author's copy: the pilot study did not exist when she
-        // wrote the introduction. It sits here, one step before the name form,
-        // so it is read after the programme has been explained and before
-        // anyone has invested anything in it. Facts and wording follow the
-        // entry form itself — see bpd_research.dart.
+        // Ours, not the author's copy — the pilot did not exist when she wrote the
+        // introduction. One step before the name form: read after the programme is
+        // explained, before anyone has invested anything. Facts: bpd_research.dart.
         const ChatStep(
           messages: [
             ChatBotBubble(
@@ -209,7 +206,7 @@ class _Day1WelcomeChatPageState extends State<Day1WelcomeChatPage> {
           ],
         ),
         ChatStep(
-          buttonLabel: 'Uložit a pokračovat',
+          buttonLabel: context.l10n.dbt_save_and_continue,
           enabled: _formValid,
           messages: [
             const ChatBotBubble(
@@ -242,7 +239,7 @@ class _Day1WelcomeChatPageState extends State<Day1WelcomeChatPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Tvoje křestní jméno',
+            context.l10n.dbt_your_name,
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w800,
@@ -255,7 +252,7 @@ class _Day1WelcomeChatPageState extends State<Day1WelcomeChatPage> {
             onChanged: (_) => _revalidate(),
             style: TextStyle(fontSize: 15, color: textColor),
             decoration: InputDecoration(
-              hintText: 'Napiš svoje jméno…',
+              hintText: context.l10n.dbt_your_name_hint,
               hintStyle: TextStyle(color: isDarkMode ? Colors.white38 : Colors.grey.shade400),
               filled: true,
               fillColor: isDarkMode
@@ -267,14 +264,14 @@ class _Day1WelcomeChatPageState extends State<Day1WelcomeChatPage> {
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: primaryColor, width: 2),
+                borderSide: BorderSide(color: NepanikarColors.accent(context), width: 2),
               ),
               contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
             ),
           ),
           const SizedBox(height: 14),
           Text(
-            'Jak chceš, aby tě Nepanikař oslovoval?',
+            context.l10n.dbt_pronoun_question(context.l10n.app_name),
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w800,
@@ -285,19 +282,19 @@ class _Day1WelcomeChatPageState extends State<Day1WelcomeChatPage> {
           Row(
             children: [
               _PronounPill(
-                label: 'On',
+                label: context.l10n.dbt_pronoun_he,
                 selected: _selectedPronoun == BpdPronoun.he,
                 onTap: () => _selectPronoun(BpdPronoun.he),
               ),
               const SizedBox(width: 6),
               _PronounPill(
-                label: 'Ona',
+                label: context.l10n.dbt_pronoun_she,
                 selected: _selectedPronoun == BpdPronoun.she,
                 onTap: () => _selectPronoun(BpdPronoun.she),
               ),
               const SizedBox(width: 6),
               _PronounPill(
-                label: 'Oni',
+                label: context.l10n.dbt_pronoun_they,
                 selected: _selectedPronoun == BpdPronoun.they,
                 onTap: () => _selectPronoun(BpdPronoun.they),
               ),

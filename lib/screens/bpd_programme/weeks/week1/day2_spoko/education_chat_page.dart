@@ -1,14 +1,12 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_messages.dart';
 
-/// Page 1/3 — SPOKO model + today's area (spánek), taught as a chat.
-///
-/// Replaces the former `Day2SpokoIntroPage` + `Day2SleepEducationPage`: both
-/// only taught, and Week 1 was the odd week out — Weeks 2–4 teach in the chat
-/// template. Copy is verbatim, source: docs/hpo/source/tyzden-1.md §2.
+/// Page 1/3 — SPOKO model + today's area (spánek), taught as a chat. Verbatim,
+/// source: tyzden-1.md §2. Replaces `Day2SpokoIntroPage` +
+/// `Day2SleepEducationPage` — Week 1 was the odd week out not using the chat.
 class Week1Day2EducationChatPage extends StatelessWidget {
   const Week1Day2EducationChatPage({super.key, required this.onNext});
 
@@ -174,9 +172,9 @@ class _SpokoLetterRow extends StatelessWidget {
                 color: NepanikarColors.info,
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: const Text(
-                'DNES',
-                style: TextStyle(
+              child: Text(
+                context.l10n.dbt_today.toUpperCase(),
+                style: const TextStyle(
                   fontSize: 10,
                   fontWeight: FontWeight.w900,
                   color: NepanikarColors.dark,

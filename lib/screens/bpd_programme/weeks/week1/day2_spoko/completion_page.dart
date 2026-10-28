@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 
-/// Page 4/4 — Day 2 completion (verbatim, source: tyzden-1.md §2, closing).
+/// Page 3/3 — Day 2 completion (verbatim, source: tyzden-1.md §2, closing).
 class Day2CompletionPage extends StatelessWidget {
   const Day2CompletionPage({super.key, required this.onComplete});
 
@@ -31,7 +32,11 @@ class Day2CompletionPage extends StatelessWidget {
                             color: primaryColor.withValues(alpha: 0.15),
                             shape: BoxShape.circle,
                           ),
-                          child: Icon(Icons.nightlight_round, size: 58, color: primaryColor),
+                          child: Icon(
+                            Icons.nightlight_round,
+                            size: 58,
+                            color: NepanikarColors.accent(context),
+                          ),
                         ),
                         Container(
                           width: 38,
@@ -51,9 +56,9 @@ class Day2CompletionPage extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 24),
-                    const Text(
-                      'DEN 2 DOKONČEN',
-                      style: TextStyle(
+                    Text(
+                      context.l10n.dbt_day_completed(2).toUpperCase(),
+                      style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 0.5,
@@ -62,11 +67,11 @@ class Day2CompletionPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Hezky!',
+                      context.l10n.dbt_nicely_done,
                       style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
-                        color: primaryColor,
+                        color: NepanikarColors.accent(context),
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -94,14 +99,14 @@ class Day2CompletionPage extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: onComplete,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: primaryColor,
+                  backgroundColor: NepanikarColors.ctaBackground(context),
                   foregroundColor: Colors.white,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                   elevation: 2,
                 ),
-                child: const Text(
-                  'Hotovo',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                child: Text(
+                  context.l10n.dbt_done,
+                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
             ),

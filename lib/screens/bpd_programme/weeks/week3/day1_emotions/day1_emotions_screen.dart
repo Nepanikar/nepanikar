@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week3/day1_emotions/day1_content.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week3/day1_emotions/dictionary_page.dart';
@@ -24,9 +24,8 @@ class Week3Day1EmotionsScreenRoute extends GoRouteData with $Week3Day1EmotionsSc
 }
 
 /// Week 3, Day 1 — Edukace o emocích. Verbatim, source: tyzden-3.md §1.
-///
-/// What regulation is (chat) → emotion dictionary → why regulation is hard →
-/// the twenty myths in two halves → busting them → completion.
+/// What regulation is (chat) → emotion dictionary → why it is hard → the twenty
+/// myths in two halves → busting them → completion.
 class Week3Day1EmotionsScreen extends StatefulWidget {
   const Week3Day1EmotionsScreen({super.key});
 

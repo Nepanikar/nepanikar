@@ -1,9 +1,7 @@
 // ignore_for_file: no_adjacent_strings_in_list
 
-/// Week 4, Day 1 — edukace o stresu.
-///
-/// Copy verbatim from `docs/hpo/source/tyzden-4.md` §1. The source's typos and
-/// spacing are left exactly as written (see WEEK4_SCREEN_PLAN.md → OQ-9) — the
+/// Week 4, Day 1 — edukace o stresu. Copy verbatim from
+/// `docs/hpo/source/tyzden-4.md` §1, typos and spacing included (OQ-9) — the
 /// author corrects her own text, we never do it silently.
 library;
 

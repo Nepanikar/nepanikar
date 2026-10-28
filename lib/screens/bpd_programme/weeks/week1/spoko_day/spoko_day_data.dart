@@ -2,7 +2,7 @@
 // (required for const context); the resulting list elements are intentional.
 // ignore_for_file: no_adjacent_strings_in_list
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// What the optional safety contact deep-link on a SPOKO day should do.
 enum SpokoContactAction {
@@ -23,9 +23,8 @@ class SpokoContact {
   final SpokoContactAction action;
 }
 
-/// Content for one SPOKO day (Days 3–6 of Week 1). Drives [SpokoDayScreen]:
-/// a 3-page flow (education + mapping questions → challenge → completion).
-///
+/// Content for one SPOKO day (Days 3–6 of Week 1), driving [SpokoDayScreen]'s
+/// three pages: education + mapping questions → challenge → completion.
 /// All displayed copy is verbatim from docs/hpo/source/tyzden-1.md.
 @immutable
 class SpokoDayData {

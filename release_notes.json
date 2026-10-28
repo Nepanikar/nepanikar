@@ -32,6 +32,14 @@
     "text": "• बग सुधार"
   },
   {
+    "language": "hr",
+    "text": "• Ispravci grešaka"
+  },
+  {
+    "language": "hu",
+    "text": "• Hibajavítások"
+  },
+  {
     "language": "it",
     "text": "• Correzioni di bug"
   },
@@ -56,12 +64,20 @@
     "text": "• Correções de bugs"
   },
   {
+    "language": "ro",
+    "text": "• Remedieri de erori"
+  },
+  {
     "language": "ru",
     "text": "• Исправления ошибок"
   },
   {
     "language": "sk",
     "text": "• Opravy chýb"
+  },
+  {
+    "language": "sr",
+    "text": "• Исправке грешака"
   },
   {
     "language": "sv",

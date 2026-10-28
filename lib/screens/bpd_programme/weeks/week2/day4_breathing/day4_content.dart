@@ -1,6 +1,6 @@
 // ignore_for_file: no_adjacent_strings_in_list
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/games/breathing/breathing_game_screen.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/technique_menu_page.dart';
 
@@ -16,10 +16,8 @@ const week2Day4IntroNote =
     'Všímavé dýchání může zklidnit tělo a mysl, snížit impulzivní reakce a '
     'podporuje sebeovládání.';
 
-/// Week 2, Day 4 — the breathing exercises offered as a menu.
-///
-/// All copy verbatim from docs/hpo/source/tyzden-2.md §4. Each one can launch
-/// the app's existing breathing exercise with the matching shape/preset.
+/// Week 2, Day 4 — the breathing exercises offered as a menu. Verbatim, source:
+/// tyzden-2.md §4. Each one launches the app's breathing exercise with its preset.
 const week2Day4Techniques = <TechniqueData>[
   TechniqueData(
     id: 'w2_breathing_mindful',

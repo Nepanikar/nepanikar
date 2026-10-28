@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart';
@@ -24,10 +24,8 @@ class Week6Day7SummaryScreenRoute extends GoRouteData with $Week6Day7SummaryScre
   Widget build(BuildContext context, _) => const Week6Day7SummaryScreen();
 }
 
-/// Week 6, Day 7 — Shrnutí. Verbatim, source: tyzden-6.md §7.
-///
-/// Recap (chat) → three free-text questions → week congratulations. The answers
-/// autosave, so leaving before the last page keeps them.
+/// Week 6, Day 7 — Shrnutí. Verbatim, source: tyzden-6.md §7. Recap (chat) →
+/// three free-text questions → week congratulations. The answers autosave.
 class Week6Day7SummaryScreen extends StatefulWidget {
   const Week6Day7SummaryScreen({super.key});
 
@@ -161,11 +159,16 @@ class _Week6Day7SummaryScreenState extends State<Week6Day7SummaryScreen>
                 children: [
                   ChatDayPage(
                     onCompleted: _goToNextPage,
-                    steps: const [
-                      ChatStep(messages: [ChatBotBubble(text: _praise, showAvatar: true)]),
+                    steps: [
+                      const ChatStep(messages: [ChatBotBubble(text: _praise, showAvatar: true)]),
                       ChatStep(
-                        messages: [ChatFeatureList(caption: 'Co jsme prošli', items: _recapTopics)],
-                        buttonLabel: 'Reflexe týdne',
+                        messages: [
+                          ChatFeatureList(
+                            caption: context.l10n.dbt_what_we_covered,
+                            items: _recapTopics,
+                          ),
+                        ],
+                        buttonLabel: context.l10n.dbt_week_reflection,
                       ),
                     ],
                   ),
@@ -203,7 +206,7 @@ class _ReflectionPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 12),
-          const SectionHeader(icon: Icons.edit_outlined, title: 'Reflexe týdne'),
+          SectionHeader(icon: Icons.edit_outlined, title: context.l10n.dbt_week_reflection),
           const SizedBox(height: 12),
           Text(
             'Zkus se zamyslet — odpovědi zůstanou uložené, můžeš se k nim vrátit.',

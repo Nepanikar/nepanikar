@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week2/day4_breathing/day4_content.dart'
@@ -29,10 +29,9 @@ class Week4Day4MindfulnessScreenRoute extends GoRouteData with $Week4Day4Mindful
   Widget build(BuildContext context, _) => const Week4Day4MindfulnessScreen();
 }
 
-/// The eight named techniques of Week 2 — three breathing exercises (Day 4)
-/// and five mindfulness techniques (Day 6). Reused verbatim, detail sheet and
-/// rescue-package ids included, so a drawn technique behaves exactly as it did
-/// when the user first met it.
+/// The eight named techniques of Week 2 — three breathing exercises (Day 4) and
+/// five mindfulness techniques (Day 6). Reused verbatim, rescue-package ids
+/// included, so a drawn technique behaves as it did when the user first met it.
 final List<TechniqueData> week4DrawPool = [
   ...week2_breathing.week2Day4Techniques,
   ...week2_techniques.week2Day6Techniques,
@@ -198,10 +197,10 @@ class Week4Day4DrawPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 24),
-          const SectionHeader(
+          SectionHeader(
             icon: Icons.casino_outlined,
             title: 'Připomeňme si techniku',
-            subtitle: 'Den 4 • Týden 4',
+            subtitle: context.l10n.dbt_day_week_plain(4, 4),
           ),
           const SizedBox(height: 18),
           Text(
