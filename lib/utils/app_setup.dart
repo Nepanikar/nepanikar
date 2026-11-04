@@ -16,6 +16,7 @@ import 'package:nepanikar/services/bpd_weeks_data_manager.dart';
 import 'package:nepanikar/services/db/database_service.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
 import 'package:nepanikar/services/export_service.dart';
+import 'package:nepanikar/services/health/health_service.dart';
 import 'package:nepanikar/services/notifications/notifications_service.dart';
 import 'package:nepanikar/services/save_directories.dart';
 import 'package:nepanikar/utils/app_config.dart';
@@ -85,4 +86,6 @@ Future<void> setup() async {
 
   registry.registerSingleton<BpdWeeksDataManager>(BpdWeeksDataManager());
   await registry.get<BpdWeeksDataManager>().init();
+
+  registry.registerSingleton<HealthService>(HealthService());
 }

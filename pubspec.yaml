@@ -53,6 +53,7 @@ dependencies:
   tuple: ^2.0.1
   url_launcher: ^6.3.2
   wakelock_plus: ^1.4.0
+  health: ^13.3.2
 dev_dependencies:
   build_runner: ^2.16.0
   build_verify: ^3.1.1
