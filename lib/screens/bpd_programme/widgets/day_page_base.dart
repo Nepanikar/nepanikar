@@ -119,7 +119,6 @@ class SectionHeader extends StatelessWidget {
   }
 }
 
-/// Card for displaying characteristics or features.
 class FeatureCard extends StatelessWidget {
   const FeatureCard({
     super.key,
@@ -192,7 +191,6 @@ class FeatureCard extends StatelessWidget {
   }
 }
 
-/// Numbered benefit item.
 class NumberedBenefit extends StatelessWidget {
   const NumberedBenefit({
     super.key,
@@ -268,7 +266,6 @@ class NumberedBenefit extends StatelessWidget {
   }
 }
 
-/// Info box with icon and text.
 class InfoBox extends StatelessWidget {
   const InfoBox({
     super.key,

@@ -32,10 +32,8 @@ class Week5Day2LifeThreateningScreenRoute extends GoRouteData
 }
 
 /// Week 5, Day 2 — život ohrožující chování. Verbatim, source: tyzden-5.md §2.
-///
-/// The one day the source itself declares optional, so it is also the one day
-/// with a way out on every screen. Skipping marks it done rather than leaving
-/// the week stuck at 6/7 — the author's call (2026-09-18).
+/// The one day the source declares optional, so the one day with a way out on
+/// every screen. Skipping marks it done — the author's call (2026-09-18).
 class Week5Day2LifeThreateningScreen extends StatefulWidget {
   const Week5Day2LifeThreateningScreen({super.key});
 
@@ -97,12 +95,9 @@ class _Week5Day2LifeThreateningScreenState extends State<Week5Day2LifeThreatenin
     context.pop();
   }
 
-  /// Skipping counts as done — the author's call. Anything else and the week
-  /// could never reach 7/7 for someone who, quite reasonably, sat this one out.
-  ///
-  /// It jumps to the safety page instead of leaving outright: someone who backs
-  /// out of the life-threatening day is the last person who should be shown the
-  /// door without being told where help is.
+  /// Skipping counts as done — the author's call; otherwise the week could never
+  /// reach 7/7 for someone who sat this one out. It jumps to the safety page
+  /// rather than leaving, so nobody backs out without being told where help is.
   void _skipDay() {
     setState(() => _wasSkipped = true);
     _pageController.animateToPage(
@@ -168,7 +163,7 @@ class _Week5Day2LifeThreateningScreenState extends State<Week5Day2LifeThreatenin
   }
 }
 
-/// Page 1/5 — the warning, and a real way out.
+/// Page 1/6 — the warning, and a real way out.
 class Week5Day2WarningPage extends StatelessWidget {
   const Week5Day2WarningPage({super.key, required this.onNext, required this.onSkip});
 
@@ -201,7 +196,7 @@ class Week5Day2WarningPage extends StatelessWidget {
   }
 }
 
-/// Page 2/5 — what life-threatening behaviour is (education, chat).
+/// Page 2/6 — what life-threatening behaviour is (education, chat).
 class Week5Day2EducationPage extends StatelessWidget {
   const Week5Day2EducationPage({super.key, required this.onNext});
 
@@ -228,7 +223,7 @@ class Week5Day2EducationPage extends StatelessWidget {
   }
 }
 
-/// Page 3/5 — STOP.
+/// Page 3/6 — STOP.
 class Week5Day2StopPage extends StatelessWidget {
   const Week5Day2StopPage({super.key, required this.onNext});
 
@@ -239,7 +234,7 @@ class Week5Day2StopPage extends StatelessWidget {
     return AcronymSkillPage(
       icon: Icons.back_hand_outlined,
       title: 'STOP',
-      subtitle: 'Den 2 • Týden 5',
+      subtitle: context.l10n.dbt_day_week_plain(2, 5),
       leadParagraphs: day2StopLead,
       letters: day2StopLetters,
       rescueItem: BpdRescueItem(
@@ -255,7 +250,7 @@ class Week5Day2StopPage extends StatelessWidget {
   }
 }
 
-/// Page 4/5 — the five things that could help, saved somewhere reachable.
+/// Page 4/6 — the five things that could help, saved somewhere reachable.
 class Week5Day2ReliefListPage extends StatefulWidget {
   const Week5Day2ReliefListPage({super.key, required this.onNext});
 
@@ -312,10 +307,10 @@ class _Week5Day2ReliefListPageState extends State<Week5Day2ReliefListPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 12),
-          const SectionHeader(
+          SectionHeader(
             icon: Icons.spa_outlined,
             title: 'Co udělám místo toho',
-            subtitle: 'Den 2 • Týden 5',
+            subtitle: context.l10n.dbt_day_week_plain(2, 5),
           ),
           const SizedBox(height: 14),
           Text(
@@ -454,7 +449,7 @@ class _ExamplesToggle extends StatelessWidget {
             Icon(isOpen ? Icons.expand_less : Icons.expand_more, size: 18, color: color),
             const SizedBox(width: 6),
             Text(
-              'Nevíš, co napsat?',
+              context.l10n.dbt_stuck_hint,
               style: TextStyle(fontSize: 13, fontWeight: FontWeight.w800, color: color),
             ),
           ],
@@ -541,16 +536,9 @@ class _RescueHint extends StatelessWidget {
   }
 }
 
-/// Shown on the completion page: the source's two care links, above the thanks
-/// so that someone who is leaving does not have to scroll to find them.
-/// Page 6/6 — the safety screen, the last thing this day shows.
-///
-/// Asked for by the study's supervisors: the day discusses life-threatening
-/// behaviour, and someone can be left unsettled by it after they have closed
-/// the app. Both ways out of the day lead here — walking it and skipping it —
-/// and the day is only marked done once this page is dismissed.
-///
-/// Deliberately plain: no alarm colours, no warning icon. Someone who is
+/// Page 6/6 — the safety screen, the last thing this day shows. Asked for by
+/// the study's supervisors: both ways out of the day lead here, and the day is
+/// only marked done once this page is dismissed. Deliberately plain — someone
 /// already overwhelmed does not need the app to look alarmed at them.
 class Week5Day2SafetyPage extends StatelessWidget {
   const Week5Day2SafetyPage({super.key, required this.onDone});

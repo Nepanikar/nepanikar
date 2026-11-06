@@ -13,11 +13,9 @@ class EmotionEntry {
 }
 
 /// The "slovníček emocí" from Week 3, Day 1 — verbatim, source: tyzden-3.md §1.
-///
-/// The source asks twice for this to be something the user "can simply come back
-/// to", so it also lives on its own screen under *Moje záznamy → DBT program*.
-/// Order follows the source. No emotion is styled as good or bad — including
-/// envy and jealousy, which the source treats as informative like the rest.
+/// The source asks twice for something the user "can simply come back to", so it
+/// also lives under *Moje záznamy → DBT program*. Order follows the source, and
+/// no emotion is styled as good or bad — envy and jealousy included.
 const emotionDictionary = <EmotionEntry>[
   EmotionEntry(
     name: 'Vztek',

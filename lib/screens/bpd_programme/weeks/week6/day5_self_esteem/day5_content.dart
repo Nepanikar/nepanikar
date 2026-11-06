@@ -1,15 +1,9 @@
 // ignore_for_file: no_adjacent_strings_in_list
 
-/// Week 6, Day 5 — sebeúcta.
-///
-/// Copy verbatim from `docs/hpo/source/tyzden-6.md` §5, with two documented
-/// exceptions (WEEK6_SCREEN_PLAN.md → OQ-2):
-///
-/// * the source runs the "O" heading onto the end of the "Z" instruction with
-///   no line break ("…aby ses přizpůsobil/a**O – bez zbytečných Omluv**") —
-///   split here at the obvious intent;
-/// * "U – Upřímnosts" carries a stray trailing "s", dropped here.
-///
+/// Week 6, Day 5 — sebeúcta. Copy verbatim from `docs/hpo/source/tyzden-6.md`
+/// §5, with two documented exceptions (OQ-2): the source runs the "O" heading
+/// onto the end of the "Z" instruction with no line break, split here at the
+/// obvious intent; and "U – Upřímnosts" carries a stray trailing "s", dropped.
 /// Nothing else was touched.
 library;
 
@@ -75,9 +69,8 @@ const day5WorksheetLead =
     'odpovídaly tvé zkušenosti.';
 
 /// Six steps, verbatim: heading and prompt exactly as the source writes them.
-///
-/// The source gives "reflexe" two questions under one heading, so they share
-/// one field rather than being split into two the author did not ask for.
+/// The source gives "reflexe" two questions under one heading, so they share one
+/// field rather than being split into two the author did not ask for.
 const day5NezoufejWorksheet = <WorksheetSection>[
   WorksheetSection(
     title: 'situace',

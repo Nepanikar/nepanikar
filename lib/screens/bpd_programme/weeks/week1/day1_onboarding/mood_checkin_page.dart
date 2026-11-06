@@ -4,7 +4,7 @@ import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
 import 'package:nepanikar/screens/home/my_records/mood/mood_picker_screen.dart';
 
-/// Page 6/10 — First activity: mood check-in. Deep-links into the existing
+/// Page 3/7 — First activity: mood check-in. Deep-links into the existing
 /// "Moje záznamy" mood recording (source: tyzden-1.md §1, Moje záznamy).
 class Day1MoodCheckinPage extends StatelessWidget {
   const Day1MoodCheckinPage({super.key, required this.onNext});

@@ -5,10 +5,8 @@ import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart'
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_lists.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_messages.dart';
 
-/// Page 1/2 — the whole of §1 as one chat flow.
-///
-/// A reading-only day, so it follows the same shape as Week 3's education days:
-/// the lesson arrives a message at a time instead of as three scrollable pages.
+/// Page 1/2 — the whole of §1 as one chat flow. A reading-only day, so the
+/// lesson arrives a message at a time rather than as scrollable pages.
 class Week2Day1EducationChatPage extends StatelessWidget {
   const Week2Day1EducationChatPage({super.key, required this.onNext});
 

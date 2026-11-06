@@ -164,7 +164,7 @@ class Week6Day2PsanickoPage extends StatelessWidget {
     return AcronymSkillPage(
       icon: Icons.forum_outlined,
       title: 'PSANÍČKo',
-      subtitle: 'Den 2 • Týden 6',
+      subtitle: context.l10n.dbt_day_week_plain(2, 6),
       letters: day2PsanickoLetters,
       // The source's closing sentence belongs under the last letter, not above
       // the first — it summarises what the whole acronym is for.
@@ -203,10 +203,10 @@ class Week6Day2WorksheetPage extends StatelessWidget {
           // Not "Worksheet PSANÍČKo": the app never puts the word worksheet in
           // a header (Day 5 drops it too), and "v praxi" also keeps this page
           // distinct from the acronym page, which is titled just "PSANÍČKo".
-          const SectionHeader(
+          SectionHeader(
             icon: Icons.edit_note_outlined,
             title: 'PSANÍČKo v praxi',
-            subtitle: 'Den 2 • Týden 6',
+            subtitle: context.l10n.dbt_day_week_plain(2, 6),
           ),
           const SizedBox(height: 14),
           Text(

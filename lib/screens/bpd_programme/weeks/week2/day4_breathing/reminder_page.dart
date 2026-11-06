@@ -6,12 +6,9 @@ import 'package:nepanikar/services/notifications/notification_type.dart';
 import 'package:nepanikar/services/notifications/notifications_service.dart';
 import 'package:nepanikar/utils/registry.dart';
 
-/// Page offering the daily mindfulness reminder the programme introduces on
-/// Day 4 ("Čas na všímavost – věnuj teď tři minuty všímavosti. Nezapomeň co a
-/// jak.", source: §3).
-///
-/// Opt-in on purpose: scheduling a daily notification without asking would be a
-/// surprise, and notification permission has to be requested anyway.
+/// The daily mindfulness reminder introduced on Day 4 ("Čas na všímavost…",
+/// source: §3). Opt-in on purpose — a daily notification nobody asked for is a
+/// surprise, and permission has to be requested anyway.
 class ReminderPage extends StatefulWidget {
   const ReminderPage({super.key, required this.onNext});
 
@@ -57,9 +54,9 @@ class _ReminderPageState extends State<ReminderPage> {
     final allowed = await _notifications.requestPermissionIfNeeded();
     if (!mounted) return;
     if (!allowed) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Notifikace jsou vypnuté. Povol je v nastavení.')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(context.l10n.dbt_challenge_notifications_disabled)));
       return;
     }
     await _notifications.enableMindfulnessReminder(l10n, time: _time);
@@ -87,7 +84,10 @@ class _ReminderPageState extends State<ReminderPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 24),
-          const SectionHeader(icon: Icons.notifications_active_outlined, title: 'Čas na všímavost'),
+          SectionHeader(
+            icon: Icons.notifications_active_outlined,
+            title: context.l10n.dbt_notification_mindfulness_title,
+          ),
           const SizedBox(height: 18),
           Text(
             'Od dneška ti můžeme každý den poslat krátkou připomínku, ať na '
@@ -152,7 +152,7 @@ class _ReminderPageState extends State<ReminderPage> {
               value: _isEnabled,
               onChanged: _toggle,
               title: Text(
-                'Posílat připomínku každý den',
+                context.l10n.dbt_reminder_daily,
                 style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w700,
@@ -165,7 +165,7 @@ class _ReminderPageState extends State<ReminderPage> {
               onTap: _pickTime,
               leading: Icon(Icons.schedule, color: NepanikarColors.accent(context)),
               title: Text(
-                'Čas připomínky',
+                context.l10n.dbt_reminder_time,
                 style: TextStyle(
                   fontSize: 15,
                   color: isDarkMode ? Colors.white : NepanikarColors.dark,

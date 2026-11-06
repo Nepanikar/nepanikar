@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week2/day4_breathing/day4_content.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week2/day4_breathing/intro_chat_page.dart';
@@ -104,7 +105,7 @@ class _Week2Day4BreathingScreenState extends State<Week2Day4BreathingScreen> {
                   Week2Day4IntroChatPage(onNext: _goToNextPage),
                   TechniqueMenuPage(
                     title: 'Všímavé dýchání',
-                    dayLabel: 'Den 4 • Týden 2',
+                    dayLabel: context.l10n.dbt_day_week_plain(4, 2),
                     pickLead: 'Teď si můžeš vybrat z několika možností dechových cvičení.',
                     techniques: week2Day4Techniques,
                     sourceLabel: 'Všímavé dýchání',

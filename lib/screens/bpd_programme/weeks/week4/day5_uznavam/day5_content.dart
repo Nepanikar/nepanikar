@@ -13,13 +13,10 @@ const day5IntroChat = <String>[
   'UZNÁVÁM je sada drobných triků, které ti můžou ulevit, jak?:',
 ];
 
-/// The seven tricks.
-///
-/// The letters come from the checklist headings below, which spell U-Z-N-Á-V-Á-M
-/// and therefore match the acronym; the source's short list writes "Ú-silím",
-/// "Ná-hledem" and two plain "A-", which do not. The *words and instructions*
-/// are hers, untouched — only the badge letter follows the checklist
-/// (WEEK4_SCREEN_PLAN.md → OQ-10, still to be confirmed by the author).
+/// The seven tricks. The badge letters come from the checklist headings below,
+/// which spell U-Z-N-Á-V-Á-M; the source's short list writes "Ú-silím",
+/// "Ná-hledem" and two plain "A-", which do not. Her words are untouched — only
+/// the letter follows the checklist (OQ-10, still to be confirmed by her).
 const day5Letters = <AcronymLetter>[
   ('U', 'Úsilím', 'dělej vědomě něco, co tě zabaví – uklízení, kreslení, seriál.'),
   ('Z', 'Zapojením', 'udělej drobnost pro někoho jiného – napiš zprávu, nabídni pomoc.'),
@@ -145,9 +142,8 @@ const day5GroupsPart2 = <UznavamGroup>[
 // TODO: schválit autorem
 const day5ChecklistLead = 'Označ, co jsi zkusil/a. Nic z toho není povinné — je to jen pro tebe.';
 
-/// Ours — the source has no closing line. Picks up the thread from page 1/5:
-/// after a week 3 spent learning *not* to suppress emotions, a day about
-/// distraction needs that distinction said out loud.
+/// Ours — the source has no closing line. After a week spent learning *not* to
+/// suppress emotions, a day about distraction needs that distinction said aloud.
 // TODO: schválit autorem
 const day5CompletionText =
     'UZNÁVÁM není potlačování emocí — je to způsob, jak přečkat tu nejsilnější '

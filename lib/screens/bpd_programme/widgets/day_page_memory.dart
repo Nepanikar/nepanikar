@@ -6,24 +6,15 @@ import 'package:nepanikar/utils/registry.dart';
 
 /// Keeps a day's place in its page flow across leaving and coming back.
 ///
-/// Every day screen is a `PageView` whose position lived only in widget state,
-/// so it was lost the moment the screen left the tree — recording a mood from
-/// inside a lesson, or closing the app, restarted a half-finished lesson from
-/// page one. The page index is written to the day's own progress record, which
-/// is also where completion lives, so the two can never disagree.
-///
-/// Used by the day screens as:
+/// A `PageView`'s position lived only in widget state, so recording a mood from
+/// inside a lesson — or closing the app — restarted a half-finished lesson from
+/// page one. The index is written to the day's own progress record, where
+/// completion also lives, so the two cannot disagree.
 ///
 /// ```dart
 /// static const _pageMemory = BpdDayPageMemory(2, 4);
-///
-/// @override
-/// void initState() {
-///   super.initState();
-///   _pageMemory.restore(this, _pageController, _totalPages, (page) {
-///     setState(() => _currentPage = page);
-///   });
-/// }
+/// _pageMemory.restore(this, _pageController, _totalPages,
+///     (page) => setState(() => _currentPage = page));
 /// ```
 class BpdDayPageMemory {
   const BpdDayPageMemory(this.weekNumber, this.dayNumber);
@@ -34,11 +25,8 @@ class BpdDayPageMemory {
   BpdDaysDao get _dao => registry.get<BpdDaysDao>();
 
   /// Jumps [controller] to the remembered page, once the flow is laid out.
-  ///
-  /// [onRestored] lets the screen's own page counter — the one the progress
-  /// header reads — catch up with the jump.
-  ///
-  /// [totalPages] clamps the stored index: an update that shortens a day would
+  /// [onRestored] lets the screen's own page counter catch up with the jump.
+  /// [totalPages] clamps the stored index — an update that shortens a day would
   /// otherwise send someone to a page that no longer exists.
   void restore(
     State<StatefulWidget> state,

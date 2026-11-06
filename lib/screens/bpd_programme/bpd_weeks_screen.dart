@@ -57,13 +57,9 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
     });
   }
 
-  /// A week is open when its content exists ([kImplementedBpdWeeks]) **and**
-  /// the cohort calendar has reached it.
-  ///
-  /// The date used to be ignored here, which quietly made the whole programme
-  /// browsable from day one — the week screen was the only gate, and it was not
-  /// gating. Days were locked underneath, so nobody could do a lesson early,
-  /// but all seven weeks were open to read.
+  /// A week is open when its content exists ([kImplementedBpdWeeks]) **and** the
+  /// cohort calendar has reached it. The date used to be ignored, which left all
+  /// seven weeks readable from day one — the days were locked, the weeks were not.
   bool _isWeekOpen(BpdWeekProgress weekProgress) =>
       kImplementedBpdWeeks.contains(weekProgress.weekNumber) && weekProgress.isUnlocked();
 
@@ -82,13 +78,10 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
     if (progress != null) _handleWeekTap(progress);
   }
 
-  /// Leaves the DBT programme back to the app's home screen.
-  ///
-  /// The weeks screen is a child of [MainRoute], so the [MainScreen] underneath
-  /// is preserved on whichever tab launched the programme (the DBT tab). Going
-  /// to `/` with an explicit home-tab index makes [MainScreen] switch back to
-  /// Home (it reacts to the changed `extra` in `didUpdateWidget`), instead of
-  /// returning to the DBT tab, which would only re-open the landing screen.
+  /// Leaves the programme for the app's home screen. The weeks screen is a child
+  /// of [MainRoute], so going to `/` with an explicit home-tab index makes
+  /// [MainScreen] switch tabs in `didUpdateWidget`; returning to the DBT tab would
+  /// only re-open the landing screen.
   void _exitToMain() {
     context.go(const MainRoute().location, extra: MainPageExtra(initIndex: 0));
   }
@@ -249,7 +242,6 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final primaryColor = Theme.of(context).primaryColor;
 
-    // Set status bar color to match the purple header
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
         statusBarColor: primaryColor,
@@ -271,7 +263,6 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
         body: SafeArea(
           child: Column(
             children: [
-              // Header
               Container(
                 decoration: BoxDecoration(
                   color: primaryColor,
@@ -288,7 +279,6 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
-                      // Centered title
                       Text(
                         context.l10n.dbt_programme,
                         style: const TextStyle(
@@ -297,7 +287,6 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
                           color: Colors.white,
                         ),
                       ),
-                      // Close button on the left
                       Align(
                         alignment: Alignment.centerLeft,
                         child: IconButton(
@@ -317,7 +306,6 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
                 ),
               ),
 
-              // Skill tree of programme weeks
               Expanded(
                 child: _isLoading
                     ? const Center(child: CircularProgressIndicator())
@@ -343,12 +331,9 @@ class _BpdWeeksScreenState extends State<BpdWeeksScreen> {
   Widget _buildProgrammeBanner() {
     final completedCount = _weeksProgress.where((w) => w.isCompleted).length;
 
-    // The week being worked on; failing that the next one still to do, and only
-    // when everything is finished, the last.
-    //
-    // The middle step matters before the cohort starts: nothing is open yet, and
-    // falling straight through to `.last` greeted people who had just pressed
-    // "Začít svou cestu" with "Týden 7 · Závěr průvodce".
+    // The week being worked on; failing that the next one still to do; only when
+    // everything is finished, the last. The middle step matters before the cohort
+    // starts — falling through to `.last` greeted new users with "Týden 7 · Závěr".
     final bannerWeek =
         _weeksProgress.where((w) => !w.isCompleted && _isWeekOpen(w)).firstOrNull ??
         _weeksProgress.where((w) => !w.isCompleted).firstOrNull ??

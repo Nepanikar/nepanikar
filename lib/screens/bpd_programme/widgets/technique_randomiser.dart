@@ -7,15 +7,10 @@ import 'package:nepanikar/screens/bpd_programme/widgets/technique_menu_page.dart
 
 /// Draws one technique at random out of [techniques] and shows it as a card.
 ///
-/// Week 4 Day 4 asks the user to revisit a mindfulness technique from Week 2;
-/// the source suggests doing it "například i formou „kola štěstí"". A button
-/// rather than a spinning wheel: it works with a screen reader, needs no
-/// motion, and the point of drawing — removing the paralysis of choosing from
-/// eight options — survives either way.
-///
-/// Nothing is persisted. This is a nudge, not a record, and it must always be
-/// possible to draw again: a draw the user cannot refuse would turn a playful
-/// prompt into an assignment.
+/// The source suggests "například i formou „kola štěstí"". A button rather than
+/// a spinning wheel: it works with a screen reader and needs no motion, and the
+/// point — removing the paralysis of choosing from eight — survives. Nothing is
+/// persisted, and it must always be possible to draw again.
 class TechniqueRandomiser extends StatefulWidget {
   const TechniqueRandomiser({super.key, required this.techniques, required this.sourceLabel});
 

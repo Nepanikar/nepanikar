@@ -6,15 +6,11 @@ import 'package:nepanikar/utils/registry.dart';
 
 /// Keeps a week's reflection answers saved while the user is still typing.
 ///
-/// The "week done" button at the end of the flow is not a safe save point — the
-/// reflection page tells the user the answers stay saved, but they can leave it
-/// with the back arrow, the close control or by killing the app, and everything
-/// typed would be gone. Mixing this in writes each edit through a short
-/// debounce and flushes whatever is pending on dispose.
-///
-/// Call [initReflectionAutosave] from `initState` (it also loads the previously
-/// saved answers into the controllers) and [saveReflectionNow] wherever an
-/// immediate write matters, e.g. right before marking the week completed.
+/// The "week done" button is not a safe save point: the page promises the
+/// answers stay saved, but they can leave with the back arrow, the close control
+/// or by killing the app. Call [initReflectionAutosave] from `initState` (it
+/// also loads previous answers) and [saveReflectionNow] where an immediate write
+/// matters, e.g. before marking the week completed.
 mixin ReflectionAutosave<T extends StatefulWidget> on State<T> {
   static const _debounce = Duration(milliseconds: 400);
 

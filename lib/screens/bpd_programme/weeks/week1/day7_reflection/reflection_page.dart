@@ -42,7 +42,7 @@ class Day7ReflectionPage extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               Text(
-                'Reflexe týdne',
+                context.l10n.dbt_week_reflection,
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,

@@ -25,10 +25,8 @@ class Week6Day1RelationshipsScreenRoute extends GoRouteData
 }
 
 /// Week 6, Day 1 — edukace o vztazích. Verbatim, source: tyzden-6.md §1.
-///
-/// Education, then the author's two groups of twelve myths. The groups are two
-/// pages rather than one: twenty-four negative statements about yourself in a
-/// single scroll is a lot to sit with.
+/// Education, then the author's two groups of twelve myths over two pages —
+/// twenty-four negative statements about yourself in one scroll is a lot.
 class Week6Day1RelationshipsScreen extends StatefulWidget {
   const Week6Day1RelationshipsScreen({super.key});
 
@@ -177,11 +175,9 @@ class Week6Day1EducationPage extends StatelessWidget {
   }
 }
 
-/// Pages 2/4 and 3/4 — one of the author's two myth groups.
-///
-/// The myths render through [WorksheetSectionStyle.myth]: a muted, quoted card
-/// under a "MÝTUS" label, so nothing about the page reads as the app agreeing
-/// with statements like "Jen slaboši mají hodnoty".
+/// Pages 2/4 and 3/4 — one of the author's two myth groups. They render through
+/// [WorksheetSectionStyle.myth]: a muted, quoted card under a "MÝTUS" label, so
+/// nothing reads as the app agreeing with "Jen slaboši mají hodnoty".
 class Week6MythsPage extends StatelessWidget {
   const Week6MythsPage({
     super.key,
@@ -207,10 +203,10 @@ class Week6MythsPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 12),
-          const SectionHeader(
+          SectionHeader(
             icon: Icons.construction_outlined,
             title: 'Boření mýtů',
-            subtitle: 'Den 1 • Týden 6',
+            subtitle: context.l10n.dbt_day_week_plain(1, 6),
           ),
           const SizedBox(height: 14),
           Text(

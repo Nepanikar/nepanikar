@@ -21,12 +21,9 @@ class Week3Day5SpokoRecallScreenRoute extends GoRouteData with $Week3Day5SpokoRe
   Widget build(BuildContext context, _) => const Week3Day5SpokoRecallScreen();
 }
 
-/// Week 3, Day 5 — "Když to, co děláte, nefunguje". Source: tyzden-3.md §5.
-///
-/// The source is one line: remind yourself of your SPOKO skills. Confirmed with
-/// the author (2026-08-06) that this is deliberately short, so the day reuses
-/// the Week 1 recall exercise and links to the challenges the user already set
-/// themselves rather than inventing new content.
+/// Week 3, Day 5 — "Když to, co děláte, nefunguje". Source: tyzden-3.md §5 is
+/// one line, deliberately (author, 2026-08-06), so the day reuses the Week 1
+/// recall exercise and links to the user's own challenges instead of new copy.
 class Week3Day5SpokoRecallScreen extends StatefulWidget {
   const Week3Day5SpokoRecallScreen({super.key});
 
@@ -163,9 +160,9 @@ class Day5RecallPage extends StatelessWidget {
           const SizedBox(height: 18),
           const SpokoRecallList(),
           const SizedBox(height: 12),
-          const InfoBox(
+          InfoBox(
             icon: Icons.flag_outlined,
-            title: 'Tvoje výzvy',
+            title: context.l10n.dbt_your_challenges,
             text:
                 'V Mých záznamech máš uložené výzvy, které sis k jednotlivým '
                 'oblastem zadal/a v prvním týdnu. Mrkni, jak na tom jsou.',
@@ -176,7 +173,7 @@ class Day5RecallPage extends StatelessWidget {
             child: OutlinedButton.icon(
               onPressed: () => context.push(const MyChallengesRoute().location),
               icon: const Icon(Icons.flag_outlined, size: 18),
-              label: const Text('Otevřít Moje výzvy'),
+              label: Text(context.l10n.dbt_open_challenges),
               style: OutlinedButton.styleFrom(
                 foregroundColor: NepanikarColors.accent(context),
                 side: BorderSide(color: NepanikarColors.accent(context).withValues(alpha: 0.4)),

@@ -4,11 +4,9 @@ import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week3/day1_emotions/day1_content.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/day_page_base.dart';
 
-/// Page 3/7 — the six reasons emotional regulation is hard.
-///
-/// Ends on the source's own reassurance, which has to stay on this page: a list
-/// of six ways you are set up to fail should never be the last thing the user
-/// reads before the screen changes.
+/// Page 3/7 — the six reasons emotional regulation is hard. Ends on the
+/// source's own reassurance, which has to stay here: six ways you are set up to
+/// fail should not be the last thing read before the screen changes.
 class Week3ObstaclesPage extends StatelessWidget {
   const Week3ObstaclesPage({super.key, required this.onNext});
 

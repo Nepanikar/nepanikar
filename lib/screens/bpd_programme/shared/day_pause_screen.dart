@@ -21,15 +21,11 @@ class DayPauseScreenRoute extends GoRouteData with $DayPauseScreenRoute {
       DayPauseScreen(weekNumber: weekNumber, dayNumber: dayNumber);
 }
 
-/// Rest day of a programme week. Per the source (tyzden-2.md §5) a pause day is
-/// only the mindfulness notification plus a mood record — so the only action
-/// offered here is a deep-link into the existing mood feature.
+/// Rest day of a programme week: per the source (tyzden-2.md §5) only the
+/// mindfulness notification and a mood record, so that is all this offers.
 ///
-/// Every week writes its own pause wording, and the user meets this screen once
-/// a week for seven weeks, so a single shared sentence would quickly read as
-/// canned. Week 4 goes further and rests **twice** (days 3 and 6) with different
-/// text, so the copy is keyed by `(week, day)` first and falls back to the
-/// week's own text, then to Week 2's for weeks nobody has authored yet.
+/// Copy is keyed by `(week, day)` — Weeks 4 and 5 rest twice, with different
+/// text — then falls back to the week's own, then to Week 2's.
 class DayPauseScreen extends StatelessWidget {
   const DayPauseScreen({super.key, required this.weekNumber, required this.dayNumber});
 
@@ -59,10 +55,9 @@ class DayPauseScreen extends StatelessWidget {
         'velký kus práce – je vidět, kolik energie, odvahy a odhodlání do toho '
         'dáváš. Dnes si můžeš s klidem odpočinout a nechat své pokroky v klidu '
         '„doznít“.',
-    // Week 5 rests twice as well (tyzden-5.md §3 and §6). Day 3 used to open
-    // with "Po včerejším dni", which reads wrong for anyone who skipped the
-    // voluntary Day 2; the author replaced it with this day-agnostic wording
-    // (2026-09-18).
+    // Week 5 rests twice as well (tyzden-5.md §3 and §6). Day 3's "Po včerejším
+    // dni" read wrong for anyone who skipped the voluntary Day 2; the author
+    // replaced it with this day-agnostic wording (2026-09-18).
     (5, 3):
         'V průvodci máš za sebou velký kus cesty a je přirozené cítit únavu. '
         'Dovol si zpomalit a postarat se o sebe s laskavostí. Každý krok, i ten '
@@ -99,10 +94,8 @@ class DayPauseScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            // Header
             _buildHeader(context, primaryColor, isDarkMode),
 
-            // Content
             Expanded(
               child: SingleChildScrollView(
                 child: Padding(
@@ -111,12 +104,10 @@ class DayPauseScreen extends StatelessWidget {
                     children: [
                       const SizedBox(height: 32),
 
-                      // Illustration
                       _buildIllustration(primaryColor, NepanikarColors.accent(context)),
 
                       const SizedBox(height: 32),
 
-                      // Title
                       Text(
                         context.l10n.dbt_pause_title,
                         style: TextStyle(
@@ -129,7 +120,6 @@ class DayPauseScreen extends StatelessWidget {
 
                       const SizedBox(height: 12),
 
-                      // Subtitle
                       Text(
                         _pauseText,
                         style: TextStyle(
@@ -149,7 +139,6 @@ class DayPauseScreen extends StatelessWidget {
 
                       const SizedBox(height: 24),
 
-                      // Tip card
                       _buildTipCard(context, primaryColor, isDarkMode),
 
                       const SizedBox(height: 32),
@@ -159,7 +148,6 @@ class DayPauseScreen extends StatelessWidget {
               ),
             ),
 
-            // Complete button
             Padding(
               padding: const EdgeInsets.fromLTRB(24, 0, 24, 32),
               child: SizedBox(
@@ -241,7 +229,6 @@ class DayPauseScreen extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          // Background circle
           Container(
             width: 160,
             height: 160,
@@ -250,9 +237,7 @@ class DayPauseScreen extends StatelessWidget {
               shape: BoxShape.circle,
             ),
           ),
-          // Person meditating icon
           Icon(Icons.self_improvement, size: 100, color: accent.withValues(alpha: 0.7)),
-          // Small decorative elements
           Positioned(
             top: 30,
             right: 40,
@@ -339,7 +324,6 @@ class DayPauseScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Header with icon
           Row(
             children: [
               Container(
@@ -365,7 +349,6 @@ class DayPauseScreen extends StatelessWidget {
 
           const SizedBox(height: 16),
 
-          // Tip text
           Text(
             'Zkus si dát 5 minut jen pro sebe. Pusť si oblíbenou hudbu, napiš si poznámku, nebo jen tak seď.',
             style: TextStyle(

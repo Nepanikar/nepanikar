@@ -2,7 +2,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 
-/// Page 10/10 — Day 1 completion (verbatim, source: tyzden-1.md §1, closing).
+/// Page 7/7 — Day 1 completion (verbatim, source: tyzden-1.md §1, closing).
 class Day1CompletionPage extends StatelessWidget {
   const Day1CompletionPage({super.key, required this.onComplete});
 
@@ -56,9 +56,9 @@ class Day1CompletionPage extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 24),
-                    const Text(
-                      'DEN 1 DOKONČEN',
-                      style: TextStyle(
+                    Text(
+                      context.l10n.dbt_day_completed(1).toUpperCase(),
+                      style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 0.5,
@@ -107,9 +107,9 @@ class Day1CompletionPage extends StatelessWidget {
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                   elevation: 2,
                 ),
-                child: const Text(
-                  'Skvělé!',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                child: Text(
+                  context.l10n.dbt_great,
+                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
             ),

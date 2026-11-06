@@ -2,10 +2,9 @@ import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 
-/// The five areas of the SPOKO model (verbatim, source: tyzden-1.md §2).
-///
-/// Single definition on purpose: Week 1 Day 7 and Week 3 Day 5 both ask the user
-/// to recall them, and two copies of the letters would eventually disagree.
+/// The five areas of the SPOKO model (verbatim, source: tyzden-1.md §2). One
+/// definition on purpose — Week 1 Day 7 and Week 3 Day 5 both ask for them, and
+/// two copies of the letters would eventually disagree.
 const spokoAreas = <(String, String)>[
   ('S', 'Spánek'),
   ('P', 'Potrava'),
@@ -14,10 +13,8 @@ const spokoAreas = <(String, String)>[
   ('O', 'léčba Onemocnění'),
 ];
 
-/// Recall exercise: five covered cards the user taps to reveal.
-///
-/// Recall before reveal is the point — the user is meant to try to remember,
-/// which is why the areas are hidden rather than simply listed.
+/// Recall exercise: five covered cards the user taps to reveal. Hidden rather
+/// than listed, because trying to remember is the point.
 class SpokoRecallList extends StatefulWidget {
   const SpokoRecallList({super.key, this.hint});
 

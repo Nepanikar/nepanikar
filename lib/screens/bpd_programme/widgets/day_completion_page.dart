@@ -13,9 +13,8 @@ class NextDayTeaser {
 }
 
 /// Closing page of a regular (non-reflection) programme day: success badge, the
-/// day's summary and an optional teaser of what comes tomorrow.
-///
-/// Every Week 2 day repeated this page almost verbatim; they all use this one.
+/// day's summary and an optional teaser of what comes tomorrow. Every Week 2
+/// day repeated this almost verbatim; they all use this one.
 class DayCompletionPage extends StatelessWidget {
   const DayCompletionPage({
     super.key,
@@ -34,11 +33,9 @@ class DayCompletionPage extends StatelessWidget {
   final String? buttonText;
   final NextDayTeaser? nextDay;
 
-  /// Rendered between the summary and the next-day teaser, so that anything
-  /// urgent sits above "Zítra" rather than below it.
-  ///
-  /// Unused since Week 5 Day 2's care links moved onto its own safety page,
-  /// which comes after this one and is therefore read rather than scrolled past.
+  /// Rendered between the summary and the next-day teaser, so anything urgent
+  /// sits above "Zítra". Unused since Week 5 Day 2's care links moved onto its own
+  /// safety page, which comes after this one and is read rather than scrolled past.
   final Widget? extraContent;
 
   final VoidCallback onComplete;

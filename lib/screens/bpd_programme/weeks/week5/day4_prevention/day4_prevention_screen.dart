@@ -176,10 +176,10 @@ class _Week5Day4WorksheetPageState extends State<Week5Day4WorksheetPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 12),
-          const SectionHeader(
+          SectionHeader(
             icon: Icons.shield_outlined,
             title: 'Plánování a prevence',
-            subtitle: 'Den 4 • Týden 5',
+            subtitle: context.l10n.dbt_day_week_plain(4, 5),
           ),
           const SizedBox(height: 14),
           // TODO: schválit autorem — the source opens this day with no

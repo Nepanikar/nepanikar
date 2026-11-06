@@ -22,11 +22,9 @@ class Week3Day4OppositeActionScreenRoute extends GoRouteData
   Widget build(BuildContext context, _) => const Week3Day4OppositeActionScreen();
 }
 
-/// Week 3, Day 4 — opačná akce. Verbatim, source: tyzden-3.md §4.
-///
-/// A reading-only day, so the whole thing is one chat flow: the technique, the
-/// boundary on when *not* to use it, the three levels, and practising in small
-/// steps. Two pages only — the chat and the closing page.
+/// Week 3, Day 4 — opačná akce. Verbatim, source: tyzden-3.md §4. A
+/// reading-only day, so two pages: one chat flow (the technique, the boundary on
+/// when *not* to use it, the three levels, small steps) and the closing page.
 class Week3Day4OppositeActionScreen extends StatefulWidget {
   const Week3Day4OppositeActionScreen({super.key});
 

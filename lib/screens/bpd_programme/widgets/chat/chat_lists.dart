@@ -3,12 +3,9 @@ import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_messages.dart';
 import 'package:nepanikar/screens/bpd_programme/widgets/external_link_button.dart';
 
-/// List-shaped chat messages.
-///
-/// Kept out of `chat_messages.dart` so that file stays about the bubble and the
-/// single-concept cards. Both widgets here are the chat counterparts of pieces
-/// the form pages use: [ChatFeatureList] replaces a stack of `FeatureCard`s and
-/// [ChatLinksCard] replaces the "CHCI VĚDĚT VÍC" block of `ExternalLinkButton`s.
+/// List-shaped chat messages, kept out of `chat_messages.dart` so that file
+/// stays about the bubble and the single-concept cards. [ChatFeatureList]
+/// replaces a stack of `FeatureCard`s, [ChatLinksCard] a "CHCI VĚDĚT VÍC" block.
 
 /// One row of a [ChatFeatureList].
 @immutable
@@ -22,11 +19,9 @@ class ChatFeatureItem {
   final String? description;
 }
 
-/// White card listing icon + title (+ description) rows under a caption.
-///
-/// Use it where the education names several things at once — the benefits of a
-/// skill, the three skills of a day, what a week covered — and a numbered list
-/// would imply an order that the source does not have.
+/// White card listing icon + title (+ description) rows under a caption. For
+/// education that names several things at once, where a numbered list would
+/// imply an order the source does not have.
 class ChatFeatureList extends StatelessWidget {
   const ChatFeatureList({super.key, required this.caption, required this.items});
 
@@ -132,11 +127,8 @@ class ChatLink {
   final IconData icon;
 }
 
-/// Card holding the source's supporting links ("Chci vědět víc").
-///
-/// A [ChatConceptCard] takes a single link; this one is for the places where the
-/// source offers several, so they arrive as one message instead of one card per
-/// URL.
+/// Card holding the source's supporting links ("Chci vědět víc"). A
+/// [ChatConceptCard] takes one link; this is for the places that offer several.
 class ChatLinksCard extends StatelessWidget {
   const ChatLinksCard({super.key, required this.caption, required this.links});
 

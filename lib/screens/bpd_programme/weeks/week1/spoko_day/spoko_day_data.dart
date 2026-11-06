@@ -23,9 +23,8 @@ class SpokoContact {
   final SpokoContactAction action;
 }
 
-/// Content for one SPOKO day (Days 3–6 of Week 1). Drives [SpokoDayScreen]:
-/// a 3-page flow (education + mapping questions → challenge → completion).
-///
+/// Content for one SPOKO day (Days 3–6 of Week 1), driving [SpokoDayScreen]'s
+/// three pages: education + mapping questions → challenge → completion.
 /// All displayed copy is verbatim from docs/hpo/source/tyzden-1.md.
 @immutable
 class SpokoDayData {

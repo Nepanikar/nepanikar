@@ -6,14 +6,9 @@ import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_day_page.dart'
 import 'package:nepanikar/screens/bpd_programme/widgets/chat/chat_messages.dart';
 import 'package:nepanikar/screens/contacts/eating_disorder_contacts_screen.dart';
 
-/// Page 1/3 of a SPOKO day (Days 3–6) — area education + mapping questions +
-/// optional safety contact, taught as a chat.
-///
-/// Replaces `SpokoEducationPage`, which used `DayPageBase` while Weeks 2–4 all
-/// teach in the chat template. The old page's icon + `headerTitle` header is
-/// gone: the day flow header above the page already names the day, and a
-/// heading is not a chat message. Content is verbatim, supplied via
-/// [SpokoDayData].
+/// Page 1/3 of a SPOKO day (Days 3–6) — area education, mapping questions and
+/// an optional safety contact, taught as a chat. Content verbatim via
+/// [SpokoDayData]; no heading, because the day flow header already names the day.
 class SpokoEducationChatPage extends StatelessWidget {
   const SpokoEducationChatPage({super.key, required this.data, required this.onNext});
 

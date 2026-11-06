@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:nepanikar/app/l10n/ext.dart';
 import 'package:nepanikar/app/theme/colors.dart';
 import 'package:nepanikar/screens/bpd_programme/weeks/week2/day3_how_skills/day3_content.dart';
 import 'package:nepanikar/screens/home/my_records/goals/my_goals_screen.dart';
@@ -175,7 +176,7 @@ class _SmartGoalReminderState extends State<SmartGoalReminder> {
               Icon(Icons.track_changes, color: NepanikarColors.accent(context), size: 20),
               const SizedBox(width: 8),
               Text(
-                'Tvůj SMART cíl',
+                context.l10n.dbt_your_smart_goal,
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,

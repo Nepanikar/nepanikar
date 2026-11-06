@@ -33,12 +33,9 @@ const day1ProudLead =
     'Tento krok ti pomůže uvědomit si své pokroky a posílit motivaci pokračovat '
     'v praxi, kterou ses naučil/a.';
 
-/// The source asks for "3–5 věcí", so there are five places and none is
-/// required — someone who writes three is finished.
-///
-/// One field per item rather than three (what / why / how it helps): fifteen
-/// boxes would turn a moment of appreciation into paperwork, so the author's
-/// three questions ride in the hint instead.
+/// The source asks for "3–5 věcí", so five places and none required. One field
+/// per item rather than three (what / why / how it helps): fifteen boxes would
+/// turn a moment of appreciation into paperwork, so her questions ride in the hint.
 const day1ProudHint = 'Co to je, proč je to pro tebe důležité a jak ti to pomáhá?';
 
 const day1ProudWorksheet = <WorksheetSection>[
@@ -91,8 +88,7 @@ const day1SmartTask =
 const day1SmartFieldLabel = 'Jak ho chceš dál využívat nebo upravit?';
 
 /// Shown when Week 1 left no goals behind — someone who skipped that page, or
-/// who joined the programme later. An empty screen would read as a bug, and
-/// worse, as if their work had been lost.
+/// joined later. An empty screen would read as a bug, or as work gone missing.
 // TODO: schválit autorem (WEEK7_SCREEN_PLAN.md → OQ-5)
 const day1SmartEmptyTitle = 'Žádné cíle tu zatím nejsou';
 const day1SmartEmpty =

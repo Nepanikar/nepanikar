@@ -5,10 +5,8 @@ import 'package:nepanikar/screens/bpd_programme/widgets/worksheet_parts.dart';
 import 'package:nepanikar/services/db/bpd/bpd_worksheet_dao.dart';
 import 'package:nepanikar/utils/registry.dart';
 
-/// One input of a [StructuredWorksheet].
-///
-/// [id] is what the answer is stored under, so it must stay stable once the
-/// worksheet has shipped — renaming it orphans whatever the user already wrote.
+/// One input of a [StructuredWorksheet]. [id] is what the answer is stored
+/// under: renaming it after shipping orphans whatever the user already wrote.
 class WorksheetField {
   const WorksheetField({required this.id, required this.label, this.hint, this.example});
 
@@ -52,11 +50,9 @@ class WorksheetSection {
   final List<WorksheetField> fields;
 }
 
-/// Lets the page around a [StructuredWorksheet] drop text into it.
-///
-/// Week 5 Day 2 shows the author's ten example activities as tappable chips and
-/// a tap has to land in a field — the page cannot reach the worksheet's
-/// controllers, which are private to its state, so it asks through this.
+/// Lets the page around a [StructuredWorksheet] drop text into it. Week 5 Day 2
+/// shows the author's ten example activities as tappable chips, and the page
+/// cannot reach the worksheet's controllers, which are private to its state.
 class WorksheetInsertController {
   void Function(String text)? _insertIntoFirstEmpty;
 
@@ -66,12 +62,10 @@ class WorksheetInsertController {
   void insertIntoFirstEmpty(String text) => _insertIntoFirstEmpty?.call(text);
 }
 
-/// The programme's long-form worksheets (Week 3 Day 2 and Day 3).
-///
-/// Autosaves edits within half a second and reloads on open, because these are
-/// the two biggest forms in the programme and nobody fills ten fields about a
-/// painful situation in one sitting. [exampleTitle]/[example] render a
-/// collapsible worked example — the source supplies one for Day 2.
+/// The programme's long-form worksheets (Week 3 Days 2 and 3). Autosaves within
+/// half a second and reloads on open — these are the two biggest forms, and
+/// nobody fills ten fields about a painful situation in one sitting.
+/// [exampleTitle]/[example] render a collapsible worked example.
 class StructuredWorksheet extends StatefulWidget {
   const StructuredWorksheet({
     super.key,
@@ -88,12 +82,10 @@ class StructuredWorksheet extends StatefulWidget {
   final String worksheetId;
   final List<WorksheetSection> sections;
 
-  /// Show only the first N sections, with a button to reveal the rest.
-  ///
-  /// Day 1 has twenty myths; asking for twenty written answers in one sitting
-  /// blows past the "5–20 minutes a day" the programme promises, so the user is
-  /// offered a handful and can opt into the remainder. Answers to hidden
-  /// sections are still loaded and saved, so nothing is lost either way.
+  /// Show only the first N sections, with a button to reveal the rest. Day 1 has
+  /// twenty myths, and twenty written answers in one sitting blows past the
+  /// promised "5–20 minut denně". Hidden sections are still loaded and saved, so
+  /// nothing is lost either way.
   final int? visibleSectionLimit;
   final String? revealMoreLabel;
 
@@ -261,10 +253,8 @@ class _StructuredWorksheetState extends State<StructuredWorksheet> {
 /// Collapses a burst of keystrokes into a single write.
 ///
 /// Throttle rather than debounce on purpose: the first keystroke opens a window
-/// and the write happens when it closes, reading whatever is in the fields at
-/// that moment. Any keystroke after a window closes opens a new one, so the
-/// user's last edit is always written within [delay] — a true debounce would
-/// keep postponing the write for as long as they keep typing.
+/// and the write happens when it closes, so the last edit is always written
+/// within [delay]. A debounce would keep postponing it while the user types.
 class _Debouncer {
   _Debouncer(this.delay);
 

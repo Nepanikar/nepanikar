@@ -1,16 +1,11 @@
 // ignore_for_file: no_adjacent_strings_in_list
 
-/// Week 6, Day 3 — Je VýZVa a všímavost ve vztazích.
-///
-/// Copy verbatim from `docs/hpo/source/tyzden-6.md` §3, with two documented
-/// exceptions (WEEK6_SCREEN_PLAN.md → OQ-2):
-///
-/// * the "Va" instruction reads "uznejříkáuznej pocity a názory druhé osoby" in
-///   the source — an editing artefact, kept as "uznej";
-/// * an empty bullet sits between "Vý" and "Z" and is simply absent here.
-///
-/// The day itself has no title in the source (it starts at a bare "3."); the
-/// author supplied "Dovednost Je VýZVa" later — see `bpd_week_detail_screen`.
+/// Week 6, Day 3 — Je VýZVa a všímavost ve vztazích. Copy verbatim from
+/// `docs/hpo/source/tyzden-6.md` §3, with two documented exceptions (OQ-2): the
+/// "Va" instruction reads "uznejříkáuznej…" in the source, an editing artefact
+/// kept as "uznej"; and an empty bullet between "Vý" and "Z" is absent here.
+/// The day has no title in the source — the author supplied "Dovednost Je
+/// VýZVa" later, see `bpd_week_detail_screen`.
 library;
 
 import 'package:nepanikar/screens/bpd_programme/widgets/acronym_skill_page.dart';
@@ -70,9 +65,8 @@ const day3MindfulnessIntro = <String>[
 // ─────────────────────────────────────────────────────────────────────────────
 
 /// The source asks the user to **choose** here ("Vyber to, které ti nejvíc
-/// vyhovuje"), where Week 5 asked for a draw ("kolo štěstí"). So the menu is
-/// primary on this day and the draw is the fallback — the reverse of Week 5.
-/// See OQ-5.
+/// vyhovuje") where Week 5 asked for a draw, so the menu is primary on this day
+/// and the draw is the fallback — the reverse of Week 5. See OQ-5.
 const day3PickInvitation =
     'Teď si můžeš vybrat z nabídky všímavých cvičení, které chceš vyzkoušet. '
     'Vyber to, které ti nejvíc vyhovuje, a věnuj mu chvíli pozornosti, abys '
