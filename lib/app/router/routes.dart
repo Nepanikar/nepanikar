@@ -110,6 +110,7 @@ import 'package:nepanikar/screens/home/suicidal_thoughts/suicidal_thoughts_plan_
 import 'package:nepanikar/screens/home/suicidal_thoughts/suicidal_thoughts_reasons_no_screen.dart';
 import 'package:nepanikar/screens/home/suicidal_thoughts/suicidal_thoughts_screen.dart';
 import 'package:nepanikar/screens/main/contacts_screen.dart';
+import 'package:nepanikar/screens/main/health_data_screen.dart';
 import 'package:nepanikar/screens/main/main_screen.dart';
 import 'package:nepanikar/screens/settings/about_app_screen.dart';
 import 'package:nepanikar/screens/settings/export_screen.dart';
@@ -130,6 +131,7 @@ part 'routes.g.dart';
     ..._contactRoutes,
     ..._homeRoutes,
     ..._bpdProgrammeRoutes,
+    ..._healthRoutes,
   ],
 )
 class MainRoute extends GoRouteData with $MainRoute {
@@ -170,6 +172,10 @@ const _contactRoutes = <TypedGoRoute<GoRouteData>>[
   TypedGoRoute<UniversityContactsRoute>(path: 'contacts/universities'),
   TypedGoRoute<MyContactsRecordsRoute>(path: 'contacts/my-contacts-records'),
   TypedGoRoute<EmailCounsellingRoute>(path: 'contacts/email-counselling'),
+];
+
+const _healthRoutes = <TypedGoRoute<GoRouteData>>[
+  TypedGoRoute<HealthDataRoute>(path: 'health-data'),
 ];
 
 const _homeRoutes = <TypedGoRoute<GoRouteData>>[

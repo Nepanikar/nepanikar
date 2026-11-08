@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:nepanikar/app/generated/assets.gen.dart';
 import 'package:nepanikar/app/l10n/ext.dart';
@@ -16,6 +18,7 @@ import 'package:nepanikar/screens/home/eating_disorder/eating_disorder_screen.da
 import 'package:nepanikar/screens/home/my_records/my_records_screen.dart';
 import 'package:nepanikar/screens/home/self_harm/self_harm_screen.dart';
 import 'package:nepanikar/screens/home/suicidal_thoughts/suicidal_thoughts_screen.dart';
+import 'package:nepanikar/screens/main/health_data_screen.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_dao.dart';
 import 'package:nepanikar/services/db/my_records/mood_track_model.dart';
 import 'package:nepanikar/services/db/user_settings/user_settings_dao.dart';
@@ -23,6 +26,7 @@ import 'package:nepanikar/services/notifications/notifications_service.dart';
 import 'package:nepanikar/utils/registry.dart';
 import 'package:nepanikar/widgets/contacts/quick_help_button.dart';
 import 'package:nepanikar/widgets/home_tile.dart';
+import 'package:nepanikar/widgets/long_tile.dart';
 import 'package:nepanikar/widgets/mood/mood_picker.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -150,6 +154,15 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              if (Platform.isAndroid)
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+                  child: LongTile(
+                    text: 'HealthData',
+                    image: Icon(Icons.monitor_heart_outlined, color: svgColor),
+                    onTap: () => context.push(const HealthDataRoute().location),
+                  ),
+                ),
               Padding(
                 padding: const EdgeInsets.only(left: 24, right: 24, bottom: 20),
                 // The DBT programme is a closed pilot: until someone enters the
